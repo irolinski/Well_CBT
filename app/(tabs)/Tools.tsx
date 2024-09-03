@@ -1,14 +1,6 @@
-import {
-  View,
-  Text,
-  FlatList,
-  Pressable,
-  ImageBackground,
-  ScrollView,
-} from "react-native";
 import React from "react";
+import { View, Text, ScrollView } from "react-native";
 import { StatusBar } from "expo-status-bar";
-import HomeIcon from "@expo/vector-icons/AntDesign";
 import ToolCard from "../../components/ToolCard";
 
 import Feather from "@expo/vector-icons/Feather";
