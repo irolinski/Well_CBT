@@ -23,7 +23,7 @@ export default function TabLayout() {
         options={{
           title: "Home",
           tabBarIcon: ({ color }) => (
-            <HomeIcon name="home" size={24} color={color} />
+            <HomeIcon name="home" size={24} color={ color} />
           ),
         }}
       />
@@ -40,8 +40,8 @@ export default function TabLayout() {
         name="Learn"
         options={{
           title: "Learn",
-          tabBarIcon: ({ color }) => (
-            <LightbulbIcon name="lightbulb-o" size={24} color={color} />
+          tabBarIcon: ({ focused }) => (
+            <LightbulbIcon name="lightbulb-o" size={24} color={focused ? "#FEBE10" : "gray"} />
           ),
         }}
       />
