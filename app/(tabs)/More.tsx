@@ -1,15 +1,15 @@
 import React from "react";
-import { View, Text, ScrollView, Pressable } from "react-native";
+import { View, Text, ScrollView } from "react-native";
+import SettingsTab from "@/components/SettingsTab";
 
 import AntDesign from "@expo/vector-icons/AntDesign";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
-import { Href, router } from "expo-router";
-import SettingsTab from "@/components/SettingsTab";
+
 const More = () => {
   return (
     <View className="flex-1 py-12 px-2">
       <View className="mb-6 mt-12">
-        <Text className="mb-8 font-bold text-4xl text-center">More</Text>
+        <Text className="mb-4 font-bold text-4xl text-center">More</Text>
         <ScrollView className="px-6 mb-4">
           <Text className="my-6 ml-2 font-bold italic text-3xl text-left">
             Settings

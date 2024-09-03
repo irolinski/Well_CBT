@@ -1,6 +1,6 @@
 import { FontAwesome6 } from "@expo/vector-icons";
 import { Href, router } from "expo-router";
-import React, { Component, ReactElement } from "react";
+import React, { ReactElement } from "react";
 import { Pressable, Text, View } from "react-native";
 
 const SettingsTab = ({
