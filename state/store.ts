@@ -5,9 +5,6 @@ import cdaSlice from "./features/tools/cdaSlice";
 export const store = configureStore({
   reducer: {
     cda: cdaSlice,
-    // posts: postsReducer,
-    // comments: commentsReducer,
-    // users: usersReducer
   },
 });
 

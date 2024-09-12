@@ -1,12 +1,12 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import { View, Text } from "react-native";
+import React from "react";
 
-const journal = () => {
+const Journal = () => {
   return (
     <View>
-      <Text>journal</Text>
+      <Text>Journal</Text>
     </View>
-  )
-}
+  );
+};
 
-export default journal
+export default Journal;

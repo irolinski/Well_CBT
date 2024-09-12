@@ -9,7 +9,7 @@ const Frame = (props: any) => {
       <SafeAreaView className="flex-1 pt-8 px-2 justify-center">
         {props.children}
       </SafeAreaView>
-      <StatusBar style="dark"/>
+      <StatusBar style="dark" />
     </View>
   );
 };

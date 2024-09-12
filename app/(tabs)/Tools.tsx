@@ -1,13 +1,13 @@
-import React from 'react';
-import { ScrollView, Text } from 'react-native';
+import React from "react";
+import { ScrollView, Text } from "react-native";
 
-import Frame from '@/components/Frame';
-import Entypo from '@expo/vector-icons/Entypo';
-import Feather from '@expo/vector-icons/Feather';
-import Ionicons from '@expo/vector-icons/Ionicons';
-import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import Frame from "@/components/Frame";
+import Entypo from "@expo/vector-icons/Entypo";
+import Feather from "@expo/vector-icons/Feather";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 
-import ToolCard from '../../components/ToolCard';
+import ToolCard from "../../components/ToolCard";
 
 const Tools = () => {
   return (

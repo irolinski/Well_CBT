@@ -8,7 +8,7 @@ import LightbulbIcon from "@expo/vector-icons/FontAwesome";
 import HeadIcon from "@expo/vector-icons/MaterialCommunityIcons";
 import DotsIcon from "@expo/vector-icons/Entypo";
 
-export default function TabLayout() {
+const TabLayout = () => {
   const colorScheme = useColorScheme();
 
   return (
@@ -23,7 +23,7 @@ export default function TabLayout() {
         options={{
           title: "Home",
           tabBarIcon: ({ color }) => (
-            <HomeIcon name="home" size={24} color={ color} />
+            <HomeIcon name="home" size={24} color={color} />
           ),
         }}
       />
@@ -41,7 +41,11 @@ export default function TabLayout() {
         options={{
           title: "Learn",
           tabBarIcon: ({ focused }) => (
-            <LightbulbIcon name="lightbulb-o" size={24} color={focused ? "#FEBE10" : "gray"} />
+            <LightbulbIcon
+              name="lightbulb-o"
+              size={24}
+              color={focused ? "#FEBE10" : "gray"}
+            />
           ),
         }}
       />
@@ -56,4 +60,6 @@ export default function TabLayout() {
       />
     </Tabs>
   );
-}
+};
+
+export default TabLayout;

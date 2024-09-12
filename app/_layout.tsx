@@ -10,7 +10,7 @@ import { useEffect } from "react";
 import "react-native-reanimated";
 
 import { useColorScheme } from "@/hooks/useColorScheme";
-import { Provider as ContextProvider } from "react-redux";
+import { Provider as StateProvider } from "react-redux";
 import { store } from "@/state/store";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
@@ -33,14 +33,17 @@ export default function RootLayout() {
   }
 
   return (
-    <ContextProvider store={store}>
+    <StateProvider store={store}>
       <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
         <Stack>
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="tools/classic_cbt/cda" options={{ headerShown: false }} />
+          <Stack.Screen
+            name="tools/classic_cbt/cda"
+            options={{ headerShown: false }}
+          />
           <Stack.Screen name="+not-found" />
         </Stack>
       </ThemeProvider>
-    </ContextProvider>
+    </StateProvider>
   );
 }

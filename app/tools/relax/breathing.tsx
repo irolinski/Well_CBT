@@ -1,12 +1,12 @@
 import { View, Text } from "react-native";
 import React from "react";
 
-const breathing = () => {
+const Breathing = () => {
   return (
     <View>
-      <Text>breathing</Text>
+      <Text>Breathing</Text>
     </View>
   );
 };
 
-export default breathing;
+export default Breathing;

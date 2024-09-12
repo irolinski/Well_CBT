@@ -1,7 +1,7 @@
 import { AntDesign } from "@expo/vector-icons";
 import { router } from "expo-router";
 import { View, Text, Pressable } from "react-native";
-const BackButton = () => {
+const BackButton = (props: any) => {
   return (
     <Pressable
       className="absolute top-12 left-6 z-10"

@@ -1,3 +1,3 @@
-import cbtIMG from "./../../assets/images/cbt-stock.jpg";
+import CbtIMG from "./../../assets/images/cbt-stock.jpg";
 
-export { cbtIMG };
+export { CbtIMG };

@@ -1,12 +1,12 @@
 import { View, Text } from "react-native";
 import React from "react";
 
-const muscleRelaxation = () => {
+const MuscleRelaxation = () => {
   return (
     <View>
-      <Text>muscleRelaxation</Text>
+      <Text>MuscleRelaxation</Text>
     </View>
   );
 };
 
-export default muscleRelaxation;
+export default MuscleRelaxation;
