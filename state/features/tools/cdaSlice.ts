@@ -7,6 +7,7 @@ const cdaSlice = createSlice({
     oldThought: "",
     distortion: "",
     newThought: "",
+    save: false,
   },
   reducers: {
     setSituation: (state, action) => {
@@ -18,13 +19,20 @@ const cdaSlice = createSlice({
     setDistortion: (state, action) => {
       state.distortion = action.payload;
     },
-
     setNewThought: (state, action) => {
       state.newThought = action.payload;
+    },
+    toggleSave: (state) => {
+      state.save = !state.save;
     },
   },
 });
 
-export const { setSituation, setOldThought, setDistortion, setNewThought } =
-  cdaSlice.actions;
+export const {
+  setSituation,
+  setOldThought,
+  setDistortion,
+  setNewThought,
+  toggleSave,
+} = cdaSlice.actions;
 export default cdaSlice.reducer;
