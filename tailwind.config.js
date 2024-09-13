@@ -8,14 +8,14 @@ module.exports = {
   theme: {
     extend: {
       fontSize: {
-        "xs": "0.5rem",
-        sm: "0.8rem",
-        base: "1rem",
-        xl: "1.25rem",
-        "2xl": "1.563rem",
-        "3xl": "1.953rem",
-        "4xl": "2.441rem",
-        "5xl": "3.052rem",
+        xs: "12px",
+        sm: "14px",
+        base: "16px",
+        lg: "18px",
+        xl: "20px",
+        "2xl": "24px",
+        "3xl": "30px",
+        "4xl": "36px",
       },
     },
   },
