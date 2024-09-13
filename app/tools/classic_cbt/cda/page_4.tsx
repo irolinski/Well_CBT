@@ -8,6 +8,7 @@ import React from "react";
 import { View, Text, ScrollView, Pressable } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import Feather from "@expo/vector-icons/Feather";
+import DistortionTag from "@/components/DistortionTag";
 
 const Page_4 = () => {
   const cdaState = useSelector((state: RootState) => state.cda);
@@ -30,7 +31,7 @@ const Page_4 = () => {
               </View>
               <View>
                 <Text className="text-lg font-bold my-4">
-                  Your old thought:
+                  Distorted thought:
                 </Text>
                 <View className=" bg-gray-200  justify-center b">
                   <Text className="h-24 my-2 mx-4 text-lg text-center ">
@@ -39,8 +40,18 @@ const Page_4 = () => {
                 </View>
               </View>
               <View>
+                <View className="border-t mt-4 p-2">
+                  <Text className="text-lg font-bold my-4">
+                    Cognitive Distortion:
+                  </Text>
+                  <View className="w-3/4 px-4 mx-auto">
+                    <DistortionTag title={cdaState.distortion} checked={true} />
+                  </View>
+                </View>
+              </View>
+              <View className="border-t mt-4">
                 <Text className="text-lg font-bold my-4">
-                  Your new thought:
+                  Rational thought:
                 </Text>
                 <View className=" bg-gray-200  justify-center b">
                   <Text className="h-24 my-2 mx-4 text-lg text-center ">
@@ -65,8 +76,8 @@ const Page_4 = () => {
         </Frame>
         <CustomButton
           containerStyles="bottom-8 mx-auto"
-          title="Next"
-          onPress={() => router.navigate("./page_5")}
+          title="Finish"
+          onPress={() => router.replace("/")}
         />
       </ScrollView>
     </React.Fragment>
