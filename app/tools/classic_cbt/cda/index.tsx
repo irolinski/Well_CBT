@@ -6,7 +6,7 @@ import { Href, router } from "expo-router";
 import { AntDesign } from "@expo/vector-icons";
 import BackButton from "@/components/BackButton";
 
-const cda = () => {
+const Cda = () => {
   return (
     <Frame>
       <BackButton />
@@ -34,4 +34,4 @@ const cda = () => {
   );
 };
 
-export default cda;
+export default Cda;
