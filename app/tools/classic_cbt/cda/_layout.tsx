@@ -10,8 +10,8 @@ const CDALayout = () => {
       />
       <Stack.Screen name="page_1" options={{ headerShown: false }} />
       <Stack.Screen name="page_2" options={{ headerShown: false }} />
-      {/* <Stack.Screen name="page_3" options={{ headerShown: false }} />
-      <Stack.Screen name="page_4" options={{ headerShown: false }} /> */}
+      <Stack.Screen name="page_3" options={{ headerShown: false }} />
+      {/* <Stack.Screen name="page_4" options={{ headerShown: false }} /> */}
     </Stack>
   );
 };

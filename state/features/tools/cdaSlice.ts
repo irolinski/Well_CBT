@@ -3,11 +3,15 @@ import { createSlice } from "@reduxjs/toolkit";
 const cdaSlice = createSlice({
   name: "cda",
   initialState: {
+    situation: "",
     oldThought: "",
     distortion: "",
     newThought: "",
   },
   reducers: {
+    setSituation: (state, action) => {
+      state.situation = action.payload;
+    },
     setOldThought: (state, action) => {
       state.oldThought = action.payload;
     },
@@ -21,5 +25,6 @@ const cdaSlice = createSlice({
   },
 });
 
-export const { setOldThought, setDistortion, setNewThought } = cdaSlice.actions;
+export const { setSituation, setOldThought, setDistortion, setNewThought } =
+  cdaSlice.actions;
 export default cdaSlice.reducer;

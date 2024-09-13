@@ -8,29 +8,31 @@ import BackButton from "@/components/BackButton";
 
 const Cda = () => {
   return (
-    <Frame>
+    <React.Fragment>
       <BackButton />
-      <View className="flex-1 justify-center">
-        <Text className="top-8 text-2xl text-center">
-          Cognitive Distortion Analysis
-        </Text>
-        <View className="flex-1 justify-center mx-8 ">
-          <Text className="text-lg font-bold">Header</Text>
-          <Text className="text-sm my-12">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magnam
-            pariatur perferendis inventore porro quasi quidem dignissimos eos
-            velit fugiat at quibusdam perspiciatis, dicta qui asperiores
-            sapiente deleniti harum, distinctio ea.
+      <Frame>
+        <View className="my-4 mx-8">
+          <Text className="text-2xl font-bold text-center">
+            Cognitive Distortion Analysis
           </Text>
-          <Button title="Learn More" />
+          <View className="my-16 justify-center mx-8 ">
+            <Text className="text-lg font-bold">Header</Text>
+            <Text className="text-sm my-12">
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magnam
+              pariatur perferendis inventore porro quasi quidem dignissimos eos
+              velit fugiat at quibusdam perspiciatis, dicta qui asperiores
+              sapiente deleniti harum, distinctio ea.
+            </Text>
+            <Button title="Learn More" />
+          </View>
         </View>
-        <CustomButton
-          containerStyles="bottom-8 mx-auto"
-          title="Start"
-          onPress={() => router.navigate("./page_1")}
-        />
-      </View>
-    </Frame>
+      </Frame>
+      <CustomButton
+        containerStyles="bottom-8 mx-auto"
+        title="Start"
+        onPress={() => router.navigate("./page_1")}
+      />
+    </React.Fragment>
   );
 };
 
