@@ -1,7 +1,7 @@
 import BackButton from "@/components/BackButton";
 import CustomButton from "@/components/CustomButton";
 import Frame from "@/components/Frame";
-import { toggleSave } from "@/state/features/tools/cdaSlice";
+import { cdaResetState, toggleSave } from "@/state/features/tools/cdaSlice";
 import { AppDispatch, RootState } from "@/state/store";
 import { router } from "expo-router";
 import React from "react";
@@ -9,10 +9,53 @@ import { View, Text, ScrollView, Pressable } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import Feather from "@expo/vector-icons/Feather";
 import DistortionTag from "@/components/DistortionTag";
+import * as SQLite from "expo-sqlite";
+
+// import storage from "@/storage";
 
 const Page_4 = () => {
+  type CdaEntry = {
+    situation: string;
+    oldThought: string;
+    distortion: string;
+    newThought: string;
+    date: string;
+    id?: number;
+  };
+
   const cdaState = useSelector((state: RootState) => state.cda);
   const dispatch = useDispatch<AppDispatch>();
+
+  const handleSave = async () => {
+    if (cdaState.save) {
+      const db = await SQLite.openDatabaseAsync("databaseName");
+
+      // First, create the table
+      await db.execAsync(`
+    CREATE TABLE IF NOT EXISTS cdaArchive (
+    situation VARCHAR(100) NOT NULL,
+    oldThought VARCHAR(100) NOT NULL,
+    distortion VARCHAR(35) NOT NULL,
+    newThought VARCHAR(100) NOT NULL,
+    date VARCHAR(20)
+  );
+`);
+
+      // Then, insert data into the table
+      await db.execAsync(`
+    INSERT INTO cdaArchive (situation, oldThought, distortion, newThought, date)
+    VALUES (
+      '${cdaState.situation}',
+      '${cdaState.oldThought}',
+      '${cdaState.distortion}',
+      '${cdaState.newThought}',
+      '${new Date().toLocaleDateString()}'
+    );
+  `);
+      console.log(await db.getAllAsync("SELECT * FROM cdaArchive"));
+      dispatch(cdaResetState());
+    }
+  };
 
   return (
     <React.Fragment>
@@ -74,10 +117,14 @@ const Page_4 = () => {
             </View>
           </View>
         </Frame>
+        {/* <CustomButton title="Save" onPress={() => handleSave()} /> */}
         <CustomButton
           containerStyles="bottom-8 mx-auto"
           title="Finish"
-          onPress={() => router.replace("/")}
+          onPress={() => {
+            handleSave();
+            router.replace("/");
+          }}
         />
       </ScrollView>
     </React.Fragment>

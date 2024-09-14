@@ -1,14 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const cdaSliceInitialState = {
+  situation: "",
+  oldThought: "",
+  distortion: "",
+  newThought: "",
+  save: false,
+};
+
 const cdaSlice = createSlice({
   name: "cda",
-  initialState: {
-    situation: "",
-    oldThought: "",
-    distortion: "",
-    newThought: "",
-    save: false,
-  },
+  initialState: cdaSliceInitialState,
   reducers: {
     setSituation: (state, action) => {
       state.situation = action.payload;
@@ -25,6 +27,7 @@ const cdaSlice = createSlice({
     toggleSave: (state) => {
       state.save = !state.save;
     },
+    cdaResetState: () => cdaSliceInitialState,
   },
 });
 
@@ -34,5 +37,6 @@ export const {
   setDistortion,
   setNewThought,
   toggleSave,
+  cdaResetState,
 } = cdaSlice.actions;
 export default cdaSlice.reducer;
