@@ -20,7 +20,7 @@ const Tools = () => {
           Classic CBT
         </Text>
         <ToolCard
-          name="Cognitive Distortion Analysis"
+          name="Identify the Distortions"
           icon={
             <MaterialCommunityIcons
               name="head-check-outline"
