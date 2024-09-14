@@ -53,8 +53,8 @@ const Page_4 = () => {
     );
   `);
       console.log(await db.getAllAsync("SELECT * FROM cdaArchive"));
-      dispatch(cdaResetState());
     }
+    dispatch(cdaResetState());
   };
 
   return (
