@@ -48,7 +48,7 @@ function Add() {
 
   const search = (q: string) => {
     const filteredContacts = contactData.filter((contact) =>
-      (contact.firstName + contact.lastName).includes(q)
+      `${contact.firstName} ${contact.lastName}`.includes(q)
     );
     setFilteredData(filteredContacts);
     if (!q) setFilteredData([]);
@@ -127,26 +127,28 @@ function Add() {
                             {contact.phoneNumbers
                               // .slice(0, 1)
                               .map((obj: PhoneNumberObj, i: number) => (
-                                <Pressable
-                                  onPress={() => {
-                                    handleSetContact(
-                                      `${contact.firstName} ${contact.lastName}`,
-                                      obj.number
-                                    );
-                                  }}
-                                >
-                                  <View
-                                    className=" border-b w-full px-4 py-4"
-                                    key={i}
+                                <React.Fragment key={i}>
+                                  <Pressable
+                                    onPress={() => {
+                                      handleSetContact(
+                                        `${contact.firstName} ${contact.lastName}`,
+                                        obj.number
+                                      );
+                                    }}
                                   >
-                                    <Text className="text-center">
-                                      {contact.firstName} {contact.lastName}
-                                    </Text>
-                                    <Text className="text-center">
-                                      {obj.number}
-                                    </Text>
-                                  </View>
-                                </Pressable>
+                                    <View
+                                      className=" border-b w-full px-4 py-4"
+                                      key={i}
+                                    >
+                                      <Text className="text-center">
+                                        {contact.firstName} {contact.lastName}
+                                      </Text>
+                                      <Text className="text-center">
+                                        {obj.number}
+                                      </Text>
+                                    </View>
+                                  </Pressable>
+                                </React.Fragment>
                               ))}
                           </React.Fragment>
                         )}
