@@ -1,6 +1,12 @@
 import React from "react";
 import Frame from "@/components/Frame";
-import { ScrollView, Text, TextInput, TouchableWithoutFeedback, View } from "react-native";
+import {
+  ScrollView,
+  Text,
+  TextInput,
+  TouchableWithoutFeedback,
+  View,
+} from "react-native";
 import CustomButton from "@/components/CustomButton";
 import { router } from "expo-router";
 import { useDispatch, useSelector } from "react-redux";

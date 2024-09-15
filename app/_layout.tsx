@@ -41,6 +41,10 @@ export default function RootLayout() {
             name="tools/classic_cbt/cda"
             options={{ headerShown: false }}
           />
+          <Stack.Screen
+            name="tools/distract/phone"
+            options={{ headerShown: false }}
+          />
           <Stack.Screen name="+not-found" />
         </Stack>
       </ThemeProvider>

@@ -1,34 +1,26 @@
+import { router } from "expo-router";
+import * as SQLite from "expo-sqlite";
+import React from "react";
+import { Pressable, ScrollView, Text, View } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
 import BackButton from "@/components/BackButton";
 import CustomButton from "@/components/CustomButton";
+import DistortionTag from "@/components/DistortionTag";
 import Frame from "@/components/Frame";
 import { cdaResetState, toggleSave } from "@/state/features/tools/cdaSlice";
 import { AppDispatch, RootState } from "@/state/store";
-import { router } from "expo-router";
-import React from "react";
-import { View, Text, ScrollView, Pressable } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
 import Feather from "@expo/vector-icons/Feather";
-import DistortionTag from "@/components/DistortionTag";
-import * as SQLite from "expo-sqlite";
 
 // import storage from "@/storage";
 
 const Page_4 = () => {
-  type CdaEntry = {
-    situation: string;
-    oldThought: string;
-    distortion: string;
-    newThought: string;
-    date: string;
-    id?: number;
-  };
-
+  
   const cdaState = useSelector((state: RootState) => state.cda);
   const dispatch = useDispatch<AppDispatch>();
 
   const handleSave = async () => {
     if (cdaState.save) {
-      const db = await SQLite.openDatabaseAsync("databaseName");
+      const db = await SQLite.openDatabaseAsync("well-test-db");
 
       // First, create the table
       await db.execAsync(`
