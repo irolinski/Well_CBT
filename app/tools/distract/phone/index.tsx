@@ -6,26 +6,27 @@ import CustomButton from "@/components/CustomButton";
 import { router } from "expo-router";
 import * as SQLite from "expo-sqlite";
 import { Linking } from "react-native";
+import { useFocusEffect } from "expo-router";
 
 const Phone = () => {
   type PhoneContact = { name: string; phone: string };
   const [phoneData, setPhoneData] = useState<PhoneContact | null>(null);
 
-  useEffect(() => {
-    const getPhoneData = async () => {
-      const db = await SQLite.openDatabaseAsync("well-test-db");
-      try {
-        const pd: PhoneContact[] = await db.getAllAsync(
-          "SELECT * FROM tools_phone"
-        );
-        setPhoneData(pd[0]);
-      } catch (err) {
-        console.log("no data found");
-      }
-    };
+  const getPhoneData = async () => {
+    const db = await SQLite.openDatabaseAsync("well-test-db");
+    try {
+      const pd: PhoneContact[] = await db.getAllAsync(
+        "SELECT * FROM tools_phone"
+      );
+      setPhoneData(pd[0]);
+    } catch (err) {
+      console.log("no data found");
+    }
+  };
 
+  useFocusEffect(() => {
     getPhoneData();
-  }, []);
+  });
 
   const callContact = (phone: string) => {
     const num = encodeURIComponent(phone.replace(/-/g, "").replace(/\s/g, ""));
