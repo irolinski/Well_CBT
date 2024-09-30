@@ -1,5 +1,5 @@
 import BackButton from "@/components/BackButton";
-import CustomButton from "@/components/CustomButton";
+import AdvanceButton from "@/components/AdvanceButton";
 import DistortionTag from "@/components/DistortionTag";
 import Frame from "@/components/Frame";
 import { setNewThought } from "@/state/features/tools/cdaSlice";
@@ -81,7 +81,7 @@ const Page_3 = () => {
             </TouchableWithoutFeedback>
           </View>
         </Frame>
-        <CustomButton
+        <AdvanceButton
           containerStyles="bottom-8 mx-auto"
           title="Next"
           onPress={() => router.navigate("./page_4")}

@@ -2,7 +2,7 @@ import { View, Text } from "react-native";
 import React, { useEffect, useState } from "react";
 import BackButton from "@/components/BackButton";
 import Frame from "@/components/Frame";
-import CustomButton from "@/components/CustomButton";
+import AdvanceButton from "@/components/AdvanceButton";
 import { router } from "expo-router";
 import * as SQLite from "expo-sqlite";
 import { Linking } from "react-native";
@@ -65,19 +65,19 @@ const Phone = () => {
       </Frame>
       {phoneData ? (
         <React.Fragment>
-          <CustomButton
+          <AdvanceButton
             containerStyles="bottom-8 w-1/2 mx-auto m-2"
             title="Call"
             onPress={() => callContact(phoneData.phone)}
           />
-          <CustomButton
+          <AdvanceButton
             containerStyles="bottom-8 mx-auto w-1/4 m-2"
             title="Change contact"
             onPress={() => router.navigate("./add")}
           />
         </React.Fragment>
       ) : (
-        <CustomButton
+        <AdvanceButton
           containerStyles="bottom-8 mx-auto"
           title="Add contact"
           onPress={() => router.navigate("./add")}

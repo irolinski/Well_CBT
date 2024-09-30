@@ -1,37 +1,44 @@
 import { View, Text, Button, Pressable } from "react-native";
 import React from "react";
-import Frame from "@/components/Frame";
-import CustomButton from "@/components/CustomButton";
-import { Href, router } from "expo-router";
-import { AntDesign } from "@expo/vector-icons";
+import AdvanceButton from "@/components/AdvanceButton";
+import { router } from "expo-router";
 import BackButton from "@/components/BackButton";
 
 const Cda = () => {
   return (
     <React.Fragment>
-      <BackButton />
-      <Frame>
-        <View className="my-4 mx-8">
-          <Text className="text-2xl font-bold text-center">
-            Cognitive Distortion Analysis
-          </Text>
-          <View className="my-16 justify-center mx-8 ">
-            <Text className="text-lg font-bold">Header</Text>
-            <Text className="text-sm my-12">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magnam
-              pariatur perferendis inventore porro quasi quidem dignissimos eos
-              velit fugiat at quibusdam perspiciatis, dicta qui asperiores
-              sapiente deleniti harum, distinctio ea.
-            </Text>
-            <Button title="Learn More" />
+      <View className="absolute top-12 left-6 z-10">
+        <BackButton />
+      </View>
+      <View className="bg-gray-500 px-6 h-full justify-center">
+        <View className="justify-center items-center">
+          <View className="absolute top-8 left-8"></View>
+          <View>
+            <View className="my-4 mr-[15vw] justify-center">
+              <Text
+                className="text-2xl my-4 font-bold text-left "
+                style={{ fontFamily: "KodchasanMedium", color: "#F5F5F5" }}
+              >
+                Cognitive Distortion Analysis
+              </Text>
+              <Text className="text-sm my-2" style={{ color: "#F5F5F5" }}>
+                Lorem ipsum dolor sit amet consectetur. Amet maecenas varius non
+                urna eget vulputate vulputate viverra. Amet in lectus nisl
+                phasellus sit nunc cum ac duis. Pharetra eget sociis sit id sit
+                mattis est nunc. Habitasse tincidunt risus felis in nibh nam
+                adipiscing.
+              </Text>
+            </View>
+          </View>
+          <View className=" my-16 w-full">
+            <AdvanceButton
+              containerStyles="w-full"
+              title="Let's begin"
+              onPress={() => router.navigate("./page_1")}
+            />
           </View>
         </View>
-      </Frame>
-      <CustomButton
-        containerStyles="bottom-8 mx-auto"
-        title="Start"
-        onPress={() => router.navigate("./page_1")}
-      />
+      </View>
     </React.Fragment>
   );
 };

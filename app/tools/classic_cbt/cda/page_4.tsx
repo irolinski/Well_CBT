@@ -4,7 +4,7 @@ import React from "react";
 import { Pressable, ScrollView, Text, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import BackButton from "@/components/BackButton";
-import CustomButton from "@/components/CustomButton";
+import AdvanceButton from "@/components/AdvanceButton";
 import DistortionTag from "@/components/DistortionTag";
 import Frame from "@/components/Frame";
 import { cdaResetState, toggleSave } from "@/state/features/tools/cdaSlice";
@@ -14,7 +14,6 @@ import Feather from "@expo/vector-icons/Feather";
 // import storage from "@/storage";
 
 const Page_4 = () => {
-  
   const cdaState = useSelector((state: RootState) => state.cda);
   const dispatch = useDispatch<AppDispatch>();
 
@@ -109,8 +108,8 @@ const Page_4 = () => {
             </View>
           </View>
         </Frame>
-        {/* <CustomButton title="Save" onPress={() => handleSave()} /> */}
-        <CustomButton
+        {/* <AdvanceButton title="Save" onPress={() => handleSave()} /> */}
+        <AdvanceButton
           containerStyles="bottom-8 mx-auto"
           title="Finish"
           onPress={() => {

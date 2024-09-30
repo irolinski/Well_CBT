@@ -10,7 +10,7 @@ const ToolNav = ({
   numOfAllPages: number;
 }) => {
   return (
-    <View className="relative top-12 w-full flex-row justify-center">
+    <View className="relative top-12 w-full flex-row justify-center z-10">
       <View className="absolute left-6">
         <BackButton />
       </View>

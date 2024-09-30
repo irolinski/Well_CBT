@@ -1,5 +1,4 @@
-import BackButton from "@/components/BackButton";
-import CustomButton from "@/components/CustomButton";
+import AdvanceButton from "@/components/AdvanceButton";
 import DistortionTag from "@/components/DistortionTag";
 import Frame from "@/components/Frame";
 import cognitiveDistortions from "@/constants/models/cda_distortionList";
@@ -11,6 +10,7 @@ import { Text } from "react-native";
 import { ScrollView } from "react-native";
 import { View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
+import ToolNav from "@/components/ToolNav";
 
 const Page_2 = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -19,26 +19,32 @@ const Page_2 = () => {
   return (
     <React.Fragment>
       <ScrollView>
-        <BackButton />
+        <ToolNav currentPage={2} numOfAllPages={5} />
         <Frame>
-          <View className="py-8">
-            <Text className="text-xl font-bold text-center">
-              Now let's take a closer look...
+          <View className="py-10">
+            <Text
+              className="text-2xl text-left mr-[10vw]"
+              style={{ fontFamily: "KodchasanMedium", color: "#1E1E1E" }}
+            >
+              Now, let's take a closer look...
             </Text>
-            <View className="my-4 mx-8">
-              <Text className="text-lg font-bold my-4">Your thought:</Text>
-              <View className=" bg-gray-200  justify-center ">
-                <Text className="h-24 my-2 mx-4 text-lg text-center ">
+            <View className="my-4 ">
+              <View
+                className=" bg-gray-200 justify-center rounded-lg border"
+                style={{ borderColor: "#4391BC" }}
+              >
+                <Text className="h-28 my-2 mx-4 text-lg text-center ">
                   {cdaState.oldThought}
                 </Text>
               </View>
-              <View className="border-t mt-4 p-2">
-                <Text className="text-center">
-                  Here is a list of some popular cognitive distortions. Choose one
-                  that most accurately describes your thought.
+              <View className="mt-8 mx-auto">
+                <Text className="text-left mr-[15vw]">
+                  Here is a list of some popular cognitive distortions. Choose{" "}
+                  <Text className="font-bold">one</Text> that most accurately
+                  describes your thought.
                 </Text>
                 <View>
-                  <View className="flex flex-row my-8 mx-2 overflow-hidden flex-wrap">
+                  <View className="flex flex-row mt-6 mx-2 overflow-hidden flex-wrap">
                     {cognitiveDistortions.map((d, index) => (
                       <DistortionTag
                         title={d}
@@ -53,8 +59,8 @@ const Page_2 = () => {
             </View>
           </View>
         </Frame>
-        <CustomButton
-          containerStyles="bottom-8 mx-auto"
+        <AdvanceButton
+          containerStyles="bottom-8 my-4 mx-6 justify-center"
           title="Next"
           onPress={() => router.navigate("./page_3")}
         />

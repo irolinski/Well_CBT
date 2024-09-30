@@ -2,18 +2,18 @@ import React from "react";
 import Frame from "@/components/Frame";
 import {
   ScrollView,
-  Text,
   TextInput,
   TouchableWithoutFeedback,
   View,
 } from "react-native";
-import CustomButton from "@/components/CustomButton";
+import AdvanceButton from "@/components/AdvanceButton";
 import { router } from "expo-router";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/state/store";
 import { setOldThought, setSituation } from "@/state/features/tools/cdaSlice";
-import BackButton from "@/components/BackButton";
 import { Keyboard } from "react-native";
+import ToolNav from "@/components/ToolNav";
+import Text from "@/components/global/Text";
 
 const Page_1 = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -22,25 +22,30 @@ const Page_1 = () => {
   return (
     <React.Fragment>
       <ScrollView>
-        <BackButton />
+        <ToolNav currentPage={1} numOfAllPages={5} />
         <Frame>
-          <View className="py-8">
-            <Text className="text-xl font-bold text-center">
-              Write down a thought that's bothering you
+          <View className="py-10">
+            <Text
+              className="text-2xl text-left"
+              style={{ fontFamily: "KodchasanMedium", color: "#1E1E1E" }}
+            >
+              Write down a thought that's bothering you.
             </Text>
             <TouchableWithoutFeedback
               onPress={Keyboard.dismiss}
               accessible={false}
             >
-              <View className="my-4 mx-8">
+              <View className="my-4">
                 <View className="mb-2">
-                  <Text className="text-center">
-                    First, in few words describe the situation or the context of
-                    the thought
+                  <Text className="text-left mr-[15vw]">
+                    Describe the context of the thought in a few words:
                   </Text>
-                  <Text className="text-lg font-bold mt-2">Situation:</Text>
                   <TextInput
-                    className=" h-24 border p-4 m-2 bg-gray-100 text-lg"
+                    className="h-28 border p-4 my-2 rounded-md text-md"
+                    style={{
+                      borderColor: "#d9d9d9",
+                      backgroundColor: "#FBFBFB",
+                    }}
                     value={cdaState.situation}
                     onChangeText={(evt) => dispatch(setSituation(evt))}
                     editable
@@ -58,13 +63,16 @@ const Page_1 = () => {
                   </Text>
                 </View>
                 <View className="mb-2">
-                  <Text className="text-center">
+                  <Text className="text-left mr-[15vw]">
                     Now, choose and write down one thought that has arised, that
-                    may be particulary painful
+                    may be particulary painful:
                   </Text>
-                  <Text className="text-lg font-bold mt-2">Your thought:</Text>
                   <TextInput
-                    className="h-24 border p-4 m-2 bg-gray-100 text-lg"
+                    className="h-28 border p-4 my-2 rounded-md text-md"
+                    style={{
+                      borderColor: "#d9d9d9",
+                      backgroundColor: "#FBFBFB",
+                    }}
                     value={cdaState.oldThought}
                     onChangeText={(evt) => dispatch(setOldThought(evt))}
                     editable
@@ -85,8 +93,8 @@ const Page_1 = () => {
             </TouchableWithoutFeedback>
           </View>
         </Frame>
-        <CustomButton
-          containerStyles="bottom-8 mx-auto"
+        <AdvanceButton
+          containerStyles="bottom-8 my-4 mx-6 justify-center"
           title="Next"
           onPress={() => router.navigate("./page_2")}
         />
