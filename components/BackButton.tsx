@@ -1,4 +1,4 @@
-import { AntDesign } from "@expo/vector-icons";
+import { AntDesign, Entypo } from "@expo/vector-icons";
 import { router } from "expo-router";
 import { View, Text, Pressable } from "react-native";
 const BackButton = (props: any) => {
@@ -7,7 +7,7 @@ const BackButton = (props: any) => {
       className="absolute top-12 left-6 z-10"
       onPress={() => router.back()}
     >
-      <AntDesign name="leftcircleo" size={30} color="gray" />
+      <Entypo name="chevron-left" size={24} color="black" />
     </Pressable>
   );
 };
