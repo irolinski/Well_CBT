@@ -8,11 +8,11 @@ const ProgressBar = ({
   numOfAllPages: number;
 }) => {
   return (
-    <View className="">
+    <View className="flex-row">
       {Array.from({ length: numOfAllPages }).map((q: unknown, i: number) => {
         return (
           <View
-            className="w-4 h-4 rounded-full"
+            className="w-4 h-4 rounded-full mx-1"
             style={
               i + 1 > currentPage
                 ? { backgroundColor: "#D9D9D9" }
