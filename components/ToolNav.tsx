@@ -1,6 +1,7 @@
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import BackButton from "./BackButton";
 import ProgressBar from "./ProgressBar";
+import Text from "./global/Text";
 const ToolNav = ({
   currentPage,
   numOfAllPages,
@@ -16,8 +17,8 @@ const ToolNav = ({
       <View className="">
         <ProgressBar currentPage={currentPage} numOfAllPages={numOfAllPages} />
       </View>
-      <View className="absolute right-6 text-xxs">
-        <Text>
+      <View className="absolute right-6">
+        <Text className="text-xs">
           Step {currentPage}{" "}
           <Text style={{ color: "#525252" }}>of {numOfAllPages}</Text>
         </Text>
