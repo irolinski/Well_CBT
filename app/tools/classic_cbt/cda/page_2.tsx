@@ -6,7 +6,6 @@ import { setDistortion } from "@/state/features/tools/cdaSlice";
 import { AppDispatch, RootState } from "@/state/store";
 import { router } from "expo-router";
 import React, { useState } from "react";
-// import { Text } from "react-native";
 import { ScrollView } from "react-native";
 import { View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
@@ -54,10 +53,7 @@ const Page_2 = () => {
                           content={<Text>{d.description}</Text>}
                           tooltipStyle={{
                             minWidth: 160,
-                            minHeight: 88,
-                            maxWidth: 160,
-                            maxHeight: 88,
-              
+                            minHeight: 80,
                           }}
                           useInteractionManager={false}
                           accessible={false}
