@@ -1,66 +1,75 @@
-import BackButton from "@/components/BackButton";
 import AdvanceButton from "@/components/AdvanceButton";
 import DistortionTag from "@/components/DistortionTag";
 import Frame from "@/components/Frame";
 import { setNewThought } from "@/state/features/tools/cdaSlice";
 import { AppDispatch, RootState } from "@/state/store";
 import { router } from "expo-router";
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
-  Text,
   Keyboard,
   TextInput,
   TouchableWithoutFeedback,
   ScrollView,
+  Pressable,
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
+import ToolNav from "@/components/ToolNav";
+import Text from "@/components/global/Text";
+import ToolHeader from "@/components/ToolHeader";
+import { Dimensions } from "react-native";
 
 const Page_3 = () => {
   const dispatch = useDispatch<AppDispatch>();
   const cdaState = useSelector((state: RootState) => state.cda);
+
+  const [spaceForKeyboard, setSpaceForKeyboard] = useState(false);
+  const keyboardMargin = Dimensions.get("window").width / 3;
   return (
     <React.Fragment>
       <ScrollView>
-        <BackButton />
+        <ToolNav currentPage={3} numOfAllPages={5} />
         <Frame>
-          <View className="py-8">
-            <Text className="text-xl font-bold text-center">
+          <View className="py-10">
+            <ToolHeader>
               Now, try to correct the thought to make it rational
-            </Text>
+            </ToolHeader>
             <TouchableWithoutFeedback
               onPress={Keyboard.dismiss}
               accessible={false}
             >
-              <View className="my-4 mx-8">
+              <View className="my-4">
                 <View>
-                  <Text className="text-lg font-bold my-4">
-                    Your old thought:
-                  </Text>
-                  <View className=" bg-gray-200  justify-center b">
-                    <Text className="h-24 my-2 mx-4 text-lg text-center ">
+                  <Text>Distorted thought: </Text>
+                  <View
+                    className="bg-gray-200 justify-center rounded-lg border mt-4"
+                    style={{ borderColor: "#4391BC" }}
+                  >
+                    <Text className="h-28 my-2 mx-4 text-lg text-center ">
                       {cdaState.oldThought}
                     </Text>
                   </View>
                 </View>
-                <View className="border-t mt-4 p-2">
-                  <Text className="text-lg font-bold my-4">
-                    Cognitive Distortion:
-                  </Text>
-                  <View className="w-3/4 px-4 mx-auto">
-                    <DistortionTag title={cdaState.distortion} checked={true} />
+                <View className="mt-4 p-2">
+                  <Text>Cognitive Distortion:</Text>
+                  <View className="w-3/4 mt-4 px-4 mx-auto">
+                    <DistortionTag
+                      title={cdaState.distortion}
+                      checked={false}
+                    />
                   </View>
                 </View>
-                <View className="border-t mt-4 p-2">
+                <View className={`${spaceForKeyboard ? "mb-[20vh]" : "mb-2"} `}>
                   <Text>
-                    Now, try to think of a more rational way to look at the
-                    situation
-                  </Text>
-                  <Text className="text-lg font-bold my-4">
-                    Your new thought:
+                    Now, let's try to think of a more rational way to look at
+                    this situation:
                   </Text>
                   <TextInput
-                    className=" h-24 border p-4 m-2 bg-gray-100 text-lg"
+                    className="h-28 border p-4 my-2 rounded-md text-md"
+                    style={{
+                      borderColor: "#d9d9d9",
+                      backgroundColor: "#FBFBFB",
+                    }}
                     value={cdaState.newThought}
                     onChangeText={(evt) => dispatch(setNewThought(evt))}
                     editable
@@ -72,6 +81,12 @@ const Page_3 = () => {
                       evt.nativeEvent.key == "Enter" && Keyboard.dismiss()
                     }
                     clearButtonMode="while-editing"
+                    onFocus={() => {
+                      setSpaceForKeyboard(true);
+                    }}
+                    onBlur={() => {
+                      setSpaceForKeyboard(false);
+                    }}
                   ></TextInput>
                   <Text className="text-right">
                     {cdaState.newThought.length}/75
@@ -82,7 +97,7 @@ const Page_3 = () => {
           </View>
         </Frame>
         <AdvanceButton
-          containerStyles="bottom-8 mx-auto"
+          containerStyles="bottom-8 my-4 mx-6 justify-center"
           title="Next"
           onPress={() => router.navigate("./page_4")}
         />

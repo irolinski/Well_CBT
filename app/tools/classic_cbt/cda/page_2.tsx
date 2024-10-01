@@ -11,6 +11,7 @@ import { ScrollView } from "react-native";
 import { View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import ToolNav from "@/components/ToolNav";
+import ToolHeader from "@/components/ToolHeader";
 
 const Page_2 = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -22,13 +23,8 @@ const Page_2 = () => {
         <ToolNav currentPage={2} numOfAllPages={5} />
         <Frame>
           <View className="py-10">
-            <Text
-              className="text-2xl text-left mr-[10vw]"
-              style={{ fontFamily: "KodchasanMedium", color: "#1E1E1E" }}
-            >
-              Now, let's take a closer look...
-            </Text>
-            <View className="my-4 ">
+            <ToolHeader>Now, let's take a closer look...</ToolHeader>
+            <View className="my-4">
               <View
                 className=" bg-gray-200 justify-center rounded-lg border"
                 style={{ borderColor: "#4391BC" }}
@@ -41,7 +37,7 @@ const Page_2 = () => {
                 <Text className="text-left mr-[15vw]">
                   Here is a list of some popular cognitive distortions. Choose{" "}
                   <Text className="font-bold">one</Text> that most accurately
-                  describes your thought.
+                  describes your thought:
                 </Text>
                 <View>
                   <View className="flex flex-row mt-6 mx-2 overflow-hidden flex-wrap">

@@ -18,7 +18,7 @@ const AdvanceButton = ({
   return (
     <TouchableOpacity
       activeOpacity={0.7}
-      className={`bg-white min-h-[48px] rounded-md justify-center items-center ${containerStyles}`}
+      className={`bg-white min-h-[48px] rounded justify-center items-center ${containerStyles}`}
       style={{ backgroundColor: "#4391BC" }}
       onPress={onPress}
     >

@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import Frame from "@/components/Frame";
 import {
+  Dimensions,
   ScrollView,
   TextInput,
   TouchableWithoutFeedback,
@@ -14,10 +15,13 @@ import { setOldThought, setSituation } from "@/state/features/tools/cdaSlice";
 import { Keyboard } from "react-native";
 import ToolNav from "@/components/ToolNav";
 import Text from "@/components/global/Text";
+import ToolHeader from "@/components/ToolHeader";
 
 const Page_1 = () => {
   const dispatch = useDispatch<AppDispatch>();
   const cdaState = useSelector((state: RootState) => state.cda);
+
+  const [spaceForKeyboard, setSpaceForKeyboard] = useState(false);
 
   return (
     <React.Fragment>
@@ -25,14 +29,11 @@ const Page_1 = () => {
         <ToolNav currentPage={1} numOfAllPages={5} />
         <Frame>
           <View className="py-10">
-            <Text
-              className="text-2xl text-left"
-              style={{ fontFamily: "KodchasanMedium", color: "#1E1E1E" }}
-            >
-              Write down a thought that's bothering you.
-            </Text>
+            <ToolHeader>Write down a thought that's bothering you.</ToolHeader>
             <TouchableWithoutFeedback
-              onPress={Keyboard.dismiss}
+              onPress={() => {
+                Keyboard.dismiss;
+              }}
               accessible={false}
             >
               <View className="my-4">
@@ -45,11 +46,12 @@ const Page_1 = () => {
                     style={{
                       borderColor: "#d9d9d9",
                       backgroundColor: "#FBFBFB",
+                      textAlignVertical: "top",
                     }}
                     value={cdaState.situation}
                     onChangeText={(evt) => dispatch(setSituation(evt))}
                     editable
-                    multiline
+                    multiline={true}
                     numberOfLines={4}
                     maxLength={75}
                     returnKeyType="done"
@@ -62,7 +64,7 @@ const Page_1 = () => {
                     {cdaState.situation.length}/75
                   </Text>
                 </View>
-                <View className="mb-2">
+                <View className={`${spaceForKeyboard ? "mb-[20vh]" : "mb-2"}`}>
                   <Text className="text-left mr-[15vw]">
                     Now, choose and write down one thought that has arised, that
                     may be particulary painful:
@@ -72,11 +74,12 @@ const Page_1 = () => {
                     style={{
                       borderColor: "#d9d9d9",
                       backgroundColor: "#FBFBFB",
+                      textAlignVertical: "top",
                     }}
                     value={cdaState.oldThought}
                     onChangeText={(evt) => dispatch(setOldThought(evt))}
                     editable
-                    multiline
+                    multiline={true}
                     numberOfLines={4}
                     maxLength={75}
                     returnKeyType="done"
@@ -84,6 +87,12 @@ const Page_1 = () => {
                       evt.nativeEvent.key == "Enter" && Keyboard.dismiss()
                     }
                     clearButtonMode="while-editing"
+                    onFocus={() => {
+                      setSpaceForKeyboard(true);
+                    }}
+                    onBlur={() => {
+                      setSpaceForKeyboard(false);
+                    }}
                   ></TextInput>
                   <Text className="text-right">
                     {cdaState.oldThought.length}/75
