@@ -5,17 +5,23 @@ import cognitiveDistortions from "@/constants/models/cda_distortionList";
 import { setDistortion } from "@/state/features/tools/cdaSlice";
 import { AppDispatch, RootState } from "@/state/store";
 import { router } from "expo-router";
-import React from "react";
-import { Text } from "react-native";
+import React, { useState } from "react";
+// import { Text } from "react-native";
 import { ScrollView } from "react-native";
 import { View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import ToolNav from "@/components/ToolNav";
 import ToolHeader from "@/components/ToolHeader";
+import Tooltip from "react-native-walkthrough-tooltip";
+import Text from "@/components/global/Text";
 
 const Page_2 = () => {
   const dispatch = useDispatch<AppDispatch>();
   const cdaState = useSelector((state: RootState) => state.cda);
+
+  const [showDistortionTooltip, setshowDistortionTooltip] = useState<
+    number | null
+  >(null);
 
   return (
     <React.Fragment>
@@ -40,14 +46,35 @@ const Page_2 = () => {
                   describes your thought:
                 </Text>
                 <View>
-                  <View className="flex flex-row mt-6 mx-2 overflow-hidden flex-wrap">
+                  <View className="flex-1 flex-row mt-6 flex-wrap">
                     {cognitiveDistortions.map((d, index) => (
-                      <DistortionTag
-                        title={d}
-                        checked={Boolean(d === cdaState.distortion)}
-                        onPress={() => dispatch(setDistortion(d))}
-                        key={index}
-                      />
+                      <View>
+                        <Tooltip
+                          isVisible={showDistortionTooltip === index && true}
+                          content={<Text>{d.description}</Text>}
+                          tooltipStyle={{
+                            minWidth: 160,
+                            minHeight: 88,
+                            maxWidth: 160,
+                            maxHeight: 88,
+              
+                          }}
+                          useInteractionManager={false}
+                          accessible={false}
+                          placement="top"
+                          onClose={() => setshowDistortionTooltip(null)}
+                          key={index}
+                        >
+                          <DistortionTag
+                            title={d.name}
+                            checked={Boolean(d.name === cdaState.distortion)}
+                            onPress={() => {
+                              dispatch(setDistortion(d.name));
+                            }}
+                            onLongPress={() => setshowDistortionTooltip(index)}
+                          />
+                        </Tooltip>
+                      </View>
                     ))}
                   </View>
                 </View>

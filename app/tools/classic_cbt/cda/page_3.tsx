@@ -11,7 +11,6 @@ import {
   TextInput,
   TouchableWithoutFeedback,
   ScrollView,
-  Pressable,
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import ToolNav from "@/components/ToolNav";

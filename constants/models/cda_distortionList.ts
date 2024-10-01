@@ -1,15 +1,58 @@
 const cognitiveDistortions = [
-  "All-or-nothing thinking",
-  "Mental filter",
-  "Over generalization",
-  "Mind-reading",
-  "Discounting the positives",
-  "Fortune Telling",
-  "Mangification/minimization",
-  "Labeling",
-  "Reasoning from emotions",
-  "'Should' statements",
-  "Blame",
+  {
+    name: "All-or-nothing thinking",
+    description:
+      "Perceiving situations in black-and-white extremes, with no room for nuance or gray areas.",
+  },
+  {
+    name: "Mental filter",
+    description:
+      "Concentrating on the negative details, overlooking the positive aspects.",
+  },
+  {
+    name: "Overgeneralization",
+    description:
+      "Seeing a single negative event as a continuous cycle of failure.",
+  },
+  {
+    name: "Mind-reading",
+    description: "Assuming you know what other people are thinking.",
+  },
+  {
+    name: "Discounting the positives",
+    description:
+      "Dismissing the positive aspects about you /a situation as insignificant or unworthy.",
+  },
+  {
+    name: "Fortune Telling",
+    description:
+      "Predicting events will turn out badly without sufficient evidence.",
+  },
+  {
+    name: "Mangification/minimization",
+    description:
+      "Either exaggerating the importance of issues or trivializing their significance.",
+  },
+  {
+    name: "Labeling",
+    description:
+      "Labelling yourself or others harshly (e.g. 'loser', 'failure')",
+  },
+  {
+    name: "Reasoning from emotions",
+    description:
+      "Conclduing that your feelings must always reflect reality (e.g. 'I feel ashamed, therefore it must mean I have done something shameful.' ) .",
+  },
+  {
+    name: "'Should' statements",
+    description:
+      "Placing rigid demands on yourself or others using terms like: 'should' 'ought to' and 'must'.",
+  },
+  {
+    name: "Perosnalization/Blame",
+    description:
+      "Holding yourself accountable for situations beyond your control or deflecting responsibility onto others",
+  },
 ];
 
 export default cognitiveDistortions;

@@ -7,7 +7,6 @@
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "splash": {
-      // "image": "./assets/images/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -16,14 +15,12 @@
     },
     "android": {
       "adaptiveIcon": {
-        // "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       }
     },
     "web": {
       "bundler": "metro",
       "output": "static"
-      // "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
       "expo-router",
@@ -32,7 +29,8 @@
         {
           "contactsPermission": "Allow Well to access your contacts."
         }
-      ]
+      ],
+      "expo-build-properties"
     ],
     "experiments": {
       "typedRoutes": true

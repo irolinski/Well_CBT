@@ -3,14 +3,20 @@ import { View, Text, Pressable } from "react-native";
 const DistortionTag = ({
   title,
   onPress,
+  onLongPress,
   checked,
 }: {
   title: string;
   onPress?: () => void;
+  onLongPress?: () => void;
   checked: boolean;
 }) => {
   return (
-    <Pressable onPress={onPress}>
+    <Pressable
+      onPress={onPress}
+      onLongPress={onLongPress}
+      delayLongPress={1000}
+    >
       <View
         className={`mx-1 my-1 w-auto  rounded-full p-2`}
         style={{ backgroundColor: checked ? "#8DBED8" : "#4391BC" }}
