@@ -44,8 +44,14 @@ const Page_2 = () => {
                   <Text className="font-bold">one</Text> that most accurately
                   describes your thought:
                 </Text>
-                <View>
+                <View className="">
                   <View className="flex-1 flex-row mt-6 flex-wrap">
+                    <Text
+                      className="pb-6"
+                      style={{ color: "#B8B8B8", fontSize: 14 }}
+                    >
+                      Press and hold to see the description.
+                    </Text>
                     {cognitiveDistortions.map((d, index) => (
                       <View>
                         <Tooltip
@@ -60,6 +66,8 @@ const Page_2 = () => {
                           placement="top"
                           onClose={() => setshowDistortionTooltip(null)}
                           key={index}
+                          // to prevent visual gitches, parent or
+                          // sibling to parent containers must not have margins
                         >
                           <DistortionTag
                             title={d.name}
