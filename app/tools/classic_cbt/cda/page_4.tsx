@@ -56,42 +56,46 @@ const Page_4 = () => {
             <ToolHeader>
               Here are your results. Try to meditate on them for a second.
             </ToolHeader>
-            <View className="my-8 ">
+            <View className="my-8">
               <View>
                 <Text>Distorted thought: </Text>
                 <View
-                  className="bg-gray-200 justify-center rounded-lg border mt-4"
+                  className="mt-4 justify-center rounded-lg border bg-gray-200"
                   style={{ borderColor: "#4391BC" }}
                 >
-                  <Text className="h-28 my-2 mx-4 text-lg text-center ">
+                  <Text className="mx-4 my-2 h-28 text-center text-lg">
                     {cdaState.oldThought}
                   </Text>
                 </View>
               </View>
               <View
-                className="my-8 py-7 border-t border-b px-2"
+                className="my-8 border-b border-t px-2 py-7"
                 style={{ borderColor: "#D9D9D9" }}
               >
                 <Text>Cognitive Distortion:</Text>
-                <View className="w-3/4 mt-4 px-4 mx-auto">
-                  <DistortionPill title={cdaState.distortion} checked={true} />
+                <View className="mx-auto mt-4 w-3/4 px-4">
+                  <DistortionPill
+                    title={cdaState.distortion}
+                    checked={true}
+                    highlighted={false}
+                  />
                 </View>
               </View>
               <View className="mt-4">
                 <Text>Rational thought:</Text>
                 <View
-                  className="bg-gray-200 justify-center rounded-lg border mt-4"
+                  className="mt-4 justify-center rounded-lg border bg-gray-200"
                   style={{ borderColor: "#4391BC" }}
                 >
-                  <Text className="h-24 my-2 mx-4 text-lg text-center ">
+                  <Text className="mx-4 my-2 h-24 text-center text-lg">
                     {cdaState.newThought}
                   </Text>
                 </View>
               </View>
               <Pressable onPress={() => dispatch(toggleSave())}>
-                <View className="flex flex-row pt-4 mt-10 mx-2">
+                <View className="mx-2 mt-10 flex flex-row pt-4">
                   <View
-                    className="w-6 h-6 border rounded-md "
+                    className="h-6 w-6 rounded-md border"
                     style={{
                       borderColor: "#4391BC",
                       backgroundColor: cdaState.save
@@ -106,7 +110,7 @@ const Page_4 = () => {
                     )}
                   </View>
                   <Text
-                    className="text-md text-center mx-4 my-1"
+                    className="text-md mx-4 my-1 text-center"
                     style={{ color: "#4391BC" }}
                   >
                     Save to journal?

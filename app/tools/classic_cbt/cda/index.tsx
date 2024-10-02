@@ -7,21 +7,21 @@ import BackButton from "@/components/BackButton";
 const Cda = () => {
   return (
     <React.Fragment>
-      <View className="absolute top-12 left-6 z-10">
+      <View className="absolute left-6 top-12 z-10">
         <BackButton />
       </View>
-      <View className="bg-gray-500 px-6 h-full justify-center">
-        <View className="justify-center items-center">
-          <View className="absolute top-8 left-8"></View>
+      <View className="h-full justify-center bg-gray-500 px-6">
+        <View className="items-center justify-center">
+          <View className="absolute left-8 top-8"></View>
           <View>
             <View className="my-4 mr-[15vw] justify-center">
               <Text
-                className="text-2xl my-4 font-bold text-left "
+                className="my-4 text-left text-2xl font-bold"
                 style={{ fontFamily: "KodchasanMedium", color: "#F5F5F5" }}
               >
                 Cognitive Distortion Analysis
               </Text>
-              <Text className="text-sm my-2" style={{ color: "#F5F5F5" }}>
+              <Text className="my-2 text-sm" style={{ color: "#F5F5F5" }}>
                 Lorem ipsum dolor sit amet consectetur. Amet maecenas varius non
                 urna eget vulputate vulputate viverra. Amet in lectus nisl
                 phasellus sit nunc cum ac duis. Pharetra eget sociis sit id sit
@@ -30,7 +30,7 @@ const Cda = () => {
               </Text>
             </View>
           </View>
-          <View className=" my-16 w-full">
+          <View className="my-16 w-full">
             <AdvanceButton
               containerStyles="w-full"
               title="Let's begin"

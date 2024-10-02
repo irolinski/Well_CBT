@@ -45,24 +45,27 @@ const Page_2 = () => {
             <ToolHeader>Now, let's take a closer look...</ToolHeader>
             <View className="my-8">
               <View
-                className=" bg-gray-200 justify-center rounded-lg border"
+                className="justify-center rounded-lg border bg-gray-200"
                 style={{ borderColor: "#4391BC" }}
               >
-                <Text className="h-28 my-2 mx-4 text-lg text-center ">
+                <Text className="mx-4 my-2 h-28 text-center text-lg">
                   {cdaState.oldThought}
                 </Text>
               </View>
-              <View className="mt-8 mx-auto">
-                <Text className="text-left mr-[10vw]">
+              <View className="mx-auto mt-8">
+                <Text className="mr-[10vw] text-left">
                   Here is a list of some of the most common{" "}
                   <Text className="font-bold">cognitive distortions</Text>.
                   Choose <Text className="font-bold">one</Text> that most
                   accurately describes your thought:
                 </Text>
-                <View className=" flex-row mt-6 flex-wrap">
+                <View className="mt-6 flex-row flex-wrap">
                   <Text
                     className="pb-6"
-                    style={{ color: "#B8B8B8", fontSize: 14 }}
+                    style={{
+                      color: "#B8B8B8",
+                      fontSize: 14,
+                    }}
                   >
                     Press and hold to see the description.
                   </Text>

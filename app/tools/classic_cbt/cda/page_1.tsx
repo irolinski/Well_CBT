@@ -37,11 +37,11 @@ const Page_1 = () => {
             >
               <View className="my-8">
                 <View className="mb-2">
-                  <Text className="text-left mr-[15vw]">
+                  <Text className="mr-[15vw] text-left">
                     Describe the context of the thought in a few words:
                   </Text>
                   <TextInput
-                    className="h-28 border p-4 my-2 rounded-md text-md"
+                    className="text-md my-2 h-28 rounded-md border p-4"
                     style={{
                       borderColor: "#d9d9d9",
                       backgroundColor: "#FBFBFB",
@@ -64,12 +64,12 @@ const Page_1 = () => {
                   </Text>
                 </View>
                 <View className={`${spaceForKeyboard ? "mb-[20vh]" : "mb-2"}`}>
-                  <Text className="text-left mr-[15vw]">
+                  <Text className="mr-[15vw] text-left">
                     Now, choose and write down one thought that has arised, that
                     may be particulary painful:
                   </Text>
                   <TextInput
-                    className="h-28 border p-4 my-2 rounded-md text-md"
+                    className="text-md my-2 h-28 rounded-md border p-4"
                     style={{
                       borderColor: "#d9d9d9",
                       backgroundColor: "#FBFBFB",

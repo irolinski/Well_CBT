@@ -39,23 +39,24 @@ const Page_3 = () => {
                 <View>
                   <Text>Distorted thought: </Text>
                   <View
-                    className="bg-gray-200 justify-center rounded-lg border mt-4"
+                    className="mt-4 justify-center rounded-lg border bg-gray-200"
                     style={{ borderColor: "#4391BC" }}
                   >
-                    <Text className="h-28 my-2 mx-4 text-lg text-center ">
+                    <Text className="mx-4 my-2 h-28 text-center text-lg">
                       {cdaState.oldThought}
                     </Text>
                   </View>
                 </View>
                 <View
-                  className="my-8 py-7 border-t border-b px-2"
+                  className="my-8 border-b border-t px-2 py-7"
                   style={{ borderColor: "#D9D9D9" }}
                 >
                   <Text>Cognitive Distortion:</Text>
-                  <View className="w-3/4 mt-4 px-4 mx-auto">
+                  <View className="mx-auto mt-4 w-3/4 px-4">
                     <DistortionPill
                       title={cdaState.distortion}
                       checked={true}
+                      highlighted={false}
                     />
                   </View>
                 </View>
@@ -65,7 +66,7 @@ const Page_3 = () => {
                     this situation:
                   </Text>
                   <TextInput
-                    className="h-28 border p-4 my-2 rounded-md text-md"
+                    className="text-md my-2 h-28 rounded-md border p-4"
                     style={{
                       borderColor: "#d9d9d9",
                       backgroundColor: "#FBFBFB",
