@@ -44,16 +44,18 @@ const Page_2 = () => {
           <View className="py-10">
             <ToolHeader>Now, let's take a closer look...</ToolHeader>
             <View className="my-8">
+            <Text>Distorted thought: </Text>
+
               <View
-                className="justify-center rounded-lg border bg-gray-200"
+                className="flex h-28 my-4 flex-col justify-center rounded-lg border"
                 style={{ borderColor: "#4391BC" }}
               >
-                <Text className="mx-4 my-2 h-28 text-center text-lg">
+                <Text className="text-md border p-4 text-left">
                   {cdaState.oldThought}
                 </Text>
               </View>
               <View className="mx-auto mt-8">
-                <Text className="mr-[10vw] text-left">
+                <Text className="mr-[10%] text-left">
                   Here is a list of some of the most common{" "}
                   <Text className="font-bold">cognitive distortions</Text>.
                   Choose <Text className="font-bold">one</Text> that most
@@ -74,10 +76,12 @@ const Page_2 = () => {
                       isVisible={showDistortionTooltip === index && true}
                       content={
                         <Text
+                          className="text-center"
                           style={{
                             fontFamily: "InterItalic",
                             color: "#73848D",
-                            margin: 10,
+                            paddingLeft: 20,
+                            paddingRight: 20,
                           }}
                         >
                           {d.description}
@@ -89,12 +93,13 @@ const Page_2 = () => {
                       onClose={() => setshowDistortionTooltip(null)}
                       tooltipStyle={{
                         position: "absolute",
-                        top: tooltipY - 125,
+                        top: tooltipY - 155,
                       }}
                       contentStyle={{
                         backgroundColor: "#FBFBFB",
-                        height: 90,
+                        height: 120,
                         width: 275,
+                        justifyContent: "center",
                       }}
                       key={index}
                     >

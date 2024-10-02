@@ -1,15 +1,8 @@
 import { router } from "expo-router";
 import React from "react";
-import {
-  Dimensions,
-  ImageBackground,
-  ScrollView,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { Dimensions, ImageBackground, ScrollView, View } from "react-native";
 
 import AdvanceButton from "@/components/AdvanceButton";
-import Frame from "@/components/Frame";
 import Text from "@/components/global/Text";
 import ToolNav from "@/components/ToolNav";
 import { WellLogo } from "@/constants/models/images";
@@ -34,13 +27,13 @@ const Page_finish = () => {
               ></ImageBackground>
             </View>
             <Text
-              className="my-4 text-center text-2xl"
+              className="my-4 px-4 text-center text-2xl"
               style={{ fontFamily: "KodchasanMedium", color: "#1E1E1E" }}
             >
               Congratulations! Your distorted thought just became a little more
               rational.
             </Text>
-            <Text className="mr-[10w] text-center">
+            <Text className="my-1 mr-[10w] text-center">
               Analyse your painful thoughts often to lessen their power over
               you.
             </Text>

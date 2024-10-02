@@ -60,10 +60,10 @@ const Page_4 = () => {
               <View>
                 <Text>Distorted thought: </Text>
                 <View
-                  className="mt-4 justify-center rounded-lg border bg-gray-200"
+                  className="mt-4 h-28 justify-center rounded-lg border bg-gray-200"
                   style={{ borderColor: "#4391BC" }}
                 >
-                  <Text className="mx-4 my-2 h-28 text-center text-lg">
+                  <Text className="px-4 py-1 text-center text-lg">
                     {cdaState.oldThought}
                   </Text>
                 </View>
@@ -84,10 +84,10 @@ const Page_4 = () => {
               <View className="mt-4">
                 <Text>Rational thought:</Text>
                 <View
-                  className="mt-4 justify-center rounded-lg border bg-gray-200"
+                  className="mt-4 h-28 justify-center rounded-lg border bg-gray-200"
                   style={{ borderColor: "#4391BC" }}
                 >
-                  <Text className="mx-4 my-2 h-24 text-center text-lg">
+                  <Text className="px-4 py-1 text-center text-lg">
                     {cdaState.newThought}
                   </Text>
                 </View>

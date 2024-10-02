@@ -14,7 +14,7 @@ const Cda = () => {
         <View className="items-center justify-center">
           <View className="absolute left-8 top-8"></View>
           <View>
-            <View className="my-4 mr-[15vw] justify-center">
+            <View className="my-4 mr-[15%] justify-center">
               <Text
                 className="my-4 text-left text-2xl font-bold"
                 style={{ fontFamily: "KodchasanMedium", color: "#F5F5F5" }}

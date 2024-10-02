@@ -21,7 +21,7 @@ const cognitiveDistortions = [
   {
     name: "Discounting the positives",
     description:
-      "Dismissing the positive aspects about you /a situation as insignificant or unworthy.",
+      "Dismissing the positive aspects about you / a situation as insignificant or unworthy.",
   },
   {
     name: "Fortune Telling",
@@ -36,12 +36,12 @@ const cognitiveDistortions = [
   {
     name: "Labeling",
     description:
-      "Labelling yourself or others harshly (e.g. 'loser', 'failure')",
+      "Labelling yourself or others harshly (e.g. 'loser', 'failure').",
   },
   {
     name: "Reasoning from emotions",
     description:
-      "Conclduing that your feelings must always reflect reality (e.g. 'I feel ashamed, therefore it must mean I have done something shameful.' ) .",
+      "Conclduing that your feelings must always reflect reality. Example: 'I feel ashamed, so I must've done something shameful.'.",
   },
   {
     name: "'Should' statements",
@@ -51,7 +51,7 @@ const cognitiveDistortions = [
   {
     name: "Perosnalization/Blame",
     description:
-      "Holding yourself accountable for situations beyond your control or deflecting responsibility onto others",
+      "Holding yourself accountable for situations beyond your control or deflecting responsibility onto others.",
   },
 ];
 

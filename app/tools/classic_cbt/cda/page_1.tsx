@@ -1,20 +1,20 @@
+import { router } from "expo-router";
 import React, { useState } from "react";
-import Frame from "@/components/Frame";
 import {
+  Keyboard,
   ScrollView,
   TextInput,
   TouchableWithoutFeedback,
   View,
 } from "react-native";
-import AdvanceButton from "@/components/AdvanceButton";
-import { router } from "expo-router";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "@/state/store";
-import { setOldThought, setSituation } from "@/state/features/tools/cdaSlice";
-import { Keyboard } from "react-native";
-import ToolNav from "@/components/ToolNav";
+import AdvanceButton from "@/components/AdvanceButton";
+import Frame from "@/components/Frame";
 import Text from "@/components/global/Text";
 import ToolHeader from "@/components/ToolHeader";
+import ToolNav from "@/components/ToolNav";
+import { setOldThought, setSituation } from "@/state/features/tools/cdaSlice";
+import { AppDispatch, RootState } from "@/state/store";
 
 const Page_1 = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -27,7 +27,7 @@ const Page_1 = () => {
       <ScrollView>
         <ToolNav currentPage={1} numOfAllPages={5} />
         <Frame>
-          <View className="py-10">
+          <View className="pt-10">
             <ToolHeader>Write down a thought that's bothering you.</ToolHeader>
             <TouchableWithoutFeedback
               onPress={() => {
@@ -37,7 +37,7 @@ const Page_1 = () => {
             >
               <View className="my-8">
                 <View className="mb-2">
-                  <Text className="mr-[15vw] text-left">
+                  <Text className="mr-[15%] text-left">
                     Describe the context of the thought in a few words:
                   </Text>
                   <TextInput
@@ -52,7 +52,7 @@ const Page_1 = () => {
                     editable
                     multiline={true}
                     numberOfLines={4}
-                    maxLength={75}
+                    maxLength={150}
                     returnKeyType="done"
                     onKeyPress={(evt) =>
                       evt.nativeEvent.key == "Enter" && Keyboard.dismiss()
@@ -60,11 +60,11 @@ const Page_1 = () => {
                     clearButtonMode="while-editing"
                   ></TextInput>
                   <Text className="text-right">
-                    {cdaState.situation.length}/75
+                    {cdaState.situation.length}/150
                   </Text>
                 </View>
                 <View className={`${spaceForKeyboard ? "mb-[20vh]" : "mb-2"}`}>
-                  <Text className="mr-[15vw] text-left">
+                  <Text className="mr-[15%] text-left">
                     Now, choose and write down one thought that has arised, that
                     may be particulary painful:
                   </Text>
@@ -80,7 +80,7 @@ const Page_1 = () => {
                     editable
                     multiline={true}
                     numberOfLines={4}
-                    maxLength={75}
+                    maxLength={150}
                     returnKeyType="done"
                     onKeyPress={(evt) =>
                       evt.nativeEvent.key == "Enter" && Keyboard.dismiss()
@@ -94,7 +94,7 @@ const Page_1 = () => {
                     }}
                   ></TextInput>
                   <Text className="text-right">
-                    {cdaState.oldThought.length}/75
+                    {cdaState.oldThought.length}/150
                   </Text>
                 </View>
               </View>
@@ -102,7 +102,7 @@ const Page_1 = () => {
           </View>
         </Frame>
         <AdvanceButton
-          containerStyles="bottom-8 my-4 mx-6 justify-center"
+          containerStyles="bottom-0 my-4 mx-6 justify-center"
           title="Next"
           onPress={() => router.navigate("./page_2")}
         />

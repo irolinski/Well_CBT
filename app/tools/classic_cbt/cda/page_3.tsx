@@ -39,10 +39,10 @@ const Page_3 = () => {
                 <View>
                   <Text>Distorted thought: </Text>
                   <View
-                    className="mt-4 justify-center rounded-lg border bg-gray-200"
+                    className="mt-4 h-28 justify-center rounded-lg border bg-gray-200"
                     style={{ borderColor: "#4391BC" }}
                   >
-                    <Text className="mx-4 my-2 h-28 text-center text-lg">
+                    <Text className="p-4 text-center text-lg">
                       {cdaState.oldThought}
                     </Text>
                   </View>
@@ -66,17 +66,18 @@ const Page_3 = () => {
                     this situation:
                   </Text>
                   <TextInput
-                    className="text-md my-2 h-28 rounded-md border p-4"
+                    className="text-md my-2 h-28 rounded-md border px-4 py-1"
                     style={{
                       borderColor: "#d9d9d9",
                       backgroundColor: "#FBFBFB",
+                      textAlignVertical: "top",
                     }}
                     value={cdaState.newThought}
                     onChangeText={(evt) => dispatch(setNewThought(evt))}
                     editable
                     multiline
                     numberOfLines={4}
-                    maxLength={75}
+                    maxLength={150}
                     returnKeyType="done"
                     onKeyPress={(evt) =>
                       evt.nativeEvent.key == "Enter" && Keyboard.dismiss()
@@ -90,7 +91,7 @@ const Page_3 = () => {
                     }}
                   ></TextInput>
                   <Text className="text-right">
-                    {cdaState.newThought.length}/75
+                    {cdaState.newThought.length}/150
                   </Text>
                 </View>
               </View>
