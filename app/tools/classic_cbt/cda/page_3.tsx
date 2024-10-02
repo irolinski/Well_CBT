@@ -1,22 +1,22 @@
-import AdvanceButton from "@/components/AdvanceButton";
-import DistortionTag from "@/components/DistortionTag";
-import Frame from "@/components/Frame";
-import { setNewThought } from "@/state/features/tools/cdaSlice";
-import { AppDispatch, RootState } from "@/state/store";
 import { router } from "expo-router";
 import React, { useState } from "react";
 import {
-  View,
+  Dimensions,
   Keyboard,
+  ScrollView,
   TextInput,
   TouchableWithoutFeedback,
-  ScrollView,
+  View,
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import ToolNav from "@/components/ToolNav";
+import AdvanceButton from "@/components/AdvanceButton";
+import DistortionPill from "@/components/DistortionPill";
+import Frame from "@/components/Frame";
 import Text from "@/components/global/Text";
 import ToolHeader from "@/components/ToolHeader";
-import { Dimensions } from "react-native";
+import ToolNav from "@/components/ToolNav";
+import { setNewThought } from "@/state/features/tools/cdaSlice";
+import { AppDispatch, RootState } from "@/state/store";
 
 const Page_3 = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -30,14 +30,12 @@ const Page_3 = () => {
         <ToolNav currentPage={3} numOfAllPages={5} />
         <Frame>
           <View className="py-10">
-            <ToolHeader>
-              Now, try to correct the thought to make it rational
-            </ToolHeader>
+            <ToolHeader>Now, let's try to make it rational!</ToolHeader>
             <TouchableWithoutFeedback
               onPress={Keyboard.dismiss}
               accessible={false}
             >
-              <View className="my-4">
+              <View className="my-8">
                 <View>
                   <Text>Distorted thought: </Text>
                   <View
@@ -49,12 +47,15 @@ const Page_3 = () => {
                     </Text>
                   </View>
                 </View>
-                <View className="mt-4 p-2">
+                <View
+                  className="my-8 py-7 border-t border-b px-2"
+                  style={{ borderColor: "#D9D9D9" }}
+                >
                   <Text>Cognitive Distortion:</Text>
                   <View className="w-3/4 mt-4 px-4 mx-auto">
-                    <DistortionTag
+                    <DistortionPill
                       title={cdaState.distortion}
-                      checked={false}
+                      checked={true}
                     />
                   </View>
                 </View>

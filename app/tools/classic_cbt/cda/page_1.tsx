@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Frame from "@/components/Frame";
 import {
-  Dimensions,
   ScrollView,
   TextInput,
   TouchableWithoutFeedback,
@@ -36,7 +35,7 @@ const Page_1 = () => {
               }}
               accessible={false}
             >
-              <View className="my-4">
+              <View className="my-8">
                 <View className="mb-2">
                   <Text className="text-left mr-[15vw]">
                     Describe the context of the thought in a few words:

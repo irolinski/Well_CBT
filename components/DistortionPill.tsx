@@ -1,6 +1,6 @@
-import { View, Text, Pressable } from "react-native";
+import { Pressable, Text, View } from 'react-native';
 
-const DistortionTag = ({
+const DistortionPill = ({
   title,
   onPress,
   onLongPress,
@@ -15,15 +15,18 @@ const DistortionTag = ({
     <Pressable
       onPress={onPress}
       onLongPress={onLongPress}
-      delayLongPress={1000}
+      delayLongPress={2000}
     >
       <View
-        className={`mx-1 my-1 w-auto  rounded-full p-2`}
-        style={{ backgroundColor: checked ? "#8DBED8" : "#4391BC" }}
+        className={`mx-1 my-1 w-auto  rounded-full p-2 border-2`}
+        style={{
+          borderColor: "#4391BC",
+          backgroundColor: checked ? "#4391BC" : "transparent",
+        }}
       >
         <Text
           className="text-[12px] text-center text-white"
-          style={{ color: checked ? "#F5F5F5" : "#F0F5F8" }}
+          style={{ color: checked ? "#F5F5F5" : "#27261F" }}
         >
           {title}
         </Text>
@@ -31,4 +34,4 @@ const DistortionTag = ({
     </Pressable>
   );
 };
-export default DistortionTag;
+export default DistortionPill;

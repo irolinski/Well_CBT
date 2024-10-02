@@ -4,14 +4,14 @@ import React from "react";
 import { Pressable, ScrollView, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import AdvanceButton from "@/components/AdvanceButton";
-import DistortionTag from "@/components/DistortionTag";
+import DistortionPill from "@/components/DistortionPill";
 import Frame from "@/components/Frame";
+import Text from "@/components/global/Text";
+import ToolHeader from "@/components/ToolHeader";
+import ToolNav from "@/components/ToolNav";
 import { cdaResetState, toggleSave } from "@/state/features/tools/cdaSlice";
 import { AppDispatch, RootState } from "@/state/store";
 import Feather from "@expo/vector-icons/Feather";
-import ToolHeader from "@/components/ToolHeader";
-import ToolNav from "@/components/ToolNav";
-import Text from "@/components/global/Text";
 
 const Page_4 = () => {
   const cdaState = useSelector((state: RootState) => state.cda);
@@ -53,12 +53,10 @@ const Page_4 = () => {
         <ToolNav currentPage={4} numOfAllPages={5} />
         <Frame>
           <View className="py-10">
-            <ToolHeader>Overview </ToolHeader>
-            <View className="my-4 ">
-              <Text className="text-left mr-[15vw] mb-4">
-                Here are your results. Try to think about them for a second. Do
-                you feel the new thought makes more sense?
-              </Text>
+            <ToolHeader>
+              Here are your results. Try to meditate on them for a second.
+            </ToolHeader>
+            <View className="my-8 ">
               <View>
                 <Text>Distorted thought: </Text>
                 <View
@@ -70,10 +68,13 @@ const Page_4 = () => {
                   </Text>
                 </View>
               </View>
-              <View className="mt-4 p-2">
+              <View
+                className="my-8 py-7 border-t border-b px-2"
+                style={{ borderColor: "#D9D9D9" }}
+              >
                 <Text>Cognitive Distortion:</Text>
                 <View className="w-3/4 mt-4 px-4 mx-auto">
-                  <DistortionTag title={cdaState.distortion} checked={false} />
+                  <DistortionPill title={cdaState.distortion} checked={true} />
                 </View>
               </View>
               <View className="mt-4">
@@ -88,14 +89,27 @@ const Page_4 = () => {
                 </View>
               </View>
               <Pressable onPress={() => dispatch(toggleSave())}>
-                <View className="flex flex-row pt-4 m-4">
-                  <View className="w-6 h-6 bg-slate-300">
+                <View className="flex flex-row pt-4 mt-10 mx-2">
+                  <View
+                    className="w-6 h-6 border rounded-md "
+                    style={{
+                      borderColor: "#4391BC",
+                      backgroundColor: cdaState.save
+                        ? "#8DBED8"
+                        : "transparent",
+                    }}
+                  >
                     {cdaState.save && (
-                      <Feather name="check" size={24} color="black" />
+                      <View className="mx-auto">
+                        <Feather name="check" size={22} color="#F7F7F7" />
+                      </View>
                     )}
                   </View>
-                  <Text className="text-lg text-center mx-4 my-1">
-                    Save in journal
+                  <Text
+                    className="text-md text-center mx-4 my-1"
+                    style={{ color: "#4391BC" }}
+                  >
+                    Save to journal?
                   </Text>
                 </View>
               </Pressable>
@@ -103,11 +117,11 @@ const Page_4 = () => {
           </View>
         </Frame>
         <AdvanceButton
-          containerStyles="bottom-8 my-4 mx-6 justify-center"
+          containerStyles="bottom-8 mb-4 mx-6 justify-center"
           title="Finish"
           onPress={() => {
             handleSave();
-            router.replace("/");
+            router.navigate("./page_finish");
           }}
         />
       </ScrollView>
