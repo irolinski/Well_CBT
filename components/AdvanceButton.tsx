@@ -12,20 +12,16 @@ interface AdvanceButtonProps {
 const AdvanceButton = ({
   onPress,
   title,
-  textStyles = "",
   containerStyles = "",
 }: AdvanceButtonProps) => {
   return (
     <TouchableOpacity
       activeOpacity={0.7}
-      className={`bg-white min-h-[48px] rounded justify-center items-center ${containerStyles}`}
+      className={`h-12 items-center justify-center rounded ${containerStyles}`}
       style={{ backgroundColor: "#4391BC" }}
       onPress={onPress}
     >
-      <Text
-        className={`font-semibold text-md ${textStyles}`}
-        style={{ color: "#F5F5F5" }}
-      >
+      <Text className="text-md font-semibold" style={{ color: "#F5F5F5" }}>
         {title}
       </Text>
     </TouchableOpacity>
