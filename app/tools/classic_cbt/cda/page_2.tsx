@@ -1,5 +1,5 @@
 import { router } from "expo-router";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { ScrollView, View } from "react-native";
 import Tooltip from "react-native-walkthrough-tooltip";
 import { useDispatch, useSelector } from "react-redux";
@@ -21,9 +21,24 @@ const Page_2 = () => {
     number | null
   >(null);
 
+  const [tooltipY, setTooltipY] = useState(0);
+
+  const handleSetTooltipY = (y: number) => {
+    if (showDistortionTooltip === null) setTooltipY(y);
+  };
+
+  const handleShowTooltip = (y: number, index: number) => {
+    setTooltipY(y);
+    setshowDistortionTooltip(index);
+  };
+
   return (
     <React.Fragment>
-      <ScrollView className="pt-1">
+      <ScrollView
+        onTouchStart={(evt) => {
+          handleSetTooltipY(evt.nativeEvent.pageY);
+        }}
+      >
         <ToolNav currentPage={2} numOfAllPages={5} />
         <Frame>
           <View className="py-10">
@@ -54,20 +69,40 @@ const Page_2 = () => {
                   {cognitiveDistortions.map((d, index) => (
                     <Tooltip
                       isVisible={showDistortionTooltip === index && true}
-                      content={<Text>{d.description}</Text>}
+                      content={
+                        <Text
+                          style={{
+                            fontFamily: "InterItalic",
+                            color: "#73848D",
+                            margin: 10,
+                          }}
+                        >
+                          {d.description}
+                        </Text>
+                      }
                       useInteractionManager={true}
                       accessible={false}
                       placement="top"
                       onClose={() => setshowDistortionTooltip(null)}
+                      tooltipStyle={{
+                        position: "absolute",
+                        top: tooltipY - 125,
+                      }}
+                      contentStyle={{
+                        backgroundColor: "#FBFBFB",
+                        height: 90,
+                        width: 275,
+                      }}
                       key={index}
                     >
                       <DistortionPill
                         title={d.name}
                         checked={Boolean(d.name === cdaState.distortion)}
+                        highlighted={showDistortionTooltip === index}
                         onPress={() => {
                           dispatch(setDistortion(d.name));
                         }}
-                        onLongPress={() => setshowDistortionTooltip(index)}
+                        onLongPress={() => handleShowTooltip(tooltipY, index)}
                       />
                     </Tooltip>
                   ))}

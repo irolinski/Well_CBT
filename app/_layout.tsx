@@ -20,6 +20,7 @@ export default function RootLayout() {
   const colorScheme = useColorScheme();
   const [loaded] = useFonts({
     Inter: require("../assets/fonts/Inter-Standard.ttf"),
+    InterItalic: require("../assets/fonts/Inter-Italic.ttf"),
     KodchasanRegular: require("../assets/fonts/Kodchasan-Regular.ttf"),
     KodchasanMedium: require("../assets/fonts/Kodchasan-Medium.ttf"),
   });
