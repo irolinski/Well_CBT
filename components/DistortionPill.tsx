@@ -31,14 +31,14 @@ const DistortionPill = ({
   return (
     <Pressable onPress={onPress} onLongPress={onLongPress} delayLongPress={500}>
       <View
-        className={`mx-1 my-1 w-auto rounded-full p-2 border-2`}
+        className={`mx-1 my-1 w-auto rounded-full border-2 p-2`}
         style={{
           borderColor: "#4391BC",
           backgroundColor: checked ? "#4391BC" : "#FBFBFB",
         }}
       >
         <Text
-          className="text-[12px] text-center"
+          className="text-center text-[12px]"
           style={{ color: checked ? "#F5F5F5" : "#27261F" }}
         >
           {title}

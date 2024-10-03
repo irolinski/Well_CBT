@@ -12,6 +12,7 @@ import ToolNav from "@/components/ToolNav";
 import { cdaResetState, toggleSave } from "@/state/features/tools/cdaSlice";
 import { AppDispatch, RootState } from "@/state/store";
 import Feather from "@expo/vector-icons/Feather";
+import CDATextBox from "@/components/tools/CDATextBox";
 
 const Page_4 = () => {
   const cdaState = useSelector((state: RootState) => state.cda);
@@ -59,14 +60,7 @@ const Page_4 = () => {
             <View className="my-8">
               <View>
                 <Text>Distorted thought: </Text>
-                <View
-                  className="mt-4 h-28 justify-center rounded-lg border bg-gray-200"
-                  style={{ borderColor: "#4391BC" }}
-                >
-                  <Text className="px-4 py-1 text-center text-lg">
-                    {cdaState.oldThought}
-                  </Text>
-                </View>
+                <CDATextBox textContent={cdaState.oldThought} />
               </View>
               <View
                 className="my-8 border-b border-t px-2 py-7"
@@ -83,14 +77,7 @@ const Page_4 = () => {
               </View>
               <View className="mt-4">
                 <Text>Rational thought:</Text>
-                <View
-                  className="mt-4 h-28 justify-center rounded-lg border bg-gray-200"
-                  style={{ borderColor: "#4391BC" }}
-                >
-                  <Text className="px-4 py-1 text-center text-lg">
-                    {cdaState.newThought}
-                  </Text>
-                </View>
+                <CDATextBox textContent={cdaState.newThought} />
               </View>
               <Pressable onPress={() => dispatch(toggleSave())}>
                 <View className="mx-2 mt-10 flex flex-row pt-4">

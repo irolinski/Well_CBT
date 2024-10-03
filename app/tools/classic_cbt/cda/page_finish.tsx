@@ -1,7 +1,6 @@
 import { Href, router } from "expo-router";
 import React from "react";
 import { Dimensions, ImageBackground, ScrollView, View } from "react-native";
-
 import AdvanceButton from "@/components/AdvanceButton";
 import Text from "@/components/global/Text";
 import ToolNav from "@/components/ToolNav";
@@ -43,7 +42,9 @@ const Page_finish = () => {
               <SecondaryButton
                 title="Do one more?"
                 containerStyles="w-[45%]"
-                onPress={() => {}}
+                onPress={() => {
+                  router.navigate("./" as Href);
+                }}
               />
               <SecondaryButton
                 title="See journal"

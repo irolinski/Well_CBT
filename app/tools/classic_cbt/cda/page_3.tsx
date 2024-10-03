@@ -1,10 +1,8 @@
 import { router } from "expo-router";
-import React, { useState } from "react";
+import React from "react";
 import {
-  Dimensions,
   Keyboard,
   ScrollView,
-  TextInput,
   TouchableWithoutFeedback,
   View,
 } from "react-native";
@@ -17,13 +15,12 @@ import ToolHeader from "@/components/ToolHeader";
 import ToolNav from "@/components/ToolNav";
 import { setNewThought } from "@/state/features/tools/cdaSlice";
 import { AppDispatch, RootState } from "@/state/store";
+import CDATextBox from "@/components/tools/CDATextBox";
+import CDATextInput from "@/components/tools/CDATextInput";
 
 const Page_3 = () => {
   const dispatch = useDispatch<AppDispatch>();
   const cdaState = useSelector((state: RootState) => state.cda);
-
-  const [spaceForKeyboard, setSpaceForKeyboard] = useState(false);
-  const keyboardMargin = Dimensions.get("window").width / 3;
   return (
     <React.Fragment>
       <ScrollView>
@@ -38,14 +35,7 @@ const Page_3 = () => {
               <View className="my-8">
                 <View>
                   <Text>Distorted thought: </Text>
-                  <View
-                    className="mt-4 h-28 justify-center rounded-lg border bg-gray-200"
-                    style={{ borderColor: "#4391BC" }}
-                  >
-                    <Text className="p-4 text-center text-lg">
-                      {cdaState.oldThought}
-                    </Text>
-                  </View>
+                  <CDATextBox textContent={cdaState.oldThought} />
                 </View>
                 <View
                   className="my-8 border-b border-t px-2 py-7"
@@ -60,39 +50,18 @@ const Page_3 = () => {
                     />
                   </View>
                 </View>
-                <View className={`${spaceForKeyboard ? "mb-[20vh]" : "mb-2"} `}>
+                <View>
                   <Text>
                     Now, let's try to think of a more rational way to look at
                     this situation:
                   </Text>
-                  <TextInput
-                    className="text-md my-2 h-28 rounded-md border px-4 py-1"
-                    style={{
-                      borderColor: "#d9d9d9",
-                      backgroundColor: "#FBFBFB",
-                      textAlignVertical: "top",
-                    }}
+                  <CDATextInput
                     value={cdaState.newThought}
-                    onChangeText={(evt) => dispatch(setNewThought(evt))}
-                    editable
-                    multiline
-                    numberOfLines={4}
-                    maxLength={150}
-                    returnKeyType="done"
-                    onKeyPress={(evt) =>
-                      evt.nativeEvent.key == "Enter" && Keyboard.dismiss()
+                    handleChangeText={(evt: string) =>
+                      dispatch(setNewThought(evt))
                     }
-                    clearButtonMode="while-editing"
-                    onFocus={() => {
-                      setSpaceForKeyboard(true);
-                    }}
-                    onBlur={() => {
-                      setSpaceForKeyboard(false);
-                    }}
-                  ></TextInput>
-                  <Text className="text-right">
-                    {cdaState.newThought.length}/150
-                  </Text>
+                    keyboardMargin={true}
+                  />
                 </View>
               </View>
             </TouchableWithoutFeedback>
