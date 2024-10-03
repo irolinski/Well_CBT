@@ -1,4 +1,4 @@
-import { router } from "expo-router";
+import { Href, router } from "expo-router";
 import React from "react";
 import { Dimensions, ImageBackground, ScrollView, View } from "react-native";
 
@@ -53,9 +53,9 @@ const Page_finish = () => {
             </View>
             <AdvanceButton
               containerStyles="mb-4 justify-center"
-              title="Finish"
+              title="Return to Tools"
               onPress={() => {
-                router.navigate("./page_finish");
+                router.replace("Tools" as Href);
               }}
             />
           </View>

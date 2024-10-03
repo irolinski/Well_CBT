@@ -1,22 +1,20 @@
 import React from "react";
 import { ScrollView, Text } from "react-native";
-
 import Frame from "@/components/Frame";
 import Entypo from "@expo/vector-icons/Entypo";
 import Feather from "@expo/vector-icons/Feather";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
-
 import ToolCard from "../../components/ToolCard";
 
 const Tools = () => {
   return (
     <Frame>
-      <Text className="mb-8 font-bold text-4xl text-center">
+      <Text className="mb-8 text-center text-4xl font-bold">
         Self-Help Tools
       </Text>
       <ScrollView className="px-6">
-        <Text className="my-6 ml-2 font-bold italic text-3xl text-left">
+        <Text className="my-6 ml-2 text-left text-3xl font-bold italic">
           Classic CBT
         </Text>
         <ToolCard
@@ -41,7 +39,7 @@ const Tools = () => {
           }
           link={"/tools/classic_cbt/journal"}
         />
-        <Text className="my-6 ml-2 font-bold italic text-3xl text-left">
+        <Text className="my-6 ml-2 text-left text-3xl font-bold italic">
           Relax
         </Text>
         <ToolCard
@@ -54,7 +52,7 @@ const Tools = () => {
           icon={<Ionicons name="body-outline" size={36} color="black" />}
           link={"/tools/relax/muscleRelaxation"}
         />
-        <Text className="my-6 ml-2 font-bold italic text-3xl text-left">
+        <Text className="my-6 ml-2 text-left text-3xl font-bold italic">
           Distract yourself
         </Text>
         <ToolCard

@@ -1,7 +1,7 @@
 import { View, Text, Button, Pressable } from "react-native";
 import React from "react";
 import AdvanceButton from "@/components/AdvanceButton";
-import { router } from "expo-router";
+import { Href, router } from "expo-router";
 import BackButton from "@/components/BackButton";
 
 const Cda = () => {
@@ -34,7 +34,7 @@ const Cda = () => {
             <AdvanceButton
               containerStyles="w-full"
               title="Let's begin"
-              onPress={() => router.navigate("./page_1")}
+              onPress={() => router.replace("tools/classic_cbt/cda/page_1" as Href)}
             />
           </View>
         </View>
