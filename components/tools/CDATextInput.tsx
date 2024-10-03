@@ -1,4 +1,4 @@
-import { View, TextInput, Keyboard } from "react-native";
+import { View, TextInput, Keyboard, Dimensions } from "react-native";
 import Text from "../global/Text";
 import { useState } from "react";
 export default function CDATextInput({
@@ -10,10 +10,11 @@ export default function CDATextInput({
   handleChangeText: (evt: string) => void;
   keyboardMargin: boolean;
 }) {
+  const windowHeight = Dimensions.get("window").height;
   const [spaceForKeyboard, setSpaceForKeyboard] = useState<boolean>(false);
 
   return (
-    <View className={`${spaceForKeyboard ? "mb-[20vh]" : "mb-2"}`}>
+    <View style={{ marginBottom: spaceForKeyboard ? windowHeight / 5 : 8 }}>
       <TextInput
         className="text-md my-2 h-28 rounded-md border p-4"
         style={{
