@@ -16,7 +16,7 @@ const Phone = () => {
     const db = await SQLite.openDatabaseAsync("well-test-db");
     try {
       const pd: PhoneContact[] = await db.getAllAsync(
-        "SELECT * FROM tools_phone"
+        "SELECT * FROM tools_phone",
       );
       setPhoneData(pd[0]);
     } catch (err) {
@@ -41,20 +41,20 @@ const Phone = () => {
     <React.Fragment>
       <BackButton />
       <Frame>
-        <View className="my-4 mx-8">
-          <Text className="text-2xl font-bold text-center">
+        <View className="mx-8 my-4">
+          <Text className="text-center text-2xl font-bold">
             Phone to someone close
           </Text>
-          <View className="my-16 justify-center mx-8 ">
+          <View className="mx-8 my-16 justify-center">
             {phoneData && (
               <React.Fragment>
                 <Text>Your chosen contact is:</Text>
                 <View className="h-32 bg-slate-200">
-                  <Text className="text-xl text-center m-2">
+                  <Text className="m-2 text-center text-xl">
                     {" "}
                     {phoneData.name}
                   </Text>
-                  <Text className="text-lg text-center m-4">
+                  <Text className="m-4 text-center text-lg">
                     {phoneData.phone}
                   </Text>
                 </View>
@@ -66,19 +66,19 @@ const Phone = () => {
       {phoneData ? (
         <React.Fragment>
           <AdvanceButton
-            containerStyles="bottom-8 w-1/2 mx-auto m-2"
+            className="bottom-8 m-2 mx-auto w-1/2"
             title="Call"
             onPress={() => callContact(phoneData.phone)}
           />
           <AdvanceButton
-            containerStyles="bottom-8 mx-auto w-1/4 m-2"
+            className="bottom-8 m-2 mx-auto w-1/4"
             title="Change contact"
             onPress={() => router.navigate("./add")}
           />
         </React.Fragment>
       ) : (
         <AdvanceButton
-          containerStyles="bottom-8 mx-auto"
+          className="bottom-8 mx-auto"
           title="Add contact"
           onPress={() => router.navigate("./add")}
         />

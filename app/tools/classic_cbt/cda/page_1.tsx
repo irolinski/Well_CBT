@@ -64,7 +64,7 @@ const Page_1 = () => {
           </View>
         </Frame>
         <AdvanceButton
-          containerStyles="bottom-0 my-4 mx-6 justify-center"
+          className="bottom-0 mx-6 my-4 justify-center"
           title="Next"
           onPress={() => router.navigate("./page_2")}
         />

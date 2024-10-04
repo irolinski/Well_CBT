@@ -5,7 +5,7 @@ import Text from "@/components/global/Text";
 
 const Home = () => {
   return (
-    <FrameMenu title="Hi, how are you?">
+    <FrameMenu title="Home">
       <View>
         <Text>Hello, world!</Text>
       </View>

@@ -108,7 +108,7 @@ const Page_4 = () => {
           </View>
         </Frame>
         <AdvanceButton
-          containerStyles="bottom-8 mb-4 mx-6 justify-center"
+          className="bottom-8 mx-6 mb-4 justify-center"
           title="Finish"
           onPress={() => {
             handleSave();

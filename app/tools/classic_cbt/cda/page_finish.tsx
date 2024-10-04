@@ -36,19 +36,19 @@ const Page_finish = () => {
             <View className="mb-4 flex-row justify-between">
               <SecondaryButton
                 title="Do one more?"
-                containerStyles="w-[45%]"
+                className="w-[45%]"
                 onPress={() => {
                   router.navigate("./" as Href);
                 }}
               />
               <SecondaryButton
                 title="See journal"
-                containerStyles="w-[45%]"
+                className="w-[45%]"
                 onPress={() => {}}
               />
             </View>
             <AdvanceButton
-              containerStyles="mb-4 justify-center"
+              className="mb-4 justify-center"
               title="Return to Tools"
               onPress={() => {
                 router.replace("Tools" as Href);

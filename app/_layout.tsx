@@ -45,6 +45,10 @@ export default function RootLayout() {
             options={{ headerShown: false }}
           />
           <Stack.Screen
+            name="tools/classic_cbt/journal"
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
             name="tools/distract/phone"
             options={{ headerShown: false }}
           />

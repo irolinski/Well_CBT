@@ -32,9 +32,11 @@ const Cda = () => {
           </View>
           <View className="my-16 w-full">
             <AdvanceButton
-              containerStyles="w-full"
+              className="w-full"
               title="Let's begin"
-              onPress={() => router.replace("tools/classic_cbt/cda/page_1" as Href)}
+              onPress={() =>
+                router.replace("tools/classic_cbt/cda/page_1" as Href)
+              }
             />
           </View>
         </View>

@@ -13,7 +13,7 @@ const Tools = () => {
   return (
     <FrameMenu title="Tools">
       <View>
-        <Text className="mb-8 mt-2 text-left text-2xl">Classic CBT</Text>
+        <Text className="mb-8 mt-2 text-left text-2xl">Classic</Text>
         <ToolCard
           name="Identify the Distortions"
           image={DistortedWindow}

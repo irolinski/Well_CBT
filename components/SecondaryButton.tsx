@@ -5,17 +5,17 @@ interface SecondaryButtonProps {
   onPress: () => void;
   title: string;
   textStyles?: string;
-  containerStyles?: string;
+  className?: string;
 }
 
 const SecondaryButton = ({
   onPress,
   title,
-  containerStyles = "",
+  className = "",
 }: SecondaryButtonProps) => {
   return (
     <TouchableOpacity
-      className={`items-center justify-center rounded border-2 ${containerStyles}`}
+      className={`items-center justify-center rounded border-2 ${className}`}
       style={{ borderColor: "#4391BC" }}
       onPress={onPress}
     >
