@@ -7,12 +7,19 @@ import ToolNav from "@/components/ToolNav";
 import { Slider } from "@miblanchard/react-native-slider";
 import AdvanceButton from "@/components/AdvanceButton";
 import { router } from "expo-router";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/state/store";
+import { setMoodValue } from "@/state/features/tools/journalSlice";
 
 const Log_1 = () => {
   const windowWidth = Dimensions.get("window").width;
   const windowHeight = Dimensions.get("window").height;
 
-  const [moodValue, setMoodValue] = useState(1);
+  // tool state
+  const moodValueState = useSelector(
+    (state: RootState) => state.journal.moodValue,
+  );
+  const dispatch = useDispatch<AppDispatch>();
 
   return (
     <React.Fragment>
@@ -47,7 +54,7 @@ const Log_1 = () => {
               minimumValue={0} // 0.1 causes a visual glitch
               maximumValue={0.6}
               onValueChange={(evt) => {
-                setMoodValue(Math.round(Number(evt) * 10) + 1);
+                dispatch(setMoodValue(Math.round(Number(evt) * 10) + 1));
               }}
               trackMarks={[0.1667, 0.3333, 0.5, 0.6667, 0.8333]}
               renderTrackMarkComponent={() => (
@@ -58,9 +65,9 @@ const Log_1 = () => {
               // minimumTrackTintColor="#AED581"
               // maximumTrackTintColor="#D9D9D9"
               minimumTrackTintColor={
-                moodValue < 4
+                moodValueState < 4
                   ? "#D46A6A"
-                  : moodValue < 6
+                  : moodValueState < 6
                     ? "#F38E4E"
                     : "#AED581"
               }
@@ -93,7 +100,7 @@ const Log_1 = () => {
               right: windowWidth / 15,
             }}
           >
-            <Text className="text-3xl">{moodValue}</Text>
+            <Text className="text-3xl">{moodValueState}</Text>
             <Text className="text-2xl">Hi mark!</Text>
           </View>
         </View>

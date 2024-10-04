@@ -3,24 +3,25 @@ import React from "react";
 import { ScrollView, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import AdvanceButton from "@/components/AdvanceButton";
+import DistortionPill from "@/components/DistortionPill";
 import Frame from "@/components/Frame";
 import Text from "@/components/global/Text";
 import ToolHeader from "@/components/ToolHeader";
 import ToolNav from "@/components/ToolNav";
 import emotionList from "@/constants/models/journal_emotionList";
-import DistortionPill from "@/components/DistortionPill";
-import { AppDispatch, RootState } from "@/state/store";
 import { setEmotions } from "@/state/features/tools/journalSlice";
+import { AppDispatch, RootState } from "@/state/store";
 
 const Log_2 = () => {
   // tool state
-  const journalState = useSelector((state: RootState) => state.journal);
+  const emotionsState = useSelector(
+    (state: RootState) => state.journal.emotions,
+  );
   const dispatch = useDispatch<AppDispatch>();
 
-  const emotionsArr = journalState.emotions;
   const handlePress = (name: string) => {
-    const index = emotionsArr.indexOf(name);
-    let newArr = [...emotionsArr];
+    const index = emotionsState.indexOf(name);
+    let newArr = [...emotionsState];
 
     if (index >= 0) {
       newArr.splice(index, 1);
@@ -30,7 +31,6 @@ const Log_2 = () => {
     dispatch(setEmotions(newArr));
   };
 
-  console.log(emotionsArr);
   return (
     <React.Fragment>
       <ScrollView>
@@ -47,13 +47,13 @@ const Log_2 = () => {
                   className="text-right text-xs"
                   style={{ color: "#757575" }}
                 >
-                  {emotionsArr.length} of 5 selected
+                  {emotionsState.length} of 5 selected
                 </Text>
                 <View className="mt-2 flex-row flex-wrap">
                   {emotionList.map((e, index) => (
                     <DistortionPill
                       title={e.name}
-                      checked={Boolean(emotionsArr.indexOf(e.name) >= 0)}
+                      checked={Boolean(emotionsState.indexOf(e.name) >= 0)}
                       //   checked={false}
                       customColor={e.color}
                       onPress={() => handlePress(e.name)}
