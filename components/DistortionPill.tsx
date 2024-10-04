@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import { Pressable, Text, View } from "react-native";
+import { ColorValue } from "react-native";
 
 type DistortionPillTypes = {
   title: string;
+  checked: boolean;
   onPress?: () => void;
   onLongPress?: () => void;
-  checked: boolean;
-  highlighted: boolean;
+  highlighted?: boolean;
+  customColor?: ColorValue | undefined;
 };
 
 const DistortionPill = ({
@@ -15,6 +17,7 @@ const DistortionPill = ({
   onLongPress,
   checked,
   highlighted,
+  customColor = "#4391BC",
 }: DistortionPillTypes) => {
   function forceUpdateOnHighlight() {
     const [value, setValue] = useState(false);
@@ -23,7 +26,7 @@ const DistortionPill = ({
         setTimeout(() => {
           setValue(!value);
         }, 5);
-      // minimal setTimeout to prevent the flickering bug
+      // minimal setTimeout to prevent the flickering bug w/ tooltip animation
     }, []);
   }
   forceUpdateOnHighlight();
@@ -33,8 +36,8 @@ const DistortionPill = ({
       <View
         className={`mx-1 my-1 w-auto rounded-full border-2 p-2`}
         style={{
-          borderColor: "#4391BC",
-          backgroundColor: checked ? "#4391BC" : "#FBFBFB",
+          borderColor: customColor,
+          backgroundColor: checked ? customColor : "#FBFBFB",
         }}
       >
         <Text

@@ -1,10 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import cdaSlice from "./features/tools/cdaSlice";
+import journalSlice from "./features/tools/journalSlice";
+
 // ...
 
 export const store = configureStore({
   reducer: {
     cda: cdaSlice,
+    journal: journalSlice,
   },
 });
 

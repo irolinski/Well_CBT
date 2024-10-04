@@ -12,7 +12,7 @@ import CDATextBox from "@/components/tools/CDATextBox";
 import { RootState } from "@/state/store";
 
 const Page_2 = () => {
-  // exercise state
+  // tool state
   const cdaState = useSelector((state: RootState) => state.cda);
 
   // tooltip state
