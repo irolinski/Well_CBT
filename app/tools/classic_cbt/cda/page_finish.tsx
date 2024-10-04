@@ -4,8 +4,9 @@ import { Dimensions, ImageBackground, ScrollView, View } from "react-native";
 import AdvanceButton from "@/components/AdvanceButton";
 import Text from "@/components/global/Text";
 import ToolNav from "@/components/ToolNav";
-import { WellLogo } from "@/constants/models/images";
+// import { WellLogo } from "@/constants/models/images";
 import SecondaryButton from "@/components/SecondaryButton";
+import { LogoDark } from "@/components/Logo";
 
 const Page_finish = () => {
   const windowHeight = Dimensions.get("window").height;
@@ -18,13 +19,7 @@ const Page_finish = () => {
           style={{ height: windowHeight }}
         >
           <View className="items-center justify-center pb-32">
-            <View className="h-20 w-20">
-              <ImageBackground
-                source={WellLogo}
-                resizeMode="contain"
-                className="ounded-lg flex-1 justify-center"
-              ></ImageBackground>
-            </View>
+            <LogoDark sizePx={80} />
             <Text
               className="my-4 px-4 text-center text-2xl"
               style={{ fontFamily: "KodchasanMedium", color: "#1E1E1E" }}

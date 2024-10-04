@@ -1,29 +1,39 @@
-import { View, Text, Pressable } from "react-native";
-import React, { Component, ReactElement } from "react";
+import { View, Text, Pressable, ImageBackground } from "react-native";
+import React, { ReactNode } from "react";
 import { Href, router } from "expo-router";
+import { LinearGradient } from "expo-linear-gradient";
+import { JournalImage, PhoneImage } from "@/constants/models/images";
 
 const ToolCard = ({
   name,
+  image,
   link,
-  icon,
 }: {
   name: string;
+  image: any;
   link: string;
-  icon: ReactElement;
 }) => {
   return (
     <Pressable
-      className="h-24 mb-4 rounded-md bg-gray-200"
+      className="mb-4 h-20 rounded-xl"
       onPress={() => router.push(`${link}` as Href)}
     >
-      <View className="w-full h-full max-h-full flex flex-row justify-center">
-        <View className="w-1/4 h-full flex justify-center">
-          <View className="mx-auto">{icon}</View>
-        </View>
-        <View className="w-3/4 px-4 h-full justify-center ">
-          <Text className="text-center text-lg font-bold">{name} </Text>
-        </View>
-      </View>
+      <ImageBackground source={image} resizeMode="cover">
+        <LinearGradient
+          colors={["#DED4D480", "transparent"]}
+          start={[0, 1]}
+          end={[1, 0]}
+        >
+          <View className="flex h-full max-h-full w-full justify-center">
+            <Text
+              className="ml-4 text-left text-lg"
+              style={{ color: "#F5F5F5" }}
+            >
+              {name}
+            </Text>
+          </View>
+        </LinearGradient>
+      </ImageBackground>
     </Pressable>
   );
 };

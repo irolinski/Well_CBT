@@ -7,15 +7,25 @@ import HomeIcon from "@expo/vector-icons/AntDesign";
 import LightbulbIcon from "@expo/vector-icons/FontAwesome";
 import HeadIcon from "@expo/vector-icons/MaterialCommunityIcons";
 import DotsIcon from "@expo/vector-icons/Entypo";
+import { Dimensions } from "react-native";
 
 const TabLayout = () => {
   const colorScheme = useColorScheme();
+  const windowHeight = Dimensions.get("window").height;
+
+  const tabBarHeight = windowHeight / 9;
+  const tabBarPaddingY = tabBarHeight / 6;
 
   return (
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
         headerShown: false,
+        tabBarStyle: {
+          paddingBottom: tabBarPaddingY + 5,
+          paddingTop: tabBarPaddingY,
+          height: tabBarHeight,
+        },
       }}
     >
       <Tabs.Screen
@@ -61,5 +71,6 @@ const TabLayout = () => {
     </Tabs>
   );
 };
+
 
 export default TabLayout;

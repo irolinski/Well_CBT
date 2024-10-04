@@ -1,11 +1,14 @@
 import Text from "./global/Text";
 
-const ToolHeader = (props: any) => {
+const ToolHeader = (props: any, bright?: boolean) => {
   return (
     <Text
       {...props}
-      className="text-2xl text-left pr-[10%]"
-      style={{ fontFamily: "KodchasanMedium", color: "#1E1E1E" }}
+      className="pr-[10%] text-left text-2xl"
+      style={{
+        fontFamily: "KodchasanMedium",
+        color: bright ? "#F5F5F5" : "#1E1E1E",
+      }}
     />
   );
 };
