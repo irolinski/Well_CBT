@@ -3,12 +3,14 @@ import { createSlice } from "@reduxjs/toolkit";
 type journalSliceTypes = {
   moodValue: number;
   emotions: string[];
+  note: string;
   save: Boolean;
 };
 
 const journalSliceInitialState: journalSliceTypes = {
   moodValue: 1, //or 4???
   emotions: ["Relaxed", "Sad", "Calm"],
+  note: "",
   save: false,
 };
 
@@ -22,6 +24,9 @@ const journalSlice = createSlice({
     setEmotions: (state, action) => {
       state.emotions = action.payload;
     },
+    setNote: (state, action) => {
+      state.note = action.payload;
+    },
     // toggleSave: (state) => {
     //   state.save = !state.save;
     // },
@@ -29,7 +34,7 @@ const journalSlice = createSlice({
   },
 });
 
-export const { setMoodValue, setEmotions, journalResetState } =
+export const { setMoodValue, setEmotions, setNote, journalResetState } =
   journalSlice.actions;
 
 export default journalSlice.reducer;

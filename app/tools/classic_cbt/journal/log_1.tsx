@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Dimensions, View } from "react-native";
 
 import Text from "@/components/global/Text";
@@ -106,7 +106,7 @@ const Log_1 = () => {
         </View>
       </View>
       <AdvanceButton
-        className="bottom-10 mx-6 my-4 justify-center"
+        className="mx-6 my-4 justify-center"
         title="Next"
         onPress={() => router.navigate("./log_2")}
         style={{ bottom: windowHeight / 20 }}
