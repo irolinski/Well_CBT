@@ -49,6 +49,10 @@ export default function RootLayout() {
             options={{ headerShown: false }}
           />
           <Stack.Screen
+            name="tools/relax/breathing"
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
             name="tools/distract/phone"
             options={{ headerShown: false }}
           />

@@ -25,7 +25,7 @@ const Tools = () => {
           link={"/tools/classic_cbt/journal"}
         />
         <Text className="mb-8 mt-2 text-left text-2xl">Relax</Text>
-        <ToolCard name="Breathing excercises" link={"tools/relax/breathing"} />
+        <ToolCard name="Breathing excercises" link={"/tools/relax/breathing"} />
         <ToolCard
           name="Muscle relaxation"
           link={"/tools/relax/muscleRelaxation"}

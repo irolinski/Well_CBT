@@ -9,7 +9,7 @@ type journalSliceTypes = {
 
 const journalSliceInitialState: journalSliceTypes = {
   moodValue: 1, //or 4???
-  emotions: ["Relaxed", "Sad", "Calm"],
+  emotions: [],
   note: "",
   save: false,
 };
