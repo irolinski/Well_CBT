@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Button, Dimensions, Modal, Pressable, View } from "react-native";
+import { Dimensions, Modal, Pressable, View } from "react-native";
 import AdvanceButton from "@/components/AdvanceButton";
 import Text from "@/components/global/Text";
 import { Feather } from "@expo/vector-icons";
 import { Slider } from "@miblanchard/react-native-slider";
+import { router } from "expo-router";
 
 const Breathe = () => {
   const windowWidth = Dimensions.get("window").width;
@@ -29,6 +30,10 @@ const Breathe = () => {
   if (mode === "box") {
     ellapsedTime = ellapsedTime + (repsToDo - 1) * holdTime;
   }
+  // Countdown state
+  const [showCountdown, setShowCountdown] = useState(true);
+  const [countdownVal, setCountdownVal] = useState(3);
+  const [countdownActive, setCountdownActive] = useState(false);
 
   // Timer state
   const [breatheInOut, setBreathInOut] = useState(true);
@@ -37,6 +42,22 @@ const Breathe = () => {
   const [counterVal, setCounterVal] = useState(breatheInTime);
   const [pause, setPause] = useState(false);
 
+  // Pre-timer countdown effect
+  useEffect(() => {
+    if (countdownActive && countdownVal > 0) {
+      const countdownInterval = setInterval(() => {
+        setCountdownVal((prev) => prev - 1);
+      }, 1000); // 1 second intervals for countdown
+
+      return () => clearInterval(countdownInterval);
+    } else if (countdownVal === 0) {
+      setCountdownActive(false);
+      setCounterOn(true);
+      setPause(false); // Start the main timer after countdown
+    }
+  }, [countdownVal, countdownActive]);
+
+  // Main timer effect
   useEffect(() => {
     if (repsDone === repsToDo) {
       setCounterOn(false);
@@ -78,11 +99,12 @@ const Breathe = () => {
         } else {
           setCounterVal(counterVal - 1);
         }
-      }, 1000); // 1-second interval
+      }, 1000);
       return () => clearInterval(counterInterval);
     }
   }, [counterVal, counterOn, pause, repsDone]);
 
+  // counter init functions
   const resetExercise = () => {
     counterOn && setCounterOn(false);
     setRepsDone(0);
@@ -94,6 +116,14 @@ const Breathe = () => {
   const startExercise = () => {
     resetExercise();
     setCounterOn(true);
+  };
+
+  const startExerciseWithCountdown = () => {
+    if (!counterOn) {
+      resetExercise();
+    }
+    setCountdownVal(3); // Reset countdown to 3
+    setCountdownActive(true); // Start countdown
   };
 
   const togglePause = () => {
@@ -122,12 +152,21 @@ const Breathe = () => {
             <Feather name="settings" size={24} color="black" />
           </View>
         </Pressable>
+        <Pressable
+          onPress={() => router.back()}
+          className="absolute left-8 top-8"
+        >
+          <View>
+            <View>
+              <Feather name="x" size={24} color="black" />
+            </View>
+          </View>
+        </Pressable>
         <View
           className="relative"
           style={{
             width: windowWidth,
             height: windowHeight / 2,
-            borderColor: "grey",
           }}
         >
           <Text>
@@ -151,13 +190,23 @@ const Breathe = () => {
                 borderRadius: circleSize / 2,
               }}
             >
-              <Text className="text-4xl">{counterVal}</Text>
-              {showHold ? (
-                <Text>HOLD IT!</Text>
-              ) : breatheInOut ? (
-                <Text>Breathe in!</Text>
+              {/* Show countdown if active, otherwise show the main timer */}
+              {countdownActive ? (
+                <React.Fragment>
+                  <Text className="text-4xl">{countdownVal}</Text>
+                  <Text>It's the final countdown!</Text>
+                </React.Fragment>
               ) : (
-                <Text>Breathe out!</Text>
+                <>
+                  <Text className="text-4xl">{counterVal}</Text>
+                  {showHold ? (
+                    <Text>HOLD IT!</Text>
+                  ) : breatheInOut ? (
+                    <Text>Breathe in!</Text>
+                  ) : (
+                    <Text>Breathe out!</Text>
+                  )}
+                </>
               )}
             </View>
           </View>
@@ -166,9 +215,25 @@ const Breathe = () => {
       <AdvanceButton
         title={"start/stop"}
         onPress={() => {
-          !counterOn ? startExercise() : togglePause();
+          // do nothing if countdown is happening
+          if (countdownActive) {
+            return;
+          }
+          // start with countdown if showCountdown is true and the counter is off or paused
+          if (showCountdown && (!counterOn || pause)) {
+            startExerciseWithCountdown();
+          } else {
+            // else, if the counter is off, turn it on
+            if (!counterOn) {
+              startExercise();
+              // if the counter is on, pause
+            } else {
+              togglePause();
+            }
+          }
         }}
       />
+
       <Modal animationType="slide" transparent={true} visible={showModal}>
         <View
           style={{
@@ -240,43 +305,64 @@ const Breathe = () => {
                 <Text>4-7-8</Text>
               </View>
             </View>
-            <View className="m-8 flex-row">
-              <Text>Box breath length(s):</Text>
-              <View className="h-10 w-20 flex-row rounded-lg border">
-                <Pressable
-                  className="w-1/3 border"
-                  onPress={() => {
-                    if (boxTime > 4) {
-                      setBoxTime(boxTime - 1);
-                      setBreatheInTime(boxTime - 1);
-                      setBreatheOutTime(boxTime - 1);
-                      setHoldTime(boxTime - 1);
-                    }
-                  }}
-                >
-                  <Text>-</Text>
-                </Pressable>
-                <View className="w-1/3 border">
-                  <Text>{boxTime}</Text>
+            {mode === "box" && (
+              <View className="mx-8 flex-row">
+                <Text>Box breath length(s):</Text>
+                <View className="h-10 w-20 flex-row rounded-lg border">
+                  <Pressable
+                    className="w-1/3 border"
+                    onPress={() => {
+                      if (boxTime > 4) {
+                        setBoxTime(boxTime - 1);
+                        setBreatheInTime(boxTime - 1);
+                        setBreatheOutTime(boxTime - 1);
+                        setHoldTime(boxTime - 1);
+                      }
+                    }}
+                  >
+                    <Text>-</Text>
+                  </Pressable>
+                  <View className="w-1/3 border">
+                    <Text>{boxTime}</Text>
+                  </View>
+                  <Pressable
+                    className="w-1/3 border"
+                    onPress={() => {
+                      if (boxTime < 7) {
+                        setBoxTime(boxTime + 1);
+                        setBreatheInTime(boxTime + 1);
+                        setBreatheOutTime(boxTime + 1);
+                        setHoldTime(boxTime + 1);
+                      }
+                    }}
+                  >
+                    <Text>+</Text>
+                  </Pressable>
                 </View>
-                <Pressable
-                  className="w-1/3 border"
-                  onPress={() => {
-                    if (boxTime < 7) {
-                      setBoxTime(boxTime + 1);
-                      setBreatheInTime(boxTime + 1);
-                      setBreatheOutTime(boxTime + 1);
-                      setHoldTime(boxTime + 1);
-                    }
-                  }}
-                >
-                  <Text>+</Text>
-                </Pressable>
               </View>
-            </View>
+            )}
           </View>
           <View className="m-8">
             <Text>Light/dark mode:</Text>
+          </View>
+          <View className="mx-8 flex-row">
+            <Pressable
+              onPress={() => {
+                setShowCountdown((prev) => !prev);
+              }}
+            >
+              <View
+                className="h-10 w-10 rounded-lg border"
+                style={{ borderColor: "white" }}
+              >
+                {showCountdown && (
+                  <View className="mx-auto">
+                    <Feather name="check" size={22} color="#F7F7F7" />
+                  </View>
+                )}
+              </View>
+            </Pressable>
+            <Text>Show countdown</Text>
           </View>
           <View className="m-8">
             <Text>Method:</Text>
