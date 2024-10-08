@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Dimensions, Modal, Pressable, View } from "react-native";
+import React, { useEffect, useRef, useState } from "react";
+import { Animated, Dimensions, Modal, Pressable, View } from "react-native";
 import AdvanceButton from "@/components/AdvanceButton";
 import Text from "@/components/global/Text";
 import { Feather } from "@expo/vector-icons";
@@ -7,104 +7,41 @@ import { Slider } from "@miblanchard/react-native-slider";
 import { router } from "expo-router";
 
 const Breathe = () => {
+  //UI STATE
   const windowWidth = Dimensions.get("window").width;
   const windowHeight = Dimensions.get("window").height;
-
-  //UI state
-  const circleSize = windowWidth / 1.5;
+  const innerCircleSize = windowWidth / 2.5;
+  const outerCircleSize = innerCircleSize * 2.2;
   const [showModal, setShowModal] = useState(false);
 
-  const [holdTime, setHoldTime] = useState(7);
-  const [breatheInTime, setBreatheInTime] = useState(4);
-  const [breatheOutTime, setBreatheOutTime] = useState(8);
-
-  const [numOfSets, setNumOfSets] = useState(1);
-  const repsToDo = 5 * numOfSets;
-  const [repsDone, setRepsDone] = useState(0);
-  const [doubleHold, setDoubleHold] = useState(false);
-
-  //settings state
-  const [mode, setMode] = useState<"box" | "4-7-8">("4-7-8");
-  const [boxTime, setBoxTime] = useState(4);
-  let ellapsedTime = repsToDo * (holdTime + breatheInTime + breatheOutTime);
-  if (mode === "box") {
-    ellapsedTime = ellapsedTime + (repsToDo - 1) * holdTime;
-  }
-  // Countdown state
+  // COUNTDOWN STATE
   const [showCountdown, setShowCountdown] = useState(true);
   const [countdownVal, setCountdownVal] = useState(3);
   const [countdownActive, setCountdownActive] = useState(false);
 
-  // Timer state
+  // MAIN TIMER STATE
+  const [holdTime, setHoldTime] = useState(7);
+  const [breatheInTime, setBreatheInTime] = useState(4);
+  const [breatheOutTime, setBreatheOutTime] = useState(8);
   const [breatheInOut, setBreathInOut] = useState(true);
   const [showHold, setShowHold] = useState(false);
   const [counterOn, setCounterOn] = useState(false);
   const [counterVal, setCounterVal] = useState(breatheInTime);
   const [pause, setPause] = useState(false);
+  const [numOfSets, setNumOfSets] = useState(1);
+  const repsToDo = 5 * numOfSets;
+  const [repsDone, setRepsDone] = useState(0);
+  const [doubleHold, setDoubleHold] = useState(false);
 
-  // Pre-timer countdown effect
-  useEffect(() => {
-    if (countdownActive && countdownVal > 0) {
-      const countdownInterval = setInterval(() => {
-        setCountdownVal((prev) => prev - 1);
-      }, 1000); // 1 second intervals for countdown
+  //SETTINGS
+  const [mode, setMode] = useState<"box" | "4-7-8">("4-7-8");
+  const [boxTime, setBoxTime] = useState(4);
+  let ellapsedTime = repsToDo * (holdTime + breatheInTime + breatheOutTime);
+  if (mode === "box") {
+    ellapsedTime = ellapsedTime + (repsToDo - 1) * holdTime; // add time from double hold
+  }
 
-      return () => clearInterval(countdownInterval);
-    } else if (countdownVal === 0) {
-      setCountdownActive(false);
-      setCounterOn(true);
-      setPause(false); // Start the main timer after countdown
-    }
-  }, [countdownVal, countdownActive]);
-
-  // Main timer effect
-  useEffect(() => {
-    if (repsDone === repsToDo) {
-      setCounterOn(false);
-    }
-
-    if (counterOn && !pause) {
-      const counterInterval = setInterval(() => {
-        if (counterVal === 1) {
-          if (!showHold) {
-            if (doubleHold) {
-              setRepsDone(repsDone + 0.5);
-              if (repsDone !== repsToDo - 0.5) {
-                setCounterVal(holdTime);
-                setShowHold(true);
-              } else {
-                setBreathInOut(true);
-                setCounterVal(breatheInTime);
-              }
-            } else {
-              if (breatheInOut === true) {
-                setCounterVal(holdTime);
-                setShowHold(true);
-              } else {
-                setRepsDone(repsDone + 1);
-                setCounterVal(breatheInTime);
-                setBreathInOut(true);
-              }
-            }
-          } else {
-            setShowHold(false);
-            if (breatheInOut) {
-              setCounterVal(breatheOutTime);
-              setBreathInOut(false);
-            } else {
-              setCounterVal(breatheInTime);
-              setBreathInOut(true);
-            }
-          }
-        } else {
-          setCounterVal(counterVal - 1);
-        }
-      }, 1000);
-      return () => clearInterval(counterInterval);
-    }
-  }, [counterVal, counterOn, pause, repsDone]);
-
-  // counter init functions
+  // COUNTER INIT FUNCTIONS
   const resetExercise = () => {
     counterOn && setCounterOn(false);
     setRepsDone(0);
@@ -123,7 +60,7 @@ const Breathe = () => {
       resetExercise();
     }
     setCountdownVal(3); // Reset countdown to 3
-    setCountdownActive(true); // Start countdown
+    setCountdownActive(true); // Start countdown (it will auto-run exercise when it finishes)
   };
 
   const togglePause = () => {
@@ -132,6 +69,127 @@ const Breathe = () => {
       setCounterOn(true); // Resume when unpausing
     }
   };
+
+  // ANIMATIONS
+  const outerCircleAnim = useRef(new Animated.Value(1)).current;
+  const [outerCircleExpanded, setOuterCircleExpanded] = useState(false);
+
+  const animateOuterCircle = (duration: number) => {
+    const expandOuterCircle = () => {
+      Animated.timing(outerCircleAnim, {
+        toValue: 2,
+        duration: duration,
+        useNativeDriver: true,
+      }).start();
+      setOuterCircleExpanded(true);
+    };
+
+    const shrinkOuterCircle = () => {
+      Animated.timing(outerCircleAnim, {
+        toValue: 1,
+        duration: duration,
+        useNativeDriver: true,
+      }).start();
+      setOuterCircleExpanded(false);
+    };
+    console.log(outerCircleExpanded);
+    outerCircleExpanded ? shrinkOuterCircle() : expandOuterCircle();
+  };
+
+  // PRE-TIMER COUNTDOWN EFFECT
+  useEffect(() => {
+    if (countdownActive && countdownVal > 0) {
+      const countdownInterval = setInterval(() => {
+        setCountdownVal((prev) => prev - 1);
+      }, 1000); // 1 second intervals for countdown
+
+      return () => clearInterval(countdownInterval);
+    } else if (countdownVal === 0) {
+      setCountdownActive(false);
+      setCounterOn(true);
+      setPause(false); // Start the main timer after countdown
+    }
+  }, [countdownVal, countdownActive]);
+
+  // MAIN TIMER EFFECT
+  useEffect(() => {
+    if (repsDone === repsToDo) {
+      setCounterOn(false);
+    }
+
+    if (counterOn && !pause) {
+      const counterInterval = setInterval(() => {
+        // trigger animations
+        //in the beginning of a breath-in
+        if (!doubleHold) {
+          if (breatheInOut && !showHold && counterVal === breatheInTime) {
+            animateOuterCircle(breatheInTime * 1000);
+          }
+          //at the end of hold
+          if (breatheInOut && showHold && counterVal === 1) {
+            animateOuterCircle(breatheOutTime * 1000);
+          }
+        }
+
+        if (doubleHold) {
+          if (showHold && counterVal === 1) {
+            animateOuterCircle(breatheInTime * 1000);
+          }
+          if (!repsDone && breatheInOut && counterVal === breatheInTime) {
+            animateOuterCircle(breatheInTime * 1000);
+          }
+        }
+
+        // when the counter reaches 1
+        if (counterVal === 1) {
+          // if not currently on HOLD - taking a breath in or out
+          if (!showHold) {
+            // if double hold mode is on (i.e. 'box' mode)
+            if (doubleHold) {
+              // add only 0.5 so only after two holds a full rep is present inside state
+              setRepsDone(repsDone + 0.5);
+              // stop session before last HOLD so that the user doesn't suffocate
+              if (repsDone !== repsToDo - 0.5) {
+                setCounterVal(holdTime);
+                setShowHold(true);
+              }
+              // if double hold mode is off (i.e. "4-7-8" mode)
+            } else if (!doubleHold) {
+              // if the last breath was a breath in, show "hold"
+              if (breatheInOut) {
+                setCounterVal(holdTime);
+                setShowHold(true);
+                // if the last breath was a breath out, add a rep and show "breathe-in"
+              } else {
+                setRepsDone(repsDone + 1);
+                setCounterVal(breatheInTime);
+                if (repsDone !== repsToDo - 1) {
+                  setBreathInOut(true);
+                  animateOuterCircle(breatheInTime * 1000);
+                }
+              }
+            }
+            // if currently holding breath
+          } else if (showHold) {
+            setShowHold(false);
+            // if last breath was taken in, set the next one to be out
+            if (breatheInOut) {
+              setCounterVal(breatheOutTime);
+              setBreathInOut(false);
+
+              // if last breath was out, set the next one to be in
+            } else if (!breatheInOut) {
+              setCounterVal(breatheInTime);
+              setBreathInOut(true);
+            }
+          }
+        } else {
+          setCounterVal(counterVal - 1);
+        }
+      }, 1000);
+      return () => clearInterval(counterInterval);
+    }
+  }, [counterVal, counterOn, pause, repsDone]);
 
   return (
     <React.Fragment>
@@ -172,43 +230,53 @@ const Breathe = () => {
           <Text>
             Reps done: {Math.floor(repsDone)}/{repsToDo}
           </Text>
-          <View
-            className="absolute top-[12.5%] justify-center bg-slate-200"
+          {/* Outer circle */}
+          {/* <AdvanceButton
+            className="z-20"
+            title="Animation test"
+            onPress={() => animateOuterCircle()}
+          /> */}
+
+          <Animated.View
+            className="absolute top-1/3 justify-center bg-slate-200"
             style={{
               alignSelf: "center",
-              width: circleSize,
-              height: circleSize,
-              borderRadius: circleSize / 2,
+              width: innerCircleSize,
+              height: innerCircleSize,
+              borderRadius: innerCircleSize,
+              transform: [{ scale: outerCircleAnim }],
             }}
           >
-            <View
-              className="items-center justify-center overflow-hidden bg-slate-400"
-              style={{
-                alignSelf: "center",
-                width: circleSize * 0.66,
-                height: circleSize * 0.66,
-                borderRadius: circleSize / 2,
-              }}
-            >
-              {/* Show countdown if active, otherwise show the main timer */}
-              {countdownActive ? (
-                <React.Fragment>
-                  <Text className="text-4xl">{countdownVal}</Text>
-                  <Text>It's the final countdown!</Text>
-                </React.Fragment>
-              ) : (
-                <>
-                  <Text className="text-4xl">{counterVal}</Text>
-                  {showHold ? (
-                    <Text>HOLD IT!</Text>
-                  ) : breatheInOut ? (
-                    <Text>Breathe in!</Text>
-                  ) : (
-                    <Text>Breathe out!</Text>
-                  )}
-                </>
-              )}
-            </View>
+            {/* Main circle */}
+          </Animated.View>
+          <View
+            className="absolute top-1/3 items-center justify-center overflow-hidden border bg-slate-400"
+            style={{
+              alignSelf: "center",
+              width: innerCircleSize,
+              height: innerCircleSize,
+              borderRadius: innerCircleSize / 2,
+              borderColor: "black",
+            }}
+          >
+            {/* Show countdown if active, otherwise show the main timer */}
+            {countdownActive ? (
+              <React.Fragment>
+                <Text className="text-4xl">{countdownVal}</Text>
+                <Text>It's the final countdown!</Text>
+              </React.Fragment>
+            ) : (
+              <>
+                <Text className="text-4xl">{counterVal}</Text>
+                {showHold ? (
+                  <Text>HOLD IT!</Text>
+                ) : breatheInOut ? (
+                  <Text>Breathe in!</Text>
+                ) : (
+                  <Text>Breathe out!</Text>
+                )}
+              </>
+            )}
           </View>
         </View>
       </View>
