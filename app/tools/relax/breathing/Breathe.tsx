@@ -11,7 +11,6 @@ const Breathe = () => {
   const windowWidth = Dimensions.get("window").width;
   const windowHeight = Dimensions.get("window").height;
   const innerCircleSize = windowWidth / 2.5;
-  const outerCircleSize = innerCircleSize * 2.2;
   const [showModal, setShowModal] = useState(false);
 
   // COUNTDOWN STATE
@@ -42,6 +41,8 @@ const Breathe = () => {
   }
 
   // ANIMATIONS
+
+  // outer circle
   const outerCircleAnim = useRef(new Animated.Value(1)).current;
   const [outerCircleExpanded, setOuterCircleExpanded] = useState(false);
 
@@ -53,6 +54,8 @@ const Breathe = () => {
     }).start();
     setOuterCircleExpanded(true);
     console.log("breathing in");
+    setStepsDone((prev) => prev + 1);
+    animateProgressBar(breatheInTime * 1000);
   };
 
   const shrinkOuterCircle = (duration: number) => {
@@ -63,6 +66,8 @@ const Breathe = () => {
     }).start();
     setOuterCircleExpanded(false);
     console.log("breathing out");
+    setStepsDone((prev) => prev + 1);
+    animateProgressBar(breatheOutTime * 1000);
   };
 
   const animateOuterCircle = (duration: number) => {
@@ -74,6 +79,34 @@ const Breathe = () => {
   const handleHold = () => {
     setShowHold(true);
     console.log("HOLD!");
+    setStepsDone((prev) => prev + 1);
+    animateProgressBar(holdTime * 1000);
+  };
+
+  // progress bar
+  const barLength = (3 / 4) * windowWidth;
+  const progressBarAnim = useRef(new Animated.Value(-barLength)).current;
+
+  const stepsToDo = doubleHold ? 4 * repsToDo : 3 * repsToDo;
+  const [stepsDone, setStepsDone] = useState(0);
+  console.log(stepsDone + " / " + stepsToDo);
+
+  const animateProgressBar = (duration: number) => {
+    let stepsToAdd = doubleHold ? stepsDone + 2 : stepsDone + 1;
+    let val = -barLength + (stepsToAdd / stepsToDo) * barLength;
+    Animated.timing(progressBarAnim, {
+      toValue: val,
+      duration: duration,
+      useNativeDriver: true,
+    }).start();
+  };
+
+  const resetProgressBar = () => {
+    Animated.timing(progressBarAnim, {
+      toValue: -barLength,
+      duration: 100,
+      useNativeDriver: true,
+    }).start();
   };
 
   // COUNTER INIT FUNCTIONS
@@ -83,6 +116,8 @@ const Breathe = () => {
     setShowHold(false);
     setBreathInOut(true);
     setCounterVal(breatheInTime);
+    setStepsDone(0);
+    resetProgressBar();
     outerCircleExpanded && shrinkOuterCircle(1000);
   };
 
@@ -129,7 +164,6 @@ const Breathe = () => {
 
     if (counterOn && !pause) {
       const counterInterval = setInterval(() => {
-
         // ANIMATION TRIGGERS
 
         // first animation
@@ -243,13 +277,15 @@ const Breathe = () => {
           <Text>
             Reps done: {Math.floor(repsDone)}/{repsToDo}
           </Text>
-          {/* Outer circle */}
           {/* <AdvanceButton
             className="z-20"
             title="Animation test"
-            onPress={() => animateOuterCircle()}
+            onPress={() => {
+              setTimeout(() => animateProgressBar(1000), 1000);
+              resetProgressBar();
+            }}
           /> */}
-
+          {/* Outer circle */}
           <Animated.View
             className="absolute top-1/3 justify-center bg-slate-200"
             style={{
@@ -291,6 +327,32 @@ const Breathe = () => {
               </>
             )}
           </View>
+        </View>
+        {/* Progress bar */}
+        <View
+          className="overflow-hidden p-1"
+          style={{
+            width: barLength,
+            height: 20,
+          }}
+        >
+          <Animated.View
+            className="h-full w-full bg-red-400"
+            style={{
+              transform: [
+                {
+                  translateX: progressBarAnim,
+                },
+              ],
+            }}
+          ></Animated.View>
+          <View
+            className="absolute top-3/4 mx-1 w-full"
+            style={{
+              height: 1,
+              backgroundColor: "grey",
+            }}
+          ></View>
         </View>
       </View>
       <AdvanceButton
