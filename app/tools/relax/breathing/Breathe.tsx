@@ -52,6 +52,7 @@ const Breathe = () => {
       useNativeDriver: true,
     }).start();
     setOuterCircleExpanded(true);
+    console.log("breathing in");
   };
 
   const shrinkOuterCircle = (duration: number) => {
@@ -61,12 +62,18 @@ const Breathe = () => {
       useNativeDriver: true,
     }).start();
     setOuterCircleExpanded(false);
+    console.log("breathing out");
   };
 
   const animateOuterCircle = (duration: number) => {
     outerCircleExpanded
       ? shrinkOuterCircle(duration)
       : expandOuterCircle(duration);
+  };
+
+  const handleHold = () => {
+    setShowHold(true);
+    console.log("HOLD!");
   };
 
   // COUNTER INIT FUNCTIONS
@@ -122,27 +129,25 @@ const Breathe = () => {
 
     if (counterOn && !pause) {
       const counterInterval = setInterval(() => {
-        // Trigger animations
+
+        // ANIMATION TRIGGERS
+
+        // first animation
+        if (
+          !repsDone &&
+          breatheInOut &&
+          !showHold &&
+          counterVal === breatheInTime
+        ) {
+          animateOuterCircle(breatheInTime * 1000);
+        }
+
         if (!doubleHold) {
-          if (
-            breatheInOut &&
-            !showHold &&
-            counterVal === breatheInTime &&
-            repsDone < repsToDo - 1
-          ) {
-            animateOuterCircle(breatheInTime * 1000);
-          }
-          //at the end of hold
           if (breatheInOut && showHold && counterVal === 1) {
             animateOuterCircle(breatheOutTime * 1000);
           }
-        }
-
-        if (doubleHold) {
+        } else if (doubleHold) {
           if (showHold && counterVal === 1) {
-            animateOuterCircle(breatheInTime * 1000);
-          }
-          if (!repsDone && breatheInOut && counterVal === breatheInTime) {
             animateOuterCircle(breatheInTime * 1000);
           }
         }
@@ -158,14 +163,14 @@ const Breathe = () => {
               // stop session before last HOLD so that the user doesn't suffocate
               if (repsDone !== repsToDo - 0.5) {
                 setCounterVal(holdTime);
-                setShowHold(true);
+                handleHold();
               }
               // if double hold mode is off (i.e. "4-7-8" mode)
             } else if (!doubleHold) {
               // if the last breath was a breath in, show "hold"
               if (breatheInOut) {
                 setCounterVal(holdTime);
-                setShowHold(true);
+                handleHold();
                 // if the last breath was a breath out, add a rep and show "breathe-in"
               } else if (!breatheInOut) {
                 setRepsDone(repsDone + 1);
