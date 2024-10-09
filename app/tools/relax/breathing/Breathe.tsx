@@ -41,6 +41,34 @@ const Breathe = () => {
     ellapsedTime = ellapsedTime + (repsToDo - 1) * holdTime; // add time from double hold
   }
 
+  // ANIMATIONS
+  const outerCircleAnim = useRef(new Animated.Value(1)).current;
+  const [outerCircleExpanded, setOuterCircleExpanded] = useState(false);
+
+  const expandOuterCircle = (duration: number) => {
+    Animated.timing(outerCircleAnim, {
+      toValue: 2,
+      duration: duration,
+      useNativeDriver: true,
+    }).start();
+    setOuterCircleExpanded(true);
+  };
+
+  const shrinkOuterCircle = (duration: number) => {
+    Animated.timing(outerCircleAnim, {
+      toValue: 1,
+      duration: duration,
+      useNativeDriver: true,
+    }).start();
+    setOuterCircleExpanded(false);
+  };
+
+  const animateOuterCircle = (duration: number) => {
+    outerCircleExpanded
+      ? shrinkOuterCircle(duration)
+      : expandOuterCircle(duration);
+  };
+
   // COUNTER INIT FUNCTIONS
   const resetExercise = () => {
     counterOn && setCounterOn(false);
@@ -48,6 +76,7 @@ const Breathe = () => {
     setShowHold(false);
     setBreathInOut(true);
     setCounterVal(breatheInTime);
+    outerCircleExpanded && shrinkOuterCircle(1000);
   };
 
   const startExercise = () => {
@@ -68,32 +97,6 @@ const Breathe = () => {
     if (pause) {
       setCounterOn(true); // Resume when unpausing
     }
-  };
-
-  // ANIMATIONS
-  const outerCircleAnim = useRef(new Animated.Value(1)).current;
-  const [outerCircleExpanded, setOuterCircleExpanded] = useState(false);
-
-  const animateOuterCircle = (duration: number) => {
-    const expandOuterCircle = () => {
-      Animated.timing(outerCircleAnim, {
-        toValue: 2,
-        duration: duration,
-        useNativeDriver: true,
-      }).start();
-      setOuterCircleExpanded(true);
-    };
-
-    const shrinkOuterCircle = () => {
-      Animated.timing(outerCircleAnim, {
-        toValue: 1,
-        duration: duration,
-        useNativeDriver: true,
-      }).start();
-      setOuterCircleExpanded(false);
-    };
-    console.log(outerCircleExpanded);
-    outerCircleExpanded ? shrinkOuterCircle() : expandOuterCircle();
   };
 
   // PRE-TIMER COUNTDOWN EFFECT
@@ -119,10 +122,14 @@ const Breathe = () => {
 
     if (counterOn && !pause) {
       const counterInterval = setInterval(() => {
-        // trigger animations
-        //in the beginning of a breath-in
+        // Trigger animations
         if (!doubleHold) {
-          if (breatheInOut && !showHold && counterVal === breatheInTime) {
+          if (
+            breatheInOut &&
+            !showHold &&
+            counterVal === breatheInTime &&
+            repsDone < repsToDo - 1
+          ) {
             animateOuterCircle(breatheInTime * 1000);
           }
           //at the end of hold
@@ -160,11 +167,12 @@ const Breathe = () => {
                 setCounterVal(holdTime);
                 setShowHold(true);
                 // if the last breath was a breath out, add a rep and show "breathe-in"
-              } else {
+              } else if (!breatheInOut) {
                 setRepsDone(repsDone + 1);
-                setCounterVal(breatheInTime);
-                if (repsDone !== repsToDo - 1) {
+                if (repsDone < repsToDo - 1) {
                   setBreathInOut(true);
+                  setCounterVal(breatheInTime);
+                  //Trigger breathe-in animation only after the the state changes are handled
                   animateOuterCircle(breatheInTime * 1000);
                 }
               }
