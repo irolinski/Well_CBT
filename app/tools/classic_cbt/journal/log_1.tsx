@@ -23,7 +23,7 @@ const Log_1 = () => {
 
   return (
     <React.Fragment>
-      <ToolNav currentPage={1} numOfAllPages={5} />
+      <ToolNav currentPage={1} numOfAllPages={6} />
       <View className="m-2 flex-1" style={{ height: windowHeight }}>
         <View
           className="absolute mx-6"

@@ -13,7 +13,7 @@ const Log_finish = () => {
   return (
     <React.Fragment>
       <ScrollView className="relative">
-        <ToolNav currentPage={5} numOfAllPages={5} />
+        <ToolNav currentPage={6} numOfAllPages={6} />
         <View
           className="mx-6 flex-1 justify-center"
           style={{ height: windowHeight }}

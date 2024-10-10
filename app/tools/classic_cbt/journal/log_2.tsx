@@ -9,7 +9,10 @@ import Text from "@/components/global/Text";
 import ToolHeader from "@/components/ToolHeader";
 import ToolNav from "@/components/ToolNav";
 import emotionList from "@/constants/models/journal_emotionList";
-import { setEmotions } from "@/state/features/tools/journalSlice";
+import {
+  emotionObjType,
+  setEmotions,
+} from "@/state/features/tools/journalSlice";
 import { AppDispatch, RootState } from "@/state/store";
 
 const Log_2 = () => {
@@ -19,22 +22,38 @@ const Log_2 = () => {
   );
   const dispatch = useDispatch<AppDispatch>();
 
-  const handlePress = (name: string) => {
-    const index = emotionsState.indexOf(name);
+  const handlePress = (emotion: emotionObjType) => {
     let newArr = [...emotionsState];
+
+    const index = newArr
+      .map(function (e) {
+        return e.name;
+      })
+      .indexOf(emotion.name);
 
     if (index >= 0) {
       newArr.splice(index, 1);
     } else {
-      if (newArr.length < 5) newArr = [...newArr, name];
+      if (newArr.length < 5) newArr = [...newArr, emotion];
     }
     dispatch(setEmotions(newArr));
+    console.log(emotionsState);
+  };
+
+  const isChecked = (name: string) => {
+    return Boolean(
+      [...emotionsState]
+        .map(function (e) {
+          return e.name;
+        })
+        .indexOf(name) >= 0,
+    );
   };
 
   return (
     <React.Fragment>
       <ScrollView>
-        <ToolNav currentPage={2} numOfAllPages={5} />
+        <ToolNav currentPage={2} numOfAllPages={6} />
         <Frame>
           <View className="items-center py-10">
             <ToolHeader>What emotions are you feeling right now?</ToolHeader>
@@ -53,10 +72,11 @@ const Log_2 = () => {
                   {emotionList.map((e, index) => (
                     <DistortionPill
                       title={e.name}
-                      checked={Boolean(emotionsState.indexOf(e.name) >= 0)}
-                      //   checked={false}
+                      checked={isChecked(e.name)}
                       customColor={e.color}
-                      onPress={() => handlePress(e.name)}
+                      onPress={() =>
+                        handlePress({ name: e.name, color: e.color })
+                      }
                       key={index}
                     />
                   ))}
