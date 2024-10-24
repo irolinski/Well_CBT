@@ -1,4 +1,4 @@
-const emotionList = [
+export const emotionList = [
   { name: "Calm", color: "#aed581" },
   { name: "Relaxed", color: "#aed581" },
   { name: "Peaceful", color: "#aed581" },
@@ -51,11 +51,27 @@ const emotionList = [
   { name: "Helpless", color: "#8dbed8" },
 ];
 
-export default emotionList;
-
 // Hex Color Values:
 // Red – #d46a6a
 // Blue – #8dbed8
 // Orange – #f38e4e
 // Green – #aed581
 // Gray – #b8b8b8
+
+export const moodValueTitles = [
+  "Terrible",
+  "Bad",
+  "Rather bad",
+  "Average",
+  "Rather good",
+  "Good",
+  "Very good",
+]; //1-7
+
+export const emotionStrengthTitles = [
+  "Barely noticable",
+  "Weak",
+  "Significant",
+  "Strong",
+  "Overwhealming",
+]; //1-5

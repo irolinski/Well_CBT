@@ -1,29 +1,36 @@
+import { router } from "expo-router";
 import React from "react";
 import { Dimensions, View } from "react-native";
-
+import { useDispatch, useSelector } from "react-redux";
+import AdvanceButton from "@/components/AdvanceButton";
 import Text from "@/components/global/Text";
 import ToolHeader from "@/components/ToolHeader";
 import ToolNav from "@/components/ToolNav";
-import { Slider } from "@miblanchard/react-native-slider";
-import AdvanceButton from "@/components/AdvanceButton";
-import { router } from "expo-router";
-import { useDispatch, useSelector } from "react-redux";
+import { moodValueTitles } from "@/constants/models/journal";
+import {
+  journalResetState,
+  setMoodValue,
+} from "@/state/features/tools/journalSlice";
 import { AppDispatch, RootState } from "@/state/store";
-import { setMoodValue } from "@/state/features/tools/journalSlice";
+import { Slider } from "@miblanchard/react-native-slider";
 
 const Log_1 = () => {
   const windowWidth = Dimensions.get("window").width;
   const windowHeight = Dimensions.get("window").height;
 
   // tool state
-  const moodValueState = useSelector(
-    (state: RootState) => state.journal.moodValue,
-  );
+  const journalState = useSelector((state: RootState) => state.journal);
   const dispatch = useDispatch<AppDispatch>();
 
   return (
     <React.Fragment>
-      <ToolNav currentPage={1} numOfAllPages={6} />
+      <ToolNav
+        currentPage={1}
+        numOfAllPages={6}
+        handleBackButtonPress={() => {
+          dispatch(journalResetState());
+        }}
+      />
       <View className="m-2 flex-1" style={{ height: windowHeight }}>
         <View
           className="absolute mx-6"
@@ -32,7 +39,7 @@ const Log_1 = () => {
           <ToolHeader noIndent={true}>
             How would you rate your mood today?
           </ToolHeader>
-          <Text className="mx-4 my-4">
+          <Text className="m-4">
             Use the slider to indicate how you are feeling.
           </Text>
         </View>
@@ -56,36 +63,27 @@ const Log_1 = () => {
               onValueChange={(evt) => {
                 dispatch(setMoodValue(Math.round(Number(evt) * 10) + 1));
               }}
-              trackMarks={[0.1667, 0.3333, 0.5, 0.6667, 0.8333]}
-              renderTrackMarkComponent={() => (
-                <View
-                  style={{ width: 0.3, height: 10, backgroundColor: "black" }}
-                ></View>
-              )}
-              // minimumTrackTintColor="#AED581"
-              // maximumTrackTintColor="#D9D9D9"
               minimumTrackTintColor={
-                moodValueState < 4
+                journalState.moodValue < 4
                   ? "#D46A6A"
-                  : moodValueState < 6
+                  : journalState.moodValue < 6
                     ? "#F38E4E"
                     : "#AED581"
               }
               maximumTrackTintColor="#f5f5f5"
               thumbTintColor="#F5F5F5"
               thumbStyle={{
-                padding: 19,
+                padding: 15,
                 borderRadius: 50,
-                borderColor: "#B8B8B8",
-
                 borderStyle: "solid",
-                borderWidth: 0.5,
+                borderColor: "#D9D9D9",
+                borderWidth: 2,
               }}
               trackStyle={{
-                padding: 15,
+                padding: 7,
                 marginLeft: 5,
                 borderRadius: 50,
-                borderColor: "#B8B8B8",
+                borderColor: "#D9D9D9",
                 borderStyle: "solid",
                 borderWidth: 2,
               }}
@@ -100,8 +98,10 @@ const Log_1 = () => {
               right: windowWidth / 15,
             }}
           >
-            <Text className="text-3xl">{moodValueState}</Text>
-            <Text className="text-2xl">Hi mark!</Text>
+            <Text className="text-3xl">{journalState.moodValue}</Text>
+            <Text className="text-2xl">
+              {moodValueTitles[journalState.moodValue - 1]}
+            </Text>
           </View>
         </View>
       </View>

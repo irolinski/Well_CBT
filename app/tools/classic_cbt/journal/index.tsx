@@ -1,7 +1,7 @@
-import { View, Text, Button, Pressable } from "react-native";
-import React from "react";
-import AdvanceButton from "@/components/AdvanceButton";
 import { Href, router } from "expo-router";
+import React from "react";
+import { Text, View } from "react-native";
+import AdvanceButton from "@/components/AdvanceButton";
 import BackButton from "@/components/BackButton";
 
 const Cda = () => {

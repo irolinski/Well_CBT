@@ -5,14 +5,24 @@ import Text from "./global/Text";
 const ToolNav = ({
   currentPage,
   numOfAllPages,
+  handleBackButtonPress,
+  hideBackButton,
 }: {
   currentPage: number;
   numOfAllPages: number;
+  handleBackButtonPress?: () => void;
+  hideBackButton?: Boolean;
 }) => {
   return (
-    <View className="relative top-16 w-full flex-row justify-center z-10">
+    <View className="relative top-16 z-10 w-full flex-row justify-center">
       <View className="absolute left-6">
-        <BackButton />
+        {!hideBackButton && (
+          <BackButton
+            handleBackButtonPress={() =>
+              handleBackButtonPress && handleBackButtonPress()
+            }
+          />
+        )}
       </View>
       <View className="">
         <ProgressBar currentPage={currentPage} numOfAllPages={numOfAllPages} />

@@ -1,11 +1,6 @@
 import { router } from "expo-router";
 import React from "react";
-import {
-  Keyboard,
-  ScrollView,
-  TouchableWithoutFeedback,
-  View,
-} from "react-native";
+import { Keyboard, TouchableWithoutFeedback, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import AdvanceButton from "@/components/AdvanceButton";
 import Frame from "@/components/Frame";
@@ -19,9 +14,10 @@ import { Dimensions } from "react-native";
 
 const Log_4 = () => {
   const windowHeight = Dimensions.get("window").height;
-
+  
+  //tool state
   const dispatch = useDispatch<AppDispatch>();
-  const noteState = useSelector((state: RootState) => state.journal.note);
+  const journalState = useSelector((state: RootState) => state.journal);
 
   return (
     <React.Fragment>
@@ -42,7 +38,7 @@ const Log_4 = () => {
                     Note down anything you deem worthy.
                   </Text>
                   <CDATextInput
-                    value={noteState}
+                    value={journalState.note}
                     handleChangeText={(evt: string) => dispatch(setNote(evt))}
                     keyboardMargin={false}
                   />

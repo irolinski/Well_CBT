@@ -1,19 +1,24 @@
 import { Href, router } from "expo-router";
 import React from "react";
-import { Dimensions, ImageBackground, ScrollView, View } from "react-native";
+import { Dimensions, ScrollView, View } from "react-native";
 import AdvanceButton from "@/components/AdvanceButton";
 import Text from "@/components/global/Text";
 import ToolNav from "@/components/ToolNav";
-// import { WellLogo } from "@/constants/models/images";
 import SecondaryButton from "@/components/SecondaryButton";
 import { LogoDark } from "@/components/Logo";
+import { useSelector } from "react-redux";
+import { RootState } from "@/state/store";
 
 const Log_finish = () => {
   const windowHeight = Dimensions.get("window").height;
+
+  //tool state
+  const journalState = useSelector((state: RootState) => state.journal);
+
   return (
     <React.Fragment>
       <ScrollView className="relative">
-        <ToolNav currentPage={6} numOfAllPages={6} />
+        <ToolNav currentPage={6} numOfAllPages={6} hideBackButton={true} />
         <View
           className="mx-6 flex-1 justify-center"
           style={{ height: windowHeight }}
@@ -24,11 +29,14 @@ const Log_finish = () => {
               className="my-4 px-4 text-center text-2xl"
               style={{ fontFamily: "KodchasanMedium", color: "#1E1E1E" }}
             >
-              Saved in journal
+              {journalState.save
+                ? "Saved in journal"
+                : "Journal entry discarded"}
             </Text>
             <Text className="my-1 mr-[10w] text-center">
-              Logging your mood daily is a great way to get to know your
-              feelings well.
+              {journalState.save
+                ? "Logging your mood daily is a great way to get to know your feelings well."
+                : "You can save your future journal entries by checking the box at the end of the form."}
             </Text>
           </View>
           <View className="absolute bottom-10 left-0 right-0">

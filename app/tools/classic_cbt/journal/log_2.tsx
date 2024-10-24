@@ -8,7 +8,7 @@ import Frame from "@/components/Frame";
 import Text from "@/components/global/Text";
 import ToolHeader from "@/components/ToolHeader";
 import ToolNav from "@/components/ToolNav";
-import emotionList from "@/constants/models/journal_emotionList";
+import { emotionList } from "@/constants/models/journal";
 import {
   emotionObjType,
   setEmotions,
@@ -17,13 +17,11 @@ import { AppDispatch, RootState } from "@/state/store";
 
 const Log_2 = () => {
   // tool state
-  const emotionsState = useSelector(
-    (state: RootState) => state.journal.emotions,
-  );
+  const journalState = useSelector((state: RootState) => state.journal);
   const dispatch = useDispatch<AppDispatch>();
 
   const handlePress = (emotion: emotionObjType) => {
-    let newArr = [...emotionsState];
+    let newArr = [...journalState.emotions];
 
     const index = newArr
       .map(function (e) {
@@ -37,12 +35,11 @@ const Log_2 = () => {
       if (newArr.length < 5) newArr = [...newArr, emotion];
     }
     dispatch(setEmotions(newArr));
-    console.log(emotionsState);
   };
 
   const isChecked = (name: string) => {
     return Boolean(
-      [...emotionsState]
+      [...journalState.emotions]
         .map(function (e) {
           return e.name;
         })
@@ -64,9 +61,11 @@ const Log_2 = () => {
               <View className="mx-2 mt-5">
                 <Text
                   className="text-right text-xs"
-                  style={{ color: "#757575" }}
+                  style={{
+                    color: journalState.emotions.length < 5 ? "#757575" : "#D46A6A",
+                  }}
                 >
-                  {emotionsState.length} of 5 selected
+                  {journalState.emotions.length} of 5 selected
                 </Text>
                 <View className="mt-2 flex-row flex-wrap">
                   {emotionList.map((e, index) => (
@@ -89,6 +88,7 @@ const Log_2 = () => {
           className="bottom-8 mx-6 my-4 justify-center"
           title="Next"
           onPress={() => router.navigate("./log_3")}
+          disabled={journalState.emotions.length < 1 && true}
         />
       </ScrollView>
     </React.Fragment>

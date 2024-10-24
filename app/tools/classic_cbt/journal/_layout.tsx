@@ -12,6 +12,7 @@ const CDALayout = () => {
       <Stack.Screen name="log_2" options={{ headerShown: false }} />
       <Stack.Screen name="log_3" options={{ headerShown: false }} />
       <Stack.Screen name="log_4" options={{ headerShown: false }} />
+      <Stack.Screen name="log_5" options={{ headerShown: false }} />
       <Stack.Screen name="log_finish" options={{ headerShown: false }} />
     </Stack>
   );

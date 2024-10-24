@@ -17,7 +17,7 @@ const journalSliceInitialState: journalSliceTypes = {
   moodValue: 1, //or 4???
   emotions: [],
   note: "",
-  save: false,
+  save: true,
 };
 
 const journalSlice = createSlice({
@@ -33,14 +33,23 @@ const journalSlice = createSlice({
     setNote: (state, action) => {
       state.note = action.payload;
     },
-    // toggleSave: (state) => {
-    //   state.save = !state.save;
-    // },
-    journalResetState: () => journalSliceInitialState,
+    toggleSave: (state) => {
+      state.save = !state.save;
+    },
+    journalResetState: (state) => {
+      state.moodValue = journalSliceInitialState.moodValue;
+      state.emotions = journalSliceInitialState.emotions;
+      state.note = journalSliceInitialState.note;
+    },
   },
 });
 
-export const { setMoodValue, setEmotions, setNote, journalResetState } =
-  journalSlice.actions;
+export const {
+  setMoodValue,
+  setEmotions,
+  setNote,
+  toggleSave,
+  journalResetState,
+} = journalSlice.actions;
 
 export default journalSlice.reducer;
