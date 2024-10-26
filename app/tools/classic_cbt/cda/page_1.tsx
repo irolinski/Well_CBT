@@ -22,7 +22,7 @@ const Page_1 = () => {
 
   return (
     <React.Fragment>
-      <ScrollView>
+      <ScrollView className="pb-8">
         <ToolNav currentPage={1} numOfAllPages={5} />
         <Frame>
           <View className="pt-10">
@@ -64,7 +64,7 @@ const Page_1 = () => {
           </View>
         </Frame>
         <AdvanceButton
-          className="bottom-0 mx-6 my-4 justify-center"
+          className="bottom-2 mx-6 justify-center"
           title="Next"
           onPress={() => router.navigate("./page_2")}
         />

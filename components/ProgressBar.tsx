@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View } from "react-native";
 const ProgressBar = ({
   currentPage,
   numOfAllPages,
@@ -12,12 +12,12 @@ const ProgressBar = ({
       {Array.from({ length: numOfAllPages }).map((q: unknown, i: number) => {
         return (
           <View
-            className="w-4 h-4 rounded-full mx-1"
-            style={
-              i + 1 > currentPage
-                ? { backgroundColor: "#D9D9D9" }
-                : { backgroundColor: "#4391BC" }
-            }
+            className="mx-1 rounded-full"
+            style={{
+              width: 15,
+              height: 15,
+              backgroundColor: i + 1 > currentPage ? "#D9D9D9" : "#8DBED8",
+            }}
             key={i}
           ></View>
         );

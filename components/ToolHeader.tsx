@@ -17,7 +17,7 @@ const ToolHeader = ({ bright, noIndent, ...props }: ToolHeaderProps) => {
       style={{
         fontFamily: "KodchasanMedium",
         color: bright ? "#F5F5F5" : "#1E1E1E",
-        marginRight: !noIndent ? marginSize : 0,
+        paddingRight: !noIndent ? marginSize : 0,
         ...props.style,
       }}
     />

@@ -31,7 +31,7 @@ const Log_1 = () => {
           dispatch(journalResetState());
         }}
       />
-      <View className="m-2 flex-1" style={{ height: windowHeight }}>
+      <View className="mx-2 my-4 flex-1" style={{ height: windowHeight }}>
         <View
           className="absolute mx-6"
           style={{ top: windowHeight / 7, borderColor: "blue" }}
@@ -39,7 +39,7 @@ const Log_1 = () => {
           <ToolHeader noIndent={true}>
             How would you rate your mood today?
           </ToolHeader>
-          <Text className="m-4">
+          <Text className="my-4">
             Use the slider to indicate how you are feeling.
           </Text>
         </View>

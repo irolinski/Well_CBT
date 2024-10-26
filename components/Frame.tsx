@@ -1,14 +1,17 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { Dimensions, View } from "react-native";
+
+const windowHeight = Dimensions.get("window").height;
 
 const Frame = (props: any) => {
   return (
     <View className="flex-1">
-      <SafeAreaView className="mx-6 flex-1 justify-center pt-8">
+      <View
+        className={`mx-6 flex-1 justify-center pt-8 ${windowHeight > 750 ? "my-24" : "my-10"}`}
+      >
         {props.children}
-      </SafeAreaView>
+      </View>
       <StatusBar style="dark" />
     </View>
   );

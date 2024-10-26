@@ -52,7 +52,7 @@ const Log_2 = () => {
       <ScrollView>
         <ToolNav currentPage={2} numOfAllPages={6} />
         <Frame>
-          <View className="items-center py-10">
+          <View className="py-10">
             <ToolHeader>What emotions are you feeling right now?</ToolHeader>
             <View className="my-6">
               <Text className="text-xs">
@@ -62,7 +62,8 @@ const Log_2 = () => {
                 <Text
                   className="text-right text-xs"
                   style={{
-                    color: journalState.emotions.length < 5 ? "#757575" : "#D46A6A",
+                    color:
+                      journalState.emotions.length < 5 ? "#757575" : "#D46A6A",
                   }}
                 >
                   {journalState.emotions.length} of 5 selected
