@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import cdaSlice from "./features/tools/cdaSlice";
 import journalSlice from "./features/tools/journalSlice";
+import breatheSettingsSlice from "./features/tools/breatheSettingsSlice";
 
 // ...
 
@@ -8,6 +9,7 @@ export const store = configureStore({
   reducer: {
     cda: cdaSlice,
     journal: journalSlice,
+    breatheSettings: breatheSettingsSlice,
   },
 });
 
