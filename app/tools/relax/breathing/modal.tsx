@@ -1,4 +1,5 @@
 import Text from "@/components/global/Text";
+import MethodInfo from "@/components/tools/breathe/MethodInfo";
 import {
   mode_4_7_8,
   mode_box_4s,
@@ -10,7 +11,7 @@ import {
 import { AppDispatch, RootState } from "@/state/store";
 import { Feather } from "@expo/vector-icons";
 import { Slider } from "@miblanchard/react-native-slider";
-import { Dimensions, Modal, Pressable, View } from "react-native";
+import { Dimensions, Modal, Pressable, View, ScrollView } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 
 const BreatheModal = () => {
@@ -22,132 +23,183 @@ const BreatheModal = () => {
   //UI STATE
   const windowWidth = Dimensions.get("window").width;
   const windowHeight = Dimensions.get("window").height;
+
   let ellapsedTime =
     5 *
     breatheSettings.numOfSets *
     (breatheSettings.mode.holdTime +
       breatheSettings.mode.breatheInTime +
       breatheSettings.mode.breatheOutTime);
+
   return (
     <Modal
       animationType="slide"
       transparent={true}
       visible={breatheSettings.showModal}
     >
-      <View
-        style={{
-          top: windowHeight / 5,
-          width: windowWidth,
-          height: windowHeight / 1.1,
-          backgroundColor: "grey",
-          padding: 24,
-        }}
-      >
-        <Pressable
-          className="absolute right-0"
-          onPress={() => {
-            dispatch(toggleModal());
-
-            // setCounterVal(breatheInTime);
+      <ScrollView>
+        <View
+          className={`px-4 ${windowHeight > 750 ? "py-20" : "py-8"}`}
+          style={{
+            top: 0,
+            width: windowWidth,
+            height: windowHeight > 750 ? windowHeight : 850,
+            backgroundColor: "#FBFBFB",
           }}
         >
-          <View>
-            <Feather name="x" size={24} color="black" />
-          </View>
-        </Pressable>
-        <View className="m-8 mx-auto">
-          <Text>Settings:</Text>
-          <View className="flex-row">
-            <View className="mx-6 flex-row">
-              <Pressable
-                onPress={() => {
-                  dispatch(setMode(mode_box_4s));
-                }}
-              >
-                <View
-                  className="h-10 w-10 rounded-lg border"
-                  style={{ borderColor: "white" }}
-                >
-                  {breatheSettings.mode.name === "box" && (
-                    <View className="mx-auto">
-                      <Feather name="check" size={22} color="#F7F7F7" />
-                    </View>
-                  )}
-                </View>
-              </Pressable>
-              <Text>Box breathing</Text>
-            </View>
-            <View className="mx-6 flex-row">
-              <Pressable
-                onPress={() => {
-                  dispatch(setMode(mode_4_7_8));
-                }}
-              >
-                <View
-                  className="h-10 w-10 rounded-lg border"
-                  style={{ borderColor: "white" }}
-                >
-                  {breatheSettings.mode.name === "4-7-8" && (
-                    <View className="mx-auto">
-                      <Feather name="check" size={22} color="#F7F7F7" />
-                    </View>
-                  )}
-                </View>
-              </Pressable>
-              <Text>4-7-8</Text>
-            </View>
-          </View>
-          {breatheSettings.mode.name === "box" && (
-            <View className="mx-8 flex-row">
-              <Text>Box breath length(s):</Text>
-              <Text>FIll in</Text>
-            </View>
-          )}
-        </View>
-        <View className="m-8">
-          <Text>Light/dark mode:</Text>
-        </View>
-        <View className="mx-8 flex-row">
-          <Pressable
-            onPress={() => {
-              console.log(breatheSettings.showCountdown);
-              dispatch(toggleCountdown());
-            }}
-          >
-            <View
-              className="h-10 w-10 rounded-lg border"
-              style={{ borderColor: "white" }}
+          <View className="items-center pb-6">
+            <Pressable
+              onPress={() => {
+                dispatch(toggleModal());
+              }}
             >
-              {breatheSettings.showCountdown && (
-                <View className="mx-auto">
-                  <Feather name="check" size={22} color="#F7F7F7" />
-                </View>
-              )}
-            </View>
-          </Pressable>
-          <Text>Show countdown</Text>
-        </View>
-        <View className="m-8">
-          <Text>Method:</Text>
-        </View>
-        <View className="m-8">
-          <Text>Session time:</Text>
-          <View>
-            <Slider
-              minimumValue={0}
-              maximumValue={0.4}
-              value={(breatheSettings.numOfSets - 1) / 10}
-              onValueChange={(evt) =>
-                dispatch(setNumOfSets(Math.floor(Number(evt) * 10 + 1)))
-              }
-            />
-            <Text>
-              {breatheSettings.numOfSets} sets (
-              {(ellapsedTime - (ellapsedTime % 60)) / 60}m {ellapsedTime % 60}s)
+              <View>
+                <Feather name="chevron-down" size={24} color="black" />
+              </View>
+            </Pressable>
+          </View>
+          <View className="items-center">
+            <Text className="text-xl" style={{ color: "#B8B8B8" }}>
+              Settings
             </Text>
           </View>
+          <View className="my-8">
+            <View
+              className="border-b pb-4 pt-2"
+              style={{ borderColor: "#B8B8B8" }}
+            >
+              <Text className="text-lg" style={{ color: "#B8B8B8" }}>
+                Breathing mode
+              </Text>
+              <View className="m-4 flex-row justify-around">
+                <Pressable
+                  onPress={() => {
+                    dispatch(setMode(mode_box_4s));
+                  }}
+                >
+                  <View className="flex-row items-center">
+                    <View className="mx-2 h-5 w-5 -translate-y-2 items-center justify-center rounded-3xl border">
+                      {breatheSettings.mode.name === "box" && (
+                        <View
+                          className="h-3 w-3 rounded-xl"
+                          style={{ backgroundColor: "#B8B8B8" }}
+                        ></View>
+                      )}
+                    </View>
+                    <View className="items-center">
+                      <View className="m-2 h-16 w-16 rounded-xl border"></View>
+                      <Text className="text-lg" style={{ color: "#B8B8B8" }}>
+                        Box
+                      </Text>
+                    </View>
+                  </View>
+                </Pressable>
+                <Pressable
+                  className="-translate-x-5" // to make the image box centered, not the whole View
+                  onPress={() => {
+                    dispatch(setMode(mode_4_7_8));
+                  }}
+                >
+                  <View className="flex-row items-center">
+                    <View className="mx-2 h-5 w-5 -translate-y-2 items-center justify-center rounded-3xl border">
+                      {breatheSettings.mode.name === "4-7-8" && (
+                        <View
+                          className="h-3 w-3 rounded-xl"
+                          style={{ backgroundColor: "#B8B8B8" }}
+                        ></View>
+                      )}
+                    </View>
+                    <View className="items-center">
+                      <View className="m-2 h-16 w-16 rounded-xl border"></View>
+                      <Text className="text-lg" style={{ color: "#B8B8B8" }}>
+                        4-7-8
+                      </Text>
+                    </View>
+                  </View>
+                </Pressable>
+              </View>
+            </View>
+            <View className="border-b py-3" style={{ borderColor: "#B8B8B8" }}>
+              <Text className="text-lg" style={{ color: "#B8B8B8" }}>
+                Method
+              </Text>
+              <View className="mt-4">
+                <MethodInfo />
+              </View>
+            </View>
+            <View className="border-b py-3" style={{ borderColor: "#B8B8B8" }}>
+              <Text className="text-lg" style={{ color: "#B8B8B8" }}>
+                Customize
+              </Text>
+              <View className="m-4 flex-row py-4">
+                <Pressable
+                  onPress={() => {
+                    dispatch(toggleCountdown());
+                  }}
+                >
+                  <View className="flex-row items-center">
+                    <View
+                      className="mx-2 h-6 w-6 rounded-lg border"
+                      style={{
+                        borderColor: "#B8B8B8",
+                        backgroundColor: breatheSettings.showCountdown
+                          ? "#8DBED8"
+                          : "transparent",
+                      }}
+                    >
+                      {breatheSettings.showCountdown && (
+                        <View className="mx-auto">
+                          <Feather name="check" size={22} color="#F7F7F7" />
+                        </View>
+                      )}
+                    </View>
+                    <Text
+                      className="text-center text-base"
+                      style={{ color: "#757575" }}
+                    >
+                      Show countdown
+                    </Text>
+                  </View>
+                </Pressable>
+              </View>
+            </View>
+            <View className="py-3" style={{ borderColor: "#B8B8B8" }}>
+              <Text className="text-lg" style={{ color: "#B8B8B8" }}>
+                Duration
+              </Text>
+              <View className="my-4">
+                <View className="mx-10 mt-4">
+                  <Slider
+                    minimumTrackStyle={{ backgroundColor: "#D9D9D9" }}
+                    trackStyle={{
+                      backgroundColor: "#D9D9D9",
+                      // width: 0,
+                      height: 1,
+                    }}
+                    thumbStyle={{ backgroundColor: "#8DBED8" }}
+                    minimumValue={0}
+                    maximumValue={0.4}
+                    value={(breatheSettings.numOfSets - 1) / 10}
+                    onValueChange={(evt) =>
+                      dispatch(setNumOfSets(Math.floor(Number(evt) * 10 + 1)))
+                    }
+                  />
+                  <View className="flex-row justify-between">
+                    <Text className="text-base" style={{ color: "#B8B8B8" }}>
+                      {breatheSettings.numOfSets} sets
+                    </Text>
+                    <Text className="text-base" style={{ color: "#B8B8B8" }}>
+                      ({(ellapsedTime - (ellapsedTime % 60)) / 60}m{" "}
+                      {ellapsedTime % 60}
+                      s)
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+          </View>
         </View>
-      </View>
+      </ScrollView>
     </Modal>
   );
 };

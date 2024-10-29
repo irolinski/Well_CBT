@@ -9,7 +9,7 @@ export const mode_box_4s = {
 };
 
 export const mode_box_5s = {
-  name: "box",
+  name: "box_deep",
   doubleHold: true,
   breatheInTime: 5,
   holdTime: 5,
