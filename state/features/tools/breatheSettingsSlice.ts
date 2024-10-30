@@ -35,8 +35,8 @@ const breatheSettingsSlice = createSlice({
   name: "breathe",
   initialState: breatheSettingsSliceInitialState,
   reducers: {
-    toggleModal: (state) => {
-      state.showModal = !state.showModal;
+    toggleModal: (state, action) => {
+      state.showModal = action.payload;
     },
     toggleCountdown: (state) => {
       state.showCountdown = !state.showCountdown;

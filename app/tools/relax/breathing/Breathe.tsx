@@ -21,7 +21,6 @@ const Breathe = () => {
   const innerCircleSize = windowWidth / 2.5;
 
   // COUNTDOWN STATE
-  // const [showCountdown, setShowCountdown] = useState(true);
   const [countdownVal, setCountdownVal] = useState(3);
   const [countdownActive, setCountdownActive] = useState(false);
 
@@ -33,7 +32,6 @@ const Breathe = () => {
     breatheSettings.mode.breatheInTime,
   );
   const [pause, setPause] = useState(false);
-  // const [numOfSets, setNumOfSets] = useState(1);
   const repsToDo = 5 * breatheSettings.numOfSets;
   const [repsDone, setRepsDone] = useState(0);
 
@@ -245,29 +243,30 @@ const Breathe = () => {
         className="m-2 flex-1 items-center justify-center"
         style={{ height: windowHeight }}
       >
-        <Pressable
-          className="absolute right-8 top-8"
-          onPress={() => {
-            // show modal
-            dispatch(toggleModal());
-            console.log(breatheSettings.showModal);
-            resetExercise(); //reset timer
-          }}
+        <View
+          className={`absolute flex-row justify-between px-8 ${windowHeight > 850 ? "top-20" : "top-12"}`}
+          style={{ width: windowWidth }}
         >
-          <View>
-            <Feather name="settings" size={24} color="black" />
-          </View>
-        </Pressable>
-        <Pressable
-          onPress={() => router.back()}
-          className="absolute left-8 top-8"
-        >
-          <View>
+          <Pressable onPress={() => router.back()} className="">
             <View>
-              <Feather name="x" size={24} color="black" />
+              <View>
+                <Feather name="x" size={24} color="black" />
+              </View>
             </View>
-          </View>
-        </Pressable>
+          </Pressable>
+          <Pressable
+            onPress={() => {
+              // show modal
+              dispatch(toggleModal(true));
+              console.log(breatheSettings.showModal);
+              resetExercise(); //reset timer
+            }}
+          >
+            <View>
+              <Feather name="settings" size={24} color="black" />
+            </View>
+          </Pressable>
+        </View>
         <View
           className="relative"
           style={{

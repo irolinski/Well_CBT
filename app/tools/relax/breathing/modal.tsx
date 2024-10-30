@@ -1,3 +1,5 @@
+import { Dimensions, Modal, Pressable, ScrollView, View } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
 import Text from "@/components/global/Text";
 import MethodInfo from "@/components/tools/breathe/MethodInfo";
 import {
@@ -11,8 +13,6 @@ import {
 import { AppDispatch, RootState } from "@/state/store";
 import { Feather } from "@expo/vector-icons";
 import { Slider } from "@miblanchard/react-native-slider";
-import { Dimensions, Modal, Pressable, View, ScrollView } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
 
 const BreatheModal = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -36,28 +36,34 @@ const BreatheModal = () => {
       animationType="slide"
       transparent={true}
       visible={breatheSettings.showModal}
+      className="flex-1"
     >
-      <ScrollView>
+      <ScrollView
+        onScroll={(evt) => {
+          console.log(evt.nativeEvent.contentOffset.y);
+          evt.nativeEvent.contentOffset.y < -175 &&
+            dispatch(toggleModal(false));
+        }}
+      >
         <View
-          className={`px-4 ${windowHeight > 750 ? "py-20" : "py-8"}`}
+          className={`px-4 ${windowHeight > 850 ? "py-20" : "py-12"}`}
           style={{
             top: 0,
             width: windowWidth,
-            height: windowHeight > 750 ? windowHeight : 850,
             backgroundColor: "#FBFBFB",
           }}
         >
-          <View className="items-center pb-6">
-            <Pressable
-              onPress={() => {
-                dispatch(toggleModal());
-              }}
-            >
+          <Pressable
+            onPress={() => {
+              dispatch(toggleModal(false));
+            }}
+          >
+            <View className="items-center pb-6">
               <View>
                 <Feather name="chevron-down" size={24} color="black" />
               </View>
-            </Pressable>
-          </View>
+            </View>
+          </Pressable>
           <View className="items-center">
             <Text className="text-xl" style={{ color: "#B8B8B8" }}>
               Settings
@@ -118,6 +124,7 @@ const BreatheModal = () => {
                   </View>
                 </Pressable>
               </View>
+              {/* Here add mode settings, if needed */}
             </View>
             <View className="border-b py-3" style={{ borderColor: "#B8B8B8" }}>
               <Text className="text-lg" style={{ color: "#B8B8B8" }}>
