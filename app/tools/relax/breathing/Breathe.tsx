@@ -1,5 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Animated, Dimensions, Pressable, View } from "react-native";
+import {
+  Animated,
+  Dimensions,
+  ImageBackground,
+  Pressable,
+  View,
+} from "react-native";
 import AdvanceButton from "@/components/AdvanceButton";
 import Text from "@/components/global/Text";
 import { Feather } from "@expo/vector-icons";
@@ -239,114 +245,122 @@ const Breathe = () => {
 
   return (
     <React.Fragment>
-      <View
-        className="m-2 flex-1 items-center justify-center"
-        style={{ height: windowHeight }}
+      <ImageBackground
+        className="flex-1 justify-center rounded-lg"
+        style={{ width: windowWidth, height: windowHeight }}
+        source={require("@/assets/images/affirmation-images/english-countryside-1.webp")}
+        resizeMode="cover"
       >
         <View
-          className={`absolute flex-row justify-between px-8 ${windowHeight > 850 ? "top-20" : "top-12"}`}
-          style={{ width: windowWidth }}
+          className="m-2 flex-1 items-center justify-center"
+          style={{ height: windowHeight }}
         >
-          <Pressable onPress={() => router.back()} className="">
-            <View>
-              <View>
-                <Feather name="x" size={24} color="black" />
-              </View>
-            </View>
-          </Pressable>
-          <Pressable
-            onPress={() => {
-              // show modal
-              dispatch(toggleModal(true));
-              console.log(breatheSettings.showModal);
-              resetExercise(); //reset timer
-            }}
-          >
-            <View>
-              <Feather name="settings" size={24} color="black" />
-            </View>
-          </Pressable>
-        </View>
-        <View
-          className="relative"
-          style={{
-            width: windowWidth,
-            height: windowHeight / 2,
-          }}
-        >
-          <Text>
-            Reps done: {Math.floor(repsDone)}/{repsToDo}
-          </Text>
-          {/* Outer circle */}
-          <Animated.View
-            className="absolute top-1/3 justify-center bg-slate-200"
-            style={{
-              alignSelf: "center",
-              width: innerCircleSize,
-              height: innerCircleSize,
-              borderRadius: innerCircleSize,
-              transform: [{ scale: outerCircleAnim }],
-            }}
-          >
-            {/* Main circle */}
-          </Animated.View>
           <View
-            className="absolute top-1/3 items-center justify-center overflow-hidden border bg-slate-400"
+            className={`absolute flex-row justify-between px-8 ${windowHeight > 850 ? "top-20" : "top-12"}`}
+            style={{ width: windowWidth, backgroundColor: "transparent" }}
+          >
+            <Pressable onPress={() => router.back()} className="">
+              <View>
+                <View>
+                  <Feather name="x" size={24} color="black" />
+                </View>
+              </View>
+            </Pressable>
+            <Pressable
+              onPress={() => {
+                // show modal
+                dispatch(toggleModal(true));
+                console.log(breatheSettings.showModal);
+                resetExercise(); //reset timer
+              }}
+            >
+              <View>
+                <Feather name="settings" size={24} color="black" />
+              </View>
+            </Pressable>
+          </View>
+          <View
+            className="relative"
             style={{
-              alignSelf: "center",
-              width: innerCircleSize,
-              height: innerCircleSize,
-              borderRadius: innerCircleSize / 2,
-              borderColor: "black",
+              width: windowWidth,
+              height: windowHeight / 2,
             }}
           >
-            {/* Show countdown if active, otherwise show the main timer */}
-            {countdownActive ? (
-              <React.Fragment>
-                <Text className="text-4xl">{countdownVal}</Text>
-                <Text>It's the final countdown!</Text>
-              </React.Fragment>
-            ) : (
-              <>
-                <Text className="text-4xl">{counterVal}</Text>
-                {showHold ? (
-                  <Text>HOLD IT!</Text>
-                ) : breatheInOut ? (
-                  <Text>Breathe in!</Text>
-                ) : (
-                  <Text>Breathe out!</Text>
-                )}
-              </>
-            )}
+            <Text>
+              Reps done: {Math.floor(repsDone)}/{repsToDo}
+            </Text>
+            {/* Outer circle */}
+            <Animated.View
+              className="absolute top-1/3 justify-center bg-slate-200"
+              style={{
+                alignSelf: "center",
+                width: innerCircleSize,
+                height: innerCircleSize,
+                borderRadius: innerCircleSize,
+                transform: [{ scale: outerCircleAnim }],
+              }}
+            >
+              {/* Main circle */}
+            </Animated.View>
+            <View
+              className="absolute top-1/3 items-center justify-center overflow-hidden border bg-slate-400"
+              style={{
+                alignSelf: "center",
+                width: innerCircleSize,
+                height: innerCircleSize,
+                borderRadius: innerCircleSize / 2,
+                borderColor: "black",
+              }}
+            >
+              {/* Show countdown if active, otherwise show the main timer */}
+              {countdownActive ? (
+                <React.Fragment>
+                  <Text className="text-4xl">{countdownVal}</Text>
+                  <Text>It's the final countdown!</Text>
+                </React.Fragment>
+              ) : (
+                <>
+                  <Text className="text-4xl">{counterVal}</Text>
+                  {showHold ? (
+                    <Text>HOLD IT!</Text>
+                  ) : breatheInOut ? (
+                    <Text>Breathe in!</Text>
+                  ) : (
+                    <Text>Breathe out!</Text>
+                  )}
+                </>
+              )}
+            </View>
+          </View>
+          {/* Progress bar */}
+          <View
+            className="overflow-hidden p-1"
+            style={{
+              width: barLength,
+              height: 20,
+            }}
+          >
+            <Animated.View
+              className="h-full w-full bg-red-400"
+              style={{
+                transform: [
+                  {
+                    translateX: progressBarAnim,
+                  },
+                ],
+              }}
+            ></Animated.View>
+            <View
+              className="absolute top-3/4 mx-1 w-full"
+              style={{
+                height: 1,
+                backgroundColor: "grey",
+              }}
+            ></View>
           </View>
         </View>
-        {/* Progress bar */}
-        <View
-          className="overflow-hidden p-1"
-          style={{
-            width: barLength,
-            height: 20,
-          }}
-        >
-          <Animated.View
-            className="h-full w-full bg-red-400"
-            style={{
-              transform: [
-                {
-                  translateX: progressBarAnim,
-                },
-              ],
-            }}
-          ></Animated.View>
-          <View
-            className="absolute top-3/4 mx-1 w-full"
-            style={{
-              height: 1,
-              backgroundColor: "grey",
-            }}
-          ></View>
-        </View>
-      </View>
+      </ImageBackground>
+
       <AdvanceButton
         title={"start/stop"}
         onPress={() => {

@@ -11,12 +11,18 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.irolinski.cbtApp"
     },
     "android": {
       "adaptiveIcon": {
         "backgroundColor": "#ffffff"
-      }
+      },
+      "permissions": [
+        "android.permission.READ_CONTACTS",
+        "android.permission.WRITE_CONTACTS"
+      ],
+      "package": "com.irolinski.cbtApp"
     },
     "web": {
       "bundler": "metro",
@@ -30,10 +36,16 @@
           "contactsPermission": "Allow Well to access your contacts."
         }
       ],
-      "expo-build-properties"
+      "expo-build-properties",
+      "expo-asset"
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "4d01c68b-f4cc-4944-84cc-53f5b574c740"
+      }
     }
   }
 }
