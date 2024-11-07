@@ -1,8 +1,9 @@
-import { View, Text, Pressable, ImageBackground } from "react-native";
-import React, { ReactNode } from "react";
+import { View, Text, Pressable } from "react-native";
+import React from "react";
 import { Href, router } from "expo-router";
 import { LinearGradient } from "expo-linear-gradient";
-// import { JournalImage, PhoneImage } from "@/constants/models/images";
+import { Image, ImageSource } from "expo-image";
+import { Asset } from "expo-asset";
 
 const ToolCard = ({
   name,
@@ -10,35 +11,41 @@ const ToolCard = ({
   link,
 }: {
   name: string;
-  image?: any;
+  image?: ImageSource;
   link: string;
 }) => {
   return (
     <Pressable
-      className="mb-4 h-20 rounded-xl"
+      className="mb-4"
+      style={{ height: 90 }}
       onPress={() => router.push(`${link}` as Href)}
     >
-      <View className="rounded-xl">
-        <ImageBackground
-          source={image}
-          resizeMode="cover"
-          className="overflow-hidden rounded-xl"
+      <Image
+        className="z-0 rounded-xl"
+        source={image}
+        contentFit="cover"
+        style={{ width: "100%", height: "100%" }}
+        transition={200}
+      />
+      <LinearGradient
+        colors={["#202020", "transparent"]} // Updated hex code
+        start={[0, 1]}
+        end={[1, 0]}
+        style={{
+          position: "absolute", // Ensures the gradient is on top
+          height: "100%",
+          width: "100%",
+          borderRadius: 8, // Optional: adds rounded corners
+        }}
+      ></LinearGradient>
+
+      <View className="absolute flex h-full w-full justify-center">
+        <Text
+          className="z-10 ml-4 text-left text-lg"
+          style={{ color: "#F5F5F5" }}
         >
-          <LinearGradient
-            colors={["#DED4D", "transparent"]}
-            start={[0, 1]}
-            end={[1, 0]}
-          >
-            <View className="flex h-full max-h-full w-full justify-center">
-              <Text
-                className="ml-4 text-left text-lg"
-                style={{ color: "#F5F5F5" }}
-              >
-                {name}
-              </Text>
-            </View>
-          </LinearGradient>
-        </ImageBackground>
+          {name}
+        </Text>
       </View>
     </Pressable>
   );

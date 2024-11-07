@@ -1,14 +1,11 @@
+import { Asset } from "expo-asset";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect, useState } from "react";
-// import "react-native-reanimated";
-
-import { useColorScheme } from "@/hooks/useColorScheme";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Provider as StateProvider } from "react-redux";
 import { store } from "@/state/store";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { Asset } from "expo-asset";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -40,14 +37,13 @@ export default function RootLayout() {
         SplashScreen.preventAutoHideAsync();
 
         const imageAssets = cacheImages([
-          require("../assets/images/affirmation-images/California-backyard-1.webp"),
-          require("../assets/images/affirmation-images/California-backyard-2.webp"),
-          require("../assets/images/affirmation-images/California-backyard-3.webp"),
-          require("../assets/images/affirmation-images/California-backyard-4.webp"),
-          require("../assets/images/affirmation-images/english-countryside-1.webp"),
-          require("../assets/images/affirmation-images/english-countryside-2.webp"),
-          require("../assets/images/affirmation-images/english-countryside-3.webp"),
-          require("../assets/images/affirmation-images/english-countryside-4.webp"),
+          require("@/assets/images/tools/distortions.webp"),
+          require("@/assets/images/tools/journal.webp"),
+          require("@/assets/images/tools/ground.webp"),
+          require("@/assets/images/tools/breathe.webp"),
+          require("@/assets/images/tools/phone.webp"),
+          require("@/assets/images/tools/headphones.webp"),
+          require("@/assets/images/tools/breathe/canes.webp"),
         ]);
 
         await Promise.all([...imageAssets]);
@@ -63,7 +59,12 @@ export default function RootLayout() {
     loadResourcesAndDataAsync();
   }, []);
 
-  if (!imagesLoaded || !fontsLoaded) {
+  // asset prefetching on ios in React Native, as of 11/2024, is faulty
+  // and does not behave as expected
+  // info: https://github.com/facebook/react-native/issues/28557
+  // possible workaround: https://www.npmjs.com/package/react-native-expo-image-cache
+
+  if (!fontsLoaded || !imagesLoaded) {
     return null;
   }
 

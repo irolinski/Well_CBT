@@ -38,7 +38,7 @@ const TabLayout = () => {
         }}
       />
       <Tabs.Screen
-        name="Tools"
+        name="tools"
         options={{
           title: "Tools",
           tabBarIcon: ({ color }) => (
@@ -47,7 +47,7 @@ const TabLayout = () => {
         }}
       />
       <Tabs.Screen
-        name="Learn"
+        name="learn"
         options={{
           title: "Learn",
           tabBarIcon: ({ focused }) => (
@@ -60,7 +60,7 @@ const TabLayout = () => {
         }}
       />
       <Tabs.Screen
-        name="More"
+        name="more"
         options={{
           title: "More",
           tabBarIcon: ({ color }) => (

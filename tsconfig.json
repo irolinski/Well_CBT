@@ -11,6 +11,8 @@
   "include": [
     "**/*.ts",
     "**/*.tsx",
-    "tailwind.config.js"
+    "tailwind.config.js",
+    ".expo/types/**/*.ts",
+    "expo-env.d.ts"
   ]
 }

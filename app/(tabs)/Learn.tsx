@@ -8,7 +8,7 @@ const Learn = () => {
     <FrameMenu title="Learn">
       <View>
         <Text className="mb-4 text-left text-xl">Category 1</Text>
-        <LearnCard
+        {/* <LearnCard
           name={"Cognitive-Behavioral Therapy"}
           link={""}
           image={require("@/assets/images/card_backgrounds/journal.jpg")}
@@ -23,7 +23,7 @@ const Learn = () => {
           name={"Cognitive-Behavioral Therapy"}
           link={""}
           image={require("@/assets/images/card_backgrounds/journal.jpg")}
-        />
+        /> */}
       </View>
     </FrameMenu>
   );

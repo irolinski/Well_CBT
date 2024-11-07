@@ -1,53 +1,47 @@
 import React from "react";
 import { View } from "react-native";
+import { toolCardImages } from "@/assets/images/images";
 import FrameMenu from "@/components/FrameMenu";
 import Text from "@/components/global/Text";
+
 import ToolCard from "../../components/ToolCard";
 
-
 const Tools = () => {
-  console.log("render");
-
   return (
     <FrameMenu title="Tools">
       <View>
-        <Text className="mb-8 mt-2 text-left text-2xl">Classic</Text>
+        <Text className="mb-8 mt-2 text-left text-2xl">Thought exercises</Text>
         <ToolCard
-          name="Identify the Distortions"
-          image={require("@/assets/images/affirmation-images/english-countryside-1.webp")}
+          name="Cognitive Distortions"
+          image={require("@/assets/images/tools/distortions.webp")}
           link={"/tools/classic_cbt/cda"}
         />
         <ToolCard
           name="Mood Journal"
-          image={require("@/assets/images/affirmation-images/english-countryside-2.webp")}
+          image={toolCardImages[1]}
           link={"/tools/classic_cbt/journal"}
         />
         <ToolCard
           name="Ground Yourself"
-          image={require("@/assets/images/affirmation-images/english-countryside-3.webp")}
+          image={toolCardImages[2]}
           link={"tools/classic_cbt/grounding"}
         ></ToolCard>
         <Text className="mb-8 mt-2 text-left text-2xl">Relax</Text>
         <ToolCard
           name="Breathing excercises"
           link={"/tools/relax/breathing"}
-          image={require("@/assets/images/affirmation-images/english-countryside-4.webp")}
-        />
-        <ToolCard
-          name="Muscle relaxation"
-          link={"/tools/relax/muscleRelaxation"}
-          image={require("@/assets/images/affirmation-images/english-countryside-1.webp")}
+          image={toolCardImages[3]}
         />
         <Text className="mb-8 mt-2 text-left text-2xl">Distract yourself</Text>
         <ToolCard
           name="Phone to a friend"
-          image={require("@/assets/images/affirmation-images/english-countryside-1.webp")}
+          image={toolCardImages[4]}
           link={"/tools/distract/phone"}
         />
         <ToolCard
           name="Listen to music"
           link={"/tools/distract/music"}
-          image={require("@/assets/images/affirmation-images/english-countryside-1.webp")}
+          image={toolCardImages[5]}
         />
       </View>
     </FrameMenu>
