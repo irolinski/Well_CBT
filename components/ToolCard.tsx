@@ -3,7 +3,6 @@ import React from "react";
 import { Href, router } from "expo-router";
 import { LinearGradient } from "expo-linear-gradient";
 import { Image, ImageSource } from "expo-image";
-import { Asset } from "expo-asset";
 
 const ToolCard = ({
   name,
@@ -35,7 +34,7 @@ const ToolCard = ({
           position: "absolute", // Ensures the gradient is on top
           height: "100%",
           width: "100%",
-          borderRadius: 8, // Optional: adds rounded corners
+          borderRadius: 8, 
         }}
       ></LinearGradient>
 

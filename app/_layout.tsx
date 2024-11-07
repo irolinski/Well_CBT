@@ -47,7 +47,7 @@ export default function RootLayout() {
         ]);
 
         await Promise.all([...imageAssets]);
-        console.log("images cached");
+        // console.log("images cached");
       } catch (err) {
         console.warn(err);
       } finally {

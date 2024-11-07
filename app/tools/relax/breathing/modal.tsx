@@ -40,7 +40,6 @@ const BreatheModal = () => {
     >
       <ScrollView
         onScroll={(evt) => {
-          console.log(evt.nativeEvent.contentOffset.y);
           evt.nativeEvent.contentOffset.y < -175 &&
             dispatch(toggleModal(false));
         }}
@@ -164,7 +163,7 @@ const BreatheModal = () => {
                       className="text-center text-base"
                       style={{ color: "#757575" }}
                     >
-                      Show countdown
+                      Count-in before start
                     </Text>
                   </View>
                 </Pressable>

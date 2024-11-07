@@ -1,6 +1,6 @@
 import { Href, router } from "expo-router";
 import React from "react";
-import { ImageBackground, Pressable, Text, View } from "react-native";
+import { ImageBackground, Text, View } from "react-native";
 
 import AdvanceButton from "@/components/AdvanceButton";
 import BackButton from "@/components/BackButton";

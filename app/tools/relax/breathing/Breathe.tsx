@@ -3,14 +3,13 @@ import { router } from "expo-router";
 import React, { useEffect, useRef, useState } from "react";
 import { Animated, Dimensions, Pressable, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-
 import AdvanceButton from "@/components/AdvanceButton";
 import Text from "@/components/global/Text";
 import { toggleModal } from "@/state/features/tools/breatheSettingsSlice";
 import { AppDispatch, RootState } from "@/state/store";
 import { Feather } from "@expo/vector-icons";
-
 import BreatheModal from "./modal";
+import { LinearGradient } from "expo-linear-gradient";
 
 const Breathe = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -21,7 +20,7 @@ const Breathe = () => {
   //UI STATE
   const windowWidth = Dimensions.get("window").width;
   const windowHeight = Dimensions.get("window").height;
-  const innerCircleSize = windowWidth / 2.5;
+  const outerCircleSize = windowWidth / 1.3;
 
   // COUNTDOWN STATE
   const [countdownVal, setCountdownVal] = useState(3);
@@ -41,12 +40,12 @@ const Breathe = () => {
   // ANIMATIONS
 
   // outer circle
-  const outerCircleAnim = useRef(new Animated.Value(1)).current;
+  const innerCircleAnim = useRef(new Animated.Value(0.65)).current;
   const [outerCircleExpanded, setOuterCircleExpanded] = useState(false);
 
   const expandOuterCircle = (duration: number) => {
-    Animated.timing(outerCircleAnim, {
-      toValue: 2,
+    Animated.timing(innerCircleAnim, {
+      toValue: 0.95,
       duration: duration,
       useNativeDriver: true,
     }).start();
@@ -57,8 +56,8 @@ const Breathe = () => {
   };
 
   const shrinkOuterCircle = (duration: number) => {
-    Animated.timing(outerCircleAnim, {
-      toValue: 1,
+    Animated.timing(innerCircleAnim, {
+      toValue: 0.65,
       duration: duration,
       useNativeDriver: true,
     }).start();
@@ -82,7 +81,7 @@ const Breathe = () => {
   };
 
   // progress bar
-  const barLength = (3 / 4) * windowWidth;
+  const barLength = windowWidth * 0.85;
   const progressBarAnim = useRef(new Animated.Value(-barLength)).current;
 
   const stepsToDo = breatheSettings.mode.doubleHold
@@ -140,6 +139,25 @@ const Breathe = () => {
     setPause((prev) => !prev);
     if (pause) {
       setCounterOn(true); // Resume when unpausing
+    }
+  };
+
+  const handleStartButton = () => {
+    // do nothing if countdown is happening
+    if (countdownActive) {
+      return;
+    }
+    // start with countdown if showCountdown is true and the counter is off or paused
+    if (breatheSettings.showCountdown && (!counterOn || pause)) {
+      startExerciseWithCountdown();
+    } else {
+      // else, if the counter is off, turn it on
+      if (!counterOn) {
+        startExercise();
+        // if the counter is on, pause
+      } else {
+        togglePause();
+      }
     }
   };
 
@@ -245,10 +263,21 @@ const Breathe = () => {
       <Image
         className="absolute z-0"
         source={require("@/assets/images/tools/breathe/canes.webp")}
-        contentFit="none"
         style={{ width: "100%", height: "100%" }}
         transition={600}
       />
+      <LinearGradient
+        colors={["#D9D9D9", "#FBFBFB"]} // Updated hex code
+        start={[0, 0]}
+        end={[0, 1]}
+        style={{
+          position: "absolute", // Ensures the gradient is on top
+          height: "100%",
+          width: "100%",
+          borderRadius: 8, // Optional: adds rounded corners
+          opacity: 0.5,
+        }}
+      ></LinearGradient>
       <View
         className="m-2 flex-1 items-center justify-center"
         style={{ height: windowHeight }}
@@ -281,102 +310,150 @@ const Breathe = () => {
           style={{
             width: windowWidth,
             height: windowHeight / 2,
+            bottom: windowHeight * 0.05,
           }}
         >
-          <Text>
-            Reps done: {Math.floor(repsDone)}/{repsToDo}
-          </Text>
+          {/* Reps counter - for development purposes only */}
+
+          {/* <Text>
+            Reps done: {Math.floor(repsDone)}/{repsToDo} 
+          </Text> */}
+
           {/* Outer circle */}
-          <Animated.View
-            className="absolute top-1/3 justify-center bg-slate-200"
+          {showHold && (
+            <Text
+              className="absolute -translate-y-8 text-center text-4xl"
+              style={{ width: windowWidth }}
+            >
+              {counterVal}
+            </Text>
+          )}
+          <View
+            className="absolute justify-center border"
             style={{
               alignSelf: "center",
-              width: innerCircleSize,
-              height: innerCircleSize,
-              borderRadius: innerCircleSize,
-              transform: [{ scale: outerCircleAnim }],
+              top: 0.04 * windowHeight,
+              width: outerCircleSize,
+              height: outerCircleSize,
+              borderRadius: outerCircleSize,
+              // transform: [{ scale: innerCircleAnim }],
+              backgroundColor: "#D9D9D9",
+              opacity: 0.7,
+              borderColor: "#B8B8B8",
             }}
           >
             {/* Main circle */}
-          </Animated.View>
+          </View>
+          {/* Wrapper for the inner circle content */}
           <View
-            className="absolute top-1/3 items-center justify-center overflow-hidden border bg-slate-400"
+            className="absolute items-center justify-center overflow-hidden"
             style={{
               alignSelf: "center",
-              width: innerCircleSize,
-              height: innerCircleSize,
-              borderRadius: innerCircleSize / 2,
+              width: outerCircleSize,
+              height: outerCircleSize,
               borderColor: "black",
+              backgroundColor: "transparent",
+              top: 0.04 * windowHeight,
             }}
           >
-            {/* Show countdown if active, otherwise show the main timer */}
-            {countdownActive ? (
-              <React.Fragment>
-                <Text className="text-4xl">{countdownVal}</Text>
-                <Text>It's the final countdown!</Text>
-              </React.Fragment>
-            ) : (
-              <>
-                <Text className="text-4xl">{counterVal}</Text>
-                {showHold ? (
-                  <Text>HOLD IT!</Text>
-                ) : breatheInOut ? (
-                  <Text>Breathe in!</Text>
-                ) : (
-                  <Text>Breathe out!</Text>
-                )}
-              </>
-            )}
+            <Animated.View
+              className="relative z-0 items-center justify-center overflow-hidden"
+              style={{
+                alignSelf: "center",
+                width: outerCircleSize,
+                height: outerCircleSize,
+                borderRadius: outerCircleSize,
+                transform: [{ scale: innerCircleAnim }],
+                backgroundColor: "rgba(251, 251, 251, 0.65)",
+              }}
+            />
+            <View className="absolute z-10 px-16">
+              {/* Show countdown if active, otherwise show the main timer */}
+              {countdownActive ? (
+                <React.Fragment>
+                  <Text className="text-center text-4xl">{countdownVal}</Text>
+                </React.Fragment>
+              ) : (
+                <View className="px-2">
+                  {showHold ? (
+                    <Text
+                      style={{
+                        fontFamily: "KodchasanMedium",
+                        color: "#27261F",
+                      }}
+                      className="text-center text-4xl"
+                    >
+                      HOLD IT!
+                    </Text>
+                  ) : breatheInOut ? (
+                    <Text
+                      style={{
+                        fontFamily: "KodchasanMedium",
+                        color: "#27261F",
+                      }}
+                      className="text-center text-4xl"
+                    >
+                      Breathe in!
+                    </Text>
+                  ) : (
+                    <Text
+                      style={{
+                        fontFamily: "KodchasanMedium",
+                        color: "#27261F",
+                      }}
+                      className="text-center text-4xl"
+                    >
+                      Breathe out!
+                    </Text>
+                  )}
+                </View>
+              )}
+            </View>
+          </View>
+          {/* Progress bar */}
+          <View
+            className="absolute items-center justify-center"
+            style={{
+              width: windowWidth,
+              transform: [{ translateY: outerCircleSize + 84 }],
+            }}
+          >
+            <View
+              className="overflow-hidden"
+              style={{
+                width: barLength,
+                height: 6,
+                backgroundColor: "#FBFBFB",
+                borderRadius: 5,
+              }}
+            >
+              <Animated.View
+                style={{
+                  width: barLength,
+                  height: 6,
+                  backgroundColor: "#757575",
+                  transform: [
+                    {
+                      translateX: progressBarAnim,
+                    },
+                  ],
+                  top: 0,
+                }}
+              ></Animated.View>
+            </View>
+            <AdvanceButton
+              title={counterOn ? "Pause" : "Start"}
+              onPress={() => handleStartButton()}
+              style={{
+                width: barLength,
+                backgroundColor: "rgba(251, 251, 251, 0.95)",
+                top: 40,
+              }}
+              textStyle={{ color: "#27261F", opacity: 0.65, fontSize: 17 }}
+            />
           </View>
         </View>
-        {/* Progress bar */}
-        <View
-          className="overflow-hidden p-1"
-          style={{
-            width: barLength,
-            height: 20,
-          }}
-        >
-          <Animated.View
-            className="h-full w-full bg-red-400"
-            style={{
-              transform: [
-                {
-                  translateX: progressBarAnim,
-                },
-              ],
-            }}
-          ></Animated.View>
-          <View
-            className="absolute top-3/4 mx-1 w-full"
-            style={{
-              height: 1,
-              backgroundColor: "grey",
-            }}
-          ></View>
-        </View>
       </View>
-      <AdvanceButton
-        title={"start/stop"}
-        onPress={() => {
-          // do nothing if countdown is happening
-          if (countdownActive) {
-            return;
-          }
-          // start with countdown if showCountdown is true and the counter is off or paused
-          if (breatheSettings.showCountdown && (!counterOn || pause)) {
-            startExerciseWithCountdown();
-          } else {
-            // else, if the counter is off, turn it on
-            if (!counterOn) {
-              startExercise();
-              // if the counter is on, pause
-            } else {
-              togglePause();
-            }
-          }
-        }}
-      />
       <BreatheModal />
     </React.Fragment>
   );

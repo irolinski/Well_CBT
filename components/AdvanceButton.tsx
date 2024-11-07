@@ -5,9 +5,9 @@ import Text from "./global/Text";
 interface AdvanceButtonProps {
   onPress: () => void;
   title: string;
-  textStyles?: string;
   className?: string;
   style?: any;
+  textStyle?: any;
   disabled?: boolean;
 }
 
@@ -16,6 +16,7 @@ const AdvanceButton = ({
   title,
   className = "",
   style,
+  textStyle = {},
   disabled,
 }: AdvanceButtonProps) => {
   return (
@@ -24,12 +25,18 @@ const AdvanceButton = ({
       className={`h-12 items-center justify-center rounded ${className}`}
       style={[
         style,
-        { backgroundColor: "#4391BC", opacity: disabled ? 0.25 : 1 },
+        {
+          backgroundColor: style.backgroundColor ?? "#4391BC",
+          opacity: disabled ? 0.25 : 1,
+        },
       ]}
       onPress={onPress}
       disabled={disabled}
     >
-      <Text className="text-md font-semibold" style={{ color: "#F5F5F5" }}>
+      <Text
+        className="text-md font-semibold"
+        style={[textStyle, { color: textStyle.color ?? "#F5F5F5" }]}
+      >
         {title}
       </Text>
     </TouchableOpacity>
