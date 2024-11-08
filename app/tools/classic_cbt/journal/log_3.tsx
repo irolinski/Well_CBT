@@ -69,7 +69,7 @@ const Log_3 = () => {
                         minimumValue={0} // 0.1 causes a visual glitch
                         maximumValue={0.4}
                         onValueChange={(evt) => {
-                          handleSlide(e, Math.round(Number(evt) * 10) + 1);
+                          handleSlide(e, Math.floor(Number(evt) * 10) + 1);
                         }}
                         renderThumbComponent={() => (
                           <View

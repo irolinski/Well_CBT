@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 type journalSliceTypes = {
-  moodValue: number;
+  moodValue: number | null;
   emotions: Array<emotionObjType>;
   note: string;
   save: Boolean;
@@ -14,7 +14,7 @@ export type emotionObjType = {
 };
 
 const journalSliceInitialState: journalSliceTypes = {
-  moodValue: 1, //or 4???
+  moodValue: null, //or 4???
   emotions: [],
   note: "",
   save: true,

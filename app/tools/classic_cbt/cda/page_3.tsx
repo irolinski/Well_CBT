@@ -71,6 +71,7 @@ const Page_3 = () => {
           className="bottom-8 mx-6 my-4 justify-center"
           title="Next"
           onPress={() => router.navigate("./page_4")}
+          disabled={!cdaState.newThought}
         />
       </ScrollView>
     </React.Fragment>

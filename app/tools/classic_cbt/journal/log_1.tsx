@@ -1,6 +1,6 @@
 import { router } from "expo-router";
-import React from "react";
-import { Dimensions, View } from "react-native";
+import React, { useEffect, useRef } from "react";
+import { Animated, Dimensions, Easing, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import AdvanceButton from "@/components/AdvanceButton";
 import Text from "@/components/global/Text";
@@ -13,6 +13,7 @@ import {
 } from "@/state/features/tools/journalSlice";
 import { AppDispatch, RootState } from "@/state/store";
 import { Slider } from "@miblanchard/react-native-slider";
+import { Fontisto, MaterialIcons } from "@expo/vector-icons";
 
 const Log_1 = () => {
   const windowWidth = Dimensions.get("window").width;
@@ -21,6 +22,46 @@ const Log_1 = () => {
   // tool state
   const journalState = useSelector((state: RootState) => state.journal);
   const dispatch = useDispatch<AppDispatch>();
+
+  //swipe-up animation
+
+  const swipeUpAnimMotion = useRef(
+    new Animated.Value(windowHeight / 6),
+  ).current;
+  const swipeUpAnimOpacity = useRef(new Animated.Value(0)).current;
+
+  const swipeUpAnim = () => {
+    Animated.loop(
+      Animated.parallel([
+        Animated.parallel([
+          Animated.timing(swipeUpAnimOpacity, {
+            toValue: 0.9,
+            duration: 250,
+            useNativeDriver: true,
+          }),
+          Animated.timing(swipeUpAnimMotion, {
+            toValue: -windowHeight / 6 + 20, // Move to a position close to final with some overlap
+            duration: 1500, //2000 for ball
+            useNativeDriver: true,
+            easing: Easing.bounce, // Initial easing effect
+          }),
+        ]),
+        Animated.sequence([
+          Animated.delay(350),
+          Animated.timing(swipeUpAnimOpacity, {
+            toValue: 0,
+            duration: 1300, //2200 for ball
+            useNativeDriver: true,
+          }),
+          Animated.delay(500),
+        ]),
+      ]),
+    ).start();
+  };
+
+  useEffect(() => {
+    swipeUpAnim();
+  }, []);
 
   return (
     <React.Fragment>
@@ -64,9 +105,9 @@ const Log_1 = () => {
                 dispatch(setMoodValue(Math.round(Number(evt) * 10) + 1));
               }}
               minimumTrackTintColor={
-                journalState.moodValue < 4
+                journalState.moodValue! < 4
                   ? "#D46A6A"
-                  : journalState.moodValue < 6
+                  : journalState.moodValue! < 6
                     ? "#F38E4E"
                     : "#AED581"
               }
@@ -98,10 +139,52 @@ const Log_1 = () => {
               right: windowWidth / 15,
             }}
           >
-            <Text className="text-3xl">{journalState.moodValue}</Text>
-            <Text className="text-2xl">
-              {moodValueTitles[journalState.moodValue - 1]}
-            </Text>
+            <Animated.View
+              style={{ opacity: !journalState.moodValue ? 0 : 0.9 }}
+            >
+              <Text className="text-3xl">{journalState.moodValue}</Text>
+              <Text className="text-2xl">
+                {moodValueTitles[journalState.moodValue! - 1]}
+              </Text>
+            </Animated.View>
+
+            {!journalState.moodValue && (
+              <Animated.View
+                className="items-center justify-center"
+                style={{
+                  width: windowWidth / 4,
+                  height: windowHeight / 3,
+                  bottom: windowHeight / 10,
+                }}
+              >
+                <Animated.View
+                  className="items-center justify-center"
+                  style={{
+                    // width: 70,
+                    // height: 70,
+                    // borderRadius: 100,
+                    width: 130,
+                    height: 130,
+                    opacity: swipeUpAnimOpacity,
+                    transform: [{ translateY: swipeUpAnimMotion }],
+                  }}
+                >
+                  <Animated.Text
+                    className="text-center text-3xl mb-8"
+                    style={{
+                      color: "#B8B8B8",
+                      // textShadowColor: "rgba(63, 63, 63, 0.4)",
+                      // textShadowOffset: { width: -1, height: 1 },
+                      // textShadowRadius: 4,
+                    }}
+                  >
+                    Swipe up!
+                  </Animated.Text>
+                  <MaterialIcons name="swipe-up" size={58} color="#B8B8B8" />
+                  {/* <Fontisto name="angle-dobule-left" size={36} color="#B8B8B8" /> */}
+                </Animated.View>
+              </Animated.View>
+            )}
           </View>
         </View>
       </View>
@@ -110,6 +193,7 @@ const Log_1 = () => {
         title="Next"
         onPress={() => router.navigate("./log_2")}
         style={{ bottom: windowHeight / 20 }}
+        disabled={!journalState.moodValue}
       />
     </React.Fragment>
   );

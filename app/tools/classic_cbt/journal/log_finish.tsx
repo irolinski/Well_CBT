@@ -51,7 +51,7 @@ const Log_finish = () => {
               className="mb-4 justify-center"
               title="Return to Tools"
               onPress={() => {
-                router.replace("Tools" as Href);
+                router.replace("tools" as Href);
               }}
             />
           </View>

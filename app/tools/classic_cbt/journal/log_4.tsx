@@ -14,11 +14,11 @@ import { Dimensions } from "react-native";
 
 const Log_4 = () => {
   const windowHeight = Dimensions.get("window").height;
-  
+
   //tool state
   const dispatch = useDispatch<AppDispatch>();
   const journalState = useSelector((state: RootState) => state.journal);
-
+  console.log(journalState);
   return (
     <React.Fragment>
       <ToolNav currentPage={4} numOfAllPages={6} />
