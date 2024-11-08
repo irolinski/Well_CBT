@@ -179,7 +179,6 @@ const BreatheModal = () => {
                     minimumTrackStyle={{ backgroundColor: "#D9D9D9" }}
                     trackStyle={{
                       backgroundColor: "#D9D9D9",
-                      // width: 0,
                       height: 1,
                     }}
                     thumbStyle={{ backgroundColor: "#8DBED8" }}

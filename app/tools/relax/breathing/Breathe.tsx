@@ -1,7 +1,7 @@
 import { Image } from "expo-image";
 import { router } from "expo-router";
 import React, { useEffect, useRef, useState } from "react";
-import { Animated, Dimensions, Pressable, View } from "react-native";
+import { Animated, Dimensions, Easing, Pressable, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import AdvanceButton from "@/components/AdvanceButton";
 import Text from "@/components/global/Text";
@@ -20,7 +20,7 @@ const Breathe = () => {
   //UI STATE
   const windowWidth = Dimensions.get("window").width;
   const windowHeight = Dimensions.get("window").height;
-  const outerCircleSize = windowWidth / 1.3;
+  const outerCircleSize = windowWidth / 1.25;
 
   // COUNTDOWN STATE
   const [countdownVal, setCountdownVal] = useState(3);
@@ -45,9 +45,10 @@ const Breathe = () => {
 
   const expandOuterCircle = (duration: number) => {
     Animated.timing(innerCircleAnim, {
-      toValue: 0.95,
+      toValue: 0.9,
       duration: duration,
       useNativeDriver: true,
+      easing: Easing.linear,
     }).start();
     setOuterCircleExpanded(true);
     // console.log("breathing in");
@@ -60,6 +61,7 @@ const Breathe = () => {
       toValue: 0.65,
       duration: duration,
       useNativeDriver: true,
+      easing: Easing.linear,
     }).start();
     setOuterCircleExpanded(false);
     // console.log("breathing out");
@@ -73,11 +75,46 @@ const Breathe = () => {
       : expandOuterCircle(duration);
   };
 
+  // handle hold
+  const holdCircleColorAnim = useRef(
+    new Animated.Value(-outerCircleSize),
+  ).current;
+
+  const slideInHoldColor = () => {
+    Animated.timing(holdCircleColorAnim, {
+      toValue: 0,
+      duration: breatheSettings.mode.holdTime * 1000,
+      useNativeDriver: true,
+      easing: Easing.linear,
+    }).start();
+  };
+
+  const slideOutHoldColor = () => {
+    Animated.timing(holdCircleColorAnim, {
+      toValue: -outerCircleSize,
+      duration: breatheSettings.mode.holdTime * 1000,
+      useNativeDriver: true,
+    }).start();
+  };
+
+  const [holdColorIsActive, setHoldColorIsActive] = useState(false);
+
+  const slideHoldColor = () => {
+    setHoldColorIsActive((prev) => !prev);
+    !holdColorIsActive ? slideInHoldColor() : slideOutHoldColor();
+  };
+
   const handleHold = () => {
     setShowHold(true);
     // console.log("HOLD!");
     setStepsDone((prev) => prev + 1);
+    slideHoldColor();
     animateProgressBar(breatheSettings.mode.holdTime * 1000);
+  };
+
+  const handleHoldEnd = () => {
+    setShowHold(false);
+    // slideOutHoldColor();
   };
 
   // progress bar
@@ -114,7 +151,8 @@ const Breathe = () => {
   const resetExercise = () => {
     counterOn && setCounterOn(false);
     setRepsDone(0);
-    setShowHold(false);
+    // setShowHold(false);
+    handleHoldEnd();
     setBreathInOut(true);
     setCounterVal(breatheSettings.mode.breatheInTime);
     setStepsDone(0);
@@ -212,7 +250,7 @@ const Breathe = () => {
           if (!showHold) {
             // if double hold mode is on (i.e. 'box' mode)
             if (breatheSettings.mode.doubleHold) {
-              // add only 0.5 so only after two holds a full rep is present inside state
+              // add only 0.5 to reps so only after two holds a full rep is present inside state
               setRepsDone(repsDone + 0.5);
               // stop session before last HOLD so that the user doesn't suffocate
               if (repsDone !== repsToDo - 0.5) {
@@ -238,7 +276,8 @@ const Breathe = () => {
             }
             // if currently holding breath
           } else if (showHold) {
-            setShowHold(false);
+            // setShowHold(false);
+            handleHoldEnd();
             // if last breath was taken in, set the next one to be out
             if (breatheInOut) {
               setCounterVal(breatheSettings.mode.breatheOutTime);
@@ -329,7 +368,7 @@ const Breathe = () => {
             </Text>
           )}
           <View
-            className="absolute justify-center border"
+            className="absolute justify-center overflow-hidden border"
             style={{
               alignSelf: "center",
               top: 0.04 * windowHeight,
@@ -357,7 +396,7 @@ const Breathe = () => {
             }}
           >
             <Animated.View
-              className="relative z-0 items-center justify-center overflow-hidden"
+              className="relative z-10 items-center justify-center overflow-hidden"
               style={{
                 alignSelf: "center",
                 width: outerCircleSize,
@@ -366,7 +405,18 @@ const Breathe = () => {
                 transform: [{ scale: innerCircleAnim }],
                 backgroundColor: "rgba(251, 251, 251, 0.65)",
               }}
-            />
+            >
+              <Animated.View
+                className="absolute z-0 overflow-hidden"
+                style={{
+                  alignSelf: "center",
+                  width: outerCircleSize,
+                  height: outerCircleSize,
+                  transform: [{ translateX: holdCircleColorAnim }],
+                  backgroundColor: "rgba(141, 190, 216, 0.65)",
+                }}
+              />
+            </Animated.View>
             <View className="absolute z-10 px-16">
               {/* Show countdown if active, otherwise show the main timer */}
               {countdownActive ? (
@@ -442,7 +492,8 @@ const Breathe = () => {
               ></Animated.View>
             </View>
             <AdvanceButton
-              title={counterOn ? "Pause" : "Start"}
+              title={!counterOn || pause ? "Start" : "Pause"}
+              disabled={countdownActive} // disable button when count-in is actiive for UI clarity
               onPress={() => handleStartButton()}
               style={{
                 width: barLength,
