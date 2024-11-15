@@ -1,20 +1,23 @@
-import { router } from 'expo-router';
-import * as SQLite from 'expo-sqlite';
-import React from 'react';
-import { Pressable, ScrollView, View } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
-import AdvanceButton from '@/components/AdvanceButton';
-import DistortionPill from '@/components/DistortionPill';
-import Frame from '@/components/Frame';
-import Text from '@/components/global/Text';
-import ToolHeader from '@/components/ToolHeader';
-import ToolNav from '@/components/ToolNav';
-import CDATextBox from '@/components/tools/CDATextBox';
-import { moodValueTitles } from '@/constants/models/journal';
-import { journalResetState, toggleSave } from '@/state/features/tools/journalSlice';
-import { AppDispatch, RootState } from '@/state/store';
-import Feather from '@expo/vector-icons/Feather';
-import { Slider } from '@miblanchard/react-native-slider';
+import { router } from "expo-router";
+import * as SQLite from "expo-sqlite";
+import React from "react";
+import { Pressable, ScrollView, View } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import AdvanceButton from "@/components/AdvanceButton";
+import DistortionPill from "@/components/DistortionPill";
+import Frame from "@/components/Frame";
+import Text from "@/components/global/Text";
+import ToolHeader from "@/components/ToolHeader";
+import ToolNav from "@/components/ToolNav";
+import CDATextBox from "@/components/tools/CDATextBox";
+import { moodValueTitles } from "@/constants/models/journal";
+import {
+  journalResetState,
+  toggleSave,
+} from "@/state/features/tools/journalSlice";
+import { AppDispatch, RootState } from "@/state/store";
+import Feather from "@expo/vector-icons/Feather";
+import { Slider } from "@miblanchard/react-native-slider";
 
 const Log_5 = () => {
   //tool state

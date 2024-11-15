@@ -170,7 +170,7 @@ const Log_1 = () => {
                   }}
                 >
                   <Animated.Text
-                    className="text-center text-3xl mb-8"
+                    className="mb-8 text-center text-3xl"
                     style={{
                       color: "#B8B8B8",
                       // textShadowColor: "rgba(63, 63, 63, 0.4)",
