@@ -1,8 +1,10 @@
 import React from "react";
-import { Dimensions, View } from "react-native";
+import { Dimensions, Pressable, View } from "react-native";
 import FrameMenu from "@/components/FrameMenu";
 import Text from "@/components/global/Text";
 import JournalCard from "@/components/JournalCard";
+import AdvanceButton from "@/components/AdvanceButton";
+import { Entypo } from "@expo/vector-icons";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -19,7 +21,14 @@ const Home = () => {
         </View>
         {/* Recent */}
         <View>
-          <Text className="mb-8 mt-2 text-left text-2xl">Recent</Text>
+          <View className="mx-4 flex-row justify-between">
+            <Text className="my-6 text-left text-2xl">
+              Your recent activity:
+            </Text>
+            <Pressable className="justify-center">
+              <Entypo name="plus" size={32} color="black" />
+            </Pressable>
+          </View>
           <View className="px-1">
             <JournalCard toolName="cda" link={""} date="20 Sep 2024" />
             <JournalCard toolName="breathing" link={""} date="20 Sep 2024" />
@@ -28,6 +37,21 @@ const Home = () => {
               link={""}
               moodValue={5}
               date="20 Sep 2024"
+            />
+          </View>
+          <View className="mt-3 flex-row justify-end">
+            <AdvanceButton
+              title="See all"
+              onPress={() => {}}
+              btnStyle={{
+                width: 150,
+                height: 45,
+                backgroundColor: "white",
+                borderWidth: 1,
+                borderColor: "#D9D9D9",
+                borderRadius: 12,
+              }}
+              textStyle={{ color: "#27261F" }}
             />
           </View>
         </View>

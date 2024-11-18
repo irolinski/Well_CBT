@@ -495,7 +495,7 @@ const Breathe = () => {
               title={!counterOn || pause ? "Start" : "Pause"}
               disabled={countdownActive} // disable button when count-in is actiive for UI clarity
               onPress={() => handleStartButton()}
-              style={{
+              btnStyle={{
                 width: barLength,
                 backgroundColor: "rgba(251, 251, 251, 0.95)",
                 top: 40,

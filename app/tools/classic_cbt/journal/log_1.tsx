@@ -192,7 +192,7 @@ const Log_1 = () => {
         className="mx-6 my-4 justify-center"
         title="Next"
         onPress={() => router.navigate("./log_2")}
-        style={{ bottom: windowHeight / 20 }}
+        btnStyle={{ bottom: windowHeight / 20 }}
         disabled={!journalState.moodValue}
       />
     </React.Fragment>

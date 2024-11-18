@@ -52,7 +52,7 @@ const Log_4 = () => {
         className="mx-6 my-4 justify-center"
         title="Next"
         onPress={() => router.navigate("./log_5")}
-        style={{ bottom: windowHeight / 20 }}
+        btnStyle={{ bottom: windowHeight / 20 }}
       />
     </React.Fragment>
   );
