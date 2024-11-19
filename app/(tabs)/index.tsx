@@ -5,9 +5,10 @@ import Text from "@/components/global/Text";
 import JournalCard from "@/components/JournalCard";
 import AdvanceButton from "@/components/AdvanceButton";
 import { Entypo } from "@expo/vector-icons";
+import QuoteWidget from "@/components/QuoteWidget";
+import DividerLine from "@/components/DividerLine";
 
 const windowWidth = Dimensions.get("window").width;
-const windowHeight = Dimensions.get("window").height;
 
 const Home = () => {
   return (
@@ -15,9 +16,24 @@ const Home = () => {
       <View>
         {/* Welcome */}
         <View className="my-4">
-          <View className="mx-4 justify-center py-8">
-            <Text className="text-2xl">Hi Olga, how are you doing?</Text>
+          <View
+            className="mx-4 mb-8 mt-2 justify-center"
+            style={{ borderColor: "#DDDDDD" }}
+          >
+            <Text
+              className="text-2xl"
+              style={{ fontFamily: "KodchasanMedium", color: "#757575" }}
+            >
+              Hi Olga, how are you?
+            </Text>
           </View>
+          <DividerLine width={windowWidth / 1.5} weight={0.5} />
+        </View>
+        {/* Quote */}
+        <View className="my-4 items-center justify-center">
+          <QuoteWidget
+            image={require("@/assets/images/home/quote_widget/bg_1.webp")}
+          />
         </View>
         {/* Recent */}
         <View>
@@ -25,7 +41,7 @@ const Home = () => {
             <Text className="my-6 text-left text-2xl">
               Your recent activity:
             </Text>
-            <Pressable className="justify-center">
+            <Pressable className="justify-center" onPress={() => {}}>
               <Entypo name="plus" size={32} color="black" />
             </Pressable>
           </View>
@@ -54,12 +70,6 @@ const Home = () => {
               textStyle={{ color: "#27261F" }}
             />
           </View>
-        </View>
-        <View
-          className="items-center justify-center"
-          style={{ width: 0.8 * windowWidth, height: 0.3 * windowHeight }}
-        >
-          <Text>Quote Widget!</Text>
         </View>
       </View>
     </FrameMenu>

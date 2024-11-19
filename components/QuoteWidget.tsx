@@ -1,0 +1,91 @@
+import { Image, ImageSource } from "expo-image";
+import { LinearGradient } from "expo-linear-gradient";
+import { Alert, Dimensions, Pressable, View } from "react-native";
+import Text from "./global/Text";
+import { Feather } from "@expo/vector-icons";
+import { Share } from "react-native";
+import quotesList from "@/assets/text/quotes.json";
+
+const windowWidth = Dimensions.get("window").width;
+
+const QuoteWidget = ({ image }: { image: ImageSource }) => {
+  const quoteNumber = (Math.random() * (quotesList.length - 1)) | 0;
+
+  const handleShare = async (message: string) => {
+    try {
+      const result = await Share.share({
+        message: message,
+      });
+    } catch (error: any) {
+      Alert.alert(error.message);
+    }
+  };
+
+  return (
+    <View className="w-full flex-1 rounded-xl border" style={{ height: 240 }}>
+      <Image
+        source={image}
+        className="z-0 rounded-xl"
+        contentFit="cover"
+        style={{ width: "100%", height: "100%" }}
+        transition={200}
+      />
+      <LinearGradient
+        className="rounded-lg"
+        colors={["rgba(0, 0, 0, 0.3)", "rgba(0, 0, 0, 0.5)"]}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 0.1, y: 1 }}
+        style={{
+          position: "absolute",
+          height: "100%",
+          width: "100%",
+        }}
+      ></LinearGradient>
+      <View
+        className="absolute z-20 mb-4 mt-8 justify-around"
+        style={{ height: "65%" }}
+      >
+        <View className="mx-4 flex-row justify-start">
+          <Text className="text-xl" style={{ color: "white" }}>
+            Quote of the day
+          </Text>
+        </View>
+        <View
+          style={{
+            marginTop: 16,
+            marginBottom: 0,
+            marginLeft: 20,
+            marginRight: windowWidth / 6,
+          }}
+        >
+          <Text
+            className="text-sm"
+            style={{ color: "white", fontStyle: "italic" }}
+          >
+            {quotesList[quoteNumber].quoteText}
+          </Text>
+        </View>
+        <View className="ml-4 mr-8 mt-4">
+          <Text
+            className="text-sm"
+            style={{ color: "white", fontStyle: "italic" }}
+          >
+            {`- ${quotesList[quoteNumber].quoteAuthor}`}
+          </Text>
+        </View>
+      </View>
+      <View className="absolute bottom-8 right-0 mx-10 flex-row justify-end">
+        <Pressable
+          onPress={() => {
+            handleShare(
+              `${quotesList[quoteNumber].quoteText} \n \n -- ${quotesList[quoteNumber].quoteAuthor}`,
+            );
+          }}
+        >
+          <Feather name="share" size={24} color="(rgba(255, 255, 255, 0.75)" />
+        </Pressable>
+      </View>
+    </View>
+  );
+};
+export default QuoteWidget;
