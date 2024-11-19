@@ -78,7 +78,7 @@ const QuoteWidget = ({ image }: { image: ImageSource }) => {
         <Pressable
           onPress={() => {
             handleShare(
-              `${quotesList[quoteNumber].quoteText} \n \n -- ${quotesList[quoteNumber].quoteAuthor}`,
+              `"${quotesList[quoteNumber].quoteText}" \n \n - ${quotesList[quoteNumber].quoteAuthor}`,
             );
           }}
         >

@@ -7,6 +7,7 @@ import AdvanceButton from "@/components/AdvanceButton";
 import { Entypo } from "@expo/vector-icons";
 import QuoteWidget from "@/components/QuoteWidget";
 import DividerLine from "@/components/DividerLine";
+import TypewriterText from "@/components/TypewriterText";
 
 const windowWidth = Dimensions.get("window").width;
 
@@ -20,16 +21,19 @@ const Home = () => {
             className="mx-4 mb-8 mt-2 justify-center"
             style={{ borderColor: "#DDDDDD" }}
           >
-            <Text
-              className="text-2xl"
-              style={{ fontFamily: "KodchasanMedium", color: "#757575" }}
-            >
-              Hi Olga, how are you?
-            </Text>
+            <TypewriterText
+              text={"Hi, Olga! How are you, today? "}
+              speed="fast"
+              fontFamily="KodchasanMedium"
+              color="#757575"
+              letterSpacing={2}
+              lineHeight={2}
+              hideCursorOnFinish={true}
+            />
           </View>
           <DividerLine width={windowWidth / 1.5} weight={0.5} />
         </View>
-        {/* Quote */}
+        {/* Quote Widget */}
         <View className="my-4 items-center justify-center">
           <QuoteWidget
             image={require("@/assets/images/home/quote_widget/bg_1.webp")}
