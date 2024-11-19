@@ -48,12 +48,13 @@ const Log_4 = () => {
           </View>
         </View>
       </Frame>
-      <AdvanceButton
-        className="mx-6 my-4 justify-center"
-        title="Next"
-        onPress={() => router.navigate("./log_5")}
-        btnStyle={{ bottom: windowHeight / 20 }}
-      />
+      <View className="bottom-16 mx-6">
+        <AdvanceButton
+          title="Next"
+          onPress={() => router.navigate("./log_5")}
+          btnStyle={{ bottom: windowHeight / 20 }}
+        />
+      </View>
     </React.Fragment>
   );
 };

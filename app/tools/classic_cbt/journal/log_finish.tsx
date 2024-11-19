@@ -39,7 +39,7 @@ const Log_finish = () => {
                 : "You can save your future journal entries by checking the box at the end of the form."}
             </Text>
           </View>
-          <View className="absolute bottom-10 left-0 right-0">
+          <View className="absolute bottom-16 left-0 right-0">
             <View className="mb-4 flex-row justify-between">
               <SecondaryButton
                 title="Go to journal"

@@ -32,7 +32,7 @@ const Page_finish = () => {
               you.
             </Text>
           </View>
-          <View className="absolute bottom-10 left-0 right-0">
+          <View className="absolute bottom-16 left-0 right-0">
             <View className="mb-4 flex-row justify-between">
               <SecondaryButton
                 title="Do one more?"

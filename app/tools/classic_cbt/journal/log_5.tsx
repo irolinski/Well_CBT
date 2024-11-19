@@ -206,14 +206,15 @@ const Log_5 = () => {
             </View>
           </View>
         </Frame>
-        <AdvanceButton
-          className="bottom-8 mx-6 mb-4 justify-center"
-          title="Finish"
-          onPress={() => {
-            handleSave();
-            router.navigate("./log_finish");
-          }}
-        />
+        <View className="bottom-16 mx-6">
+          <AdvanceButton
+            title="Finish"
+            onPress={() => {
+              handleSave();
+              router.navigate("./log_finish");
+            }}
+          />
+        </View>
       </ScrollView>
     </React.Fragment>
   );

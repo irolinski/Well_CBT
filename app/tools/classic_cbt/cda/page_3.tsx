@@ -67,12 +67,13 @@ const Page_3 = () => {
             </TouchableWithoutFeedback>
           </View>
         </Frame>
-        <AdvanceButton
-          className="bottom-8 mx-6 my-4 justify-center"
-          title="Next"
-          onPress={() => router.navigate("./page_4")}
-          disabled={!cdaState.newThought}
-        />
+        <View className="bottom-16 mx-6">
+          <AdvanceButton
+            title="Next"
+            onPress={() => router.navigate("./page_4")}
+            disabled={!cdaState.newThought}
+          />
+        </View>
       </ScrollView>
     </React.Fragment>
   );

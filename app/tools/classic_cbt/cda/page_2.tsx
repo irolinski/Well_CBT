@@ -64,12 +64,13 @@ const Page_2 = () => {
             </View>
           </View>
         </Frame>
-        <AdvanceButton
-          className="bottom-8 mx-6 my-4 justify-center"
-          title="Next"
-          onPress={() => router.navigate("./page_3")}
-          disabled={!cdaState.distortion}
-        />
+        <View className="bottom-16 mx-6">
+          <AdvanceButton
+            title="Next"
+            onPress={() => router.navigate("./page_3")}
+            disabled={!cdaState.distortion}
+          />
+        </View>
       </ScrollView>
     </React.Fragment>
   );

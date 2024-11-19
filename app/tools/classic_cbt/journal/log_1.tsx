@@ -188,13 +188,14 @@ const Log_1 = () => {
           </View>
         </View>
       </View>
-      <AdvanceButton
-        className="mx-6 my-4 justify-center"
-        title="Next"
-        onPress={() => router.navigate("./log_2")}
-        btnStyle={{ bottom: windowHeight / 20 }}
-        disabled={!journalState.moodValue}
-      />
+      <View className="mx-6" style={{bottom: 0.02 * windowHeight}}>
+        <AdvanceButton
+          title="Next"
+          onPress={() => router.navigate("./log_2")}
+          btnStyle={{ bottom: windowHeight / 20 }}
+          disabled={!journalState.moodValue}
+        />
+      </View>
     </React.Fragment>
   );
 };

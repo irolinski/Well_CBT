@@ -25,7 +25,7 @@ const Page_1 = () => {
       <ScrollView className="pb-8">
         <ToolNav currentPage={1} numOfAllPages={5} />
         <Frame>
-          <View className="pt-10">
+          <View className="py-10">
             <ToolHeader>Write down a thought that's bothering you.</ToolHeader>
             <TouchableWithoutFeedback
               onPress={() => {
@@ -63,12 +63,13 @@ const Page_1 = () => {
             </TouchableWithoutFeedback>
           </View>
         </Frame>
-        <AdvanceButton
-          className="bottom-2 mx-6 justify-center"
-          title="Next"
-          onPress={() => router.navigate("./page_2")}
-          disabled={!cdaState.oldThought || !cdaState.situation}
-        />
+        <View className="bottom-16 mx-6">
+          <AdvanceButton
+            title="Next"
+            onPress={() => router.navigate("./page_2")}
+            disabled={!cdaState.oldThought || !cdaState.situation}
+          />
+        </View>
       </ScrollView>
     </React.Fragment>
   );

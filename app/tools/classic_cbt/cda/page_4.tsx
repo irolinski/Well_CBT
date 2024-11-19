@@ -1,18 +1,18 @@
-import { router } from 'expo-router';
-import * as SQLite from 'expo-sqlite';
-import React from 'react';
-import { Pressable, ScrollView, View } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
-import AdvanceButton from '@/components/AdvanceButton';
-import DistortionPill from '@/components/DistortionPill';
-import Frame from '@/components/Frame';
-import Text from '@/components/global/Text';
-import ToolHeader from '@/components/ToolHeader';
-import ToolNav from '@/components/ToolNav';
-import CDATextBox from '@/components/tools/CDATextBox';
-import { cdaResetState, toggleSave } from '@/state/features/tools/cdaSlice';
-import { AppDispatch, RootState } from '@/state/store';
-import Feather from '@expo/vector-icons/Feather';
+import { router } from "expo-router";
+import * as SQLite from "expo-sqlite";
+import React from "react";
+import { Pressable, ScrollView, View } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import AdvanceButton from "@/components/AdvanceButton";
+import DistortionPill from "@/components/DistortionPill";
+import Frame from "@/components/Frame";
+import Text from "@/components/global/Text";
+import ToolHeader from "@/components/ToolHeader";
+import ToolNav from "@/components/ToolNav";
+import CDATextBox from "@/components/tools/CDATextBox";
+import { cdaResetState, toggleSave } from "@/state/features/tools/cdaSlice";
+import { AppDispatch, RootState } from "@/state/store";
+import Feather from "@expo/vector-icons/Feather";
 
 const Page_4 = () => {
   const cdaState = useSelector((state: RootState) => state.cda);
@@ -107,14 +107,15 @@ const Page_4 = () => {
             </View>
           </View>
         </Frame>
-        <AdvanceButton
-          className="bottom-8 mx-6 mb-4 justify-center"
-          title="Finish"
-          onPress={() => {
-            handleSave();
-            router.navigate("./page_finish");
-          }}
-        />
+        <View className="bottom-16 mx-6">
+          <AdvanceButton
+            title="Finish"
+            onPress={() => {
+              handleSave();
+              router.navigate("./page_finish");
+            }}
+          />
+        </View>
       </ScrollView>
     </React.Fragment>
   );

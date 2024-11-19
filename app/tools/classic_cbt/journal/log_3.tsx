@@ -124,12 +124,13 @@ const Log_3 = () => {
             </View>
           </View>
         </Frame>
-        <AdvanceButton
-          className="mx-6 mb-12 justify-center"
-          title="Next"
-          onPress={() => router.navigate("./log_4")}
-          disabled={!journalState.emotions.every((e) => e.strength)}
-        />
+        <View className="bottom-16 mx-6">
+          <AdvanceButton
+            title="Next"
+            onPress={() => router.navigate("./log_4")}
+            disabled={!journalState.emotions.every((e) => e.strength)}
+          />
+        </View>
       </ScrollView>
     </React.Fragment>
   );
