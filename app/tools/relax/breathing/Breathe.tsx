@@ -11,6 +11,7 @@ import { Feather } from "@expo/vector-icons";
 import BreatheModal from "./modal";
 import { LinearGradient } from "expo-linear-gradient";
 
+
 const Breathe = () => {
   const dispatch = useDispatch<AppDispatch>();
   const breatheSettings = useSelector(
@@ -491,6 +492,7 @@ const Breathe = () => {
                 }}
               ></Animated.View>
             </View>
+            
             <AdvanceButton
               title={!counterOn || pause ? "Start" : "Pause"}
               disabled={countdownActive} // disable button when count-in is actiive for UI clarity

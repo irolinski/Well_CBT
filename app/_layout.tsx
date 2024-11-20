@@ -89,6 +89,10 @@ export default function RootLayout() {
             name="tools/distract/phone"
             options={{ headerShown: false }}
           />
+          <Stack.Screen
+            name="home/activity_log"
+            options={{ headerShown: false }}
+          />
           <Stack.Screen name="+not-found" />
         </Stack>
       </GestureHandlerRootView>

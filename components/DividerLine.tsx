@@ -1,15 +1,21 @@
 import { DimensionValue, View } from "react-native";
+
+interface DividerLineProps {
+  width: DimensionValue;
+  weight?: number;
+  className?: string;
+  viewStyle?: any;
+}
 const DividerLine = ({
   width,
   weight,
-}: {
-  width: DimensionValue;
-  weight?: number;
-}) => {
+  className,
+  viewStyle,
+}: DividerLineProps) => {
   return (
     <View
       className="w-full flex-row items-center justify-center"
-      style={{ height: 0.5 }}
+      style={[viewStyle, { height: 0.5 }]}
     >
       <View
         style={{

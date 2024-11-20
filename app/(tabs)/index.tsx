@@ -8,6 +8,7 @@ import { Entypo } from "@expo/vector-icons";
 import QuoteWidget from "@/components/QuoteWidget";
 import DividerLine from "@/components/DividerLine";
 import TypewriterText from "@/components/TypewriterText";
+import { router } from "expo-router";
 
 const windowWidth = Dimensions.get("window").width;
 
@@ -27,7 +28,7 @@ const Home = () => {
               fontFamily="KodchasanMedium"
               color="#757575"
               letterSpacing={2}
-              lineHeight={2}
+              lineHeight={1.5}
               hideCursorOnFinish={true}
             />
           </View>
@@ -62,7 +63,9 @@ const Home = () => {
           <View className="mt-3 flex-row justify-end">
             <AdvanceButton
               title="See all"
-              onPress={() => {}}
+              onPress={() => {
+                router.push("/home/activity_log/");
+              }}
               btnStyle={{
                 width: 150,
                 height: 45,
