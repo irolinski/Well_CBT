@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Dimensions, Pressable, View } from "react-native";
 import FrameMenu from "@/components/FrameMenu";
 import Text from "@/components/global/Text";
@@ -10,9 +10,33 @@ import DividerLine from "@/components/DividerLine";
 import TypewriterText from "@/components/TypewriterText";
 import { router } from "expo-router";
 
+import * as SQLite from "expo-sqlite";
+import { dbName } from "@/db/service";
+
 const windowWidth = Dimensions.get("window").width;
 
+const fetchRecentEntries = async () => {
+  try {
+    const db = await SQLite.openDatabaseAsync(dbName);
+    const res = await db.getAllAsync(
+      "SELECT * FROM allActivities ORDER BY date DESC LIMIT 3",
+    );
+    console.log(res);
+    return res;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 const Home = () => {
+  const [recentEntriesArr, setRecentEntriesArr] = useState<any>([]);
+
+  useEffect(() => {
+    fetchRecentEntries().then((res) => {
+      setRecentEntriesArr(res);
+    });
+  }, []);
+
   return (
     <FrameMenu title="Home" className="items-center justify-center">
       <View>
@@ -50,15 +74,25 @@ const Home = () => {
               <Entypo name="plus" size={32} color="black" />
             </Pressable>
           </View>
-          <View className="px-1">
-            <JournalCard toolName="cda" link={""} date="20 Sep 2024" />
+          <View className="px-1" style={{ height: 370 }}>
+            {recentEntriesArr[0] &&
+              recentEntriesArr.map((el: any, index: number) => (
+                <JournalCard
+                  toolName={el.activityName}
+                  date={el.date}
+                  value={el.value ?? null}
+                  key={index}
+                  link={`/route/${el.id}`}
+                />
+              ))}
+            {/* <JournalCard toolName="cda" link={""} date="20 Sep 2024" />
             <JournalCard toolName="breathing" link={""} date="20 Sep 2024" />
             <JournalCard
               toolName="journal"
               link={""}
               moodValue={5}
               date="20 Sep 2024"
-            />
+            /> */}
           </View>
           <View className="mt-3 flex-row justify-end">
             <AdvanceButton
