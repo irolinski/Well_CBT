@@ -15,6 +15,7 @@ import {
 import BackButton from "@/components/BackButton";
 import Frame from "@/components/Frame";
 import { router } from "expo-router";
+import { dbName } from "@/db/service";
 
 function Add() {
   interface PhoneNumberObj {
@@ -48,14 +49,14 @@ function Add() {
 
   const search = (q: string) => {
     const filteredContacts = contactData.filter((contact) =>
-      `${contact.firstName} ${contact.lastName}`.includes(q)
+      `${contact.firstName} ${contact.lastName}`.includes(q),
     );
     setFilteredData(filteredContacts);
     if (!q) setFilteredData([]);
   };
 
   const setContact = async (name: string, phone: string) => {
-    const db = await SQLite.openDatabaseAsync("well-test-db");
+    const db = await SQLite.openDatabaseAsync(dbName);
     await db.execAsync(`
         DROP TABLE IF EXISTS tools_phone;
         CREATE TABLE tools_phone (
@@ -64,7 +65,7 @@ function Add() {
         );
     `);
     await db.execAsync(
-      `INSERT INTO tools_phone (name, phone) VALUES ('${name}', '${phone}');`
+      `INSERT INTO tools_phone (name, phone) VALUES ('${name}', '${phone}');`,
     );
 
     console.log(await db.getAllAsync("SELECT * FROM tools_phone"));
@@ -85,7 +86,7 @@ function Add() {
           style: "cancel",
         },
       ],
-      { cancelable: false }
+      { cancelable: false },
     );
   };
 
@@ -102,7 +103,7 @@ function Add() {
               Search in your contact book{" "}
             </Text>
             <TextInput
-              className=" h-12 border p-4 m-2 bg-gray-100 text-lg"
+              className="m-2 h-12 border bg-gray-100 p-4 text-lg"
               onChangeText={(value) => {
                 setSearchValue(value);
                 search(value);
@@ -115,9 +116,9 @@ function Add() {
               }
               clearButtonMode="while-editing"
             />
-            <View className="bg-white my-8">
+            <View className="my-8 bg-white">
               {/* <ScrollView> */}
-              <View className="justify-center items-center h-72">
+              <View className="h-72 items-center justify-center">
                 <ScrollView className="w-full">
                   {filteredData.length > 0 ? (
                     filteredData.map((contact, i: number) => (
@@ -132,12 +133,12 @@ function Add() {
                                     onPress={() => {
                                       handleSetContact(
                                         `${contact.firstName} ${contact.lastName}`,
-                                        obj.number
+                                        obj.number,
                                       );
                                     }}
                                   >
                                     <View
-                                      className=" border-b w-full px-4 py-4"
+                                      className="w-full border-b px-4 py-4"
                                       key={i}
                                     >
                                       <Text className="text-center">
@@ -155,7 +156,7 @@ function Add() {
                       </React.Fragment>
                     ))
                   ) : (
-                    <Text className="text-center align-middle p-12 top-16">
+                    <Text className="top-16 p-12 text-center align-middle">
                       {searchValue
                         ? "No results."
                         : "Start typing the name of a person you want to add to see results..."}

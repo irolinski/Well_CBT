@@ -7,13 +7,14 @@ import { router } from "expo-router";
 import * as SQLite from "expo-sqlite";
 import { Linking } from "react-native";
 import { useFocusEffect } from "expo-router";
+import { dbName } from "@/db/service";
 
 const Phone = () => {
   type PhoneContact = { name: string; phone: string };
   const [phoneData, setPhoneData] = useState<PhoneContact | null>(null);
 
   const getPhoneData = async () => {
-    const db = await SQLite.openDatabaseAsync("well-test-db");
+    const db = await SQLite.openDatabaseAsync(dbName);
     try {
       const pd: PhoneContact[] = await db.getAllAsync(
         "SELECT * FROM tools_phone",

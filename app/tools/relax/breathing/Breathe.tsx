@@ -10,7 +10,8 @@ import { AppDispatch, RootState } from "@/state/store";
 import { Feather } from "@expo/vector-icons";
 import BreatheModal from "./modal";
 import { LinearGradient } from "expo-linear-gradient";
-
+import * as SQLite from "expo-sqlite";
+import { dbName } from "@/db/service";
 
 const Breathe = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -37,6 +38,44 @@ const Breathe = () => {
   const [pause, setPause] = useState(false);
   const repsToDo = 5 * breatheSettings.numOfSets;
   const [repsDone, setRepsDone] = useState(0);
+
+  // DB
+
+  let ellapsedTime =
+    5 *
+    breatheSettings.numOfSets *
+    (breatheSettings.mode.holdTime +
+      breatheSettings.mode.breatheInTime +
+      breatheSettings.mode.breatheOutTime);
+
+  const logExerciseDone = async () => {
+    try {
+      const db = await SQLite.openDatabaseAsync(dbName);
+
+      // First, create the tables in separate calls
+      await db.execAsync(`
+              CREATE TABLE IF NOT EXISTS relaxActivities (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                activityName VARCHAR(100),
+                secondsRelaxed INT,
+                date NOT NULL
+              );
+            `);
+
+      // Insert data into table
+      // and save id to use it for joint emotion table
+      const insertIntoJournalResult = await db.runAsync(`
+              INSERT INTO relaxActivities (id, activityName, secondsRelaxed, date) VALUES (
+                NULL, 'Breathe', '${ellapsedTime}', DATE('now')
+              );
+            `);
+
+      console.log(await db.getAllAsync("SELECT * FROM relaxActivities"));
+      console.log("-----------------------");
+    } catch (err) {
+      throw err;
+    }
+  };
 
   // ANIMATIONS
 
@@ -217,8 +256,12 @@ const Breathe = () => {
 
   // MAIN TIMER EFFECT
   useEffect(() => {
+    // ONLY FOR TESTING
+    logExerciseDone();
+    // ONLY FOR TESTING
     if (repsDone === repsToDo) {
       setCounterOn(false);
+      logExerciseDone();
     }
 
     if (counterOn && !pause) {
@@ -254,6 +297,7 @@ const Breathe = () => {
               // add only 0.5 to reps so only after two holds a full rep is present inside state
               setRepsDone(repsDone + 0.5);
               // stop session before last HOLD so that the user doesn't suffocate
+              //CHECK NEXT LINE AGAIN BECAUSE IT LOOKS LIKE IT SHOULD BE repsDone === repsToDo - 0.5
               if (repsDone !== repsToDo - 0.5) {
                 setCounterVal(breatheSettings.mode.holdTime);
                 handleHold();
@@ -277,7 +321,6 @@ const Breathe = () => {
             }
             // if currently holding breath
           } else if (showHold) {
-            // setShowHold(false);
             handleHoldEnd();
             // if last breath was taken in, set the next one to be out
             if (breatheInOut) {
@@ -492,7 +535,7 @@ const Breathe = () => {
                 }}
               ></Animated.View>
             </View>
-            
+
             <AdvanceButton
               title={!counterOn || pause ? "Start" : "Pause"}
               disabled={countdownActive} // disable button when count-in is actiive for UI clarity
@@ -507,7 +550,7 @@ const Breathe = () => {
           </View>
         </View>
       </View>
-      <BreatheModal />
+      <BreatheModal ellapsedTime={ellapsedTime} />
     </React.Fragment>
   );
 };

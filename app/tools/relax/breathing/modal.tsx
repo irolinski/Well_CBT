@@ -14,7 +14,7 @@ import { AppDispatch, RootState } from "@/state/store";
 import { Feather } from "@expo/vector-icons";
 import { Slider } from "@miblanchard/react-native-slider";
 
-const BreatheModal = () => {
+const BreatheModal = ({ ellapsedTime }: { ellapsedTime: number }) => {
   const dispatch = useDispatch<AppDispatch>();
   const breatheSettings = useSelector(
     (state: RootState) => state.breatheSettings,
@@ -23,13 +23,6 @@ const BreatheModal = () => {
   //UI STATE
   const windowWidth = Dimensions.get("window").width;
   const windowHeight = Dimensions.get("window").height;
-
-  let ellapsedTime =
-    5 *
-    breatheSettings.numOfSets *
-    (breatheSettings.mode.holdTime +
-      breatheSettings.mode.breatheInTime +
-      breatheSettings.mode.breatheOutTime);
 
   return (
     <Modal

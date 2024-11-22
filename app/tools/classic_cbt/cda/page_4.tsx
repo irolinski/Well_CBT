@@ -13,6 +13,7 @@ import CDATextBox from "@/components/tools/CDATextBox";
 import { cdaResetState, toggleSave } from "@/state/features/tools/cdaSlice";
 import { AppDispatch, RootState } from "@/state/store";
 import Feather from "@expo/vector-icons/Feather";
+import { dbName } from "@/db/service";
 
 const Page_4 = () => {
   const cdaState = useSelector((state: RootState) => state.cda);
@@ -20,27 +21,29 @@ const Page_4 = () => {
 
   const handleSave = async () => {
     if (cdaState.save) {
-      const db = await SQLite.openDatabaseAsync("well-test-db");
+      const db = await SQLite.openDatabaseAsync(dbName);
 
       // First, create the table
       await db.execAsync(`
         CREATE TABLE IF NOT EXISTS cdaArchive (
+                        id INTEGER PRIMARY KEY AUTOINCREMENT,
           situation VARCHAR(100) NOT NULL,
           oldThought VARCHAR(100) NOT NULL,
           distortion VARCHAR(35) NOT NULL,
           newThought VARCHAR(100) NOT NULL,
-          date VARCHAR(20)
+          date NOT NULL
         );
       `);
       // Then, insert data into the table
       await db.execAsync(`
-        INSERT INTO cdaArchive (situation, oldThought, distortion, newThought, date)
+        INSERT INTO cdaArchive (id, situation, oldThought, distortion, newThought, date)
           VALUES (
+            NULL,
             '${cdaState.situation}',
             '${cdaState.oldThought}',
             '${cdaState.distortion}',
             '${cdaState.newThought}',
-            '${new Date().toLocaleDateString()}'
+            DATE('now')
           );
       `);
       console.log(await db.getAllAsync("SELECT * FROM cdaArchive"));

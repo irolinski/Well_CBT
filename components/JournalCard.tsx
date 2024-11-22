@@ -6,21 +6,21 @@ import { Entypo } from "@expo/vector-icons";
 import { Slider } from "@miblanchard/react-native-slider";
 import Text from "./global/Text";
 
-type JournalCardProps =
+export type JournalCardProps =
   | {
       toolName: "journal";
-      link?: string;
+      link: string;
       date: string;
-      moodValue: number; // `moodValue` is required when `toolName` is "journal"
+      value: number; // `moodValue` is required when `toolName` is "journal"
     }
   | {
       toolName: Exclude<keyof typeof ToolList, "journal">;
-      link?: string;
+      link: string;
       date: string;
-      moodValue?: never; // `moodValue` should not be provided for non-journal tools
+      value?: never; // `moodValue` should not be provided for non-journal tools
     };
 
-const JournalCard = ({ toolName, link, date, moodValue }: JournalCardProps) => {
+const JournalCard = ({ toolName, link, date, value }: JournalCardProps) => {
   return (
     <View
       className="mb-4 rounded-xl"
@@ -67,13 +67,13 @@ const JournalCard = ({ toolName, link, date, moodValue }: JournalCardProps) => {
                         <Slider
                           minimumValue={0} // 0.1 causes a visual glitch
                           maximumValue={0.6}
-                          value={(moodValue - 1) / 10}
+                          value={(value - 1) / 10}
                           disabled
                           renderThumbComponent={() => <View></View>}
                           minimumTrackTintColor={
-                            moodValue < 4
+                            value < 4
                               ? "#D46A6A"
-                              : moodValue < 6
+                              : value < 6
                                 ? "#F38E4E"
                                 : "#AED581"
                           }

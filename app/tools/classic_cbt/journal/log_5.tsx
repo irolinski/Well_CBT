@@ -18,6 +18,7 @@ import {
 import { AppDispatch, RootState } from "@/state/store";
 import Feather from "@expo/vector-icons/Feather";
 import { Slider } from "@miblanchard/react-native-slider";
+import { dbName } from "@/db/service";
 
 const Log_5 = () => {
   //tool state
@@ -27,7 +28,7 @@ const Log_5 = () => {
   const handleSave = async () => {
     if (journalState.save) {
       try {
-        const db = await SQLite.openDatabaseAsync("well-test-db");
+        const db = await SQLite.openDatabaseAsync(dbName);
 
         // First, create the tables in separate calls
         await db.execAsync(`
@@ -35,13 +36,13 @@ const Log_5 = () => {
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 moodValue INT NOT NULL,
                 note VARCHAR(200),
-                date VARCHAR(20)
+                date NOT NULL
               );
             `);
 
         await db.execAsync(`
               CREATE TABLE IF NOT EXISTS journalEntryEmotions (
-                entryId INT NOT NULL,
+                id INT NOT NULL,
                 name VARCHAR(100) NOT NULL,
                 strength INT NOT NULL
               );
@@ -51,13 +52,13 @@ const Log_5 = () => {
         // and save id to use it for joint emotion table
         const insertIntoJournalResult = await db.runAsync(`
               INSERT INTO journalEntries (id, moodValue, note, date) VALUES (
-                NULL, ${journalState.moodValue}, '${journalState.note}', '${new Date().toLocaleDateString()}'
+                NULL, ${journalState.moodValue}, '${journalState.note}', DATE('now')
               );
             `);
 
         // Save emotions in joint table
         if (journalState.emotions.length > 0) {
-          let query = `INSERT INTO journalEntryEmotions (entryId, name, strength) VALUES `;
+          let query = `INSERT INTO journalEntryEmotions (id, name, strength) VALUES `;
           journalState.emotions.forEach((e) => {
             query += `(${insertIntoJournalResult.lastInsertRowId}, '${e.name}', ${e.strength}), `;
           });
@@ -93,7 +94,7 @@ const Log_5 = () => {
                       minimumValue={0} // 0.1 causes a visual glitch
                       maximumValue={0.6}
                       disabled
-                      value={(journalState.moodValue - 1) / 10}
+                      value={(journalState.moodValue! - 1) / 10}
                       renderThumbComponent={() => (
                         <View
                           style={{
@@ -102,9 +103,9 @@ const Log_5 = () => {
                         ></View>
                       )}
                       minimumTrackTintColor={
-                        journalState.moodValue < 4
+                        journalState.moodValue! < 4
                           ? "#D46A6A"
-                          : journalState.moodValue < 6
+                          : journalState.moodValue! < 6
                             ? "#F38E4E"
                             : "#AED581"
                       }
@@ -121,7 +122,7 @@ const Log_5 = () => {
                   </View>
                   <View className="w-1/4 items-center justify-center">
                     <Text className="text-center text-xl">
-                      {moodValueTitles[journalState.moodValue - 1]}
+                      {moodValueTitles[journalState.moodValue! - 1]}
                     </Text>
                   </View>
                 </View>
