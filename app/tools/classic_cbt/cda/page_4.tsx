@@ -1,5 +1,4 @@
 import { router } from "expo-router";
-import * as SQLite from "expo-sqlite";
 import React from "react";
 import { Pressable, ScrollView, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,41 +12,14 @@ import CDATextBox from "@/components/tools/CDATextBox";
 import { cdaResetState, toggleSave } from "@/state/features/tools/cdaSlice";
 import { AppDispatch, RootState } from "@/state/store";
 import Feather from "@expo/vector-icons/Feather";
-import { dbName } from "@/db/service";
+import { handleSaveCDAEntry } from "@/db/tools";
 
 const Page_4 = () => {
   const cdaState = useSelector((state: RootState) => state.cda);
   const dispatch = useDispatch<AppDispatch>();
 
   const handleSave = async () => {
-    if (cdaState.save) {
-      const db = await SQLite.openDatabaseAsync(dbName);
-
-      // First, create the table
-      await db.execAsync(`
-        CREATE TABLE IF NOT EXISTS cdaArchive (
-                        id INTEGER PRIMARY KEY AUTOINCREMENT,
-          situation VARCHAR(100) NOT NULL,
-          oldThought VARCHAR(100) NOT NULL,
-          distortion VARCHAR(35) NOT NULL,
-          newThought VARCHAR(100) NOT NULL,
-          date NOT NULL
-        );
-      `);
-      // Then, insert data into the table
-      await db.execAsync(`
-        INSERT INTO cdaArchive (id, situation, oldThought, distortion, newThought, date)
-          VALUES (
-            NULL,
-            '${cdaState.situation}',
-            '${cdaState.oldThought}',
-            '${cdaState.distortion}',
-            '${cdaState.newThought}',
-            DATE('now')
-          );
-      `);
-      console.log(await db.getAllAsync("SELECT * FROM cdaArchive"));
-    }
+    handleSaveCDAEntry(cdaState);
     dispatch(cdaResetState());
   };
 

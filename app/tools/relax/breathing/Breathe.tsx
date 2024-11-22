@@ -10,8 +10,7 @@ import { AppDispatch, RootState } from "@/state/store";
 import { Feather } from "@expo/vector-icons";
 import BreatheModal from "./modal";
 import { LinearGradient } from "expo-linear-gradient";
-import * as SQLite from "expo-sqlite";
-import { dbName } from "@/db/service";
+import { handleLogRelaxActivity } from "@/db/tools";
 
 const Breathe = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -47,35 +46,6 @@ const Breathe = () => {
     (breatheSettings.mode.holdTime +
       breatheSettings.mode.breatheInTime +
       breatheSettings.mode.breatheOutTime);
-
-  const logExerciseDone = async () => {
-    try {
-      const db = await SQLite.openDatabaseAsync(dbName);
-
-      // First, create the tables in separate calls
-      await db.execAsync(`
-              CREATE TABLE IF NOT EXISTS relaxActivities (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                activityName VARCHAR(100),
-                secondsRelaxed INT,
-                date NOT NULL
-              );
-            `);
-
-      // Insert data into table
-      // and save id to use it for joint emotion table
-      const insertIntoJournalResult = await db.runAsync(`
-              INSERT INTO relaxActivities (id, activityName, secondsRelaxed, date) VALUES (
-                NULL, 'Breathe', '${ellapsedTime}', DATE('now')
-              );
-            `);
-
-      console.log(await db.getAllAsync("SELECT * FROM relaxActivities"));
-      console.log("-----------------------");
-    } catch (err) {
-      throw err;
-    }
-  };
 
   // ANIMATIONS
 
@@ -257,11 +227,11 @@ const Breathe = () => {
   // MAIN TIMER EFFECT
   useEffect(() => {
     // ONLY FOR TESTING
-    logExerciseDone();
+    handleLogRelaxActivity(ellapsedTime);
     // ONLY FOR TESTING
     if (repsDone === repsToDo) {
       setCounterOn(false);
-      logExerciseDone();
+      handleLogRelaxActivity(ellapsedTime);
     }
 
     if (counterOn && !pause) {

@@ -1,5 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+export type cdaSliceTpyes = {
+  situation: string;
+  oldThought: string;
+  distortion: string;
+  newThought: string;
+  save: boolean;
+};
+
 const cdaSliceInitialState = {
   situation: "",
   oldThought: "",

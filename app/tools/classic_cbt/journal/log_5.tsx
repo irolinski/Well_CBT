@@ -1,5 +1,4 @@
 import { router } from "expo-router";
-import * as SQLite from "expo-sqlite";
 import React from "react";
 import { Pressable, ScrollView, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
@@ -18,7 +17,7 @@ import {
 import { AppDispatch, RootState } from "@/state/store";
 import Feather from "@expo/vector-icons/Feather";
 import { Slider } from "@miblanchard/react-native-slider";
-import { dbName } from "@/db/service";
+import { handleSaveJournalEntry } from "@/db/tools";
 
 const Log_5 = () => {
   //tool state
@@ -26,53 +25,7 @@ const Log_5 = () => {
   const journalState = useSelector((state: RootState) => state.journal);
 
   const handleSave = async () => {
-    if (journalState.save) {
-      try {
-        const db = await SQLite.openDatabaseAsync(dbName);
-
-        // First, create the tables in separate calls
-        await db.execAsync(`
-              CREATE TABLE IF NOT EXISTS journalEntries (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                moodValue INT NOT NULL,
-                note VARCHAR(200),
-                date NOT NULL
-              );
-            `);
-
-        await db.execAsync(`
-              CREATE TABLE IF NOT EXISTS journalEntryEmotions (
-                id INT NOT NULL,
-                name VARCHAR(100) NOT NULL,
-                strength INT NOT NULL
-              );
-            `);
-
-        // Insert data into the journal table
-        // and save id to use it for joint emotion table
-        const insertIntoJournalResult = await db.runAsync(`
-              INSERT INTO journalEntries (id, moodValue, note, date) VALUES (
-                NULL, ${journalState.moodValue}, '${journalState.note}', DATE('now')
-              );
-            `);
-
-        // Save emotions in joint table
-        if (journalState.emotions.length > 0) {
-          let query = `INSERT INTO journalEntryEmotions (id, name, strength) VALUES `;
-          journalState.emotions.forEach((e) => {
-            query += `(${insertIntoJournalResult.lastInsertRowId}, '${e.name}', ${e.strength}), `;
-          });
-          query = query.slice(0, -2) + ";"; // Remove trailing comma, add semicolon
-
-          await db.execAsync(query);
-        }
-        console.log(await db.getAllAsync("SELECT * FROM journalEntries"));
-        console.log("-----------------------");
-        console.log(await db.getAllAsync("SELECT * FROM journalEntryEmotions"));
-      } catch (err) {
-        throw err;
-      }
-    }
+    handleSaveJournalEntry(journalState);
     dispatch(journalResetState());
   };
 

@@ -85,14 +85,6 @@ const Home = () => {
                   link={`/route/${el.id}`}
                 />
               ))}
-            {/* <JournalCard toolName="cda" link={""} date="20 Sep 2024" />
-            <JournalCard toolName="breathing" link={""} date="20 Sep 2024" />
-            <JournalCard
-              toolName="journal"
-              link={""}
-              moodValue={5}
-              date="20 Sep 2024"
-            /> */}
           </View>
           <View className="mt-3 flex-row justify-end">
             <AdvanceButton

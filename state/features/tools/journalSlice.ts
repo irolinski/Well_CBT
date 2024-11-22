@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-type journalSliceTypes = {
+export type journalSliceTypes = {
   moodValue: number | null;
   emotions: Array<emotionObjType>;
   note: string;
