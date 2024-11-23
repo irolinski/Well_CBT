@@ -24,57 +24,57 @@ const data = [
   {
     title: "December 2024",
     data: [
-      { activityName: "breathing", date: "2024-12-29", id: 101, value: null },
-      { activityName: "journal", date: "2024-12-15", id: 102, value: 5 },
-      { activityName: "cda", date: "2024-12-03", id: 103, value: null },
+      { activityName: "breathing", datetime: "2024-12-29", id: 101, value: null },
+      { activityName: "journal", datetime: "2024-12-15", id: 102, value: 5 },
+      { activityName: "cda", datetime: "2024-12-03", id: 103, value: null },
     ],
   },
   {
     title: "November 2024",
     data: [
-      { activityName: "journal", date: "2024-11-25", id: 104, value: 4 },
-      { activityName: "breathing", date: "2024-11-10", id: 105, value: null },
-      { activityName: "cda", date: "2024-11-01", id: 106, value: null },
+      { activityName: "journal", datetime: "2024-11-25", id: 104, value: 4 },
+      { activityName: "breathing", datetime: "2024-11-10", id: 105, value: null },
+      { activityName: "cda", datetime: "2024-11-01", id: 106, value: null },
     ],
   },
   {
     title: "October 2024",
     data: [
-      { activityName: "cda", date: "2024-10-20", id: 41, value: null },
-      { activityName: "journal", date: "2024-10-10", id: 42, value: 5 },
-      { activityName: "breathing", date: "2024-10-05", id: 43, value: 1 },
+      { activityName: "cda", datetime: "2024-10-20", id: 41, value: null },
+      { activityName: "journal", datetime: "2024-10-10", id: 42, value: 5 },
+      { activityName: "breathing", datetime: "2024-10-05", id: 43, value: 1 },
     ],
   },
   {
     title: "September 2024",
     data: [
-      { activityName: "journal", date: "2024-09-21", id: 1, value: 4 },
-      { activityName: "cda", date: "2024-09-15", id: 2, value: null },
-      { activityName: "breathing", date: "2024-09-07", id: 3, value: 2 },
+      { activityName: "journal", datetime: "2024-09-21", id: 1, value: 4 },
+      { activityName: "cda", datetime: "2024-09-15", id: 2, value: null },
+      { activityName: "breathing", datetime: "2024-09-07", id: 3, value: 2 },
     ],
   },
   {
     title: "August 2024",
     data: [
-      { activityName: "breathing", date: "2024-08-30", id: 107, value: 3 },
-      { activityName: "cda", date: "2024-08-22", id: 108, value: null },
-      { activityName: "journal", date: "2024-08-12", id: 109, value: 7 },
+      { activityName: "breathing", datetime: "2024-08-30", id: 107, value: 3 },
+      { activityName: "cda", datetime: "2024-08-22", id: 108, value: null },
+      { activityName: "journal", datetime: "2024-08-12", id: 109, value: 7 },
     ],
   },
   {
     title: "May 2024",
     data: [
-      { activityName: "journal", date: "2024-05-15", id: 12, value: 3 },
-      { activityName: "breathing", date: "2024-05-10", id: 13, value: 4 },
-      { activityName: "cda", date: "2024-05-05", id: 14, value: null },
+      { activityName: "journal", datetime: "2024-05-15", id: 12, value: 3 },
+      { activityName: "breathing", datetime: "2024-05-10", id: 13, value: 4 },
+      { activityName: "cda", datetime: "2024-05-05", id: 14, value: null },
     ],
   },
   {
     title: "April 2024",
     data: [
-      { activityName: "breathing", date: "2024-04-30", id: 21, value: 1 },
-      { activityName: "journal", date: "2024-04-20", id: 22, value: 2 },
-      { activityName: "cda", date: "2024-04-10", id: 23, value: null },
+      { activityName: "breathing", datetime: "2024-04-30", id: 21, value: 1 },
+      { activityName: "journal", datetime: "2024-04-20", id: 22, value: 2 },
+      { activityName: "cda", datetime: "2024-04-10", id: 23, value: null },
     ],
   },
 ];
@@ -83,7 +83,7 @@ const data = [
 //   try {
     // const db = await SQLite.openDatabaseAsync(dbName);
 //     const res = await db.getAllAsync(
-//       "SELECT * FROM allActivities ORDER BY date DESC LIMIT 3",
+//       "SELECT * FROM allActivities ORDER BY datetime DESC LIMIT 3",
 //     );
 //     console.log(res);
 //     return res;
@@ -213,7 +213,7 @@ const ActivityLog = () => {
               renderItem={({ item, index }: any) => (
                 <JournalCard
                   toolName={item.activityName}
-                  date={item.date}
+                  datetime={item.datetime}
                   link={item.id}
                   value={item.value}
                   key={index}

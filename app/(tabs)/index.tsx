@@ -19,7 +19,7 @@ const fetchRecentEntries = async () => {
   try {
     const db = await SQLite.openDatabaseAsync(dbName);
     const res = await db.getAllAsync(
-      "SELECT * FROM allActivities ORDER BY date DESC LIMIT 3",
+      "SELECT * FROM allActivities ORDER BY datetime DESC LIMIT 3",
     );
     console.log(res);
     return res;
@@ -79,7 +79,7 @@ const Home = () => {
               recentEntriesArr.map((el: any, index: number) => (
                 <JournalCard
                   toolName={el.activityName}
-                  date={el.date}
+                  datetime={el.datetime}
                   value={el.value ?? null}
                   key={index}
                   link={`/route/${el.id}`}

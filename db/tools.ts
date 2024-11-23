@@ -16,19 +16,19 @@ export const handleSaveCDAEntry = async (cdaState: cdaSliceTpyes) => {
             oldThought VARCHAR(100) NOT NULL,
             distortion VARCHAR(35) NOT NULL,
             newThought VARCHAR(100) NOT NULL,
-            date NOT NULL
+            datetime NOT NULL
           );
         `);
       // Then, insert data into the table
       await db.execAsync(`
-          INSERT INTO cdaArchive (id, situation, oldThought, distortion, newThought, date)
+          INSERT INTO cdaArchive (id, situation, oldThought, distortion, newThought, datetime)
             VALUES (
               NULL,
               '${cdaState.situation}',
               '${cdaState.oldThought}',
               '${cdaState.distortion}',
               '${cdaState.newThought}',
-              DATE('now')
+              DATETIME('now')
             );
         `);
       console.log(await db.getAllAsync("SELECT * FROM cdaArchive"));
@@ -51,7 +51,7 @@ export const handleSaveJournalEntry = async (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             moodValue INT NOT NULL,
             note VARCHAR(200),
-            date NOT NULL
+            datetime NOT NULL
             );
         `);
 
@@ -66,8 +66,8 @@ export const handleSaveJournalEntry = async (
       // Insert data into the journal table
       // and save id to use it for joint emotion table
       const insertIntoJournalResult = await db.runAsync(`
-            INSERT INTO journalEntries (id, moodValue, note, date) VALUES (
-            NULL, ${journalState.moodValue}, '${journalState.note}', DATE('now')
+            INSERT INTO journalEntries (id, moodValue, note, datetime) VALUES (
+            NULL, ${journalState.moodValue}, '${journalState.note}', DATETIME('now')
             );
         `);
 
@@ -100,15 +100,15 @@ export const handleLogRelaxActivity = async (relaxTime: number) => {
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     activityName VARCHAR(100),
                     secondsRelaxed INT,
-                    date NOT NULL
+                    datetime NOT NULL
                   );
                 `);
 
     // Insert data into table
     // and save id to use it for joint emotion table
     const insertIntoJournalResult = await db.runAsync(`
-                  INSERT INTO relaxActivities (id, activityName, secondsRelaxed, date) VALUES (
-                    NULL, 'breathing', '${relaxTime}', DATE('now')
+                  INSERT INTO relaxActivities (id, activityName, secondsRelaxed, datetime) VALUES (
+                    NULL, 'breathing', '${relaxTime}', DATETIME('now')
                   );
                 `);
 

@@ -10,17 +10,17 @@ export type JournalCardProps =
   | {
       toolName: "journal";
       link: string;
-      date: string;
+      datetime: string;
       value: number; // `moodValue` is required when `toolName` is "journal"
     }
   | {
       toolName: Exclude<keyof typeof ToolList, "journal">;
       link: string;
-      date: string;
+      datetime: string;
       value?: never; // `moodValue` should not be provided for non-journal tools
     };
 
-const JournalCard = ({ toolName, link, date, value }: JournalCardProps) => {
+const JournalCard = ({ toolName, link, datetime, value }: JournalCardProps) => {
   return (
     <View
       className="mb-4 rounded-xl"
@@ -54,7 +54,7 @@ const JournalCard = ({ toolName, link, date, value }: JournalCardProps) => {
                 {ToolList[toolName].category}
               </Text>
               <Text className="text-right text-sm" style={{ color: "#B8B8B8" }}>
-                {date}
+                {datetime}
               </Text>
             </View>
             {/* Lower Row */}
