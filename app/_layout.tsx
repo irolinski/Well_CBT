@@ -2,12 +2,12 @@ import { Asset } from "expo-asset";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
-import * as SQLite from "expo-sqlite";
 import { useEffect, useState } from "react";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Provider as StateProvider } from "react-redux";
 import { store } from "@/state/store";
 import { createActivityViewTable, dbName, setUpDB } from "@/db/service";
+import { seedDB } from "@/db/seed";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -53,6 +53,7 @@ export default function RootLayout() {
     try {
       loadResourcesAndDataAsync();
       setUpDB();
+      // seedDB();
       createActivityViewTable();
     } catch (err) {
       console.error(err);

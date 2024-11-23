@@ -9,122 +9,123 @@ import { Dimensions, Pressable, SectionList, View } from "react-native";
 
 import * as SQLite from "expo-sqlite";
 import { dbName } from "@/db/service";
+import { ToolNames } from "@/constants/models/tools";
 
 const windowHeight = Dimensions.get("window").height;
 const windowWidth = Dimensions.get("window").width;
 
-// Przemyśleć jak mam organizować to menu
-// paginacja?
+type EntryViewTableRow = {
+  activityName: ToolNames;
+  datetime: string;
+  id: number;
+  value?: number;
+};
 
-// fetch (data) => setFetchedData(data)
-//  data = fetchedData or fetchedData.filter
-//  render first 15, load more on reaching footer
+type EntryListSection = {
+  title: string;
+  data: EntryViewTableRow[];
+};
 
-const data = [
-  {
-    title: "December 2024",
-    data: [
-      { activityName: "breathing", datetime: "2024-12-29", id: 101, value: null },
-      { activityName: "journal", datetime: "2024-12-15", id: 102, value: 5 },
-      { activityName: "cda", datetime: "2024-12-03", id: 103, value: null },
-    ],
-  },
-  {
-    title: "November 2024",
-    data: [
-      { activityName: "journal", datetime: "2024-11-25", id: 104, value: 4 },
-      { activityName: "breathing", datetime: "2024-11-10", id: 105, value: null },
-      { activityName: "cda", datetime: "2024-11-01", id: 106, value: null },
-    ],
-  },
-  {
-    title: "October 2024",
-    data: [
-      { activityName: "cda", datetime: "2024-10-20", id: 41, value: null },
-      { activityName: "journal", datetime: "2024-10-10", id: 42, value: 5 },
-      { activityName: "breathing", datetime: "2024-10-05", id: 43, value: 1 },
-    ],
-  },
-  {
-    title: "September 2024",
-    data: [
-      { activityName: "journal", datetime: "2024-09-21", id: 1, value: 4 },
-      { activityName: "cda", datetime: "2024-09-15", id: 2, value: null },
-      { activityName: "breathing", datetime: "2024-09-07", id: 3, value: 2 },
-    ],
-  },
-  {
-    title: "August 2024",
-    data: [
-      { activityName: "breathing", datetime: "2024-08-30", id: 107, value: 3 },
-      { activityName: "cda", datetime: "2024-08-22", id: 108, value: null },
-      { activityName: "journal", datetime: "2024-08-12", id: 109, value: 7 },
-    ],
-  },
-  {
-    title: "May 2024",
-    data: [
-      { activityName: "journal", datetime: "2024-05-15", id: 12, value: 3 },
-      { activityName: "breathing", datetime: "2024-05-10", id: 13, value: 4 },
-      { activityName: "cda", datetime: "2024-05-05", id: 14, value: null },
-    ],
-  },
-  {
-    title: "April 2024",
-    data: [
-      { activityName: "breathing", datetime: "2024-04-30", id: 21, value: 1 },
-      { activityName: "journal", datetime: "2024-04-20", id: 22, value: 2 },
-      { activityName: "cda", datetime: "2024-04-10", id: 23, value: null },
-    ],
-  },
-];
+// Helper function to format month-year as "MonthName YYYY"
+const getMonthYearTitle = (dateString: string) => {
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  const date = new Date(dateString);
+  return `${months[date.getMonth()]} ${date.getFullYear()}`;
+};
 
-// const fetchData = async () => {
-//   try {
-    // const db = await SQLite.openDatabaseAsync(dbName);
-//     const res = await db.getAllAsync(
-//       "SELECT * FROM allActivities ORDER BY datetime DESC LIMIT 3",
-//     );
-//     console.log(res);
-//     return res;
-//   } catch (err) {
-//     console.error(err);
-//   }
-// };
+function transformData(fetchedData: string[]) {
+  // Group data by month-year
+  const groupedData = fetchedData.reduce((acc: any, item: any) => {
+    const title = getMonthYearTitle(item.datetime);
+    const dateOnly = item.datetime.split(" ")[0]; // Extract just the date portion
+
+    const formattedItem = {
+      activityName: item.activityName,
+      datetime: dateOnly,
+      id: item.id,
+      value: item.value,
+    };
+
+    if (!acc[title]) {
+      acc[title] = [];
+    }
+    acc[title].push(formattedItem);
+
+    return acc;
+  }, {});
+
+  // Convert grouped data into an array of objects
+  const result = Object.entries(groupedData).map(([title, data]) => ({
+    title,
+    data,
+  }));
+
+  return result;
+}
 
 const ActivityLog = () => {
-  // const [entriesArr, setEntriesArr] = useState<any>([]);
-
-  //   useEffect(() => {
-  //     fetchData().then((res) => {
-  //       setEntriesData(res);
-  //     });
-  //   }, []);
-
+  const [entryData, setEntryData] = useState<EntryListSection[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [displayedData, setDisplayedData] = useState<any>([]);
 
-  const displayMoreData = () => {
-    // console.log(currentIndex + "/" + data.length);
-    if (currentIndex < data.length) {
-      setDisplayedData((prevState: any) => [...prevState, data[currentIndex]]);
+  const fetchEntryData = async () => {
+    try {
+      const db = await SQLite.openDatabaseAsync(dbName);
+      const res = await db.getAllAsync(
+        "SELECT * FROM allActivities ORDER BY datetime DESC LIMIT 500",
+      );
+      // console.log(res);
+      return res;
+      100;
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const displayMoreData = (dataArr: any) => {
+    if (currentIndex < dataArr.length) {
+      setDisplayedData((prevState: any) => [
+        ...prevState,
+        dataArr[currentIndex],
+      ]);
       setCurrentIndex((prevState: number) => prevState + 1);
     }
-
-    console.log(displayedData);
+    displayedData.map((el: number) => {
+      console.log(el);
+    });
   };
 
   useEffect(() => {
-    if (data[currentIndex].data.length < 10) {
-      setDisplayedData((prevState: any) => [
-        ...prevState,
-        data[currentIndex],
-        data[currentIndex + 1],
-      ]);
-      setCurrentIndex((prevState: number) => prevState + 2);
-    } else {
-      displayMoreData();
-    }
+    fetchEntryData().then((res) => {
+      const fetchedData: EntryListSection[] = transformData(res as string[]);
+      if (fetchedData) {
+        if (fetchedData[currentIndex].data.length < 10) {
+          setDisplayedData((prevState: EntryViewTableRow[]) => [
+            ...prevState,
+            fetchedData[currentIndex],
+            fetchedData[currentIndex + 1],
+          ]);
+          setCurrentIndex((prevState: number) => prevState + 2);
+        } else {
+          displayMoreData(fetchedData);
+        }
+      }
+      setEntryData(fetchedData);
+      // console.log(displayedData);
+    });
   }, []);
 
   return (
@@ -157,9 +158,6 @@ const ActivityLog = () => {
         </View>
         {/* / NAV */}
         <View className="mx-3 my-12 pt-12">
-          {/* <View className="pb-10 pt-12">
-            <ToolHeader>Entry Log</ToolHeader>
-          </View> */}
           <View className="w-full items-center">
             {/* Button row */}
             <View className="mx-12 mb-8 w-full flex-row justify-between">
@@ -201,7 +199,8 @@ const ActivityLog = () => {
           >
             <SectionList
               sections={displayedData}
-              onEndReached={displayMoreData}
+              keyExtractor={(item: any, index: number) => item + index}
+              onEndReached={() => displayMoreData(entryData)}
               renderSectionHeader={({ section: { title } }) => (
                 <View
                   className="rounded-xl pb-3"
@@ -210,13 +209,12 @@ const ActivityLog = () => {
                   <ToolHeader style={{ marginBottom: 16 }}>{title}</ToolHeader>
                 </View>
               )}
-              renderItem={({ item, index }: any) => (
+              renderItem={({ item }: any) => (
                 <JournalCard
                   toolName={item.activityName}
                   datetime={item.datetime}
                   link={item.id}
                   value={item.value}
-                  key={index}
                 />
               )}
               ListFooterComponent={

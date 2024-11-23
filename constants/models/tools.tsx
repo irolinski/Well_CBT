@@ -7,7 +7,10 @@ type ToolType = {
   icon?: ReactNode;
 };
 
-export const ToolList: Record<"cda" | "journal" | "breathing", ToolType> = {
+export const toolNameList = ["cda", "journal", "breathing"];
+export type ToolNames = (typeof toolNameList)[number];
+
+export const ToolList: Record<ToolNames, ToolType> = {
   cda: {
     name: "Thoughts Challange",
     category: "Exercise",
