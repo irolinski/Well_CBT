@@ -42,8 +42,6 @@ const transformData = (fetchedData: EntryViewTableRow[]) => {
     resultsArr.push(obj);
   });
 
-  console.log(allDataByMonth);
-
   return resultsArr;
 };
 
@@ -56,7 +54,7 @@ const ActivityLog = () => {
     try {
       const db = await SQLite.openDatabaseAsync(dbName);
       const res = await db.getAllAsync(
-        "SELECT * FROM allActivities ORDER BY datetime DESC LIMIT 500",
+        "SELECT * FROM allActivities ORDER BY datetime DESC LIMIT 45",
       );
       return res;
       100;
@@ -96,42 +94,37 @@ const ActivityLog = () => {
     });
   }, []);
 
+
   return (
     <React.Fragment>
       <View className="h-full pb-8">
         {/* NAV */}
-        <View className="z-10">
-          <View
-            className={`z-10 box-border w-full border-b pb-7 ${windowHeight > 750 ? "top-20" : "top-12"}`}
-            style={{
-              borderColor: "#D9D9D9",
-            }}
-          >
-            <View className="z-10 w-full flex-row items-center justify-center">
-              <View className="absolute left-6">
-                <BackButton />
-              </View>
-              <View></View>
-              <View className="absolute right-6">
-                {/* add the bell icon w/out plus if notifications are on */}
-                {/* <MaterialCommunityIcons name="bell-outline" size={24} color="black" /> */}
-                <MaterialCommunityIcons
-                  name="bell-plus-outline"
-                  size={24}
-                  color="black"
-                />
-              </View>
+        <View
+          className={`z-10 box-border w-full border-b ${windowHeight > 750 ? "pb-4 pt-16" : "top-12"}`}
+          style={{
+            borderColor: "#D9D9D9",
+            backgroundColor: "#8DBED8",
+          }}
+        >
+          <View className="z-10 w-full flex-row items-center justify-between">
+            <View className="left-6">
+              <BackButton color="#FBFBFB" />
+            </View>
+            <View className="mx-6 flex-row justify-end">
+              <ToolHeader noIndent style={{ color: "#FBFBFB" }}>
+                Entry Log
+              </ToolHeader>
             </View>
           </View>
         </View>
         {/* / NAV */}
-        <View className="mx-3 my-12 pt-12">
-          <View className="w-full items-center">
+        <View className="mx-5 mt-8">
+          <View className="mb-6 w-full items-center">
             {/* Button row */}
-            <View className="mx-12 mb-8 w-full flex-row justify-between">
+            <View className="mx-12 mb-6 h-12 w-full flex-row justify-between">
               <Pressable
                 className="h-full flex-row items-center justify-center rounded-lg border"
-                style={{ borderColor: "#73848D" }}
+                style={{ borderColor: "#B8B8B8" }}
                 onPress={() => {
                   console.log("pressed");
                 }}
@@ -143,24 +136,40 @@ const ActivityLog = () => {
                     </Text>
                   </View>
                   <View className="absolute right-0">
-                    <AntDesign name="filter" size={24} color="#B8B8B8" />
+                    <AntDesign name="calendar" size={24} color="#73848D" />
                   </View>
                 </View>
               </Pressable>
-              <Pressable
-                className="flex-row items-center rounded-lg border"
-                style={{ borderColor: "#B8B8B8" }}
-                onPress={() => {
-                  console.log("pressed");
-                }}
-              >
-                <View className="mx-4 my-2">
-                  <AntDesign name="calendar" size={24} color="#73848D" />
-                </View>
-              </Pressable>
+              <View className="justify-between">
+                <Pressable
+                  className="flex-row justify-end rounded-lg"
+                  style={{ borderColor: "#B8B8B8" }}
+                  onPress={() => {
+                    console.log("pressed");
+                  }}
+                >
+                  {/* add the bell icon w/out plus if notifications are on */}
+                  {/* <MaterialCommunityIcons name="bell-outline" size={24} color="black" /> */}
+                  <View
+                    className="h-8 w-16 -translate-y-1 items-center justify-center rounded-xl border"
+                    style={{ borderColor: "#B8B8B8" }}
+                  >
+                    <MaterialCommunityIcons
+                      name="bell"
+                      size={22}
+                      color="#DEC773"
+                    />
+                  </View>
+                </Pressable>
+                <Text className="my-1 text-sm" style={{ fontSize: 13 }}>
+                  Showing {displayedData.reduce((sum, item) => sum + item.data.length, 0)} of{" "}
+                  {entryData.reduce((sum, item) => sum + item.data.length, 0)}
+                </Text>
+              </View>
             </View>
+            <DividerLine width={windowWidth * 0.9} />
           </View>
-          {/* /Button row */}
+          {/* List */}
           <View
             className="relative px-1"
             style={{ height: windowHeight * 0.75 }}
@@ -176,7 +185,9 @@ const ActivityLog = () => {
                   className="rounded-xl pb-3"
                   style={{ backgroundColor: "#F2F2F2" }}
                 >
-                  <ToolHeader style={{ marginBottom: 16 }}>{title}</ToolHeader>
+                  <ToolHeader style={{ marginBottom: 16, fontSize: 18 }}>
+                    {title}
+                  </ToolHeader>
                 </View>
               )}
               renderItem={({ item }: { item: EntryViewTableRow }) => (

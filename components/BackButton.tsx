@@ -4,8 +4,10 @@ import { Pressable } from "react-native";
 
 const BackButton = ({
   handleBackButtonPress,
+  color,
 }: {
   handleBackButtonPress?: () => void;
+  color?: string;
 }) => {
   return (
     <Pressable
@@ -15,7 +17,7 @@ const BackButton = ({
         router.back();
       }}
     >
-      <Entypo name="chevron-left" size={24} color="black" />
+      <Entypo name="chevron-left" size={24} color={color ?? "black"} />
     </Pressable>
   );
 };
