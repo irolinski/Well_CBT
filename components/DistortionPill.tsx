@@ -1,15 +1,6 @@
 import { useEffect, useState } from "react";
 import { Pressable, Text, View } from "react-native";
-import { ColorValue } from "react-native";
-
-type DistortionPillTypes = {
-  title: string;
-  checked: boolean;
-  onPress?: () => void;
-  onLongPress?: () => void;
-  highlighted?: boolean;
-  customColor?: ColorValue | undefined;
-};
+import { DistortionPillTypes } from "@/constants/models/cda_distortionList";
 
 const DistortionPill = ({
   title,

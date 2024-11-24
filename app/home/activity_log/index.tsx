@@ -1,85 +1,56 @@
+import * as SQLite from "expo-sqlite";
+import React, { useEffect, useState } from "react";
+import { Dimensions, Pressable, SectionList, View } from "react-native";
 import BackButton from "@/components/BackButton";
 import DividerLine from "@/components/DividerLine";
 import Text from "@/components/global/Text";
 import JournalCard from "@/components/JournalCard";
 import ToolHeader from "@/components/ToolHeader";
-import { AntDesign, Feather, MaterialCommunityIcons } from "@expo/vector-icons";
-import React, { useEffect, useState } from "react";
-import { Dimensions, Pressable, SectionList, View } from "react-native";
-
-import * as SQLite from "expo-sqlite";
+import {
+  allDataByMonthType,
+  EntryListSection,
+  EntryViewTableRow,
+  getMonthYearTitle,
+} from "@/constants/models/activity_log";
 import { dbName } from "@/db/service";
-import { ToolNames } from "@/constants/models/tools";
+import { AntDesign, Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 
 const windowHeight = Dimensions.get("window").height;
 const windowWidth = Dimensions.get("window").width;
 
-type EntryViewTableRow = {
-  activityName: ToolNames;
-  datetime: string;
-  id: number;
-  value?: number;
-};
+const transformData = (fetchedData: EntryViewTableRow[]) => {
+  const allDataByMonth: allDataByMonthType =
+    [] as unknown as allDataByMonthType;
 
-type EntryListSection = {
-  title: string;
-  data: EntryViewTableRow[];
-};
+  fetchedData.map((el) => {
+    const monthYear = getMonthYearTitle(el.datetime);
 
-// Helper function to format month-year as "MonthName YYYY"
-const getMonthYearTitle = (dateString: string) => {
-  const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
-  const date = new Date(dateString);
-  return `${months[date.getMonth()]} ${date.getFullYear()}`;
-};
-
-function transformData(fetchedData: string[]) {
-  // Group data by month-year
-  const groupedData = fetchedData.reduce((acc: any, item: any) => {
-    const title = getMonthYearTitle(item.datetime);
-    const dateOnly = item.datetime.split(" ")[0]; // Extract just the date portion
-
-    const formattedItem = {
-      activityName: item.activityName,
-      datetime: dateOnly,
-      id: item.id,
-      value: item.value,
-    };
-
-    if (!acc[title]) {
-      acc[title] = [];
+    if (!Object.keys(allDataByMonth).includes(monthYear)) {
+      allDataByMonth[monthYear] = [el];
+    } else {
+      let updatedArr = [...allDataByMonth[monthYear], el];
+      allDataByMonth[monthYear] = updatedArr;
     }
-    acc[title].push(formattedItem);
+  });
 
-    return acc;
-  }, {});
+  const resultsArr: EntryListSection[] = [];
+  Object.entries(allDataByMonth).map((el) => {
+    const obj: EntryListSection = {
+      title: el[0] as string,
+      data: el[1] as EntryViewTableRow[],
+    };
+    resultsArr.push(obj);
+  });
 
-  // Convert grouped data into an array of objects
-  const result = Object.entries(groupedData).map(([title, data]) => ({
-    title,
-    data,
-  }));
+  console.log(allDataByMonth);
 
-  return result;
-}
+  return resultsArr;
+};
 
 const ActivityLog = () => {
   const [entryData, setEntryData] = useState<EntryListSection[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [displayedData, setDisplayedData] = useState<any>([]);
+  const [displayedData, setDisplayedData] = useState<EntryListSection[]>([]);
 
   const fetchEntryData = async () => {
     try {
@@ -87,7 +58,6 @@ const ActivityLog = () => {
       const res = await db.getAllAsync(
         "SELECT * FROM allActivities ORDER BY datetime DESC LIMIT 500",
       );
-      // console.log(res);
       return res;
       100;
     } catch (err) {
@@ -95,25 +65,24 @@ const ActivityLog = () => {
     }
   };
 
-  const displayMoreData = (dataArr: any) => {
+  const displayMoreData = (dataArr: EntryListSection[]) => {
     if (currentIndex < dataArr.length) {
-      setDisplayedData((prevState: any) => [
+      setDisplayedData((prevState: EntryListSection[]) => [
         ...prevState,
         dataArr[currentIndex],
       ]);
       setCurrentIndex((prevState: number) => prevState + 1);
     }
-    displayedData.map((el: number) => {
-      console.log(el);
-    });
   };
 
   useEffect(() => {
     fetchEntryData().then((res) => {
-      const fetchedData: EntryListSection[] = transformData(res as string[]);
+      const fetchedData: EntryListSection[] = transformData(
+        res as EntryViewTableRow[],
+      );
       if (fetchedData) {
         if (fetchedData[currentIndex].data.length < 10) {
-          setDisplayedData((prevState: EntryViewTableRow[]) => [
+          setDisplayedData((prevState: EntryListSection[]) => [
             ...prevState,
             fetchedData[currentIndex],
             fetchedData[currentIndex + 1],
@@ -124,7 +93,6 @@ const ActivityLog = () => {
         }
       }
       setEntryData(fetchedData);
-      // console.log(displayedData);
     });
   }, []);
 
@@ -199,7 +167,9 @@ const ActivityLog = () => {
           >
             <SectionList
               sections={displayedData}
-              keyExtractor={(item: any, index: number) => item + index}
+              keyExtractor={(item: EntryViewTableRow, index: number) =>
+                `${item.id}-${index}`
+              }
               onEndReached={() => displayMoreData(entryData)}
               renderSectionHeader={({ section: { title } }) => (
                 <View
@@ -209,12 +179,12 @@ const ActivityLog = () => {
                   <ToolHeader style={{ marginBottom: 16 }}>{title}</ToolHeader>
                 </View>
               )}
-              renderItem={({ item }: any) => (
+              renderItem={({ item }: { item: EntryViewTableRow }) => (
                 <JournalCard
                   toolName={item.activityName}
                   datetime={item.datetime}
-                  link={item.id}
-                  value={item.value}
+                  link={`/${item.id}`}
+                  value={item.value ? item.value : (item.value as undefined)}
                 />
               )}
               ListFooterComponent={
@@ -243,7 +213,6 @@ const ActivityLog = () => {
       >
         <Feather name="plus" size={36} color="white" />
       </View>
-      {/* </View> */}
     </React.Fragment>
   );
 };

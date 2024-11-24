@@ -1,4 +1,22 @@
-const cognitiveDistortions = [
+import { ColorValue } from "react-native";
+
+export type DistortionListProps = {
+  showDistortionTooltip: number | null;
+  handleSetShowDistortionTooltip: (index: number | null) => void;
+  tooltipY: number;
+  handleShowTooltip: (y: number, index: number) => void;
+};
+
+export type DistortionPillTypes = {
+  title: string;
+  checked: boolean;
+  onPress?: () => void;
+  onLongPress?: () => void;
+  highlighted?: boolean;
+  customColor?: ColorValue | undefined;
+};
+
+export const cognitiveDistortions = [
   {
     name: "All-or-nothing thinking",
     description:
@@ -54,5 +72,3 @@ const cognitiveDistortions = [
       "Holding yourself accountable for situations beyond your control or deflecting responsibility onto others.",
   },
 ];
-
-export default cognitiveDistortions;

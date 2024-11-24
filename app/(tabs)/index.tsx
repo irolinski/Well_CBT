@@ -12,6 +12,7 @@ import { router } from "expo-router";
 
 import * as SQLite from "expo-sqlite";
 import { dbName } from "@/db/service";
+import { EntryViewTableRow } from "@/constants/models/activity_log";
 
 const windowWidth = Dimensions.get("window").width;
 
@@ -29,11 +30,13 @@ const fetchRecentEntries = async () => {
 };
 
 const Home = () => {
-  const [recentEntriesArr, setRecentEntriesArr] = useState<any>([]);
+  const [recentEntriesArr, setRecentEntriesArr] = useState<EntryViewTableRow[]>(
+    [],
+  );
 
   useEffect(() => {
     fetchRecentEntries().then((res) => {
-      setRecentEntriesArr(res);
+      setRecentEntriesArr(res as EntryViewTableRow[]);
     });
   }, []);
 
@@ -76,11 +79,11 @@ const Home = () => {
           </View>
           <View className="px-1" style={{ height: 370 }}>
             {recentEntriesArr[0] &&
-              recentEntriesArr.map((el: any, index: number) => (
+              recentEntriesArr.map((el: EntryViewTableRow, index: number) => (
                 <JournalCard
                   toolName={el.activityName}
                   datetime={el.datetime}
-                  value={el.value ?? null}
+                  value={el.value && el.value}
                   key={index}
                   link={`/route/${el.id}`}
                 />

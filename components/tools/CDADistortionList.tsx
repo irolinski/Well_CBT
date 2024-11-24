@@ -1,18 +1,14 @@
 import { View } from "react-native";
 import Text from "../global/Text";
-import cognitiveDistortions from "@/constants/models/cda_distortionList";
+import {
+  cognitiveDistortions,
+  DistortionListProps,
+} from "@/constants/models/cda_distortionList";
 import Tooltip from "react-native-walkthrough-tooltip";
 import DistortionPill from "../DistortionPill";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/state/store";
 import { setDistortion } from "@/state/features/tools/cdaSlice";
-
-type DistortionListProps = {
-  showDistortionTooltip: number | null;
-  handleSetShowDistortionTooltip: (index: number | null) => void;
-  tooltipY: number;
-  handleShowTooltip: (y: number, index: number) => void;
-};
 
 const CDADistortionList = ({
   showDistortionTooltip,

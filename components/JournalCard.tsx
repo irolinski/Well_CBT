@@ -1,24 +1,11 @@
 import { Href, router } from "expo-router";
 import React from "react";
 import { Pressable, View } from "react-native";
-import { ToolCategories, ToolList } from "@/constants/models/tools";
+import { ToolCategories, ToolList } from "@/constants/models/activity_log";
+import { JournalCardProps } from "@/constants/models/journal";
 import { Entypo } from "@expo/vector-icons";
 import { Slider } from "@miblanchard/react-native-slider";
 import Text from "./global/Text";
-
-export type JournalCardProps =
-  | {
-      toolName: "journal";
-      link: string;
-      datetime: string;
-      value: number; // `moodValue` is required when `toolName` is "journal"
-    }
-  | {
-      toolName: Exclude<keyof typeof ToolList, "journal">;
-      link: string;
-      datetime: string;
-      value?: never; // `moodValue` should not be provided for non-journal tools
-    };
 
 const JournalCard = ({ toolName, link, datetime, value }: JournalCardProps) => {
   return (
@@ -64,28 +51,30 @@ const JournalCard = ({ toolName, link, datetime, value }: JournalCardProps) => {
                   <View className="flex-row">
                     <View className="w-full pl-4" style={{ width: "95%" }}>
                       <View className="pt-2">
-                        <Slider
-                          minimumValue={0} // 0.1 causes a visual glitch
-                          maximumValue={0.6}
-                          value={(value - 1) / 10}
-                          disabled
-                          renderThumbComponent={() => <View></View>}
-                          minimumTrackTintColor={
-                            value < 4
-                              ? "#D46A6A"
-                              : value < 6
-                                ? "#F38E4E"
-                                : "#AED581"
-                          }
-                          maximumTrackTintColor="#F5F5F5"
-                          trackStyle={{
-                            paddingTop: 15,
-                            borderRadius: 50,
-                            borderColor: "#D9D9D9",
-                            borderStyle: "solid",
-                            borderWidth: 1,
-                          }}
-                        />
+                        {value && (
+                          <Slider
+                            minimumValue={0} // 0.1 causes a visual glitch
+                            maximumValue={0.6}
+                            value={(value - 1) / 10}
+                            disabled
+                            renderThumbComponent={() => <View></View>}
+                            minimumTrackTintColor={
+                              value < 4
+                                ? "#D46A6A"
+                                : value < 6
+                                  ? "#F38E4E"
+                                  : "#AED581"
+                            }
+                            maximumTrackTintColor="#F5F5F5"
+                            trackStyle={{
+                              paddingTop: 15,
+                              borderRadius: 50,
+                              borderColor: "#D9D9D9",
+                              borderStyle: "solid",
+                              borderWidth: 1,
+                            }}
+                          />
+                        )}
                       </View>
                     </View>
                   </View>

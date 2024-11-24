@@ -58,3 +58,39 @@ export const ToolCategories: Record<
     ),
   },
 };
+
+export type EntryViewTableRow = {
+  activityName: ToolNames;
+  datetime: string;
+  id: number;
+  value?: number | undefined;
+};
+
+export type EntryListSection = {
+  title: string;
+  data: EntryViewTableRow[];
+};
+
+export type allDataByMonthType = {
+  [title: string]: EntryViewTableRow[];
+};
+
+// Helper function to format month-year as "MonthName YYYY"
+export const getMonthYearTitle = (dateString: string) => {
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  const date = new Date(dateString);
+  return `${months[date.getMonth()]} ${date.getFullYear()}`;
+};
