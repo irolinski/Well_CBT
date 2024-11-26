@@ -14,6 +14,10 @@ import {
 } from "@/constants/models/activity_log";
 import { dbName } from "@/db/service";
 import { AntDesign, Feather, MaterialCommunityIcons } from "@expo/vector-icons";
+import { AppDispatch, RootState } from "@/state/store";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleModal } from "@/state/features/menus/activityLogSlice";
+import ActivityLogModal from "./modal";
 
 const windowHeight = Dimensions.get("window").height;
 const windowWidth = Dimensions.get("window").width;
@@ -46,6 +50,9 @@ const transformData = (fetchedData: EntryViewTableRow[]) => {
 };
 
 const ActivityLog = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  const activityLogState = useSelector((state: RootState) => state.activityLog);
+
   const [entryData, setEntryData] = useState<EntryListSection[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [displayedData, setDisplayedData] = useState<EntryListSection[]>([]);
@@ -94,7 +101,6 @@ const ActivityLog = () => {
     });
   }, []);
 
-
   return (
     <React.Fragment>
       <View className="h-full pb-8">
@@ -127,6 +133,7 @@ const ActivityLog = () => {
                 style={{ borderColor: "#B8B8B8" }}
                 onPress={() => {
                   console.log("pressed");
+                  dispatch(toggleModal(true));
                 }}
               >
                 <View className="mr-4 w-36 flex-row items-center justify-center">
@@ -162,7 +169,12 @@ const ActivityLog = () => {
                   </View>
                 </Pressable>
                 <Text className="my-1 text-sm" style={{ fontSize: 13 }}>
-                  Showing {displayedData.reduce((sum, item) => sum + item.data.length, 0)} of{" "}
+                  Showing{" "}
+                  {displayedData.reduce(
+                    (sum, item) => sum + item.data.length,
+                    0,
+                  )}{" "}
+                  of{" "}
                   {entryData.reduce((sum, item) => sum + item.data.length, 0)}
                 </Text>
               </View>
@@ -224,6 +236,7 @@ const ActivityLog = () => {
       >
         <Feather name="plus" size={36} color="white" />
       </View>
+      <ActivityLogModal />
     </React.Fragment>
   );
 };
