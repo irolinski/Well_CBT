@@ -1,5 +1,5 @@
 import * as SQLite from "expo-sqlite";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Dimensions, Pressable, SectionList, View } from "react-native";
 import BackButton from "@/components/BackButton";
 import DividerLine from "@/components/DividerLine";
@@ -16,11 +16,30 @@ import { dbName } from "@/db/service";
 import { AntDesign, Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 import { AppDispatch, RootState } from "@/state/store";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleModal } from "@/state/features/menus/activityLogSlice";
+import {
+  activityLogResetState,
+  setCurrentIndex,
+  setDisplayedData,
+  setEntryData,
+  setRawData,
+  toggleModal,
+} from "@/state/features/menus/activityLogSlice";
 import ActivityLogModal from "./modal";
 
 const windowHeight = Dimensions.get("window").height;
 const windowWidth = Dimensions.get("window").width;
+
+const fetchEntryData = async () => {
+  try {
+    const db = await SQLite.openDatabaseAsync(dbName);
+    const res = await db.getAllAsync(
+      "SELECT * FROM allActivities ORDER BY datetime DESC LIMIT 45",
+    );
+    return res;
+  } catch (err) {
+    console.error(err);
+  }
+};
 
 const transformData = (fetchedData: EntryViewTableRow[]) => {
   const allDataByMonth: allDataByMonthType =
@@ -53,53 +72,58 @@ const ActivityLog = () => {
   const dispatch = useDispatch<AppDispatch>();
   const activityLogState = useSelector((state: RootState) => state.activityLog);
 
-  const [entryData, setEntryData] = useState<EntryListSection[]>([]);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [displayedData, setDisplayedData] = useState<EntryListSection[]>([]);
-
-  const fetchEntryData = async () => {
-    try {
-      const db = await SQLite.openDatabaseAsync(dbName);
-      const res = await db.getAllAsync(
-        "SELECT * FROM allActivities ORDER BY datetime DESC LIMIT 45",
-      );
-      return res;
-      100;
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
   const displayMoreData = (dataArr: EntryListSection[]) => {
-    if (currentIndex < dataArr.length) {
-      setDisplayedData((prevState: EntryListSection[]) => [
-        ...prevState,
-        dataArr[currentIndex],
-      ]);
-      setCurrentIndex((prevState: number) => prevState + 1);
+    if (activityLogState.filterPeriod.length > 0) return;
+    if (activityLogState.currentIndex < dataArr.length) {
+      dispatch(
+        setDisplayedData([
+          ...activityLogState.displayedData,
+          dataArr[activityLogState.currentIndex],
+        ]),
+      );
+      dispatch(setCurrentIndex(activityLogState.currentIndex + 1));
     }
   };
 
   useEffect(() => {
     fetchEntryData().then((res) => {
-      const fetchedData: EntryListSection[] = transformData(
+      dispatch(setRawData(res));
+      const transformedData: EntryListSection[] = transformData(
         res as EntryViewTableRow[],
       );
-      if (fetchedData) {
-        if (fetchedData[currentIndex].data.length < 10) {
-          setDisplayedData((prevState: EntryListSection[]) => [
-            ...prevState,
-            fetchedData[currentIndex],
-            fetchedData[currentIndex + 1],
-          ]);
-          setCurrentIndex((prevState: number) => prevState + 2);
+
+      if (activityLogState.filterPeriod.length > 0) {
+        const filteredData = activityLogState.entryData.filter((entry) => {
+          // Filter the 'data' array to keep only those items where datetime > the specified datetime
+          const filteredDataEntries = entry.data.filter(
+            (el) =>
+              el.datetime > activityLogState.filterPeriod[0] &&
+              (activityLogState.filterPeriod[1]
+                ? el.datetime < activityLogState.filterPeriod[1]
+                : true),
+          );
+          // Keep the entry if there are any items left after the filtering
+          return filteredDataEntries.length > 0;
+        });
+
+        dispatch(setDisplayedData(filteredData));
+      } else {
+        if (transformedData[activityLogState.currentIndex].data.length < 10) {
+          dispatch(
+            setDisplayedData([
+              ...activityLogState.displayedData,
+              transformedData[activityLogState.currentIndex],
+              transformedData[activityLogState.currentIndex + 1],
+            ]),
+          );
+          dispatch(setCurrentIndex(activityLogState.currentIndex + 2));
         } else {
-          displayMoreData(fetchedData);
+          displayMoreData(transformedData);
         }
+        dispatch(setEntryData(transformedData));
       }
-      setEntryData(fetchedData);
     });
-  }, []);
+  }, [activityLogState.filterPeriod]);
 
   return (
     <React.Fragment>
@@ -114,7 +138,12 @@ const ActivityLog = () => {
         >
           <View className="z-10 w-full flex-row items-center justify-between">
             <View className="left-6">
-              <BackButton color="#FBFBFB" />
+              <BackButton
+                color="#FBFBFB"
+                handleBackButtonPress={() => {
+                  dispatch(activityLogResetState());
+                }}
+              />
             </View>
             <View className="mx-6 flex-row justify-end">
               <ToolHeader noIndent style={{ color: "#FBFBFB" }}>
@@ -132,7 +161,6 @@ const ActivityLog = () => {
                 className="h-full flex-row items-center justify-center rounded-lg border"
                 style={{ borderColor: "#B8B8B8" }}
                 onPress={() => {
-                  console.log("pressed");
                   dispatch(toggleModal(true));
                 }}
               >
@@ -155,8 +183,6 @@ const ActivityLog = () => {
                     console.log("pressed");
                   }}
                 >
-                  {/* add the bell icon w/out plus if notifications are on */}
-                  {/* <MaterialCommunityIcons name="bell-outline" size={24} color="black" /> */}
                   <View
                     className="h-8 w-16 -translate-y-1 items-center justify-center rounded-xl border"
                     style={{ borderColor: "#B8B8B8" }}
@@ -168,15 +194,33 @@ const ActivityLog = () => {
                     />
                   </View>
                 </Pressable>
-                <Text className="my-1 text-sm" style={{ fontSize: 13 }}>
-                  Showing{" "}
-                  {displayedData.reduce(
-                    (sum, item) => sum + item.data.length,
-                    0,
-                  )}{" "}
-                  of{" "}
-                  {entryData.reduce((sum, item) => sum + item.data.length, 0)}
-                </Text>
+                {activityLogState.filterPeriod.length > 0 ? (
+                  <Text>
+                    {activityLogState.filterPeriod[0]}
+                    {" to "}
+                    {activityLogState.filterPeriod[1] ??
+                      `${new Date().toISOString().split("T")[0]}`}
+                  </Text>
+                ) : (
+                  <React.Fragment>
+                    {Array.isArray(activityLogState.displayedData) &&
+                      Array.isArray(activityLogState.entryData) && (
+                        <Text className="my-1 text-sm" style={{ fontSize: 13 }}>
+                          Showing{" "}
+                          {activityLogState.displayedData.reduce(
+                            (sum, item) => sum + item.data.length,
+                            0,
+                          )}{" "}
+                          of{" "}
+                          {activityLogState.entryData &&
+                            activityLogState.entryData.reduce(
+                              (sum, item) => sum + item.data.length,
+                              0,
+                            )}
+                        </Text>
+                      )}
+                  </React.Fragment>
+                )}
               </View>
             </View>
             <DividerLine width={windowWidth * 0.9} />
@@ -187,11 +231,11 @@ const ActivityLog = () => {
             style={{ height: windowHeight * 0.75 }}
           >
             <SectionList
-              sections={displayedData}
+              sections={activityLogState.displayedData}
               keyExtractor={(item: EntryViewTableRow, index: number) =>
                 `${item.id}-${index}`
               }
-              onEndReached={() => displayMoreData(entryData)}
+              onEndReached={() => displayMoreData(activityLogState.entryData)}
               renderSectionHeader={({ section: { title } }) => (
                 <View
                   className="rounded-xl pb-3"
@@ -223,7 +267,7 @@ const ActivityLog = () => {
           </View>
         </View>
       </View>
-      {/* ADD + BUTTON */}
+      {/* PLUS BUTTON */}
       <View
         className="absolute bottom-0 right-0 items-center justify-center rounded-full"
         style={{

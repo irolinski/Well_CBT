@@ -22,7 +22,7 @@ const fetchRecentEntries = async () => {
     const res = await db.getAllAsync(
       "SELECT * FROM allActivities ORDER BY datetime DESC LIMIT 3",
     );
-    console.log(res);
+    // console.log(res);
     return res;
   } catch (err) {
     console.error(err);
