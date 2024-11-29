@@ -19,22 +19,20 @@ type CalendarCallbackEvent = {
 };
 
 const ActivityLogModal = () => {
-  const [markedDates, setMarkedDates] = useState({});
-
-  const [periodPointsNum, setPeriodPointsNum] = useState(0);
   const dispatch = useDispatch<AppDispatch>();
   const activityLogState = useSelector((state: RootState) => state.activityLog);
 
+  const [markedDates, setMarkedDates] = useState({});
+
   const getMarkedDates = () => {
-    const markedDatesArr: any = {};
+    const markedDatesObj: any = {};
     activityLogState.rawData.forEach((el) => {
-      markedDatesArr[`${el.datetime.split(" ")[0]}`] = { marked: true }; //also could add support for multiple dot colors?
+      markedDatesObj[`${el.datetime.split(" ")[0]}`] = { marked: true }; //also could add support for multiple dot colors?
     });
-    setMarkedDates(markedDatesArr);
+    setMarkedDates(markedDatesObj);
   };
 
   const handleFilterPeriod = (dateString: string) => {
-    // const newState = [dateString];
     if (activityLogState.filterPeriod.length === 0) {
       dispatch(setFilterPeriod([dateString]));
     }
@@ -42,11 +40,14 @@ const ActivityLogModal = () => {
     if (activityLogState.filterPeriod.length === 1) {
       dispatch(setFilterPeriod([...activityLogState.filterPeriod, dateString]));
     }
-    if (dateString === activityLogState.filterPeriod[0]) {
+    if (
+      dateString === activityLogState.filterPeriod[0] ||
+      dateString < activityLogState.filterPeriod[0]
+    ) {
       dispatch(setFilterPeriod([]));
     }
 
-    if (activityLogState.filterPeriod.length === 2) {
+    if (activityLogState.filterPeriod.length > 0) {
       if (dateString === activityLogState.filterPeriod[1]) {
         dispatch(setFilterPeriod([activityLogState.filterPeriod[0]]));
       }
@@ -61,11 +62,70 @@ const ActivityLogModal = () => {
     }
   };
 
+  // helper function -- get all days between two days
+  const getDaysArray = function (start: string, end: string) {
+    const arr = [];
+    for (
+      const dt = new Date(start);
+      dt <= new Date(end);
+      dt.setDate(dt.getDate() + 1)
+    ) {
+      arr.push(new Date(dt));
+    }
+    return arr;
+  };
+
   useEffect(() => {
+    // do nothing if there is no raw data
     if (activityLogState.rawData.length > 0) {
+      return;
+    }
+    // check for marked data only if there are no filters on
+    // this prevents accidental looping when managing the UI
+    if (activityLogState.filterPeriod.length < 1) {
       getMarkedDates();
     }
-  }, [activityLogState.rawData]);
+  }, [activityLogState.filterPeriod, activityLogState.rawData]);
+
+  // UI color changes
+  useEffect(() => {
+    const newMarkedDatesObj: any = {};
+
+    activityLogState.rawData.forEach((el) => {
+      newMarkedDatesObj[`${el.datetime.split(" ")[0]}`] = { marked: true }; //also could add support for multiple dot colors?
+    });
+
+    // if only the starting date has been picked
+    if (activityLogState.filterPeriod.length === 1) {
+      // color starting date in the UI
+      newMarkedDatesObj[activityLogState.filterPeriod[0]] = {
+        startingDay: true,
+        color: "#8DBED8",
+      };
+      setMarkedDates(newMarkedDatesObj);
+    }
+
+    // if both dates (full period) are set
+    if (activityLogState.filterPeriod.length === 2) {
+      // get an array of dates in between
+      const fetchedSelectedDateObjects = getDaysArray(
+        activityLogState.filterPeriod[0],
+        activityLogState.filterPeriod[1],
+      );
+      const selectedDates = fetchedSelectedDateObjects.map(
+        (el) => new Date(el).toISOString().split("T")[0],
+      );
+      // color the dates in the UI
+      selectedDates.forEach((el, index: number) => {
+        newMarkedDatesObj[`${el}`] = {
+          startingDay: index === 0,
+          endingDay: index === selectedDates.length - 1,
+          color: "#8DBED8",
+        };
+      });
+    }
+    setMarkedDates(newMarkedDatesObj);
+  }, [activityLogState.filterPeriod, activityLogState.rawData]);
 
   //UI STATE
   const windowWidth = Dimensions.get("window").width;
