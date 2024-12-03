@@ -297,7 +297,7 @@ const ActivityLog = () => {
       >
         <Feather name="plus" size={36} color="white" />
       </View>
-      {/* <ActivityLogModal /> */}
+      <ActivityLogModal />
     </React.Fragment>
   );
 };
