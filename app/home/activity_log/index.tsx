@@ -72,7 +72,8 @@ const ActivityLog = () => {
   const activityLogState = useSelector((state: RootState) => state.activityLog);
 
   const displayMoreData = (dataArr: EntryListSection[]) => {
-    // if (activityLogState.filterPeriod.length > 0) return;
+    // don't run if there are filters on
+    if (activityLogState.filterPeriod.length > 0) return;
     if (activityLogState.currentIndex < dataArr.length) {
       dispatch(
         setDisplayedData([
@@ -91,36 +92,72 @@ const ActivityLog = () => {
         res as EntryViewTableRow[],
       );
       //if there are date filters present
-      if (activityLogState.filterPeriod.length > 0) {
-        const filteredData = activityLogState.entryData.map((entry) => {
-          // Filter the 'data' array to keep only those items where datetime >= the specified datetime
 
-          // this contains the actual days that fit the criteria - I need to use this to create a new temporary data object
-          //instead of what i'm doing now, which is returning the full month object if there are entries that fit the criteria
-          if (!entry) {
-            return;
+      // if (activityLogState.filterPeriod.length > 0) {
+      //   const filteredData = activityLogState.entryData.filter((entry) => {
+      //     // Filter the 'data' array to keep only those items where datetime >= the specified datetime
+
+      //     // this contains the actual days that fit the criteria - I need to use this to create a new temporary data object
+      //     //instead of what i'm doing now, which is returning the full month object if there are entries that fit the criteria
+      //     // if (!entry) {
+      //     //   return;
+      //     // }
+
+      //     const filteredDataEntries = entry.data.filter(
+      //       (el) =>
+      //         el.datetime >= activityLogState.filterPeriod[0] &&
+      //         el.datetime <= activityLogState.filterPeriod[1],
+      //     );
+      //     //THE BUG IS BECAUSE IT RETURNS THE WHOLE MONTH ARRAY INSTEAD OF CREATING A NEW MONTH OUT OF THOSE DAYS THAT HAVE PASSED THROUGH THE FILTER?
+
+      //     // Keep the entry if there are any items left after the filtering
+      //     return filteredDataEntries.length > 0;
+      //     // if (filteredDataEntries.length > 0) {
+      //     //   return { ...entry, data: filteredDataEntries };
+      //     // } else {
+      //     //   return {};
+      //     // }
+      //   });
+      //   console.log("filtered data:" + filteredData);
+      //   filteredData.map((el) => {
+      //     console.log(el);
+      //   });
+      //   console.log("--------");
+
+      //   dispatch(setDisplayedData(filteredData));
+      // }
+
+      // How to handle data if filters are engaged
+      // (also, the auto displayMoreData function has to be turned off temporarily)
+      if (activityLogState.filterPeriod.length > 0) {
+        let filteredData = activityLogState.entryData.map((entry) => {
+          // Filter the 'data' array to keep only those items where datetime > the specified datetime
+
+          let filteredDataEntries;
+          const filterPeriodOne = new Date(activityLogState.filterPeriod[0]);
+
+          if (activityLogState.filterPeriod.length === 1) {
+            filteredDataEntries = entry.data.filter(
+              (el) => new Date(el.datetime) >= filterPeriodOne,
+            );
+          } else if (activityLogState.filterPeriod.length === 2) {
+            const filterPeriodTwo = new Date(activityLogState.filterPeriod[1]);
+            filterPeriodTwo.setHours(23, 59, 59, 999);
+            filteredDataEntries = entry.data.filter(
+              (el) =>
+                new Date(el.datetime) >= filterPeriodOne &&
+                new Date(el.datetime) <= filterPeriodTwo,
+            );
           }
-          const filteredDataEntries = entry.data.filter(
-            (el) =>
-              new Date(el.datetime) >=
-                new Date(activityLogState.filterPeriod[0]) &&
-              new Date(el.datetime) <=
-                new Date(activityLogState.filterPeriod[1]),
-          );
-          // filteredDataEntries.map((el) => {
-          //   console.log(el);
-          // });
-          //THE BUG IS BECAUSE IT RETURNS THE WHOLE MONTH ARRAY INSTEAD OF CREATING A NEW MONTH OUT OF THOSE DAYS THAT HAVE PASSED THROUGH THE FILTER?
+
           // Keep the entry if there are any items left after the filtering
-          // return filteredDataEntries.length > 0;
-          if (filteredData.length > 0) {
-            // return { ...entry, data: filteredDataEntries };
-          } else {
-            return null;
-          }
+          return { title: entry.title, data: filteredDataEntries };
         });
 
+        filteredData = filteredData.filter((entry) => entry!.data!.length > 0);
+
         dispatch(setDisplayedData(filteredData));
+        // how to handle data if filters are not engaged
       } else {
         if (
           transformedData.length > 1 &&
@@ -141,6 +178,10 @@ const ActivityLog = () => {
       }
     });
   }, [activityLogState.filterPeriod]);
+
+  useEffect(() => {
+    console.log(activityLogState.displayedData);
+  }, [activityLogState]);
 
   return (
     <React.Fragment>
