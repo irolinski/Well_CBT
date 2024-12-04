@@ -34,24 +34,31 @@ const ActivityLogCalendar = () => {
     }
 
     if (activityLogState.filterPeriod.length === 1) {
-      dispatch(setFilterPeriod([...activityLogState.filterPeriod, dateString]));
-    }
-    if (dateString <= activityLogState.filterPeriod[0]) {
-      dispatch(setFilterPeriod([]));
-    }
-
-    if (activityLogState.filterPeriod.length > 0) {
-      if (dateString === activityLogState.filterPeriod[1]) {
-        dispatch(setFilterPeriod([activityLogState.filterPeriod[0]]));
-      }
-      if (
-        dateString !== activityLogState.filterPeriod[0] &&
-        dateString !== activityLogState.filterPeriod[1]
-      ) {
+      if (dateString > activityLogState.filterPeriod[0]) {
         dispatch(
           setFilterPeriod([activityLogState.filterPeriod[0], dateString]),
         );
+      } else if (dateString < activityLogState.filterPeriod[0]) {
+        dispatch(setFilterPeriod([dateString]));
       }
+    }
+
+    if (activityLogState.filterPeriod.length === 2) {
+      // if end period date is clicked, remove it
+      if (dateString === activityLogState.filterPeriod[1]) {
+        dispatch(setFilterPeriod([activityLogState.filterPeriod[0]]));
+      }
+      if (dateString > activityLogState.filterPeriod[0]) {
+        dispatch(
+          setFilterPeriod([activityLogState.filterPeriod[0], dateString]),
+        );
+      } else if (dateString < activityLogState.filterPeriod[0]) {
+        dispatch(setFilterPeriod([dateString]));
+      }
+    }
+
+    if (dateString === activityLogState.filterPeriod[0]) {
+      dispatch(setFilterPeriod([]));
     }
   };
 
