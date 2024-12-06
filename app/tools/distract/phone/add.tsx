@@ -17,7 +17,7 @@ import Frame from "@/components/Frame";
 import { router } from "expo-router";
 import { dbName } from "@/db/service";
 
-function Add() {
+const Add = () => {
   interface PhoneNumberObj {
     countryCode: string;
     digits: string;
@@ -171,7 +171,7 @@ function Add() {
       </Frame>
     </React.Fragment>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
