@@ -1,5 +1,5 @@
 import { View, Dimensions, TouchableOpacity } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import BackButton from "@/components/BackButton";
 import { Href, router } from "expo-router";
 import * as SQLite from "expo-sqlite";
@@ -10,13 +10,21 @@ import ToolHeader from "@/components/ToolHeader";
 import Text from "@/components/global/Text";
 import {
   AntDesign,
+  Feather,
   MaterialCommunityIcons,
   MaterialIcons,
 } from "@expo/vector-icons";
 import PhoneFriendProfilePic from "./ProfilePic";
+import { AppDispatch, RootState } from "@/state/store";
+import { useDispatch, useSelector } from "react-redux";
+import { setShowModal } from "@/state/features/tools/phoneSlice";
+import ConversationModal from "./modal";
 
 const Phone = () => {
   const windowHeight = Dimensions.get("window").height;
+
+  const dispatch = useDispatch<AppDispatch>();
+  const phoneState = useSelector((state: RootState) => state.phone);
 
   type PhoneContact = { name: string; phone: string };
   const [phoneData, setPhoneData] = useState<PhoneContact | null>(null);
@@ -45,6 +53,12 @@ const Phone = () => {
       console.error(err);
     }
   };
+
+  useEffect(() => {
+    console.log(phoneState);
+  }, []);
+
+  const [conversationModalIsOpen, setConversationModalIsOpen] = useState(false);
 
   return (
     <React.Fragment>
@@ -92,7 +106,6 @@ const Phone = () => {
             <TouchableOpacity
               activeOpacity={0.7}
               className="mx-8 items-center justify-center rounded-full"
-              disabled={!phoneData}
               style={{
                 width: windowHeight / 10,
                 height: windowHeight / 10,
@@ -100,6 +113,7 @@ const Phone = () => {
                 opacity: !phoneData ? 0.5 : 1,
               }}
               onPress={() => callContact(phoneData!.phone)}
+              disabled={!phoneData}
             >
               <AntDesign name="phone" size={24} color="#FBFBFB" />
             </TouchableOpacity>
@@ -112,6 +126,7 @@ const Phone = () => {
                 backgroundColor: "#4391BC",
                 opacity: !phoneData ? 0.5 : 1,
               }}
+              disabled={!phoneData}
             >
               <MaterialCommunityIcons
                 name="email-outline"
@@ -144,8 +159,34 @@ const Phone = () => {
               />
             </View>
           </TouchableOpacity>
+          <TouchableOpacity
+            activeOpacity={0.7}
+            className="my-4 h-12 flex-row items-center justify-center rounded-xl border"
+            style={[
+              {
+                borderColor: "#B8B8B8",
+                backgroundColor: "#FBFBFB",
+                opacity: 8,
+              },
+            ]}
+            onPress={() => {
+              dispatch(setShowModal(true));
+            }}
+          >
+            <Text className="text-md mx-2" style={{ color: "#212529" }}>
+              Conversation Topics
+            </Text>
+            <View className="mx-2">
+              <MaterialCommunityIcons
+                name="message-reply-text-outline"
+                size={24}
+                color="#212529"
+              />
+            </View>
+          </TouchableOpacity>
         </View>
       </View>
+      <ConversationModal />
     </React.Fragment>
   );
 };

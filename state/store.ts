@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import cdaSlice from "./features/tools/cdaSlice";
 import journalSlice from "./features/tools/journalSlice";
 import breatheSettingsSlice from "./features/tools/breatheSettingsSlice";
+import phoneSlice from "./features/tools/phoneSlice";
 import activityLogSlice from "./features/menus/activityLogSlice";
 
 // ...
@@ -11,6 +12,7 @@ export const store = configureStore({
     cda: cdaSlice,
     journal: journalSlice,
     breatheSettings: breatheSettingsSlice,
+    phone: phoneSlice,
     activityLog: activityLogSlice,
   },
 });
