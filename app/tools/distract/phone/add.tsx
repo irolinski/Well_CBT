@@ -88,7 +88,7 @@ const Add = () => {
       <BackButton />
       <Frame>
         <View className="py-8">
-          {phoneState.supportContact ? (
+          {!phoneState.supportContact ? (
             <Text className="text-center text-3xl">
               Add emotional support contact
             </Text>

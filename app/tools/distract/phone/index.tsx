@@ -1,6 +1,12 @@
 import { Href, router, useFocusEffect } from "expo-router";
 import React from "react";
-import { Dimensions, Linking, TouchableOpacity, View } from "react-native";
+import {
+  Alert,
+  Dimensions,
+  Linking,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import BackButton from "@/components/BackButton";
 import Text from "@/components/global/Text";
@@ -18,6 +24,7 @@ import {
 } from "@expo/vector-icons";
 import ConversationModal from "./modal";
 import PhoneFriendProfilePic from "./ProfilePic";
+import formatPhoneNumber from "@/utils/formatPhoneNumber";
 
 const Phone = () => {
   const windowHeight = Dimensions.get("window").height;
@@ -36,12 +43,31 @@ const Phone = () => {
     handleGetPhoneData();
   });
 
-  const callContact = (phone: string) => {
-    const num = encodeURIComponent(phone.replace(/-/g, "").replace(/\s/g, ""));
-    try {
-      Linking.openURL(`tel://${num}`);
-    } catch (err) {
-      console.error(err);
+  const callContact = async (phoneNum: string) => {
+    const num = encodeURIComponent(
+      phoneNum.replace(/-/g, "").replace(/\s/g, ""),
+    );
+    const url = `tel://${num}`;
+    const supported = await Linking.canOpenURL(url); // Check if the SMS URL can be opened on the device
+
+    if (supported) {
+      Linking.openURL(url);
+    } else {
+      Alert.alert("Error", "SMS not supported on this device");
+    }
+  };
+
+  const sendSMS = async (phoneNum: string) => {
+    const num = encodeURIComponent(
+      phoneNum.replace(/-/g, "").replace(/\s/g, ""),
+    );
+    const url = `sms:${num}`;
+    const supported = await Linking.canOpenURL(url); // Check if the SMS URL can be opened on the device
+
+    if (supported) {
+      Linking.openURL(url); // Open the SMS app with the pre-filled phone number
+    } else {
+      Alert.alert("Error", "SMS not supported on this device");
     }
   };
 
@@ -80,9 +106,22 @@ const Phone = () => {
             <PhoneFriendProfilePic />
           </View>
           <View className="mx-4 justify-end" style={{ height: "20%" }}>
-            <Text className="text-center text-2xl font-semibold">
-              You don't have a chosen contact yet.
-            </Text>
+            {!phoneState.supportContact ? (
+              <View>
+                <Text className="text-center text-2xl font-semibold">
+                  You don't have a chosen contact yet.
+                </Text>
+              </View>
+            ) : (
+              <View>
+                <Text className="mb-4 text-center text-2xl font-semibold">
+                  {phoneState.supportContact.name}
+                </Text>
+                <Text className="text-center text-xl">
+                  {formatPhoneNumber(phoneState.supportContact.phone)}
+                </Text>
+              </View>
+            )}
           </View>
           <View
             className="mx-4 flex-row items-center justify-center"
@@ -111,6 +150,9 @@ const Phone = () => {
                 backgroundColor: "#4391BC",
                 opacity: !phoneState.supportContact ? 0.5 : 1,
               }}
+              onPress={() => {
+                sendSMS(phoneState.supportContact!.phone);
+              }}
               disabled={!phoneState.supportContact}
             >
               <MaterialCommunityIcons
@@ -122,53 +164,56 @@ const Phone = () => {
           </View>
         </View>
         <View>
-          <TouchableOpacity
-            activeOpacity={0.7}
-            className="my-4 h-12 flex-row items-center justify-center rounded-xl"
-            style={[
-              {
-                backgroundColor: "#4391BC",
-                opacity: 8,
-              },
-            ]}
-            onPress={() => router.replace("tools/distract/phone/add" as Href)}
-          >
-            <Text className="text-md mx-2" style={{ color: "#FBFBFB" }}>
-              Add contact
-            </Text>
-            <View className="mx-2">
-              <MaterialIcons
-                name="person-add-alt-1"
-                size={24}
-                color="#FBFBFB"
-              />
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity
-            activeOpacity={0.7}
-            className="my-4 h-12 flex-row items-center justify-center rounded-xl border"
-            style={[
-              {
-                borderColor: "#B8B8B8",
-                backgroundColor: "#FBFBFB",
-                opacity: 8,
-              },
-            ]}
-            onPress={() => {
-              dispatch(setShowModal(true));
-            }}
-          >
-            <Text className="text-md mx-2" style={{ color: "#212529" }}>
-              Conversation Topics
-            </Text>
-            <View className="mx-2">
-              <MaterialCommunityIcons
-                name="message-reply-text-outline"
-                size={24}
-                color="#212529"
-              />
-            </View>
-          </TouchableOpacity>
+          {phoneState.supportContact ? (
+            <TouchableOpacity
+              activeOpacity={0.7}
+              className="my-4 h-12 flex-row items-center justify-center rounded-xl border"
+              style={[
+                {
+                  borderColor: "#B8B8B8",
+                  backgroundColor: "#FBFBFB",
+                  opacity: 8,
+                },
+              ]}
+              onPress={() => {
+                dispatch(setShowModal(true));
+              }}
+            >
+              <Text className="text-md mx-2" style={{ color: "#212529" }}>
+                Conversation Topics
+              </Text>
+              <View className="mx-2">
+                <MaterialCommunityIcons
+                  name="message-reply-text-outline"
+                  size={24}
+                  color="#212529"
+                />
+              </View>
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity
+              activeOpacity={0.7}
+              className="my-4 h-12 flex-row items-center justify-center rounded-xl"
+              style={[
+                {
+                  backgroundColor: "#4391BC",
+                  opacity: 8,
+                },
+              ]}
+              onPress={() => router.replace("tools/distract/phone/add" as Href)}
+            >
+              <Text className="text-md mx-2" style={{ color: "#FBFBFB" }}>
+                Add contact
+              </Text>
+              <View className="mx-2">
+                <MaterialIcons
+                  name="person-add-alt-1"
+                  size={24}
+                  color="#FBFBFB"
+                />
+              </View>
+            </TouchableOpacity>
+          )}
         </View>
       </View>
       <ConversationModal />
