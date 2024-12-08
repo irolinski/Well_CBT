@@ -48,12 +48,38 @@ const Add = () => {
   }, []);
 
   const search = (q: string) => {
-    const filteredContacts = contactData.filter((contact) =>
-      `${contact.firstName} ${contact.lastName}`.includes(q),
-    );
-    setFilteredData(filteredContacts);
-    if (!q) setFilteredData([]);
+    if (q) {
+      const queryString = q.toLowerCase();
+      const filteredContacts = contactData.filter((contact) =>
+        `${contact.firstName} ${contact.lastName}`.toLowerCase().includes(q),
+      );
+      setFilteredData(filteredContacts);
+    } else if (!q) {
+      setFilteredData([]);
+    }
+    console.log(filteredData);
   };
+
+  // const search = (q: string) => {
+  //   // contactData.map((c) => {
+  //   //   console.log(c);
+  //   // });
+  //   let query = q.toLowerCase();
+  //   const filteredContacts = contactData.filter((contact) => {
+  //     if (contact.firstName && contact.lastName) {
+  //       return `${contact.firstName} ${contact.lastName}`
+  //         .toLowerCase()
+  //         .includes(q);
+  //     } else if (contact.firstName && !contact.lastName) {
+  //       return contact.firstName.toLowerCase().includes(q);
+  //     }
+  //   });
+  //   setFilteredData(filteredContacts);
+  //   if (!q) {
+  //     setFilteredData([]);
+  //   }
+  //   // console.log(filteredData);
+  // };
 
   const setContact = async (name: string, phone: string) => {
     const db = await SQLite.openDatabaseAsync(dbName);
@@ -74,8 +100,8 @@ const Add = () => {
 
   const handleSetContact = (name: string, phone: string) => {
     Alert.alert(
-      "Do you want to set this person as your emotional support contact",
-      "You'll be able to change it anytime, later.",
+      "Do you want to set this person as your emotional support contact?",
+      "\nYou'll be able to change it anytime, later.",
       [
         {
           text: "No, I want to make a different choice",
