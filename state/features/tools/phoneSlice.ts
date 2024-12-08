@@ -1,7 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 type phoneStateTypes = {
-  supportContact: { name: string; phone: string } | undefined;
+  supportContact:
+    | { name: string; phone: string; pictureURI?: string | undefined }
+    | undefined;
   showModal: boolean;
 };
 

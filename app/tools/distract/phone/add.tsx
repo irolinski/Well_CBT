@@ -16,7 +16,8 @@ import Frame from "@/components/Frame";
 import { Href, router } from "expo-router";
 import { useSelector } from "react-redux";
 import { RootState } from "@/state/store";
-import { setContact } from "@/db/tools";
+import { setContact, setContactWithPicture } from "@/db/tools";
+import { Image } from "expo-image";
 
 interface PhoneNumberObj {
   countryCode: string;
@@ -29,6 +30,7 @@ interface PhoneNumberObj {
 const Add = () => {
   const phoneState = useSelector((state: RootState) => state.phone);
 
+  // search feature state
   const [contactData, setContactData] = useState<any[]>([]);
   const [searchValue, setSearchValue] = useState("");
   const [filteredData, setFilteredData] = useState<any[]>([]);
@@ -62,7 +64,11 @@ const Add = () => {
     }
   };
 
-  const handleSetContact = (name: string, phone: string) => {
+  const handleSetContact = (
+    name: string,
+    phone: string,
+    pictureURI?: string,
+  ) => {
     Alert.alert(
       "Do you want to set this person as your emotional support contact?",
       "\nYou'll be able to change it anytime, later.",
@@ -73,8 +79,16 @@ const Add = () => {
         {
           text: "Yes, continue",
           onPress: () => {
-            setContact(name, phone);
-            router.replace("tools/distract/phone" as Href);
+            try {
+              if (!pictureURI) {
+                setContact(name, phone);
+              } else {
+                setContactWithPicture(name, phone, pictureURI);
+              }
+              router.replace("tools/distract/phone" as Href);
+            } catch (err) {
+              console.error(err);
+            }
           },
           style: "cancel",
         },
@@ -127,22 +141,43 @@ const Add = () => {
                                 <React.Fragment key={i}>
                                   <Pressable
                                     onPress={() => {
-                                      handleSetContact(
-                                        `${contact.firstName} ${contact.lastName}`,
-                                        obj.number,
-                                      );
+                                      !contact.image
+                                        ? handleSetContact(
+                                            `${contact.firstName} ${contact.lastName}`,
+                                            obj.number,
+                                          )
+                                        : handleSetContact(
+                                            `${contact.firstName} ${contact.lastName}`,
+                                            obj.number,
+                                            contact.image.uri,
+                                          );
                                     }}
                                   >
                                     <View
                                       className="w-full border-b px-4 py-4"
                                       key={i}
                                     >
-                                      <Text className="text-center">
-                                        {contact.firstName} {contact.lastName}
-                                      </Text>
-                                      <Text className="text-center">
-                                        {obj.number}
-                                      </Text>
+                                      <View className="flex-row">
+                                        <View>
+                                          {contact.image ? (
+                                            <Image
+                                              className="h-12 w-12"
+                                              source={contact.image.uri}
+                                            />
+                                          ) : (
+                                            <Text>No image</Text>
+                                          )}
+                                        </View>
+                                        <View>
+                                          <Text className="text-center">
+                                            {contact.firstName}{" "}
+                                            {contact.lastName}
+                                          </Text>
+                                          <Text className="text-center">
+                                            {obj.number}
+                                          </Text>
+                                        </View>
+                                      </View>
                                     </View>
                                   </Pressable>
                                 </React.Fragment>

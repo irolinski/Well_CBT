@@ -103,7 +103,9 @@ const Phone = () => {
           style={{ height: windowHeight / 1.6, borderColor: "#B8B8B8" }}
         >
           <View className="mt-4">
-            <PhoneFriendProfilePic />
+            <PhoneFriendProfilePic
+              pictureURI={phoneState.supportContact && phoneState.supportContact!.pictureURI && phoneState.supportContact!.pictureURI}
+            />
           </View>
           <View className="mx-4 justify-end" style={{ height: "20%" }}>
             {!phoneState.supportContact ? (

@@ -8,7 +8,11 @@ import {
   phoneFaces,
 } from "@/assets/images/tools/phone/phoneFaces";
 
-const PhoneFriendProfilePic = () => {
+const PhoneFriendProfilePic = ({
+  pictureURI,
+}: {
+  pictureURI: string | undefined;
+}) => {
   const windowHeight = Dimensions.get("window").height;
   const phoneState = useSelector((state: RootState) => state.phone);
 
@@ -53,14 +57,27 @@ const PhoneFriendProfilePic = () => {
             transform: [{ rotate: spin }], // Spin around its center
           }}
         >
-          <Image
-            style={{
-              height: windowHeight / 4,
-              width: windowHeight / 4,
-              borderRadius: windowHeight / 8,
-            }}
-            source={!phoneState ? phoneFacePlaceholder : phoneFaces[faceNumber]}
-          />
+          {pictureURI ? (
+            <Image
+              style={{
+                height: windowHeight / 4,
+                width: windowHeight / 4,
+                borderRadius: windowHeight / 8,
+              }}
+              source={pictureURI}
+            />
+          ) : (
+            <Image
+              style={{
+                height: windowHeight / 4,
+                width: windowHeight / 4,
+                borderRadius: windowHeight / 8,
+              }}
+              source={
+                !phoneState ? phoneFacePlaceholder : phoneFaces[faceNumber]
+              }
+            />
+          )}
         </Animated.View>
       </View>
     </Pressable>

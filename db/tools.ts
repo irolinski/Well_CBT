@@ -144,3 +144,22 @@ export const setContact = async (name: string, phone: string) => {
     `INSERT INTO phoneAFriend (name, phone) VALUES ('${name}', '${phone}');`,
   );
 };
+
+export const setContactWithPicture = async (
+  name: string,
+  phone: string,
+  pictureURI: string,
+) => {
+  const db = await SQLite.openDatabaseAsync(dbName);
+  await db.execAsync(`
+      DROP TABLE IF EXISTS phoneAFriend;
+      CREATE TABLE phoneAFriend (
+          name VARCHAR(100) NOT NULL,
+          phone VARCHAR(100) NOT NULL,
+          pictureURI VARCHAR(400)
+      );
+  `);
+  await db.execAsync(
+    `INSERT INTO phoneAFriend (name, phone, pictureURI) VALUES ('${name}', '${phone}', '${pictureURI}');`,
+  );
+};
