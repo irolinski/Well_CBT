@@ -1,5 +1,4 @@
 import * as Contacts from "expo-contacts";
-import * as SQLite from "expo-sqlite";
 import React, { useEffect, useState } from "react";
 import {
   Alert,
@@ -14,17 +13,21 @@ import {
 
 import BackButton from "@/components/BackButton";
 import Frame from "@/components/Frame";
-import { router } from "expo-router";
-import { dbName } from "@/db/service";
+import { Href, router } from "expo-router";
+import { useSelector } from "react-redux";
+import { RootState } from "@/state/store";
+import { setContact } from "@/db/tools";
+
+interface PhoneNumberObj {
+  countryCode: string;
+  digits: string;
+  id: string;
+  label: string;
+  number: string;
+}
 
 const Add = () => {
-  interface PhoneNumberObj {
-    countryCode: string;
-    digits: string;
-    id: string;
-    label: string;
-    number: string;
-  }
+  const phoneState = useSelector((state: RootState) => state.phone);
 
   const [contactData, setContactData] = useState<any[]>([]);
   const [searchValue, setSearchValue] = useState("");
@@ -57,45 +60,6 @@ const Add = () => {
     } else if (!q) {
       setFilteredData([]);
     }
-    console.log(filteredData);
-  };
-
-  // const search = (q: string) => {
-  //   // contactData.map((c) => {
-  //   //   console.log(c);
-  //   // });
-  //   let query = q.toLowerCase();
-  //   const filteredContacts = contactData.filter((contact) => {
-  //     if (contact.firstName && contact.lastName) {
-  //       return `${contact.firstName} ${contact.lastName}`
-  //         .toLowerCase()
-  //         .includes(q);
-  //     } else if (contact.firstName && !contact.lastName) {
-  //       return contact.firstName.toLowerCase().includes(q);
-  //     }
-  //   });
-  //   setFilteredData(filteredContacts);
-  //   if (!q) {
-  //     setFilteredData([]);
-  //   }
-  //   // console.log(filteredData);
-  // };
-
-  const setContact = async (name: string, phone: string) => {
-    const db = await SQLite.openDatabaseAsync(dbName);
-    await db.execAsync(`
-        DROP TABLE IF EXISTS tools_phone;
-        CREATE TABLE tools_phone (
-            name VARCHAR(100) NOT NULL,
-            phone VARCHAR(100) NOT NULL
-        );
-    `);
-    await db.execAsync(
-      `INSERT INTO tools_phone (name, phone) VALUES ('${name}', '${phone}');`,
-    );
-
-    console.log(await db.getAllAsync("SELECT * FROM tools_phone"));
-    router.back();
   };
 
   const handleSetContact = (name: string, phone: string) => {
@@ -108,7 +72,10 @@ const Add = () => {
         },
         {
           text: "Yes, continue",
-          onPress: () => setContact(name, phone),
+          onPress: () => {
+            setContact(name, phone);
+            router.replace("tools/distract/phone" as Href);
+          },
           style: "cancel",
         },
       ],
@@ -121,9 +88,13 @@ const Add = () => {
       <BackButton />
       <Frame>
         <View className="py-8">
-          <Text className="text-center text-3xl">
-            Add emotional support contact
-          </Text>
+          {phoneState.supportContact ? (
+            <Text className="text-center text-3xl">
+              Add emotional support contact
+            </Text>
+          ) : (
+            <Text className="text-center text-3xl">Change support contact</Text>
+          )}
           <View className="m-4">
             <Text className="text-center text-lg">
               Search in your contact book{" "}
@@ -143,7 +114,6 @@ const Add = () => {
               clearButtonMode="while-editing"
             />
             <View className="my-8 bg-white">
-              {/* <ScrollView> */}
               <View className="h-72 items-center justify-center">
                 <ScrollView className="w-full">
                   {filteredData.length > 0 ? (
@@ -190,7 +160,6 @@ const Add = () => {
                   )}
                 </ScrollView>
               </View>
-              {/* </ScrollView> */}
             </View>
           </View>
         </View>

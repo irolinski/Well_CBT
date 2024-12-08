@@ -1,24 +1,23 @@
-import { View, Dimensions, TouchableOpacity } from "react-native";
-import React, { useEffect, useState } from "react";
+import { Href, router, useFocusEffect } from "expo-router";
+import React from "react";
+import { Dimensions, Linking, TouchableOpacity, View } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
 import BackButton from "@/components/BackButton";
-import { Href, router } from "expo-router";
-import * as SQLite from "expo-sqlite";
-import { Linking } from "react-native";
-import { useFocusEffect } from "expo-router";
-import { dbName } from "@/db/service";
-import ToolHeader from "@/components/ToolHeader";
 import Text from "@/components/global/Text";
+import ToolHeader from "@/components/ToolHeader";
+import { getPhoneData } from "@/db/tools";
+import {
+  setShowModal,
+  setSupportContact,
+} from "@/state/features/tools/phoneSlice";
+import { AppDispatch, RootState } from "@/state/store";
 import {
   AntDesign,
-  Feather,
   MaterialCommunityIcons,
   MaterialIcons,
 } from "@expo/vector-icons";
-import PhoneFriendProfilePic from "./ProfilePic";
-import { AppDispatch, RootState } from "@/state/store";
-import { useDispatch, useSelector } from "react-redux";
-import { setShowModal } from "@/state/features/tools/phoneSlice";
 import ConversationModal from "./modal";
+import PhoneFriendProfilePic from "./ProfilePic";
 
 const Phone = () => {
   const windowHeight = Dimensions.get("window").height;
@@ -26,23 +25,15 @@ const Phone = () => {
   const dispatch = useDispatch<AppDispatch>();
   const phoneState = useSelector((state: RootState) => state.phone);
 
-  type PhoneContact = { name: string; phone: string };
-  const [phoneData, setPhoneData] = useState<PhoneContact | null>(null);
-
-  const getPhoneData = async () => {
-    const db = await SQLite.openDatabaseAsync(dbName);
-    try {
-      const pd: PhoneContact[] = await db.getAllAsync(
-        "SELECT * FROM tools_phone",
-      );
-      setPhoneData(pd[0]);
-    } catch (err) {
-      console.error("no data found");
+  const handleGetPhoneData = async () => {
+    const phoneData = await getPhoneData();
+    if (phoneData) {
+      dispatch(setSupportContact(phoneData[0]));
     }
   };
 
   useFocusEffect(() => {
-    getPhoneData();
+    handleGetPhoneData();
   });
 
   const callContact = (phone: string) => {
@@ -54,19 +45,13 @@ const Phone = () => {
     }
   };
 
-  useEffect(() => {
-    console.log(phoneState);
-  }, []);
-
-  const [conversationModalIsOpen, setConversationModalIsOpen] = useState(false);
-
   return (
     <React.Fragment>
       <View
         className={`z-10 mx-6 ${windowHeight > 750 ? "top-20" : "top-12"} flex-row justify-between`}
       >
         <BackButton />
-        {phoneData && (
+        {phoneState.supportContact && (
           <TouchableOpacity
             onPress={() => router.replace("tools/distract/phone/add" as Href)}
           >
@@ -110,10 +95,10 @@ const Phone = () => {
                 width: windowHeight / 10,
                 height: windowHeight / 10,
                 backgroundColor: "#81C784",
-                opacity: !phoneData ? 0.5 : 1,
+                opacity: !phoneState.supportContact ? 0.5 : 1,
               }}
-              onPress={() => callContact(phoneData!.phone)}
-              disabled={!phoneData}
+              onPress={() => callContact(phoneState.supportContact!.phone)}
+              disabled={!phoneState.supportContact}
             >
               <AntDesign name="phone" size={24} color="#FBFBFB" />
             </TouchableOpacity>
@@ -124,9 +109,9 @@ const Phone = () => {
                 width: windowHeight / 10,
                 height: windowHeight / 10,
                 backgroundColor: "#4391BC",
-                opacity: !phoneData ? 0.5 : 1,
+                opacity: !phoneState.supportContact ? 0.5 : 1,
               }}
-              disabled={!phoneData}
+              disabled={!phoneState.supportContact}
             >
               <MaterialCommunityIcons
                 name="email-outline"

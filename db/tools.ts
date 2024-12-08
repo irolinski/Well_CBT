@@ -119,4 +119,28 @@ export const handleLogRelaxActivity = async (relaxTime: number) => {
   }
 };
 
+export const getPhoneData = async () => {
+  const db = await SQLite.openDatabaseAsync(dbName);
+  try {
+    const pd: { name: string; phone: string }[] = await db.getAllAsync(
+      "SELECT * FROM phoneAFriend",
+    );
+    return pd;
+  } catch (err) {
+    console.error("no data found");
+  }
+};
 
+export const setContact = async (name: string, phone: string) => {
+  const db = await SQLite.openDatabaseAsync(dbName);
+  await db.execAsync(`
+      DROP TABLE IF EXISTS phoneAFriend;
+      CREATE TABLE phoneAFriend (
+          name VARCHAR(100) NOT NULL,
+          phone VARCHAR(100) NOT NULL
+      );
+  `);
+  await db.execAsync(
+    `INSERT INTO phoneAFriend (name, phone) VALUES ('${name}', '${phone}');`,
+  );
+};
