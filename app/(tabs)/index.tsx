@@ -8,7 +8,7 @@ import { Entypo } from "@expo/vector-icons";
 import QuoteWidget from "@/components/QuoteWidget";
 import DividerLine from "@/components/DividerLine";
 import TypewriterText from "@/components/TypewriterText";
-import { router } from "expo-router";
+import { Href, router } from "expo-router";
 
 import * as SQLite from "expo-sqlite";
 import { dbName } from "@/db/service";
@@ -93,7 +93,7 @@ const Home = () => {
             <AdvanceButton
               title="See all"
               onPress={() => {
-                router.push("/home/activity_log/");
+                router.push("/home/activity_log/" as Href);
               }}
               btnStyle={{
                 width: 150,

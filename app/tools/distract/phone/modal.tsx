@@ -11,10 +11,14 @@ import {
 } from "react-native";
 import { Dimensions, Modal, Pressable, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
+import topicList from "@/assets/text/conversation_topics.json";
 
 const ConversationModal = () => {
   const windowHeight = Dimensions.get("window").height;
   const windowWidth = Dimensions.get("window").width;
+//   const topicNumber = 3;
+
+  const [topicNumber, setTopicNumber] = useState((Math.random() * (topicList.length - 1)) | 0);
 
   const dispatch = useDispatch<AppDispatch>();
   const phoneState = useSelector((state: RootState) => state.phone);
@@ -84,6 +88,7 @@ const ConversationModal = () => {
       duration: 400,
       useNativeDriver: true,
     }).start(() => {
+      setTopicNumber(Math.random() * (topicList.length - 1) | 0); //redraw random topic;
       // Reset position to the left and slide in
       slideAnimation.setValue(-windowWidth); // Move to the left off-screen
       Animated.timing(slideAnimation, {
@@ -148,7 +153,7 @@ const ConversationModal = () => {
                     },
                   ]}
                 >
-                  <Text style={styles.text}>Dream Vacation Spots</Text>
+                  <Text style={styles.text}>{topicList[topicNumber].name}</Text>
                 </Animated.View>
                 <Animated.View
                   className="p-4"
@@ -169,8 +174,7 @@ const ConversationModal = () => {
                   ]}
                 >
                   <Text style={styles.text}>
-                    Talk about fun places you'd like to visit and what makes
-                    them exciting.
+                    {topicList[topicNumber].description}
                   </Text>
                 </Animated.View>
               </View>
@@ -187,7 +191,7 @@ const ConversationModal = () => {
               disabled={isRefreshing}
             >
               <View>
-                <Feather name="refresh-cw" size={28} color="#FBFBFB" />{" "}
+                <Feather name="refresh-cw" size={28} color="#FBFBFB" />
               </View>
             </TouchableOpacity>
           </View>
