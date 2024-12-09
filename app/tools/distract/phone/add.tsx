@@ -143,11 +143,11 @@ const Add = () => {
                                     onPress={() => {
                                       !contact.image
                                         ? handleSetContact(
-                                            `${contact.firstName} ${contact.lastName}`,
+                                            `${contact.firstName} ${contact.lastName ? contact.lastName : ""}`,
                                             obj.number,
                                           )
                                         : handleSetContact(
-                                            `${contact.firstName} ${contact.lastName}`,
+                                            `${contact.firstName} ${contact.lastName ? contact.lastName : ""}`,
                                             obj.number,
                                             contact.image.uri,
                                           );
