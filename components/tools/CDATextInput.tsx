@@ -16,7 +16,7 @@ export default function CDATextInput({
   return (
     <View style={{ marginBottom: spaceForKeyboard ? windowHeight / 5 : 8 }}>
       <TextInput
-        className="text-md my-2 h-28 rounded-md border p-4"
+        className="my-2 h-28 rounded-md border p-4"
         style={{
           borderColor: "#d9d9d9",
           backgroundColor: "#FBFBFB",

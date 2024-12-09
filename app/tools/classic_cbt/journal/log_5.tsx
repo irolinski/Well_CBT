@@ -150,7 +150,7 @@ const Log_5 = () => {
                     )}
                   </View>
                   <Text
-                    className="text-md mx-4 my-1 text-center"
+                    className="mx-4 my-1 text-center"
                     style={{ color: "#4391BC" }}
                   >
                     Save to journal?

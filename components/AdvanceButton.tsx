@@ -35,7 +35,7 @@ const AdvanceButton = ({
       disabled={disabled}
     >
       <Text
-        className="text-md font-semibold"
+        className="font-semibold"
         style={[textStyle, { color: textStyle.color ?? "#F5F5F5" }]}
       >
         {title}

@@ -104,7 +104,11 @@ const Phone = () => {
         >
           <View className="mt-4">
             <PhoneFriendProfilePic
-              pictureURI={phoneState.supportContact && phoneState.supportContact!.pictureURI && phoneState.supportContact!.pictureURI}
+              pictureURI={
+                phoneState.supportContact &&
+                phoneState.supportContact!.pictureURI &&
+                phoneState.supportContact!.pictureURI
+              }
             />
           </View>
           <View className="mx-4 justify-end" style={{ height: "20%" }}>
@@ -181,7 +185,7 @@ const Phone = () => {
                 dispatch(setShowModal(true));
               }}
             >
-              <Text className="text-md mx-2" style={{ color: "#212529" }}>
+              <Text className="mx-2" style={{ color: "#212529" }}>
                 Conversation Topics
               </Text>
               <View className="mx-2">
@@ -204,7 +208,7 @@ const Phone = () => {
               ]}
               onPress={() => router.replace("tools/distract/phone/add" as Href)}
             >
-              <Text className="text-md mx-2" style={{ color: "#FBFBFB" }}>
+              <Text className="mx-2" style={{ color: "#FBFBFB" }}>
                 Add contact
               </Text>
               <View className="mx-2">
