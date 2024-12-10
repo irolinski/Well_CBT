@@ -14,37 +14,50 @@ import { useDispatch, useSelector } from "react-redux";
 import topicList from "@/assets/text/conversation_topics.json";
 import { Logo } from "@/components/Logo";
 import handleShare from "@/utils/handleShare";
+import DividerLine from "@/components/DividerLine";
+
+const cardColors = [
+  { front: "#801515", back: "#F59074" },
+  { front: "#D73C11", back: "#F28E4E" },
+  { front: "#F9A947", back: "#F2C122" },
+  { front: "#305C32", back: "#81C784" },
+  { front: "#337AF7", back: "#94DAFF" },
+];
 
 const ConversationModal = () => {
   const windowHeight = Dimensions.get("window").height;
   const windowWidth = Dimensions.get("window").width;
 
-  const [topicNumber, setTopicNumber] = useState(
-    (Math.random() * (topicList.length - 1)) | 0,
-  );
-
   const dispatch = useDispatch<AppDispatch>();
   const phoneState = useSelector((state: RootState) => state.phone);
 
+  // topic and color randomization state
+  const [topicNumber, setTopicNumber] = useState(
+    (Math.random() * (topicList.length - 1)) | 0,
+  );
+  const [cardColorNum, setCardColorNum] = useState(
+    (Math.random() * (cardColors.length - 1)) | 0,
+  );
+
+  // card animation state
   const [isFlipped, setIsFlipped] = useState(false);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const flipAnimation = useRef(new Animated.Value(0)).current;
   const slideAnimation = useRef(new Animated.Value(0)).current;
 
-  // card rotation
-
-  // front
+  // card rotation front
   const frontInterpolate = flipAnimation.interpolate({
     inputRange: [0, 180],
     outputRange: ["0deg", "180deg"],
   });
-  // back
+  // card rotation back
   const backInterpolate = flipAnimation.interpolate({
     inputRange: [0, 180],
     outputRange: ["180deg", "360deg"],
   });
 
   // card styling
+
   const cardStyle = StyleSheet.create({
     all: {
       width: 250,
@@ -59,11 +72,11 @@ const ConversationModal = () => {
       //for some reason, it only stays centered if the
       //first one is relative and the second one is absolute
       transform: [{ rotateY: backInterpolate }],
-      backgroundColor: "#5C8374",
+      backgroundColor: cardColors[cardColorNum].back,
     },
     front: {
       transform: [{ rotateY: frontInterpolate }],
-      backgroundColor: "#092635",
+      backgroundColor: cardColors[cardColorNum].front,
     },
   });
 
@@ -109,7 +122,8 @@ const ConversationModal = () => {
         duration: 400,
         useNativeDriver: true,
       }).start(() => {
-        setTopicNumber((Math.random() * (topicList.length - 1)) | 0); //redraw random topic;
+        setTopicNumber((Math.random() * (topicList.length - 1)) | 0); //Redraw random topic
+        setCardColorNum((Math.random() * (cardColors.length - 1)) | 0); //Redraw random color
         // Reset position to the left and slide in
         slideAnimation.setValue(-windowWidth); // Move to the left off-screen
         Animated.timing(slideAnimation, {
@@ -128,7 +142,6 @@ const ConversationModal = () => {
       animationType="slide"
       transparent={true}
       visible={phoneState.showModal}
-      // visible={true}
     >
       <View
         className="flex-1 items-center justify-center"
@@ -199,13 +212,16 @@ const ConversationModal = () => {
                     className="p-4"
                     style={[cardStyle.back, cardStyle.all]}
                   >
+                    <View className="absolute right-7 top-4 opacity-20">
+                      <Logo sizePx={64} />
+                    </View>
                     <View className="mb-6">
-                      <Text
-                        className="px-4 text-xl"
-                        style={{ color: "#FBFBFB" }}
-                      >
+                      <Text className="px-4 text-xl" style={{ color: "white" }}>
                         {topicList[topicNumber].description}
                       </Text>
+                    </View>
+                    <View className="mt-4 flex-row opacity-50">
+                      <DividerLine width={"50%"} weight={0.25} />
                     </View>
                   </Animated.View>
                 </View>
