@@ -1,25 +1,15 @@
 import { Image, ImageSource } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
-import { Alert, Dimensions, Pressable, View } from "react-native";
+import { Dimensions, Pressable, View } from "react-native";
 import Text from "./global/Text";
 import { Feather } from "@expo/vector-icons";
-import { Share } from "react-native";
 import quotesList from "@/assets/text/quotes.json";
+import handleShare from "@/utils/handleShare";
 
 const windowWidth = Dimensions.get("window").width;
 
 const QuoteWidget = ({ image }: { image: ImageSource }) => {
   const quoteNumber = (Math.random() * (quotesList.length - 1)) | 0;
-
-  const handleShare = async (message: string) => {
-    try {
-      const result = await Share.share({
-        message: message,
-      });
-    } catch (error: any) {
-      Alert.alert(error.message);
-    }
-  };
 
   return (
     <View className="w-full flex-1 rounded-xl border" style={{ height: 240 }}>
