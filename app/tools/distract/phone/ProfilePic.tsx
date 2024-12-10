@@ -25,13 +25,15 @@ const PhoneFriendProfilePic = ({
 
   // Start the spin animation
   const startSpinAnimation = () => {
-    spinValue.setValue(0); // Reset spin value
-    Animated.spring(spinValue, {
-      toValue: 1, // Spin once (360 degrees)
-      friction: 4, // friction for a smooth effect
-      tension: 80,
-      useNativeDriver: true,
-    }).start();
+    if (!pictureURI) {
+      spinValue.setValue(0); // Reset spin value
+      Animated.spring(spinValue, {
+        toValue: 1, // Spin once (360 degrees)
+        friction: 4, // friction for a smooth effect
+        tension: 80,
+        useNativeDriver: true,
+      }).start();
+    }
   };
 
   // Interpolating spin value to create a 360° rotation
