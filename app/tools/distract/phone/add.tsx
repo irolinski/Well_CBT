@@ -6,7 +6,6 @@ import {
   Pressable,
   ScrollView,
   StyleSheet,
-  Text,
   TextInput,
   View,
 } from "react-native";
@@ -18,6 +17,12 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/state/store";
 import { setContact, setContactWithPicture } from "@/db/tools";
 import { Image } from "expo-image";
+import { Dimensions } from "react-native";
+import ToolHeader from "@/components/ToolHeader";
+import { MaterialIcons } from "@expo/vector-icons";
+import Text from "@/components/global/Text";
+import formatPhoneNumber from "@/utils/formatPhoneNumber";
+import { phoneFacePlaceholder } from "@/assets/images/tools/phone/phoneFaces";
 
 interface PhoneNumberObj {
   countryCode: string;
@@ -28,6 +33,7 @@ interface PhoneNumberObj {
 }
 
 const Add = () => {
+  const windowHeight = Dimensions.get("window").height;
   const phoneState = useSelector((state: RootState) => state.phone);
 
   // search feature state
@@ -52,14 +58,15 @@ const Add = () => {
     })();
   }, []);
 
-  const search = (q: string) => {
-    if (q) {
-      const queryString = q.toLowerCase();
+  const search = (query: string) => {
+    if (query) {
       const filteredContacts = contactData.filter((contact) =>
-        `${contact.firstName} ${contact.lastName}`.toLowerCase().includes(q),
+        `${contact.firstName} ${contact.lastName}`
+          .toLowerCase()
+          .includes(query),
       );
       setFilteredData(filteredContacts);
-    } else if (!q) {
+    } else if (!query) {
       setFilteredData([]);
     }
   };
@@ -99,25 +106,36 @@ const Add = () => {
 
   return (
     <React.Fragment>
-      <BackButton />
-      <Frame>
-        <View className="py-8">
-          {!phoneState.supportContact ? (
-            <Text className="text-center text-3xl">
-              Add emotional support contact
-            </Text>
-          ) : (
-            <Text className="text-center text-3xl">Change support contact</Text>
-          )}
-          <View className="m-4">
-            <Text className="text-center text-lg">
-              Search in your contact book{" "}
-            </Text>
+      <View
+        className={`z-10 mx-6 ${windowHeight > 750 ? "top-20" : "top-12"} flex-row justify-start`}
+      >
+        <BackButton />
+      </View>
+      <View
+        className={`mx-6 ${windowHeight > 750 ? "top-24" : "top-16"}`}
+        style={{
+          height: windowHeight - windowHeight / 5,
+        }}
+      >
+        <View className="mb-8">
+          <ToolHeader>
+            {!phoneState.supportContact ? "Add contact" : "Change contact"}
+          </ToolHeader>
+        </View>
+        <View>
+          <View
+            className="h-12 w-full flex-row rounded-lg border bg-gray-100"
+            style={{ borderColor: "#B8B8B8" }}
+          >
+            <View className="mx-3 justify-center" style={{ width: "10%" }}>
+              <MaterialIcons name="search" size={32} color="#212529" />
+            </View>
             <TextInput
-              className="m-2 h-12 border bg-gray-100 p-4 text-lg"
+              className="h-12 w-full rounded-lg text-lg"
+              style={{ borderColor: "#B8B8B8", width: "80%" }}
               onChangeText={(value) => {
                 setSearchValue(value);
-                search(value);
+                search(value.toLowerCase());
               }}
               value={searchValue}
               editable
@@ -127,89 +145,115 @@ const Add = () => {
               }
               clearButtonMode="while-editing"
             />
-            <View className="my-8 bg-white">
-              <View className="h-72 items-center justify-center">
-                <ScrollView className="w-full">
-                  {filteredData.length > 0 ? (
-                    filteredData.map((contact, i: number) => (
+          </View>
+          <View
+            className="mt-8 items-center justify-center rounded-xl border"
+            style={{ borderColor: "#B8B8B8", height: windowHeight * 0.5 }}
+          >
+            <ScrollView className="w-full">
+              {filteredData.length > 0 ? (
+                filteredData.map((contact, i: number) => (
+                  <React.Fragment key={i}>
+                    {contact.phoneNumbers && (
                       <React.Fragment key={i}>
-                        {contact.phoneNumbers && (
-                          <React.Fragment key={i}>
-                            {contact.phoneNumbers
-                              // .slice(0, 1)
-                              .map((obj: PhoneNumberObj, i: number) => (
-                                <React.Fragment key={i}>
-                                  <Pressable
-                                    onPress={() => {
-                                      !contact.image
-                                        ? handleSetContact(
-                                            `${contact.firstName} ${contact.lastName ? contact.lastName : ""}`,
-                                            obj.number,
-                                          )
-                                        : handleSetContact(
-                                            `${contact.firstName} ${contact.lastName ? contact.lastName : ""}`,
-                                            obj.number,
-                                            contact.image.uri,
-                                          );
-                                    }}
-                                  >
-                                    <View
-                                      className="w-full border-b px-4 py-4"
-                                      key={i}
-                                    >
-                                      <View className="flex-row">
-                                        <View>
-                                          {contact.image ? (
-                                            <Image
-                                              className="h-12 w-12"
-                                              source={contact.image.uri}
-                                            />
-                                          ) : (
-                                            <Text>No image</Text>
-                                          )}
-                                        </View>
-                                        <View>
-                                          <Text className="text-center">
-                                            {contact.firstName}{" "}
-                                            {contact.lastName}
-                                          </Text>
-                                          <Text className="text-center">
-                                            {obj.number}
-                                          </Text>
-                                        </View>
-                                      </View>
+                        {contact.phoneNumbers.map(
+                          (obj: PhoneNumberObj, i: number) => (
+                            <View
+                              className="items-center justify-center"
+                              key={i}
+                            >
+                              <Pressable
+                                className="w-full flex-row justify-center"
+                                onPress={() => {
+                                  !contact.image
+                                    ? handleSetContact(
+                                        `${contact.firstName} ${contact.lastName ? contact.lastName : ""}`,
+                                        obj.number,
+                                      )
+                                    : handleSetContact(
+                                        `${contact.firstName} ${contact.lastName ? contact.lastName : ""}`,
+                                        obj.number,
+                                        contact.image.uri,
+                                      );
+                                }}
+                              >
+                                <View
+                                  className="mt-2 border-b px-2"
+                                  style={{
+                                    width: "90%",
+                                    borderColor: "#B8B8B8",
+                                  }}
+                                  key={i}
+                                >
+                                  <View className="flex-row justify-between py-4">
+                                    <View className="">
+                                      {contact.image ? (
+                                        <Image
+                                          className="h-12 w-12 rounded-full"
+                                          source={contact.image.uri}
+                                        />
+                                      ) : (
+                                        <Image
+                                          className="h-12 w-12"
+                                          source={phoneFacePlaceholder}
+                                        />
+                                      )}
                                     </View>
-                                  </Pressable>
-                                </React.Fragment>
-                              ))}
-                          </React.Fragment>
+                                    <View
+                                      className="items-start"
+                                      style={{ width: "70%" }}
+                                    >
+                                      <View className="w-full">
+                                        <Text className="text-left text-lg">
+                                          <Text className="text-left font-bold">
+                                            {contact.firstName}
+                                          </Text>{" "}
+                                          {contact.lastName
+                                            ? contact.lastName
+                                            : ""}
+                                        </Text>
+                                      </View>
+                                      <Text className="mt-2 text-left text-sm">
+                                        {formatPhoneNumber(obj.number)}
+                                      </Text>
+                                    </View>
+                                  </View>
+                                </View>
+                              </Pressable>
+                            </View>
+                          ),
                         )}
                       </React.Fragment>
-                    ))
-                  ) : (
-                    <Text className="top-16 p-12 text-center align-middle">
-                      {searchValue
-                        ? "No results."
-                        : "Start typing the name of a person you want to add to see results..."}
-                    </Text>
-                  )}
-                </ScrollView>
-              </View>
-            </View>
+                    )}
+                  </React.Fragment>
+                ))
+              ) : (
+                <View>
+                  <Text
+                    className="top-16 p-12 text-center align-middle text-2xl"
+                    style={{ color: "#B8B8B8" }}
+                  >
+                    {searchValue
+                      ? "No results."
+                      : "Start typing to see contacts..."}
+                  </Text>
+                  <Image
+                    className="absolute bottom-0 left-1/3 h-4 w-1/3 translate-y-16"
+                    source={require("@/assets/images/tools/phone/logo_braid.webp")}
+                  />
+                </View>
+              )}
+            </ScrollView>
+          </View>
+          <View className="mx-2 mt-2.5">
+            <Text className="text-right">
+              Showing {filteredData.length} of {contactData.length}
+            </Text>
           </View>
         </View>
-      </Frame>
+      </View>
     </React.Fragment>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
 
 export default Add;
