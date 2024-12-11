@@ -24,7 +24,7 @@ const Tools = () => {
         <ToolCard
           name="Ground Yourself"
           image={toolCardImages[2]}
-          link={"tools/classic_cbt/grounding"}
+          link={"/tools/classic_cbt/grounding"}
         ></ToolCard>
         <Text className="mb-8 mt-2 text-left text-2xl">Relax</Text>
         <ToolCard

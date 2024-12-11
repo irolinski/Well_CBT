@@ -1,25 +1,37 @@
 import React from "react";
-import { ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { ScrollView, TouchableOpacity, View } from "react-native";
 import LearnCard from "@/components/learn/LearnCard";
 import FrameMenu from "@/components/FrameMenu";
 import LearnCategoryCard from "@/components/learn/LearnCategoryCard";
 import DividerLine from "@/components/DividerLine";
+import { Dimensions } from "react-native";
+import Text from "@/components/global/Text";
 
 const Learn = () => {
+  const windowWidth = Dimensions.get("window").width;
+
   return (
     <FrameMenu title="Learn">
       <View>
-        <Text className="mb-8 mt-2 text-left text-2xl">Today's pick</Text>
+        <Text className="mb-6 mt-2 text-left text-2xl">Today's pick</Text>
         <View className="items-center justify-center">
           <LearnCard
             title={"Dangers of self-diagnosis"}
             subtitle="American Journal of Psychology"
             time={20}
-            link={""}
+            link="/learn/example_article/"
             image={require("@/assets/images/tools/ground.webp")}
           />
         </View>
-        <Text className="mb-8 mt-2 text-left text-2xl">Explore</Text>
+        <View className="mb-6">
+          <DividerLine width={0.5 * windowWidth} weight={0.5} />
+        </View>
+        <Text
+          className="mb-8 mt-2 text-center text-3xl"
+          style={{ color: "#27261F" }}
+        >
+          Explore
+        </Text>
         <View className="flex-row flex-wrap justify-center overflow-hidden">
           <LearnCategoryCard name="Science" backgroundColor="#8DBED8" link="" />
           <LearnCategoryCard

@@ -97,6 +97,10 @@ export default function RootLayout() {
             name="home/activity_log"
             options={{ headerShown: false }}
           />
+          <Stack.Screen
+            name="learn/example_article"
+            options={{ headerShown: false }}
+          />
           <Stack.Screen name="+not-found" />
         </Stack>
       </GestureHandlerRootView>
