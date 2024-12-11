@@ -35,7 +35,7 @@ const LearnArticleCard = ({
   return (
     <Pressable
       className="mx-8 mb-8 flex-1 justify-center overflow-hidden rounded-xl"
-      style={{ height: 250, width: 342 }}
+      style={{ height: 250, width: windowWidth * 0.9 }}
       onPress={() => router.push(link as Href)}
     >
       <Image source={image} className="flex-1 justify-center rounded-2xl" />
