@@ -5,13 +5,11 @@ import {
   Keyboard,
   Pressable,
   ScrollView,
-  StyleSheet,
   TextInput,
   View,
 } from "react-native";
 
 import BackButton from "@/components/BackButton";
-import Frame from "@/components/Frame";
 import { Href, router } from "expo-router";
 import { useSelector } from "react-redux";
 import { RootState } from "@/state/store";

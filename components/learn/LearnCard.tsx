@@ -2,6 +2,7 @@ import { Image } from "expo-image";
 import { Href, router } from "expo-router";
 import React from "react";
 import {
+  Dimensions,
   ImageSourcePropType,
   Pressable,
   Text,
@@ -16,7 +17,8 @@ type LearnArticleCardTypes = {
   time?: number;
   link: string;
   image: ImageSourcePropType | undefined;
-  color?: string;
+  frameColor?: string;
+  textColor?: string;
 };
 
 const LearnArticleCard = ({
@@ -25,45 +27,48 @@ const LearnArticleCard = ({
   time,
   link,
   image,
-  color,
+  frameColor,
+  textColor,
 }: LearnArticleCardTypes) => {
+  const windowWidth = Dimensions.get("window").width;
+
   return (
     <Pressable
-      className="mb-8 flex-1 justify-center overflow-hidden rounded-xl"
-      style={{ height: 260, width: 360 }}
+      className="mx-8 mb-8 flex-1 justify-center overflow-hidden rounded-xl"
+      style={{ height: 250, width: 342 }}
       onPress={() => router.push(link as Href)}
     >
       <Image source={image} className="flex-1 justify-center rounded-2xl" />
       <View
         className="absolute bottom-0 w-full px-4 pb-4 pt-5"
-        style={{ height: "57%", backgroundColor: "#8DBED8" }}
+        style={{ height: "56%", backgroundColor: frameColor ?? "#8DBED8" }}
       >
         <View className="">
           <View style={{ height: "50%" }}>
             <Text
               className="text-lg"
-              style={{ color: "#FBFBFB", fontWeight: 500 }}
+              style={{ color: "#FFFFFF", fontWeight: 500 }}
             >
               {title}
             </Text>
             {subtitle && (
               <Text
                 className="my-1.5 text-base italic"
-                style={{ color: "#FBFBFB" }}
+                style={{ color: "#FFFFFF" }}
               >
                 {subtitle}
               </Text>
             )}
           </View>
           <View
-            className="w-full flex-row justify-between"
+            className="mt-0.5 w-full flex-row justify-between"
             style={{ height: "50%" }}
           >
             <View className="justify-center">
               {time && (
                 <Text
                   className="text-base"
-                  style={{ color: color ?? "#FBFBFB", opacity: 0.75 }}
+                  style={{ color: textColor ?? "#FFFFFF", opacity: 0.75 }}
                 >
                   {time} min read
                 </Text>
@@ -76,14 +81,17 @@ const LearnArticleCard = ({
               <TouchableOpacity
                 className="flex-row items-center justify-center rounded-lg"
                 style={{
-                  width: "100%",
+                  width: "95%",
                   height: "85%",
                   backgroundColor: "#fbfbfb",
                 }}
+                onPress={() => router.push(`${link}` as Href)}
               >
-                <Text className="mx-1 text-lg">Go to article</Text>
+                <Text className="mx-1 text-sm" style={{ color: "#212529" }}>
+                  Go to article
+                </Text>
                 <View className="mx-1">
-                  <Feather name="arrow-right" size={24} color="black" />
+                  <Feather name="arrow-right" size={24} color="#757575" />
                 </View>
               </TouchableOpacity>
             </View>
