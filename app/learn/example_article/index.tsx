@@ -52,6 +52,7 @@ const DynamicHeader = ({ value }: any) => {
         <Image
           style={{ width: "100%", height: "100%" }}
           source={learnImages[0]}
+          cachePolicy="memory" // necessary to prevent image flicker onScroll
         />
         <Animated.View
           style={{
@@ -86,51 +87,39 @@ const ArticlePage = () => {
         onScroll={handleScroll}
         style={{ paddingTop: headerHeight }}
       >
-        <View className="px-6" style={{ width: "100%" }}>
+        <View
+          className="px-6"
+          style={{ width: "100%", backgroundColor: "#FFFFFF" }}
+        >
           {/* Article Header */}
           <View>
-            <View className="mt-6 flex-row justify-between">
+            <View className="mt-3.5 flex-row justify-between">
               <Text className="text-center text-base">Science</Text>
               <Text className="italic opacity-80">20 min read</Text>
             </View>
-            <View className="mt-3.5 flex-row justify-center">
+            <View className="mt-7 flex-row justify-center">
               <Text
-                className="text-3xl"
+                className="px-8 text-center text-3xl"
                 style={{ fontFamily: "KodchasanRegular", fontWeight: 400 }}
               >
                 10 suprising benefits of breathwork
               </Text>
             </View>
-            <View className="mt-4 flex-row justify-center">
-              <Text className="italic opacity-80">
+            <View className="mt-7 flex-row justify-center">
+              <Text className="mx-2 text-center text-base italic">
                 How young millenial queens are rocking the Tesla-inspired
                 post-slow-fashion movement
               </Text>
             </View>
           </View>
           {/* Article Body */}
-          <View className="pt-6">
+          <View className="mt-10">
             {/* Single paragraph w/ header */}
             <View className="mt-3">
-              <Text className="text-lg font-semibold">Header 1</Text>
-              <Text className="m-3 text-base">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis
-                laoreet gravida mauris nec pulvinar. Vivamus nec pulvinar odio.
-                Duis venenatis gravida nunc, ac laoreet turpis tristique a.
-                Vestibulum sagittis volutpat condimentum. Aliquam accumsan ex eu
-                magna dignissim blandit. Sed odio tellus, tempor sed pharetra
-                eu, tincidunt sit amet neque. Integer lobortis at mauris in
-                elementum. Maecenas pulvinar aliquam molestie. Aliquam efficitur
-                magna nec orci sollicitudin faucibus. Nullam ut accumsan eros.
-                In vel nunc eu nibh condimentum ultricies. Pellentesque finibus
-                orci eu arcu eleifend, vel scelerisque nunc gravida. Sed
-                pulvinar porttitor dignissim. Maecenas nisi arcu, convallis eu
-                viverra et, hendrerit ac quam.
+              <Text className="w-1/2 text-lg font-semibold">
+                The Descendants of Kamala Harris
               </Text>
-            </View>
-            <View className="mt-3">
-              <Text className="text-lg font-semibold">Header 2</Text>
-              <Text className="m-3 text-base">
+              <Text className="m-3 text-base leading-6">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis
                 laoreet gravida mauris nec pulvinar. Vivamus nec pulvinar odio.
                 Duis venenatis gravida nunc, ac laoreet turpis tristique a.
@@ -161,12 +150,12 @@ const ArticlePage = () => {
               </View>
             </View>
           </View>
-          <View className="py-12">
+          <View className="py-8">
             <DividerLine width={windowWidth * 0.65} />
           </View>
           <View className="mb-12">
             <View>
-              <Text className="text-xl">Related Articles</Text>
+              <Text className="text-xl pb-6">Related Articles</Text>
             </View>
             <View className="my-4 items-center">
               <View
@@ -174,7 +163,7 @@ const ArticlePage = () => {
                 style={{
                   width: "100%",
                   height: 140,
-                  borderColor: "#B8B8B8",
+                  borderColor: "#212529",
                 }}
               >
                 <View className="h-full flex-row">
@@ -194,7 +183,7 @@ const ArticlePage = () => {
                       <View className="mt-2 flex-row items-end justify-between">
                         <Text
                           className="mb-2 text-sm"
-                          style={{ color: "#B8B8B8" }}
+                          style={{ color: "#212529" }}
                         >
                           20 min read
                         </Text>

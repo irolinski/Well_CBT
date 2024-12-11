@@ -23,14 +23,14 @@ const Learn = () => {
             image={require("@/assets/images/tools/ground.webp")}
           />
         </View>
-        <View className="mb-6">
+        {/* <View className="mb-6">
           <DividerLine width={0.5 * windowWidth} weight={0.5} />
-        </View>
+        </View> */}
         <Text
-          className="mb-8 mt-2 text-center text-3xl"
+          className="mb-4 mt-2 text-left text-2xl"
           style={{ color: "#27261F" }}
         >
-          Explore
+          Categories
         </Text>
         <View className="flex-row flex-wrap justify-center overflow-hidden">
           <LearnCategoryCard name="Science" backgroundColor="#8DBED8" link="" />
