@@ -3,8 +3,8 @@ import { View } from "react-native";
 import FrameMenu from "@/components/FrameMenu";
 import { Dimensions } from "react-native";
 import Text from "@/components/global/Text";
-import LearnCard from "@/components/tools/learn/LearnCard";
-import LearnCategoryCard from "@/components/tools/learn/LearnCategoryCard";
+import LearnCard from "@/components/learn/LearnCard";
+import LearnCategoryCard from "@/components/learn/LearnCategoryCard";
 
 const Learn = () => {
   const windowWidth = Dimensions.get("window").width;
