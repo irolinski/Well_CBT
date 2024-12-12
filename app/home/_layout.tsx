@@ -5,9 +5,10 @@ const ActivityLogLayout = () => {
   return (
     <Stack>
       <Stack.Screen
-        name="index"
-        options={{ headerShown: false, statusBarColor: "dark" }}
+        name="activity_log/index"
+        options={{ headerShown: false }}
       />
+      <Stack.Screen name="activity_log/show" options={{ headerShown: false }} />
     </Stack>
   );
 };

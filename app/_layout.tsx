@@ -77,30 +77,9 @@ export default function RootLayout() {
       <GestureHandlerRootView>
         <Stack>
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen
-            name="tools/classic_cbt/cda"
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="tools/classic_cbt/journal"
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="tools/relax/breathing"
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="tools/distract/phone"
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="home/activity_log"
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="learn/example_article"
-            options={{ headerShown: false }}
-          />
+          <Stack.Screen name="tools" options={{ headerShown: false }} />
+          <Stack.Screen name="home" options={{ headerShown: false }} />
+          <Stack.Screen name="learn" options={{ headerShown: false }} />
           <Stack.Screen name="+not-found" />
         </Stack>
       </GestureHandlerRootView>

@@ -5,8 +5,8 @@ const LearnLayout = () => {
   return (
     <Stack>
       <Stack.Screen
-        name="index"
-        options={{ headerShown: false, statusBarColor: "dark" }}
+        name="example_article/index"
+        options={{ headerShown: false }}
       />
     </Stack>
   );
