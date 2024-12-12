@@ -260,7 +260,7 @@ const ActivityLog = () => {
                 <JournalCard
                   toolName={item.activityName}
                   datetime={item.datetime}
-                  link={`/show/${item.activityName}/${item.id}`}
+                  link={`./show/${item.activityName}/${item.id}`}
                   value={item.value ? item.value : (item.value as undefined)}
                 />
               )}

@@ -20,7 +20,9 @@ const JournalCard = ({ toolName, link, datetime, value }: JournalCardProps) => {
       }}
     >
       <Pressable
-        onPress={() => router.replace(`home/activity_log/${link}` as Href)}
+        onPress={() =>
+          router.navigate(`${link}` as Href, { relativeToDirectory: true })
+        }
       >
         {/* router.replace("tools/classic_cbt/cda/page_1" as Href) */}
 

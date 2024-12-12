@@ -72,7 +72,7 @@ const Home = () => {
                   datetime={item.datetime}
                   value={item.value && item.value}
                   key={index}
-                  link={`/show/${item.activityName}/${item.id}`}
+                  link={`./../home/activity_log/show/${item.activityName}/${item.id}`}
                 />
               ))}
           </View>
