@@ -31,7 +31,7 @@ export const handleSaveCDAEntry = async (cdaState: cdaSliceTpyes) => {
               DATETIME('now')
             );
         `);
-      console.log(await db.getAllAsync("SELECT * FROM cdaArchive"));
+      // console.log(await db.getAllAsync("SELECT * FROM cdaArchive"));
     } catch (err) {
       console.error(err);
     }
@@ -81,9 +81,9 @@ export const handleSaveJournalEntry = async (
 
         await db.execAsync(query);
       }
-      console.log(await db.getAllAsync("SELECT * FROM journalEntries"));
-      console.log("-----------------------");
-      console.log(await db.getAllAsync("SELECT * FROM journalEntryEmotions"));
+      // console.log(await db.getAllAsync("SELECT * FROM journalEntries"));
+      // console.log("-----------------------");
+      // console.log(await db.getAllAsync("SELECT * FROM journalEntryEmotions"));
     } catch (err) {
       throw err;
     }
@@ -112,8 +112,8 @@ export const handleLogRelaxActivity = async (relaxTime: number) => {
                   );
                 `);
 
-    console.log(await db.getAllAsync("SELECT * FROM relaxActivities"));
-    console.log("-----------------------");
+    // console.log(await db.getAllAsync("SELECT * FROM relaxActivities"));
+    // console.log("-----------------------");
   } catch (err) {
     throw err;
   }

@@ -19,7 +19,11 @@ const JournalCard = ({ toolName, link, datetime, value }: JournalCardProps) => {
         shadowRadius: 3,
       }}
     >
-      <Pressable onPress={() => router.push(`${link}` as Href)}>
+      <Pressable
+        onPress={() => router.replace(`home/activity_log/${link}` as Href)}
+      >
+        {/* router.replace("tools/classic_cbt/cda/page_1" as Href) */}
+
         <View className="h-full w-full flex-row justify-center py-4">
           {/* Icon */}
           <View className="w-1/4">
@@ -28,6 +32,7 @@ const JournalCard = ({ toolName, link, datetime, value }: JournalCardProps) => {
               style={{ borderColor: "#B8B8B8" }}
             >
               <View>{ToolCategories[ToolList[toolName].category].icon}</View>
+              <Text>{link}</Text>
             </View>
           </View>
           {/* Body */}

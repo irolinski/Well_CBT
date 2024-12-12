@@ -1,4 +1,4 @@
-import * as SQLite from "expo-sqlite";
+// import * as SQLite from "expo-sqlite";
 import React, { useEffect } from "react";
 import { Dimensions, Pressable, SectionList, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,7 +13,8 @@ import {
   EntryViewTableRow,
   getMonthYearTitle,
 } from "@/constants/models/activity_log";
-import { dbName } from "@/db/service";
+import { fetchEntryData } from "@/db/activity_log";
+// import { dbName } from "@/db/service";
 import {
   activityLogResetState,
   setCurrentIndex,
@@ -24,23 +25,10 @@ import {
 } from "@/state/features/menus/activityLogSlice";
 import { AppDispatch, RootState } from "@/state/store";
 import { AntDesign, Feather, MaterialCommunityIcons } from "@expo/vector-icons";
-
 import ActivityLogModal from "./modal";
 
 const windowHeight = Dimensions.get("window").height;
 const windowWidth = Dimensions.get("window").width;
-
-const fetchEntryData = async () => {
-  try {
-    const db = await SQLite.openDatabaseAsync(dbName);
-    const res = await db.getAllAsync(
-      "SELECT * FROM allActivities ORDER BY datetime DESC LIMIT 45",
-    );
-    return res;
-  } catch (err) {
-    console.error(err);
-  }
-};
 
 const transformData = (fetchedData: EntryViewTableRow[]) => {
   const allDataByMonth: allDataByMonthType =
@@ -272,7 +260,7 @@ const ActivityLog = () => {
                 <JournalCard
                   toolName={item.activityName}
                   datetime={item.datetime}
-                  link={`/${item.id}`}
+                  link={`/show/${item.activityName}/${item.id}`}
                   value={item.value ? item.value : (item.value as undefined)}
                 />
               )}

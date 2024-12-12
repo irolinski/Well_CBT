@@ -1,5 +1,4 @@
 import { Href, router } from "expo-router";
-import * as SQLite from "expo-sqlite";
 import React, { useEffect, useState } from "react";
 import { Dimensions, Pressable, View } from "react-native";
 import AdvanceButton from "@/components/AdvanceButton";
@@ -10,23 +9,10 @@ import JournalCard from "@/components/home/JournalCard";
 import QuoteWidget from "@/components/home/QuoteWidget";
 import TypewriterText from "@/components/TypewriterText";
 import { EntryViewTableRow } from "@/constants/models/activity_log";
-import { dbName } from "@/db/service";
+import { fetchRecentEntries } from "@/db/activity_log";
 import { Entypo } from "@expo/vector-icons";
 
 const windowWidth = Dimensions.get("window").width;
-
-const fetchRecentEntries = async () => {
-  try {
-    const db = await SQLite.openDatabaseAsync(dbName);
-    const res = await db.getAllAsync(
-      "SELECT * FROM allActivities ORDER BY datetime DESC LIMIT 3",
-    );
-    // console.log(res);
-    return res;
-  } catch (err) {
-    console.error(err);
-  }
-};
 
 const Home = () => {
   const [recentEntriesArr, setRecentEntriesArr] = useState<EntryViewTableRow[]>(
@@ -37,6 +23,8 @@ const Home = () => {
     fetchRecentEntries().then((res) => {
       setRecentEntriesArr(res as EntryViewTableRow[]);
     });
+
+    console.log(recentEntriesArr);
   }, []);
 
   return (
@@ -78,13 +66,13 @@ const Home = () => {
           </View>
           <View className="px-1" style={{ height: 370 }}>
             {recentEntriesArr[0] &&
-              recentEntriesArr.map((el: EntryViewTableRow, index: number) => (
+              recentEntriesArr.map((item: EntryViewTableRow, index: number) => (
                 <JournalCard
-                  toolName={el.activityName}
-                  datetime={el.datetime}
-                  value={el.value && el.value}
+                  toolName={item.activityName}
+                  datetime={item.datetime}
+                  value={item.value && item.value}
                   key={index}
-                  link={`/route/${el.id}`}
+                  link={`/show/${item.activityName}/${item.id}`}
                 />
               ))}
           </View>
