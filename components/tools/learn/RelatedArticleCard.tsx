@@ -1,0 +1,58 @@
+import { Image } from "expo-image";
+import { Pressable, View } from "react-native";
+import { Feather } from "@expo/vector-icons";
+import { Href, router } from "expo-router";
+import Text from "@/components/global/Text";
+
+const RelatedArticleCard = ({
+  name,
+  time,
+  image,
+  link,
+}: {
+  name: string;
+  time: number;
+  image: Image;
+  link: string;
+}) => {
+  return (
+    <Pressable
+      className="rounded-2xl border px-4"
+      style={{
+        width: "100%",
+        height: 140,
+        borderColor: "#212529",
+      }}
+      onPress={() => router.replace(link as Href)}
+    >
+      <View className="h-full flex-row">
+        <View className="h-full w-2/5 justify-center">
+          <Image className="h-24 w-24 rounded-xl" source={image} />
+        </View>
+        <View className="w-3/5">
+          <View className="py-5">
+            <View>
+              <Text className="text-base">{name} </Text>
+            </View>
+            <View className="mt-2 flex-row items-end justify-between">
+              <Text className="mb-2 text-sm" style={{ color: "#212529" }}>
+                {time} min read
+              </Text>
+              <View
+                className="items-center justify-center rounded-xl"
+                style={{
+                  width: 70,
+                  height: 45,
+                  backgroundColor: "#FF997C",
+                }}
+              >
+                <Feather name="arrow-right" size={24} color="#FFFFFF" />
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+    </Pressable>
+  );
+};
+export default RelatedArticleCard;

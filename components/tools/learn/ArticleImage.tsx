@@ -1,0 +1,29 @@
+import { Image } from "expo-image";
+import { View, Text, Dimensions } from "react-native";
+const windowWidth = Dimensions.get("window").width;
+
+const ArticleImage = ({
+  image,
+  subtitle,
+}: {
+  image: Image;
+  subtitle: string;
+}) => {
+  return (
+    <View className="my-6 items-center">
+      <View style={{ width: windowWidth * 0.8, height: 240 }}>
+        <Image
+          className="rounded-lg"
+          style={{ width: "100%", height: "100%" }}
+          source={image}
+        />
+        <View className="flex-row justify-end">
+          <Text className="m-2 italic" style={{ color: "#B8B8B8" }}>
+            {subtitle}
+          </Text>
+        </View>
+      </View>
+    </View>
+  );
+};
+export default ArticleImage;

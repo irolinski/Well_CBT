@@ -6,8 +6,8 @@ import {
   View,
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
-import Text from "../global/Text";
 import { Href, router } from "expo-router";
+import Text from "@/components/global/Text";
 
 type LearnCategoryCardTypes = {
   name: string;
