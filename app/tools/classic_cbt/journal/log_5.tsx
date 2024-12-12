@@ -8,7 +8,7 @@ import Frame from "@/components/Frame";
 import Text from "@/components/global/Text";
 import ToolHeader from "@/components/ToolHeader";
 import ToolNav from "@/components/ToolNav";
-import CDATextBox from "@/components/tools/CDATextBox";
+import CDATextBox from "@/components/tools/cda/CDATextBox";
 import { moodValueTitles } from "@/constants/models/journal";
 import {
   journalResetState,

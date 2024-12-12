@@ -15,8 +15,8 @@ import ToolHeader from "@/components/ToolHeader";
 import ToolNav from "@/components/ToolNav";
 import { setNewThought } from "@/state/features/tools/cdaSlice";
 import { AppDispatch, RootState } from "@/state/store";
-import CDATextBox from "@/components/tools/CDATextBox";
-import CDATextInput from "@/components/tools/CDATextInput";
+import CDATextBox from "@/components/tools/cda/CDATextBox";
+import CDATextInput from "@/components/tools/cda/CDATextInput";
 
 const Page_3 = () => {
   const dispatch = useDispatch<AppDispatch>();

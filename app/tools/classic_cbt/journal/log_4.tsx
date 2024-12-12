@@ -7,7 +7,7 @@ import Frame from "@/components/Frame";
 import Text from "@/components/global/Text";
 import ToolHeader from "@/components/ToolHeader";
 import ToolNav from "@/components/ToolNav";
-import CDATextInput from "@/components/tools/CDATextInput";
+import CDATextInput from "@/components/tools/cda/CDATextInput";
 import { AppDispatch, RootState } from "@/state/store";
 import { setNote } from "@/state/features/tools/journalSlice";
 import { Dimensions } from "react-native";

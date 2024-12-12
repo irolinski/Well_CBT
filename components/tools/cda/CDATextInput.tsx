@@ -1,5 +1,5 @@
 import { View, TextInput, Keyboard, Dimensions } from "react-native";
-import Text from "../global/Text";
+import Text from "../../global/Text";
 import { useState } from "react";
 export default function CDATextInput({
   value,

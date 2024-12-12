@@ -12,7 +12,7 @@ import Frame from "@/components/Frame";
 import Text from "@/components/global/Text";
 import ToolHeader from "@/components/ToolHeader";
 import ToolNav from "@/components/ToolNav";
-import CDATextInput from "@/components/tools/CDATextInput";
+import CDATextInput from "@/components/tools/cda/CDATextInput";
 import { setOldThought, setSituation } from "@/state/features/tools/cdaSlice";
 import { AppDispatch, RootState } from "@/state/store";
 

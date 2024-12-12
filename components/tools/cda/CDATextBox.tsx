@@ -1,5 +1,5 @@
 import { View } from "react-native";
-import Text from "../global/Text";
+import Text from "../../global/Text";
 
 const CDATextBox = ({ textContent }: { textContent: string }) => {
   return (

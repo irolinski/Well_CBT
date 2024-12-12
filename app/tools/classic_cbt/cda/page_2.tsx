@@ -7,8 +7,8 @@ import Frame from "@/components/Frame";
 import Text from "@/components/global/Text";
 import ToolHeader from "@/components/ToolHeader";
 import ToolNav from "@/components/ToolNav";
-import CDADistortionList from "@/components/tools/CDADistortionList";
-import CDATextBox from "@/components/tools/CDATextBox";
+import CDADistortionList from "@/components/tools/cda/CDADistortionList";
+import CDATextBox from "@/components/tools/cda/CDATextBox";
 import { RootState } from "@/state/store";
 
 const Page_2 = () => {

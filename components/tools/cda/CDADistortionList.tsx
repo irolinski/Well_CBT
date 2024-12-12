@@ -1,11 +1,11 @@
 import { View } from "react-native";
-import Text from "../global/Text";
+import Text from "../../global/Text";
 import {
   cognitiveDistortions,
   DistortionListProps,
 } from "@/constants/models/cda_distortionList";
 import Tooltip from "react-native-walkthrough-tooltip";
-import DistortionPill from "../DistortionPill";
+import DistortionPill from "../../DistortionPill";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/state/store";
 import { setDistortion } from "@/state/features/tools/cdaSlice";

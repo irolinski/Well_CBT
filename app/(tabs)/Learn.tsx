@@ -1,11 +1,10 @@
 import React from "react";
-import { ScrollView, TouchableOpacity, View } from "react-native";
-import LearnCard from "@/components/learn/LearnCard";
+import { View } from "react-native";
 import FrameMenu from "@/components/FrameMenu";
-import LearnCategoryCard from "@/components/learn/LearnCategoryCard";
-import DividerLine from "@/components/DividerLine";
 import { Dimensions } from "react-native";
 import Text from "@/components/global/Text";
+import LearnCard from "@/components/tools/learn/LearnCard";
+import LearnCategoryCard from "@/components/tools/learn/LearnCategoryCard";
 
 const Learn = () => {
   const windowWidth = Dimensions.get("window").width;
