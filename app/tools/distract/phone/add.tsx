@@ -1,26 +1,25 @@
 import * as Contacts from "expo-contacts";
+import { Image } from "expo-image";
+import { Href, router } from "expo-router";
 import React, { useEffect, useState } from "react";
 import {
   Alert,
+  Dimensions,
   Keyboard,
   Pressable,
   ScrollView,
   TextInput,
   View,
 } from "react-native";
-
-import BackButton from "@/components/BackButton";
-import { Href, router } from "expo-router";
 import { useSelector } from "react-redux";
-import { RootState } from "@/state/store";
-import { setContact, setContactWithPicture } from "@/db/tools";
-import { Image } from "expo-image";
-import { Dimensions } from "react-native";
-import ToolHeader from "@/components/ToolHeader";
-import { MaterialIcons } from "@expo/vector-icons";
-import Text from "@/components/global/Text";
-import formatPhoneNumber from "@/utils/formatPhoneNumber";
 import { phoneFacePlaceholder } from "@/assets/images/tools/phone/phoneFaces";
+import BackButton from "@/components/BackButton";
+import Text from "@/components/global/Text";
+import ToolHeader from "@/components/tools/ToolHeader";
+import { setContact, setContactWithPicture } from "@/db/tools";
+import { RootState } from "@/state/store";
+import formatPhoneNumber from "@/utils/formatPhoneNumber";
+import { MaterialIcons } from "@expo/vector-icons";
 
 interface PhoneNumberObj {
   countryCode: string;

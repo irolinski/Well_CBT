@@ -5,8 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import AdvanceButton from "@/components/AdvanceButton";
 import Frame from "@/components/Frame";
 import Text from "@/components/global/Text";
-import ToolHeader from "@/components/ToolHeader";
-import ToolNav from "@/components/ToolNav";
+import ToolHeader from "@/components/tools/ToolHeader";
+import ToolNav from "@/components/tools/ToolNav";
 import { emotionStrengthTitles } from "@/constants/models/journal";
 import {
   emotionObjType,

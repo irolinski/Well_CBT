@@ -10,13 +10,14 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import BackButton from "@/components/BackButton";
 import Text from "@/components/global/Text";
-import ToolHeader from "@/components/ToolHeader";
+import ToolHeader from "@/components/tools/ToolHeader";
 import { getPhoneData } from "@/db/tools";
 import {
   setShowModal,
   setSupportContact,
 } from "@/state/features/tools/phoneSlice";
 import { AppDispatch, RootState } from "@/state/store";
+import formatPhoneNumber from "@/utils/formatPhoneNumber";
 import {
   AntDesign,
   MaterialCommunityIcons,
@@ -24,7 +25,6 @@ import {
 } from "@expo/vector-icons";
 import ConversationModal from "./modal";
 import PhoneFriendProfilePic from "./ProfilePic";
-import formatPhoneNumber from "@/utils/formatPhoneNumber";
 
 const Phone = () => {
   const windowHeight = Dimensions.get("window").height;

@@ -1,11 +1,12 @@
 import * as SQLite from "expo-sqlite";
 import React, { useEffect } from "react";
 import { Dimensions, Pressable, SectionList, View } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
 import BackButton from "@/components/BackButton";
 import DividerLine from "@/components/DividerLine";
 import Text from "@/components/global/Text";
-import JournalCard from "@/components/JournalCard";
-import ToolHeader from "@/components/ToolHeader";
+import JournalCard from "@/components/home/JournalCard";
+import ToolHeader from "@/components/tools/ToolHeader";
 import {
   allDataByMonthType,
   EntryListSection,
@@ -13,9 +14,6 @@ import {
   getMonthYearTitle,
 } from "@/constants/models/activity_log";
 import { dbName } from "@/db/service";
-import { AntDesign, Feather, MaterialCommunityIcons } from "@expo/vector-icons";
-import { AppDispatch, RootState } from "@/state/store";
-import { useDispatch, useSelector } from "react-redux";
 import {
   activityLogResetState,
   setCurrentIndex,
@@ -24,6 +22,9 @@ import {
   setRawData,
   toggleModal,
 } from "@/state/features/menus/activityLogSlice";
+import { AppDispatch, RootState } from "@/state/store";
+import { AntDesign, Feather, MaterialCommunityIcons } from "@expo/vector-icons";
+
 import ActivityLogModal from "./modal";
 
 const windowHeight = Dimensions.get("window").height;

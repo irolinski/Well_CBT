@@ -1,18 +1,17 @@
+import { Href, router } from "expo-router";
+import * as SQLite from "expo-sqlite";
 import React, { useEffect, useState } from "react";
 import { Dimensions, Pressable, View } from "react-native";
-import FrameMenu from "@/components/FrameMenu";
-import Text from "@/components/global/Text";
-import JournalCard from "@/components/JournalCard";
 import AdvanceButton from "@/components/AdvanceButton";
-import { Entypo } from "@expo/vector-icons";
-import QuoteWidget from "@/components/QuoteWidget";
 import DividerLine from "@/components/DividerLine";
+import Text from "@/components/global/Text";
+import FrameMenu from "@/components/home/FrameMenu";
+import JournalCard from "@/components/home/JournalCard";
+import QuoteWidget from "@/components/home/QuoteWidget";
 import TypewriterText from "@/components/TypewriterText";
-import { Href, router } from "expo-router";
-
-import * as SQLite from "expo-sqlite";
-import { dbName } from "@/db/service";
 import { EntryViewTableRow } from "@/constants/models/activity_log";
+import { dbName } from "@/db/service";
+import { Entypo } from "@expo/vector-icons";
 
 const windowWidth = Dimensions.get("window").width;
 

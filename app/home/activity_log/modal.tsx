@@ -1,13 +1,11 @@
-import { Dimensions, Modal, Pressable, ScrollView, View } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
-import Text from "@/components/global/Text";
-import { AppDispatch, RootState } from "@/state/store";
-import { Feather } from "@expo/vector-icons";
-import {
-  toggleModal,
-} from "@/state/features/menus/activityLogSlice";
-import ActivityLogCalendar from "./Calendar";
+import { Dimensions, Modal, Pressable, ScrollView, View } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import Text from '@/components/global/Text';
+import { toggleModal } from '@/state/features/menus/activityLogSlice';
+import { AppDispatch, RootState } from '@/state/store';
+import { Feather } from '@expo/vector-icons';
 
+import ActivityLogCalendar from './Calendar';
 
 const ActivityLogModal = () => {
   const dispatch = useDispatch<AppDispatch>();

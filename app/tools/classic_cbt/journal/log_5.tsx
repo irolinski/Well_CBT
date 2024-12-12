@@ -6,10 +6,11 @@ import AdvanceButton from "@/components/AdvanceButton";
 import DistortionPill from "@/components/DistortionPill";
 import Frame from "@/components/Frame";
 import Text from "@/components/global/Text";
-import ToolHeader from "@/components/ToolHeader";
-import ToolNav from "@/components/ToolNav";
 import CDATextBox from "@/components/tools/cda/CDATextBox";
+import ToolHeader from "@/components/tools/ToolHeader";
+import ToolNav from "@/components/tools/ToolNav";
 import { moodValueTitles } from "@/constants/models/journal";
+import { handleSaveJournalEntry } from "@/db/tools";
 import {
   journalResetState,
   toggleSave,
@@ -17,7 +18,6 @@ import {
 import { AppDispatch, RootState } from "@/state/store";
 import Feather from "@expo/vector-icons/Feather";
 import { Slider } from "@miblanchard/react-native-slider";
-import { handleSaveJournalEntry } from "@/db/tools";
 
 const Log_5 = () => {
   //tool state

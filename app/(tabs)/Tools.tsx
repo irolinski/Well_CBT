@@ -1,10 +1,10 @@
 import React from "react";
 import { View } from "react-native";
 import { toolCardImages } from "@/assets/images/images";
-import FrameMenu from "@/components/FrameMenu";
+import FrameMenu from "@/components/home/FrameMenu";
 import Text from "@/components/global/Text";
 
-import ToolCard from "../../components/ToolCard";
+import ToolCard from "../../components/tools/ToolCard";
 
 const Tools = () => {
   return (

@@ -4,16 +4,16 @@ import { Animated, Dimensions, Easing, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import AdvanceButton from "@/components/AdvanceButton";
 import Text from "@/components/global/Text";
-import ToolHeader from "@/components/ToolHeader";
-import ToolNav from "@/components/ToolNav";
+import ToolHeader from "@/components/tools/ToolHeader";
+import ToolNav from "@/components/tools/ToolNav";
 import { moodValueTitles } from "@/constants/models/journal";
 import {
   journalResetState,
   setMoodValue,
 } from "@/state/features/tools/journalSlice";
 import { AppDispatch, RootState } from "@/state/store";
+import { MaterialIcons } from "@expo/vector-icons";
 import { Slider } from "@miblanchard/react-native-slider";
-import { Fontisto, MaterialIcons } from "@expo/vector-icons";
 
 const Log_1 = () => {
   const windowWidth = Dimensions.get("window").width;
@@ -188,7 +188,7 @@ const Log_1 = () => {
           </View>
         </View>
       </View>
-      <View className="mx-6" style={{bottom: 0.02 * windowHeight}}>
+      <View className="mx-6" style={{ bottom: 0.02 * windowHeight }}>
         <AdvanceButton
           title="Next"
           onPress={() => router.navigate("./log_2")}

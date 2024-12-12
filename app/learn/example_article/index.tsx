@@ -1,14 +1,13 @@
-import React, { useRef } from "react";
-import { Animated, Dimensions, ScrollView, View } from "react-native";
-import { learnImages } from "@/assets/images/learn/images";
-import DividerLine from "@/components/DividerLine";
-import Text from "@/components/global/Text";
-import ArticleImage from "@/components/learn/ArticleImage";
-import ArticleParagraph from "@/components/learn/ArticleParagraph";
-import ArticleTextHeader from "@/components/learn/ArticleTextHeader";
-import RelatedArticleCard from "@/components/learn/RelatedArticleCard";
-
-import ArticleHeader from "./ArticleImageScrollableHeader";
+import React, { useRef } from 'react';
+import { Animated, Dimensions, ScrollView, View } from 'react-native';
+import { learnImages } from '@/assets/images/learn/images';
+import DividerLine from '@/components/DividerLine';
+import Text from '@/components/global/Text';
+import ArticleImage from '@/components/learn/ArticleImage';
+import ArticleParagraph from '@/components/learn/ArticleParagraph';
+import ArticleTextHeader from '@/components/learn/ArticleTextHeader';
+import RelatedArticleCard from '@/components/learn/RelatedArticleCard';
+import ArticleHeader from './ArticleImageScrollableHeader';
 
 const windowHeight = Dimensions.get("window").height;
 const windowWidth = Dimensions.get("window").width;

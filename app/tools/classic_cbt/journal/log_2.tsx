@@ -6,14 +6,14 @@ import AdvanceButton from "@/components/AdvanceButton";
 import DistortionPill from "@/components/DistortionPill";
 import Frame from "@/components/Frame";
 import Text from "@/components/global/Text";
-import ToolHeader from "@/components/ToolHeader";
-import ToolNav from "@/components/ToolNav";
 import { emotionList } from "@/constants/models/journal";
 import {
   emotionObjType,
   setEmotions,
 } from "@/state/features/tools/journalSlice";
 import { AppDispatch, RootState } from "@/state/store";
+import ToolHeader from "@/components/tools/ToolHeader";
+import ToolNav from "@/components/tools/ToolNav";
 
 const Log_2 = () => {
   // tool state

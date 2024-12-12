@@ -1,18 +1,18 @@
-import { router } from "expo-router";
-import React from "react";
-import { Pressable, ScrollView, View } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
-import AdvanceButton from "@/components/AdvanceButton";
-import DistortionPill from "@/components/DistortionPill";
-import Frame from "@/components/Frame";
-import Text from "@/components/global/Text";
-import ToolHeader from "@/components/ToolHeader";
-import ToolNav from "@/components/ToolNav";
-import CDATextBox from "@/components/tools/cda/CDATextBox";
-import { cdaResetState, toggleSave } from "@/state/features/tools/cdaSlice";
-import { AppDispatch, RootState } from "@/state/store";
-import Feather from "@expo/vector-icons/Feather";
-import { handleSaveCDAEntry } from "@/db/tools";
+import { router } from 'expo-router';
+import React from 'react';
+import { Pressable, ScrollView, View } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import AdvanceButton from '@/components/AdvanceButton';
+import DistortionPill from '@/components/DistortionPill';
+import Frame from '@/components/Frame';
+import Text from '@/components/global/Text';
+import CDATextBox from '@/components/tools/cda/CDATextBox';
+import ToolHeader from '@/components/tools/ToolHeader';
+import ToolNav from '@/components/tools/ToolNav';
+import { handleSaveCDAEntry } from '@/db/tools';
+import { cdaResetState, toggleSave } from '@/state/features/tools/cdaSlice';
+import { AppDispatch, RootState } from '@/state/store';
+import Feather from '@expo/vector-icons/Feather';
 
 const Page_4 = () => {
   const cdaState = useSelector((state: RootState) => state.cda);

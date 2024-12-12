@@ -1,6 +1,6 @@
-import BackButton from "@/components/BackButton";
 import { Image } from "expo-image";
 import { Animated, Dimensions, View } from "react-native";
+import BackButton from "@/components/BackButton";
 
 type ArticleImageScrollableHeaderTypes = {
   value: any;

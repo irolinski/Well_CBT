@@ -3,7 +3,7 @@ import { Text } from "react-native";
 import SettingsTab from "@/components/SettingsTab";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
-import FrameMenu from "@/components/FrameMenu";
+import FrameMenu from "@/components/home/FrameMenu";
 
 const More = () => {
   return (

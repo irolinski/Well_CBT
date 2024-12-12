@@ -11,12 +11,12 @@ import AdvanceButton from "@/components/AdvanceButton";
 import DistortionPill from "@/components/DistortionPill";
 import Frame from "@/components/Frame";
 import Text from "@/components/global/Text";
-import ToolHeader from "@/components/ToolHeader";
-import ToolNav from "@/components/ToolNav";
-import { setNewThought } from "@/state/features/tools/cdaSlice";
-import { AppDispatch, RootState } from "@/state/store";
 import CDATextBox from "@/components/tools/cda/CDATextBox";
 import CDATextInput from "@/components/tools/cda/CDATextInput";
+import ToolHeader from "@/components/tools/ToolHeader";
+import ToolNav from "@/components/tools/ToolNav";
+import { setNewThought } from "@/state/features/tools/cdaSlice";
+import { AppDispatch, RootState } from "@/state/store";
 
 const Page_3 = () => {
   const dispatch = useDispatch<AppDispatch>();

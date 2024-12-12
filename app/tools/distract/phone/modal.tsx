@@ -12,7 +12,7 @@ import {
 import { Dimensions, Modal, Pressable, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import topicList from "@/assets/text/conversation_topics.json";
-import { Logo } from "@/components/Logo";
+import { Logo } from "@/components/global/Logo";
 import handleShare from "@/utils/handleShare";
 import DividerLine from "@/components/DividerLine";
 

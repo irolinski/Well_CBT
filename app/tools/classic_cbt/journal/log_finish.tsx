@@ -1,12 +1,12 @@
 import { Href, router } from "expo-router";
 import React from "react";
 import { Dimensions, ScrollView, View } from "react-native";
-import AdvanceButton from "@/components/AdvanceButton";
-import Text from "@/components/global/Text";
-import ToolNav from "@/components/ToolNav";
-import SecondaryButton from "@/components/SecondaryButton";
-import { LogoDark } from "@/components/Logo";
 import { useSelector } from "react-redux";
+import AdvanceButton from "@/components/AdvanceButton";
+import { LogoDark } from "@/components/global/Logo";
+import Text from "@/components/global/Text";
+import SecondaryButton from "@/components/SecondaryButton";
+import ToolNav from "@/components/tools/ToolNav";
 import { RootState } from "@/state/store";
 
 const Log_finish = () => {

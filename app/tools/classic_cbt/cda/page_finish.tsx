@@ -1,12 +1,11 @@
 import { Href, router } from "expo-router";
 import React from "react";
-import { Dimensions, ImageBackground, ScrollView, View } from "react-native";
+import { Dimensions, ScrollView, View } from "react-native";
 import AdvanceButton from "@/components/AdvanceButton";
+import { LogoDark } from "@/components/global/Logo";
 import Text from "@/components/global/Text";
-import ToolNav from "@/components/ToolNav";
-// import { WellLogo } from "@/constants/models/images";
 import SecondaryButton from "@/components/SecondaryButton";
-import { LogoDark } from "@/components/Logo";
+import ToolNav from "@/components/tools/ToolNav";
 
 const Page_finish = () => {
   const windowHeight = Dimensions.get("window").height;

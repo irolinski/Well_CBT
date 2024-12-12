@@ -1,16 +1,20 @@
 import { router } from "expo-router";
 import React from "react";
-import { Keyboard, TouchableWithoutFeedback, View } from "react-native";
+import {
+  Dimensions,
+  Keyboard,
+  TouchableWithoutFeedback,
+  View,
+} from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import AdvanceButton from "@/components/AdvanceButton";
 import Frame from "@/components/Frame";
 import Text from "@/components/global/Text";
-import ToolHeader from "@/components/ToolHeader";
-import ToolNav from "@/components/ToolNav";
 import CDATextInput from "@/components/tools/cda/CDATextInput";
-import { AppDispatch, RootState } from "@/state/store";
+import ToolHeader from "@/components/tools/ToolHeader";
+import ToolNav from "@/components/tools/ToolNav";
 import { setNote } from "@/state/features/tools/journalSlice";
-import { Dimensions } from "react-native";
+import { AppDispatch, RootState } from "@/state/store";
 
 const Log_4 = () => {
   const windowHeight = Dimensions.get("window").height;

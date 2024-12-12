@@ -1,10 +1,10 @@
 import { Image, ImageSource } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
 import { Dimensions, Pressable, View } from "react-native";
-import Text from "./global/Text";
-import { Feather } from "@expo/vector-icons";
 import quotesList from "@/assets/text/quotes.json";
 import handleShare from "@/utils/handleShare";
+import { Feather } from "@expo/vector-icons";
+import Text from "../global/Text";
 
 const windowWidth = Dimensions.get("window").width;
 

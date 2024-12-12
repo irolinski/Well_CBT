@@ -1,8 +1,7 @@
-import { View } from "react-native";
-import BackButton from "./BackButton";
-import ProgressBar from "./ProgressBar";
-import Text from "./global/Text";
-import { Dimensions } from "react-native";
+import { Dimensions, View } from "react-native";
+import BackButton from "../BackButton";
+import Text from "../global/Text";
+import ProgressBar from "../ProgressBar";
 
 const ToolNav = ({
   currentPage,

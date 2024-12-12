@@ -1,6 +1,6 @@
 import { Dimensions } from "react-native";
-import Text from "./global/Text";
 import { HTMLAttributes } from "react";
+import Text from "../global/Text";
 
 interface ToolHeaderProps extends HTMLAttributes<HTMLDivElement> {
   bright?: boolean;

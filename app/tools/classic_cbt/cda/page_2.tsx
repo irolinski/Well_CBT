@@ -5,10 +5,10 @@ import { useSelector } from "react-redux";
 import AdvanceButton from "@/components/AdvanceButton";
 import Frame from "@/components/Frame";
 import Text from "@/components/global/Text";
-import ToolHeader from "@/components/ToolHeader";
-import ToolNav from "@/components/ToolNav";
 import CDADistortionList from "@/components/tools/cda/CDADistortionList";
 import CDATextBox from "@/components/tools/cda/CDATextBox";
+import ToolHeader from "@/components/tools/ToolHeader";
+import ToolNav from "@/components/tools/ToolNav";
 import { RootState } from "@/state/store";
 
 const Page_2 = () => {

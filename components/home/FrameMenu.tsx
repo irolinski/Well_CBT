@@ -1,7 +1,7 @@
-import { Dimensions, ScrollView, View } from "react-native";
 import React from "react";
-import ToolHeader from "./ToolHeader";
-import { Logo } from "./Logo";
+import { Dimensions, ScrollView, View } from "react-native";
+import { Logo } from "../global/Logo";
+import ToolHeader from "../tools/ToolHeader";
 
 const FrameMenu = (props: any) => {
   const windowWidth = Dimensions.get("window").width;

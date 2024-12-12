@@ -1,6 +1,6 @@
 import React from "react";
 import { View } from "react-native";
-import FrameMenu from "@/components/FrameMenu";
+import FrameMenu from "@/components/home/FrameMenu";
 import { Dimensions } from "react-native";
 import Text from "@/components/global/Text";
 import LearnCard from "@/components/learn/LearnCard";

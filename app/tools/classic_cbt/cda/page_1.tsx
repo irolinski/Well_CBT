@@ -1,20 +1,15 @@
-import { router } from "expo-router";
-import React from "react";
-import {
-  Keyboard,
-  ScrollView,
-  TouchableWithoutFeedback,
-  View,
-} from "react-native";
-import { useDispatch, useSelector } from "react-redux";
-import AdvanceButton from "@/components/AdvanceButton";
-import Frame from "@/components/Frame";
-import Text from "@/components/global/Text";
-import ToolHeader from "@/components/ToolHeader";
-import ToolNav from "@/components/ToolNav";
-import CDATextInput from "@/components/tools/cda/CDATextInput";
-import { setOldThought, setSituation } from "@/state/features/tools/cdaSlice";
-import { AppDispatch, RootState } from "@/state/store";
+import { router } from 'expo-router';
+import React from 'react';
+import { Keyboard, ScrollView, TouchableWithoutFeedback, View } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import AdvanceButton from '@/components/AdvanceButton';
+import Frame from '@/components/Frame';
+import Text from '@/components/global/Text';
+import CDATextInput from '@/components/tools/cda/CDATextInput';
+import ToolHeader from '@/components/tools/ToolHeader';
+import ToolNav from '@/components/tools/ToolNav';
+import { setOldThought, setSituation } from '@/state/features/tools/cdaSlice';
+import { AppDispatch, RootState } from '@/state/store';
 
 const Page_1 = () => {
   const dispatch = useDispatch<AppDispatch>();

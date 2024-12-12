@@ -5,7 +5,7 @@ import { ToolCategories, ToolList } from "@/constants/models/activity_log";
 import { JournalCardProps } from "@/constants/models/journal";
 import { Entypo } from "@expo/vector-icons";
 import { Slider } from "@miblanchard/react-native-slider";
-import Text from "./global/Text";
+import Text from "../global/Text";
 
 const JournalCard = ({ toolName, link, datetime, value }: JournalCardProps) => {
   return (
