@@ -1,7 +1,12 @@
 import { Dimensions, Pressable, View } from "react-native";
 import BackButton from "../BackButton";
 import { Ionicons } from "@expo/vector-icons";
-const ActivityShowNav = () => {
+
+const ActivityShowNav = ({
+  handleDeletePress,
+}: {
+  handleDeletePress: () => void;
+}) => {
   const windowHeight = Dimensions.get("window").height;
 
   return (
@@ -14,15 +19,14 @@ const ActivityShowNav = () => {
     >
       <View className="z-10 w-full flex-row items-center justify-between">
         <View className="left-6">
-          <BackButton
-            color="#FBFBFB"
-            // handleBackButtonPress={() => {
-            //   dispatch(activityLogResetState());
-            // }}
-          />
+          <BackButton color="#FBFBFB" />
         </View>
         <View className="mx-6 flex-row justify-end">
-          <Pressable>
+          <Pressable
+            onPress={() => {
+              handleDeletePress();
+            }}
+          >
             <Ionicons name="trash-outline" size={22} color="#FBFBFB" />
           </Pressable>
         </View>

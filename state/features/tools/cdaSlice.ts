@@ -1,14 +1,11 @@
+import { cdaType } from "@/constants/models/cda";
 import { createSlice } from "@reduxjs/toolkit";
 
-export type cdaSliceTpyes = {
-  situation: string;
-  oldThought: string;
-  distortion: string;
-  newThought: string;
+export type cdaSliceTypes = cdaType & {
   save: boolean;
 };
 
-const cdaSliceInitialState = {
+const cdaSliceInitialState: cdaSliceTypes = {
   situation: "",
   oldThought: "",
   distortion: "",

@@ -1,3 +1,4 @@
+import { emotionObjType } from "@/constants/models/journal";
 import { createSlice } from "@reduxjs/toolkit";
 
 export type journalSliceTypes = {
@@ -5,12 +6,6 @@ export type journalSliceTypes = {
   emotions: Array<emotionObjType>;
   note: string;
   save: Boolean;
-};
-
-export type emotionObjType = {
-  name: string;
-  color?: string;
-  strength?: number;
 };
 
 const journalSliceInitialState: journalSliceTypes = {

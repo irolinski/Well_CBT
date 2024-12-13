@@ -1,4 +1,3 @@
-// import * as SQLite from "expo-sqlite";
 import React, { useEffect } from "react";
 import { Dimensions, Pressable, SectionList, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,7 +13,6 @@ import {
   getMonthYearTitle,
 } from "@/constants/models/activity_log";
 import { fetchEntryData } from "@/db/activity_log";
-// import { dbName } from "@/db/service";
 import {
   activityLogResetState,
   setCurrentIndex,

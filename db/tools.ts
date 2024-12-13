@@ -38,6 +38,15 @@ export const handleSaveCDAEntry = async (cdaState: cdaSliceTpyes) => {
   }
 };
 
+export const deleteCDAEntry = async (id: number) => {
+  try {
+    const db = await SQLite.openDatabaseAsync(dbName);
+    await db.execAsync(`DELETE FROM cdaArchive WHERE id="${id}"`);
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 export const handleSaveJournalEntry = async (
   journalState: journalSliceTypes,
 ) => {
@@ -87,6 +96,16 @@ export const handleSaveJournalEntry = async (
     } catch (err) {
       throw err;
     }
+  }
+};
+
+export const deleteJournalEntry = async (id: number) => {
+  try {
+    const db = await SQLite.openDatabaseAsync(dbName);
+    await db.execAsync(`DELETE FROM journalEntries WHERE id="${id}"`);
+    await db.execAsync(`DELETE FROM journalEntryEmotions WHERE id="${id}"`);
+  } catch (err) {
+    console.error(err);
   }
 };
 
