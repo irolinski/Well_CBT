@@ -38,7 +38,7 @@ const ActivityShowPage = () => {
     return (
       <ScrollView>
         <ActivityShowNav
-          handleDeletePress={() => handleDeleteEntry(deleteCDAEntry, id)}
+          handlePressDelete={() => handleDeleteEntry(deleteCDAEntry, id)}
         />
         <View className={`mx-6 my-10 flex-1 justify-center`}>
           <View

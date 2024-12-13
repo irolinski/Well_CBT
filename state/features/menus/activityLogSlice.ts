@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 type ActivityLogStateTypes = {
   showModal: boolean;
-  rawData: any[];
+  rawData: string[];
   entryData: EntryListSection[];
   displayedData: EntryListSection[];
   currentIndex: number;

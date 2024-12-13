@@ -1,13 +1,17 @@
 import { Dimensions, Pressable, View } from "react-native";
 import BackButton from "../BackButton";
 import { Ionicons } from "@expo/vector-icons";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/state/store";
+import { activityLogResetState } from "@/state/features/menus/activityLogSlice";
 
-const ActivityShowNav = ({
-  handleDeletePress,
-}: {
-  handleDeletePress: () => void;
-}) => {
+type ActivityShowNavTypes = {
+  handlePressDelete: () => void;
+};
+
+const ActivityShowNav = ({ handlePressDelete }: ActivityShowNavTypes) => {
   const windowHeight = Dimensions.get("window").height;
+  const dispatch = useDispatch<AppDispatch>();
 
   return (
     <View
@@ -24,7 +28,8 @@ const ActivityShowNav = ({
         <View className="mx-6 flex-row justify-end">
           <Pressable
             onPress={() => {
-              handleDeletePress();
+              handlePressDelete();
+              dispatch(activityLogResetState());
             }}
           >
             <Ionicons name="trash-outline" size={22} color="#FBFBFB" />

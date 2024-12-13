@@ -17,6 +17,7 @@ web-build/
 
 .vscode
 _plan.txt
+_buglist.txt
 ios
 android
 misc/
