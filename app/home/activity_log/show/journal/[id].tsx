@@ -39,7 +39,7 @@ const ActivityShowPage = () => {
     <ScrollView>
       <ActivityShowNav />
       <View className={`mx-6 my-10 flex-1 justify-center`}>
-        <View className="pb-10">
+        <View className="pb-10 mb-12">
           <View className="mb-8 flex-row justify-between">
             <ToolHeader>Journal Entry </ToolHeader>
             <View className="justify-center">
