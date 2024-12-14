@@ -4,7 +4,7 @@ import { View } from "react-native";
 type ArticleTextHeaderTypes = {
   title: string;
   subtitle: string;
-  time: number;
+  time?: number;
   category: string;
 };
 

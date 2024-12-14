@@ -3,23 +3,13 @@ import { Href, router } from "expo-router";
 import React from "react";
 import {
   Dimensions,
-  ImageSourcePropType,
   Pressable,
   Text,
   TouchableOpacity,
   View,
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
-
-type LearnArticleCardTypes = {
-  title: string;
-  subtitle?: string;
-  time?: number;
-  link: string;
-  image: ImageSourcePropType | undefined;
-  frameColor?: string;
-  textColor?: string;
-};
+import { learnArticleCardTypes } from "@/constants/models/learn";
 
 const LearnArticleCard = ({
   title,
@@ -29,7 +19,7 @@ const LearnArticleCard = ({
   image,
   frameColor,
   textColor,
-}: LearnArticleCardTypes) => {
+}: learnArticleCardTypes) => {
   const windowWidth = Dimensions.get("window").width;
 
   return (

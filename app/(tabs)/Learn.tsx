@@ -3,7 +3,7 @@ import { View } from "react-native";
 import FrameMenu from "@/components/home/FrameMenu";
 import { Dimensions } from "react-native";
 import Text from "@/components/global/Text";
-import LearnCard from "@/components/learn/LearnCard";
+import LearnCard from "@/components/learn/ArticleCard";
 import LearnCategoryCard from "@/components/learn/LearnCategoryCard";
 
 const Learn = () => {
@@ -32,7 +32,11 @@ const Learn = () => {
           Categories
         </Text>
         <View className="flex-row flex-wrap justify-center overflow-hidden">
-          <LearnCategoryCard name="Science" backgroundColor="#8DBED8" link="" />
+          <LearnCategoryCard
+            name="Science"
+            backgroundColor="#8DBED8"
+            link="/learn/categories/Science"
+          />
           <LearnCategoryCard
             name="Lifestyle"
             backgroundColor="#81C784"

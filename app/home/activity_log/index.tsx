@@ -24,6 +24,7 @@ import {
 import { AppDispatch, RootState } from "@/state/store";
 import { AntDesign, Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 import ActivityLogModal from "./modal";
+import MenuNav from "@/components/global/MenuNav";
 
 const windowHeight = Dimensions.get("window").height;
 const windowWidth = Dimensions.get("window").width;
@@ -137,29 +138,12 @@ const ActivityLog = () => {
     <React.Fragment>
       <View className="h-full pb-8">
         {/* NAV */}
-        <View
-          className={`z-10 box-border w-full border-b ${windowHeight > 750 ? "pb-4 pt-16" : "top-12"}`}
-          style={{
-            borderColor: "#D9D9D9",
-            backgroundColor: "#8DBED8",
+        <MenuNav
+          name="Entry Log"
+          handleBackButtonPress={() => {
+            dispatch(activityLogResetState());
           }}
-        >
-          <View className="z-10 w-full flex-row items-center justify-between">
-            <View className="left-6">
-              <BackButton
-                color="#FBFBFB"
-                handleBackButtonPress={() => {
-                  dispatch(activityLogResetState());
-                }}
-              />
-            </View>
-            <View className="mx-6 flex-row justify-end">
-              <ToolHeader noIndent style={{ color: "#FBFBFB" }}>
-                Entry Log
-              </ToolHeader>
-            </View>
-          </View>
-        </View>
+        />
         {/* / NAV */}
         <View className="mx-5 mt-8">
           <View className="mb-6 w-full items-center">

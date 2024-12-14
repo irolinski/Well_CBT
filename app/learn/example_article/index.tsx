@@ -1,19 +1,19 @@
-import React, { useRef } from 'react';
-import { Animated, Dimensions, ScrollView, View } from 'react-native';
-import { learnImages } from '@/assets/images/learn/images';
-import DividerLine from '@/components/DividerLine';
-import Text from '@/components/global/Text';
-import ArticleImage from '@/components/learn/ArticleImage';
-import ArticleParagraph from '@/components/learn/ArticleParagraph';
-import ArticleTextHeader from '@/components/learn/ArticleTextHeader';
-import RelatedArticleCard from '@/components/learn/RelatedArticleCard';
-import ArticleHeader from './ArticleImageScrollableHeader';
+import React, { useRef } from "react";
+import { Animated, Dimensions, ScrollView, View } from "react-native";
+import { learnImages } from "@/assets/images/learn/images";
+import DividerLine from "@/components/DividerLine";
+import Text from "@/components/global/Text";
+import ArticleImage from "@/components/learn/ArticleImage";
+import ArticleParagraph from "@/components/learn/ArticleParagraph";
+import ArticleTextHeader from "@/components/learn/ArticleTextHeader";
+import RelatedArticleCard from "@/components/learn/RelatedArticleCard";
+import ArticleHeader from "@/components/learn/ArticleImageScrollableHeader";
 
 const windowHeight = Dimensions.get("window").height;
 const windowWidth = Dimensions.get("window").width;
 const headerHeight = windowHeight * 0.4;
 
-const ArticlePage = () => {
+const ExampleArticle = () => {
   const scrollOffsetY = useRef(new Animated.Value(0)).current;
   const handleScroll = Animated.event(
     [{ nativeEvent: { contentOffset: { y: scrollOffsetY } } }],
@@ -69,7 +69,7 @@ const ArticlePage = () => {
             </View>
             <View className="my-4 items-center">
               <RelatedArticleCard
-                name="10 suprising benefits of breathwork"
+                title="10 suprising benefits of breathwork"
                 time={10}
                 image={learnImages[0]}
                 link="/"
@@ -82,4 +82,4 @@ const ArticlePage = () => {
   );
 };
 
-export default ArticlePage;
+export default ExampleArticle;

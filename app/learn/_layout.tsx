@@ -8,6 +8,7 @@ const LearnLayout = () => {
         name="example_article/index"
         options={{ headerShown: false }}
       />
+      <Stack.Screen name="categories" options={{ headerShown: false }} />
     </Stack>
   );
 };

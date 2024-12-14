@@ -3,18 +3,14 @@ import { Pressable, View } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { Href, router } from "expo-router";
 import Text from "@/components/global/Text";
+import { learnArticleCardTypes } from "@/constants/models/learn";
 
 const RelatedArticleCard = ({
-  name,
+  title,
   time,
   image,
   link,
-}: {
-  name: string;
-  time: number;
-  image: Image;
-  link: string;
-}) => {
+}: learnArticleCardTypes) => {
   return (
     <Pressable
       className="rounded-2xl border px-4"
@@ -32,7 +28,7 @@ const RelatedArticleCard = ({
         <View className="w-3/5">
           <View className="py-5">
             <View>
-              <Text className="text-base">{name} </Text>
+              <Text className="text-base">{title} </Text>
             </View>
             <View className="mt-2 flex-row items-end justify-between">
               <Text className="mb-2 text-sm" style={{ color: "#212529" }}>
