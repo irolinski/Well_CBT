@@ -92,7 +92,7 @@ const ActivityShowPage = () => {
               <View className="w-full flex-row justify-center">
                 <Image
                   className="h-4 w-1/2 translate-y-16"
-                  source={require("@/assets/images/tools/phone/logo_braid.webp")}
+                  source={require("@/assets/images/logo_braid.webp")}
                 />
               </View>
             </View>

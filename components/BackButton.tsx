@@ -1,5 +1,5 @@
 import { router } from "expo-router";
-import { Pressable } from "react-native";
+import { ColorValue, Pressable } from "react-native";
 import { Entypo } from "@expo/vector-icons";
 
 const BackButton = ({
@@ -7,7 +7,7 @@ const BackButton = ({
   color,
 }: {
   handleBackButtonPress?: () => void;
-  color?: string;
+  color?: ColorValue;
 }) => {
   return (
     <Pressable
