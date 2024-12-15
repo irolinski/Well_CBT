@@ -44,7 +44,6 @@ const CategoryPage = () => {
         >
           <View className="m-4">
             <View style={{ backgroundColor: "#FBFBFB" }}>
-              {/* <Text className="mt-2 text-left text-2xl">Articles</Text> */}
               <View className="items-center justify-center">
                 {articles.map((el, index: number) => (
                   <View className="mt-5 flex-1" key={index}>

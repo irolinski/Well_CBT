@@ -1,6 +1,5 @@
 import { Image } from "expo-image";
 import { Animated, ColorValue, Dimensions, View } from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
 import Text from "../global/Text";
 import MenuNav from "../global/MenuNav";
 
@@ -29,12 +28,12 @@ const CategoryScrollableHeader = ({
     extrapolate: "clamp",
   });
 
-  const animateImageFilter = value.interpolate({
-    inputRange: [0, headerHeight],
-    outputRange: [0.3, 0.9],
-    extrapolate: "clamp",
-  });
-  const hideBackButton = value.interpolate({
+    const animateImageFilter = value.interpolate({
+      inputRange: [0, headerHeight],
+      outputRange: [0.5, 0.9],
+      extrapolate: "clamp",
+    });
+  const hideNav = value.interpolate({
     inputRange: [0, headerHeight - 200],
     outputRange: [1, 0],
     extrapolate: "clamp",
@@ -44,7 +43,7 @@ const CategoryScrollableHeader = ({
     <View>
       <Animated.View
         className={`absolute top-2 z-30 flex-row`} //idk why top-2 works here but it does
-        style={{ opacity: hideBackButton }}
+        style={{ opacity: hideNav }}
       >
         <MenuNav name="Learn" backgroundColor="transparent" />
       </Animated.View>
@@ -61,7 +60,7 @@ const CategoryScrollableHeader = ({
         }}
       >
         {/* Text */}
-        <Animated.View className="z-30" style={{ opacity: hideBackButton }}>
+        <Animated.View className="z-30" style={{ opacity: hideNav }}>
           <View
             className="flex-row justify-center"
             style={{ marginTop: windowHeight * 0.03 }}

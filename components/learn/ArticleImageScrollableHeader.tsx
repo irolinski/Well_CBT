@@ -26,7 +26,7 @@ const ArticleImageScrollableHeader = ({
     outputRange: [0.1, 0.8],
     extrapolate: "clamp",
   });
-  const hideBackButton = value.interpolate({
+  const hideNav = value.interpolate({
     inputRange: [0, headerHeight - 200],
     outputRange: [1, 0],
     extrapolate: "clamp",
@@ -37,7 +37,7 @@ const ArticleImageScrollableHeader = ({
       <Animated.View
         className={`absolute z-10 mx-6 ${windowHeight > 750 ? "top-20" : "top-12"} left-4 flex-row justify-start`}
         style={{
-          opacity: hideBackButton,
+          opacity: hideNav,
         }}
       >
         <BackButton color="#FBFBFB" />
