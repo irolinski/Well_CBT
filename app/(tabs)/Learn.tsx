@@ -40,7 +40,7 @@ const Learn = () => {
           <LearnCategoryCard
             name="Lifestyle"
             backgroundColor="#81C784"
-            link=""
+            link="/learn/categories/Lifestyle"
           />
           <LearnCategoryCard
             name="Tutorials"
