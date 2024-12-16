@@ -9,6 +9,7 @@ import RelatedArticleCard from "@/components/learn/RelatedArticleCard";
 import { articleParagraph, ArticleTypes } from "@/constants/models/learn";
 import { learnArticles } from "@/constants/models/learn_articles";
 import ArticleImageScrollableHeader from "./ArticleImageScrollableHeader";
+import { Image } from "expo-image";
 
 const getRelatedArticles = (idArr: number[] | undefined) => {
   let relatedArticlesArr: ArticleTypes[] = [];
@@ -83,24 +84,38 @@ const ArticlePage = ({
               />
             )}
           </View>
+
           <View className="py-8">
-            <DividerLine width={windowWidth * 0.65} />
+            {relatedArticles.length > 0 ? (
+              <DividerLine width={windowWidth * 0.65} />
+            ) : (
+              <View className="mt-6 h-4 w-full flex-row items-center justify-center">
+                <Image
+                  className="h-4 w-1/2"
+                  source={require("@/assets/images/logo_braid.webp")}
+                />
+              </View>
+            )}
           </View>
           <View className="mb-12">
-            <View>
-              <Text className="pb-6 text-xl">Related Articles</Text>
-            </View>
-            <View className="my-4 items-center">
-              {relatedArticles.length > 0 &&
-                relatedArticles.map((a: ArticleTypes) => (
-                  <RelatedArticleCard
-                    title={a.title}
-                    time={a.time}
-                    image={a.bgImage}
-                    link={`/${a.id}`}
-                  />
-                ))}
-            </View>
+            {relatedArticles.length > 0 && (
+              <React.Fragment>
+                <View>
+                  <Text className="pb-6 text-xl">Related Articles</Text>
+                </View>
+                <View className="my-4 items-center">
+                  {relatedArticles.length > 0 &&
+                    relatedArticles.map((a: ArticleTypes) => (
+                      <RelatedArticleCard
+                        title={a.title}
+                        time={a.time}
+                        image={a.bgImage}
+                        link={`/${a.id}`}
+                      />
+                    ))}
+                </View>
+              </React.Fragment>
+            )}
           </View>
         </View>
       </ScrollView>

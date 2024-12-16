@@ -9,7 +9,7 @@ type ArticleParagraphTypes = {
 const ArticleParagraph = ({ header, body }: ArticleParagraphTypes) => {
   return (
     <View className="mt-3">
-      <Text className="w-1/2 text-lg font-semibold">{header} </Text>
+      <Text className="w-3/4 text-lg font-semibold">{header} </Text>
       <Text className="m-3 text-base leading-6">{body}</Text>
     </View>
   );

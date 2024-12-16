@@ -1,5 +1,6 @@
 import Text from "@/components/global/Text";
 import { View } from "react-native";
+import DividerLine from "../DividerLine";
 
 type ArticleTextHeaderTypes = {
   title: string;
@@ -28,9 +29,16 @@ const ArticleTextHeader = ({
           {title}
         </Text>
       </View>
-      <View className="mt-7 flex-row justify-center">
-        <Text className="mx-2 text-center text-base italic">{subtitle}</Text>
-      </View>
+
+      {subtitle ? (
+        <View className="mt-7 flex-row justify-center">
+          <Text className="mx-2 text-center text-base italic">{subtitle}</Text>
+        </View>
+      ) : (
+        <View className="mt-12">
+          <DividerLine width={150} />
+        </View>
+      )}
     </View>
   );
 };
