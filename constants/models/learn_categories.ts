@@ -19,18 +19,19 @@ export const learnCategories: learnCategoriesTypes[] = [
     title: "Lifestyle",
     color: "#81C784",
     image: require("@/assets/images/learn/telescope_.jpg"),
-    description: `“All of science is nothing more than the refinement of everyday thinking.” ${"\n"} ${"\n"} - Albert Einstein`,
+    description:
+      "We are what we repeatedly do. Excellence, then, is not an act, but a habit.\n\n – Aristotle",
   },
   {
     title: "Tutorials",
     color: "#F9A947",
     image: require("@/assets/images/learn/telescope_.jpg"),
-    description: `“All of science is nothing more than the refinement of everyday thinking.” ${"\n"} ${"\n"} - Albert Einstein`,
+    description: "",
   },
   {
     title: "Psychology",
     color: "#73848D",
     image: require("@/assets/images/learn/telescope_.jpg"),
-    description: `“All of science is nothing more than the refinement of everyday thinking.” ${"\n"} ${"\n"} - Albert Einstein`,
+    description: "",
   },
 ];
