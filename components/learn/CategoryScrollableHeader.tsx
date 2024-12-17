@@ -2,6 +2,7 @@ import { Image } from "expo-image";
 import { Animated, ColorValue, Dimensions, View } from "react-native";
 import Text from "../global/Text";
 import MenuNav from "../global/MenuNav";
+import { LinearGradient } from "expo-linear-gradient";
 
 type CategoryScrollableHeaderTypes = {
   title: string;
@@ -28,11 +29,11 @@ const CategoryScrollableHeader = ({
     extrapolate: "clamp",
   });
 
-    const animateImageFilter = value.interpolate({
-      inputRange: [0, headerHeight],
-      outputRange: [0.5, 0.9],
-      extrapolate: "clamp",
-    });
+  const animateImageFilter = value.interpolate({
+    inputRange: [0, headerHeight],
+    outputRange: [0.5, 0.9],
+    extrapolate: "clamp",
+  });
   const hideNav = value.interpolate({
     inputRange: [0, headerHeight - 200],
     outputRange: [1, 0],
@@ -91,6 +92,17 @@ const CategoryScrollableHeader = ({
           </View>
         </Animated.View>
         {/* /Text */}
+         {/* <LinearGradient
+          colors={[`${String(color)}`, `rgba(0, 0, 0, 0.65)`]}
+          start={[0, 0]}
+          end={[0, 0.5]}
+          style={{
+            position: "absolute",
+            height: "100%",
+            width: "100%",
+            zIndex: 10,
+          }}
+        ></LinearGradient>  */}
         {/* Design required gradient HERE but it slowed down performance */}
         <Image
           style={{ width: "100%", height: "100%" }}
@@ -98,7 +110,7 @@ const CategoryScrollableHeader = ({
           source={image}
           cachePolicy="memory" // necessary to prevent image flicker onScroll
         />
-        <Animated.View
+        {/* <Animated.View
           style={{
             width: "100%",
             height: "100%",
@@ -107,7 +119,7 @@ const CategoryScrollableHeader = ({
             opacity: animateImageFilter,
             zIndex: 20,
           }}
-        ></Animated.View>
+        ></Animated.View> */}
       </Animated.View>
     </View>
   );
@@ -115,16 +127,4 @@ const CategoryScrollableHeader = ({
 
 export default CategoryScrollableHeader;
 
-{
-  /* <LinearGradient
-          colors={[`${String(color)}`, `rgba(0, 0, 0, 0.65)`]}
-          start={[0, 0]}
-          end={[0, 1]}
-          style={{
-            position: "absolute",
-            height: "100%",
-            width: "100%",
-            zIndex: 10,
-          }}
-        ></LinearGradient> */
-}
+

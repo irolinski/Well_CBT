@@ -42,7 +42,10 @@ const CategoryPage = () => {
           }}
           onScroll={handleScroll}
         >
-          <View className="m-4">
+          <View className="ml-8 mt-4">
+            <Text className="text-2xl">Articles</Text>
+          </View>
+          <View className="mx-4 mb-4">
             <View style={{ backgroundColor: "#FBFBFB" }}>
               <View className="items-center justify-center">
                 {articles.map((el, index: number) => (

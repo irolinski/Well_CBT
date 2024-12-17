@@ -45,12 +45,12 @@ const Learn = () => {
           <LearnCategoryCard
             name="Tutorials"
             backgroundColor="#F9A947"
-            link=""
+            link="/learn/categories/Tutorials"
           />
           <LearnCategoryCard
             name="Psychology"
             backgroundColor="#73848D"
-            link=""
+            link="/learn/categories/Psychology"
           />
         </View>
       </View>
