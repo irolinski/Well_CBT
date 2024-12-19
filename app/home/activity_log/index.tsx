@@ -1,7 +1,12 @@
 import React, { useEffect } from "react";
-import { Dimensions, Pressable, SectionList, View } from "react-native";
+import {
+  Dimensions,
+  Pressable,
+  SectionList,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import BackButton from "@/components/BackButton";
 import DividerLine from "@/components/DividerLine";
 import Text from "@/components/global/Text";
 import JournalCard from "@/components/home/JournalCard";
@@ -25,6 +30,8 @@ import { AppDispatch, RootState } from "@/state/store";
 import { AntDesign, Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 import ActivityLogModal from "./modal";
 import MenuNav from "@/components/global/MenuNav";
+import { setShowNewActivityModal } from "@/state/features/menus/newActivityModalSlice";
+import NewActivityModal from "@/components/home/NewActivityModal";
 
 const windowHeight = Dimensions.get("window").height;
 const windowWidth = Dimensions.get("window").width;
@@ -260,19 +267,22 @@ const ActivityLog = () => {
         </View>
       </View>
       {/* PLUS BUTTON */}
-      <View
-        className="absolute bottom-0 right-0 items-center justify-center rounded-full"
-        style={{
-          width: 72,
-          height: 72,
-          right: windowHeight * 0.04,
-          bottom: windowHeight * 0.06,
-          backgroundColor: "#E57353",
-        }}
-      >
-        <Feather name="plus" size={36} color="white" />
-      </View>
+      <TouchableOpacity onPress={() => dispatch(setShowNewActivityModal(true))}>
+        <View
+          className="absolute bottom-0 right-0 items-center justify-center rounded-full"
+          style={{
+            width: 72,
+            height: 72,
+            right: windowHeight * 0.04,
+            bottom: windowHeight * 0.06,
+            backgroundColor: "#E57353",
+          }}
+        >
+          <Feather name="plus" size={36} color="white" />
+        </View>
+      </TouchableOpacity>
       <ActivityLogModal />
+      <NewActivityModal />
     </React.Fragment>
   );
 };

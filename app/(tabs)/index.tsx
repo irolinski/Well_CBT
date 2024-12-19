@@ -11,10 +11,16 @@ import TypewriterText from "@/components/TypewriterText";
 import { EntryViewTableRow } from "@/constants/models/activity_log";
 import { fetchRecentEntries } from "@/db/activity_log";
 import { Entypo } from "@expo/vector-icons";
+import NewActivityModal from "@/components/home/NewActivityModal";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/state/store";
+import { setShowNewActivityModal } from "@/state/features/menus/newActivityModalSlice";
 
 const windowWidth = Dimensions.get("window").width;
 
 const Home = () => {
+  const dispatch = useDispatch<AppDispatch>();
+
   const [recentEntriesArr, setRecentEntriesArr] = useState<EntryViewTableRow[]>(
     [],
   );
@@ -60,7 +66,10 @@ const Home = () => {
             <Text className="my-6 text-left text-2xl">
               Your recent activity:
             </Text>
-            <Pressable className="justify-center" onPress={() => {}}>
+            <Pressable
+              className="justify-center"
+              onPress={() => dispatch(setShowNewActivityModal(true))}
+            >
               <Entypo name="plus" size={32} color="black" />
             </Pressable>
           </View>
@@ -95,6 +104,7 @@ const Home = () => {
           </View>
         </View>
       </View>
+      <NewActivityModal />
     </FrameMenu>
   );
 };

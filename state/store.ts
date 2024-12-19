@@ -4,6 +4,7 @@ import journalSlice from "./features/tools/journalSlice";
 import breatheSettingsSlice from "./features/tools/breatheSettingsSlice";
 import phoneSlice from "./features/tools/phoneSlice";
 import activityLogSlice from "./features/menus/activityLogSlice";
+import newActivityModalSlice from "./features/menus/newActivityModalSlice";
 
 // ...
 
@@ -14,6 +15,7 @@ export const store = configureStore({
     breatheSettings: breatheSettingsSlice,
     phone: phoneSlice,
     activityLog: activityLogSlice,
+    newActivityModal: newActivityModalSlice,
   },
 });
 

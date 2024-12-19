@@ -5,6 +5,7 @@ type ToolType = {
   name: string;
   category: keyof typeof ToolCategories;
   icon?: ReactNode;
+  iconBright?: ReactNode;
 };
 
 export const toolNameList = ["cda", "journal", "breathing"];
@@ -21,18 +22,43 @@ export const ToolList: Record<ToolNames, ToolType> = {
         color="#B8B8B8"
       />
     ),
+    iconBright: (
+      <MaterialCommunityIcons
+        name="thought-bubble-outline"
+        size={32}
+        color="#FFFFFF"
+      />
+    ),
   },
-  journal: { name: "Mood Journal", category: "Journal" },
+  journal: {
+    name: "Mood Journal",
+    category: "Journal",
+    icon: (
+      <MaterialCommunityIcons
+        name="notebook-outline"
+        size={32}
+        color="#B8B8B8"
+      />
+    ),
+    iconBright: (
+      <MaterialCommunityIcons
+        name="notebook-outline"
+        size={32}
+        color="#FFFFFF"
+      />
+    ),
+  },
   breathing: {
     name: "Breathing",
     category: "Relax",
     icon: <Feather name="wind" size={32} color="#B8B8B8" />,
+    iconBright: <Feather name="wind" size={32} color="#FFFFFF" />,
   },
 };
 
 export const ToolCategories: Record<
   "Exercise" | "Relax" | "Journal",
-  { icon: ReactNode }
+  { icon: ReactNode; iconBright: ReactNode }
 > = {
   Exercise: {
     icon: (
@@ -42,10 +68,20 @@ export const ToolCategories: Record<
         color="#B8B8B8"
       />
     ),
+    iconBright: (
+      <MaterialCommunityIcons
+        name="head-cog-outline"
+        size={32}
+        color="#FFFFFF"
+      />
+    ),
   },
   Relax: {
     icon: (
       <MaterialCommunityIcons name="meditation" size={36} color="#B8B8B8" />
+    ),
+    iconBright: (
+      <MaterialCommunityIcons name="meditation" size={36} color="#FFFFFF" />
     ),
   },
   Journal: {
@@ -54,6 +90,13 @@ export const ToolCategories: Record<
         name="notebook-outline"
         size={32}
         color="#B8B8B8"
+      />
+    ),
+    iconBright: (
+      <MaterialCommunityIcons
+        name="notebook-outline"
+        size={32}
+        color="#FFFFFF"
       />
     ),
   },
@@ -75,7 +118,7 @@ export type allDataByMonthType = {
   [title: string]: EntryViewTableRow[];
 };
 
-// Helper function to format month-year as "MonthName YYYY"
+// Helper function to format month-year as "MonthName YYYY" --
 export const getMonthYearTitle = (dateString: string) => {
   const months = [
     "January",
