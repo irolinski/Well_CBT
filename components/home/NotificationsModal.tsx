@@ -1,34 +1,25 @@
 import { useState } from "react";
 import {
   Dimensions,
-  Keyboard,
   Modal,
   Pressable,
   Switch,
   Text,
-  TextInput,
   TouchableOpacity,
   View,
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
+import { setShowNotificationModal } from "@/state/features/menus/notificationModalSlice";
 import { AppDispatch, RootState } from "@/state/store";
 import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
-import { setShowNotificationModal } from "@/state/features/menus/notificationModalSlice";
 import TimePicker from "./TimePicker";
 
-const isNumeric = (string: string) => {
-  return /^\d*\s*$/.test(string);
-};
-
 const NotificationsModal = () => {
-  const windowHeight = Dimensions.get("window").height;
-
   const notificationModalState = useSelector(
     (state: RootState) => state.notificationModal,
   );
   const dispatch = useDispatch<AppDispatch>();
-
-  const [switchIsActive, setswitchIsActive] = useState(false);
+  const [switchIsActive, setswitchIsActive] = useState(true);
 
   return (
     <Modal
@@ -91,7 +82,10 @@ const NotificationsModal = () => {
             />
           </View>
           {/* TimePicker */}
-          <TimePicker />
+          <TimePicker
+            disabled={!switchIsActive}
+            onChange={(time) => console.log(time)}
+          />
           <View
             className="absolute bottom-8 flex-row items-center justify-center"
             style={{ width: 320 }}
@@ -106,14 +100,9 @@ const NotificationsModal = () => {
               onPress={() => {}}
             >
               <Text className="mx-2" style={{ color: "#FFFFFF" }}>
-                Apply
+                Save preferences
               </Text>
-              <Feather
-                className="mx-2"
-                name="arrow-right"
-                size={28}
-                color="#FFFFFF"
-              />
+              <Feather name="save" size={24} color="#FFFFFF" />
             </TouchableOpacity>
           </View>
         </View>

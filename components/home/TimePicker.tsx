@@ -1,15 +1,22 @@
-import { useState } from "react";
-import {
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  Pressable,
-} from "react-native";
+import { useEffect, useState } from "react";
+import { Text, TextInput, TouchableOpacity, View } from "react-native";
 import DividerLine from "../DividerLine";
-const TimePicker = () => {
-  const [firstInput, setFirstInput] = useState("");
-  const [secondInput, setSecondInput] = useState("");
+
+type onChangeReturnObj = {
+  hours: string;
+  minutes: string;
+  meridiem: "AM" | "PM" | undefined;
+};
+
+type TimePickerTypes = {
+  onChange?: (time: onChangeReturnObj) => void;
+  disabled?: boolean;
+};
+
+const TimePicker = ({ onChange, disabled }: TimePickerTypes) => {
+  // remember to exchange for the time saved in db
+  const [firstInput, setFirstInput] = useState("07");
+  const [secondInput, setSecondInput] = useState("30");
   const [meridiem, setMeridiem] = useState<"AM" | "PM" | undefined>("PM");
 
   const handleHoursInputTextChange = (val: string) => {
@@ -58,6 +65,14 @@ const TimePicker = () => {
       setSecondInput(`00`);
     }
   };
+
+  // init onChange
+  useEffect(() => {
+    if (onChange) {
+      onChange({ hours: firstInput, minutes: secondInput, meridiem });
+    }
+  }, [firstInput, secondInput, meridiem]);
+
   return (
     <View className="my-2 flex-row items-center justify-center py-4">
       <View className="flex-row items-center">
@@ -66,6 +81,7 @@ const TimePicker = () => {
           style={{
             height: 56,
             width: 56,
+            color: disabled ? "#B8B8B8" : "",
             borderColor: "#d9d9d9",
             backgroundColor: "#FBFBFB",
             textAlignVertical: "top",
@@ -76,18 +92,24 @@ const TimePicker = () => {
           }}
           onEndEditing={() => handleHoursInputEndEditing()}
           placeholder="07"
-          editable
+          editable={!disabled}
           keyboardType="numeric"
           numberOfLines={1}
           maxLength={2}
           returnKeyType="done"
         />
-        <Text className="mx-2 text-2xl">:</Text>
+        <Text
+          className="mx-2 text-2xl"
+          style={{ color: disabled ? "#B8B8B8" : "" }}
+        >
+          :
+        </Text>
         <TextInput
           className="my-2 rounded-md border text-center text-2xl"
           style={{
             height: 56,
             width: 56,
+            color: disabled ? "#B8B8B8" : "",
             borderColor: "#d9d9d9",
             backgroundColor: "#FBFBFB",
             textAlignVertical: "top",
@@ -100,7 +122,7 @@ const TimePicker = () => {
             handleMinutesInputEndEditing();
           }}
           placeholder="30"
-          editable
+          editable={!disabled}
           keyboardType="numeric"
           numberOfLines={1}
           maxLength={2}
@@ -117,11 +139,19 @@ const TimePicker = () => {
         }}
       >
         <TouchableOpacity
-          className="px-4 py-1.5"
+          className="rounded-t-lg px-4 py-1.5"
           onPress={() => {
             setMeridiem("AM");
           }}
-          style={{ backgroundColor: meridiem === "AM" ? "#4391BC" : "#FFFFFF" }}
+          style={{
+            backgroundColor:
+              meridiem === "AM"
+                ? disabled
+                  ? "#B8B8B8"
+                  : "#4391BC"
+                : "#FFFFFF",
+          }}
+          disabled={disabled}
         >
           <Text
             className="text-center"
@@ -132,11 +162,19 @@ const TimePicker = () => {
         </TouchableOpacity>
         <DividerLine width={"100%"} />
         <TouchableOpacity
-          className="px-4 py-1.5"
+          className="rounded-b-lg px-4 py-1.5"
           onPress={() => {
             setMeridiem("PM");
           }}
-          style={{ backgroundColor: meridiem === "PM" ? "#4391BC" : "#FFFFFF" }}
+          style={{
+            backgroundColor:
+              meridiem === "PM"
+                ? disabled
+                  ? "#B8B8B8"
+                  : "#4391BC"
+                : "#FFFFFF",
+          }}
+          disabled={disabled}
         >
           <Text
             className="text-center"
