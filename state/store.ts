@@ -5,8 +5,7 @@ import breatheSettingsSlice from "./features/tools/breatheSettingsSlice";
 import phoneSlice from "./features/tools/phoneSlice";
 import activityLogSlice from "./features/menus/activityLogSlice";
 import newActivityModalSlice from "./features/menus/newActivityModalSlice";
-
-// ...
+import notificationModalSlice from "./features/menus/notificationModalSlice";
 
 export const store = configureStore({
   reducer: {
@@ -16,6 +15,7 @@ export const store = configureStore({
     phone: phoneSlice,
     activityLog: activityLogSlice,
     newActivityModal: newActivityModalSlice,
+    notificationModal: notificationModalSlice,
   },
 });
 

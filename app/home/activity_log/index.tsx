@@ -32,6 +32,8 @@ import ActivityLogModal from "./modal";
 import MenuNav from "@/components/global/MenuNav";
 import { setShowNewActivityModal } from "@/state/features/menus/newActivityModalSlice";
 import NewActivityModal from "@/components/home/NewActivityModal";
+import NotificationsModal from "@/components/home/NotificationsModal";
+import { setShowNotificationModal } from "@/state/features/menus/notificationModalSlice";
 
 const windowHeight = Dimensions.get("window").height;
 const windowWidth = Dimensions.get("window").width;
@@ -138,7 +140,7 @@ const ActivityLog = () => {
   }, [activityLogState.filterPeriod]);
 
   useEffect(() => {
-    console.log(activityLogState.displayedData);
+    // console.log(activityLogState.displayedData);
   }, [activityLogState]);
 
   return (
@@ -179,7 +181,7 @@ const ActivityLog = () => {
                   className="flex-row justify-end rounded-lg"
                   style={{ borderColor: "#B8B8B8" }}
                   onPress={() => {
-                    console.log("pressed");
+                    dispatch(setShowNotificationModal(true));
                   }}
                 >
                   <View
@@ -283,6 +285,7 @@ const ActivityLog = () => {
       </TouchableOpacity>
       <ActivityLogModal />
       <NewActivityModal />
+      <NotificationsModal />
     </React.Fragment>
   );
 };
