@@ -1,20 +1,14 @@
-import {
-  Dimensions,
-  Modal,
-  Pressable,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { Dimensions, Modal, Pressable, Text, View } from "react-native";
+import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 import NewActivityModalCard from "./NewActivityModalCard";
 import DividerLine from "../DividerLine";
 import { ReactNode } from "react";
-import NewActivityModalButton from "./NewActivityModalButton";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/state/store";
 import { ToolList } from "@/constants/models/activity_log";
 import { setShowNewActivityModal } from "@/state/features/menus/newActivityModalSlice";
+import ModalButton from "../ModalButton";
+import { Href, router } from "expo-router";
 
 export type NewActivityModalCardTypes = {
   name: string;
@@ -54,6 +48,13 @@ const NewActivityModal = () => {
     (state: RootState) => state.newActivityModal,
   );
   const dispatch = useDispatch<AppDispatch>();
+
+  const navigateToNewActivity = async (selectedLink: string) => {
+    router.navigate(selectedLink as Href);
+    setTimeout(() => {
+      dispatch(setShowNewActivityModal(false));
+    }, 200);
+  };
 
   return (
     <Modal
@@ -117,7 +118,19 @@ const NewActivityModal = () => {
             className="absolute bottom-8 flex-row items-center justify-center"
             style={{ width: 320 }}
           >
-            <NewActivityModalButton selectedLink={newActivityModalState.link} />
+            <ModalButton
+              title="Redirect"
+              onPress={() => navigateToNewActivity(newActivityModalState.link)}
+              icon={
+                <Feather
+                  className="mx-2"
+                  name="arrow-right"
+                  size={28}
+                  color="#FFFFFF"
+                />
+              }
+              disabled={!newActivityModalState.link}
+            />
           </View>
         </View>
       </View>
