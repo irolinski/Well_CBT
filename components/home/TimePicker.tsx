@@ -2,76 +2,79 @@ import { useEffect, useState } from "react";
 import { Text, TextInput, TouchableOpacity, View } from "react-native";
 import DividerLine from "../DividerLine";
 
-type onChangeReturnObj = {
+export type TimePickerReturnObj = {
   hours: string;
   minutes: string;
   meridiem: "AM" | "PM" | undefined;
 };
 
 type TimePickerTypes = {
-  onChange?: (time: onChangeReturnObj) => void;
+  onChange?: (time: TimePickerReturnObj) => void;
   disabled?: boolean;
 };
 
 const TimePicker = ({ onChange, disabled }: TimePickerTypes) => {
   // remember to exchange for the time saved in db
-  const [firstInput, setFirstInput] = useState("07");
-  const [secondInput, setSecondInput] = useState("30");
+  const [hoursInput, setHoursInput] = useState("07");
+  const [minutesInput, setMinutesInput] = useState("30");
   const [meridiem, setMeridiem] = useState<"AM" | "PM" | undefined>("PM");
 
   const handleHoursInputTextChange = (val: string) => {
     let numericValue = val.replace(/[^0-9]/g, "");
-    if (Number(numericValue[0]) > 1) {
+    if (Number(numericValue[0]) >= 2) {
       numericValue = `0${Number(numericValue[0])}`;
     }
     if (Number(numericValue) > 12) {
       numericValue = `12`;
     }
-    setFirstInput(numericValue);
+    if (numericValue === "00") {
+      numericValue = "01";
+    }
+    setHoursInput(numericValue);
   };
 
   const handleHoursInputEndEditing = () => {
-    if (Number(firstInput) > 12) {
-      setFirstInput(`12`);
+    if (Number(hoursInput) > 12) {
+      setHoursInput(`12`);
     }
-    if (firstInput.length === 1) {
-      if (firstInput[0] === "0") {
-        setFirstInput(`01`);
+    if (hoursInput.length === 1) {
+      if (hoursInput[0] === "0") {
+        setHoursInput(`01`);
       } else {
-        setFirstInput(`0${firstInput[0]}`);
+        setHoursInput(`0${hoursInput[0]}`);
       }
     }
   };
 
   const handleMinutesInputTextChange = (val: string) => {
     let numericValue = val.replace(/[^0-9]/g, "");
-    if (!firstInput) {
-      setFirstInput(`01`);
+    if (!hoursInput) {
+      setHoursInput(`01`);
     }
     if (Number(numericValue[0]) > 5) {
       numericValue = `59`;
     }
-    setSecondInput(numericValue);
+    setMinutesInput(numericValue);
   };
 
   const handleMinutesInputEndEditing = () => {
-    if (Number(secondInput[0]) > 5) {
-      setSecondInput(`59`);
+    if (Number(minutesInput[0]) > 5) {
+      setMinutesInput(`59`);
     }
-    if (secondInput.length === 1) {
-      setSecondInput(`0${secondInput[0]}`);
+    if (minutesInput.length === 1) {
+      setMinutesInput(`0${minutesInput[0]}`);
     }
-    if (secondInput.length === 0) {
-      setSecondInput(`00`);
+    if (minutesInput.length === 0) {
+      setMinutesInput(`00`);
     }
   };
 
   // init onChange
   useEffect(() => {
     if (onChange) {
-      onChange({ hours: firstInput, minutes: secondInput, meridiem });
+      onChange({ hours: hoursInput, minutes: minutesInput, meridiem });
     }
-  }, [firstInput, secondInput, meridiem]);
+  }, [hoursInput, minutesInput, meridiem]);
 
   return (
     <View className="my-2 flex-row items-center justify-center py-4">
@@ -86,11 +89,14 @@ const TimePicker = ({ onChange, disabled }: TimePickerTypes) => {
             backgroundColor: "#FBFBFB",
             textAlignVertical: "top",
           }}
-          value={firstInput}
+          value={hoursInput}
           onChangeText={(val) => {
             handleHoursInputTextChange(val);
           }}
           onEndEditing={() => handleHoursInputEndEditing()}
+          onBlur={() => {
+            handleHoursInputEndEditing();
+          }}
           placeholder="07"
           editable={!disabled}
           keyboardType="numeric"
@@ -114,11 +120,14 @@ const TimePicker = ({ onChange, disabled }: TimePickerTypes) => {
             backgroundColor: "#FBFBFB",
             textAlignVertical: "top",
           }}
-          value={secondInput}
+          value={minutesInput}
           onChangeText={(val) => {
             handleMinutesInputTextChange(val);
           }}
           onEndEditing={(val) => {
+            handleMinutesInputEndEditing();
+          }}
+          onBlur={() => {
             handleMinutesInputEndEditing();
           }}
           placeholder="30"

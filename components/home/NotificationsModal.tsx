@@ -1,18 +1,11 @@
 import { useState } from "react";
-import {
-  Dimensions,
-  Modal,
-  Pressable,
-  Switch,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { Modal, Pressable, Switch, Text, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { setShowNotificationModal } from "@/state/features/menus/notificationModalSlice";
 import { AppDispatch, RootState } from "@/state/store";
 import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
-import TimePicker from "./TimePicker";
+import TimePicker, { TimePickerReturnObj } from "./TimePicker";
+import ModalButton from "../ModalButton";
 
 const NotificationsModal = () => {
   const notificationModalState = useSelector(
@@ -20,6 +13,11 @@ const NotificationsModal = () => {
   );
   const dispatch = useDispatch<AppDispatch>();
   const [switchIsActive, setswitchIsActive] = useState(true);
+  const [selectedTime, setSelectedTime] = useState<TimePickerReturnObj>({
+    hours: "",
+    minutes: "",
+    meridiem: undefined,
+  });
 
   return (
     <Modal
@@ -84,26 +82,21 @@ const NotificationsModal = () => {
           {/* TimePicker */}
           <TimePicker
             disabled={!switchIsActive}
-            onChange={(time) => console.log(time)}
+            onChange={(time) => setSelectedTime(time)}
           />
           <View
             className="absolute bottom-8 flex-row items-center justify-center"
             style={{ width: 320 }}
           >
-            <TouchableOpacity
-              className="flex-row items-center justify-center rounded-xl"
-              style={{
-                width: 0.75 * 320,
-                height: 50,
-                backgroundColor: "#4391BC",
-              }}
+            <ModalButton
+              title="Save preferences"
+              icon={<Feather name="save" size={24} color="#FFFFFF" />}
+              disabled={
+                selectedTime.minutes.length !== 2 ||
+                selectedTime.hours.length !== 2
+              }
               onPress={() => {}}
-            >
-              <Text className="mx-2" style={{ color: "#FFFFFF" }}>
-                Save preferences
-              </Text>
-              <Feather name="save" size={24} color="#FFFFFF" />
-            </TouchableOpacity>
+            />
           </View>
         </View>
       </View>
