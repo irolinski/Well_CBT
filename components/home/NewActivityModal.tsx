@@ -1,14 +1,14 @@
-import { Dimensions, Modal, Pressable, Text, View } from "react-native";
-import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
-import NewActivityModalCard from "./NewActivityModalCard";
-import DividerLine from "../DividerLine";
+import { Href, router } from "expo-router";
 import { ReactNode } from "react";
+import { Dimensions, Modal, Pressable, Text, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "@/state/store";
 import { ToolList } from "@/constants/models/activity_log";
 import { setShowNewActivityModal } from "@/state/features/menus/newActivityModalSlice";
+import { AppDispatch, RootState } from "@/state/store";
+import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
+import DividerLine from "../DividerLine";
 import ModalButton from "../ModalButton";
-import { Href, router } from "expo-router";
+import NewActivityModalCard from "./NewActivityModalCard";
 
 export type NewActivityModalCardTypes = {
   name: string;

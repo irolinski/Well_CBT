@@ -1,11 +1,13 @@
-import { useState } from "react";
-import { Modal, Pressable, Switch, Text, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import { Alert, Modal, Pressable, Switch, Text, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { setShowNotificationModal } from "@/state/features/menus/notificationModalSlice";
 import { AppDispatch, RootState } from "@/state/store";
 import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 import TimePicker, { TimePickerReturnObj } from "./TimePicker";
 import ModalButton from "../ModalButton";
+import { getPermissions } from "@/utils/notifications";
+import * as Notifications from "expo-notifications";
 
 const NotificationsModal = () => {
   const notificationModalState = useSelector(
@@ -18,6 +20,20 @@ const NotificationsModal = () => {
     minutes: "",
     meridiem: undefined,
   });
+
+useEffect(() => {
+    // Declare and immediately call the async function
+    (async () => {
+      const { status } = await Notifications.requestPermissionsAsync();
+      console.log(status);
+      if (status !== "granted") {
+        Alert.alert(
+          "Permission Denied",
+          "You have denied this app the permission to send you notifications. You can change it later in your device's settings."
+        );
+      }
+    })(); // <-- Invoke the async function
+  }, []);
 
   return (
     <Modal
@@ -67,37 +83,45 @@ const NotificationsModal = () => {
               <Text className="mx-1 text-lg">Set a reminder?</Text>
             </View>
           </View>
-          {/* Body */}
-          {/* Enable Notifications */}
-          <View className="my-2 flex-row items-center justify-center py-4">
-            <Text className="mx-2 text-lg">Enable notifications:</Text>
-            <Switch
-              className="mx-2"
-              value={switchIsActive}
-              onValueChange={(val) => setswitchIsActive(val)}
-              ios_backgroundColor={"#D9D9D9"}
-              trackColor={{ false: "#D9D9D9", true: "#4391BC" }}
+          {/* Main */}
+          <React.Fragment>
+            <View className="my-2 flex-row items-center justify-center py-4">
+              <Text className="mx-2 text-lg">Enable notifications:</Text>
+              <Switch
+                className="mx-2"
+                value={switchIsActive}
+                onValueChange={(val) => setswitchIsActive(val)}
+                ios_backgroundColor={"#D9D9D9"}
+                trackColor={{ false: "#D9D9D9", true: "#4391BC" }}
+              />
+            </View>
+            {/* TimePicker */}
+            <TimePicker
+              disabled={!switchIsActive}
+              onChange={(time) => setSelectedTime(time)}
             />
-          </View>
-          {/* TimePicker */}
-          <TimePicker
-            disabled={!switchIsActive}
-            onChange={(time) => setSelectedTime(time)}
-          />
-          <View
-            className="absolute bottom-8 flex-row items-center justify-center"
-            style={{ width: 320 }}
-          >
-            <ModalButton
-              title="Save preferences"
-              icon={<Feather name="save" size={24} color="#FFFFFF" />}
-              disabled={
-                selectedTime.minutes.length !== 2 ||
-                selectedTime.hours.length !== 2
-              }
-              onPress={() => {}}
-            />
-          </View>
+            <View
+              className="absolute bottom-8 flex-row items-center justify-center"
+              style={{ width: 320 }}
+            >
+              <ModalButton
+                title="Save preferences"
+                icon={<Feather name="save" size={24} color="#FFFFFF" />}
+                disabled={
+                  selectedTime.minutes.length !== 2 ||
+                  selectedTime.hours.length !== 2
+                }
+                onPress={() => {}}
+              />
+            </View>
+          </React.Fragment>
+          {/* Placeholder */}
+          {/* <View className="top-1/4 items-center justify-center">
+            <Text className="text-center text-base">
+              Notifications currently unavailable. You can change it in your
+              device's settings.
+            </Text>
+          </View> */}
         </View>
       </View>
     </Modal>

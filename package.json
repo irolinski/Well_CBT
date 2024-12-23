@@ -56,7 +56,8 @@
     "react-native-web": "~0.19.13",
     "react-redux": "^9.1.2",
     "universal-tooltip": "^1.1.0",
-    "expo-notifications": "~0.29.11"
+    "expo-notifications": "~0.29.11",
+    "expo-device": "~7.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

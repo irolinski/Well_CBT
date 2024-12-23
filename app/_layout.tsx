@@ -1,13 +1,14 @@
 import { Asset } from "expo-asset";
 import { useFonts } from "expo-font";
+import { setNotificationHandler } from "expo-notifications";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect, useState } from "react";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Provider as StateProvider } from "react-redux";
-import { store } from "@/state/store";
-import { createActivityViewTable, dbName, setUpDB } from "@/db/service";
 import { seedDB } from "@/db/seed";
+import { createActivityViewTable, dbName, setUpDB } from "@/db/service";
+import { store } from "@/state/store";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -71,6 +72,15 @@ export default function RootLayout() {
   if (!fontsLoaded || !imagesLoaded) {
     return null;
   }
+
+  // handle notifications when the app is running
+  setNotificationHandler({
+    handleNotification: async () => ({
+      shouldShowAlert: true,
+      shouldPlaySound: true,
+      shouldSetBadge: true,
+    }),
+  });
 
   return (
     <StateProvider store={store}>
