@@ -159,8 +159,7 @@ const NotificationsModal = () => {
           ) : (
             <View className="top-1/4 items-center justify-center">
               <Text className="text-center text-base">
-                Notifications currently unavailable. You can change it in your
-                device's settings.
+              { "Notifications are currently disabled. \n \n You can enable them in your device's settings to stay updated." }
               </Text>
             </View>
           )}

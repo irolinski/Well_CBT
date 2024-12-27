@@ -59,10 +59,6 @@ export const requestNotificationPermissions = async (): Promise<boolean> => {
   try {
     const { status } = await Notifications.requestPermissionsAsync();
     if (status !== "granted") {
-      Alert.alert(
-        "Permission Denied",
-        "You have denied this app the permission to send you notifications.\n\n You can change it later in your device's settings.",
-      );
       return false; // permissions not granted
     }
     return true; // permissions granted
