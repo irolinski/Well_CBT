@@ -13,19 +13,32 @@ import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 import ModalButton from "../ModalButton";
 import TimePicker, { TimePickerReturnObj } from "./TimePicker";
 
-// now need to to useEffect to get notification data
 const NotificationsModal = () => {
   const notificationModalState = useSelector(
     (state: RootState) => state.notificationModal,
   );
   const dispatch = useDispatch<AppDispatch>();
-  const [enableNotifications, setEnableNotifications] = useState(true);
+  const [enableNotifications, setEnableNotifications] = useState(false);
   const [selectedTime, setSelectedTime] = useState<TimePickerReturnObj>({
     hour: "",
     minute: "",
-    meridiem: undefined,
+    meridiem: "PM",
   });
   const [hasPermission, setHasPermission] = useState<boolean>(true);
+
+  const handleSavePreferences = async () => {
+    if (enableNotifications) {
+      await scheduleDailyNotification(
+        Number(selectedTime.hour),
+        Number(selectedTime.minute),
+        selectedTime.meridiem,
+      );
+    } else {
+      cancelDailyNotification();
+    }
+    // console.log(await getDailyNotificationTime());
+    dispatch(setShowNotificationModal(false));
+  };
 
   useEffect(() => {
     // Check notification permissions on component mount
@@ -34,6 +47,29 @@ const NotificationsModal = () => {
       setHasPermission(isGranted);
     };
     checkPermissions();
+  }, []);
+
+  useEffect(() => {
+    // set default selectedTime state to the time that is currently saved if there is one
+    const fetchNotificationTime = async () => {
+      const currentNotificationTime = await getDailyNotificationTime();
+      if (
+        currentNotificationTime?.hour &&
+        currentNotificationTime?.minute &&
+        currentNotificationTime?.meridiem
+      ) {
+        setEnableNotifications(true);
+        setSelectedTime({
+          hour: currentNotificationTime.hour,
+          minute: currentNotificationTime.minute,
+          meridiem: currentNotificationTime.meridiem,
+        });
+        // console.log(currentNotificationTime);
+      } else {
+        setEnableNotifications(false);
+      }
+    };
+    fetchNotificationTime();
   }, []);
 
   return (
@@ -99,6 +135,7 @@ const NotificationsModal = () => {
               </View>
               {/* TimePicker */}
               <TimePicker
+                initialTime={selectedTime && selectedTime}
                 disabled={!enableNotifications}
                 onChange={(time) => setSelectedTime(time)}
               />
@@ -114,16 +151,7 @@ const NotificationsModal = () => {
                     selectedTime.hour.length !== 2
                   }
                   onPress={async () => {
-                    if (enableNotifications) {
-                      await scheduleDailyNotification(
-                        Number(selectedTime.hour),
-                        Number(selectedTime.minute),
-                        selectedTime.meridiem,
-                      );
-                    } else {
-                      cancelDailyNotification();
-                    }
-                    console.log(await getDailyNotificationTime());
+                    await handleSavePreferences();
                   }}
                 />
               </View>

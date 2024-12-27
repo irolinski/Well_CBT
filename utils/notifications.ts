@@ -1,6 +1,13 @@
-import { TimePickerReturnObj } from "@/components/home/TimePicker";
 import * as Notifications from "expo-notifications";
 import { Alert } from "react-native";
+import notificationContent from "@/assets/text/notifications_daily.json";
+import { TimePickerReturnObj } from "@/components/home/TimePicker";
+
+//To have different notification body text everyday,
+//I'll have to re-schedule notification on app open
+//if the user has notifications enabled
+
+//--- time conversion helper functions ---
 
 export const convertTo24hFormat = (
   hour: number,
@@ -35,6 +42,18 @@ export const convertTo12hFormat = (hour: number, minute: number) => {
   }
   return { hour: hour, minute: minute, meridiem: meridiem };
 };
+
+const numToString_addZero = (number: number) => {
+  let numString: string = String(number);
+  if (numString.length === 1) {
+    if (numString[0] !== "0") {
+      numString = `0${numString[0]}`;
+    }
+  }
+  return numString;
+};
+
+// --- local notification handlers ---
 
 export const requestNotificationPermissions = async (): Promise<boolean> => {
   try {
@@ -72,8 +91,8 @@ export const scheduleDailyNotification = async (
 
     await Notifications.scheduleNotificationAsync({
       content: {
-        title: "Daily Reminder",
-        body: "Hey! It's time. Check your app now!",
+        title: notificationContent[0].title,
+        body: notificationContent[0].body,
         sound: true,
       },
       trigger: {
@@ -83,8 +102,12 @@ export const scheduleDailyNotification = async (
       },
     });
 
-    alert(
-      `Daily notification scheduled for \n ${hour} : ${minute} ${meridiem}.`,
+    // add zeroes to one-digit hours
+    let displayedHour: string = numToString_addZero(hour);
+    let displayedMinute: string = numToString_addZero(minute);
+
+    Alert.alert(
+      `Daily notification scheduled for: \n \n ${displayedHour}:${displayedMinute} ${meridiem}`,
     );
   } catch (err) {
     console.error(err);
@@ -94,29 +117,35 @@ export const scheduleDailyNotification = async (
 export const cancelDailyNotification = async () => {
   try {
     await Notifications.cancelAllScheduledNotificationsAsync();
+    Alert.alert(`Daily notifications have been turned off.`);
   } catch (err) {
     console.error(err);
   }
 };
 
 export const getDailyNotificationTime = async () => {
-  const scheduledNotifications =
-    // casting as any to prevent compiler from shouting because of bugs in trigger object typing
-    (await Notifications.getAllScheduledNotificationsAsync()) as any;
+  try {
+    const scheduledNotifications =
+      (await Notifications.getAllScheduledNotificationsAsync()) as any; // asserting any to prevent compiler err - bugs in trigger obj typing
 
-  if (!scheduledNotifications[0]) {
-    Alert.alert(
-      "Error while trying to access planned notifications. Try again or contact support.",
-    );
-  } else {
-    const { hour, minute } = scheduledNotifications[0].trigger?.dateComponents!;
-    const convertedTime = convertTo12hFormat(hour, minute);
+    if (scheduledNotifications[0]) {
+      const { hour, minute } =
+        scheduledNotifications[0].trigger?.dateComponents!;
+      // console.log("24h time: " + hour + " " + minute);
+      const convertedTime = convertTo12hFormat(hour, minute);
 
-    const dailyNotificationTime: TimePickerReturnObj = {
-      hour: String(convertedTime.hour),
-      minute: String(convertedTime.minute),
-      meridiem: convertedTime.meridiem,
-    };
-    return dailyNotificationTime;
+      // add zeroes to one-digit hours and turn
+      let displayedHour: string = numToString_addZero(convertedTime.hour);
+      let displayedMinute: string = numToString_addZero(convertedTime.minute);
+
+      const dailyNotificationTime: TimePickerReturnObj = {
+        hour: displayedHour,
+        minute: displayedMinute,
+        meridiem: convertedTime.meridiem,
+      };
+      return dailyNotificationTime;
+    }
+  } catch (err) {
+    console.error(err);
   }
 };

@@ -5,19 +5,31 @@ import DividerLine from "../DividerLine";
 export type TimePickerReturnObj = {
   hour: string;
   minute: string;
-  meridiem: "AM" | "PM" | undefined;
+  meridiem: "AM" | "PM";
 };
 
 type TimePickerTypes = {
+  initialTime?: TimePickerReturnObj;
   onChange?: (time: TimePickerReturnObj) => void;
   disabled?: boolean;
 };
 
-const TimePicker = ({ onChange, disabled }: TimePickerTypes) => {
-  // remember to exchange for the time saved in db
-  const [hourInput, sethourInput] = useState("07");
-  const [minuteInput, setminuteInput] = useState("30");
-  const [meridiem, setMeridiem] = useState<"AM" | "PM" | undefined>("PM");
+const defaultInitialTime: TimePickerReturnObj = {
+  hour: "07",
+  minute: "30",
+  meridiem: "PM",
+};
+
+const TimePicker = ({ initialTime, onChange, disabled }: TimePickerTypes) => {
+  const [hourInput, setHourInput] = useState(
+    initialTime?.hour ?? defaultInitialTime.hour,
+  );
+  const [minuteInput, setMinuteInput] = useState(
+    initialTime?.minute ?? defaultInitialTime.minute,
+  );
+  const [meridiem, setMeridiem] = useState<"AM" | "PM">(
+    initialTime?.meridiem ?? defaultInitialTime.meridiem,
+  );
 
   const handlehourInputTextChange = (val: string) => {
     let numericValue = val.replace(/[^0-9]/g, "");
@@ -30,18 +42,18 @@ const TimePicker = ({ onChange, disabled }: TimePickerTypes) => {
     if (numericValue === "00") {
       numericValue = "01";
     }
-    sethourInput(numericValue);
+    setHourInput(numericValue);
   };
 
   const handlehourInputEndEditing = () => {
     if (Number(hourInput) > 12) {
-      sethourInput(`12`);
+      setHourInput(`12`);
     }
     if (hourInput.length === 1) {
       if (hourInput[0] === "0") {
-        sethourInput(`01`);
+        setHourInput(`01`);
       } else {
-        sethourInput(`0${hourInput[0]}`);
+        setHourInput(`0${hourInput[0]}`);
       }
     }
   };
@@ -49,27 +61,35 @@ const TimePicker = ({ onChange, disabled }: TimePickerTypes) => {
   const handleminuteInputTextChange = (val: string) => {
     let numericValue = val.replace(/[^0-9]/g, "");
     if (!hourInput) {
-      sethourInput(`01`);
+      setHourInput(`01`);
     }
     if (Number(numericValue[0]) > 5) {
       numericValue = `59`;
     }
-    setminuteInput(numericValue);
+    setMinuteInput(numericValue);
   };
 
   const handleminuteInputEndEditing = () => {
     if (Number(minuteInput[0]) > 5) {
-      setminuteInput(`59`);
+      setMinuteInput(`59`);
     }
     if (minuteInput.length === 1) {
-      setminuteInput(`0${minuteInput[0]}`);
+      setMinuteInput(`0${minuteInput[0]}`);
     }
     if (minuteInput.length === 0) {
-      setminuteInput(`00`);
+      setMinuteInput(`00`);
     }
   };
 
-  // init onChange
+  // format inital time
+  useEffect(() => {
+    if (initialTime?.hour && initialTime.minute) {
+      handlehourInputEndEditing();
+      handleminuteInputEndEditing();
+    }
+  }, []);
+
+  // init onChange functionality
   useEffect(() => {
     if (onChange) {
       onChange({ hour: hourInput, minute: minuteInput, meridiem });
