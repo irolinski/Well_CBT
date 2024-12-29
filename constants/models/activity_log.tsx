@@ -1,15 +1,37 @@
 import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 import { ReactNode } from "react";
+import { monthNames } from "./dates";
 
 type ToolType = {
   name: string;
   category: keyof typeof ToolCategories;
   icon?: ReactNode;
   iconBright?: ReactNode;
+  requiresInput?: boolean;
 };
 
 export const toolNameList = ["cda", "journal", "breathing"];
 export type ToolNames = (typeof toolNameList)[number];
+
+export type JournalCardProps = {
+  toolName: ToolNames;
+  link: string;
+  datetime: string;
+  value?: number;
+  // hasShowPage: boolean;
+};
+
+export type JournalEntryMainType = {
+  datetime: string;
+  moodValue: number;
+  note: string;
+};
+
+export type emotionObjType = {
+  name: string;
+  color?: string;
+  strength?: number;
+};
 
 export const ToolList: Record<ToolNames, ToolType> = {
   cda: {
@@ -29,6 +51,7 @@ export const ToolList: Record<ToolNames, ToolType> = {
         color="#FFFFFF"
       />
     ),
+    requiresInput: true,
   },
   journal: {
     name: "Mood Journal",
@@ -47,6 +70,7 @@ export const ToolList: Record<ToolNames, ToolType> = {
         color="#FFFFFF"
       />
     ),
+    requiresInput: true,
   },
   breathing: {
     name: "Breathing",
@@ -120,20 +144,6 @@ export type allDataByMonthType = {
 
 // Helper function to format month-year as "MonthName YYYY" --
 export const getMonthYearTitle = (dateString: string) => {
-  const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
   const date = new Date(dateString);
-  return `${months[date.getMonth()]} ${date.getFullYear()}`;
+  return `${monthNames[date.getMonth()]} ${date.getFullYear()}`;
 };

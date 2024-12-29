@@ -1,13 +1,26 @@
 import { Href, router } from "expo-router";
 import React from "react";
-import { Pressable, View } from "react-native";
-import { ToolCategories, ToolList } from "@/constants/models/activity_log";
-import { JournalCardProps } from "@/constants/models/journal";
+import { TouchableOpacity, View } from "react-native";
+import {
+  JournalCardProps,
+  ToolCategories,
+  ToolList,
+} from "@/constants/models/activity_log";
 import { Entypo } from "@expo/vector-icons";
 import { Slider } from "@miblanchard/react-native-slider";
 import Text from "../global/Text";
+import { getOrdinalSuffix, monthNamesShort } from "@/constants/models/dates";
 
 const JournalCard = ({ toolName, link, datetime, value }: JournalCardProps) => {
+  let cardTime = datetime.split(" ")[1];
+  cardTime = cardTime.slice(0, cardTime.lastIndexOf(":"));
+
+  const cardDateTime = {
+    day: new Date(datetime).getDate(),
+    month: monthNamesShort[new Date(datetime).getMonth()],
+    time: cardTime,
+  };
+
   return (
     <View
       className="mb-4 rounded-xl"
@@ -19,13 +32,13 @@ const JournalCard = ({ toolName, link, datetime, value }: JournalCardProps) => {
         shadowRadius: 3,
       }}
     >
-      <Pressable
+      <TouchableOpacity
         onPress={() =>
+          ToolList[toolName].requiresInput &&
           router.navigate(`${link}` as Href, { relativeToDirectory: true })
         }
+        activeOpacity={ToolList[toolName].requiresInput ? 0.5 : 1}
       >
-        {/* router.replace("tools/classic_cbt/cda/page_1" as Href) */}
-
         <View className="h-full w-full flex-row justify-center py-4">
           {/* Icon */}
           <View className="w-1/4">
@@ -34,7 +47,6 @@ const JournalCard = ({ toolName, link, datetime, value }: JournalCardProps) => {
               style={{ borderColor: "#B8B8B8" }}
             >
               <View>{ToolCategories[ToolList[toolName].category].icon}</View>
-              <Text>{link}</Text>
             </View>
           </View>
           {/* Body */}
@@ -48,7 +60,14 @@ const JournalCard = ({ toolName, link, datetime, value }: JournalCardProps) => {
                 {ToolList[toolName].category}
               </Text>
               <Text className="text-right text-sm" style={{ color: "#B8B8B8" }}>
-                {datetime}
+                {/* {cardDate + " " + cardTime} */}
+
+                {cardDateTime.month +
+                  " " +
+                  cardDateTime.day +
+                  getOrdinalSuffix(cardDateTime.day) +
+                  "  |  " +
+                  cardDateTime.time}
               </Text>
             </View>
             {/* Lower Row */}
@@ -106,15 +125,20 @@ const JournalCard = ({ toolName, link, datetime, value }: JournalCardProps) => {
                 )}
               </View>
               <View
-                className="translate-y-5 items-end"
-                style={{ width: "15%" }}
+                className="items-end"
+                style={{
+                  width: "15%",
+                  transform: [{ translateY: 17.5 }],
+                }}
               >
-                <Entypo name="chevron-right" size={20} color="#73848D" />
+                {ToolList[toolName].requiresInput && (
+                  <Entypo name="chevron-right" size={20} color="#73848D" />
+                )}
               </View>
             </View>
           </View>
         </View>
-      </Pressable>
+      </TouchableOpacity>
     </View>
   );
 };

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ToolList } from "@/constants/models/activity_log";
 import { setShowNewActivityModal } from "@/state/features/menus/newActivityModalSlice";
 import { AppDispatch, RootState } from "@/state/store";
-import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
+import { Entypo, Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 import DividerLine from "../DividerLine";
 import ModalButton from "../ModalButton";
 import NewActivityModalCard from "./NewActivityModalCard";
@@ -62,13 +62,16 @@ const NewActivityModal = () => {
       animationType="slide"
       transparent={true}
     >
-      <View className="h-full items-center justify-center">
+      <View
+        className="h-full items-center justify-center"
+        style={{ backgroundColor: "rgba(184, 184, 184, 0.5)" }} //b8b8b8
+      >
         {/* Modal body */}
         <View
           className="rounded-xl border bg-white px-8 pt-4"
           style={{
             width: 320,
-            height: 425,
+            // height: 425,
             borderColor: "#B8B8B8",
           }}
         >
@@ -88,17 +91,22 @@ const NewActivityModal = () => {
               </Pressable>
             </View>
             <View
-              className="mx-1 flex-row justify-center border-b pb-3"
+              className="mx-1 flex-row items-center justify-center border-b pb-3"
               style={{ borderColor: "#B8B8B8", borderBottomWidth: 0.4 }}
             >
-              <Text className="text-lg">New activity</Text>
+              <View className="mx-1.5">
+                <Entypo name="new-message" size={28} color="#D9D9D9" />
+              </View>
+              <View className="mx-1.5">
+                <Text className="text-lg">Add a new activity</Text>
+              </View>
             </View>
           </View>
           {/* Header */}
 
-          <View className="mt-4 h-56 w-full justify-center">
+          <View className="w-full justify-center">
             {/* Main */}
-            <View className="items-center py-4">
+            <View className="mb-24 items-center py-4">
               {/* Card */}
               {modalActivityList.map((category, categoryIndex) => (
                 <View key={categoryIndex}>

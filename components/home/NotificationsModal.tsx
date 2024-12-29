@@ -78,13 +78,17 @@ const NotificationsModal = () => {
       animationType="slide"
       transparent={true}
     >
-      <View className="h-full items-center justify-center">
+      <View
+        className="h-full items-center justify-center"
+        style={{ backgroundColor: "rgba(184, 184, 184, 0.5)" }} //b8b8b8
+      >
         {/* Modal body */}
         <View
-          className="rounded-xl border bg-white px-8 pt-4"
+          className="rounded-xl border px-8 pt-4"
           style={{
             width: 320,
             height: 380,
+            backgroundColor: "#FFFFFF",
             borderColor: "#B8B8B8",
           }}
         >
@@ -157,10 +161,21 @@ const NotificationsModal = () => {
               </View>
             </React.Fragment>
           ) : (
-            <View className="top-1/4 items-center justify-center">
-              <Text className="text-center text-base">
-              { "Notifications are currently disabled. \n \n You can enable them in your device's settings to stay updated." }
-              </Text>
+            <View>
+              <View className="my-12 items-center justify-center">
+                <MaterialCommunityIcons
+                  name="bell-off"
+                  size={56}
+                  color="#B8B8B8"
+                />
+              </View>
+              <View className="items-center justify-center">
+                <Text className="text-center text-base">
+                  {
+                    "Notifications disabled. \n \n You can enable them in your device's settings to stay updated."
+                  }
+                </Text>
+              </View>
             </View>
           )}
         </View>

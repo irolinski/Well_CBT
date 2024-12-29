@@ -1,25 +1,3 @@
-import { ToolNames } from "./activity_log";
-
-export type JournalCardProps = {
-  toolName: ToolNames;
-  link: string;
-  datetime: string;
-  value?: number;
-};
-
-export type JournalEntryMainType = {
-  datetime: string;
-  moodValue: number;
-  note: string;
-};
-
-export type emotionObjType = {
-  name: string;
-  color?: string;
-  strength?: number;
-};
-
-
 export const emotionList = [
   { name: "Calm", color: "#aed581" },
   { name: "Relaxed", color: "#aed581" },
