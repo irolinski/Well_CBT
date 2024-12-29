@@ -1,9 +1,8 @@
-import React, { useEffect } from "react";
-import { Dimensions, SectionList, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import { ActivityIndicator, Dimensions, SectionList, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import DividerLine from "@/components/DividerLine";
 import MenuNav from "@/components/global/MenuNav";
-import Text from "@/components/global/Text";
 import EntryLogListPlaceholder from "@/components/home/EntryLogListPlaceholder";
 import FiltersButton from "@/components/home/FiltersButton";
 import JournalCard from "@/components/home/JournalCard";
@@ -29,6 +28,8 @@ import {
 import { AppDispatch, RootState } from "@/state/store";
 import ActivityLogModal from "./modal";
 import EntryLogDisplayInfo from "@/components/home/EntryLogDisplayInfo";
+import Text from "@/components/global/Text";
+import LoadingIndicator from "@/components/LoadingIndicator";
 
 const windowHeight = Dimensions.get("window").height;
 const windowWidth = Dimensions.get("window").width;
@@ -63,22 +64,12 @@ const ActivityLog = () => {
   const dispatch = useDispatch<AppDispatch>();
   const activityLogState = useSelector((state: RootState) => state.activityLog);
 
-  const displayMoreData = (dataArr: EntryListSection[]) => {
-    // don't run if there are filters on
-    if (activityLogState.filterPeriod.length > 0) return;
-    if (activityLogState.currentIndex < dataArr.length) {
-      dispatch(
-        setDisplayedData([
-          ...activityLogState.displayedData,
-          dataArr[activityLogState.currentIndex],
-        ]),
-      );
-      dispatch(setCurrentIndex(activityLogState.currentIndex + 1));
-    }
-  };
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  useEffect(() => {
-    fetchEntryData().then((res) => {
+  const fetchData = async () => {
+    setIsLoading(true); // Set loading to true at the start
+    try {
+      const res = await fetchEntryData();
       dispatch(setRawData(res));
       const transformedData: EntryListSection[] = transformData(
         res as EntryViewTableRow[],
@@ -110,7 +101,6 @@ const ActivityLog = () => {
         });
 
         filteredData = filteredData.filter((entry) => entry!.data!.length > 0);
-
         dispatch(setDisplayedData(filteredData));
         // how to handle data if filters are not engaged
       } else {
@@ -131,12 +121,35 @@ const ActivityLog = () => {
         }
         dispatch(setEntryData(transformedData));
       }
-    });
-  }, [activityLogState.filterPeriod]);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const displayMoreData = (dataArr: EntryListSection[]) => {
+    // don't run if there are filters on
+    if (activityLogState.filterPeriod.length > 0) return;
+    if (activityLogState.currentIndex < dataArr.length) {
+      // show loading
+      setIsLoading(true);
+      console.log("loading");
+      dispatch(
+        setDisplayedData([
+          ...activityLogState.displayedData,
+          dataArr[activityLogState.currentIndex],
+        ]),
+      );
+      dispatch(setCurrentIndex(activityLogState.currentIndex + 1));
+      setIsLoading(false);
+      console.log("not loading");
+    }
+  };
 
   useEffect(() => {
-    // console.log(activityLogState.displayedData);
-  }, [activityLogState]);
+    fetchData();
+  }, [activityLogState.filterPeriod]);
 
   return (
     <React.Fragment>
@@ -203,7 +216,15 @@ const ActivityLog = () => {
                 }
               />
             ) : (
-              <EntryLogListPlaceholder />
+              <React.Fragment>
+                {isLoading ? (
+                  <View className="h-3/4 items-center justify-center">
+                    <LoadingIndicator />
+                  </View>
+                ) : (
+                  <EntryLogListPlaceholder />
+                )}
+              </React.Fragment>
             )}
           </View>
         </View>
