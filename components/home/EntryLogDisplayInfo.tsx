@@ -14,7 +14,7 @@ const EntryLogDisplayInfo = () => {
             <Text className="italic" style={{ fontSize: 13, color: "#757575" }}>
               <Text style={{ fontSize: 13, color: "#757575" }}>
                 {"from:"}
-                {"\nto"}
+                {"\nto:"}
               </Text>
             </Text>
           </View>

@@ -9,7 +9,7 @@ const FiltersButton = () => {
   const activityLogState = useSelector((state: RootState) => state.activityLog);
 
   let numOfFilters = 0;
-  if (activityLogState.filterPeriod) {
+  if (activityLogState.filterPeriod.length > 0) {
     numOfFilters++;
   }
   return (
@@ -27,14 +27,19 @@ const FiltersButton = () => {
           </Text>
         </View>
         <View className="absolute right-0 flex-row items-center justify-center">
-          <View
-            className="left-0 mx-1 h-6 w-6 items-center justify-center rounded-full"
-            style={{ backgroundColor: "#D46A6A" }}
-          >
-            <Text className="text-center text-sm" style={{ color: "#FFFFFF" }}>
-              {numOfFilters}
-            </Text>
-          </View>
+          {numOfFilters > 0 && (
+            <View
+              className="left-0 mx-1 h-6 w-6 items-center justify-center rounded-full"
+              style={{ backgroundColor: "#D46A6A" }}
+            >
+              <Text
+                className="text-center text-sm"
+                style={{ color: "#FFFFFF" }}
+              >
+                {numOfFilters}
+              </Text>
+            </View>
+          )}
           <View className="ml-[5px]">
             <AntDesign name="calendar" size={26} color="#73848D" />
           </View>
