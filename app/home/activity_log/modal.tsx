@@ -1,15 +1,16 @@
-import { Dimensions, Modal, Pressable, ScrollView, View } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
-import Text from '@/components/global/Text';
-import { toggleModal } from '@/state/features/menus/activityLogSlice';
-import { AppDispatch, RootState } from '@/state/store';
-import { Feather } from '@expo/vector-icons';
-
-import ActivityLogCalendar from './Calendar';
+import { Dimensions, Modal, Pressable, ScrollView, View } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import Text from "@/components/global/Text";
+import { setShowActivityLogModal } from "@/state/features/menus/activityLogModalSlice";
+import { AppDispatch, RootState } from "@/state/store";
+import { Feather } from "@expo/vector-icons";
+import ActivityLogCalendar from "./Calendar";
 
 const ActivityLogModal = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const activityLogState = useSelector((state: RootState) => state.activityLog);
+  const activityLogModalState = useSelector(
+    (state: RootState) => state.activityLogModal,
+  );
 
   //UI STATE
   const windowWidth = Dimensions.get("window").width;
@@ -19,13 +20,13 @@ const ActivityLogModal = () => {
     <Modal
       animationType="slide"
       transparent={true}
-      visible={activityLogState.showModal}
+      visible={activityLogModalState.showModal}
       className="flex-1"
     >
       <ScrollView
         onScroll={(evt) => {
           evt.nativeEvent.contentOffset.y < -175 &&
-            dispatch(toggleModal(false));
+            dispatch(setShowActivityLogModal(false));
         }}
       >
         <View
@@ -39,7 +40,7 @@ const ActivityLogModal = () => {
         >
           <Pressable
             onPress={() => {
-              dispatch(toggleModal(false));
+              dispatch(setShowActivityLogModal(false));
             }}
           >
             <View className="items-center pb-6">

@@ -2,7 +2,6 @@ import { EntryListSection } from "@/constants/models/activity_log";
 import { createSlice } from "@reduxjs/toolkit";
 
 type ActivityLogStateTypes = {
-  showModal: boolean;
   rawData: string[];
   entryData: EntryListSection[];
   displayedData: EntryListSection[];
@@ -11,7 +10,6 @@ type ActivityLogStateTypes = {
 };
 
 const activityLogInitalState: ActivityLogStateTypes = {
-  showModal: false,
   rawData: [],
   entryData: [],
   displayedData: [],
@@ -23,9 +21,6 @@ const activityLogSlice = createSlice({
   name: "activityLog",
   initialState: activityLogInitalState,
   reducers: {
-    toggleModal: (state, action) => {
-      state.showModal = action.payload;
-    },
     setRawData: (state, action) => {
       state.rawData = action.payload;
     },
@@ -46,7 +41,6 @@ const activityLogSlice = createSlice({
 });
 
 export const {
-  toggleModal,
   setRawData,
   setEntryData,
   setDisplayedData,

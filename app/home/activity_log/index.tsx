@@ -29,6 +29,7 @@ import { AppDispatch, RootState } from "@/state/store";
 import ActivityLogModal from "./modal";
 import EntryLogDisplayInfo from "@/components/home/EntryLogDisplayInfo";
 import LoadingIndicator from "@/components/LoadingIndicator";
+import Text from "@/components/global/Text";
 
 const windowHeight = Dimensions.get("window").height;
 const windowWidth = Dimensions.get("window").width;
@@ -69,10 +70,18 @@ const ActivityLog = () => {
     setIsLoading(true); // Set loading to true at the start
     try {
       const res = await fetchEntryData();
+      if (!res) {
+        console.error("no res!");
+        return;
+      }
       dispatch(setRawData(res));
       const transformedData: EntryListSection[] = transformData(
         res as EntryViewTableRow[],
       );
+      if (!transformData) {
+        console.error("no transformed data!");
+        return;
+      }
       // How to handle data if filters are engaged
       // (also, the auto displayMoreData function has to be turned off temporarily)
       if (activityLogState.filterPeriod.length > 0) {
@@ -94,17 +103,24 @@ const ActivityLog = () => {
                 new Date(el.datetime) <= filterPeriodTwo,
             );
           }
-
           // Keep the entry if there are any items left after the filtering
           return { title: entry.title, data: filteredDataEntries };
         });
 
-        filteredData = filteredData.filter((entry) => entry!.data!.length > 0);
+        if (filteredData.length) {
+          filteredData = filteredData.filter(
+            (entry) => entry && entry.data && entry.data.length > 0,
+          );
+        }
         dispatch(setDisplayedData(filteredData));
         // how to handle data if filters are not engaged
-      } else {
+      } else if (activityLogState.filterPeriod.length === 0) {
         if (
+          //!be careful not to try to access a non-existant index!
+          //!it once ruined the whole component!
+          //i hope resetting currentIndex onFilterTurnOff will be enoguh to prevent it
           transformedData.length > 1 &&
+          transformData.length > activityLogState.currentIndex &&
           transformedData[activityLogState.currentIndex].data.length < 10
         ) {
           dispatch(
@@ -114,14 +130,18 @@ const ActivityLog = () => {
               transformedData[activityLogState.currentIndex + 1],
             ]),
           );
-          dispatch(setCurrentIndex(activityLogState.currentIndex + 2));
+          if (activityLogState.currentIndex > 2) {
+            dispatch(setCurrentIndex(activityLogState.currentIndex + 2));
+          } else {
+            dispatch(setCurrentIndex(activityLogState.currentIndex + 1));
+          }
         } else {
           displayMoreData(transformedData);
         }
         dispatch(setEntryData(transformedData));
       }
-    } catch (error) {
-      console.error("Error fetching data:", error);
+    } catch (err) {
+      console.error("Error fetching data:", err);
     } finally {
       setIsLoading(false);
     }
@@ -133,7 +153,6 @@ const ActivityLog = () => {
     if (activityLogState.currentIndex < dataArr.length) {
       // show loading
       setIsLoading(true);
-      console.log("loading");
       dispatch(
         setDisplayedData([
           ...activityLogState.displayedData,
@@ -142,7 +161,6 @@ const ActivityLog = () => {
       );
       dispatch(setCurrentIndex(activityLogState.currentIndex + 1));
       setIsLoading(false);
-      console.log("not loading");
     }
   };
 
@@ -179,9 +197,10 @@ const ActivityLog = () => {
             className="relative px-1"
             style={{ height: windowHeight * 0.75 }}
           >
-            {activityLogState.displayedData.length ? (
+            {activityLogState.displayedData.length > 0 &&
+            activityLogState.entryData.length > 0 ? (
               <SectionList
-                sections={activityLogState.displayedData}
+                sections={activityLogState.displayedData || []}
                 keyExtractor={(item: EntryViewTableRow, index: number) =>
                   `${item.id}-${index}`
                 }

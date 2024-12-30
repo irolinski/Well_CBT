@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Calendar } from "react-native-calendars";
 import { useDispatch, useSelector } from "react-redux";
-import { setFilterPeriod } from "@/state/features/menus/activityLogSlice";
+
+import {
+  activityLogResetState,
+  setCurrentIndex,
+  setFilterPeriod,
+} from "@/state/features/menus/activityLogSlice";
 import { AppDispatch, RootState } from "@/state/store";
 
 type CalendarCallbackEvent = {
@@ -15,14 +20,14 @@ type CalendarCallbackEvent = {
 const ActivityLogCalendar = () => {
   const dispatch = useDispatch<AppDispatch>();
   const activityLogState = useSelector((state: RootState) => state.activityLog);
-
+ 
   const [markedDates, setMarkedDates] = useState({});
   const [initialDate] = useState(new Date().toISOString().split("T")[0]);
   const [currentDate, setCurrentDate] = useState(initialDate);
 
   const getMarkedDates = () => {
     const markedDatesObj: any = {};
-    activityLogState.rawData.forEach((el) => {
+    activityLogState.rawData.forEach((el: any) => {
       markedDatesObj[`${el.datetime.split(" ")[0]}`] = { marked: true }; //also could add support for multiple dot colors?
     });
     setMarkedDates(markedDatesObj);
@@ -58,7 +63,7 @@ const ActivityLogCalendar = () => {
     }
 
     if (dateString === activityLogState.filterPeriod[0]) {
-      dispatch(setFilterPeriod([]));
+      dispatch(activityLogResetState());
     }
   };
 
@@ -91,7 +96,7 @@ const ActivityLogCalendar = () => {
   useEffect(() => {
     const newMarkedDatesObj: any = {};
 
-    activityLogState.rawData.forEach((el) => {
+    activityLogState.rawData.forEach((el: any) => {
       newMarkedDatesObj[`${el.datetime.split(" ")[0]}`] = { marked: true }; //also could add support for multiple dot colors?
     });
 

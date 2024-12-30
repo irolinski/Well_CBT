@@ -1,8 +1,8 @@
 import { Text, TouchableOpacity, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleModal } from "@/state/features/menus/activityLogSlice";
 import { AppDispatch, RootState } from "@/state/store";
 import { AntDesign } from "@expo/vector-icons";
+import { setShowActivityLogModal } from "@/state/features/menus/activityLogModalSlice";
 
 const FiltersButton = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -17,7 +17,7 @@ const FiltersButton = () => {
       className="h-full flex-row items-center justify-center rounded-lg border"
       style={{ borderColor: "#B8B8B8" }}
       onPress={() => {
-        dispatch(toggleModal(true));
+        dispatch(setShowActivityLogModal(true));
       }}
     >
       <View className="mx-3.5 w-36 flex-row items-center justify-center">

@@ -35,7 +35,7 @@ export type emotionObjType = {
 
 export const ToolList: Record<ToolNames, ToolType> = {
   cda: {
-    name: "Thoughts Challange",
+    name: "Thoughts Challenge",
     category: "Exercise",
     icon: (
       <MaterialCommunityIcons
