@@ -1,20 +1,22 @@
-import { Image, ImageSource } from "expo-image";
+import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
 import { Dimensions, Pressable, View } from "react-native";
 import quotesList from "@/assets/text/quotes.json";
 import handleShare from "@/utils/handleShare";
 import { Feather } from "@expo/vector-icons";
 import Text from "../global/Text";
+import quoteImages from "@/assets/images/home/quote_widget/images";
 
 const windowWidth = Dimensions.get("window").width;
 
-const QuoteWidget = ({ image }: { image: ImageSource }) => {
+const QuoteWidget = () => {
   const quoteNumber = (Math.random() * (quotesList.length - 1)) | 0;
+  const imageNumber = (Math.random() * (quoteImages.length - 1)) | 0;
 
   return (
     <View className="w-full flex-1 rounded-xl border" style={{ height: 240 }}>
       <Image
-        source={image}
+        source={quoteImages[imageNumber]}
         className="z-0 rounded-xl"
         contentFit="cover"
         style={{ width: "100%", height: "100%" }}
@@ -22,7 +24,7 @@ const QuoteWidget = ({ image }: { image: ImageSource }) => {
       />
       <LinearGradient
         className="rounded-lg"
-        colors={["rgba(0, 0, 0, 0.3)", "rgba(0, 0, 0, 0.5)"]}
+        colors={["rgba(0, 0, 0, 0.4)", "rgba(0, 0, 0, 0.75)"]}
         start={{ x: 0, y: 0 }}
         end={{ x: 0.1, y: 1 }}
         style={{

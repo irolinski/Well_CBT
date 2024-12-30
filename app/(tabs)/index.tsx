@@ -56,9 +56,7 @@ const Home = () => {
         </View>
         {/* Quote Widget */}
         <View className="my-4 items-center justify-center">
-          <QuoteWidget
-            image={require("@/assets/images/home/quote_widget/bg_1.webp")}
-          />
+          <QuoteWidget />
         </View>
         {/* Recent */}
         <View>
