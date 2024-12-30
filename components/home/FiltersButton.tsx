@@ -1,12 +1,17 @@
 import { Text, TouchableOpacity, View } from "react-native";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toggleModal } from "@/state/features/menus/activityLogSlice";
-import { AppDispatch } from "@/state/store";
+import { AppDispatch, RootState } from "@/state/store";
 import { AntDesign } from "@expo/vector-icons";
 
 const FiltersButton = () => {
   const dispatch = useDispatch<AppDispatch>();
+  const activityLogState = useSelector((state: RootState) => state.activityLog);
 
+  let numOfFilters = 0;
+  if (activityLogState.filterPeriod) {
+    numOfFilters++;
+  }
   return (
     <TouchableOpacity
       className="h-full flex-row items-center justify-center rounded-lg border"
@@ -15,14 +20,24 @@ const FiltersButton = () => {
         dispatch(toggleModal(true));
       }}
     >
-      <View className="mr-4 w-36 flex-row items-center justify-center">
-        <View className="relative mx-16 w-full justify-center">
-          <Text style={{ color: "#1E1E1E" }} className="text-center">
+      <View className="mx-3.5 w-36 flex-row items-center justify-center">
+        <View className="relative w-full flex-row items-center justify-start">
+          <Text style={{ color: "#1E1E1E" }} className="text-left text-base">
             Filters
           </Text>
         </View>
-        <View className="absolute right-0">
-          <AntDesign name="calendar" size={24} color="#73848D" />
+        <View className="absolute right-0 flex-row items-center justify-center">
+          <View
+            className="left-0 mx-1 h-6 w-6 items-center justify-center rounded-full"
+            style={{ backgroundColor: "#D46A6A" }}
+          >
+            <Text className="text-center text-sm" style={{ color: "#FFFFFF" }}>
+              {numOfFilters}
+            </Text>
+          </View>
+          <View className="ml-[5px]">
+            <AntDesign name="calendar" size={26} color="#73848D" />
+          </View>
         </View>
       </View>
     </TouchableOpacity>

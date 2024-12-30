@@ -28,7 +28,6 @@ import {
 import { AppDispatch, RootState } from "@/state/store";
 import ActivityLogModal from "./modal";
 import EntryLogDisplayInfo from "@/components/home/EntryLogDisplayInfo";
-import Text from "@/components/global/Text";
 import LoadingIndicator from "@/components/LoadingIndicator";
 
 const windowHeight = Dimensions.get("window").height;
@@ -165,7 +164,7 @@ const ActivityLog = () => {
           <View className="mb-6 w-full items-center">
             {/* Button row */}
             <View className="mx-12 mb-6 h-12 w-full flex-row justify-between">
-              <View className="justify-start">
+              <View className="-translate-y-1.5 justify-start">
                 <View className="flex-row justify-start">
                   <NotificationButton />
                 </View>

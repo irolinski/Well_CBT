@@ -19,7 +19,7 @@ const MenuNav = ({
 
   return (
     <View
-      className={`z-10 w-full ${windowHeight > 750 ? "pb-4 pt-16" : "top-10 pb-4"}`} // border-b?
+      className={`z-10 w-full ${windowHeight > 750 ? "pb-4 pt-16" : "pb-4 pt-8"}`} // border-b?
       style={{
         borderColor: "#D9D9D9",
         backgroundColor: backgroundColor ?? "#8DBED8",

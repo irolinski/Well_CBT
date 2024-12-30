@@ -18,7 +18,7 @@ const EntryLogDisplayInfo = () => {
               </Text>
             </Text>
           </View>
-          <View>
+          <View className="mb-1">
             <Text className="italic" style={{ fontSize: 13, color: "#757575" }}>
               <Text style={{ fontSize: 13, color: "#757575" }}>
                 {activityLogState.filterPeriod[0]}
@@ -35,7 +35,7 @@ const EntryLogDisplayInfo = () => {
           {Array.isArray(activityLogState.displayedData) &&
             Array.isArray(activityLogState.entryData) && (
               <Text
-                className="my-1 text-sm"
+                className="mb-1 text-sm"
                 style={{ fontSize: 13, color: "#757575" }}
               >
                 Showing{" "}
