@@ -1,11 +1,12 @@
-import { Image } from "expo-image";
-import { LinearGradient } from "expo-linear-gradient";
-import { Dimensions, Pressable, View } from "react-native";
-import quotesList from "@/assets/text/quotes.json";
-import handleShare from "@/utils/handleShare";
-import { Feather } from "@expo/vector-icons";
-import Text from "../global/Text";
-import quoteImages from "@/assets/images/home/quote_widget/images";
+import { Image } from 'expo-image';
+import { LinearGradient } from 'expo-linear-gradient';
+import { Dimensions, Pressable, View } from 'react-native';
+import quoteImages from '@/assets/images/home/quote_widget/images';
+import quotesList from '@/assets/text/quotes.json';
+import handleShare from '@/utils/handleShare';
+import { Feather } from '@expo/vector-icons';
+
+import Text from '../global/Text';
 
 const windowWidth = Dimensions.get("window").width;
 

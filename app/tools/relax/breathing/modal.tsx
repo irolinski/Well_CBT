@@ -1,6 +1,7 @@
 import { Dimensions, Modal, Pressable, ScrollView, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import Text from "@/components/global/Text";
+import RadioButton from "@/components/RadioButton";
 import MethodInfo from "@/components/tools/breathe/MethodInfo";
 import {
   mode_4_7_8,
@@ -15,14 +16,13 @@ import { Feather } from "@expo/vector-icons";
 import { Slider } from "@miblanchard/react-native-slider";
 
 const BreatheModal = ({ ellapsedTime }: { ellapsedTime: number }) => {
+  const windowWidth = Dimensions.get("window").width;
+  const windowHeight = Dimensions.get("window").height;
+
   const dispatch = useDispatch<AppDispatch>();
   const breatheSettings = useSelector(
     (state: RootState) => state.breatheSettings,
   );
-
-  //UI STATE
-  const windowWidth = Dimensions.get("window").width;
-  const windowHeight = Dimensions.get("window").height;
 
   return (
     <Modal
@@ -76,13 +76,11 @@ const BreatheModal = ({ ellapsedTime }: { ellapsedTime: number }) => {
                   }}
                 >
                   <View className="flex-row items-center">
-                    <View className="mx-2 h-5 w-5 -translate-y-2 items-center justify-center rounded-3xl border">
-                      {breatheSettings.mode.name === "box" && (
-                        <View
-                          className="h-3 w-3 rounded-xl"
-                          style={{ backgroundColor: "#B8B8B8" }}
-                        ></View>
-                      )}
+                    <View className="-translate-y-2">
+                      <RadioButton
+                        checkedColor={"#B8B8B8"} //"#8DBED8"
+                        isActive={breatheSettings.mode.name === "box"}
+                      />
                     </View>
                     <View className="items-center">
                       <View className="m-2 h-16 w-16 rounded-xl border"></View>
@@ -99,13 +97,11 @@ const BreatheModal = ({ ellapsedTime }: { ellapsedTime: number }) => {
                   }}
                 >
                   <View className="flex-row items-center">
-                    <View className="mx-2 h-5 w-5 -translate-y-2 items-center justify-center rounded-3xl border">
-                      {breatheSettings.mode.name === "4-7-8" && (
-                        <View
-                          className="h-3 w-3 rounded-xl"
-                          style={{ backgroundColor: "#B8B8B8" }}
-                        ></View>
-                      )}
+                    <View className="-translate-y-2">
+                      <RadioButton
+                        checkedColor={"#B8B8B8"} //"#8DBED8"
+                        isActive={breatheSettings.mode.name === "4-7-8"}
+                      />
                     </View>
                     <View className="items-center">
                       <View className="m-2 h-16 w-16 rounded-xl border"></View>
