@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ActivityIndicator, Dimensions, SectionList, View } from "react-native";
+import { Dimensions, SectionList, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import DividerLine from "@/components/DividerLine";
 import MenuNav from "@/components/global/MenuNav";
@@ -29,7 +29,6 @@ import { AppDispatch, RootState } from "@/state/store";
 import ActivityLogModal from "./modal";
 import EntryLogDisplayInfo from "@/components/home/EntryLogDisplayInfo";
 import LoadingIndicator from "@/components/LoadingIndicator";
-import Text from "@/components/global/Text";
 
 const windowHeight = Dimensions.get("window").height;
 const windowWidth = Dimensions.get("window").width;
@@ -82,27 +81,42 @@ const ActivityLog = () => {
         console.error("no transformed data!");
         return;
       }
-      // How to handle data if filters are engaged
-      // (also, the auto displayMoreData function has to be turned off temporarily)
-      if (activityLogState.filterPeriod.length > 0) {
-        let filteredData = activityLogState.entryData.map((entry) => {
-          // Filter the 'data' array to keep only those items where datetime > the specified datetime
-          let filteredDataEntries;
-          const filterPeriodOne = new Date(activityLogState.filterPeriod[0]);
 
-          if (activityLogState.filterPeriod.length === 1) {
-            filteredDataEntries = entry.data.filter(
-              (el) => new Date(el.datetime) >= filterPeriodOne,
-            );
-          } else if (activityLogState.filterPeriod.length === 2) {
-            const filterPeriodTwo = new Date(activityLogState.filterPeriod[1]);
-            filterPeriodTwo.setHours(23, 59, 59, 999);
-            filteredDataEntries = entry.data.filter(
-              (el) =>
-                new Date(el.datetime) >= filterPeriodOne &&
-                new Date(el.datetime) <= filterPeriodTwo,
+      // How to handle data if date filters are engaged
+      if (
+        activityLogState.filterPeriod.length > 0 ||
+        activityLogState.filterCategories.length > 0
+      ) {
+        let filteredData = activityLogState.entryData.map((entry) => {
+          let filteredDataEntries = entry.data;
+
+          //filter by date
+          if (activityLogState.filterPeriod.length > 0) {
+            let filterPeriodOne: Date;
+            let filterPeriodTwo: Date;
+            filterPeriodOne = new Date(activityLogState.filterPeriod[0]);
+            if (activityLogState.filterPeriod.length === 1) {
+              filteredDataEntries = entry.data.filter(
+                (el) => new Date(el.datetime) >= filterPeriodOne,
+              );
+            } else if (activityLogState.filterPeriod.length === 2) {
+              filterPeriodTwo = new Date(activityLogState.filterPeriod[1]);
+              filterPeriodTwo.setHours(23, 59, 59, 999);
+              filteredDataEntries = entry.data.filter(
+                (el) =>
+                  new Date(el.datetime) >= filterPeriodOne &&
+                  new Date(el.datetime) <= filterPeriodTwo,
+              );
+            }
+          }
+
+          //filter by categories
+          if (activityLogState.filterCategories.length > 0) {
+            filteredDataEntries = filteredDataEntries.filter((el) =>
+              activityLogState.filterCategories.includes(el.activityName),
             );
           }
+
           // Keep the entry if there are any items left after the filtering
           return { title: entry.title, data: filteredDataEntries };
         });
@@ -113,12 +127,20 @@ const ActivityLog = () => {
           );
         }
         dispatch(setDisplayedData(filteredData));
-        // how to handle data if filters are not engaged
-      } else if (activityLogState.filterPeriod.length === 0) {
+      }
+
+      // How to handle data if filters are not engaged
+
+      // (usecase when the filters have been engaged but are not anymore is yet to behandled)
+      if (
+        activityLogState.filterPeriod.length === 0 &&
+        activityLogState.filterCategories.length === 0
+      ) {
+        // Reset displayedData to include all transformedData in case the filters have just been turned off
+        dispatch(setDisplayedData(transformedData));
+        //load more if there is less than 10 on page
         if (
-          //!be careful not to try to access a non-existant index!
-          //!it once ruined the whole component!
-          //i hope resetting currentIndex onFilterTurnOff will be enoguh to prevent it
+          //!be careful not to try to access a non-existant index! !it had once ruined the whole component!
           transformedData.length > 1 &&
           transformData.length > activityLogState.currentIndex &&
           transformedData[activityLogState.currentIndex].data.length < 10
@@ -166,7 +188,7 @@ const ActivityLog = () => {
 
   useEffect(() => {
     fetchData();
-  }, [activityLogState.filterPeriod]);
+  }, [activityLogState.filterPeriod, activityLogState.filterCategories]);
 
   return (
     <React.Fragment>

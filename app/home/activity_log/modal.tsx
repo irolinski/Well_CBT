@@ -3,8 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import Text from "@/components/global/Text";
 import { setShowActivityLogModal } from "@/state/features/menus/activityLogModalSlice";
 import { AppDispatch, RootState } from "@/state/store";
-import { Feather } from "@expo/vector-icons";
+import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 import ActivityLogCalendar from "./Calendar";
+import DividerLine from "@/components/DividerLine";
+import CategoryFilter from "@/components/home/CategoryFilter";
 
 const ActivityLogModal = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -54,17 +56,25 @@ const ActivityLogModal = () => {
               Settings
             </Text>
           </View>
-          <View className="my-8">
-            <View
-              className="border-b pb-4 pt-2"
-              style={{ borderColor: "#B8B8B8" }}
-            >
-              <Text className="text-lg" style={{ color: "#B8B8B8" }}>
+          <View className="mt-8">
+            <View>
+              <Text className="mb-2 text-lg" style={{ color: "#B8B8B8" }}>
                 Select dates
               </Text>
-              <View className="m-4 flex-row justify-around">
+              <View className="flex-row justify-around">
                 <ActivityLogCalendar />
               </View>
+            </View>
+          </View>
+          <View className="my-4">
+            <DividerLine width={windowWidth * 0.5} />
+          </View>
+          <View className="mb-8 mt-4">
+            <View>
+              <Text className="text-lg" style={{ color: "#B8B8B8" }}>
+                Show only
+              </Text>
+              <CategoryFilter />
             </View>
           </View>
         </View>

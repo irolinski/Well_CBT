@@ -1,4 +1,4 @@
-import { EntryListSection } from "@/constants/models/activity_log";
+import { EntryListSection, ToolNames } from "@/constants/models/activity_log";
 import { createSlice } from "@reduxjs/toolkit";
 
 type ActivityLogStateTypes = {
@@ -7,6 +7,8 @@ type ActivityLogStateTypes = {
   displayedData: EntryListSection[];
   currentIndex: number;
   filterPeriod: string[];
+  filterCategories: ToolNames[];
+  isDirty: boolean;
 };
 
 const activityLogInitalState: ActivityLogStateTypes = {
@@ -15,6 +17,8 @@ const activityLogInitalState: ActivityLogStateTypes = {
   displayedData: [],
   currentIndex: 0,
   filterPeriod: [],
+  filterCategories: [],
+  isDirty: false
 };
 
 const activityLogSlice = createSlice({
@@ -36,6 +40,12 @@ const activityLogSlice = createSlice({
     setFilterPeriod: (state, action) => {
       state.filterPeriod = action.payload;
     },
+    setFilterCategories: (state, action) => {
+      state.filterCategories = action.payload;
+    },
+    setIsDirty: (state, action) => {
+      state.isDirty = action.payload
+    },
     activityLogResetState: () => activityLogInitalState,
   },
 });
@@ -46,6 +56,7 @@ export const {
   setDisplayedData,
   setCurrentIndex,
   setFilterPeriod,
+  setFilterCategories,
   activityLogResetState,
 } = activityLogSlice.actions;
 
