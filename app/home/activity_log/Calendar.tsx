@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Calendar } from "react-native-calendars";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  activityLogResetState,
   setFilterPeriod,
 } from "@/state/features/menus/activityLogSlice";
 import { AppDispatch, RootState } from "@/state/store";

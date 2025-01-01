@@ -8,7 +8,7 @@ type ActivityLogStateTypes = {
   currentIndex: number;
   filterPeriod: string[];
   filterCategories: ToolNames[];
-  isDirty: boolean;
+  isLoading: boolean;
 };
 
 const activityLogInitalState: ActivityLogStateTypes = {
@@ -18,7 +18,7 @@ const activityLogInitalState: ActivityLogStateTypes = {
   currentIndex: 0,
   filterPeriod: [],
   filterCategories: [],
-  isDirty: false
+  isLoading: true,
 };
 
 const activityLogSlice = createSlice({
@@ -43,8 +43,8 @@ const activityLogSlice = createSlice({
     setFilterCategories: (state, action) => {
       state.filterCategories = action.payload;
     },
-    setIsDirty: (state, action) => {
-      state.isDirty = action.payload
+    setIsLoading: (state, action) => {
+      state.isLoading = action.payload;
     },
     activityLogResetState: () => activityLogInitalState,
   },
@@ -58,6 +58,7 @@ export const {
   setFilterPeriod,
   setFilterCategories,
   activityLogResetState,
+  setIsLoading,
 } = activityLogSlice.actions;
 
 export default activityLogSlice.reducer;
