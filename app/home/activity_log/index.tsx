@@ -109,14 +109,12 @@ const ActivityLog = () => {
               );
             }
           }
-
           //filter by categories
           if (activityLogState.filterCategories.length > 0) {
             filteredDataEntries = filteredDataEntries.filter((el) =>
               activityLogState.filterCategories.includes(el.activityName),
             );
           }
-
           // Keep the entry if there are any items left after the filtering
           return { title: entry.title, data: filteredDataEntries };
         });
@@ -130,36 +128,14 @@ const ActivityLog = () => {
       }
 
       // How to handle data if filters are not engaged
-
-      // (usecase when the filters have been engaged but are not anymore is yet to behandled)
       if (
         activityLogState.filterPeriod.length === 0 &&
         activityLogState.filterCategories.length === 0
       ) {
         // Reset displayedData to include all transformedData in case the filters have just been turned off
         dispatch(setDisplayedData(transformedData));
-        //load more if there is less than 10 on page
-        if (
-          //!be careful not to try to access a non-existant index! !it had once ruined the whole component!
-          transformedData.length > 1 &&
-          transformData.length > activityLogState.currentIndex &&
-          transformedData[activityLogState.currentIndex].data.length < 10
-        ) {
-          dispatch(
-            setDisplayedData([
-              ...activityLogState.displayedData,
-              transformedData[activityLogState.currentIndex],
-              transformedData[activityLogState.currentIndex + 1],
-            ]),
-          );
-          if (activityLogState.currentIndex > 2) {
-            dispatch(setCurrentIndex(activityLogState.currentIndex + 2));
-          } else {
-            dispatch(setCurrentIndex(activityLogState.currentIndex + 1));
-          }
-        } else {
-          displayMoreData(transformedData);
-        }
+        //Load more if there is less than 10 on page
+        fillPage(transformedData, 10);
         dispatch(setEntryData(transformedData));
       }
     } catch (err) {
@@ -170,18 +146,59 @@ const ActivityLog = () => {
   };
 
   const displayMoreData = (dataArr: EntryListSection[]) => {
+    setIsLoading(true);
     // don't run if there are filters on
-    if (activityLogState.filterPeriod.length > 0) return;
-    if (activityLogState.currentIndex < dataArr.length) {
-      // show loading
-      setIsLoading(true);
-      dispatch(
-        setDisplayedData([
-          ...activityLogState.displayedData,
-          dataArr[activityLogState.currentIndex],
-        ]),
-      );
-      dispatch(setCurrentIndex(activityLogState.currentIndex + 1));
+    try {
+      if (
+        activityLogState.filterPeriod.length > 0 ||
+        activityLogState.filterCategories.length > 0
+      ) {
+        return;
+      }
+      if (activityLogState.currentIndex < dataArr.length) {
+        dispatch(
+          setDisplayedData([
+            ...activityLogState.displayedData,
+            dataArr[activityLogState.currentIndex],
+          ]),
+        );
+        dispatch(setCurrentIndex(activityLogState.currentIndex + 1));
+      }
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const fillPage = (dataArr: EntryListSection[], limitNum: number) => {
+    //this function instantly displays a preset number of entries once it is called
+    //the effects are visible instantly, unlike calling displayMoreData few times
+    //and thus it ensures a seamless UI experience
+
+    setIsLoading(true);
+    //!be double careful not to try to access a non-existant index!
+    //!it had once ruined the whole component!
+    try {
+      if (
+        dataArr.length > 1 &&
+        dataArr.length > activityLogState.currentIndex &&
+        dataArr[activityLogState.currentIndex].data.length < limitNum
+      ) {
+        dispatch(
+          setDisplayedData([
+            ...activityLogState.displayedData,
+            dataArr[activityLogState.currentIndex],
+            dataArr[activityLogState.currentIndex + 1],
+          ]),
+        );
+        dispatch(setCurrentIndex(activityLogState.currentIndex + 2));
+      } else {
+        displayMoreData(dataArr);
+      }
+    } catch (err) {
+      console.error(err);
+    } finally {
       setIsLoading(false);
     }
   };
@@ -190,6 +207,7 @@ const ActivityLog = () => {
     fetchData();
   }, [activityLogState.filterPeriod, activityLogState.filterCategories]);
 
+  console.log(activityLogState.currentIndex);
   return (
     <React.Fragment>
       <View className="h-full pb-8" style={{ backgroundColor: "#FBFBFB" }}>
