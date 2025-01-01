@@ -8,12 +8,10 @@ import Text from "@/components/global/Text";
 import ToolHeader from "@/components/tools/ToolHeader";
 import ToolNav from "@/components/tools/ToolNav";
 import { emotionStrengthTitles } from "@/constants/models/journal";
-import {
-  emotionObjType,
-  setEmotions,
-} from "@/state/features/tools/journalSlice";
+import { setEmotions } from "@/state/features/tools/journalSlice";
 import { AppDispatch, RootState } from "@/state/store";
 import { Slider } from "@miblanchard/react-native-slider";
+import { emotionObjType } from "@/constants/models/activity_log";
 
 const Log_3 = () => {
   //tool state
@@ -45,7 +43,7 @@ const Log_3 = () => {
         />
         <Frame>
           <View className="h-full">
-            <View className="py-12">
+            <View className="py-10">
               <ToolHeader noIndent={true}>
                 How strong are the emotions you are feeling?
               </ToolHeader>
