@@ -2,13 +2,13 @@ import React from "react";
 import { View } from "react-native";
 import Text from "@/components/global/Text";
 import FrameMenu from "@/components/home/FrameMenu";
-import LearnCard from "@/components/learn/ArticleCard";
+import LearnArticleCard from "@/components/learn/ArticleCard";
 import LearnCategoryCard from "@/components/learn/LearnCategoryCard";
+import { learnArticles } from "@/constants/models/learn_articles";
 import {
   learnCategories,
   learnCategoriesTypes,
 } from "@/constants/models/learn_categories";
-import { learnArticles } from "@/constants/models/learn_articles";
 
 const Learn = () => {
   const articleNumber = (Math.random() * (learnArticles.length - 1)) | 0;
@@ -19,7 +19,7 @@ const Learn = () => {
         <View className="mb-4">
           <Text className="mb-6 mt-2 text-left text-2xl">Today's pick</Text>
           <View className="items-center justify-center">
-            <LearnCard
+            <LearnArticleCard
               title={learnArticles[articleNumber].title}
               subtitle={learnArticles[articleNumber].subtitle}
               time={learnArticles[articleNumber].time}
@@ -28,12 +28,13 @@ const Learn = () => {
               imagePlacement={
                 learnArticles[articleNumber].bgImage.cardPlacementY
               }
-              frameColor={
-                learnCategories.filter(
-                  (category) =>
-                    category.title === learnArticles[articleNumber].category,
-                )[0].color
-              }
+              // frameColor={
+              //   learnCategories.filter(
+              //     (category) =>
+              //       category.title === learnArticles[articleNumber].category,
+              //   )[0].color
+              // }
+              frameColor={"#F28E4E"}
             />
           </View>
         </View>

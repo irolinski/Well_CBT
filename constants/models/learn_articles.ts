@@ -10,10 +10,6 @@ export const learnArticles: ArticleTypes[] = [
       image: require(`@/assets/images/learn/articles/bg/bg_1.webp`),
       cardPlacementY: 37,
     },
-    customImage: {
-      image: require("@/assets/images/learn/demo.jpg"),
-      subtitle: "Dwa pingwiny z dudami",
-    },
     articleBody: [
       {
         header: "What does it mean to be mindful of one’s breath?",
@@ -42,10 +38,6 @@ export const learnArticles: ArticleTypes[] = [
     category: "Psychology",
     bgImage: {
       image: require(`@/assets/images/learn/articles/bg/bg_2.webp`),
-    },
-    customImage: {
-      image: require("@/assets/images/learn/demo.jpg"),
-      subtitle: "Dwa pingwiny z dudami",
     },
     articleBody: [
       {

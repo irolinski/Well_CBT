@@ -5,7 +5,6 @@ import MenuNav from "../global/MenuNav";
 
 type CategoryScrollableHeaderTypes = {
   title: string;
-  color: ColorValue;
   description: string;
   value: any;
   headerHeight: number;
@@ -14,7 +13,6 @@ type CategoryScrollableHeaderTypes = {
 
 const CategoryScrollableHeader = ({
   title,
-  color,
   description,
   value,
   headerHeight,
@@ -27,12 +25,6 @@ const CategoryScrollableHeader = ({
     outputRange: [headerHeight, 0],
     extrapolate: "clamp",
   });
-
-  // const animateImageFilter = value.interpolate({
-  //   inputRange: [0, headerHeight],
-  //   outputRange: [0.5, 0.9],
-  //   extrapolate: "clamp",
-  // });
 
   const hideNav = value.interpolate({
     inputRange: [0, headerHeight - 200],
@@ -91,35 +83,12 @@ const CategoryScrollableHeader = ({
             </Text>
           </View>
         </Animated.View>
-        {/* /Text */}
-        {/* <LinearGradient
-          colors={[`${String(color)}`, `rgba(0, 0, 0, 0.65)`]}
-          start={[0, 0]}
-          end={[0, 0.5]}
-          style={{
-            position: "absolute",
-            height: "100%",
-            width: "100%",
-            zIndex: 10,
-          }}
-        ></LinearGradient>  */}
-        {/* Design required gradient HERE but it slowed down performance */}
         <Image
           style={{ width: "100%", height: "100%" }}
           className="absolute h-full w-full"
           source={image}
           cachePolicy="memory" // necessary to prevent image flicker onScroll
         />
-        {/* <Animated.View
-          style={{
-            width: "100%",
-            height: "100%",
-            backgroundColor: "black",
-            position: "absolute",
-            opacity: animateImageFilter,
-            zIndex: 20,
-          }}
-        ></Animated.View> */}
       </Animated.View>
     </View>
   );
