@@ -8,8 +8,8 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { Feather } from "@expo/vector-icons";
 import { learnArticleCardTypes } from "@/constants/models/learn";
+import { Feather } from "@expo/vector-icons";
 
 const LearnArticleCard = ({
   title,
@@ -17,6 +17,7 @@ const LearnArticleCard = ({
   time,
   link,
   image,
+  imagePlacement,
   frameColor,
   textColor,
 }: learnArticleCardTypes) => {
@@ -24,11 +25,17 @@ const LearnArticleCard = ({
 
   return (
     <Pressable
-      className="mx-8 flex-1 justify-center overflow-hidden rounded-xl"
+      className="relative mx-8 flex-1 justify-center overflow-hidden rounded-xl"
       style={{ height: 250, width: windowWidth * 0.9 }}
       onPress={() => router.push(link as Href)}
     >
-      <Image source={image} className="flex-1 justify-center rounded-2xl" />
+      <Image
+        source={image}
+        className="absolute top-0 h-full w-full justify-center rounded-xl"
+        style={{
+          transform: [{ translateY: `-${imagePlacement}%` as `${number}%` }],
+        }}
+      />
       <View
         className="absolute bottom-0 w-full px-4 pb-4 pt-5"
         style={{ height: "56%", backgroundColor: frameColor ?? "#8DBED8" }}

@@ -1,7 +1,7 @@
 import { Image } from "expo-image";
 import { ColorValue } from "react-native";
 
-type learnCategoriesTypes = {
+export type learnCategoriesTypes = {
   title: string;
   color: ColorValue;
   image: Image;
@@ -17,7 +17,7 @@ export const learnCategories: learnCategoriesTypes[] = [
   },
   {
     title: "Lifestyle",
-    color: "#81C784",
+    color: "#5B7B5D",
     image: require("@/assets/images/learn/lifestyle.jpg"),
     description:
       "We are what we repeatedly do. Excellence, then, is not an act, but a habit.\n\n – Aristotle",
@@ -25,12 +25,12 @@ export const learnCategories: learnCategoriesTypes[] = [
   {
     title: "Tutorials",
     color: "#F9A947",
-    image: require("@/assets/images/learn/telescope_.jpg"),
+    image: require("@/assets/images/learn/lifestyle.jpg"),
     description: "",
   },
   {
     title: "Psychology",
-    color: "#73848D",
+    color: "#FF997C",
     image: require("@/assets/images/learn/psychology.jpg"),
     description: "",
   },

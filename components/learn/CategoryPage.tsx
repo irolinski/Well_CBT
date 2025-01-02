@@ -55,7 +55,9 @@ const CategoryPage = () => {
                       subtitle={el.subtitle}
                       time={el.time}
                       link={`./${categoryTitle}/${el.id}`}
-                      image={el.bgImage}
+                      image={el.bgImage.image}
+                      imagePlacement={el.bgImage.cardPlacementY}
+                      frameColor={categoryData.color}
                     />
                   </View>
                 ))}

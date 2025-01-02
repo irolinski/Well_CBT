@@ -1,15 +1,9 @@
-import {
-  ColorValue,
-  Dimensions,
-  Pressable,
-  TouchableOpacity,
-  View,
-} from "react-native";
-import { Feather } from "@expo/vector-icons";
-import { Href, router } from "expo-router";
-import Text from "@/components/global/Text";
+import { Href, router } from 'expo-router';
+import { ColorValue, Dimensions, Pressable, TouchableOpacity, View } from 'react-native';
+import Text from '@/components/global/Text';
+import { Feather } from '@expo/vector-icons';
 
-type LearnCategoryCardTypes = {
+export type LearnCategoryCardTypes = {
   name: string;
   backgroundColor: ColorValue;
   link: string;

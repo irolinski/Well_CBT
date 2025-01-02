@@ -6,7 +6,10 @@ export const learnArticles: ArticleTypes[] = [
     subtitle: "How breathing can make or break our anxieties?",
     time: 5,
     category: "Psychology",
-    bgImage: require("@/assets/images/learn/demo_2.jpg"),
+    bgImage: {
+      image: require(`@/assets/images/learn/articles/bg/bg_1.webp`),
+      cardPlacementY: 37,
+    },
     customImage: {
       image: require("@/assets/images/learn/demo.jpg"),
       subtitle: "Dwa pingwiny z dudami",
@@ -37,7 +40,9 @@ export const learnArticles: ArticleTypes[] = [
     subtitle: "The science-based psychotherapy explained",
     time: 4,
     category: "Psychology",
-    bgImage: require("@/assets/images/learn/demo_2.jpg"),
+    bgImage: {
+      image: require(`@/assets/images/learn/articles/bg/bg_2.webp`),
+    },
     customImage: {
       image: require("@/assets/images/learn/demo.jpg"),
       subtitle: "Dwa pingwiny z dudami",
@@ -68,7 +73,10 @@ export const learnArticles: ArticleTypes[] = [
     subtitle: "Insights from the Gut-Brain Axis",
     time: 6,
     category: "Science",
-    bgImage: require("@/assets/images/learn/demo_2.jpg"),
+    bgImage: {
+      image: require(`@/assets/images/learn/articles/bg/bg_3.webp`),
+      cardPlacementY: 19,
+    },
     articleBody: [
       {
         header: "Gut Microbiome and Mental Health",
@@ -95,7 +103,10 @@ export const learnArticles: ArticleTypes[] = [
     subtitle: "A Look at the Latest Evidence",
     time: 7,
     category: "Science",
-    bgImage: require("@/assets/images/learn/demo_2.jpg"),
+    bgImage: {
+      image: require(`@/assets/images/learn/articles/bg/bg_4.webp`),
+      cardPlacementY: 26,
+    },
     articleBody: [
       {
         header: "Introduction",
@@ -126,7 +137,10 @@ export const learnArticles: ArticleTypes[] = [
     subtitle: "7 science-backed rituals",
     time: 5,
     category: "Lifestyle",
-    bgImage: require("@/assets/images/learn/demo_2.jpg"),
+    bgImage: {
+      image: require(`@/assets/images/learn/articles/bg/bg_5.webp`),
+      cardPlacementY: 47,
+    },
     articleBody: [
       {
         header: "1. Establish a Consistent Sleep Schedule",
@@ -164,7 +178,10 @@ export const learnArticles: ArticleTypes[] = [
     subtitle: "10 Classical Music Pieces to Unwind and Relax To",
     time: 3,
     category: "Lifestyle",
-    bgImage: require("@/assets/images/learn/demo_2.jpg"),
+    bgImage: {
+      image: require(`@/assets/images/learn/articles/bg/bg_6.webp`),
+      cardPlacementY: 0,
+    },
     articleBody: [
       {
         header: "Clair de Lune – Claude Debussy",
@@ -214,7 +231,10 @@ export const learnArticles: ArticleTypes[] = [
     subtitle: "Exploring the Efficacy of Non-Therapeutic CBT Interventions",
     time: 6,
     category: "Science",
-    bgImage: require("@/assets/images/learn/demo_2.jpg"),
+    bgImage: {
+      image: require(`@/assets/images/learn/articles/bg/bg_7.webp`),
+      cardPlacementY: 35,
+    },
     articleBody: [
       {
         header: "Bibliotherapy in CBT",
