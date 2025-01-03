@@ -1,13 +1,12 @@
 import { Tabs } from "expo-router";
 import React from "react";
-import { Dimensions } from "react-native";
+import { Dimensions, View } from "react-native";
 import { Colors } from "@/constants/Colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import {
-  AntDesign,
   Feather,
-  FontAwesome,
   MaterialCommunityIcons,
+  MaterialIcons,
 } from "@expo/vector-icons";
 
 const TabLayout = () => {
@@ -34,7 +33,11 @@ const TabLayout = () => {
         options={{
           title: "Home",
           tabBarIcon: ({ color }) => (
-            <AntDesign name="home" size={24} color={color} />
+            <MaterialCommunityIcons
+              name="home-outline"
+              size={28}
+              color={color}
+            />
           ),
         }}
       />
@@ -43,11 +46,13 @@ const TabLayout = () => {
         options={{
           title: "Tools",
           tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons
-              name="head-cog-outline"
-              size={24}
-              color={color}
-            />
+            <View style={{ marginBottom: 0.6 }}>
+              <MaterialCommunityIcons
+                name="head-cog-outline"
+                size={23}
+                color={color}
+              />
+            </View>
           ),
         }}
       />
@@ -56,8 +61,8 @@ const TabLayout = () => {
         options={{
           title: "Learn",
           tabBarIcon: ({ focused }) => (
-            <FontAwesome
-              name="lightbulb-o"
+            <MaterialIcons
+              name="lightbulb-outline"
               size={24}
               color={focused ? "#FEBE10" : "gray"}
             />
@@ -70,7 +75,6 @@ const TabLayout = () => {
           title: "About Me",
           tabBarIcon: ({ color }) => (
             <Feather name="user" size={24} color={color} />
-            // <FontAwesome5 name="user-circle" size={24} color={color} />
           ),
         }}
       />
