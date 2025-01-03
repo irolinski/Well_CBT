@@ -24,7 +24,7 @@ import {
   MaterialIcons,
 } from "@expo/vector-icons";
 import ConversationModal from "./modal";
-import PhoneFriendProfilePic from "./ProfilePic";
+import PhoneFriendProfilePic from "@/components/ProfilePic";
 
 const Phone = () => {
   const windowHeight = Dimensions.get("window").height;
@@ -106,9 +106,10 @@ const Phone = () => {
             <PhoneFriendProfilePic
               pictureURI={
                 phoneState.supportContact &&
-                phoneState.supportContact!.pictureURI &&
-                phoneState.supportContact!.pictureURI
+                phoneState.supportContact.pictureURI &&
+                phoneState.supportContact.pictureURI
               }
+              location="phone"
             />
           </View>
           <View className="mx-4 justify-end" style={{ height: "20%" }}>

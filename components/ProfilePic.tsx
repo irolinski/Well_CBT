@@ -1,19 +1,21 @@
-import React, { useEffect, useRef, useState } from "react";
-import { View, Animated, Pressable, Dimensions } from "react-native";
-import { Image } from "expo-image";
-import { useSelector } from "react-redux";
-import { RootState } from "@/state/store";
-import {
-  phoneFacePlaceholder,
-  phoneFaces,
-} from "@/assets/images/tools/phone/phoneFaces";
+import { Image } from 'expo-image';
+import React, { useEffect, useRef, useState } from 'react';
+import { Animated, Dimensions, Pressable, StyleSheet, View } from 'react-native';
+import { useSelector } from 'react-redux';
+import { phoneFacePlaceholder, phoneFaces } from '@/assets/images/tools/phone/phoneFaces';
+import { RootState } from '@/state/store';
 
-const PhoneFriendProfilePic = ({
+const windowHeight = Dimensions.get("window").height;
+
+const ProfilePic = ({
   pictureURI,
+  nonSpinnable,
+  location,
 }: {
   pictureURI: string | undefined;
+  nonSpinnable?: boolean;
+  location: "phone" | "about";
 }) => {
-  const windowHeight = Dimensions.get("window").height;
   const phoneState = useSelector((state: RootState) => state.phone);
 
   const [faceNumber, setFaceNumber] = useState(
@@ -43,11 +45,11 @@ const PhoneFriendProfilePic = ({
   });
 
   useEffect(() => {
-    startSpinAnimation(); // Trigger animation on mount
+    !nonSpinnable && startSpinAnimation(); // Trigger animation on mount
   }, []);
 
   return (
-    <Pressable onPress={startSpinAnimation}>
+    <Pressable onPress={!nonSpinnable ? startSpinAnimation : null}>
       <View
         style={{
           alignItems: "center",
@@ -61,20 +63,18 @@ const PhoneFriendProfilePic = ({
         >
           {pictureURI ? (
             <Image
-              style={{
-                height: windowHeight / 4,
-                width: windowHeight / 4,
-                borderRadius: windowHeight / 8,
-              }}
+              style={[
+                location === "phone" && styles.imagePhone,
+                location === "about" && styles.imageAbout,
+              ]}
               source={pictureURI}
             />
           ) : (
             <Image
-              style={{
-                height: windowHeight / 4,
-                width: windowHeight / 4,
-                borderRadius: windowHeight / 8,
-              }}
+              style={[
+                location === "phone" && styles.imagePhone,
+                location === "about" && styles.imageAbout,
+              ]}
               source={
                 !phoneState ? phoneFacePlaceholder : phoneFaces[faceNumber]
               }
@@ -86,4 +86,17 @@ const PhoneFriendProfilePic = ({
   );
 };
 
-export default PhoneFriendProfilePic;
+const styles = StyleSheet.create({
+  imagePhone: {
+    height: windowHeight / 4,
+    width: windowHeight / 4,
+    borderRadius: windowHeight / 8,
+  },
+  imageAbout: {
+    height: windowHeight / 5,
+    width: windowHeight / 5,
+    borderRadius: windowHeight / 8,
+  },
+});
+
+export default ProfilePic;
