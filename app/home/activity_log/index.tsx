@@ -24,8 +24,8 @@ import {
   setRawData,
 } from "@/state/features/menus/activityLogSlice";
 import { AppDispatch, RootState } from "@/state/store";
-import { useActivityLogActions } from "./hooks";
 import ActivityLogModal from "./modal";
+import useActivityLogActions from "./hooks";
 
 const ActivityLog = () => {
   const windowHeight = Dimensions.get("window").height;

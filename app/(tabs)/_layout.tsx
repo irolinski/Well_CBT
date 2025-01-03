@@ -1,13 +1,14 @@
 import { Tabs } from "expo-router";
 import React from "react";
+import { Dimensions } from "react-native";
 import { Colors } from "@/constants/Colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
-
-import HomeIcon from "@expo/vector-icons/AntDesign";
-import LightbulbIcon from "@expo/vector-icons/FontAwesome";
-import HeadIcon from "@expo/vector-icons/MaterialCommunityIcons";
-import DotsIcon from "@expo/vector-icons/Entypo";
-import { Dimensions } from "react-native";
+import {
+  AntDesign,
+  Feather,
+  FontAwesome,
+  MaterialCommunityIcons,
+} from "@expo/vector-icons";
 
 const TabLayout = () => {
   const colorScheme = useColorScheme();
@@ -33,7 +34,7 @@ const TabLayout = () => {
         options={{
           title: "Home",
           tabBarIcon: ({ color }) => (
-            <HomeIcon name="home" size={24} color={color} />
+            <AntDesign name="home" size={24} color={color} />
           ),
         }}
       />
@@ -42,7 +43,11 @@ const TabLayout = () => {
         options={{
           title: "Tools",
           tabBarIcon: ({ color }) => (
-            <HeadIcon name="head-cog-outline" size={24} color={color} />
+            <MaterialCommunityIcons
+              name="head-cog-outline"
+              size={24}
+              color={color}
+            />
           ),
         }}
       />
@@ -51,7 +56,7 @@ const TabLayout = () => {
         options={{
           title: "Learn",
           tabBarIcon: ({ focused }) => (
-            <LightbulbIcon
+            <FontAwesome
               name="lightbulb-o"
               size={24}
               color={focused ? "#FEBE10" : "gray"}
@@ -60,17 +65,17 @@ const TabLayout = () => {
         }}
       />
       <Tabs.Screen
-        name="more"
+        name="about"
         options={{
-          title: "More",
+          title: "About Me",
           tabBarIcon: ({ color }) => (
-            <DotsIcon name="dots-three-horizontal" size={24} color={color} />
+            <Feather name="user" size={24} color={color} />
+            // <FontAwesome5 name="user-circle" size={24} color={color} />
           ),
         }}
       />
     </Tabs>
   );
 };
-
 
 export default TabLayout;

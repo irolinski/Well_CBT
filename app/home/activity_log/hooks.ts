@@ -13,7 +13,7 @@ import {
 } from "@/state/features/menus/activityLogSlice";
 import { AppDispatch, RootState } from "@/state/store";
 
-export const useActivityLogActions = () => {
+ const useActivityLogActions = () => {
   const dispatch = useDispatch<AppDispatch>();
   const activityLogState = useSelector((state: RootState) => state.activityLog);
     
@@ -176,3 +176,5 @@ export const useActivityLogActions = () => {
     fillPage,
   };
 };
+
+export default useActivityLogActions;
