@@ -2,7 +2,7 @@ import { ArticleTypes } from "./learn";
 
 export const learnArticles: ArticleTypes[] = [
   {
-    title: "The art of mindful breathing",
+    title: "The Art of Mindful Breathing",
     subtitle: "How breathing can make or break our anxieties?",
     time: 5,
     category: "Psychology",
@@ -91,13 +91,13 @@ export const learnArticles: ArticleTypes[] = [
     id: 3,
   },
   {
-    title: "The Impact of Social Media on Mental Health",
+    title: "Social Media vs. Mental Health",
     subtitle: "A Look at the Latest Evidence",
     time: 7,
     category: "Science",
     bgImage: {
       image: require(`@/assets/images/learn/articles/bg/bg_4.webp`),
-      cardPlacementY: 26,
+      cardPlacementY: 40,
     },
     articleBody: [
       {
@@ -166,7 +166,7 @@ export const learnArticles: ArticleTypes[] = [
     id: 5,
   },
   {
-    title: "Relax with the classics",
+    title: "Relax with the Classics",
     subtitle: "10 Classical Music Pieces to Unwind and Relax To",
     time: 3,
     category: "Lifestyle",
@@ -220,7 +220,7 @@ export const learnArticles: ArticleTypes[] = [
   },
   {
     title: "CBT Outside the Therapist's Office",
-    subtitle: "Exploring the Efficacy of Non-Therapeutic CBT Interventions",
+    subtitle: "Exploring the Efficacy of Self-Help CBT Interventions",
     time: 6,
     category: "Science",
     bgImage: {
@@ -250,7 +250,7 @@ export const learnArticles: ArticleTypes[] = [
       },
       {
         header: "Limitations and Future Directions",
-        body: "Non-therapeutic CBT approaches are not without limitations. For instance, adherence can be low, and individuals with severe symptoms may require professional guidance. However, ongoing research is refining these interventions, with promising innovations like artificial intelligence to personalize CBT delivery.",
+        body: "Non-traditional CBT approaches are not without limitations. For instance, adherence can be low, and individuals with severe symptoms may require professional guidance. However, ongoing research is refining these interventions, with promising innovations like artificial intelligence to personalize CBT delivery.",
       },
     ],
     id: 7,
