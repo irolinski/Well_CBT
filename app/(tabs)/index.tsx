@@ -1,20 +1,21 @@
-import { Href, router } from "expo-router";
-import React, { useEffect, useState } from "react";
-import { Dimensions, Pressable, View } from "react-native";
-import AdvanceButton from "@/components/AdvanceButton";
-import DividerLine from "@/components/DividerLine";
-import Text from "@/components/global/Text";
-import FrameMenu from "@/components/home/FrameMenu";
-import JournalCard from "@/components/home/JournalCard";
-import QuoteWidget from "@/components/home/QuoteWidget";
-import TypewriterText from "@/components/TypewriterText";
-import { EntryViewTableRow } from "@/constants/models/activity_log";
-import { fetchRecentEntries } from "@/db/activity_log";
-import { Entypo } from "@expo/vector-icons";
-import NewActivityModal from "@/components/home/NewActivityModal";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "@/state/store";
-import { setShowNewActivityModal } from "@/state/features/menus/newActivityModalSlice";
+import { Href, router } from 'expo-router';
+import React, { useEffect, useState } from 'react';
+import { Dimensions, Pressable, View } from 'react-native';
+import { useDispatch } from 'react-redux';
+
+import AdvanceButton from '@/components/AdvanceButton';
+import DividerLine from '@/components/DividerLine';
+import Text from '@/components/global/Text';
+import FrameMenu from '@/components/home/FrameMenu';
+import JournalCard from '@/components/home/JournalCard';
+import NewActivityModal from '@/components/home/NewActivityModal';
+import QuoteWidget from '@/components/home/QuoteWidget';
+import TypewriterText from '@/components/TypewriterText';
+import { EntryViewTableRow } from '@/constants/models/activity_log';
+import { fetchRecentEntries } from '@/db/activity_log';
+import { setShowNewActivityModal } from '@/state/features/menus/newActivityModalSlice';
+import { AppDispatch } from '@/state/store';
+import { Entypo } from '@expo/vector-icons';
 
 const windowWidth = Dimensions.get("window").width;
 
