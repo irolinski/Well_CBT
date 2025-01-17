@@ -25,6 +25,7 @@ const AboutStats = () => {
           statNumber={50}
           icon={ToolList.breathing.icon}
           ballColor={ballColors[1]}
+          indexNum={0}
         />
         <StatRow
           ballSizeParameter={ballSizeParameter.md}
@@ -32,6 +33,7 @@ const AboutStats = () => {
           statNumber={400}
           icon={ToolList.breathing.icon}
           ballColor={ballColors[0]}
+          indexNum={1}
         />
         <StatRow
           ballSizeParameter={ballSizeParameter.lg}
@@ -39,6 +41,7 @@ const AboutStats = () => {
           statNumber={21}
           icon={ToolList.journal.icon}
           ballColor={ballColors[2]}
+          indexNum={2}
         />
         <StatRow
           ballSizeParameter={ballSizeParameter.xl}
@@ -46,6 +49,7 @@ const AboutStats = () => {
           statNumber={18}
           icon={ToolList.journal.icon}
           ballColor={ballColors[3]}
+          indexNum={3}
         />
         <StatRow
           ballSizeParameter={ballSizeParameter.xxs}
@@ -53,6 +57,7 @@ const AboutStats = () => {
           statNumber={1}
           icon={ToolList.journal.icon}
           ballColor={ballColors[1]}
+          indexNum={4}
         />
         <StatRow
           ballSizeParameter={ballSizeParameter.xs}
@@ -60,6 +65,7 @@ const AboutStats = () => {
           statNumber={3}
           icon={ToolList.cda.icon}
           ballColor={ballColors[0]}
+          indexNum={5}
         />
 
         <StatRow
@@ -68,6 +74,7 @@ const AboutStats = () => {
           statNumber={24}
           icon={ToolList.journal.icon}
           ballColor={ballColors[1]}
+          indexNum={6}
         />
       </View>
     </View>

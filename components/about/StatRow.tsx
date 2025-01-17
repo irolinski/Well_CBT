@@ -14,12 +14,14 @@ const StatRow = ({
   statNumber,
   icon,
   ballColor,
+  indexNum,
 }: {
   ballSizeParameter: ballSizeParameter;
   caption: string;
   statNumber: number;
   icon: ReactNode;
   ballColor: ColorValue;
+  indexNum?: number;
 }) => {
   const windowWidth = Dimensions.get("window").width;
   const ballContainerSize = ballSizeParameter * windowWidth; // 0.6 = max, 0.25 = min
@@ -38,6 +40,7 @@ const StatRow = ({
             ballSize={ballSize}
             statNumber={statNumber}
             ballColor={ballColor}
+            indexNum={indexNum}
           />
         </View>
         <View
