@@ -1,33 +1,67 @@
-import React from "react";
-import { ColorValue, View } from "react-native";
+import { useEffect, useRef, useState } from "react";
+import { Animated, ColorValue, View } from "react-native";
 
-import Text from "../global/Text";
-
-const StatBall = ({
-  ballSize,
-  ballContainerSize,
-  statNumber,
-  ballColor,
-}: {
+type StatBallType = {
   ballSize: number;
-  ballContainerSize: number;
   statNumber: number;
   ballColor: ColorValue;
-}) => {
+};
+
+const StatBall = ({ ballSize, statNumber, ballColor }: StatBallType) => {
+  const animatedScale = useRef(new Animated.Value(0)).current;
+  const animatedNumber = useRef(new Animated.Value(0)).current;
+  const [displayedNumber, setDisplayedNumber] = useState(0);
+
+  const animateBallScale = () => {
+    Animated.timing(animatedScale, {
+      toValue: 1,
+      duration: 500,
+      useNativeDriver: true,
+    }).start();
+  };
+
+  const animateNumberCountUp = () => {
+    Animated.timing(animatedNumber, {
+      toValue: statNumber,
+      duration: 3000,
+      useNativeDriver: false, // Numbers can't use native driver
+    }).start();
+
+    // Everytime the animation value changes, change the displayed number
+    const listener = animatedNumber.addListener(({ value }) => {
+      setDisplayedNumber(Math.round(value)); // Round to avoid decimals
+    });
+
+    return () => {
+      animatedNumber.removeListener(listener);
+      // Clean up listener -- has to be here for it to work and to prevent memory leaks
+    };
+  };
+
+  useEffect(() => {
+    animateBallScale();
+    animateNumberCountUp();
+  }, []);
+
   return (
-    <View className="h-full w-full items-center justify-center">
-      <View
-        className="items-center justify-center rounded-full"
+    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+      <Animated.View
         style={{
           width: ballSize,
           height: ballSize,
           backgroundColor: ballColor,
+          borderRadius: ballSize / 2,
+          transform: [{ scale: animatedScale }],
+          alignItems: "center",
+          justifyContent: "center",
         }}
       >
-        <Text className="text-2xl font-bold" style={{ color: "#FFFFFF" }}>
-          {statNumber}
-        </Text>
-      </View>
+        <Animated.Text
+          style={{ color: "#FFFFFF", fontSize: 26, fontWeight: "bold" }}
+        >
+          {displayedNumber}
+        </Animated.Text>
+      </Animated.View>
     </View>
   );
 };

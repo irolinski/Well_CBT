@@ -1,6 +1,5 @@
 import React, { ReactNode } from "react";
 import { ColorValue, Dimensions, View } from "react-native";
-
 import Text from "../global/Text";
 import { ballSizeParameter } from "./AboutStats";
 import StatBall from "./StatBall";
@@ -37,7 +36,6 @@ const StatRow = ({
         >
           <StatBall
             ballSize={ballSize}
-            ballContainerSize={ballContainerSize}
             statNumber={statNumber}
             ballColor={ballColor}
           />
@@ -52,7 +50,7 @@ const StatRow = ({
         >
           <View
             className="absolute w-full items-center"
-            style={{ bottom: 7.5 }}
+            style={{ bottom: ballSize * 0.15 }}
           >
             <View className="w-full flex-row justify-start">{icon}</View>
             <Text className="w-full pr-4 text-lg" style={{ color: "#757575" }}>
