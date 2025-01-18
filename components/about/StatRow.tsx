@@ -27,43 +27,47 @@ const StatRow = ({
   const ballContainerSize = ballSizeParameter * windowWidth; // 0.6 = max, 0.25 = min
   const ballSize = 0.8 * ballContainerSize;
 
-  return (
-    <View className="relative w-full flex-row justify-center">
-      <View className="w-full flex-row py-8">
-        <View
-          style={{
-            width: "55%",
-            height: ballSize,
-          }}
-        >
-          <StatBall
-            ballSize={ballSize}
-            statNumber={statNumber}
-            ballColor={ballColor}
-            indexNum={indexNum}
-          />
-        </View>
-        <View
-          className="mx-4 items-center justify-center"
-          style={{
-            height: 50,
-            width: 0.33 * windowWidth,
-            top: ballSize * 0.6,
-          }}
-        >
+  if (statNumber)
+    return (
+      <View className="relative w-full flex-row justify-center">
+        <View className="w-full flex-row py-8">
           <View
-            className="absolute w-full items-center"
-            style={{ bottom: ballSize * 0.15 }}
+            style={{
+              width: "55%",
+              height: ballSize,
+            }}
           >
-            <View className="w-full flex-row justify-start">{icon}</View>
-            <Text className="w-full pr-4 text-lg" style={{ color: "#757575" }}>
-              {caption}
-            </Text>
+            <StatBall
+              ballSize={ballSize}
+              statNumber={statNumber}
+              ballColor={ballColor}
+              indexNum={indexNum}
+            />
+          </View>
+          <View
+            className="mx-4 items-center justify-center"
+            style={{
+              height: 50,
+              width: 0.33 * windowWidth,
+              top: ballSize * 0.6,
+            }}
+          >
+            <View
+              className="absolute w-full items-center"
+              style={{ bottom: ballSize * 0.15 }}
+            >
+              <View className="w-full flex-row justify-start">{icon}</View>
+              <Text
+                className="w-full pr-4 text-lg"
+                style={{ color: "#757575" }}
+              >
+                {caption}
+              </Text>
+            </View>
           </View>
         </View>
       </View>
-    </View>
-  );
+    );
 };
 
 export default StatRow;

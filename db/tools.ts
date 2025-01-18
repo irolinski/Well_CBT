@@ -1,9 +1,9 @@
 import * as SQLite from "expo-sqlite";
-import { dbName } from "./service";
+import { cdaSliceTypes } from "@/state/features/tools/cdaSlice";
 import { journalSliceTypes } from "@/state/features/tools/journalSlice";
-import { cdaSliceTpyes } from "@/state/features/tools/cdaSlice";
+import { dbName } from "./service";
 
-export const handleSaveCDAEntry = async (cdaState: cdaSliceTpyes) => {
+export const handleSaveCDAEntry = async (cdaState: cdaSliceTypes) => {
   if (cdaState.save) {
     try {
       const db = await SQLite.openDatabaseAsync(dbName);
@@ -90,9 +90,6 @@ export const handleSaveJournalEntry = async (
 
         await db.execAsync(query);
       }
-      // console.log(await db.getAllAsync("SELECT * FROM journalEntries"));
-      // console.log("-----------------------");
-      // console.log(await db.getAllAsync("SELECT * FROM journalEntryEmotions"));
     } catch (err) {
       throw err;
     }
@@ -130,9 +127,6 @@ export const handleLogRelaxActivity = async (relaxTime: number) => {
                     NULL, 'breathing', '${relaxTime}', DATETIME('now')
                   );
                 `);
-
-    // console.log(await db.getAllAsync("SELECT * FROM relaxActivities"));
-    // console.log("-----------------------");
   } catch (err) {
     throw err;
   }

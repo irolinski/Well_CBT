@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { View } from "react-native";
 import { ToolList } from "@/constants/models/activity_log";
+import { fetchStatsData, StatsDataObjType } from "@/db/about";
 import StatRow from "./StatRow";
 
 export enum ballSizeParameter {
@@ -15,30 +16,33 @@ export enum ballSizeParameter {
 const ballColors = ["#FF997C", "#008A63", "#F9A947", "#4391BC"];
 
 const AboutStats = () => {
+  const [statsData, setStatsData] = useState<StatsDataObjType>();
+
+  useEffect(() => {
+    fetchStatsData().then((res) => {
+      let fetchedData = res as StatsDataObjType;
+      setStatsData(fetchedData);
+    });
+  }, []);
+
   return (
-    //delete constant later
     <View className="rounded-xl" style={{ backgroundColor: "#F5F5F5" }}>
       <View className="w-full py-8">
+        {
+          // if only one stat number, then show a placeholder sign
+        }
         <StatRow
           ballSizeParameter={ballSizeParameter.sm}
           caption="Minutes of meditation"
-          statNumber={50}
+          statNumber={statsData?.relaxTimeSec ?? 0}
           icon={ToolList.breathing.icon}
           ballColor={ballColors[1]}
           indexNum={0}
         />
         <StatRow
-          ballSizeParameter={ballSizeParameter.md}
-          caption="Mindful breaths taken"
-          statNumber={400}
-          icon={ToolList.breathing.icon}
-          ballColor={ballColors[0]}
-          indexNum={1}
-        />
-        <StatRow
           ballSizeParameter={ballSizeParameter.lg}
           caption="Journal Entries"
-          statNumber={21}
+          statNumber={statsData?.journalCount ?? 0}
           icon={ToolList.journal.icon}
           ballColor={ballColors[2]}
           indexNum={2}
@@ -52,29 +56,12 @@ const AboutStats = () => {
           indexNum={3}
         />
         <StatRow
-          ballSizeParameter={ballSizeParameter.xxs}
-          caption="Mood journal entries"
-          statNumber={1}
-          icon={ToolList.journal.icon}
-          ballColor={ballColors[1]}
-          indexNum={4}
-        />
-        <StatRow
           ballSizeParameter={ballSizeParameter.xs}
           caption="Thoughts untangled"
-          statNumber={3}
+          statNumber={statsData?.cbtCount ?? 0}
           icon={ToolList.cda.icon}
           ballColor={ballColors[0]}
-          indexNum={5}
-        />
-
-        <StatRow
-          ballSizeParameter={ballSizeParameter.xxl}
-          caption="Achievements unlocked"
-          statNumber={24}
-          icon={ToolList.journal.icon}
-          ballColor={ballColors[1]}
-          indexNum={6}
+          indexNum={4}
         />
       </View>
     </View>
