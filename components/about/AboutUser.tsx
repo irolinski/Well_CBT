@@ -1,17 +1,47 @@
+import { useEffect, useState } from "react";
 import { Dimensions, View } from "react-native";
-import Text from "../global/Text";
 import ProfilePic from "@/components/ProfilePic";
+import { fetchUserData, handleGetUserData, UserType } from "@/db/user";
+import { formatDateToMonthAndDay, returnDaysAgoString } from "@/utils/dates";
+import Text from "../global/Text";
 
 const AboutUser = () => {
   const windowWidth = Dimensions.get("window").width;
+  const [userData, setUserData] = useState<UserType>();
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    setIsLoading(true);
+    try {
+      fetchUserData().then((res) => {
+        let fetchedData = res as UserType;
+        setUserData(fetchedData);
+      });
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
+
+  const name = userData && userData.name.length > 0 ? userData.name : "Hi!";
+
+  const lastVisit =
+    userData?.lastVisit &&
+    returnDaysAgoString(
+      userData.lastVisit,
+      14,
+      formatDateToMonthAndDay(userData.lastVisit),
+    );
+
+  const completedActivities = userData && userData.numOfAllEntries;
+
   return (
     <View
       className="h-40 flex-1 rounded-3xl"
       style={{
         width: windowWidth * 0.9,
         height: windowWidth * 0.9 * 0.94,
-        // backgroundColor: "#F5F5F5",
-        // borderColor: "#B8B8B8",
       }}
     >
       <View style={{ marginTop: windowWidth * 0.05 }}>
@@ -19,21 +49,19 @@ const AboutUser = () => {
       </View>
       <View>
         <View className="my-4">
-          <View className="flex-row justify-center relative">
-            <Text className="text-2xl">Anna Nowak</Text>
+          <View className="relative flex-row justify-center">
+            <Text className="text-2xl">{name}</Text>
           </View>
           <View className="my-4 items-center">
-            <Text
-              className="text-base"
-              style={{ color: "#757575", fontWeight: 500 }}
-            >
-              Last visit: today
+            <Text className="text-base" style={{ color: "#757575" }}>
+              <Text style={{ fontWeight: 500 }}>Last visit: </Text>
+              <Text>{lastVisit && lastVisit}</Text>
             </Text>
             <Text
               className="my-2 text-center text-base"
               style={{ color: "#757575", width: windowWidth * 0.25 }}
             >
-              Completed activities: 56
+              Completed activities: {completedActivities}
             </Text>
           </View>
         </View>

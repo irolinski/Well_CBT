@@ -2,6 +2,7 @@ import * as Notifications from "expo-notifications";
 import { Alert } from "react-native";
 import notificationContent from "@/assets/text/notifications_daily.json";
 import { TimePickerReturnObj } from "@/components/home/TimePicker";
+import { numToString_addZero } from "./dates";
 
 //To have different notification body text everyday,
 //I'll have to re-schedule notification on app open
@@ -41,16 +42,6 @@ export const convertTo12hFormat = (hour: number, minute: number) => {
     }
   }
   return { hour: hour, minute: minute, meridiem: meridiem };
-};
-
-const numToString_addZero = (number: number) => {
-  let numString: string = String(number);
-  if (numString.length === 1) {
-    if (numString[0] !== "0") {
-      numString = `0${numString[0]}`;
-    }
-  }
-  return numString;
 };
 
 // --- local notification handlers ---

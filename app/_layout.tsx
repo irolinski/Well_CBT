@@ -8,7 +8,7 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Provider as StateProvider } from "react-redux";
 import { seedDB } from "@/db/seed";
 import { createActivityViewTable, dbName, setUpDB } from "@/db/service";
-import { setVisitStreakCount } from "@/db/user";
+import { handleSetVisitStreakCount } from "@/db/user";
 import { store } from "@/state/store";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
@@ -53,11 +53,13 @@ export default function RootLayout() {
   const [imagesLoaded, setImagesLoaded] = useState(false);
   useEffect(() => {
     try {
-      loadResourcesAndDataAsync();
-      setUpDB();
-      setVisitStreakCount();
-      // seedDB();
-      createActivityViewTable();
+      Promise.all([
+        loadResourcesAndDataAsync(),
+        setUpDB(),
+        createActivityViewTable(),
+        handleSetVisitStreakCount(),
+        // seedDB();
+      ]);
     } catch (err) {
       console.error(err);
     } finally {

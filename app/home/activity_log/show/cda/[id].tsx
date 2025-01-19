@@ -1,16 +1,16 @@
 import { useLocalSearchParams } from "expo-router";
 import { useEffect, useState } from "react";
 import { Dimensions, Image, ScrollView, View } from "react-native";
-import ToolHeader from "@/components/tools/ToolHeader";
-import { fetchCDAEntry } from "@/db/activity_log";
-import Text from "@/components/global/Text";
-import CDATextBox from "@/components/tools/cda/CDATextBox";
 import DistortionPill from "@/components/DistortionPill";
+import ErrorScreen from "@/components/ErrorScreen";
+import Text from "@/components/global/Text";
 import ActivityShowNav from "@/components/home/ActivityShowNav";
+import CDATextBox from "@/components/tools/cda/CDATextBox";
+import ToolHeader from "@/components/tools/ToolHeader";
+import { cdaEntryType } from "@/constants/models/cda";
+import { fetchCDAEntry } from "@/db/activity_log";
 import { deleteCDAEntry } from "@/db/tools";
 import { handleDeleteEntry } from "@/utils/deleteEntry";
-import ErrorScreen from "@/components/ErrorScreen";
-import { cdaEntryType } from "@/constants/models/cda";
 
 const ActivityShowPage = () => {
   const windowHeight = Dimensions.get("window").height;
@@ -35,6 +35,7 @@ const ActivityShowPage = () => {
     if (fetchedEntry.datetime) {
       date = fetchedEntry.datetime.split(" ")[0];
     }
+
     return (
       <ScrollView>
         <ActivityShowNav

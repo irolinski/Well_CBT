@@ -1,24 +1,44 @@
 import * as SQLite from "expo-sqlite";
-export const dbName = "well-test-db-015";
+
+export const dbName = "well-test-db-019";
 
 export const setUpDB = async () => {
-  const db = await SQLite.openDatabaseAsync(dbName);
-  await db.execAsync(`
+  try {
+    const db = await SQLite.openDatabaseAsync(dbName);
+    await db.execAsync(`
+    
+      CREATE TABLE IF NOT EXISTS userData (
+        name VARCHAR (100), lastVisit VARCHAR (300) NOT NULL, currentVisitStreak INT,
+        highestVisitStreak INT, profilePicNum INT, customProfilePic VARCHAR (500)
+      );
+
+      INSERT INTO userData (name, lastVisit, currentVisitStreak, highestVisitStreak, profilePicNum) VALUES (
+      "", DATETIME('now'), 1, 1, 0
+      );
+
+
       CREATE TABLE IF NOT EXISTS journalEntries (
        id INTEGER PRIMARY KEY AUTOINCREMENT, moodValue INT NOT NULL, note VARCHAR(200), datetime NOT NULL
       );
+
       CREATE TABLE IF NOT EXISTS cdaArchive ( 
         id INTEGER PRIMARY KEY AUTOINCREMENT, situation VARCHAR(100) NOT NULL,
         oldThought VARCHAR(100) NOT NULL, distortion VARCHAR(35) NOT NULL,
         newThought VARCHAR(100) NOT NULL, datetime NOT NULL
       );
+
       CREATE TABLE IF NOT EXISTS journalEntryEmotions (
         id INT NOT NULL, name VARCHAR(100) NOT NULL, strength INT NOT NULL
       );
-          CREATE TABLE IF NOT EXISTS relaxActivities (
+
+      CREATE TABLE IF NOT EXISTS relaxActivities (
         id INTEGER PRIMARY KEY AUTOINCREMENT, activityName VARCHAR(100), secondsRelaxed INT, datetime NOT NULL
       );
+      
     `);
+  } catch (err) {
+    console.error("Error: Problem with initializing database.");
+  }
 };
 
 export const createActivityViewTable = async () => {

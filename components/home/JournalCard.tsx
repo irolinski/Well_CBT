@@ -6,10 +6,11 @@ import {
   ToolCategories,
   ToolList,
 } from "@/constants/models/activity_log";
+import { monthNamesShort } from "@/constants/models/dates";
+import { getOrdinalSuffix } from "@/utils/dates";
 import { Entypo } from "@expo/vector-icons";
 import { Slider } from "@miblanchard/react-native-slider";
 import Text from "../global/Text";
-import { getOrdinalSuffix, monthNamesShort } from "@/constants/models/dates";
 
 const JournalCard = ({ toolName, link, datetime, value }: JournalCardProps) => {
   let cardTime = datetime.split(" ")[1];

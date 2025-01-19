@@ -1,91 +1,101 @@
-//SELECT COUNT(1) to get rowcount of a table
 import * as SQLite from "expo-sqlite";
+import { StatsDataObjType, TableRowCountObj } from "./models";
 import { dbName } from "./service";
 
-//get all data that I could use here, then choose the most impressive pieces and display
-//categories: journal entries, number of breaths, days-in-row, mind exercises
-
-//best done using a temp view
-// journal entries - just check how many are saved
-// mind exercises - ^
-// minutes of relaxation - get seconds from relax table
-// days-in-row - need a new table for this - columns: daysInRow and lastDay; it fires on app launch and checks; if lastDay = today -> do nothing; if last day = today - 1 add 1 to record; if last day is more than 1 day away from today erase record
-
-export type StatsDataObjType = {
-  cbtCount: number;
-  journalCount: number;
-  relaxTimeSec: number;
-};
-
-const handleGetCDACount = async () => {
+const handleGetCDACount = async (): Promise<number> => {
   try {
     const db = await SQLite.openDatabaseAsync(dbName);
-    const res: unknown[] = await db.getAllAsync(
-      `SELECT COUNT(1) FROM cdaArchive;`,
-    );
+    const res: TableRowCountObj = (await db.getFirstAsync(
+      `SELECT COUNT(1) AS rowCount FROM cdaArchive;`,
+    )) as TableRowCountObj;
 
-    const cdaCount: number | unknown = res[0];
-    if (typeof cdaCount === "number") {
-      return cdaCount;
-    } else {
-      return 0;
+    let cdaCount = 0;
+    if (res && res.rowCount) {
+      cdaCount = res.rowCount;
     }
+    return cdaCount;
   } catch (err) {
     console.error(err);
+    return 0;
   }
 };
 
-const handleGetJournalCount = async () => {
+const handleGetJournalCount = async (): Promise<number> => {
   try {
     const db = await SQLite.openDatabaseAsync(dbName);
-    const res: unknown[] = await db.getAllAsync(
-      `SELECT COUNT(1) FROM journalEntryEmotions;`,
-    );
+    const res: TableRowCountObj = (await db.getFirstAsync(
+      `SELECT COUNT(1) AS rowCount FROM journalEntries;`,
+    )) as TableRowCountObj;
 
-    const journalCount: number | unknown = res[0];
-    if (typeof journalCount === "number") {
-      return journalCount;
-    } else {
-      return 0;
+    let journalCount = 0;
+    if (res && res.rowCount) {
+      journalCount = res.rowCount;
     }
+    return journalCount;
   } catch (err) {
     console.error(err);
+    return 0;
   }
 };
 
-const handleGetRelaxTime = async () => {
+const handleGetRelaxTime = async (): Promise<number> => {
+  type SumOfSecondsRelaxedObj = { sumOfSecondsRelaxed: number };
   try {
     const db = await SQLite.openDatabaseAsync(dbName);
-    const res: unknown[] = await db.getAllAsync(
-      `SELECT SUM(secondsRelaxed) FROM relaxActivities;`,
-    );
-    const relaxTimeSec: number | unknown = res[0];
-    if (typeof relaxTimeSec === "number") {
-      return relaxTimeSec;
-    } else {
-      return 0;
+    const res: SumOfSecondsRelaxedObj = (await db.getFirstAsync(
+      `SELECT SUM(secondsRelaxed) AS sumOfSecondsRelaxed FROM relaxActivities;`,
+    )) as SumOfSecondsRelaxedObj;
+
+    let relaxTimeSec = 0;
+    if (res && res.sumOfSecondsRelaxed) {
+      relaxTimeSec = res.sumOfSecondsRelaxed;
     }
+    return relaxTimeSec;
   } catch (err) {
     console.error(err);
+    return 0;
   }
 };
 
-export const handleGetStatsData = async () => {
+const handleGetHighestVisitStreak = async (): Promise<number> => {
+  type HighestVisitStreakObj = { highestVisitStreak: number };
+  try {
+    const db = await SQLite.openDatabaseAsync(dbName);
+    const res: HighestVisitStreakObj = (await db.getFirstAsync(
+      `SELECT highestVisitStreak FROM userData LIMIT 1;`,
+    )) as HighestVisitStreakObj;
+
+    let highestVisitStreak = 0;
+
+    if (res && res.highestVisitStreak) {
+      highestVisitStreak = res.highestVisitStreak;
+    }
+    return highestVisitStreak;
+  } catch (err) {
+    console.error(err);
+    return 0;
+  }
+};
+
+export const handleGetStatsData = async (): Promise<
+  StatsDataObjType | undefined
+> => {
   try {
     const cbtCount = await handleGetCDACount();
     const journalCount = await handleGetJournalCount();
+    console.log("journal count is : ", journalCount);
     const relaxTimeSec = await handleGetRelaxTime();
+    const highestVisitStreak = await handleGetHighestVisitStreak();
 
     const statsData: StatsDataObjType = {
-      cbtCount: cbtCount === undefined ? 0 : cbtCount,
-      journalCount: journalCount === undefined ? 0 : journalCount,
-      relaxTimeSec: relaxTimeSec === undefined ? 0 : relaxTimeSec,
+      cbtCount: cbtCount === undefined ? 0 : Number(cbtCount),
+      journalCount: journalCount === undefined ? 0 : Number(journalCount),
+      relaxTimeSec: relaxTimeSec === undefined ? 0 : Number(relaxTimeSec),
+      highestVisitStreak:
+        highestVisitStreak === undefined ? 0 : Number(highestVisitStreak),
     };
 
     return statsData;
-    // console.log(
-    //   `Stats - CBT Entries: ${cbtCount}, Journals: ${journalCount}, Relaxation Time: ${relaxTimeSec}`,
-    // );
   } catch (err) {
     console.error("Error fetching stats data:", err);
   }
@@ -97,5 +107,6 @@ export const fetchStatsData = async (): Promise<StatsDataObjType> => {
     cbtCount: res?.cbtCount || 0,
     journalCount: res?.journalCount || 0,
     relaxTimeSec: res?.relaxTimeSec || 0,
+    highestVisitStreak: res?.highestVisitStreak || 0,
   };
 };

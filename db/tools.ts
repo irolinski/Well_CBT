@@ -11,7 +11,7 @@ export const handleSaveCDAEntry = async (cdaState: cdaSliceTypes) => {
       // First, create the table
       await db.execAsync(`
           CREATE TABLE IF NOT EXISTS cdaArchive (
-                          id INTEGER PRIMARY KEY AUTOINCREMENT,
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
             situation VARCHAR(100) NOT NULL,
             oldThought VARCHAR(100) NOT NULL,
             distortion VARCHAR(35) NOT NULL,

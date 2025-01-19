@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { View } from "react-native";
 import { ToolList } from "@/constants/models/activity_log";
-import { fetchStatsData, StatsDataObjType } from "@/db/about";
+import { fetchStatsData } from "@/db/about";
+import { StatsDataObjType } from "@/db/models";
+import Text from "../global/Text";
 import StatRow from "./StatRow";
 
 export enum ballSizeParameter {
@@ -17,12 +19,21 @@ const ballColors = ["#FF997C", "#008A63", "#F9A947", "#4391BC"];
 
 const AboutStats = () => {
   const [statsData, setStatsData] = useState<StatsDataObjType>();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    fetchStatsData().then((res) => {
-      let fetchedData = res as StatsDataObjType;
-      setStatsData(fetchedData);
-    });
+    setIsLoading(true);
+    try {
+      fetchStatsData().then((res) => {
+        let fetchedData = res;
+        console.log("fethced data: ", fetchedData);
+        setStatsData(fetchedData);
+      });
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setIsLoading(false);
+    }
   }, []);
 
   return (
@@ -50,7 +61,7 @@ const AboutStats = () => {
         <StatRow
           ballSizeParameter={ballSizeParameter.xl}
           caption="Days in log-in streak"
-          statNumber={18}
+          statNumber={statsData?.highestVisitStreak ?? 1}
           icon={ToolList.journal.icon}
           ballColor={ballColors[3]}
           indexNum={3}

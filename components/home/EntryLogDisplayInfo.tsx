@@ -22,7 +22,6 @@ const EntryLogDisplayInfo = () => {
             <Text className="italic" style={{ fontSize: 13, color: "#757575" }}>
               <Text style={{ fontSize: 13, color: "#757575" }}>
                 {activityLogState.filterPeriod[0]}
-
                 {"\n"}
                 {activityLogState.filterPeriod[1] ??
                   `${new Date().toISOString().split("T")[0]}`}

@@ -24,8 +24,8 @@ import {
   setRawData,
 } from "@/state/features/menus/activityLogSlice";
 import { AppDispatch, RootState } from "@/state/store";
-import ActivityLogModal from "./modal";
 import useActivityLogActions from "./hooks";
+import ActivityLogModal from "./modal";
 
 const ActivityLog = () => {
   const windowHeight = Dimensions.get("window").height;
@@ -34,12 +34,8 @@ const ActivityLog = () => {
   const dispatch = useDispatch<AppDispatch>();
   const activityLogState = useSelector((state: RootState) => state.activityLog);
   const isLoading = activityLogState.isLoading;
-  const {
-    transformData,
-    displayMoreData,
-    getFilteredData,
-    getUnfilteredData,
-  } = useActivityLogActions();
+  const { transformData, displayMoreData, getFilteredData, getUnfilteredData } =
+    useActivityLogActions();
 
   const fetchData = async () => {
     dispatch(setIsLoading(true)); // Set loading to true at the start

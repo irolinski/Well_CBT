@@ -1,6 +1,5 @@
 import React from "react";
 import { Dimensions, View } from "react-native";
-
 import AboutStats from "@/components/about/AboutStats";
 import AboutUser from "@/components/about/AboutUser";
 import Text from "@/components/global/Text";
