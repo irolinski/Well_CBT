@@ -1,7 +1,6 @@
 import React, { ReactNode } from "react";
 import { ColorValue, Dimensions, View } from "react-native";
 import Text from "../global/Text";
-import { ballSizeParameter } from "./AboutStats";
 import StatBall from "./StatBall";
 
 // setting ball size and row width takes two parameters - it is manipulated
@@ -16,7 +15,7 @@ const StatRow = ({
   ballColor,
   indexNum,
 }: {
-  ballSizeParameter: ballSizeParameter;
+  ballSizeParameter: number;
   caption: string;
   statNumber: number;
   icon: ReactNode;

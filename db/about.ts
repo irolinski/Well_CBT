@@ -46,11 +46,11 @@ const handleGetRelaxTime = async (): Promise<number> => {
       `SELECT SUM(secondsRelaxed) AS sumOfSecondsRelaxed FROM relaxActivities;`,
     )) as SumOfSecondsRelaxedObj;
 
-    let relaxTimeSec = 0;
+    let relaxTimeMin = 0;
     if (res && res.sumOfSecondsRelaxed) {
-      relaxTimeSec = res.sumOfSecondsRelaxed;
+      relaxTimeMin = Math.floor(res.sumOfSecondsRelaxed / 60);
     }
-    return relaxTimeSec;
+    return relaxTimeMin;
   } catch (err) {
     console.error(err);
     return 0;
@@ -83,14 +83,13 @@ export const handleGetStatsData = async (): Promise<
   try {
     const cbtCount = await handleGetCDACount();
     const journalCount = await handleGetJournalCount();
-    console.log("journal count is : ", journalCount);
-    const relaxTimeSec = await handleGetRelaxTime();
+    const relaxTimeMin = await handleGetRelaxTime();
     const highestVisitStreak = await handleGetHighestVisitStreak();
 
     const statsData: StatsDataObjType = {
       cbtCount: cbtCount === undefined ? 0 : Number(cbtCount),
       journalCount: journalCount === undefined ? 0 : Number(journalCount),
-      relaxTimeSec: relaxTimeSec === undefined ? 0 : Number(relaxTimeSec),
+      relaxTimeMin: relaxTimeMin === undefined ? 0 : Number(relaxTimeMin),
       highestVisitStreak:
         highestVisitStreak === undefined ? 0 : Number(highestVisitStreak),
     };
@@ -101,12 +100,12 @@ export const handleGetStatsData = async (): Promise<
   }
 };
 
-export const fetchStatsData = async (): Promise<StatsDataObjType> => {
+export const fetchStatsData: () => Promise<StatsDataObjType> = async () => {
   const res = await handleGetStatsData();
   return {
     cbtCount: res?.cbtCount || 0,
     journalCount: res?.journalCount || 0,
-    relaxTimeSec: res?.relaxTimeSec || 0,
+    relaxTimeMin: res?.relaxTimeMin || 0,
     highestVisitStreak: res?.highestVisitStreak || 0,
   };
 };

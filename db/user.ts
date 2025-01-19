@@ -37,7 +37,6 @@ export const handleGetUserData = async (): Promise<UserType | undefined> => {
     const res: unknown | UserType = await db.getFirstAsync(
       `SELECT * FROM userData;`,
     );
-    console.log("user data res: " + res);
     let user: UserType;
     if (isUserType(res)) {
       user = res;
@@ -78,7 +77,6 @@ export const handleSetVisitStreakCount = async (): Promise<void> => {
       dayAfterLastVisit.setDate(lastVisit.getDate() + 1);
 
       let currentTime = new Date();
-
       await db.execAsync(`UPDATE userData SET lastVisit = DATETIME('now');`);
 
       if (isSameDate(lastVisit, currentTime)) {

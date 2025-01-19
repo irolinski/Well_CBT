@@ -1,33 +1,56 @@
 import React, { useEffect, useState } from "react";
 import { View } from "react-native";
-import { ToolList } from "@/constants/models/activity_log";
+import {
+  ballColors,
+  ballSizeParameter,
+  statObjectsList,
+  StatsObj,
+} from "@/constants/models/about";
 import { fetchStatsData } from "@/db/about";
 import { StatsDataObjType } from "@/db/models";
-import Text from "../global/Text";
+import { interpolateNumbers } from "@/utils/algorithms";
 import StatRow from "./StatRow";
 
-export enum ballSizeParameter {
-  xxs = 0.175,
-  xs = 0.25,
-  sm = 0.3,
-  md = 0.35,
-  lg = 0.4,
-  xl = 0.475,
-  xxl = 0.525,
-}
-const ballColors = ["#FF997C", "#008A63", "#F9A947", "#4391BC"];
+const getBallSize = (statNumber: number, minSize: number, maxSize: number) => {
+  const ballSize = interpolateNumbers(
+    statNumber,
+    minSize,
+    maxSize,
+    ballSizeParameter.min,
+    ballSizeParameter.max,
+  );
+  return ballSize;
+};
 
 const AboutStats = () => {
-  const [statsData, setStatsData] = useState<StatsDataObjType>();
+  const [statsData, setStatsData] = useState<StatsObj[]>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
     setIsLoading(true);
     try {
       fetchStatsData().then((res) => {
-        let fetchedData = res;
-        console.log("fethced data: ", fetchedData);
-        setStatsData(fetchedData);
+        const fetchedData = res;
+        const updatedStatsObjModels: StatsObj[] = statObjectsList.map(
+          (model) => {
+            // Find the corresponding key in fetchedData
+            const countKey = model.name as keyof StatsDataObjType;
+            // Get the value from fetchedData, default to 0 if key not found
+            const countValue: number = fetchedData[countKey] ?? 0;
+            // Return the updated object with the added count property
+            return {
+              ...model,
+              count: countValue,
+            };
+          },
+        );
+
+        const u = updatedStatsObjModels.filter(
+          (obj) => obj.count && obj.count >= obj.ballSize.min,
+        );
+
+        setStatsData(u);
+        console.log(u);
       });
     } catch (err) {
       console.error(err);
@@ -39,41 +62,32 @@ const AboutStats = () => {
   return (
     <View className="rounded-xl" style={{ backgroundColor: "#F5F5F5" }}>
       <View className="w-full py-8">
+        {statsData?.map((statsObj: StatsObj, indexNum: number) => (
+          <StatRow
+            ballSizeParameter={
+              statsObj.count
+                ? getBallSize(
+                    statsObj.count,
+                    statsObj.ballSize.min,
+                    statsObj.ballSize.max,
+                  )
+                : ballSizeParameter.min
+            }
+            caption={statsObj.caption}
+            statNumber={statsObj.count ? statsObj.count : 0}
+            icon={statsObj.icon}
+            ballColor={ballColors[indexNum % statsData.length]}
+            indexNum={
+              statsObj.count && statsObj.count >= statsObj.ballSize.min
+                ? indexNum
+                : 0
+            }
+            key={indexNum}
+          />
+        ))}
         {
           // if only one stat number, then show a placeholder sign
         }
-        <StatRow
-          ballSizeParameter={ballSizeParameter.sm}
-          caption="Minutes of meditation"
-          statNumber={statsData?.relaxTimeSec ?? 0}
-          icon={ToolList.breathing.icon}
-          ballColor={ballColors[1]}
-          indexNum={0}
-        />
-        <StatRow
-          ballSizeParameter={ballSizeParameter.lg}
-          caption="Journal Entries"
-          statNumber={statsData?.journalCount ?? 0}
-          icon={ToolList.journal.icon}
-          ballColor={ballColors[2]}
-          indexNum={2}
-        />
-        <StatRow
-          ballSizeParameter={ballSizeParameter.xl}
-          caption="Days in log-in streak"
-          statNumber={statsData?.highestVisitStreak ?? 1}
-          icon={ToolList.journal.icon}
-          ballColor={ballColors[3]}
-          indexNum={3}
-        />
-        <StatRow
-          ballSizeParameter={ballSizeParameter.xs}
-          caption="Thoughts untangled"
-          statNumber={statsData?.cbtCount ?? 0}
-          icon={ToolList.cda.icon}
-          ballColor={ballColors[0]}
-          indexNum={4}
-        />
       </View>
     </View>
   );

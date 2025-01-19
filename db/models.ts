@@ -15,6 +15,6 @@ export type UserType = {
 export type StatsDataObjType = {
   cbtCount: number;
   journalCount: number;
-  relaxTimeSec: number;
+  relaxTimeMin: number;
   highestVisitStreak?: number;
 };
