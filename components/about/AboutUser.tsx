@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Dimensions, View } from "react-native";
 import ProfilePic from "@/components/ProfilePic";
-import { fetchUserData, handleGetUserData, UserType } from "@/db/user";
+import { fetchUserData, UserType } from "@/db/user";
 import { formatDateToMonthAndDay, returnDaysAgoString } from "@/utils/dates";
 import Text from "../global/Text";
 

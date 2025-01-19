@@ -1,3 +1,4 @@
+import { Image } from "expo-image";
 import React, { useEffect, useState } from "react";
 import { View } from "react-native";
 import {
@@ -9,6 +10,7 @@ import {
 import { fetchStatsData } from "@/db/about";
 import { StatsDataObjType } from "@/db/models";
 import { interpolateNumbers } from "@/utils/algorithms";
+import Text from "../global/Text";
 import StatRow from "./StatRow";
 
 const getBallSize = (statNumber: number, minSize: number, maxSize: number) => {
@@ -50,7 +52,6 @@ const AboutStats = () => {
         );
 
         setStatsData(u);
-        console.log(u);
       });
     } catch (err) {
       console.error(err);
@@ -62,32 +63,49 @@ const AboutStats = () => {
   return (
     <View className="rounded-xl" style={{ backgroundColor: "#F5F5F5" }}>
       <View className="w-full py-8">
-        {statsData?.map((statsObj: StatsObj, indexNum: number) => (
-          <StatRow
-            ballSizeParameter={
-              statsObj.count
-                ? getBallSize(
-                    statsObj.count,
-                    statsObj.ballSize.min,
-                    statsObj.ballSize.max,
-                  )
-                : ballSizeParameter.min
-            }
-            caption={statsObj.caption}
-            statNumber={statsObj.count ? statsObj.count : 0}
-            icon={statsObj.icon}
-            ballColor={ballColors[indexNum % statsData.length]}
-            indexNum={
-              statsObj.count && statsObj.count >= statsObj.ballSize.min
-                ? indexNum
-                : 0
-            }
-            key={indexNum}
-          />
-        ))}
-        {
-          // if only one stat number, then show a placeholder sign
-        }
+        {statsData && statsData.length > 1 ? (
+          <React.Fragment>
+            {statsData?.map((statsObj: StatsObj, indexNum: number) => (
+              <StatRow
+                ballSizeParameter={
+                  statsObj.count
+                    ? getBallSize(
+                        statsObj.count,
+                        statsObj.ballSize.min,
+                        statsObj.ballSize.max,
+                      )
+                    : ballSizeParameter.min
+                }
+                caption={statsObj.caption}
+                statNumber={statsObj.count ? statsObj.count : 0}
+                icon={statsObj.icon}
+                ballColor={ballColors[indexNum % statsData.length]}
+                indexNum={
+                  statsObj.count && statsObj.count >= statsObj.ballSize.min
+                    ? indexNum
+                    : 0
+                }
+                key={indexNum}
+              />
+            ))}
+          </React.Fragment>
+        ) : (
+          <View className="flex-row items-center justify-center">
+            <View className="h-64 w-3/4 justify-center">
+              <View className="flex-row justify-center">
+                <Image
+                  source={require("@/assets/images/about/bar-chart.webp")}
+                  style={{ width: 100, height: 100 }}
+                />
+              </View>
+              <View className="my-4 flex-row items-center justify-center px-12">
+                <Text className="text-center">
+                  Keep using Well to see your first activity statistics!
+                </Text>
+              </View>
+            </View>
+          </View>
+        )}
       </View>
     </View>
   );

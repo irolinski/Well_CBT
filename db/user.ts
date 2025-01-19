@@ -130,3 +130,4 @@ export const fetchUserData = async (): Promise<UserType> => {
     };
   }
 };
+export { UserType };

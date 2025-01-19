@@ -21,11 +21,22 @@ export type StatsObj = {
 
 export const statObjectsList: StatsObj[] = [
   {
+    name: "highestVisitStreak",
+    caption: "Visited most days in-row",
+    icon: (
+      <MaterialIcons name="lightbulb-outline" size={24} color={"#B8B8B8"} />
+    ),
+    ballSize: {
+      min: 2,
+      max: 40,
+    },
+  },
+  {
     name: "cbtCount",
     caption: "Thoughts untangled",
     icon: ToolList.cda.icon,
     ballSize: {
-      min: 1,
+      min: 3,
       max: 120,
     },
   },
@@ -45,17 +56,6 @@ export const statObjectsList: StatsObj[] = [
     ballSize: {
       min: 3,
       max: 160,
-    },
-  },
-  {
-    name: "highestVisitStreak",
-    caption: "Visited most days in-row",
-    icon: (
-      <MaterialIcons name="lightbulb-outline" size={24} color={"#B8B8B8"} />
-    ),
-    ballSize: {
-      min: 1,
-      max: 40,
     },
   },
 ];
