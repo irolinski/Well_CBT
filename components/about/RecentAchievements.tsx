@@ -1,18 +1,56 @@
 import React, { useState } from "react";
-import { Dimensions, Text, View } from "react-native";
+import { Dimensions, Text, TouchableOpacity, View } from "react-native";
+import { Feather } from "@expo/vector-icons";
 import CarouselBadge from "./CarouselBadge";
+import CarouselDetails from "./CarouselDetails";
 
 const RecentAchievements = () => {
   // don't apply styles to selectedIndex; to rest apply -120px * indexNum
-  const windowWidth = Dimensions.get("window").width;
+  const windowHeight = Dimensions.get("window").height;
+
   const [selectedIndex, setSelectedIndex] = useState(1);
   const fakeData = [
-    { image: require("@/assets/images/about/demo.png") },
-    { image: require("@/assets/images/about/demo.png") },
-    { image: require("@/assets/images/about/demo.png") },
-    { image: require("@/assets/images/about/demo.png") },
-    { image: require("@/assets/images/about/demo.png") },
+    {
+      title: "Calm in Chaos",
+      description:
+        "You have discovered the serenity within. Keep pushing to uncover the layers of your strength. Can you reach 20 challenges?",
+      image: require("@/assets/images/about/demo.png"),
+    },
+    {
+      title: "Breaking the Storm",
+      description:
+        "Stay focused as you move forward to overcome new challenges.",
+      image: require("@/assets/images/about/demo_1.png"),
+    },
+    {
+      title: "Rising Above the Tide",
+      description:
+        "You’ve reached a new milestone in self-reflection. Continue your journey to achieve even greater clarity.",
+      image: require("@/assets/images/about/demo.png"),
+    },
+    {
+      title: "Balancing the Mind",
+      description:
+        "Your growth is evident with every challenge you face. What new insights will you uncover on the way to 20?",
+      image: require("@/assets/images/about/demo_1.png"),
+    },
+    {
+      title: "The Eye of the Storm",
+      description:
+        "You’ve found focus amidst the noise. Each challenge you conquer is a step toward mastery. Onward to 20!",
+      image: require("@/assets/images/about/demo.png"),
+    },
   ];
+
+  const nextPosition = () => {
+    console.log("next position");
+    setSelectedIndex((prev) => prev + 1);
+  };
+
+  const prevPosition = () => {
+    console.log("prev position");
+    setSelectedIndex((prev) => prev - 1);
+  };
 
   //get 5 achievements and loop them
   return (
@@ -26,38 +64,13 @@ const RecentAchievements = () => {
         style={{ height: "50%" }}
       >
         {fakeData.map((datum, indexNum: number) => (
-          <CarouselBadge image={datum.image} index={indexNum} key={indexNum} />
+          <CarouselBadge
+            image={datum.image}
+            index={indexNum}
+            key={indexNum}
+            selectedIndex={selectedIndex}
+          />
         ))}
-        {/* <View className="absolute bottom-0 z-20 h-40 w-40 rounded-full">
-          <Image
-            className="h-full w-full"
-            source={require("@/assets/images/about/demo.png")}
-          ></Image>
-        </View>
-        <View
-          className="absolute bottom-0 z-20 h-40 w-40 rounded-full"
-          style={{
-            opacity: 0.5,
-            transform: [{ translateX: "100%" }, { scale: 0.66 }],
-          }}
-        >
-          <Image
-            className="h-full w-full"
-            source={require("@/assets/images/about/demo.png")}
-          ></Image>
-        </View>
-        <View
-          className="absolute bottom-0 z-20 h-40 w-40 rounded-full"
-          style={{
-            opacity: 0.5,
-            transform: [{ translateX: "-100%" }, { scale: 0.66 }],
-          }}
-        >
-          <Image
-            className="h-full w-full"
-            source={require("@/assets/images/about/demo.png")}
-          ></Image>
-        </View> */}
       </View>
       {/* bottom */}
       <View
@@ -70,33 +83,42 @@ const RecentAchievements = () => {
             width: 650,
             height: 650,
             backgroundColor: "#8DBED8",
-            top: "40%",
+            top: 0,
           }}
         ></View>
-        <View className="absolute top-20 z-20 w-full items-center px-10">
-          {/* <View className="flex-row justify-center px-10"> */}
-          <Text
-            style={{
-              fontSize: 26,
-              color: "#FFFFFF",
-              fontFamily: "Kodchasan",
-              fontWeight: 500,
-              textAlign: "center",
+        {selectedIndex > 0 && (
+          <TouchableOpacity
+            className="absolute left-0 z-30 h-12 w-14 items-start justify-center"
+            style={{ top: 0.095 * windowHeight }}
+            onPress={() => {
+              prevPosition();
             }}
           >
-            As Calm as a Storm
-          </Text>
-          {/* </View> */}
-          {/* <View className="flex-row justify-center px-10"> */}
-          <Text
-            className="my-2 text-center text-base"
-            style={{ color: "#FFFFFF" }}
+            <Feather name="chevron-left" size={36} color="#FFFFFF" />
+          </TouchableOpacity>
+        )}
+
+        {selectedIndex < fakeData.length - 1 && (
+          <TouchableOpacity
+            className="absolute right-0 z-30 h-12 w-14 items-end justify-center"
+            style={{ top: 0.095 * windowHeight }}
+            onPress={() => {
+              nextPosition();
+            }}
           >
-            You have completed your first 10 Thought Challanges. David Burns
-            would be proud! Can you make it to 20?
-          </Text>
-          {/* </View> */}
-        </View>
+            <Feather name="chevron-right" size={36} color="#FFFFFF" />
+          </TouchableOpacity>
+        )}
+
+        {fakeData.map((datum, indexNum: number) => (
+          <CarouselDetails
+            title={datum.title}
+            description={datum.description}
+            index={indexNum}
+            selectedIndex={selectedIndex}
+            key={indexNum}
+          />
+        ))}
       </View>
     </View>
   );
