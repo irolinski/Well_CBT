@@ -1,12 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
-import cdaSlice from "./features/tools/cdaSlice";
-import journalSlice from "./features/tools/journalSlice";
-import breatheSettingsSlice from "./features/tools/breatheSettingsSlice";
-import phoneSlice from "./features/tools/phoneSlice";
+import activityLogModalSlice from "./features/menus/activityLogModalSlice";
 import activityLogSlice from "./features/menus/activityLogSlice";
 import newActivityModalSlice from "./features/menus/newActivityModalSlice";
 import notificationModalSlice from "./features/menus/notificationModalSlice";
-import activityLogModalSlice from "./features/menus/activityLogModalSlice";
+import userSettingsModalSlice from "./features/menus/userSettingsModalSlice";
+import breatheSettingsSlice from "./features/tools/breatheSettingsSlice";
+import cdaSlice from "./features/tools/cdaSlice";
+import journalSlice from "./features/tools/journalSlice";
+import phoneSlice from "./features/tools/phoneSlice";
 
 export const store = configureStore({
   reducer: {
@@ -18,6 +19,7 @@ export const store = configureStore({
     activityLogModal: activityLogModalSlice,
     newActivityModal: newActivityModalSlice,
     notificationModal: notificationModalSlice,
+    userSettingsModal: userSettingsModalSlice,
   },
 });
 
