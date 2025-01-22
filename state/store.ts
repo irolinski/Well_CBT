@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
 import activityLogModalSlice from "./features/menus/activityLogModalSlice";
 import activityLogSlice from "./features/menus/activityLogSlice";
+import navigateSettingsModalSlice from "./features/menus/navigateSettingsModalSlice";
 import newActivityModalSlice from "./features/menus/newActivityModalSlice";
 import notificationModalSlice from "./features/menus/notificationModalSlice";
-import userSettingsModalSlice from "./features/menus/userSettingsModalSlice";
 import breatheSettingsSlice from "./features/tools/breatheSettingsSlice";
 import cdaSlice from "./features/tools/cdaSlice";
 import journalSlice from "./features/tools/journalSlice";
@@ -19,7 +19,7 @@ export const store = configureStore({
     activityLogModal: activityLogModalSlice,
     newActivityModal: newActivityModalSlice,
     notificationModal: notificationModalSlice,
-    userSettingsModal: userSettingsModalSlice,
+    navigateSettingsModal: navigateSettingsModalSlice,
   },
 });
 

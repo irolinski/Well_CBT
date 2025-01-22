@@ -1,13 +1,17 @@
 import React from "react";
-import { View } from "react-native";
 import { useSelector } from "react-redux";
 import { ToolList } from "@/constants/models/activity_log";
-import { setShowNewActivityModal } from "@/state/features/menus/newActivityModalSlice";
+import { setNavigateSettingsModalSelectedLink } from "@/state/features/menus/navigateSettingsModalSlice";
+import {
+  setNewActivityModalSelectedLink,
+  setShowNewActivityModal,
+} from "@/state/features/menus/newActivityModalSlice";
 import { RootState } from "@/state/store";
+import { Entypo } from "@expo/vector-icons";
 import NavigationModal from "../NavigationModal";
-import { NavigationModalCardTypes } from "../NavigationModalCard";
+import { NavigationModalObj } from "../NavigationModalSelect";
 
-const itemList: NavigationModalCardTypes[][] = [
+const itemList: NavigationModalObj[][] = [
   [
     {
       name: ToolList.journal.name,
@@ -38,13 +42,16 @@ const NewActivityModal = () => {
   );
 
   return (
-    <View>
+    <React.Fragment>
       <NavigationModal
+        title="Add a new activity"
+        icon={<Entypo name="new-message" size={28} color="#D9D9D9" />}
         items={itemList}
         modalState={newActivityModalState}
         handleShowModal={(isOpen: boolean) => setShowNewActivityModal(isOpen)}
+        handleSelect={(link: string) => setNewActivityModalSelectedLink(link)}
       />
-    </View>
+    </React.Fragment>
   );
 };
 

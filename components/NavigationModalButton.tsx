@@ -1,14 +1,19 @@
 import { ReactNode } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 
-type ModalButtonTypes = {
+type NavigationModalButtonTypes = {
   title: string;
   disabled?: boolean;
   onPress: () => void;
   icon?: ReactNode;
 };
 
-const ModalButton = ({ title, disabled, onPress, icon }: ModalButtonTypes) => {
+const NavigationModalButton = ({
+  title,
+  disabled,
+  onPress,
+  icon,
+}: NavigationModalButtonTypes) => {
   return (
     <TouchableOpacity
       className="flex-row items-center justify-center rounded-xl"
@@ -29,4 +34,4 @@ const ModalButton = ({ title, disabled, onPress, icon }: ModalButtonTypes) => {
     </TouchableOpacity>
   );
 };
-export default ModalButton;
+export default NavigationModalButton;

@@ -10,7 +10,7 @@ import {
   scheduleDailyNotification,
 } from "@/utils/notifications";
 import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
-import ModalButton from "../ModalButton";
+import ModalButton from "../NavigationModalButton";
 import TimePicker, { TimePickerReturnObj } from "./TimePicker";
 
 const NotificationsModal = () => {
