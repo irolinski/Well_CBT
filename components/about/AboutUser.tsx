@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react";
 import { Dimensions, TouchableOpacity, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import ProfilePic from "@/components/ProfilePic";
+import ProfilePic from "@/components/about/ProfilePic";
 import { fetchUserData, UserType } from "@/db/user";
-import { setShowUserSettingsModal } from "@/state/features/menus/userSettingsModalSlice";
+import { setShowNavigateSettingsModal } from "@/state/features/menus/navigateSettingsModalSlice";
 import { AppDispatch, RootState } from "@/state/store";
 import { formatDateToMonthAndDay, returnDaysAgoString } from "@/utils/dates";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 import Text from "../global/Text";
 
 const AboutUser = () => {
   const dispatch = useDispatch<AppDispatch>();
+
   const userSettingsModalState = useSelector(
-    (state: RootState) => state.userSettingsModal,
+    (state: RootState) => state.navigateSettingsModal,
   );
   const windowWidth = Dimensions.get("window").width;
   const [userData, setUserData] = useState<UserType>();
@@ -32,7 +32,8 @@ const AboutUser = () => {
     }
   }, []);
 
-  const name = userData && userData.name.length > 0 ? userData.name : "Hi!";
+  const name =
+    userData && userData.name.length > 0 ? userData.name : "Your profile";
 
   const lastVisit =
     userData?.lastVisit &&
@@ -52,8 +53,8 @@ const AboutUser = () => {
         height: windowWidth * 0.9 * 0.94,
       }}
     >
-      <View style={{ marginTop: windowWidth * 0.05 }}>
-        <ProfilePic pictureURI="" location="about" nonSpinnable />
+      <View className="flex-row justify-center">
+        <ProfilePic pictureURI="" />
       </View>
       <View>
         <View className="mt-4">
@@ -61,18 +62,11 @@ const AboutUser = () => {
           <TouchableOpacity
             className="mb-2 flex-row justify-center pt-4"
             onPress={() => {
-              dispatch(setShowUserSettingsModal(true));
+              dispatch(setShowNavigateSettingsModal(true));
             }}
           >
             <View className="relative flex-row items-center px-8">
               <Text className="text-center text-2xl">{name}</Text>
-              <View className="absolute right-0 top-0 -translate-y-4 flex-row">
-                <MaterialCommunityIcons
-                  name="pencil-outline"
-                  size={24}
-                  color="#B8B8B8"
-                />
-              </View>
             </View>
           </TouchableOpacity>
 

@@ -1,20 +1,27 @@
-import { Image } from 'expo-image';
-import React, { useEffect, useRef, useState } from 'react';
-import { Animated, Dimensions, Pressable, StyleSheet, View } from 'react-native';
-import { useSelector } from 'react-redux';
-import { phoneFacePlaceholder, phoneFaces } from '@/assets/images/tools/phone/phoneFaces';
-import { RootState } from '@/state/store';
+import { Image } from "expo-image";
+import React, { useEffect, useRef, useState } from "react";
+import {
+  Animated,
+  Dimensions,
+  Pressable,
+  StyleSheet,
+  View,
+} from "react-native";
+import { useSelector } from "react-redux";
+import {
+  phoneFacePlaceholder,
+  phoneFaces,
+} from "@/assets/images/tools/phone/phoneFaces";
+import { RootState } from "@/state/store";
 
 const windowHeight = Dimensions.get("window").height;
 
-const ProfilePic = ({
+const ContactPic = ({
   pictureURI,
   nonSpinnable,
-  location,
 }: {
   pictureURI: string | undefined;
   nonSpinnable?: boolean;
-  location: "phone" | "about";
 }) => {
   const phoneState = useSelector((state: RootState) => state.phone);
 
@@ -62,19 +69,10 @@ const ProfilePic = ({
           }}
         >
           {pictureURI ? (
-            <Image
-              style={[
-                location === "phone" && styles.imagePhone,
-                location === "about" && styles.imageAbout,
-              ]}
-              source={pictureURI}
-            />
+            <Image style={styles.image} source={pictureURI} />
           ) : (
             <Image
-              style={[
-                location === "phone" && styles.imagePhone,
-                location === "about" && styles.imageAbout,
-              ]}
+              style={styles.image}
               source={
                 !phoneState ? phoneFacePlaceholder : phoneFaces[faceNumber]
               }
@@ -87,16 +85,11 @@ const ProfilePic = ({
 };
 
 const styles = StyleSheet.create({
-  imagePhone: {
+  image: {
     height: windowHeight / 4,
     width: windowHeight / 4,
     borderRadius: windowHeight / 8,
   },
-  imageAbout: {
-    height: windowHeight / 5,
-    width: windowHeight / 5,
-    borderRadius: windowHeight / 8,
-  },
 });
 
-export default ProfilePic;
+export default ContactPic;

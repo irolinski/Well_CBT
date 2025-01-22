@@ -1,14 +1,14 @@
 import React from "react";
 import { Modal, ScrollView, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { setShowUserSettingsModal } from "@/state/features/menus/userSettingsModalSlice";
+import { setShowNavigateSettingsModal } from "@/state/features/menus/navigateSettingsModalSlice";
 import { AppDispatch, RootState } from "@/state/store";
 import Text from "../global/Text";
 
 const UserSettingsModal = () => {
   const dispatch = useDispatch<AppDispatch>();
   const userSettingsModalState = useSelector(
-    (state: RootState) => state.userSettingsModal,
+    (state: RootState) => state.navigateSettingsModal,
   );
   return (
     <Modal
@@ -20,7 +20,7 @@ const UserSettingsModal = () => {
       <ScrollView
         onScroll={(evt) => {
           evt.nativeEvent.contentOffset.y < -175 &&
-            dispatch(setShowUserSettingsModal(false));
+            dispatch(setShowNavigateSettingsModal(false));
         }}
       >
         <View className="h-full w-full items-center justify-center">

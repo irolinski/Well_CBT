@@ -10,6 +10,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import BackButton from "@/components/BackButton";
 import Text from "@/components/global/Text";
+import ContactPic from "@/components/tools/phone/ContactPic";
 import ToolHeader from "@/components/tools/ToolHeader";
 import { getPhoneData } from "@/db/tools";
 import {
@@ -24,7 +25,6 @@ import {
   MaterialIcons,
 } from "@expo/vector-icons";
 import ConversationModal from "./modal";
-import PhoneFriendProfilePic from "@/components/ProfilePic";
 
 const Phone = () => {
   const windowHeight = Dimensions.get("window").height;
@@ -103,13 +103,12 @@ const Phone = () => {
           style={{ height: windowHeight / 1.6, borderColor: "#B8B8B8" }}
         >
           <View className="mt-4">
-            <PhoneFriendProfilePic
+            <ContactPic
               pictureURI={
                 phoneState.supportContact &&
                 phoneState.supportContact.pictureURI &&
                 phoneState.supportContact.pictureURI
               }
-              location="phone"
             />
           </View>
           <View className="mx-4 justify-end" style={{ height: "20%" }}>
