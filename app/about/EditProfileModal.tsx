@@ -4,14 +4,14 @@ import DividerLine from "@/components/DividerLine";
 import Text from "@/components/global/Text";
 import CategoryFilter from "@/components/home/CategoryFilter";
 import { setShowActivityLogModal } from "@/state/features/menus/activityLogModalSlice";
+import { setShowEditProfileModal } from "@/state/features/menus/editProfileModalSlice";
 import { AppDispatch, RootState } from "@/state/store";
-import { Feather } from "@expo/vector-icons";
-import ActivityLogCalendar from "./Calendar";
+import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 
-const ActivityLogModal = () => {
+const EditProfileModal = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const activityLogModalState = useSelector(
-    (state: RootState) => state.activityLogModal,
+  const editProfileModalState = useSelector(
+    (state: RootState) => state.editProfileModal,
   );
 
   //UI STATE
@@ -22,13 +22,13 @@ const ActivityLogModal = () => {
     <Modal
       animationType="slide"
       transparent={true}
-      visible={activityLogModalState.showModal}
+      visible={editProfileModalState.showModal}
       className="flex-1"
     >
       <ScrollView
         onScroll={(evt) => {
           evt.nativeEvent.contentOffset.y < -175 &&
-            dispatch(setShowActivityLogModal(false));
+            dispatch(setShowEditProfileModal(false));
         }}
       >
         <View
@@ -42,7 +42,7 @@ const ActivityLogModal = () => {
         >
           <Pressable
             onPress={() => {
-              dispatch(setShowActivityLogModal(false));
+              dispatch(setShowEditProfileModal(false));
             }}
           >
             <View className="items-center pb-6">
@@ -53,17 +53,15 @@ const ActivityLogModal = () => {
           </Pressable>
           <View className="items-center">
             <Text className="text-xl" style={{ color: "#B8B8B8" }}>
-              Settings
+              Edit Profile
             </Text>
           </View>
           <View className="mt-8">
             <View>
               <Text className="mb-2 text-lg" style={{ color: "#B8B8B8" }}>
-                Select dates
+                Header 1
               </Text>
-              <View className="flex-row justify-around">
-                <ActivityLogCalendar />
-              </View>
+              <View className="flex-row justify-around"></View>
             </View>
           </View>
           <View className="my-4">
@@ -72,9 +70,8 @@ const ActivityLogModal = () => {
           <View className="mb-8 mt-4">
             <View>
               <Text className="text-lg" style={{ color: "#B8B8B8" }}>
-                Show only
+                Header 2
               </Text>
-              <CategoryFilter />
             </View>
           </View>
         </View>
@@ -83,4 +80,4 @@ const ActivityLogModal = () => {
   );
 };
 
-export default ActivityLogModal;
+export default EditProfileModal;

@@ -1,21 +1,33 @@
 import React from "react";
-import { Dimensions, View } from "react-native";
+import { Pressable, View } from "react-native";
+import { useDispatch } from "react-redux";
 import AboutStats from "@/components/about/AboutStats";
 import AboutUser from "@/components/about/AboutUser";
 import NavigateSettingsModal from "@/components/about/NavigateSettingsModal";
 import RecentAchievements from "@/components/about/RecentAchievements";
-import UserSettingsModal from "@/components/about/UserSettingsModal";
 import Text from "@/components/global/Text";
 import FrameMenu from "@/components/home/FrameMenu";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { setShowEditProfileModal } from "@/state/features/menus/editProfileModalSlice";
+import { AppDispatch } from "@/state/store";
+import EditProfileModal from "../about/EditProfileModal";
 
 const About = () => {
+  const dispatch = useDispatch<AppDispatch>();
+
   return (
     <FrameMenu title="About Me">
       <View>
         <View className="m-4">
           <View className="mt-4 items-center">
             <AboutUser />
+            <Pressable
+              onPress={() => {
+                dispatch(setShowEditProfileModal(true));
+                console.log("pressed");
+              }}
+            >
+              <Text>Press to open modal</Text>
+            </Pressable>
           </View>
           <View className="mt-4">
             <Text
@@ -41,6 +53,7 @@ const About = () => {
           </View>
         </View>
         <NavigateSettingsModal />
+        <EditProfileModal />
       </View>
     </FrameMenu>
   );

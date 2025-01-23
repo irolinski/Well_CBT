@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import activityLogModalSlice from "./features/menus/activityLogModalSlice";
 import activityLogSlice from "./features/menus/activityLogSlice";
+import editProfileModalSlice from "./features/menus/editProfileModalSlice";
 import navigateSettingsModalSlice from "./features/menus/navigateSettingsModalSlice";
 import newActivityModalSlice from "./features/menus/newActivityModalSlice";
 import notificationModalSlice from "./features/menus/notificationModalSlice";
@@ -20,6 +21,7 @@ export const store = configureStore({
     newActivityModal: newActivityModalSlice,
     notificationModal: notificationModalSlice,
     navigateSettingsModal: navigateSettingsModalSlice,
+    editProfileModal: editProfileModalSlice,
   },
 });
 

@@ -82,6 +82,7 @@ export const handleSetVisitStreakCount = async (): Promise<void> => {
       if (isSameDate(lastVisit, currentTime)) {
         console.log("same day!");
       } else if (isSameDate(lastVisit, dayAfterLastVisit)) {
+        //this doesn't ever fire ^^ i think this should be (currentTime, dayAfterLastVisit)
         console.log("streak!");
         const newStreak = user.currentVisitStreak + 1;
         await db.execAsync(
