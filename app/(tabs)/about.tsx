@@ -20,14 +20,6 @@ const About = () => {
         <View className="m-4">
           <View className="mt-4 items-center">
             <AboutUser />
-            <Pressable
-              onPress={() => {
-                dispatch(setShowEditProfileModal(true));
-                console.log("pressed");
-              }}
-            >
-              <Text>Press to open modal</Text>
-            </Pressable>
           </View>
           <View className="mt-4">
             <Text

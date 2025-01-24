@@ -1,24 +1,23 @@
 import { Image } from "expo-image";
-import React, { useState } from "react";
+import React, { ReactNode, useState } from "react";
 import { Dimensions, StyleSheet, TouchableOpacity, View } from "react-native";
-import { useDispatch } from "react-redux";
 import { phoneFaces } from "@/assets/images/tools/phone/phoneFaces";
-import { setShowNavigateSettingsModal } from "@/state/features/menus/navigateSettingsModalSlice";
-import { AppDispatch } from "@/state/store";
-import { Feather } from "@expo/vector-icons";
+import { UnknownAction } from "@reduxjs/toolkit";
 
 const windowHeight = Dimensions.get("window").height;
 
-const ProfilePic = ({ pictureURI }: { pictureURI: string | undefined }) => {
-  const dispatch = useDispatch<AppDispatch>();
-
+const ProfilePic = ({
+  pictureURI,
+  handlePress,
+  buttonIcon,
+}: {
+  pictureURI: string | undefined;
+  handlePress?: () => UnknownAction;
+  buttonIcon?: ReactNode;
+}) => {
   const [faceNumber, setFaceNumber] = useState(
     (Math.random() * (phoneFaces.length - 1)) | 0,
   );
-
-  const handlePress = () => {
-    dispatch(setShowNavigateSettingsModal(true));
-  };
 
   return (
     <View>
@@ -29,9 +28,9 @@ const ProfilePic = ({ pictureURI }: { pictureURI: string | undefined }) => {
         }}
       >
         <TouchableOpacity
-          activeOpacity={0.6}
+          activeOpacity={handlePress ? 0.6 : 1}
           onPress={() => {
-            handlePress();
+            handlePress && handlePress();
           }}
         >
           {pictureURI ? (
@@ -41,20 +40,22 @@ const ProfilePic = ({ pictureURI }: { pictureURI: string | undefined }) => {
           )}
         </TouchableOpacity>
       </View>
-      <TouchableOpacity
-        className="absolute bottom-0 right-8 items-center justify-center rounded-full"
-        style={{
-          width: 44,
-          height: 44,
-          backgroundColor: "#E0E0E0",
-        }}
-        activeOpacity={0.8}
-        onPress={() => {
-          handlePress();
-        }}
-      >
-        <Feather name="settings" size={24} color="#FFFFFF" />
-      </TouchableOpacity>
+      {buttonIcon && (
+        <TouchableOpacity
+          className="absolute bottom-1 right-2 items-center justify-center rounded-full"
+          style={{
+            width: 44,
+            height: 44,
+            backgroundColor: "#E0E0E0",
+          }}
+          activeOpacity={handlePress ? 0.8 : 1}
+          onPress={() => {
+            handlePress && handlePress();
+          }}
+        >
+          {buttonIcon}
+        </TouchableOpacity>
+      )}
     </View>
   );
 };

@@ -6,6 +6,7 @@ import { fetchUserData, UserType } from "@/db/user";
 import { setShowNavigateSettingsModal } from "@/state/features/menus/navigateSettingsModalSlice";
 import { AppDispatch, RootState } from "@/state/store";
 import { formatDateToMonthAndDay, returnDaysAgoString } from "@/utils/dates";
+import { Feather } from "@expo/vector-icons";
 import Text from "../global/Text";
 
 const AboutUser = () => {
@@ -54,7 +55,11 @@ const AboutUser = () => {
       }}
     >
       <View className="flex-row justify-center">
-        <ProfilePic pictureURI="" />
+        <ProfilePic
+          pictureURI=""
+          handlePress={() => dispatch(setShowNavigateSettingsModal(true))}
+          buttonIcon={<Feather name="settings" size={24} color="#FFFFFF" />}
+        />
       </View>
       <View>
         <View className="mt-4">

@@ -28,7 +28,7 @@ const items = {
   },
 };
 
-const NavigationModal = () => {
+const NavigateSettingsModal = () => {
   const navigateSettingsModalState = useSelector(
     (state: RootState) => state.navigateSettingsModal,
   );
@@ -144,4 +144,4 @@ const NavigationModal = () => {
     </Modal>
   );
 };
-export default NavigationModal;
+export default NavigateSettingsModal;
