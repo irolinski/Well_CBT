@@ -4,7 +4,7 @@ const initialState = {
   showModal: false,
   nameInputIsActive: false,
   name: "",
-  selectedPhoto: undefined,
+  selectedFaceId: 0,
   userData: undefined,
 };
 
@@ -21,8 +21,8 @@ const editProfileModalSlice = createSlice({
     setName: (state, action) => {
       state.name = action.payload;
     },
-    setSelectedPhoto: (state, action) => {
-      state.selectedPhoto = action.payload;
+    setProfilePicId: (state, action) => {
+      state.selectedFaceId = action.payload;
     },
     setUserData: (state, action) => {
       state.userData = action.payload;
@@ -36,7 +36,7 @@ export const {
   setShowEditProfileModal,
   setNameInputIsActive,
   setName,
-  setSelectedPhoto,
+  setProfilePicId,
   setUserData, //   editProfileModalResetState,
 } = editProfileModalSlice.actions;
 

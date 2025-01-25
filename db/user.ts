@@ -8,7 +8,7 @@ const isUserType = (res: any): res is UserType => {
     (typeof res.name === "string" || res.name === undefined) &&
     typeof res.currentVisitStreak === "number" &&
     typeof res.highestVisitStreak === "number" &&
-    typeof res.profilePicNum === "number"
+    typeof res.profilePicId === "number"
   );
 };
 
@@ -94,7 +94,7 @@ export const handleSetVisitStreakCount = async (): Promise<void> => {
           );
         }
       } else {
-        console.log("streak broken!");
+        console.log("streak broken!"); // this logs multiple times in a row which signifies that the date is probably not updated correctly somewhere
         await db.execAsync(`UPDATE userData SET currentVisitStreak = ${1};`);
       }
     } else {
@@ -105,7 +105,7 @@ export const handleSetVisitStreakCount = async (): Promise<void> => {
   }
 };
 
-const handleSetName = async (name: string) => {
+export const handleSetName = async (name: string) => {
   try {
     const db = await SQLite.openDatabaseAsync(dbName);
     const res: void = await db.execAsync(
@@ -113,6 +113,17 @@ const handleSetName = async (name: string) => {
     );
   } catch (err) {
     console.error("Error: Could not set name. " + err);
+  }
+};
+
+export const handleSetProfilePicId = async (faceId: number) => {
+  try {
+    const db = await SQLite.openDatabaseAsync(dbName);
+    const res: void = await db.execAsync(
+      `UPDATE userData SET profilePicId = ${faceId}`,
+    );
+  } catch (err) {
+    console.error("Error: Could not set profile picture id. " + err);
   }
 };
 
@@ -127,7 +138,7 @@ export const fetchUserData = async (): Promise<UserType> => {
       name: "",
       currentVisitStreak: 1,
       highestVisitStreak: 1,
-      profilePicNum: 0,
+      profilePicId: 0,
     };
   }
 };

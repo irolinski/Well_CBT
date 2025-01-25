@@ -1,22 +1,22 @@
 import { Image } from "expo-image";
 import React, { ReactNode, useState } from "react";
 import { Dimensions, StyleSheet, TouchableOpacity, View } from "react-native";
-import { phoneFaces } from "@/assets/images/tools/phone/phoneFaces";
+import { allFaces } from "@/assets/images/global/faces/faces";
 import { UnknownAction } from "@reduxjs/toolkit";
 
 const windowHeight = Dimensions.get("window").height;
 
 const ProfilePic = ({
-  pictureURI,
+  image,
   handlePress,
   buttonIcon,
 }: {
-  pictureURI: string | undefined;
+  image: Image;
   handlePress?: () => UnknownAction;
   buttonIcon?: ReactNode;
 }) => {
   const [faceNumber, setFaceNumber] = useState(
-    (Math.random() * (phoneFaces.length - 1)) | 0,
+    (Math.random() * (allFaces.length - 1)) | 0,
   );
 
   return (
@@ -33,11 +33,7 @@ const ProfilePic = ({
             handlePress && handlePress();
           }}
         >
-          {pictureURI ? (
-            <Image style={styles.image} source={pictureURI} />
-          ) : (
-            <Image style={styles.image} source={phoneFaces[faceNumber]} />
-          )}
+          <Image style={styles.image} source={image} />
         </TouchableOpacity>
       </View>
       {buttonIcon && (

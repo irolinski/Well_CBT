@@ -1,6 +1,8 @@
+import { Image } from "expo-image";
 import { useEffect, useState } from "react";
 import { Dimensions, TouchableOpacity, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
+import { allFaces } from "@/assets/images/global/faces/faces";
 import ProfilePic from "@/components/about/ProfilePic";
 import { fetchUserData, UserType } from "@/db/user";
 import { setShowNavigateSettingsModal } from "@/state/features/menus/navigateSettingsModalSlice";
@@ -12,11 +14,12 @@ import Text from "../global/Text";
 const AboutUser = () => {
   const dispatch = useDispatch<AppDispatch>();
 
-  const userSettingsModalState = useSelector(
-    (state: RootState) => state.navigateSettingsModal,
+  const editProfileModalState = useSelector(
+    (state: RootState) => state.editProfileModal,
   );
   const windowWidth = Dimensions.get("window").width;
   const [userData, setUserData] = useState<UserType>();
+  const [profilePic, setProfilePic] = useState<Image>();
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -25,17 +28,21 @@ const AboutUser = () => {
       fetchUserData().then((res) => {
         let fetchedData = res as UserType;
         setUserData(fetchedData);
+        const profilePic =
+          allFaces.find((el) => el.id === fetchedData.profilePicId)?.image ??
+          allFaces[0].image;
+
+        setProfilePic(profilePic);
       });
     } catch (err) {
       console.error(err);
     } finally {
       setIsLoading(false);
     }
-  }, []);
+  }, [editProfileModalState]);
 
   const name =
     userData && userData.name.length > 0 ? userData.name : "Your profile";
-
   const lastVisit =
     userData?.lastVisit &&
     returnDaysAgoString(
@@ -43,7 +50,6 @@ const AboutUser = () => {
       14,
       formatDateToMonthAndDay(userData.lastVisit),
     );
-
   const completedActivities = userData && userData.numOfAllEntries;
 
   return (
@@ -56,7 +62,7 @@ const AboutUser = () => {
     >
       <View className="flex-row justify-center">
         <ProfilePic
-          pictureURI=""
+          image={profilePic ? profilePic : allFaces[0].image}
           handlePress={() => dispatch(setShowNavigateSettingsModal(true))}
           buttonIcon={<Feather name="settings" size={24} color="#FFFFFF" />}
         />
