@@ -27,7 +27,6 @@ const editProfileModalSlice = createSlice({
     setUserData: (state, action) => {
       state.userData = action.payload;
     },
-
     // editProfileModalResetState: () => initialState,
   },
 });
@@ -37,7 +36,7 @@ export const {
   setNameInputIsActive,
   setName,
   setProfilePicId,
-  setUserData, //   editProfileModalResetState,
+  setUserData,
 } = editProfileModalSlice.actions;
 
 export default editProfileModalSlice.reducer;

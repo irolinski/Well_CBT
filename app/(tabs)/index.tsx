@@ -52,8 +52,7 @@ const Home = () => {
     }
   }, [editProfileModalState]);
 
-  const userName =
-    userData && userData.name.length > 0 ? userData.name : "Your profile";
+  const userName = userData && userData.name.length > 0 ? userData.name : "";
 
   return (
     <FrameMenu title="Home" className="items-center justify-center">
@@ -65,7 +64,7 @@ const Home = () => {
             style={{ borderColor: "#DDDDDD" }}
           >
             <TypewriterText
-              text={`Hi, ${userName}! How are you, today? `}
+              text={`Hi${userName && ", " + userName}! How are you, today? `}
               speed="fast"
               fontFamily="KodchasanMedium"
               color="#757575"

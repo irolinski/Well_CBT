@@ -87,16 +87,16 @@ const EditProfileModal = () => {
         onScroll={(evt) => {
           evt.nativeEvent.contentOffset.y < -175 &&
             dispatch(setShowEditProfileModal(false));
+          // dispatch(editProfileModalResetState());
         }}
         indicatorStyle="black"
         persistentScrollbar={true} // works only on android
       >
         <View
-          className={`px-4 ${windowHeight > 850 ? "py-20" : "py-12"}`}
+          className={`px-4 ${windowHeight > 850 ? "pb-12 pt-20" : "py-12"}`}
           style={{
             top: 0,
             width: windowWidth,
-            // height: windowHeight, //remove if more height needed
             backgroundColor: "#FBFBFB",
           }}
         >
@@ -201,26 +201,29 @@ const EditProfileModal = () => {
                   paddingTop: 16,
                   paddingBottom: 16,
                 }}
-                style={{ borderColor: "#B8B8B8" }}
+                style={{ borderColor: "#B8B8B8", borderRadius: 20 }}
                 className="border px-4"
               >
                 {allFaces.map(
                   (faceObj: { id: number; image: Image }, indexNum: number) => (
                     <TouchableOpacity
-                      className="m-2 rounded-full"
+                      className="my-2 rounded-full"
                       key={indexNum}
                       onPress={() => {
                         dispatch(setProfilePicId(faceObj.id));
                       }}
                       style={{
-                        borderColor: "#D9D9D9",
-                        borderWidth:
+                        borderColor:
                           faceObj.id === editProfileModalState.selectedFaceId
-                            ? 6
-                            : 0,
+                            ? "#D9D9D9"
+                            : "transparent",
+                        borderWidth: 6,
                       }}
                     >
-                      <Image className="h-24 w-24" source={faceObj.image} />
+                      <Image
+                        style={{ width: 85, height: 85 }}
+                        source={faceObj.image}
+                      />
                     </TouchableOpacity>
                   ),
                 )}
