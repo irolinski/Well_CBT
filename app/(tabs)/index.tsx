@@ -1,38 +1,59 @@
-import { Href, router } from 'expo-router';
-import React, { useEffect, useState } from 'react';
-import { Dimensions, Pressable, View } from 'react-native';
-import { useDispatch } from 'react-redux';
-
-import AdvanceButton from '@/components/AdvanceButton';
-import DividerLine from '@/components/DividerLine';
-import Text from '@/components/global/Text';
-import FrameMenu from '@/components/home/FrameMenu';
-import JournalCard from '@/components/home/JournalCard';
-import NewActivityModal from '@/components/home/NewActivityModal';
-import QuoteWidget from '@/components/home/QuoteWidget';
-import TypewriterText from '@/components/TypewriterText';
-import { EntryViewTableRow } from '@/constants/models/activity_log';
-import { fetchRecentEntries } from '@/db/activity_log';
-import { setShowNewActivityModal } from '@/state/features/menus/newActivityModalSlice';
-import { AppDispatch } from '@/state/store';
-import { Entypo } from '@expo/vector-icons';
+import { Href, router } from "expo-router";
+import React, { useEffect, useState } from "react";
+import { Dimensions, Pressable, View } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import AdvanceButton from "@/components/AdvanceButton";
+import DividerLine from "@/components/DividerLine";
+import Text from "@/components/global/Text";
+import FrameMenu from "@/components/home/FrameMenu";
+import JournalCard from "@/components/home/JournalCard";
+import NewActivityModal from "@/components/home/NewActivityModal";
+import QuoteWidget from "@/components/home/QuoteWidget";
+import TypewriterText from "@/components/TypewriterText";
+import { EntryViewTableRow } from "@/constants/models/activity_log";
+import { fetchRecentEntries } from "@/db/activity_log";
+import { UserType } from "@/db/models";
+import { fetchUserData } from "@/db/user";
+import { setShowNewActivityModal } from "@/state/features/menus/newActivityModalSlice";
+import { AppDispatch, RootState } from "@/state/store";
+import { Entypo } from "@expo/vector-icons";
 
 const windowWidth = Dimensions.get("window").width;
 
 const Home = () => {
+  const editProfileModalState = useSelector(
+    (state: RootState) => state.editProfileModal,
+  ); // used to refetch userData in case of name change
   const dispatch = useDispatch<AppDispatch>();
 
   const [recentEntriesArr, setRecentEntriesArr] = useState<EntryViewTableRow[]>(
     [],
   );
+  const [userData, setUserData] = useState<UserType>();
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     fetchRecentEntries().then((res) => {
       setRecentEntriesArr(res as EntryViewTableRow[]);
     });
-
-    console.log(recentEntriesArr);
   }, []);
+
+  useEffect(() => {
+    setIsLoading(true);
+    try {
+      fetchUserData().then((res) => {
+        let fetchedData = res as UserType;
+        setUserData(fetchedData);
+      });
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setIsLoading(false);
+    }
+  }, [editProfileModalState]);
+
+  const userName =
+    userData && userData.name.length > 0 ? userData.name : "Your profile";
 
   return (
     <FrameMenu title="Home" className="items-center justify-center">
@@ -44,7 +65,7 @@ const Home = () => {
             style={{ borderColor: "#DDDDDD" }}
           >
             <TypewriterText
-              text={"Hi, Olga! How are you, today? "}
+              text={`Hi, ${userName}! How are you, today? `}
               speed="fast"
               fontFamily="KodchasanMedium"
               color="#757575"

@@ -41,7 +41,7 @@ const AboutUser = () => {
     }
   }, [editProfileModalState]);
 
-  const name =
+  const userName =
     userData && userData.name.length > 0 ? userData.name : "Your profile";
   const lastVisit =
     userData?.lastVisit &&
@@ -77,7 +77,7 @@ const AboutUser = () => {
             }}
           >
             <View className="relative flex-row items-center px-8">
-              <Text className="text-center text-2xl">{name}</Text>
+              <Text className="text-center text-2xl">{userName}</Text>
             </View>
           </TouchableOpacity>
 
