@@ -31,23 +31,6 @@ const About = () => {
             </Text>
             <View>
               <RecentAchievements />
-              <View className="my-4 flex-row justify-end">
-                <AdvanceButton
-                  title="See all"
-                  onPress={() => {
-                    router.push("/about/achievements" as Href);
-                  }}
-                  btnStyle={{
-                    width: 150,
-                    height: 45,
-                    backgroundColor: "white",
-                    borderWidth: 1,
-                    borderColor: "#D9D9D9",
-                    borderRadius: 12,
-                  }}
-                  textStyle={{ color: "#27261F" }}
-                />
-              </View>
             </View>
           </View>
           <View className="mt-4">

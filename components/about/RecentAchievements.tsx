@@ -1,5 +1,6 @@
+import { Href, router } from "expo-router";
 import React, { useState } from "react";
-import { Dimensions, TouchableOpacity, View } from "react-native";
+import { Dimensions, Pressable, TouchableOpacity, View } from "react-native";
 import {
   Directions,
   Gesture,
@@ -7,6 +8,7 @@ import {
 } from "react-native-gesture-handler";
 import { achievementList } from "@/constants/models/about_achievements";
 import { Feather } from "@expo/vector-icons";
+import AdvanceButton from "../AdvanceButton";
 import CarouselBadge from "./CarouselBadge";
 import CarouselDetails from "./CarouselDetails";
 
@@ -51,7 +53,10 @@ const RecentAchievements = () => {
     <GestureDetector gesture={handleFlingHorizontal}>
       <View
         className="overflow-hidden rounded-xl"
-        style={{ backgroundColor: "#F5F5F5", height: 430 }}
+        style={{
+          backgroundColor: "#F5F5F5",
+          height: windowHeight > 750 ? windowHeight * 0.57 : windowHeight * 0.6,
+        }}
       >
         {/* Top Section */}
         <View
@@ -67,6 +72,19 @@ const RecentAchievements = () => {
             />
           ))}
         </View>
+        {/* Change page by tapping on badges */}
+        {selectedIndex > 0 && (
+          <Pressable
+            className="absolute left-0 z-40 h-1/2 w-1/2"
+            onPress={() => prevPosition()}
+          />
+        )}
+        {selectedIndex < fakeData.length - 1 && (
+          <Pressable
+            className="absolute right-0 z-40 h-1/2 w-1/2"
+            onPress={() => nextPosition()}
+          />
+        )}
 
         {/* Bottom Section */}
         <View
@@ -86,7 +104,7 @@ const RecentAchievements = () => {
           {selectedIndex > 0 && (
             <TouchableOpacity
               className="absolute left-0 z-30 h-12 w-14 items-start justify-center"
-              style={{ top: 0.095 * windowHeight }}
+              style={{ top: 0.085 * windowHeight }}
               onPress={() => prevPosition()}
             >
               <Feather name="chevron-left" size={36} color="#FFFFFF" />
@@ -96,7 +114,7 @@ const RecentAchievements = () => {
           {selectedIndex < fakeData.length - 1 && (
             <TouchableOpacity
               className="absolute right-0 z-30 h-12 w-14 items-end justify-center"
-              style={{ top: 0.095 * windowHeight }}
+              style={{ top: 0.085 * windowHeight }}
               onPress={() => nextPosition()}
             >
               <Feather name="chevron-right" size={36} color="#FFFFFF" />
@@ -112,6 +130,23 @@ const RecentAchievements = () => {
               key={indexNum}
             />
           ))}
+        </View>
+        <View className="absolute bottom-0 right-4 z-20 my-4 flex-row justify-end">
+          <AdvanceButton
+            title="See all"
+            onPress={() => {
+              router.push("/about/achievements" as Href);
+            }}
+            btnStyle={{
+              width: 150,
+              height: 45,
+              backgroundColor: "white",
+              borderWidth: 1,
+              borderColor: "#D9D9D9",
+              borderRadius: 12,
+            }}
+            textStyle={{ color: "#27261F" }}
+          />
         </View>
       </View>
     </GestureDetector>

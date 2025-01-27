@@ -19,11 +19,11 @@ const CarouselDetails = ({
   if (distanceFromSelectedIndex === 0) {
     return (
       <View
-        className="absolute z-20 w-full items-center"
-        style={{ top: 0.1 * windowHeight }}
+        className="absolute z-20 w-full items-center justify-center"
+        style={{ top: 0.09 * windowHeight, height: 0.2 * windowHeight }}
       >
         <Text
-          className="px-12"
+          className="absolute top-0.5 px-12"
           style={{
             fontSize: 26,
             color: "#FFFFFF",
@@ -35,8 +35,8 @@ const CarouselDetails = ({
           {title}
         </Text>
         <Text
-          className="my-2 px-10 text-center text-base"
-          style={{ color: "#FFFFFF" }}
+          className="my-4 w-80 px-10 text-center"
+          style={{ color: "#FFFFFF", fontSize: windowHeight > 750 ? 16 : 14 }}
         >
           {description}
         </Text>
