@@ -21,9 +21,6 @@ import { Entypo } from "@expo/vector-icons";
 const windowWidth = Dimensions.get("window").width;
 
 const Home = () => {
-  const editProfileModalState = useSelector(
-    (state: RootState) => state.editProfileModal,
-  ); // used to refetch userData in case of name change
   const dispatch = useDispatch<AppDispatch>();
 
   const [recentEntriesArr, setRecentEntriesArr] = useState<EntryViewTableRow[]>(
@@ -50,7 +47,7 @@ const Home = () => {
     } finally {
       setIsLoading(false);
     }
-  }, [editProfileModalState]);
+  }, []);
 
   const userName = userData && userData.name.length > 0 ? userData.name : "";
 

@@ -70,16 +70,11 @@ const AboutUser = () => {
       <View>
         <View className="mt-4">
           {/* padding top to make edit "button" hitbox larger */}
-          <TouchableOpacity
-            className="mb-2 flex-row justify-center pt-4"
-            onPress={() => {
-              dispatch(setShowNavigateSettingsModal(true));
-            }}
-          >
+          <View className="mb-2 flex-row justify-center pt-4">
             <View className="relative flex-row items-center px-8">
               <Text className="text-center text-2xl">{userName}</Text>
             </View>
-          </TouchableOpacity>
+          </View>
 
           <View className="my-4 items-center">
             <Text className="text-base" style={{ color: "#757575" }}>
