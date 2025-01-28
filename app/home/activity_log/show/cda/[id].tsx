@@ -10,9 +10,11 @@ import ToolHeader from "@/components/tools/ToolHeader";
 import { cdaEntryType } from "@/constants/models/cda";
 import { fetchCDAEntry } from "@/db/activity_log";
 import { deleteCDAEntry } from "@/db/tools";
+import { formatDateStringForWrapping } from "@/utils/dates";
 import { handleDeleteEntry } from "@/utils/deleteEntry";
 
 const ActivityShowPage = () => {
+  const windowWidth = Dimensions.get("window").width;
   const windowHeight = Dimensions.get("window").height;
 
   const id: number = Number(useLocalSearchParams<{ id: string }>().id);
@@ -25,7 +27,6 @@ const ActivityShowPage = () => {
       fetchCDAEntry(id).then((res) => {
         let fetchedArr = res as cdaEntryType[];
         setFetchedEntry(fetchedArr[0]);
-        console.log(res);
       });
     }
   }, []);
@@ -34,6 +35,7 @@ const ActivityShowPage = () => {
     let date;
     if (fetchedEntry.datetime) {
       date = fetchedEntry.datetime.split(" ")[0];
+      date = formatDateStringForWrapping(date);
     }
 
     return (
@@ -42,20 +44,20 @@ const ActivityShowPage = () => {
           handlePressDelete={() => handleDeleteEntry(deleteCDAEntry, id)}
         />
         <View className={`mx-6 my-10 flex-1 justify-center`}>
-          <View
-            className="mb-12 justify-center pb-10"
-            style={{ height: windowHeight * 0.8 }}
-          >
-            <View className="my-8 flex-row">
+          <View className="mb-12 pb-10" style={{ height: windowHeight * 0.8 }}>
+            <View className="wrap mb-8 w-full flex-row justify-between overflow-hidden">
               <ToolHeader>Thought challenge </ToolHeader>
-              <View className="justify-center">
-                <Text
-                  className="mt-0.5 text-lg"
-                  style={{ fontFamily: "KodchasanMedium", color: "#B8B8B8" }}
-                >
-                  {date}
-                </Text>
-              </View>
+
+              <Text
+                className="wrap mt-0.5 overflow-hidden text-lg"
+                style={{
+                  fontFamily: "KodchasanMedium",
+                  color: "#B8B8B8",
+                  flexShrink: 1,
+                }}
+              >
+                {date}
+              </Text>
             </View>
             <View className="mx-4 my-8">
               <View className="mb-4">

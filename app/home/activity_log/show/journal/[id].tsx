@@ -9,11 +9,10 @@ import ActivityShowNav from "@/components/home/ActivityShowNav";
 import CDATextBox from "@/components/tools/cda/CDATextBox";
 import ToolHeader from "@/components/tools/ToolHeader";
 import {
-  emotionList,
   emotionObjType,
   JournalEntryMainType,
-  moodValueTitles,
-} from "@/constants/models/journal";
+} from "@/constants/models/activity_log";
+import { emotionList, moodValueTitles } from "@/constants/models/journal";
 import { fetchJournalEntry } from "@/db/activity_log";
 import { deleteJournalEntry } from "@/db/tools";
 import { handleDeleteEntry } from "@/utils/deleteEntry";

@@ -79,3 +79,7 @@ export const returnDaysAgoString = (
     }
   }
 };
+
+export const formatDateStringForWrapping = (date: string) => {
+  return date.replace(/-/g, "-\u200B");
+};

@@ -1,9 +1,9 @@
 import { Dimensions, Pressable, View } from "react-native";
-import BackButton from "../BackButton";
-import { Ionicons } from "@expo/vector-icons";
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "@/state/store";
 import { activityLogResetState } from "@/state/features/menus/activityLogSlice";
+import { AppDispatch } from "@/state/store";
+import { Ionicons } from "@expo/vector-icons";
+import BackButton from "../BackButton";
 
 type ActivityShowNavTypes = {
   handlePressDelete: () => void;
@@ -15,10 +15,12 @@ const ActivityShowNav = ({ handlePressDelete }: ActivityShowNavTypes) => {
 
   return (
     <View
-      className={`z-10 box-border w-full border-b ${windowHeight > 750 ? "pb-4 pt-16" : "top-12"}`}
+      className={`z-10 w-full border-b`}
       style={{
         borderColor: "#D9D9D9",
         backgroundColor: "#8DBED8",
+        paddingTop: windowHeight * 0.065,
+        paddingBottom: 16,
       }}
     >
       <View className="z-10 w-full flex-row items-center justify-between">
