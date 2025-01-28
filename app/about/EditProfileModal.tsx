@@ -131,7 +131,7 @@ const EditProfileModal = () => {
                     source={profilePic}
                   ></Image>
                 </View>
-                <View className="my-3 flex-row justify-center pt-4">
+                <View className="mt-3 flex-row justify-center pt-4">
                   <View className="relative h-16 flex-row items-center px-12">
                     <TouchableOpacity
                       className="absolute right-8 top-0 z-10 pb-8 pl-8"
@@ -154,7 +154,7 @@ const EditProfileModal = () => {
                       />
                     </TouchableOpacity>
                     <TextInput
-                      className="w-64 text-center text-3xl"
+                      className="h-full w-64 text-center text-3xl"
                       value={editProfileModalState.name}
                       style={{
                         color: editProfileModalState.nameInputIsActive
@@ -185,7 +185,7 @@ const EditProfileModal = () => {
               </View>
             </View>
           </View>
-          <View className="my-4">
+          <View className="mb-4">
             <DividerLine width={windowWidth * 0.5} />
           </View>
           <View className="my-8" style={{ height: 225 }}>
