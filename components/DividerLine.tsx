@@ -1,16 +1,18 @@
-import { DimensionValue, View } from "react-native";
+import { ColorValue, DimensionValue, View, ViewStyle } from "react-native";
 
 interface DividerLineProps {
   width: DimensionValue;
   weight?: number;
   className?: string;
-  viewStyle?: any;
+  viewStyle?: ViewStyle;
+  color?: ColorValue;
 }
 const DividerLine = ({
   width,
   weight,
   className,
   viewStyle,
+  color,
 }: DividerLineProps) => {
   return (
     <View
@@ -20,7 +22,7 @@ const DividerLine = ({
       <View
         style={{
           borderWidth: weight ?? 1,
-          borderColor: "#DDDDDD",
+          borderColor: color ?? "#DDDDDD",
           width: width,
           height: 1,
         }}
