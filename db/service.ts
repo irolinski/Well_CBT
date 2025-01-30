@@ -13,7 +13,7 @@ export const setUpDB = async () => {
       );
 
       INSERT INTO userData (name, lastVisit, currentVisitStreak, highestVisitStreak, profilePicId) VALUES (
-      "", DATETIME('now'), 1, 1, 0
+      "", DATETIME('now', 'localtime'), 1, 1, 0
       );
 
 

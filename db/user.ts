@@ -1,4 +1,5 @@
 import * as SQLite from "expo-sqlite";
+import { isSameDate } from "@/utils/dates";
 import { TableRowCountObj, UserType } from "./models";
 import { dbName } from "./service";
 
@@ -51,15 +52,6 @@ export const handleGetUserData = async (): Promise<UserType | undefined> => {
 };
 
 export const handleSetVisitStreakCount = async (): Promise<void> => {
-  //helper date function
-  const isSameDate = (date1: Date, date2: Date) => {
-    return (
-      date1.getDate() === date2.getDate() &&
-      date1.getMonth() === date2.getMonth() &&
-      date1.getFullYear() === date2.getFullYear()
-    );
-  };
-
   try {
     const db = await SQLite.openDatabaseAsync(dbName);
 
@@ -73,35 +65,47 @@ export const handleSetVisitStreakCount = async (): Promise<void> => {
         lastVisit = new Date(user.lastVisit);
       }
 
-      let dayAfterLastVisit: Date = new Date(lastVisit);
+      const dayAfterLastVisit: Date = new Date(lastVisit);
       dayAfterLastVisit.setDate(lastVisit.getDate() + 1);
 
-      let currentTime = new Date();
-      await db.execAsync(`UPDATE userData SET lastVisit = DATETIME('now');`);
+      const currentTime = new Date();
+      await db.execAsync(
+        `UPDATE userData SET lastVisit = DATETIME('now', 'localtime');`,
+      );
 
+      console.log("last visit: " + lastVisit);
+      console.log("day after last viist: " + dayAfterLastVisit);
+      console.log("current time: " + currentTime);
+      console.log("current streak: " + user.currentVisitStreak);
+
+      // check whether the streak continues
       if (isSameDate(lastVisit, currentTime)) {
-        console.log("same day!");
-      } else if (isSameDate(lastVisit, dayAfterLastVisit)) {
-        //this doesn't ever fire ^^ i think this should be (currentTime, dayAfterLastVisit)
-        console.log("streak!");
+        console.log("--- \n same day! \n ---");
+      } else if (isSameDate(currentTime, dayAfterLastVisit)) {
+        //if the streak happened, add it to db
+        console.log("--- \n streak! \n --- ");
         const newStreak = user.currentVisitStreak + 1;
         await db.execAsync(
           `UPDATE userData SET currentVisitStreak = ${newStreak};`,
         );
+        // if streak is the biggest so far, add it to db
         if (newStreak > user.highestVisitStreak) {
           await db.execAsync(
             `UPDATE userData SET highestVisitStreak = ${newStreak};`,
           );
         }
       } else {
-        console.log("streak broken!"); // this logs multiple times in a row which signifies that the date is probably not updated correctly somewhere
+        console.log("--- \n streak broken! \n --- "); // this sometimes logs multiple times in a row which signifies that the same date check does not work correctly
         await db.execAsync(`UPDATE userData SET currentVisitStreak = ${1};`);
       }
     } else {
       throw Error;
     }
   } catch (err) {
-    console.error("Error: Could not create and/or modify user table. " + err);
+    console.error(
+      "Error: Could not create and/or modify user table while checking for date streak. " +
+        err,
+    );
   }
 };
 

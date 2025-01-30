@@ -28,7 +28,7 @@ export const handleSaveCDAEntry = async (cdaState: cdaSliceTypes) => {
               '${cdaState.oldThought}',
               '${cdaState.distortion}',
               '${cdaState.newThought}',
-              DATETIME('now')
+              DATETIME('now', 'localtime')
             );
         `);
       // console.log(await db.getAllAsync("SELECT * FROM cdaArchive"));
@@ -76,7 +76,7 @@ export const handleSaveJournalEntry = async (
       // and save id to use it for joint emotion table
       const insertIntoJournalResult = await db.runAsync(`
             INSERT INTO journalEntries (id, moodValue, note, datetime) VALUES (
-            NULL, ${journalState.moodValue}, '${journalState.note}', DATETIME('now')
+            NULL, ${journalState.moodValue}, '${journalState.note}', DATETIME('now', 'localtime')
             );
         `);
 
@@ -124,7 +124,7 @@ export const handleLogRelaxActivity = async (relaxTime: number) => {
     // and save id to use it for joint emotion table
     const insertIntoJournalResult = await db.runAsync(`
                   INSERT INTO relaxActivities (id, activityName, secondsRelaxed, datetime) VALUES (
-                    NULL, 'breathing', '${relaxTime}', DATETIME('now')
+                    NULL, 'breathing', '${relaxTime}', DATETIME('now', 'localtime')
                   );
                 `);
   } catch (err) {
