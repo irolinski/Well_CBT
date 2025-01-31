@@ -1,6 +1,6 @@
 import * as SQLite from "expo-sqlite";
 
-export const dbName = "well-test-db-020";
+export const dbName = "well-test-db-024";
 
 export const setUpDB = async () => {
   try {

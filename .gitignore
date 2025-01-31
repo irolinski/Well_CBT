@@ -9,10 +9,9 @@ npm-debug.*
 *.mobileprovision
 *.orig.*
 web-build/
-plan.txt
-.gitignore
 # macOS
 .DS_Store
+./misc
 
 # @end expo-cli
 

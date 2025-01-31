@@ -6,6 +6,10 @@ import * as SplashScreen from "expo-splash-screen";
 import { useEffect, useState } from "react";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Provider as StateProvider } from "react-redux";
+import {
+  setUpAchievementsTable,
+  updateAchievementProgress,
+} from "@/db/achievements/achievements";
 import { seedDB } from "@/db/seed";
 import { createActivityViewTable, dbName, setUpDB } from "@/db/service";
 import { handleSetVisitStreakCount } from "@/db/user";
@@ -58,6 +62,8 @@ export default function RootLayout() {
         setUpDB(),
         createActivityViewTable(),
         handleSetVisitStreakCount(),
+        setUpAchievementsTable(),
+        updateAchievementProgress(),
         // seedDB();
       ]);
     } catch (err) {

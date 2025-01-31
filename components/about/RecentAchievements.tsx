@@ -6,13 +6,13 @@ import {
   Gesture,
   GestureDetector,
 } from "react-native-gesture-handler";
-import { achievementList } from "@/constants/models/about_achievements";
+import { allAchievementsArr } from "@/constants/models/about_achievements";
 import { Feather } from "@expo/vector-icons";
 import AdvanceButton from "../AdvanceButton";
 import CarouselBadge from "./CarouselBadge";
 import CarouselDetails from "./CarouselDetails";
 
-const fakeData = [...achievementList].splice(8);
+const fakeData = [...allAchievementsArr].splice(8);
 
 const RecentAchievements = () => {
   const windowHeight = Dimensions.get("window").height;

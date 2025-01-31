@@ -1,13 +1,15 @@
 import { Image } from "expo-image";
-import React, { useEffect } from "react";
+import React from "react";
 import { ScrollView, View } from "react-native";
 import AchievementCard from "@/components/about/AchievementCard";
 import MenuNav from "@/components/global/MenuNav";
 import Text from "@/components/global/Text";
 import {
-  achievementList,
   AchievementObj,
+  allAchievementsArr,
 } from "@/constants/models/about_achievements";
+
+// need to fetch progress from db and merge it with achievements arr
 
 const index = () => {
   return (
@@ -26,7 +28,7 @@ const index = () => {
             All achievements
           </Text>
           <View className="pb-10">
-            {achievementList.map(
+            {allAchievementsArr.map(
               (achievement: AchievementObj, indexNum: number) => (
                 <AchievementCard
                   title={achievement.title}
@@ -35,7 +37,6 @@ const index = () => {
                   score_current={achievement.score_current}
                   score_required={achievement.score_required}
                   key={indexNum}
-                  unlocked={true}
                 />
               ),
             )}

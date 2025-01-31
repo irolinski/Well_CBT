@@ -11,7 +11,6 @@ export type AchievementCardType = {
   image: Image;
   score_current: number | undefined;
   score_required: number | undefined;
-  unlocked: boolean;
 };
 
 const AchievementCard = ({
@@ -20,7 +19,6 @@ const AchievementCard = ({
   image,
   score_current,
   score_required,
-  unlocked,
 }: AchievementCardType) => {
   const getProgressPercentVal = (): number | undefined => {
     if (score_current && score_required) {
@@ -32,13 +30,14 @@ const AchievementCard = ({
         100,
       );
       return progressPercentVal;
-    } else {
-      return undefined;
     }
   };
 
   const progressPercentValString =
     `${getProgressPercentVal()}%` as DimensionValue;
+
+  const unlocked = score_current === score_required;
+  console.log(score_current + " " + score_current);
 
   return (
     <View
@@ -74,7 +73,7 @@ const AchievementCard = ({
           <Text>{description}</Text>
         </View>
         <View className="flex-row items-center">
-          {score_current && score_required && (
+          {score_current && score_required ? (
             <View
               className="mr-2 h-2 w-3/4 justify-center"
               style={{ backgroundColor: "#B8B8B8" }}
@@ -84,14 +83,14 @@ const AchievementCard = ({
                 style={{ width: progressPercentValString }}
               ></View>
             </View>
-          )}
+          ) : null}
 
           <View className="mx-1">
-            {score_current && score_required && (
+            {score_current && score_required ? (
               <Text>
                 {score_current}/{score_required}
               </Text>
-            )}
+            ) : null}
           </View>
         </View>
       </View>

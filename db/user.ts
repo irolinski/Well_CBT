@@ -13,7 +13,7 @@ const isUserType = (res: any): res is UserType => {
   );
 };
 
-const handleGetNumOfAllEntries = async (): Promise<number> => {
+export const handleGetNumOfAllEntries = async (): Promise<number> => {
   try {
     const db = await SQLite.openDatabaseAsync(dbName);
     const res: TableRowCountObj = (await db.getFirstAsync(`
