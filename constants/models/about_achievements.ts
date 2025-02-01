@@ -11,7 +11,7 @@ export type AchievementObj = {
   image: Image;
   score_current?: number;
   score_required?: number;
-  handlerFunction: () => void;
+  handlerFunction?: () => void;
 };
 
 export type AllAchievementsObjType = {
@@ -50,9 +50,7 @@ export const allAchievementsObj: AllAchievementsObjType = {
       "You’ve opened the lines of communication by sharing a conversation topic. Keep it going!",
     image: achievementBadgeImages.image_03,
     score_required: 1,
-    handlerFunction: () => {
-      achievementControllersObj[3]();
-    },
+    //handled inside phone friend component
   },
   4: {
     id: 4,
@@ -71,7 +69,7 @@ export const allAchievementsObj: AllAchievementsObjType = {
     title: "User of the Month",
     description_before: "Visited Well 30 consecutive days in a row",
     description_after:
-      "You’ve visited Well for 30 days in a row. Now that is impressive consistency!",
+      "You’ve visited Well for 30 days in a row. Now that is an impressive consistency!",
     image: achievementBadgeImages.image_05,
     score_required: 30,
     handlerFunction: () => {
@@ -159,9 +157,7 @@ export const allAchievementsObj: AllAchievementsObjType = {
       "Your wisdom shines! You’ve shared 10 quotes, spreading thoughtful inspiration to others.",
     image: achievementBadgeImages.image_12,
     score_required: 10,
-    handlerFunction: () => {
-      achievementControllersObj[12]();
-    },
+    // handled inside quote component
   },
   13: {
     id: 13,

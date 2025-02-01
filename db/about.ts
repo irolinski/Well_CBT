@@ -2,7 +2,7 @@ import * as SQLite from "expo-sqlite";
 import { StatsDataObjType, TableRowCountObj } from "./models";
 import { dbName } from "./service";
 
-const handleGetCDACount = async (): Promise<number> => {
+export const handleGetCDACount = async (): Promise<number> => {
   try {
     const db = await SQLite.openDatabaseAsync(dbName);
     const res: TableRowCountObj = (await db.getFirstAsync(
@@ -20,7 +20,7 @@ const handleGetCDACount = async (): Promise<number> => {
   }
 };
 
-const handleGetJournalCount = async (): Promise<number> => {
+export const handleGetJournalCount = async (): Promise<number> => {
   try {
     const db = await SQLite.openDatabaseAsync(dbName);
     const res: TableRowCountObj = (await db.getFirstAsync(
@@ -38,7 +38,7 @@ const handleGetJournalCount = async (): Promise<number> => {
   }
 };
 
-const handleGetRelaxTime = async (): Promise<number> => {
+export const handleGetRelaxTime = async (): Promise<number> => {
   type SumOfSecondsRelaxedObj = { sumOfSecondsRelaxed: number };
   try {
     const db = await SQLite.openDatabaseAsync(dbName);

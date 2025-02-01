@@ -1,18 +1,26 @@
-import { Image } from 'expo-image';
-import { LinearGradient } from 'expo-linear-gradient';
-import { Dimensions, Pressable, View } from 'react-native';
-import quoteImages from '@/assets/images/home/quote_widget/images';
-import quotesList from '@/assets/text/quotes.json';
-import handleShare from '@/utils/handleShare';
-import { Feather } from '@expo/vector-icons';
-
-import Text from '../global/Text';
+import { Image } from "expo-image";
+import { LinearGradient } from "expo-linear-gradient";
+import { Dimensions, Pressable, View } from "react-native";
+import quoteImages from "@/assets/images/home/quote_widget/images";
+import quotesList from "@/assets/text/quotes.json";
+import { achievementControllersObj } from "@/db/achievements/achievementControllers";
+import handleShare from "@/utils/handleShare";
+import { Feather } from "@expo/vector-icons";
+import Text from "../global/Text";
 
 const windowWidth = Dimensions.get("window").width;
 
 const QuoteWidget = () => {
   const quoteNumber = (Math.random() * (quotesList.length - 1)) | 0;
   const imageNumber = (Math.random() * (quoteImages.length - 1)) | 0;
+
+  const handleOnPress = () => {
+    achievementControllersObj[12]();
+
+    handleShare(
+      `"${quotesList[quoteNumber].quoteText}" \n \n - ${quotesList[quoteNumber].quoteAuthor}`,
+    );
+  };
 
   return (
     <View className="w-full flex-1 rounded-xl border" style={{ height: 240 }}>
@@ -70,9 +78,7 @@ const QuoteWidget = () => {
       <View className="absolute bottom-8 right-0 mx-10 flex-row justify-end">
         <Pressable
           onPress={() => {
-            handleShare(
-              `"${quotesList[quoteNumber].quoteText}" \n \n - ${quotesList[quoteNumber].quoteAuthor}`,
-            );
+            handleOnPress();
           }}
         >
           <Feather name="share" size={24} color="(rgba(255, 255, 255, 0.75)" />

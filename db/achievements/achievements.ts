@@ -1,6 +1,5 @@
 import * as SQLite from "expo-sqlite";
 import {
-  AchievementObj,
   allAchievementsArr,
   allAchievementsObj,
 } from "@/constants/models/about_achievements";
@@ -8,7 +7,7 @@ import { dbName } from "../service";
 
 export type AchievementIdType = keyof typeof allAchievementsObj;
 
-type AchievementProgressObj = {
+export type AchievementProgressObj = {
   id: AchievementIdType;
   currentScore: number;
   requiredScore: number;
@@ -44,7 +43,7 @@ const handlePopulateAchievementProgressTable = async () => {
   try {
     const db = await SQLite.openDatabaseAsync(dbName);
     const achievementProgressList = await handleGetAchievementProgressData();
-    console.log(achievementProgressList);
+    // console.log(achievementProgressList);
 
     if (!achievementProgressList) {
       throw Error("Error occured: Couldn't access achievement progress list.");
@@ -104,7 +103,9 @@ export const updateAchievementProgress = async () => {
 
   // run handler function for every achievement that hasn't been unlocked
   unlockedAchievementsArr.forEach((obj) => {
-    obj.handlerFunction();
+    if (obj.handlerFunction) {
+      obj.handlerFunction();
+    }
   });
 };
 

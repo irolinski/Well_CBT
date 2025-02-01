@@ -1,5 +1,5 @@
 import { Image } from "expo-image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ScrollView, View } from "react-native";
 import AchievementCard from "@/components/about/AchievementCard";
 import MenuNav from "@/components/global/MenuNav";
@@ -8,10 +8,44 @@ import {
   AchievementObj,
   allAchievementsArr,
 } from "@/constants/models/about_achievements";
+import {
+  AchievementProgressObj,
+  handleGetAchievementProgressData,
+} from "@/db/achievements/achievements";
 
-// need to fetch progress from db and merge it with achievements arr
+const AchievementsPage = () => {
+  const [achievementDataState, setAchievementDataState] = useState<
+    AchievementObj[] | undefined
+  >();
 
-const index = () => {
+  const getAchievementProgressData = async () => {
+    const achievementProgressData: AchievementProgressObj[] | undefined =
+      await handleGetAchievementProgressData();
+
+    if (achievementProgressData) {
+      let achievementListWithProgressData = [...allAchievementsArr];
+      achievementListWithProgressData = allAchievementsArr.map((obj) => {
+        let progressDatum = achievementProgressData.find(
+          (datum) => datum.id === obj.id,
+        );
+        if (progressDatum) {
+          obj.score_current = progressDatum.currentScore;
+        }
+        return obj;
+      });
+      setAchievementDataState(achievementListWithProgressData);
+      console.log(achievementProgressData);
+    } else {
+      throw Error(
+        "Error: Occured a problem while fetching achievement progress data.",
+      );
+    }
+  };
+
+  useEffect(() => {
+    getAchievementProgressData();
+  }, []);
+
   return (
     <React.Fragment>
       <ScrollView
@@ -28,18 +62,19 @@ const index = () => {
             All achievements
           </Text>
           <View className="pb-10">
-            {allAchievementsArr.map(
-              (achievement: AchievementObj, indexNum: number) => (
-                <AchievementCard
-                  title={achievement.title}
-                  description={achievement.description_before}
-                  image={achievement.image}
-                  score_current={achievement.score_current}
-                  score_required={achievement.score_required}
-                  key={indexNum}
-                />
-              ),
-            )}
+            {achievementDataState &&
+              achievementDataState.map(
+                (achievement: AchievementObj, indexNum: number) => (
+                  <AchievementCard
+                    title={achievement.title}
+                    description={achievement.description_before}
+                    image={achievement.image}
+                    score_current={achievement.score_current}
+                    score_required={achievement.score_required}
+                    key={indexNum}
+                  />
+                ),
+              )}
           </View>
         </View>
         <View className="mb-12 mt-6 h-4 w-full flex-row items-center justify-center">
@@ -53,4 +88,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default AchievementsPage;

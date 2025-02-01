@@ -1,20 +1,24 @@
-import Text from "@/components/global/Text";
-import { setShowModal } from "@/state/features/tools/phoneSlice";
-import { AppDispatch, RootState } from "@/state/store";
-import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 import { useRef, useState } from "react";
 import {
   Animated,
+  Dimensions,
+  Modal,
+  Pressable,
   StyleSheet,
   TouchableOpacity,
   TouchableWithoutFeedback,
+  View,
 } from "react-native";
-import { Dimensions, Modal, Pressable, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import topicList from "@/assets/text/conversation_topics.json";
-import { Logo } from "@/components/global/Logo";
-import handleShare from "@/utils/handleShare";
 import DividerLine from "@/components/DividerLine";
+import { Logo } from "@/components/global/Logo";
+import Text from "@/components/global/Text";
+import { achievementControllersObj } from "@/db/achievements/achievementControllers";
+import { setShowModal } from "@/state/features/tools/phoneSlice";
+import { AppDispatch, RootState } from "@/state/store";
+import handleShare from "@/utils/handleShare";
+import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 
 const cardColors = [
   { front: "#801515", back: "#F59074" },
@@ -107,6 +111,10 @@ const ConversationModal = () => {
     if (!isRefreshing) {
       handleShare(message);
     }
+
+    // give an achievement
+
+    achievementControllersObj[3]();
   };
 
   const refreshCard = async () => {

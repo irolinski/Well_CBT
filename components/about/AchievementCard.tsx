@@ -37,7 +37,6 @@ const AchievementCard = ({
     `${getProgressPercentVal()}%` as DimensionValue;
 
   const unlocked = score_current === score_required;
-  console.log(score_current + " " + score_current);
 
   return (
     <View
