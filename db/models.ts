@@ -7,6 +7,7 @@ export type UserType = {
   lastVisit?: Date;
   currentVisitStreak: number;
   highestVisitStreak: number;
+  numOfAllVisits: number;
   profilePicId: number;
   customProfilePic?: string;
   numOfAllEntries?: number;

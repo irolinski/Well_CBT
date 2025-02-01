@@ -1,17 +1,20 @@
 import { Image } from "expo-image";
 import { Animated, Dimensions, View } from "react-native";
 import BackButton from "@/components/BackButton";
+import { handleAddFinishedArticle } from "@/db/learn";
 
 type ArticleImageScrollableHeaderTypes = {
   value: any;
   headerHeight: number;
   image: Image;
+  id: number;
 };
 
 const ArticleImageScrollableHeader = ({
   value,
   headerHeight,
   image,
+  id,
 }: ArticleImageScrollableHeaderTypes) => {
   const windowHeight = Dimensions.get("window").height;
 
@@ -40,7 +43,10 @@ const ArticleImageScrollableHeader = ({
           opacity: hideNav,
         }}
       >
-        <BackButton color="#FBFBFB" />
+        <BackButton
+          color="#FBFBFB"
+          handleBackButtonPress={() => handleAddFinishedArticle(id)}
+        />
       </Animated.View>
       <Animated.View
         style={{

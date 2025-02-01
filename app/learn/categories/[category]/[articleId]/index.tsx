@@ -1,14 +1,17 @@
-import ArticlePage from "@/components/learn/Article";
-import ErrorScreen from "@/components/ErrorScreen";
-import { learnArticles } from "@/constants/models/learn_articles";
 import { useLocalSearchParams } from "expo-router";
+import ErrorScreen from "@/components/ErrorScreen";
+import ArticlePage from "@/components/learn/Article";
+import { ArticleTypes } from "@/constants/models/learn";
+import { learnArticles } from "@/constants/models/learn_articles";
 
 const index = () => {
   const articleId: number = Number(
     useLocalSearchParams<{ articleId: string }>().articleId,
   );
 
-  const article = learnArticles.find((el) => el.id === articleId);
+  const article: ArticleTypes | undefined = learnArticles.find(
+    (el) => el.id === articleId,
+  );
 
   if (article) {
     return <ArticlePage {...article} />;

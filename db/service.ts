@@ -1,6 +1,6 @@
 import * as SQLite from "expo-sqlite";
 
-export const dbName = "well-test-db-024";
+export const dbName = "well-test-db-030";
 
 export const setUpDB = async () => {
   try {
@@ -9,11 +9,11 @@ export const setUpDB = async () => {
     
       CREATE TABLE IF NOT EXISTS userData (
         name VARCHAR (100), lastVisit VARCHAR (300) NOT NULL, currentVisitStreak INT,
-        highestVisitStreak INT, profilePicId INT, customProfilePic VARCHAR (500)
+        highestVisitStreak INT, numOfAllVisits INT, profilePicId INT, customProfilePic VARCHAR (500)
       );
 
-      INSERT INTO userData (name, lastVisit, currentVisitStreak, highestVisitStreak, profilePicId) VALUES (
-      "", DATETIME('now', 'localtime'), 1, 1, 0
+      INSERT INTO userData (name, lastVisit, currentVisitStreak, highestVisitStreak, numOfAllVisits, profilePicId) VALUES (
+      "", DATETIME('now', 'localtime'), 1, 1, 1, 0
       );
 
 
@@ -33,6 +33,10 @@ export const setUpDB = async () => {
 
       CREATE TABLE IF NOT EXISTS relaxActivities (
         id INTEGER PRIMARY KEY AUTOINCREMENT, activityName VARCHAR(100), secondsRelaxed INT, datetime NOT NULL
+      );
+
+      CREATE TABLE IF NOT EXISTS learnFinishedArticles (
+        articleId INT NOT NULL
       );
       
     `);

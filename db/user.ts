@@ -51,6 +51,20 @@ export const handleGetUserData = async (): Promise<UserType | undefined> => {
   }
 };
 
+const countOneDay = async (): Promise<void> => {
+  try {
+    const db = await SQLite.openDatabaseAsync(dbName);
+    const userData = await handleGetUserData();
+    if (userData) {
+      let { numOfAllVisits } = userData;
+      numOfAllVisits++;
+      db.execAsync(`UPDATE userData SET numOfAllDays = ${numOfAllVisits}`);
+    }
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 export const handleSetVisitStreakCount = async (): Promise<void> => {
   try {
     const db = await SQLite.openDatabaseAsync(dbName);
@@ -73,10 +87,10 @@ export const handleSetVisitStreakCount = async (): Promise<void> => {
         `UPDATE userData SET lastVisit = DATETIME('now', 'localtime');`,
       );
 
-      console.log("last visit: " + lastVisit);
-      console.log("day after last viist: " + dayAfterLastVisit);
-      console.log("current time: " + currentTime);
-      console.log("current streak: " + user.currentVisitStreak);
+      // console.log("last visit: " + lastVisit);
+      // console.log("day after last viist: " + dayAfterLastVisit);
+      // console.log("current time: " + currentTime);
+      // console.log("current streak: " + user.currentVisitStreak);
 
       // check whether the streak continues
       if (isSameDate(lastVisit, currentTime)) {
@@ -95,8 +109,13 @@ export const handleSetVisitStreakCount = async (): Promise<void> => {
           );
         }
       } else {
-        console.log("--- \n streak broken! \n --- "); // this sometimes logs multiple times in a row which signifies that the same date check does not work correctly
+        console.log("--- \n streak broken! \n --- ");
         await db.execAsync(`UPDATE userData SET currentVisitStreak = ${1};`);
+      }
+
+      // add 1 to daycount if today's a different day than it was during lastVisit
+      if (!isSameDate(lastVisit, currentTime)) {
+        countOneDay();
       }
     } else {
       throw Error;
@@ -142,6 +161,7 @@ export const fetchUserData = async (): Promise<UserType> => {
       name: "",
       currentVisitStreak: 1,
       highestVisitStreak: 1,
+      numOfAllVisits: 1,
       profilePicId: 0,
     };
   }

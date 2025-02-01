@@ -1,5 +1,12 @@
+import { Image } from "expo-image";
 import React, { useRef } from "react";
-import { Animated, Dimensions, ScrollView, View } from "react-native";
+import {
+  Animated,
+  Dimensions,
+  NativeScrollEvent,
+  ScrollView,
+  View,
+} from "react-native";
 import DividerLine from "@/components/DividerLine";
 import Text from "@/components/global/Text";
 import ArticleImage from "@/components/learn/ArticleCustomImage";
@@ -9,7 +16,6 @@ import RelatedArticleCard from "@/components/learn/RelatedArticleCard";
 import { articleParagraph, ArticleTypes } from "@/constants/models/learn";
 import { learnArticles } from "@/constants/models/learn_articles";
 import ArticleImageScrollableHeader from "./ArticleImageScrollableHeader";
-import { Image } from "expo-image";
 
 const getRelatedArticles = (idArr: number[] | undefined) => {
   let relatedArticlesArr: ArticleTypes[] = [];
@@ -31,6 +37,7 @@ const ArticlePage = ({
   articleBody,
   customImage,
   relatedArticleIds,
+  id,
 }: ArticleTypes) => {
   const windowHeight = Dimensions.get("window").height;
   const windowWidth = Dimensions.get("window").width;
@@ -52,6 +59,7 @@ const ArticlePage = ({
         value={scrollOffsetY}
         headerHeight={headerHeight}
         image={bgImage.image}
+        id={id}
       />
       <ScrollView
         scrollEventThrottle={5}
