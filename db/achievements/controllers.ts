@@ -28,7 +28,6 @@ export const handleGetAchievementProgressData = async (): Promise<
 };
 
 const getAchievementProgress = async (achievementId: AchievementIdType) => {
-  const db = await SQLite.openDatabaseAsync(dbName);
   const achievementProgressList = await handleGetAchievementProgressData();
   const currentScore =
     achievementProgressList?.find((obj) => obj.id === achievementId)

@@ -61,7 +61,6 @@ export const allAchievementsModelsObj: AllAchievementsObjType = {
       "You’ve opened the lines of communication by sharing a conversation topic. Keep it going!",
     image: achievementBadgeImages.image_03,
     score_required: 1,
-    //handled inside phone friend component
   },
   4: {
     id: 4,
