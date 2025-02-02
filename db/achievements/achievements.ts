@@ -11,6 +11,7 @@ export type AchievementProgressObj = {
   id: AchievementIdType;
   currentScore: number;
   requiredScore: number;
+  dateUnlocked: Date | undefined;
 };
 
 // create a table for achievement progress
@@ -19,7 +20,7 @@ const handleCreateAchievementProgressTable = async () => {
     const db = await SQLite.openDatabaseAsync(dbName);
     await db.execAsync(`
         CREATE TABLE IF NOT EXISTS achievementProgress (
-          id INT, currentScore INT, requiredScore INT
+          id INT, currentScore INT, requiredScore INT, dateUnlocked VARCHAR (30) 
         );
       `);
   } catch (err) {

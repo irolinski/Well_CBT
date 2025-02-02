@@ -1,6 +1,6 @@
 import * as SQLite from "expo-sqlite";
 
-export const dbName = "well-test-db-031";
+export const dbName = "well-test-db-040";
 
 export const setUpDB = async () => {
   try {
@@ -8,7 +8,7 @@ export const setUpDB = async () => {
     await db.execAsync(`
     
       CREATE TABLE IF NOT EXISTS userData (
-        name VARCHAR (100), lastVisit VARCHAR (300) NOT NULL, currentVisitStreak INT,
+        name VARCHAR (100), lastVisit VARCHAR (30) NOT NULL, currentVisitStreak INT,
         highestVisitStreak INT, numOfAllVisits INT, profilePicId INT, customProfilePic VARCHAR (500)
       );
 

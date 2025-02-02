@@ -14,7 +14,7 @@ import {
 } from "@/db/achievements/achievements";
 
 const AchievementsPage = () => {
-  const [achievementDataState, setAchievementDataState] = useState<
+  const [achievementsDataState, setAchievementsDataState] = useState<
     AchievementObj[] | undefined
   >();
 
@@ -33,7 +33,7 @@ const AchievementsPage = () => {
         }
         return obj;
       });
-      setAchievementDataState(achievementListWithProgressData);
+      setAchievementsDataState(achievementListWithProgressData);
       console.log(achievementProgressData);
     } else {
       throw Error(
@@ -62,8 +62,8 @@ const AchievementsPage = () => {
             All achievements
           </Text>
           <View className="pb-10">
-            {achievementDataState &&
-              achievementDataState.map(
+            {achievementsDataState &&
+              achievementsDataState.map(
                 (achievement: AchievementObj, indexNum: number) => (
                   <AchievementCard
                     title={achievement.title}

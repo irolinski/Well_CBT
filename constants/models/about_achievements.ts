@@ -12,6 +12,7 @@ export type AchievementObj = {
   score_current?: number;
   score_required?: number;
   handlerFunction?: () => void;
+  dateUnlocked?: Date;
 };
 
 export type AllAchievementsObjType = {
