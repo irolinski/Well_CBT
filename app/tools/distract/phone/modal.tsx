@@ -14,7 +14,7 @@ import topicList from "@/assets/text/conversation_topics.json";
 import DividerLine from "@/components/DividerLine";
 import { Logo } from "@/components/global/Logo";
 import Text from "@/components/global/Text";
-import { achievementHandlersObj } from "@/constants/models/about_achievements";
+import { achievementHandlersObj } from "@/db/achievements/controllers";
 import { setShowModal } from "@/state/features/tools/phoneSlice";
 import { AppDispatch, RootState } from "@/state/store";
 import handleShare from "@/utils/handleShare";

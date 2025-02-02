@@ -3,7 +3,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { Dimensions, Pressable, View } from "react-native";
 import quoteImages from "@/assets/images/home/quote_widget/images";
 import quotesList from "@/assets/text/quotes.json";
-import { achievementHandlersObj } from "@/constants/models/about_achievements";
+import { achievementHandlersObj } from "@/db/achievements/controllers";
 import handleShare from "@/utils/handleShare";
 import { Feather } from "@expo/vector-icons";
 import Text from "../global/Text";

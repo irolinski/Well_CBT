@@ -9,7 +9,7 @@ import { Provider as StateProvider } from "react-redux";
 import {
   setUpAchievementsTable,
   updateAchievementProgress,
-} from "@/db/achievements/achievements";
+} from "@/db/achievements/global";
 import { seedDB } from "@/db/seed";
 import { createActivityViewTable, dbName, setUpDB } from "@/db/service";
 import { handleSetVisitStreakCount } from "@/db/user";

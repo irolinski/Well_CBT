@@ -1,19 +1,14 @@
 import * as SQLite from "expo-sqlite";
 import {
-  allAchievementsArr,
-  allAchievementsObj,
-  handleGetAchievementProgressData,
+  AchievementProgressObj,
+  allAchievementsModelsArr,
 } from "@/constants/models/about_achievements";
+import {
+  AchievementIdType,
+  allAchievementsWithControllersArr,
+  handleGetAchievementProgressData,
+} from "@/db/achievements/controllers";
 import { dbName } from "../service";
-
-export type AchievementIdType = keyof typeof allAchievementsObj;
-
-export type AchievementProgressObj = {
-  id: AchievementIdType;
-  currentScore: number;
-  requiredScore: number;
-  dateUnlocked: Date | undefined;
-};
 
 // create a table for achievement progress
 const handleCreateAchievementProgressTable = async () => {
@@ -40,8 +35,8 @@ const handlePopulateAchievementProgressTable = async () => {
       throw Error("Error occured: Couldn't access achievement progress list.");
     }
     // if the acheievement list has more items than there are rows in achievement progress list in the db
-    if (allAchievementsArr.length > achievementProgressList.length) {
-      allAchievementsArr.forEach(async (achievement) => {
+    if (allAchievementsModelsArr.length > achievementProgressList.length) {
+      allAchievementsModelsArr.forEach(async (achievement) => {
         // check whether progressList contains its relative achievement's id
         const idIsPresentInProgressList = achievementProgressList.some(
           (achievementProgressObj) =>
@@ -87,13 +82,13 @@ export const updateAchievementProgress = async () => {
   const unlockedAchievementIds: AchievementIdType[] =
     await getUnlockedAchievementIds();
 
-  // get only unlocked achievements
-  const unlockedAchievementsArr = allAchievementsArr.filter((obj) =>
-    unlockedAchievementIds.includes(obj.id as AchievementIdType),
+  // get only locked achievements
+  const lockedAchievementsArr = allAchievementsWithControllersArr.filter(
+    (obj) => unlockedAchievementIds.includes(obj.id as AchievementIdType),
   );
 
   // run handler function for every achievement that hasn't been unlocked
-  unlockedAchievementsArr.forEach((obj) => {
+  lockedAchievementsArr.forEach((obj) => {
     if (obj.handlerFunction) {
       obj.handlerFunction();
     }

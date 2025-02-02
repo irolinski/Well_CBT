@@ -9,13 +9,12 @@ import {
 import { recentAchievementsPlaceholderImage } from "@/assets/images/about/achievements/achievements";
 import {
   AchievementObj,
-  allAchievementsArr,
-  handleGetAchievementProgressData,
+  AchievementProgressObj,
+  allAchievementsModelsArr,
 } from "@/constants/models/about_achievements";
-import { AchievementProgressObj } from "@/db/achievements/achievements";
+import { handleGetAchievementProgressData } from "@/db/achievements/controllers";
 import { Feather } from "@expo/vector-icons";
 import AdvanceButton from "../AdvanceButton";
-import Text from "../global/Text";
 import CarouselBadge from "./CarouselBadge";
 import CarouselDetails from "./CarouselDetails";
 
@@ -30,19 +29,21 @@ const RecentAchievements = () => {
       await handleGetAchievementProgressData();
 
     if (achievementProgressData) {
-      const achievementListWithProgressData = allAchievementsArr.map((obj) => {
-        const progressDatum = achievementProgressData.find(
-          (datum) => datum.id === obj.id,
-        );
-        if (progressDatum) {
-          obj.score_current = progressDatum.currentScore;
+      const achievementListWithProgressData = allAchievementsModelsArr.map(
+        (obj) => {
+          const progressDatum = achievementProgressData.find(
+            (datum) => datum.id === obj.id,
+          );
+          if (progressDatum) {
+            obj.score_current = progressDatum.currentScore;
 
-          if (progressDatum.dateUnlocked) {
-            obj.dateUnlocked = new Date(progressDatum.dateUnlocked); // Ensure Date object
+            if (progressDatum.dateUnlocked) {
+              obj.dateUnlocked = new Date(progressDatum.dateUnlocked); // Ensure Date object
+            }
           }
-        }
-        return obj;
-      });
+          return obj;
+        },
+      );
 
       const recentAchievementProgressData =
         achievementListWithProgressData.filter(
@@ -68,8 +69,6 @@ const RecentAchievements = () => {
   useEffect(() => {
     getRecentAchievementProgressData();
   }, []);
-
-  // if (recentAchievementsDataState && recentAchievementsDataState!.length >= 1) {
 
   const nextPosition = () => {
     if (recentAchievementsDataState) {
@@ -249,20 +248,5 @@ const RecentAchievements = () => {
     </GestureDetector>
   );
 };
-// else {
-//   return (
-//     // add a placeholder here
-//     <View
-//       className="overflow-hidden rounded-xl"
-//       style={{
-//         backgroundColor: "#F5F5F5",
-//         height: windowHeight > 750 ? windowHeight * 0.57 : windowHeight * 0.6,
-//       }}
-//     >
-//       <Text>Placeholder</Text>
-//     </View>
-//   );
-// }
-// };
 
 export default RecentAchievements;

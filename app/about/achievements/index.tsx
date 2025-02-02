@@ -6,12 +6,10 @@ import MenuNav from "@/components/global/MenuNav";
 import Text from "@/components/global/Text";
 import {
   AchievementObj,
-  allAchievementsArr,
-} from "@/constants/models/about_achievements";
-import {
   AchievementProgressObj,
-  handleGetAchievementProgressData,
-} from "@/db/achievements/achievements";
+  allAchievementsModelsArr,
+} from "@/constants/models/about_achievements";
+import { handleGetAchievementProgressData } from "@/db/achievements/controllers";
 
 const AchievementsPage = () => {
   const [achievementsDataState, setAchievementsDataState] = useState<
@@ -23,8 +21,8 @@ const AchievementsPage = () => {
       await handleGetAchievementProgressData();
 
     if (achievementProgressData) {
-      let achievementListWithProgressData = [...allAchievementsArr];
-      achievementListWithProgressData = allAchievementsArr.map((obj) => {
+      let achievementListWithProgressData = [...allAchievementsModelsArr];
+      achievementListWithProgressData = allAchievementsModelsArr.map((obj) => {
         let progressDatum = achievementProgressData.find(
           (datum) => datum.id === obj.id,
         );
@@ -34,7 +32,7 @@ const AchievementsPage = () => {
         return obj;
       });
       setAchievementsDataState(achievementListWithProgressData);
-      console.log(achievementProgressData);
+      // console.log(achievementProgressData);
     } else {
       throw Error(
         "Error: Occured a problem while fetching achievement progress data.",
