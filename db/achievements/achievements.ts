@@ -2,6 +2,7 @@ import * as SQLite from "expo-sqlite";
 import {
   allAchievementsArr,
   allAchievementsObj,
+  handleGetAchievementProgressData,
 } from "@/constants/models/about_achievements";
 import { dbName } from "../service";
 
@@ -26,17 +27,6 @@ const handleCreateAchievementProgressTable = async () => {
   } catch (err) {
     console.error(err);
   }
-};
-
-export const handleGetAchievementProgressData = async (): Promise<
-  AchievementProgressObj[] | undefined
-> => {
-  const db = await SQLite.openDatabaseAsync(dbName);
-  const res = await db.getAllAsync(`SELECT * FROM achievementProgress;`);
-  const achievementProgressData: AchievementProgressObj[] =
-    res as AchievementProgressObj[];
-
-  return achievementProgressData;
 };
 
 // a function that adds achievement ids to the database programatically

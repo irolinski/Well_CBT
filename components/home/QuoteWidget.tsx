@@ -3,7 +3,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { Dimensions, Pressable, View } from "react-native";
 import quoteImages from "@/assets/images/home/quote_widget/images";
 import quotesList from "@/assets/text/quotes.json";
-import { achievementControllersObj } from "@/db/achievements/achievementControllers";
+import { achievementHandlersObj } from "@/constants/models/about_achievements";
 import handleShare from "@/utils/handleShare";
 import { Feather } from "@expo/vector-icons";
 import Text from "../global/Text";
@@ -15,7 +15,7 @@ const QuoteWidget = () => {
   const imageNumber = (Math.random() * (quoteImages.length - 1)) | 0;
 
   const handleOnPress = () => {
-    achievementControllersObj[12]();
+    achievementHandlersObj[12]();
 
     handleShare(
       `"${quotesList[quoteNumber].quoteText}" \n \n - ${quotesList[quoteNumber].quoteAuthor}`,

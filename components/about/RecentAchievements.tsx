@@ -10,11 +10,9 @@ import { recentAchievementsPlaceholderImage } from "@/assets/images/about/achiev
 import {
   AchievementObj,
   allAchievementsArr,
-} from "@/constants/models/about_achievements";
-import {
-  AchievementProgressObj,
   handleGetAchievementProgressData,
-} from "@/db/achievements/achievements";
+} from "@/constants/models/about_achievements";
+import { AchievementProgressObj } from "@/db/achievements/achievements";
 import { Feather } from "@expo/vector-icons";
 import AdvanceButton from "../AdvanceButton";
 import Text from "../global/Text";
