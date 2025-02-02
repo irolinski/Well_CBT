@@ -12,6 +12,8 @@ import badge_11 from "@/assets/images/about/achievements/badge_11.webp";
 import badge_12 from "@/assets/images/about/achievements/badge_12.webp";
 import badge_13 from "@/assets/images/about/achievements/badge_13.webp";
 import locked from "@/assets/images/about/achievements/locked.webp";
+import placeholder from "@/assets/images/about/achievements/placeholder.webp";
+import placeholder_noIcon from "@/assets/images/about/achievements/placeholder_noIcon.webp";
 
 export const achievementBadgeImages = {
   image_01: badge_01,
@@ -30,3 +32,8 @@ export const achievementBadgeImages = {
 };
 
 export const achievementLockedImage = locked;
+
+export const recentAchievementsPlaceholderImage = {
+  icon: placeholder,
+  noIcon: placeholder_noIcon,
+};

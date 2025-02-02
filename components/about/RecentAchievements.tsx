@@ -6,6 +6,7 @@ import {
   Gesture,
   GestureDetector,
 } from "react-native-gesture-handler";
+import { recentAchievementsPlaceholderImage } from "@/assets/images/about/achievements/achievements";
 import {
   AchievementObj,
   allAchievementsArr,
@@ -70,147 +71,43 @@ const RecentAchievements = () => {
     getRecentAchievementProgressData();
   }, []);
 
-  if (recentAchievementsDataState && recentAchievementsDataState!.length >= 2) {
-    const nextPosition = () => {
+  // if (recentAchievementsDataState && recentAchievementsDataState!.length >= 1) {
+
+  const nextPosition = () => {
+    if (recentAchievementsDataState) {
       if (selectedIndex < recentAchievementsDataState.length - 1) {
         setSelectedIndex((prev) => prev + 1);
       }
-    };
+    }
+  };
 
-    const prevPosition = () => {
-      if (selectedIndex > 0) {
-        setSelectedIndex((prev) => prev - 1);
-      }
-    };
+  const prevPosition = () => {
+    if (selectedIndex > 0) {
+      setSelectedIndex((prev) => prev - 1);
+    }
+  };
 
-    // Left swipe gesture
-    const onFlingLeft = Gesture.Fling()
-      .direction(Directions.LEFT)
-      .onEnd(() => {
-        nextPosition();
-      })
-      .runOnJS(true);
+  // Left swipe gesture
+  const onFlingLeft = Gesture.Fling()
+    .direction(Directions.LEFT)
+    .onEnd(() => {
+      nextPosition();
+    })
+    .runOnJS(true);
 
-    // Right swipe gesture
-    const onFlingRight = Gesture.Fling()
-      .direction(Directions.RIGHT)
-      .onEnd(() => {
-        prevPosition();
-      })
-      .runOnJS(true);
+  // Right swipe gesture
+  const onFlingRight = Gesture.Fling()
+    .direction(Directions.RIGHT)
+    .onEnd(() => {
+      prevPosition();
+    })
+    .runOnJS(true);
 
-    // Combine gestures
-    const handleFlingHorizontal = Gesture.Simultaneous(
-      onFlingLeft,
-      onFlingRight,
-    );
+  // Combine gestures
+  const handleFlingHorizontal = Gesture.Simultaneous(onFlingLeft, onFlingRight);
 
-    return (
-      <GestureDetector gesture={handleFlingHorizontal}>
-        <View
-          className="overflow-hidden rounded-xl"
-          style={{
-            backgroundColor: "#F5F5F5",
-            height:
-              windowHeight > 750 ? windowHeight * 0.57 : windowHeight * 0.6,
-          }}
-        >
-          {/* Top Section */}
-          <View
-            className="absolute top-0 w-full flex-row justify-center"
-            style={{ height: "50%" }}
-          >
-            {recentAchievementsDataState.map((datum, indexNum) => (
-              <CarouselBadge
-                image={datum.image}
-                index={indexNum}
-                key={indexNum}
-                selectedIndex={selectedIndex}
-              />
-            ))}
-          </View>
-          {/* Change page by tapping on badges */}
-          {selectedIndex > 0 && (
-            <Pressable
-              className="absolute left-0 z-40 h-1/2 w-1/2"
-              onPress={() => prevPosition()}
-            />
-          )}
-          {selectedIndex < recentAchievementsDataState.length - 1 && (
-            <Pressable
-              className="absolute right-0 z-40 h-1/2 w-1/2"
-              onPress={() => nextPosition()}
-            />
-          )}
-
-          {/* Bottom Section */}
-          <View
-            className="w-full items-center justify-center"
-            style={{ top: "40%" }}
-          >
-            <View
-              className="absolute rounded-full"
-              style={{
-                width: 650,
-                height: 650,
-                backgroundColor: "#8DBED8",
-                top: 0,
-              }}
-            ></View>
-
-            {selectedIndex > 0 && (
-              <TouchableOpacity
-                className="absolute left-0 z-30 h-12 w-14 items-start justify-center"
-                style={{ top: 0.085 * windowHeight }}
-                onPress={() => prevPosition()}
-              >
-                <Feather name="chevron-left" size={36} color="#FFFFFF" />
-              </TouchableOpacity>
-            )}
-
-            {selectedIndex < recentAchievementsDataState.length - 1 && (
-              <TouchableOpacity
-                className="absolute right-0 z-30 h-12 w-14 items-end justify-center"
-                style={{ top: 0.085 * windowHeight }}
-                onPress={() => nextPosition()}
-              >
-                <Feather name="chevron-right" size={36} color="#FFFFFF" />
-              </TouchableOpacity>
-            )}
-
-            {recentAchievementsDataState.map((datum, indexNum) => (
-              <CarouselDetails
-                title={datum.title}
-                description={datum.description_after}
-                index={indexNum}
-                selectedIndex={selectedIndex}
-                key={indexNum}
-              />
-            ))}
-          </View>
-          <View className="absolute bottom-0 right-4 z-20 my-4 flex-row justify-end">
-            <AdvanceButton
-              title="See all"
-              onPress={() => {
-                router.push("/about/achievements" as Href);
-              }}
-              btnStyle={{
-                width: 150,
-                height: 45,
-                backgroundColor: "white",
-                borderWidth: 1,
-                borderColor: "#D9D9D9",
-                borderRadius: 12,
-              }}
-              textStyle={{ color: "#27261F" }}
-            />
-          </View>
-        </View>
-      </GestureDetector>
-    );
-  } else {
-    return (
-      // add a placeholder here
+  return (
+    <GestureDetector gesture={handleFlingHorizontal}>
       <View
         className="overflow-hidden rounded-xl"
         style={{
@@ -218,10 +115,156 @@ const RecentAchievements = () => {
           height: windowHeight > 750 ? windowHeight * 0.57 : windowHeight * 0.6,
         }}
       >
-        <Text>Placeholder</Text>
+        {/* Top Section */}
+        <View
+          className="absolute top-0 w-full flex-row justify-center"
+          style={{ height: "50%" }}
+        >
+          {recentAchievementsDataState &&
+          recentAchievementsDataState.length > 0 ? (
+            recentAchievementsDataState.map((datum, indexNum) => (
+              <CarouselBadge
+                image={datum.image}
+                index={indexNum}
+                key={indexNum}
+                selectedIndex={selectedIndex}
+              />
+            ))
+          ) : (
+            <React.Fragment>
+              <CarouselBadge
+                image={recentAchievementsPlaceholderImage.noIcon}
+                index={0}
+                selectedIndex={1}
+              />
+              <CarouselBadge
+                image={recentAchievementsPlaceholderImage.icon}
+                index={1}
+                selectedIndex={1}
+              />
+              <CarouselBadge
+                image={recentAchievementsPlaceholderImage.noIcon}
+                index={2}
+                selectedIndex={1}
+              />
+            </React.Fragment>
+          )}
+        </View>
+        {/* Change page by tapping on badges */}
+        {recentAchievementsDataState &&
+          recentAchievementsDataState.length > 0 && (
+            <React.Fragment>
+              {selectedIndex > 0 && (
+                <Pressable
+                  className="absolute left-0 z-40 h-1/2 w-1/2"
+                  onPress={() => prevPosition()}
+                />
+              )}
+              {selectedIndex < recentAchievementsDataState.length - 1 && (
+                <Pressable
+                  className="absolute right-0 z-40 h-1/2 w-1/2"
+                  onPress={() => nextPosition()}
+                />
+              )}
+            </React.Fragment>
+          )}
+
+        {/* Bottom Section */}
+        <View
+          className="w-full items-center justify-center"
+          style={{ top: "40%" }}
+        >
+          <View
+            className="absolute rounded-full"
+            style={{
+              width: 650,
+              height: 650,
+              backgroundColor: "#8DBED8",
+              top: 0,
+            }}
+          ></View>
+
+          {recentAchievementsDataState &&
+            recentAchievementsDataState.length > 0 && (
+              <React.Fragment>
+                {selectedIndex > 0 && (
+                  <TouchableOpacity
+                    className="absolute left-0 z-30 h-12 w-14 items-start justify-center"
+                    style={{ top: 0.085 * windowHeight }}
+                    onPress={() => prevPosition()}
+                  >
+                    <Feather name="chevron-left" size={36} color="#FFFFFF" />
+                  </TouchableOpacity>
+                )}
+                {selectedIndex < recentAchievementsDataState.length - 1 && (
+                  <TouchableOpacity
+                    className="absolute right-0 z-30 h-12 w-14 items-end justify-center"
+                    style={{ top: 0.085 * windowHeight }}
+                    onPress={() => nextPosition()}
+                  >
+                    <Feather name="chevron-right" size={36} color="#FFFFFF" />
+                  </TouchableOpacity>
+                )}
+              </React.Fragment>
+            )}
+
+          {recentAchievementsDataState &&
+          recentAchievementsDataState.length > 0 ? (
+            recentAchievementsDataState.map((datum, indexNum) => (
+              <CarouselDetails
+                title={datum.title}
+                description={datum.description_after}
+                index={indexNum}
+                selectedIndex={selectedIndex}
+                key={indexNum}
+              />
+            ))
+          ) : (
+            <React.Fragment>
+              <CarouselDetails
+                title="No achievements yet"
+                description="Keep using Well to unlock new achievements!"
+                index={0}
+                selectedIndex={0}
+              />
+            </React.Fragment>
+          )}
+        </View>
+        <View className="absolute bottom-0 right-4 z-20 my-4 flex-row justify-end">
+          <AdvanceButton
+            title="See all"
+            onPress={() => {
+              router.push("/about/achievements" as Href);
+            }}
+            btnStyle={{
+              width: 150,
+              height: 45,
+              backgroundColor: "white",
+              borderWidth: 1,
+              borderColor: "#D9D9D9",
+              borderRadius: 12,
+            }}
+            textStyle={{ color: "#27261F" }}
+          />
+        </View>
       </View>
-    );
-  }
+    </GestureDetector>
+  );
 };
+// else {
+//   return (
+//     // add a placeholder here
+//     <View
+//       className="overflow-hidden rounded-xl"
+//       style={{
+//         backgroundColor: "#F5F5F5",
+//         height: windowHeight > 750 ? windowHeight * 0.57 : windowHeight * 0.6,
+//       }}
+//     >
+//       <Text>Placeholder</Text>
+//     </View>
+//   );
+// }
+// };
 
 export default RecentAchievements;
