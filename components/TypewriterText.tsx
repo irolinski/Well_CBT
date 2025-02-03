@@ -1,5 +1,5 @@
-import { Animated, Text, View } from "react-native";
 import { useEffect, useState } from "react";
+import { Animated, Text, View } from "react-native";
 
 interface TypewriterTextProps {
   text: string;
@@ -96,6 +96,7 @@ const TypewriterText = ({
         position: "relative",
         justifyContent: "center",
         alignItems: "center",
+        overflow: "hidden",
       }}
     >
       {/* Placeholder Text Component
