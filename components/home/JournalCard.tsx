@@ -1,12 +1,12 @@
 import { Href, router } from "expo-router";
 import React from "react";
 import { TouchableOpacity, View } from "react-native";
+import { monthNamesShort } from "@/constants/models/dates";
 import {
   JournalCardProps,
   ToolCategories,
   ToolList,
-} from "@/constants/models/activity_log";
-import { monthNamesShort } from "@/constants/models/dates";
+} from "@/constants/models/home/activity_log";
 import { getOrdinalSuffix } from "@/utils/dates";
 import { Entypo } from "@expo/vector-icons";
 import { Slider } from "@miblanchard/react-native-slider";

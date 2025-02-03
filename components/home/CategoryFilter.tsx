@@ -4,7 +4,7 @@ import {
   ToolList,
   toolNameList,
   ToolNames,
-} from "@/constants/models/activity_log";
+} from "@/constants/models/home/activity_log";
 import { setFilterCategories } from "@/state/features/menus/activityLogSlice";
 import { AppDispatch, RootState } from "@/state/store";
 import Text from "../global/Text";

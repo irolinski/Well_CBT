@@ -1,4 +1,7 @@
-import { EntryListSection, ToolNames } from "@/constants/models/activity_log";
+import {
+  EntryListSection,
+  ToolNames,
+} from "@/constants/models/home/activity_log";
 import { createSlice } from "@reduxjs/toolkit";
 
 type ActivityLogStateTypes = {

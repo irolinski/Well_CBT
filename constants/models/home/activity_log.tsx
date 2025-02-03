@@ -1,6 +1,6 @@
-import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 import { ReactNode } from "react";
-import { monthNames } from "./dates";
+import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
+import { monthNames } from "../dates";
 
 type ToolType = {
   name: string;

@@ -16,7 +16,7 @@ import ToolHeader from "@/components/tools/ToolHeader";
 import {
   EntryListSection,
   EntryViewTableRow,
-} from "@/constants/models/activity_log";
+} from "@/constants/models/home/activity_log";
 import { fetchEntryData } from "@/db/activity_log";
 import {
   activityLogResetState,

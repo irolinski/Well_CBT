@@ -3,7 +3,7 @@ import { Dimensions, View } from "react-native";
 import {
   welcomeTexts_pt1,
   welcomeTexts_pt2,
-} from "@/constants/models/home_welcomeTexts";
+} from "@/constants/models/home/welcomeTexts";
 import { UserType } from "@/db/models";
 import { fetchUserData } from "@/db/user";
 import DividerLine from "../DividerLine";

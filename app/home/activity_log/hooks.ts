@@ -4,7 +4,7 @@ import {
   EntryListSection,
   EntryViewTableRow,
   getMonthYearTitle,
-} from "@/constants/models/activity_log";
+} from "@/constants/models/home/activity_log";
 import {
   setCurrentIndex,
   setDisplayedData,
@@ -13,10 +13,10 @@ import {
 } from "@/state/features/menus/activityLogSlice";
 import { AppDispatch, RootState } from "@/state/store";
 
- const useActivityLogActions = () => {
+const useActivityLogActions = () => {
   const dispatch = useDispatch<AppDispatch>();
   const activityLogState = useSelector((state: RootState) => state.activityLog);
-    
+
   const transformData = (fetchedData: EntryViewTableRow[]) => {
     const allDataByMonth: allDataByMonthType =
       [] as unknown as allDataByMonthType;

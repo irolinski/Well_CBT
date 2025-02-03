@@ -11,7 +11,7 @@ import ToolHeader from "@/components/tools/ToolHeader";
 import {
   emotionObjType,
   JournalEntryMainType,
-} from "@/constants/models/activity_log";
+} from "@/constants/models/home/activity_log";
 import { emotionList, moodValueTitles } from "@/constants/models/journal";
 import { fetchJournalEntry } from "@/db/activity_log";
 import { deleteJournalEntry } from "@/db/tools";

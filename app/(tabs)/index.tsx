@@ -10,7 +10,7 @@ import JournalCard from "@/components/home/JournalCard";
 import NewActivityModal from "@/components/home/NewActivityModal";
 import QuoteWidget from "@/components/home/QuoteWidget";
 import WelcomeTypewriterText from "@/components/home/WelcomeTypewriterText";
-import { EntryViewTableRow } from "@/constants/models/activity_log";
+import { EntryViewTableRow } from "@/constants/models/home/activity_log";
 import { fetchRecentEntries } from "@/db/activity_log";
 import { setShowNewActivityModal } from "@/state/features/menus/newActivityModalSlice";
 import { AppDispatch } from "@/state/store";

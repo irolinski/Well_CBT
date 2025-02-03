@@ -7,11 +7,11 @@ import Frame from "@/components/Frame";
 import Text from "@/components/global/Text";
 import ToolHeader from "@/components/tools/ToolHeader";
 import ToolNav from "@/components/tools/ToolNav";
+import { emotionObjType } from "@/constants/models/home/activity_log";
 import { emotionStrengthTitles } from "@/constants/models/journal";
 import { setEmotions } from "@/state/features/tools/journalSlice";
 import { AppDispatch, RootState } from "@/state/store";
 import { Slider } from "@miblanchard/react-native-slider";
-import { emotionObjType } from "@/constants/models/activity_log";
 
 const Log_3 = () => {
   //tool state

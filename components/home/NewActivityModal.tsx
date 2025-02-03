@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { ToolList } from "@/constants/models/activity_log";
+import { ToolList } from "@/constants/models/home/activity_log";
 import { setNavigateSettingsModalSelectedLink } from "@/state/features/menus/navigateSettingsModalSlice";
 import {
   setNewActivityModalSelectedLink,
