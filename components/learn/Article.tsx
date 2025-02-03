@@ -1,20 +1,14 @@
 import { Image } from "expo-image";
 import React, { useRef } from "react";
-import {
-  Animated,
-  Dimensions,
-  NativeScrollEvent,
-  ScrollView,
-  View,
-} from "react-native";
+import { Animated, Dimensions, ScrollView, View } from "react-native";
 import DividerLine from "@/components/DividerLine";
 import Text from "@/components/global/Text";
 import ArticleImage from "@/components/learn/ArticleCustomImage";
 import ArticleParagraph from "@/components/learn/ArticleParagraph";
 import ArticleTextHeader from "@/components/learn/ArticleTextHeader";
 import RelatedArticleCard from "@/components/learn/RelatedArticleCard";
-import { articleParagraph, ArticleTypes } from "@/constants/models/learn";
-import { learnArticles } from "@/constants/models/learn_articles";
+import { learnArticles } from "@/constants/models/learn/articles";
+import { articleParagraph, ArticleTypes } from "@/constants/models/learn/learn";
 import ArticleImageScrollableHeader from "./ArticleImageScrollableHeader";
 
 const getRelatedArticles = (idArr: number[] | undefined) => {

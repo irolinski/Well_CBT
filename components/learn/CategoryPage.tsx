@@ -1,11 +1,12 @@
 import { Image } from "expo-image";
 import { useLocalSearchParams } from "expo-router";
 import React, { useRef } from "react";
-import { Animated, Dimensions, ScrollView, Text, View } from "react-native";
+import { Animated, Dimensions, ScrollView, View } from "react-native";
 import LearnArticleCard from "@/components/learn/ArticleCard";
-import { learnArticles } from "@/constants/models/learn_articles";
-import { learnCategories } from "@/constants/models/learn_categories";
+import { learnArticles } from "@/constants/models/learn/articles";
+import { learnCategories } from "@/constants/models/learn/categories";
 import ErrorScreen from "../ErrorScreen";
+import Text from "../global/Text";
 import CategoryScrollableHeader from "./CategoryScrollableHeader";
 
 const CategoryPage = () => {

@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { learnArticleCardTypes } from "@/constants/models/learn";
+import { learnArticleCardTypes } from "@/constants/models/learn/learn";
 import { Feather } from "@expo/vector-icons";
 
 const LearnArticleCard = ({

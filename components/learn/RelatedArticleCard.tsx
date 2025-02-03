@@ -1,9 +1,9 @@
 import { Image } from "expo-image";
-import { Pressable, View } from "react-native";
-import { Feather } from "@expo/vector-icons";
 import { Href, router } from "expo-router";
+import { Pressable, View } from "react-native";
 import Text from "@/components/global/Text";
-import { learnArticleCardTypes } from "@/constants/models/learn";
+import { learnArticleCardTypes } from "@/constants/models/learn/learn";
+import { Feather } from "@expo/vector-icons";
 
 const RelatedArticleCard = ({
   title,

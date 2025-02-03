@@ -4,11 +4,11 @@ import Text from "@/components/global/Text";
 import FrameMenu from "@/components/home/FrameMenu";
 import LearnArticleCard from "@/components/learn/ArticleCard";
 import LearnCategoryCard from "@/components/learn/LearnCategoryCard";
-import { learnArticles } from "@/constants/models/learn_articles";
+import { learnArticles } from "@/constants/models/learn/articles";
 import {
   learnCategories,
   learnCategoriesTypes,
-} from "@/constants/models/learn_categories";
+} from "@/constants/models/learn/categories";
 
 const Learn = () => {
   const articleNumber = (Math.random() * (learnArticles.length - 1)) | 0;

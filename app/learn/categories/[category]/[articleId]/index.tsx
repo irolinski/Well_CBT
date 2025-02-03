@@ -1,8 +1,8 @@
 import { useLocalSearchParams } from "expo-router";
 import ErrorScreen from "@/components/ErrorScreen";
 import ArticlePage from "@/components/learn/Article";
-import { ArticleTypes } from "@/constants/models/learn";
-import { learnArticles } from "@/constants/models/learn_articles";
+import { learnArticles } from "@/constants/models/learn/articles";
+import { ArticleTypes } from "@/constants/models/learn/learn";
 
 const index = () => {
   const articleId: number = Number(

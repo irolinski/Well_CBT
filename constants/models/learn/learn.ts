@@ -1,5 +1,5 @@
 import { Image } from "expo-image";
-import { AnimatableNumericValue, ColorValue } from "react-native";
+import { ColorValue } from "react-native";
 
 export type articleParagraph = { header: string; body: string };
 export type articleBody = articleParagraph[];
