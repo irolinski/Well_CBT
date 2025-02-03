@@ -9,7 +9,7 @@ import Text from "@/components/global/Text";
 import CDATextBox from "@/components/tools/cda/CDATextBox";
 import ToolHeader from "@/components/tools/ToolHeader";
 import ToolNav from "@/components/tools/ToolNav";
-import { moodValueTitles } from "@/constants/models/journal";
+import { moodValueTitles } from "@/constants/models/tools/journal";
 import { handleSaveJournalEntry } from "@/db/tools";
 import {
   journalResetState,

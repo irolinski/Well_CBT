@@ -7,14 +7,13 @@ import Text from "@/components/global/Text";
 import ActivityShowNav from "@/components/home/ActivityShowNav";
 import CDATextBox from "@/components/tools/cda/CDATextBox";
 import ToolHeader from "@/components/tools/ToolHeader";
-import { cdaEntryType } from "@/constants/models/cda";
+import { cdaEntryType } from "@/constants/models/tools/cda";
 import { fetchCDAEntry } from "@/db/activity_log";
 import { deleteCDAEntry } from "@/db/tools";
 import { formatDateStringForWrapping } from "@/utils/dates";
 import { handleDeleteEntry } from "@/utils/deleteEntry";
 
 const ActivityShowPage = () => {
-  const windowWidth = Dimensions.get("window").width;
   const windowHeight = Dimensions.get("window").height;
 
   const id: number = Number(useLocalSearchParams<{ id: string }>().id);

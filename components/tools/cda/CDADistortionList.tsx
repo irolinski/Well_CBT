@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   cognitiveDistortions,
   DistortionListProps,
-} from "@/constants/models/cda_distortionList";
+} from "@/constants/models/tools/cda_distortionList";
 import { setDistortion } from "@/state/features/tools/cdaSlice";
 import { AppDispatch, RootState } from "@/state/store";
 import DistortionPill from "../../DistortionPill";

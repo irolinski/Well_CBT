@@ -8,7 +8,7 @@ import Text from "@/components/global/Text";
 import ToolHeader from "@/components/tools/ToolHeader";
 import ToolNav from "@/components/tools/ToolNav";
 import { emotionObjType } from "@/constants/models/home/activity_log";
-import { emotionStrengthTitles } from "@/constants/models/journal";
+import { emotionStrengthTitles } from "@/constants/models/tools/journal";
 import { setEmotions } from "@/state/features/tools/journalSlice";
 import { AppDispatch, RootState } from "@/state/store";
 import { Slider } from "@miblanchard/react-native-slider";

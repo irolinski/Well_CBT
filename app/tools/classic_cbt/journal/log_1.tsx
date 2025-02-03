@@ -6,7 +6,7 @@ import AdvanceButton from "@/components/AdvanceButton";
 import Text from "@/components/global/Text";
 import ToolHeader from "@/components/tools/ToolHeader";
 import ToolNav from "@/components/tools/ToolNav";
-import { moodValueTitles } from "@/constants/models/journal";
+import { moodValueTitles } from "@/constants/models/tools/journal";
 import {
   journalResetState,
   setMoodValue,

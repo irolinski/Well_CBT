@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Pressable, Text, View } from "react-native";
-import { DistortionPillTypes } from "@/constants/models/cda_distortionList";
+import { DistortionPillTypes } from "@/constants/models/tools/cda_distortionList";
 
 const DistortionPill = ({
   title,

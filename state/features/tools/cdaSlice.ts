@@ -1,4 +1,4 @@
-import { cdaType } from "@/constants/models/cda";
+import { cdaType } from "@/constants/models/tools/cda";
 import { createSlice } from "@reduxjs/toolkit";
 
 export type cdaSliceTypes = cdaType & {

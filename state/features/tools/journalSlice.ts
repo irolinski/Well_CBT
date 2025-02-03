@@ -1,4 +1,4 @@
-import { emotionObjType } from "@/constants/models/journal";
+import { emotionObjType } from "@/constants/models/home/activity_log";
 import { createSlice } from "@reduxjs/toolkit";
 
 export type journalSliceTypes = {

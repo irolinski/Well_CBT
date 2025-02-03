@@ -12,7 +12,7 @@ import {
   emotionObjType,
   JournalEntryMainType,
 } from "@/constants/models/home/activity_log";
-import { emotionList, moodValueTitles } from "@/constants/models/journal";
+import { emotionList, moodValueTitles } from "@/constants/models/tools/journal";
 import { fetchJournalEntry } from "@/db/activity_log";
 import { deleteJournalEntry } from "@/db/tools";
 import { handleDeleteEntry } from "@/utils/deleteEntry";
