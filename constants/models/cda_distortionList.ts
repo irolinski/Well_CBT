@@ -62,7 +62,7 @@ export const cognitiveDistortions = [
       "Conclduing that your feelings must always reflect reality. Example: 'I feel ashamed, so I must've done something shameful.'.",
   },
   {
-    name: "'Should' statements",
+    name: '"Should" statements',
     description:
       "Placing rigid demands on yourself or others using terms like: 'should' 'ought to' and 'must'.",
   },

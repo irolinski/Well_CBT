@@ -1,14 +1,14 @@
 import { View } from "react-native";
-import Text from "../../global/Text";
+import Tooltip from "react-native-walkthrough-tooltip";
+import { useDispatch, useSelector } from "react-redux";
 import {
   cognitiveDistortions,
   DistortionListProps,
 } from "@/constants/models/cda_distortionList";
-import Tooltip from "react-native-walkthrough-tooltip";
-import DistortionPill from "../../DistortionPill";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "@/state/store";
 import { setDistortion } from "@/state/features/tools/cdaSlice";
+import { AppDispatch, RootState } from "@/state/store";
+import DistortionPill from "../../DistortionPill";
+import Text from "../../global/Text";
 
 const CDADistortionList = ({
   showDistortionTooltip,
@@ -30,7 +30,7 @@ const CDADistortionList = ({
       >
         Press and hold to see the description.
       </Text>
-      {cognitiveDistortions.map((d, index) => (
+      {cognitiveDistortions.map((distortionObj, index) => (
         <Tooltip
           isVisible={showDistortionTooltip === index && true}
           content={
@@ -43,7 +43,7 @@ const CDADistortionList = ({
                 paddingRight: 20,
               }}
             >
-              {d.description}
+              {distortionObj.description}
             </Text>
           }
           useInteractionManager={true}
@@ -63,11 +63,11 @@ const CDADistortionList = ({
           key={index}
         >
           <DistortionPill
-            title={d.name}
-            checked={Boolean(d.name === cdaState.distortion)}
+            title={distortionObj.name}
+            checked={Boolean(distortionObj.name === cdaState.distortion)}
             highlighted={showDistortionTooltip === index}
             onPress={() => {
-              dispatch(setDistortion(d.name));
+              dispatch(setDistortion(distortionObj.name));
             }}
             onLongPress={() => handleShowTooltip(tooltipY, index)}
           />
