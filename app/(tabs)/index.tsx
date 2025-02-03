@@ -1,25 +1,20 @@
 import { Image } from "expo-image";
 import { Href, router } from "expo-router";
 import React, { useEffect, useState } from "react";
-import { Dimensions, Pressable, View } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
+import { Pressable, View } from "react-native";
+import { useDispatch } from "react-redux";
 import AdvanceButton from "@/components/AdvanceButton";
-import DividerLine from "@/components/DividerLine";
 import Text from "@/components/global/Text";
 import FrameMenu from "@/components/home/FrameMenu";
 import JournalCard from "@/components/home/JournalCard";
 import NewActivityModal from "@/components/home/NewActivityModal";
 import QuoteWidget from "@/components/home/QuoteWidget";
-import TypewriterText from "@/components/TypewriterText";
+import WelcomeTypewriterText from "@/components/home/WelcomeTypewriterText";
 import { EntryViewTableRow } from "@/constants/models/activity_log";
 import { fetchRecentEntries } from "@/db/activity_log";
-import { UserType } from "@/db/models";
-import { fetchUserData } from "@/db/user";
 import { setShowNewActivityModal } from "@/state/features/menus/newActivityModalSlice";
-import { AppDispatch, RootState } from "@/state/store";
+import { AppDispatch } from "@/state/store";
 import { Entypo } from "@expo/vector-icons";
-
-const windowWidth = Dimensions.get("window").width;
 
 const Home = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -27,8 +22,6 @@ const Home = () => {
   const [recentEntriesArr, setRecentEntriesArr] = useState<EntryViewTableRow[]>(
     [],
   );
-  const [userData, setUserData] = useState<UserType>();
-  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     fetchRecentEntries().then((res) => {
@@ -36,43 +29,11 @@ const Home = () => {
     });
   }, []);
 
-  useEffect(() => {
-    setIsLoading(true);
-    try {
-      fetchUserData().then((res) => {
-        let fetchedData = res as UserType;
-        setUserData(fetchedData);
-      });
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setIsLoading(false);
-    }
-  }, []);
-
-  const userName = userData && userData.name.length > 0 ? userData.name : "";
-
   return (
     <FrameMenu title="Home" className="items-center justify-center">
       <View>
         {/* Welcome */}
-        <View className="my-4">
-          <View
-            className="mx-4 mb-8 mt-2 justify-center"
-            style={{ borderColor: "#DDDDDD" }}
-          >
-            <TypewriterText
-              text={`Hi${userName && ", " + userName}! How are you, today? `}
-              speed="fast"
-              fontFamily="KodchasanMedium"
-              color="#757575"
-              letterSpacing={2}
-              lineHeight={1.5}
-              hideCursorOnFinish={true}
-            />
-          </View>
-          <DividerLine width={windowWidth / 1.5} weight={0.5} />
-        </View>
+        <WelcomeTypewriterText />
         {/* Quote Widget */}
         <View className="my-4 items-center justify-center">
           <QuoteWidget />
