@@ -2,7 +2,7 @@ import * as SQLite from "expo-sqlite";
 import {
   AchievementProgressObj,
   allAchievementsModelsArr,
-} from "@/constants/models/about_achievements";
+} from "@/constants/models/about/achievements";
 import {
   AchievementIdType,
   allAchievementsWithControllersArr,

@@ -6,7 +6,7 @@ import {
   ballSizeParameter,
   statObjectsList,
   StatsObj,
-} from "@/constants/models/about";
+} from "@/constants/models/about/about";
 import { fetchStatsData } from "@/db/about";
 import { StatsDataObjType } from "@/db/models";
 import { interpolateNumbers } from "@/utils/algorithms";

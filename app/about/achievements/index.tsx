@@ -8,7 +8,7 @@ import {
   AchievementObj,
   AchievementProgressObj,
   allAchievementsModelsArr,
-} from "@/constants/models/about_achievements";
+} from "@/constants/models/about/achievements";
 import { handleGetAchievementProgressData } from "@/db/achievements/controllers";
 
 const AchievementsPage = () => {

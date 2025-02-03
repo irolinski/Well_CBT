@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { MaterialIcons } from "@expo/vector-icons";
-import { ToolList } from "./activity_log";
+import { ToolList } from "../activity_log";
 
 export enum ballSizeParameter {
   min = 0.175,

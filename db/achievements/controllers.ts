@@ -1,5 +1,11 @@
 import * as SQLite from "expo-sqlite";
 import {
+  AchievementControllerType,
+  AchievementProgressObj,
+  allAchievementsModelsObj,
+  AllAchievementsObjType,
+} from "@/constants/models/about/achievements";
+import {
   handleGetCDACount,
   handleGetJournalCount,
   handleGetRelaxTime,
@@ -7,12 +13,6 @@ import {
 import { handleGetFinishedArticleIds } from "@/db/learn";
 import { dbName } from "@/db/service";
 import { handleGetNumOfAllEntries, handleGetUserData } from "@/db/user";
-import {
-  AchievementControllerType,
-  AchievementProgressObj,
-  allAchievementsModelsObj,
-  AllAchievementsObjType,
-} from "../../constants/models/about_achievements";
 
 export type AchievementIdType = keyof typeof allAchievementsWithControllersObj;
 
