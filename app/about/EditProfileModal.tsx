@@ -28,6 +28,7 @@ import {
   setShowEditProfileModal,
 } from "@/state/features/menus/editProfileModalSlice";
 import { AppDispatch, RootState } from "@/state/store";
+import { isValidName } from "@/utils/inputValidations";
 import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 
 const EditProfileModal = () => {
@@ -165,15 +166,21 @@ const EditProfileModal = () => {
                         textAlignVertical: "center",
                       }}
                       selectTextOnFocus={true}
-                      onChangeText={(evt) => dispatch(setName(evt))}
+                      onChangeText={(value) => {
+                        if (isValidName(value)) {
+                          dispatch(setName(value));
+                        }
+                      }}
                       editable={editProfileModalState.nameInputIsActive}
                       multiline={false}
                       maxLength={13}
                       autoFocus={editProfileModalState.nameInputIsActive}
                       returnKeyType="done"
-                      onKeyPress={(evt) =>
-                        evt.nativeEvent.key == "Enter" && Keyboard.dismiss()
-                      }
+                      onKeyPress={(evt) => {
+                        if (evt.nativeEvent.key == "Enter") {
+                          Keyboard.dismiss();
+                        }
+                      }}
                       clearButtonMode="never"
                       onBlur={() => {
                         dispatch(setNameInputIsActive(false));

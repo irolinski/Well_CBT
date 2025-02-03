@@ -19,6 +19,7 @@ import ToolHeader from "@/components/tools/ToolHeader";
 import { setContact, setContactWithPicture } from "@/db/tools";
 import { RootState } from "@/state/store";
 import formatPhoneNumber from "@/utils/formatPhoneNumber";
+import { isValidName } from "@/utils/inputValidations";
 import { MaterialIcons } from "@expo/vector-icons";
 
 interface PhoneNumberObj {
@@ -131,8 +132,10 @@ const Add = () => {
               className="h-12 w-full rounded-lg text-lg"
               style={{ borderColor: "#B8B8B8", width: "80%" }}
               onChangeText={(value) => {
-                setSearchValue(value);
-                search(value.toLowerCase());
+                if (isValidName(value)) {
+                  setSearchValue(value);
+                  search(value.toLowerCase());
+                }
               }}
               value={searchValue}
               editable

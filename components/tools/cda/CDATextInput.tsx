@@ -1,6 +1,8 @@
-import { View, TextInput, Keyboard, Dimensions } from "react-native";
-import Text from "../../global/Text";
 import { useState } from "react";
+import { Dimensions, Keyboard, TextInput, View } from "react-native";
+import { isValidExerciseInput } from "@/utils/inputValidations";
+import Text from "../../global/Text";
+
 export default function CDATextInput({
   value,
   handleChangeText,
@@ -23,7 +25,11 @@ export default function CDATextInput({
           textAlignVertical: "top",
         }}
         value={value}
-        onChangeText={(evt) => handleChangeText(evt)}
+        onChangeText={(value) => {
+          if (isValidExerciseInput(value)) {
+            handleChangeText(value);
+          }
+        }}
         editable
         multiline={true}
         numberOfLines={4}
