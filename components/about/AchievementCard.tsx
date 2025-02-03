@@ -71,27 +71,29 @@ const AchievementCard = ({
         <View className="my-2 w-3/4">
           <Text>{description}</Text>
         </View>
-        <View className="flex-row items-center">
-          {score_current && score_required ? (
-            <View
-              className="mr-2 h-2 w-3/4 justify-center"
-              style={{ backgroundColor: "#B8B8B8" }}
-            >
-              <View
-                className="h-full bg-yellow-400"
-                style={{ width: progressPercentValString }}
-              ></View>
-            </View>
-          ) : null}
-
-          <View className="mx-1">
+        {score_required && score_required > 1 && (
+          <View className="flex-row items-center">
             {score_current && score_required ? (
-              <Text>
-                {score_current}/{score_required}
-              </Text>
+              <View
+                className="mr-2 h-2 w-3/4 justify-center"
+                style={{ backgroundColor: "#B8B8B8" }}
+              >
+                <View
+                  className="h-full bg-yellow-400"
+                  style={{ width: progressPercentValString }}
+                ></View>
+              </View>
             ) : null}
+
+            <View className="mx-1">
+              {score_current && score_required ? (
+                <Text>
+                  {score_current}/{score_required}
+                </Text>
+              ) : null}
+            </View>
           </View>
-        </View>
+        )}
       </View>
     </View>
   );

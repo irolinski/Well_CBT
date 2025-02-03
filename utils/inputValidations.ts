@@ -6,7 +6,6 @@ export const isValidName = (name: string): boolean => {
 };
 
 export const isValidExerciseInput = (input: string): boolean => {
-  //   const regex = /^[\p{L}\d\s\?!%"'\/.,:;\-()+=\\\\“”‘’"']+$/u;
   const regex = /[^&@#$€^<¥•£*>~£§\_\[\]\{\}\\]/;
   return regex.test(input) || !input;
 };
