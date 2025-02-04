@@ -2,7 +2,6 @@ import { Tabs } from "expo-router";
 import React from "react";
 import { Dimensions, View } from "react-native";
 import { Colors } from "@/constants/styles/colorTheme";
-import { useColorScheme } from "@/hooks/useColorScheme";
 import {
   Feather,
   MaterialCommunityIcons,
@@ -10,7 +9,6 @@ import {
 } from "@expo/vector-icons";
 
 const TabLayout = () => {
-  const colorScheme = useColorScheme();
   const windowHeight = Dimensions.get("window").height;
 
   const tabBarHeight = windowHeight / 9;
