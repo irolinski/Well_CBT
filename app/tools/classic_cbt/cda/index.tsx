@@ -1,6 +1,7 @@
 import { Href, router } from "expo-router";
 import React from "react";
 import { ImageBackground, Text, View } from "react-native";
+import { toolBackgrounds } from "@/assets/images/tools/backgrounds/backgrounds";
 import AdvanceButton from "@/components/AdvanceButton";
 import BackButton from "@/components/BackButton";
 import { Colors } from "@/constants/styles/colorTheme";
@@ -8,9 +9,7 @@ import { Colors } from "@/constants/styles/colorTheme";
 const Cda = () => {
   return (
     <React.Fragment>
-      <ImageBackground
-        source={require("@/assets/images/tools/breathe/canes.webp")}
-      >
+      <ImageBackground source={toolBackgrounds.thought_challange}>
         <View className="absolute left-6 top-12 z-10">
           <BackButton />
         </View>
