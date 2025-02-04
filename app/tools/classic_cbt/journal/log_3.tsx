@@ -54,13 +54,17 @@ const Log_3 = () => {
                   you have chosen.
                 </Text>
                 <View className="mx-6 mt-4">
-                  {journalState.emotions.map((e, index) => (
+                  {journalState.emotions.map((emotionObj, index) => (
                     <View className="mt-6" key={index}>
                       <Text
                         className="mx-4 mb-1.5"
-                        style={{ color: Colors.darkGray }}
+                        style={{
+                          color: Colors.darkGray,
+                          fontSize: 15,
+                          fontWeight: 500,
+                        }}
                       >
-                        {e.name}
+                        {emotionObj.name}
                       </Text>
                       <Slider
                         animateTransitions
@@ -68,7 +72,10 @@ const Log_3 = () => {
                         minimumValue={0} // 0.1 causes a visual glitch
                         maximumValue={0.4}
                         onValueChange={(evt) => {
-                          handleSlide(e, Math.floor(Number(evt) * 10) + 1);
+                          handleSlide(
+                            emotionObj,
+                            Math.floor(Number(evt) * 10) + 1,
+                          );
                         }}
                         renderThumbComponent={() => (
                           <View
@@ -78,28 +85,22 @@ const Log_3 = () => {
                               padding: 15,
                               zIndex: 0,
                               justifyContent: "center",
+                              alignItems: "center",
                               backgroundColor: "white",
                               borderRadius: 50,
                             }}
                           >
                             <Text
-                              className="absolute z-20 translate-x-2.5 text-center"
+                              className="absolute z-20 text-center"
                               style={{ color: Colors.darkGray }}
                             >
-                              {e.strength ? e.strength : null}
+                              {emotionObj.strength ? emotionObj.strength : null}
                             </Text>
                           </View>
                         )}
-                        minimumTrackTintColor={e.color}
+                        minimumTrackTintColor={emotionObj.color}
                         maximumTrackTintColor={Colors.whiteSmoke}
                         thumbTintColor={Colors.whiteSmoke}
-                        thumbStyle={{
-                          padding: 25,
-                          borderRadius: 50,
-                          borderColor: "black",
-                          borderWidth: 0.5,
-                          borderStyle: "solid",
-                        }}
                         trackStyle={{
                           paddingTop: 10,
                           borderRadius: 50,
@@ -113,7 +114,7 @@ const Log_3 = () => {
                           className="h-5 justify-end"
                           style={{ color: Colors.darkGray }}
                         >
-                          {emotionStrengthTitles[e.strength! - 1]}
+                          {emotionStrengthTitles[emotionObj.strength! - 1]}
                         </Text>
                       </View>
                     </View>
