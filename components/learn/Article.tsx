@@ -1,6 +1,7 @@
 import { Image } from "expo-image";
 import React, { useRef } from "react";
 import { Animated, Dimensions, ScrollView, View } from "react-native";
+import { logoImages } from "@/assets/images/global/logo/logo";
 import DividerLine from "@/components/DividerLine";
 import Text from "@/components/global/Text";
 import ArticleImage from "@/components/learn/ArticleCustomImage";
@@ -95,7 +96,7 @@ const ArticlePage = ({
               <View className="mt-6 h-4 w-full flex-row items-center justify-center">
                 <Image
                   className="h-4 w-1/2"
-                  source={require("@/assets/images/logo_braid.webp")}
+                  source={logoImages.logo_braid_divider}
                 />
               </View>
             )}

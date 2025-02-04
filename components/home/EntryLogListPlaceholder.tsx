@@ -1,5 +1,6 @@
 import { Image } from "expo-image";
 import { Text, View } from "react-native";
+import { logoImages } from "@/assets/images/global/logo/logo";
 import { Colors } from "@/constants/styles/colorTheme";
 
 const EntryLogListPlaceholder = () => {
@@ -15,7 +16,7 @@ const EntryLogListPlaceholder = () => {
         >
           <Image
             className="h-full w-full"
-            source={require("@/assets/images/logo/triple-logo-braid-vertical.webp")}
+            source={logoImages.logo_braid_vertical}
             contentFit={"fill"}
           />
         </View>

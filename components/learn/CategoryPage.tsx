@@ -2,6 +2,7 @@ import { Image } from "expo-image";
 import { useLocalSearchParams } from "expo-router";
 import React, { useRef } from "react";
 import { Animated, Dimensions, ScrollView, View } from "react-native";
+import { logoImages } from "@/assets/images/global/logo/logo";
 import LearnArticleCard from "@/components/learn/ArticleCard";
 import { learnArticles } from "@/constants/models/learn/articles";
 import { learnCategories } from "@/constants/models/learn/categories";
@@ -71,10 +72,7 @@ const CategoryPage = () => {
               </View>
             </View>
             <View className="mb-12 mt-6 h-4 w-full flex-row items-center justify-center">
-              <Image
-                className="h-4 w-1/2"
-                source={require("@/assets/images/logo_braid.webp")}
-              />
+              <Image className="h-4 w-1/2" source={logoImages.logo_standard} />
             </View>
           </View>
         </ScrollView>

@@ -1,6 +1,7 @@
 import { Image } from "expo-image";
 import React, { useEffect, useState } from "react";
 import { ScrollView, View } from "react-native";
+import { logoImages } from "@/assets/images/global/logo/logo";
 import AchievementCard from "@/components/about/AchievementCard";
 import MenuNav from "@/components/global/MenuNav";
 import Text from "@/components/global/Text";
@@ -77,10 +78,7 @@ const AchievementsPage = () => {
           </View>
         </View>
         <View className="mb-12 mt-6 h-4 w-full flex-row items-center justify-center">
-          <Image
-            className="h-4 w-1/2"
-            source={require("@/assets/images/logo_braid.webp")}
-          />
+          <Image className="h-4 w-1/2" source={logoImages.logo_braid_divider} />
         </View>
       </ScrollView>
     </React.Fragment>

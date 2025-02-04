@@ -1,11 +1,11 @@
-import { View, ImageBackground } from "react-native";
-// import { WellLogo, WellLogoDark } from "@/constants/models/images";
+import { ImageBackground, View } from "react-native";
+import { logoImages } from "@/assets/images/global/logo/logo";
 
 export const LogoDark = ({ sizePx }: { sizePx: number }) => {
   return (
     <View style={{ width: sizePx, height: sizePx }}>
       <ImageBackground
-        source={require("@/assets/images/well-logo-dark.png")}
+        source={logoImages.logo_dark}
         resizeMode="contain"
         className="ounded-lg flex-1 justify-center"
       ></ImageBackground>
@@ -16,9 +16,9 @@ export const Logo = ({ sizePx }: { sizePx: number }) => {
   return (
     <View style={{ width: sizePx, height: sizePx }}>
       <ImageBackground
-        source={require("@/assets/images/well-logo.png")}
+        source={logoImages.logo_standard}
         resizeMode="contain"
-        className="ounded-lg flex-1 justify-center"
+        className="flex-1 justify-center"
       ></ImageBackground>
     </View>
   );

@@ -2,6 +2,7 @@ import { Image } from "expo-image";
 import { useLocalSearchParams } from "expo-router";
 import React, { useEffect, useState } from "react";
 import { ScrollView, View } from "react-native";
+import { logoImages } from "@/assets/images/global/logo/logo";
 import DistortionPill from "@/components/DistortionPill";
 import ErrorScreen from "@/components/ErrorScreen";
 import Text from "@/components/global/Text";
@@ -169,7 +170,7 @@ const ActivityShowPage = () => {
               <View className="w-full flex-row justify-center">
                 <Image
                   className="h-4 w-1/2 translate-y-16"
-                  source={require("@/assets/images/logo_braid.webp")}
+                  source={logoImages.logo_braid_divider}
                 />
               </View>
             </View>

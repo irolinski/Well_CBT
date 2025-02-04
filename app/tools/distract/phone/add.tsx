@@ -12,6 +12,7 @@ import {
   View,
 } from "react-native";
 import { useSelector } from "react-redux";
+import { logoImages } from "@/assets/images/global/logo/logo";
 import { phoneFacePlaceholder } from "@/assets/images/tools/phone/phoneFaces";
 import BackButton from "@/components/BackButton";
 import Text from "@/components/global/Text";
@@ -244,7 +245,7 @@ const Add = () => {
                   </Text>
                   <Image
                     className="absolute bottom-0 left-1/3 h-4 w-1/3 translate-y-16"
-                    source={require("@/assets/images/logo_braid.webp")}
+                    source={logoImages.logo_braid_vertical}
                   />
                 </View>
               )}
