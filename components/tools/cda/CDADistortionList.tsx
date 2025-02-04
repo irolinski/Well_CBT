@@ -5,6 +5,7 @@ import {
   cognitiveDistortions,
   DistortionListProps,
 } from "@/constants/models/tools/cda_distortionList";
+import { Colors } from "@/constants/styles/colorTheme";
 import { setDistortion } from "@/state/features/tools/cdaSlice";
 import { AppDispatch, RootState } from "@/state/store";
 import DistortionPill from "../../DistortionPill";
@@ -24,7 +25,7 @@ const CDADistortionList = ({
       <Text
         className="pb-6"
         style={{
-          color: "#B8B8B8",
+          color: Colors.mainGray,
           fontSize: 14,
         }}
       >
@@ -55,7 +56,7 @@ const CDADistortionList = ({
             top: tooltipY - 155,
           }}
           contentStyle={{
-            backgroundColor: "#FBFBFB",
+            backgroundColor: Colors.offWhite,
             height: 120,
             width: 275,
             justifyContent: "center",

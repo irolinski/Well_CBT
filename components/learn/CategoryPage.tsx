@@ -5,6 +5,7 @@ import { Animated, Dimensions, ScrollView, View } from "react-native";
 import LearnArticleCard from "@/components/learn/ArticleCard";
 import { learnArticles } from "@/constants/models/learn/articles";
 import { learnCategories } from "@/constants/models/learn/categories";
+import { Colors } from "@/constants/styles/colorTheme";
 import ErrorScreen from "../ErrorScreen";
 import Text from "../global/Text";
 import CategoryScrollableHeader from "./CategoryScrollableHeader";
@@ -38,7 +39,7 @@ const CategoryPage = () => {
           scrollEventThrottle={5}
           showsVerticalScrollIndicator={false}
           style={{
-            backgroundColor: "#FBFBFB",
+            backgroundColor: Colors.offWhite,
             paddingTop: headerHeight,
           }}
           onScroll={handleScroll}
@@ -47,7 +48,7 @@ const CategoryPage = () => {
             <Text className="text-2xl">Articles</Text>
           </View>
           <View className="mx-4 mb-4">
-            <View style={{ backgroundColor: "#FBFBFB" }}>
+            <View style={{ backgroundColor: Colors.offWhite }}>
               <View className="items-center justify-center">
                 {articles.map((el, index: number) => (
                   <View className="mt-5 flex-1" key={index}>

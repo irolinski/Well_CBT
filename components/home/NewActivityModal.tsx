@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { ToolList } from "@/constants/models/home/activity_log";
+import { Colors } from "@/constants/styles/colorTheme";
 import { setNavigateSettingsModalSelectedLink } from "@/state/features/menus/navigateSettingsModalSlice";
 import {
   setNewActivityModalSelectedLink,
@@ -45,7 +46,7 @@ const NewActivityModal = () => {
     <React.Fragment>
       <NavigationModal
         title="Add a new activity"
-        icon={<Entypo name="new-message" size={28} color="#D9D9D9" />}
+        icon={<Entypo name="new-message" size={28} color={Colors.lightGray} />}
         items={itemList}
         modalState={newActivityModalState}
         handleShowModal={(isOpen: boolean) => setShowNewActivityModal(isOpen)}

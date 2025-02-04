@@ -1,5 +1,6 @@
 import { Dimensions, Pressable, View } from "react-native";
 import { useDispatch } from "react-redux";
+import { Colors } from "@/constants/styles/colorTheme";
 import { activityLogResetState } from "@/state/features/menus/activityLogSlice";
 import { AppDispatch } from "@/state/store";
 import { Ionicons } from "@expo/vector-icons";
@@ -17,15 +18,15 @@ const ActivityShowNav = ({ handlePressDelete }: ActivityShowNavTypes) => {
     <View
       className={`z-10 w-full border-b`}
       style={{
-        borderColor: "#D9D9D9",
-        backgroundColor: "#8DBED8",
+        borderColor: Colors.lightGray,
+        backgroundColor: Colors.mainBlue,
         paddingTop: windowHeight * 0.065,
         paddingBottom: 16,
       }}
     >
       <View className="z-10 w-full flex-row items-center justify-between">
         <View className="left-6">
-          <BackButton color="#FBFBFB" />
+          <BackButton color={Colors.offWhite} />
         </View>
         <View className="mx-6 flex-row justify-end">
           <Pressable
@@ -34,7 +35,7 @@ const ActivityShowNav = ({ handlePressDelete }: ActivityShowNavTypes) => {
               dispatch(activityLogResetState());
             }}
           >
-            <Ionicons name="trash-outline" size={22} color="#FBFBFB" />
+            <Ionicons name="trash-outline" size={22} color={Colors.offWhite} />
           </Pressable>
         </View>
       </View>

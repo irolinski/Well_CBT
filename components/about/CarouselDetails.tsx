@@ -1,5 +1,6 @@
 import React from "react";
 import { Dimensions, View } from "react-native";
+import { Colors } from "@/constants/styles/colorTheme";
 import Text from "../global/Text";
 
 const CarouselDetails = ({
@@ -26,7 +27,7 @@ const CarouselDetails = ({
           className="absolute top-0.5 px-12"
           style={{
             fontSize: 26,
-            color: "#FFFFFF",
+            color: Colors.white,
             fontFamily: "Kodchasan",
             fontWeight: 500,
             textAlign: "center",
@@ -36,7 +37,10 @@ const CarouselDetails = ({
         </Text>
         <Text
           className="my-4 w-80 px-10 text-center"
-          style={{ color: "#FFFFFF", fontSize: windowHeight > 750 ? 16 : 14 }}
+          style={{
+            color: Colors.white,
+            fontSize: windowHeight > 750 ? 16 : 14,
+          }}
         >
           {description}
         </Text>

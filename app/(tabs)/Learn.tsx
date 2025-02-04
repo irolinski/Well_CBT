@@ -9,6 +9,7 @@ import {
   learnCategories,
   learnCategoriesTypes,
 } from "@/constants/models/learn/categories";
+import { Colors } from "@/constants/styles/colorTheme";
 
 const Learn = () => {
   const articleNumber = (Math.random() * (learnArticles.length - 1)) | 0;
@@ -41,7 +42,7 @@ const Learn = () => {
 
         <Text
           className="mb-4 mt-2 text-left text-2xl"
-          style={{ color: "#27261F" }}
+          style={{ color: Colors.offBlack }}
         >
           Categories
         </Text>

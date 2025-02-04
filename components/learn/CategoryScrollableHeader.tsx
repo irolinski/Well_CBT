@@ -1,7 +1,8 @@
 import { Image } from "expo-image";
 import { Animated, ColorValue, Dimensions, View } from "react-native";
-import Text from "../global/Text";
+import { Colors } from "@/constants/styles/colorTheme";
 import MenuNav from "../global/MenuNav";
+import Text from "../global/Text";
 
 type CategoryScrollableHeaderTypes = {
   title: string;
@@ -58,7 +59,10 @@ const CategoryScrollableHeader = ({
             className="flex-row justify-center"
             style={{ marginTop: windowHeight * 0.03 }}
           >
-            <Text className="text-center text-lg" style={{ color: "#FFFFFF" }}>
+            <Text
+              className="text-center text-lg"
+              style={{ color: Colors.white }}
+            >
               Category
             </Text>
           </View>
@@ -68,7 +72,7 @@ const CategoryScrollableHeader = ({
               style={{
                 fontFamily: "KodchasanRegular",
                 fontWeight: 400,
-                color: "#FFFFFF",
+                color: Colors.white,
               }}
             >
               {title}
@@ -77,7 +81,7 @@ const CategoryScrollableHeader = ({
           <View className="mt-7 flex-row justify-center">
             <Text
               className="mx-10 text-center text-base italic"
-              style={{ color: "#FFFFFF" }}
+              style={{ color: Colors.white }}
             >
               {description}
             </Text>

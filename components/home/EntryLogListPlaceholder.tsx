@@ -1,5 +1,6 @@
 import { Image } from "expo-image";
 import { Text, View } from "react-native";
+import { Colors } from "@/constants/styles/colorTheme";
 
 const EntryLogListPlaceholder = () => {
   return (
@@ -25,7 +26,10 @@ const EntryLogListPlaceholder = () => {
             height: "40%",
           }}
         >
-          <Text className="px-8 text-left text-xl" style={{ color: "#D9D9D9" }}>
+          <Text
+            className="px-8 text-left text-xl"
+            style={{ color: Colors.lightGray }}
+          >
             No data found
           </Text>
         </View>

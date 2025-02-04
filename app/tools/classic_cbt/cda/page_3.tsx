@@ -15,6 +15,7 @@ import CDATextBox from "@/components/tools/cda/CDATextBox";
 import CDATextInput from "@/components/tools/cda/CDATextInput";
 import ToolHeader from "@/components/tools/ToolHeader";
 import ToolNav from "@/components/tools/ToolNav";
+import { Colors } from "@/constants/styles/colorTheme";
 import { setNewThought } from "@/state/features/tools/cdaSlice";
 import { AppDispatch, RootState } from "@/state/store";
 
@@ -39,7 +40,7 @@ const Page_3 = () => {
                 </View>
                 <View
                   className="my-8 border-b border-t px-2 py-7"
-                  style={{ borderColor: "#D9D9D9" }}
+                  style={{ borderColor: Colors.lightGray }}
                 >
                   <Text>Cognitive Distortion:</Text>
                   <View className="mx-auto mt-4 w-3/4 px-4">

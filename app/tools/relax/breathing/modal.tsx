@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Text from "@/components/global/Text";
 import RadioButton from "@/components/RadioButton";
 import MethodInfo from "@/components/tools/breathe/MethodInfo";
+import { Colors } from "@/constants/styles/colorTheme";
 import {
   mode_4_7_8,
   mode_box_4s,
@@ -42,7 +43,7 @@ const BreatheModal = ({ ellapsedTime }: { ellapsedTime: number }) => {
           style={{
             top: 0,
             width: windowWidth,
-            backgroundColor: "#FBFBFB",
+            backgroundColor: Colors.offWhite,
           }}
         >
           <Pressable
@@ -57,16 +58,16 @@ const BreatheModal = ({ ellapsedTime }: { ellapsedTime: number }) => {
             </View>
           </Pressable>
           <View className="items-center">
-            <Text className="text-xl" style={{ color: "#B8B8B8" }}>
+            <Text className="text-xl" style={{ color: Colors.mainGray }}>
               Settings
             </Text>
           </View>
           <View className="my-8">
             <View
               className="border-b pb-4 pt-2"
-              style={{ borderColor: "#B8B8B8" }}
+              style={{ borderColor: Colors.mainGray }}
             >
-              <Text className="text-lg" style={{ color: "#B8B8B8" }}>
+              <Text className="text-lg" style={{ color: Colors.mainGray }}>
                 Breathing mode
               </Text>
               <View className="m-4 flex-row justify-around">
@@ -78,13 +79,16 @@ const BreatheModal = ({ ellapsedTime }: { ellapsedTime: number }) => {
                   <View className="flex-row items-center">
                     <View className="-translate-y-2">
                       <RadioButton
-                        checkedColor={"#B8B8B8"} //"#8DBED8"
+                        checkedColor={Colors.mainGray} //colors.mainBlue
                         isActive={breatheSettings.mode.name === "box"}
                       />
                     </View>
                     <View className="items-center">
                       <View className="m-2 h-16 w-16 rounded-xl border"></View>
-                      <Text className="text-lg" style={{ color: "#B8B8B8" }}>
+                      <Text
+                        className="text-lg"
+                        style={{ color: Colors.mainGray }}
+                      >
                         Box
                       </Text>
                     </View>
@@ -99,13 +103,16 @@ const BreatheModal = ({ ellapsedTime }: { ellapsedTime: number }) => {
                   <View className="flex-row items-center">
                     <View className="-translate-y-2">
                       <RadioButton
-                        checkedColor={"#B8B8B8"} //"#8DBED8"
+                        checkedColor={Colors.mainGray} //colors.mainBlue
                         isActive={breatheSettings.mode.name === "4-7-8"}
                       />
                     </View>
                     <View className="items-center">
                       <View className="m-2 h-16 w-16 rounded-xl border"></View>
-                      <Text className="text-lg" style={{ color: "#B8B8B8" }}>
+                      <Text
+                        className="text-lg"
+                        style={{ color: Colors.mainGray }}
+                      >
                         4-7-8
                       </Text>
                     </View>
@@ -114,16 +121,22 @@ const BreatheModal = ({ ellapsedTime }: { ellapsedTime: number }) => {
               </View>
               {/* Here add mode settings, if needed */}
             </View>
-            <View className="border-b py-3" style={{ borderColor: "#B8B8B8" }}>
-              <Text className="text-lg" style={{ color: "#B8B8B8" }}>
+            <View
+              className="border-b py-3"
+              style={{ borderColor: Colors.mainGray }}
+            >
+              <Text className="text-lg" style={{ color: Colors.mainGray }}>
                 Method
               </Text>
               <View className="mt-4">
                 <MethodInfo />
               </View>
             </View>
-            <View className="border-b py-3" style={{ borderColor: "#B8B8B8" }}>
-              <Text className="text-lg" style={{ color: "#B8B8B8" }}>
+            <View
+              className="border-b py-3"
+              style={{ borderColor: Colors.mainGray }}
+            >
+              <Text className="text-lg" style={{ color: Colors.mainGray }}>
                 Customize
               </Text>
               <View className="m-4 flex-row py-4">
@@ -136,9 +149,9 @@ const BreatheModal = ({ ellapsedTime }: { ellapsedTime: number }) => {
                     <View
                       className="mx-2 h-6 w-6 rounded-lg border"
                       style={{
-                        borderColor: "#B8B8B8",
+                        borderColor: Colors.mainGray,
                         backgroundColor: breatheSettings.showCountdown
-                          ? "#8DBED8"
+                          ? Colors.mainBlue
                           : "transparent",
                       }}
                     >
@@ -150,7 +163,7 @@ const BreatheModal = ({ ellapsedTime }: { ellapsedTime: number }) => {
                     </View>
                     <Text
                       className="text-center text-base"
-                      style={{ color: "#757575" }}
+                      style={{ color: Colors.darkGray }}
                     >
                       Count-in before start
                     </Text>
@@ -158,19 +171,19 @@ const BreatheModal = ({ ellapsedTime }: { ellapsedTime: number }) => {
                 </Pressable>
               </View>
             </View>
-            <View className="py-3" style={{ borderColor: "#B8B8B8" }}>
-              <Text className="text-lg" style={{ color: "#B8B8B8" }}>
+            <View className="py-3" style={{ borderColor: Colors.mainGray }}>
+              <Text className="text-lg" style={{ color: Colors.mainGray }}>
                 Duration
               </Text>
               <View className="my-4">
                 <View className="mx-10 mt-4">
                   <Slider
-                    minimumTrackStyle={{ backgroundColor: "#D9D9D9" }}
+                    minimumTrackStyle={{ backgroundColor: Colors.lightGray }}
                     trackStyle={{
-                      backgroundColor: "#D9D9D9",
+                      backgroundColor: Colors.lightGray,
                       height: 1,
                     }}
-                    thumbStyle={{ backgroundColor: "#8DBED8" }}
+                    thumbStyle={{ backgroundColor: Colors.mainBlue }}
                     minimumValue={0}
                     maximumValue={0.4}
                     value={(breatheSettings.numOfSets - 1) / 10}
@@ -179,10 +192,16 @@ const BreatheModal = ({ ellapsedTime }: { ellapsedTime: number }) => {
                     }
                   />
                   <View className="flex-row justify-between">
-                    <Text className="text-base" style={{ color: "#B8B8B8" }}>
+                    <Text
+                      className="text-base"
+                      style={{ color: Colors.mainGray }}
+                    >
                       {breatheSettings.numOfSets} sets
                     </Text>
-                    <Text className="text-base" style={{ color: "#B8B8B8" }}>
+                    <Text
+                      className="text-base"
+                      style={{ color: Colors.mainGray }}
+                    >
                       ({(ellapsedTime - (ellapsedTime % 60)) / 60}m{" "}
                       {ellapsedTime % 60}
                       s)

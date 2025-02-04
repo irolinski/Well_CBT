@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Calendar } from "react-native-calendars";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  setFilterPeriod,
-} from "@/state/features/menus/activityLogSlice";
+import { Colors } from "@/constants/styles/colorTheme";
+import { setFilterPeriod } from "@/state/features/menus/activityLogSlice";
 import { AppDispatch, RootState } from "@/state/store";
 
 type CalendarCallbackEvent = {
@@ -102,7 +101,7 @@ const ActivityLogCalendar = () => {
       // color starting date in the UI
       newMarkedDatesObj[activityLogState.filterPeriod[0]] = {
         startingDay: true,
-        color: "#8DBED8",
+        color: Colors.mainBlue,
       };
       setMarkedDates(newMarkedDatesObj);
     }
@@ -122,7 +121,7 @@ const ActivityLogCalendar = () => {
         newMarkedDatesObj[`${el}`] = {
           startingDay: index === 0,
           endingDay: index === selectedDates.length - 1,
-          color: "#8DBED8",
+          color: Colors.mainBlue,
         };
       });
     }
@@ -150,7 +149,7 @@ const ActivityLogCalendar = () => {
         enableSwipeMonths={true}
         theme={{
           dotColor: "#FF997C",
-          arrowColor: "#8DBED8",
+          arrowColor: Colors.mainBlue,
           calendarBackground: "rgba(255, 255, 255, 0)",
         }}
       />

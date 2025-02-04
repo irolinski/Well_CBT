@@ -5,6 +5,7 @@ import {
   toolNameList,
   ToolNames,
 } from "@/constants/models/home/activity_log";
+import { Colors } from "@/constants/styles/colorTheme";
 import { setFilterCategories } from "@/state/features/menus/activityLogSlice";
 import { AppDispatch, RootState } from "@/state/store";
 import Text from "../global/Text";
@@ -46,7 +47,7 @@ const CategoryFilter = () => {
               checkedColor={"rgba(242, 141, 78, 0.75)"}
             />
             <View className="items-center">
-              <Text className="text-base" style={{ color: "#B8B8B8" }}>
+              <Text className="text-base" style={{ color: Colors.mainGray }}>
                 {ToolList[categoryName].name}
               </Text>
             </View>

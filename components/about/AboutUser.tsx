@@ -4,6 +4,7 @@ import { Dimensions, TouchableOpacity, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { allFaces } from "@/assets/images/global/faces/faces";
 import ProfilePic from "@/components/about/ProfilePic";
+import { Colors } from "@/constants/styles/colorTheme";
 import { fetchUserData, UserType } from "@/db/user";
 import { setShowNavigateSettingsModal } from "@/state/features/menus/navigateSettingsModalSlice";
 import { AppDispatch, RootState } from "@/state/store";
@@ -64,7 +65,9 @@ const AboutUser = () => {
         <ProfilePic
           image={profilePic ? profilePic : allFaces[0].image}
           handlePress={() => dispatch(setShowNavigateSettingsModal(true))}
-          buttonIcon={<Feather name="settings" size={24} color="#FFFFFF" />}
+          buttonIcon={
+            <Feather name="settings" size={24} color={Colors.white} />
+          }
         />
       </View>
       <View>
@@ -77,13 +80,13 @@ const AboutUser = () => {
           </View>
 
           <View className="my-4 items-center">
-            <Text className="text-base" style={{ color: "#757575" }}>
+            <Text className="text-base" style={{ color: Colors.darkGray }}>
               <Text style={{ fontWeight: 500 }}>Last visit: </Text>
               <Text>{lastVisit && lastVisit}</Text>
             </Text>
             <Text
               className="my-2 text-center text-base"
-              style={{ color: "#757575", width: windowWidth * 0.25 }}
+              style={{ color: Colors.darkGray, width: windowWidth * 0.25 }}
             >
               Completed activities: {completedActivities}
             </Text>

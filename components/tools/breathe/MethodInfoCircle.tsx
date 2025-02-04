@@ -1,5 +1,6 @@
-import Text from "@/components/global/Text";
 import { View } from "react-native";
+import Text from "@/components/global/Text";
+import { Colors } from "@/constants/styles/colorTheme";
 
 type MethodInfoCircleProps = {
   step: "in" | "out" | "hold";
@@ -11,11 +12,13 @@ const MethodInfoCircle = ({ step, time }: MethodInfoCircleProps) => {
     <View className="mx-2 items-center">
       <View
         className="h-20 w-20 items-center justify-center rounded-full border"
-        style={{ backgroundColor: "#E4E4E4", borderColor: "#B8B8B8" }}
+        style={{ backgroundColor: "#E4E4E4", borderColor: Colors.mainGray }}
       >
         <View
           className="h-16 w-16 items-center justify-center rounded-full"
-          style={{ backgroundColor: step === "hold" ? "#B8B8B8" : "#F4F4F4" }}
+          style={{
+            backgroundColor: step === "hold" ? Colors.mainGray : "#F4F4F4",
+          }}
         >
           {step === "in" && (
             <Text className="text-center" style={{ fontSize: 12 }}>
@@ -34,7 +37,7 @@ const MethodInfoCircle = ({ step, time }: MethodInfoCircleProps) => {
           )}
         </View>
       </View>
-      <Text className="pt-3 text-base" style={{ color: "#B8B8B8" }}>
+      <Text className="pt-3 text-base" style={{ color: Colors.mainGray }}>
         {time}s
       </Text>
     </View>

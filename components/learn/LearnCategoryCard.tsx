@@ -1,7 +1,14 @@
-import { Href, router } from 'expo-router';
-import { ColorValue, Dimensions, Pressable, TouchableOpacity, View } from 'react-native';
-import Text from '@/components/global/Text';
-import { Feather } from '@expo/vector-icons';
+import { Href, router } from "expo-router";
+import {
+  ColorValue,
+  Dimensions,
+  Pressable,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import Text from "@/components/global/Text";
+import { Colors } from "@/constants/styles/colorTheme";
+import { Feather } from "@expo/vector-icons";
 
 export type LearnCategoryCardTypes = {
   name: string;
@@ -27,16 +34,16 @@ const LearnCategoryCard = ({
       onPress={() => router.push(`${link}` as Href)}
     >
       <View className="h-1/2 items-center justify-center pt-6">
-        <Text style={{ color: "#FFFFFF" }}>{name}</Text>
+        <Text style={{ color: Colors.white }}>{name}</Text>
       </View>
       <View className="h-1/2 items-center justify-center">
         <TouchableOpacity
           className="mx-1 items-center justify-center rounded-xl"
-          style={{ width: 100, height: 45, backgroundColor: "#FBFBFB" }}
+          style={{ width: 100, height: 45, backgroundColor: Colors.offWhite }}
           onPress={() => router.push(`${link}` as Href)}
         >
           <View>
-            <Feather name="arrow-right" size={24} color="#757575" />
+            <Feather name="arrow-right" size={24} color={Colors.darkGray} />
           </View>
         </TouchableOpacity>
       </View>

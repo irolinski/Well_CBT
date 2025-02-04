@@ -1,5 +1,7 @@
 import { Image } from "expo-image";
-import { View, Text, Dimensions } from "react-native";
+import { Dimensions, Text, View } from "react-native";
+import { Colors } from "@/constants/styles/colorTheme";
+
 const windowWidth = Dimensions.get("window").width;
 
 const ArticleImage = ({
@@ -18,7 +20,7 @@ const ArticleImage = ({
           source={image}
         />
         <View className="flex-row justify-end">
-          <Text className="m-2 italic" style={{ color: "#B8B8B8" }}>
+          <Text className="m-2 italic" style={{ color: Colors.mainGray }}>
             {subtitle}
           </Text>
         </View>

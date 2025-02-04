@@ -1,18 +1,19 @@
-import { router } from 'expo-router';
-import React from 'react';
-import { Pressable, ScrollView, View } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
-import AdvanceButton from '@/components/AdvanceButton';
-import DistortionPill from '@/components/DistortionPill';
-import Frame from '@/components/Frame';
-import Text from '@/components/global/Text';
-import CDATextBox from '@/components/tools/cda/CDATextBox';
-import ToolHeader from '@/components/tools/ToolHeader';
-import ToolNav from '@/components/tools/ToolNav';
-import { handleSaveCDAEntry } from '@/db/tools';
-import { cdaResetState, toggleSave } from '@/state/features/tools/cdaSlice';
-import { AppDispatch, RootState } from '@/state/store';
-import Feather from '@expo/vector-icons/Feather';
+import { router } from "expo-router";
+import React from "react";
+import { Pressable, ScrollView, View } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import AdvanceButton from "@/components/AdvanceButton";
+import DistortionPill from "@/components/DistortionPill";
+import Frame from "@/components/Frame";
+import Text from "@/components/global/Text";
+import CDATextBox from "@/components/tools/cda/CDATextBox";
+import ToolHeader from "@/components/tools/ToolHeader";
+import ToolNav from "@/components/tools/ToolNav";
+import { Colors } from "@/constants/styles/colorTheme";
+import { handleSaveCDAEntry } from "@/db/tools";
+import { cdaResetState, toggleSave } from "@/state/features/tools/cdaSlice";
+import { AppDispatch, RootState } from "@/state/store";
+import Feather from "@expo/vector-icons/Feather";
 
 const Page_4 = () => {
   const cdaState = useSelector((state: RootState) => state.cda);
@@ -39,7 +40,7 @@ const Page_4 = () => {
               </View>
               <View
                 className="my-8 border-b border-t px-2 py-7"
-                style={{ borderColor: "#D9D9D9" }}
+                style={{ borderColor: Colors.lightGray }}
               >
                 <Text>Cognitive Distortion:</Text>
                 <View className="mx-auto mt-4 w-3/4 px-4">
@@ -59,9 +60,9 @@ const Page_4 = () => {
                   <View
                     className="h-6 w-6 rounded-md border"
                     style={{
-                      borderColor: "#4391BC",
+                      borderColor: Colors.darkBlue,
                       backgroundColor: cdaState.save
-                        ? "#8DBED8"
+                        ? Colors.mainBlue
                         : "transparent",
                     }}
                   >
@@ -73,7 +74,7 @@ const Page_4 = () => {
                   </View>
                   <Text
                     className="mx-4 my-1 text-center"
-                    style={{ color: "#4391BC" }}
+                    style={{ color: Colors.darkBlue }}
                   >
                     Save to journal?
                   </Text>

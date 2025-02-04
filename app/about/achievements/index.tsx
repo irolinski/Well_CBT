@@ -9,6 +9,7 @@ import {
   AchievementProgressObj,
   allAchievementsModelsArr,
 } from "@/constants/models/about/achievements";
+import { Colors } from "@/constants/styles/colorTheme";
 import { handleGetAchievementProgressData } from "@/db/achievements/controllers";
 
 const AchievementsPage = () => {
@@ -48,14 +49,14 @@ const AchievementsPage = () => {
     <React.Fragment>
       <ScrollView
         className="h-full pb-8"
-        style={{ backgroundColor: "#FBFBFB" }}
+        style={{ backgroundColor: Colors.offWhite }}
       >
         {/* Nav */}
         <MenuNav name="Achievements" />
         <View className="mx-5 mt-8">
           <Text
             className="mb-4 mt-2 text-left text-2xl"
-            style={{ color: "#27261F" }}
+            style={{ color: Colors.offBlack }}
           >
             All achievements
           </Text>

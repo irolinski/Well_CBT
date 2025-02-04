@@ -3,6 +3,7 @@ import React from "react";
 import { Text, View } from "react-native";
 import AdvanceButton from "@/components/AdvanceButton";
 import BackButton from "@/components/BackButton";
+import { Colors } from "@/constants/styles/colorTheme";
 
 const Cda = () => {
   return (
@@ -17,11 +18,14 @@ const Cda = () => {
             <View className="my-4 mr-[15%] justify-center">
               <Text
                 className="my-4 text-left text-2xl font-bold"
-                style={{ fontFamily: "KodchasanMedium", color: "#F5F5F5" }}
+                style={{
+                  fontFamily: "KodchasanMedium",
+                  color: Colors.whiteSmoke,
+                }}
               >
                 Mood Journal
               </Text>
-              <Text className="my-2 text-sm" style={{ color: "#F5F5F5" }}>
+              <Text className="my-2 text-sm" style={{ color: Colors.offWhite }}>
                 Lorem ipsum dolor sit amet consectetur. Amet maecenas varius non
                 urna eget vulputate vulputate viverra. Amet in lectus nisl
                 phasellus sit nunc cum ac duis. Pharetra eget sociis sit id sit

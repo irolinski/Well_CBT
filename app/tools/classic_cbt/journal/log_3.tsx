@@ -9,6 +9,7 @@ import ToolHeader from "@/components/tools/ToolHeader";
 import ToolNav from "@/components/tools/ToolNav";
 import { emotionObjType } from "@/constants/models/home/activity_log";
 import { emotionStrengthTitles } from "@/constants/models/tools/journal";
+import { Colors } from "@/constants/styles/colorTheme";
 import { setEmotions } from "@/state/features/tools/journalSlice";
 import { AppDispatch, RootState } from "@/state/store";
 import { Slider } from "@miblanchard/react-native-slider";
@@ -57,7 +58,7 @@ const Log_3 = () => {
                     <View className="mt-6" key={index}>
                       <Text
                         className="mx-4 mb-1.5"
-                        style={{ color: "#757575" }}
+                        style={{ color: Colors.darkGray }}
                       >
                         {e.name}
                       </Text>
@@ -83,15 +84,15 @@ const Log_3 = () => {
                           >
                             <Text
                               className="absolute z-20 translate-x-2.5 text-center"
-                              style={{ color: "#757575" }}
+                              style={{ color: Colors.darkGray }}
                             >
                               {e.strength ? e.strength : null}
                             </Text>
                           </View>
                         )}
                         minimumTrackTintColor={e.color}
-                        maximumTrackTintColor="#F5F5F5"
-                        thumbTintColor="#F5F5F5"
+                        maximumTrackTintColor={Colors.whiteSmoke}
+                        thumbTintColor={Colors.whiteSmoke}
                         thumbStyle={{
                           padding: 25,
                           borderRadius: 50,
@@ -102,7 +103,7 @@ const Log_3 = () => {
                         trackStyle={{
                           paddingTop: 10,
                           borderRadius: 50,
-                          borderColor: "#D9D9D9",
+                          borderColor: Colors.lightGray,
                           borderStyle: "solid",
                           borderWidth: 1,
                         }}
@@ -110,7 +111,7 @@ const Log_3 = () => {
                       <View className="mx-2 flex-row justify-end">
                         <Text
                           className="h-5 justify-end"
-                          style={{ color: "#757575" }}
+                          style={{ color: Colors.darkGray }}
                         >
                           {emotionStrengthTitles[e.strength! - 1]}
                         </Text>

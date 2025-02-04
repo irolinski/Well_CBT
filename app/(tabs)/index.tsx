@@ -11,6 +11,7 @@ import NewActivityModal from "@/components/home/NewActivityModal";
 import QuoteWidget from "@/components/home/QuoteWidget";
 import WelcomeTypewriterText from "@/components/home/WelcomeTypewriterText";
 import { EntryViewTableRow } from "@/constants/models/home/activity_log";
+import { Colors } from "@/constants/styles/colorTheme";
 import { fetchRecentEntries } from "@/db/activity_log";
 import { setShowNewActivityModal } from "@/state/features/menus/newActivityModalSlice";
 import { AppDispatch } from "@/state/store";
@@ -93,10 +94,10 @@ const Home = () => {
                     height: 45,
                     backgroundColor: "white",
                     borderWidth: 1,
-                    borderColor: "#D9D9D9",
+                    borderColor: Colors.lightGray,
                     borderRadius: 12,
                   }}
-                  textStyle={{ color: "#27261F" }}
+                  textStyle={{ color: Colors.offBlack }}
                 />
               </View>
             </View>

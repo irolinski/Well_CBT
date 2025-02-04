@@ -17,6 +17,7 @@ import {
   EntryListSection,
   EntryViewTableRow,
 } from "@/constants/models/home/activity_log";
+import { Colors } from "@/constants/styles/colorTheme";
 import { fetchEntryData } from "@/db/activity_log";
 import {
   activityLogResetState,
@@ -72,7 +73,10 @@ const ActivityLog = () => {
 
   return (
     <React.Fragment>
-      <View className="h-full pb-8" style={{ backgroundColor: "#FBFBFB" }}>
+      <View
+        className="h-full pb-8"
+        style={{ backgroundColor: Colors.offWhite }}
+      >
         {/* Nav */}
         <MenuNav
           name="Entry Log"
@@ -110,7 +114,7 @@ const ActivityLog = () => {
                 renderSectionHeader={({ section: { title } }) => (
                   <View
                     className="rounded-xl pb-3"
-                    style={{ backgroundColor: "#FBFBFB" }}
+                    style={{ backgroundColor: Colors.offWhite }}
                   >
                     <ToolHeader style={{ marginBottom: 16, fontSize: 18 }}>
                       {title}

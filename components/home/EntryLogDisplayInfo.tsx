@@ -1,6 +1,7 @@
 import React from "react";
 import { Text, View } from "react-native";
 import { useSelector } from "react-redux";
+import { Colors } from "@/constants/styles/colorTheme";
 import { RootState } from "@/state/store";
 
 const EntryLogDisplayInfo = () => {
@@ -11,16 +12,22 @@ const EntryLogDisplayInfo = () => {
       {activityLogState.filterPeriod.length > 0 ? (
         <View className="flex-row">
           <View className="ml-1 mr-2">
-            <Text className="italic" style={{ fontSize: 13, color: "#757575" }}>
-              <Text style={{ fontSize: 13, color: "#757575" }}>
+            <Text
+              className="italic"
+              style={{ fontSize: 13, color: Colors.darkGray }}
+            >
+              <Text style={{ fontSize: 13, color: Colors.darkGray }}>
                 {"from:"}
                 {"\nto:"}
               </Text>
             </Text>
           </View>
           <View className="mb-1">
-            <Text className="italic" style={{ fontSize: 13, color: "#757575" }}>
-              <Text style={{ fontSize: 13, color: "#757575" }}>
+            <Text
+              className="italic"
+              style={{ fontSize: 13, color: Colors.darkGray }}
+            >
+              <Text style={{ fontSize: 13, color: Colors.darkGray }}>
                 {activityLogState.filterPeriod[0]}
                 {"\n"}
                 {activityLogState.filterPeriod[1] ??
@@ -35,7 +42,7 @@ const EntryLogDisplayInfo = () => {
             Array.isArray(activityLogState.entryData) && (
               <Text
                 className="mb-1 text-sm"
-                style={{ fontSize: 13, color: "#757575" }}
+                style={{ fontSize: 13, color: Colors.darkGray }}
               >
                 Showing{" "}
                 {activityLogState.displayedData.reduce(

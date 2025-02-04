@@ -9,6 +9,7 @@ import {
   View,
 } from "react-native";
 import { learnArticleCardTypes } from "@/constants/models/learn/learn";
+import { Colors } from "@/constants/styles/colorTheme";
 import { Feather } from "@expo/vector-icons";
 
 const LearnArticleCard = ({
@@ -38,20 +39,23 @@ const LearnArticleCard = ({
       />
       <View
         className="absolute bottom-0 w-full px-4 pb-4 pt-5"
-        style={{ height: "56%", backgroundColor: frameColor ?? "#8DBED8" }}
+        style={{
+          height: "56%",
+          backgroundColor: frameColor ?? Colors.mainBlue,
+        }}
       >
         <View className="">
           <View style={{ height: "50%" }}>
             <Text
               className="text-lg"
-              style={{ color: "#FFFFFF", fontWeight: 500 }}
+              style={{ color: Colors.white, fontWeight: 500 }}
             >
               {title}
             </Text>
             {subtitle && (
               <Text
                 className="my-1.5 text-base italic"
-                style={{ color: "#FFFFFF" }}
+                style={{ color: Colors.white }}
               >
                 {subtitle}
               </Text>
@@ -65,7 +69,7 @@ const LearnArticleCard = ({
               {time && (
                 <Text
                   className="text-base"
-                  style={{ color: textColor ?? "#FFFFFF", opacity: 0.75 }}
+                  style={{ color: textColor ?? Colors.white, opacity: 0.75 }}
                 >
                   {time} min read
                 </Text>
@@ -80,15 +84,22 @@ const LearnArticleCard = ({
                 style={{
                   width: "95%",
                   height: "85%",
-                  backgroundColor: "#fbfbfb",
+                  backgroundColor: Colors.offWhite,
                 }}
                 onPress={() => router.push(`${link}` as Href)}
               >
-                <Text className="mx-1 text-sm" style={{ color: "#212529" }}>
+                <Text
+                  className="mx-1 text-sm"
+                  style={{ color: Colors.blackPearl }}
+                >
                   Go to article
                 </Text>
                 <View className="mx-1">
-                  <Feather name="arrow-right" size={24} color="#757575" />
+                  <Feather
+                    name="arrow-right"
+                    size={24}
+                    color={Colors.darkGray}
+                  />
                 </View>
               </TouchableOpacity>
             </View>

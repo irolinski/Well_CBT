@@ -1,4 +1,5 @@
 import { Dimensions, View } from "react-native";
+import { Colors } from "@/constants/styles/colorTheme";
 import BackButton from "../BackButton";
 import Text from "../global/Text";
 import ProgressBar from "../ProgressBar";
@@ -21,7 +22,7 @@ const ToolNav = ({
       <View
         className={`absolute z-10 box-border w-full border-b pb-7 ${windowHeight > 750 ? "top-20" : "top-12"}`}
         style={{
-          borderColor: "#D9D9D9",
+          borderColor: Colors.lightGray,
         }}
       >
         <View className="z-10 w-full flex-row items-center justify-center">

@@ -1,6 +1,7 @@
-import { Entypo } from "@expo/vector-icons";
 import { router } from "expo-router";
-import { View, Text, Pressable } from "react-native";
+import { Pressable, Text, View } from "react-native";
+import { Colors } from "@/constants/styles/colorTheme";
+import { Entypo } from "@expo/vector-icons";
 
 const ErrorScreen = () => {
   return (
@@ -8,7 +9,7 @@ const ErrorScreen = () => {
       <Text>Sorry, an error has occured. {"\n"}Try again later.</Text>
       <Pressable
         className="mx-4 my-8 flex-row items-center justify-center rounded-lg border px-4 py-2"
-        style={{ borderColor: "#B8B8B8" }}
+        style={{ borderColor: Colors.mainGray }}
         onPress={() => router.back()}
       >
         <View className="mx-1">

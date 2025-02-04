@@ -1,5 +1,6 @@
-import { Dimensions } from "react-native";
 import { HTMLAttributes } from "react";
+import { Dimensions } from "react-native";
+import { Colors } from "@/constants/styles/colorTheme";
 import Text from "../global/Text";
 
 interface ToolHeaderProps extends HTMLAttributes<HTMLDivElement> {
@@ -16,7 +17,7 @@ const ToolHeader = ({ bright, noIndent, ...props }: ToolHeaderProps) => {
       className={`text-left text-2xl ${props.className}`}
       style={{
         fontFamily: "KodchasanMedium",
-        color: bright ? "#F5F5F5" : "#1E1E1E",
+        color: bright ? Colors.whiteSmoke : "#1E1E1E",
         paddingRight: !noIndent ? marginSize : 0,
         ...props.style,
       }}

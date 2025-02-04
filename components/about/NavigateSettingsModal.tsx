@@ -1,6 +1,7 @@
 import { Href, router } from "expo-router";
 import { Modal, Pressable, Text, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
+import { Colors } from "@/constants/styles/colorTheme";
 import { setShowEditProfileModal } from "@/state/features/menus/editProfileModalSlice";
 import {
   setNavigateSettingsModalSelectedLink,
@@ -14,15 +15,15 @@ import NavigationModalSelect from "../NavigationModalSelect";
 const items = {
   editProfile: {
     name: "Edit Profile",
-    icon: <Feather name="user" size={32} color="#B8B8B8" />,
-    iconBright: <Feather name="user" size={32} color="#FFFFFF" />,
+    icon: <Feather name="user" size={32} color={Colors.mainGray} />,
+    iconBright: <Feather name="user" size={32} color={Colors.white} />,
     // fake link - used instead of an enum to prevent component redesign
     link: "about/editProfile",
   },
   settings: {
     name: "Settings",
-    icon: <Feather name="tool" size={32} color="#B8B8B8" />,
-    iconBright: <Feather name="tool" size={32} color="#FFFFFF" />,
+    icon: <Feather name="tool" size={32} color={Colors.mainGray} />,
+    iconBright: <Feather name="tool" size={32} color={Colors.white} />,
     link: "about/settings",
     handleOpenModal: setShowNavigateSettingsModal,
   },
@@ -70,7 +71,7 @@ const NavigateSettingsModal = () => {
           style={{
             width: 320,
             // height: 425,
-            borderColor: "#B8B8B8",
+            borderColor: Colors.mainGray,
           }}
         >
           {/* Header */}
@@ -83,17 +84,17 @@ const NavigateSettingsModal = () => {
                   <MaterialCommunityIcons
                     name="window-close"
                     size={24}
-                    color="#B8B8B8"
+                    color={Colors.mainGray}
                   />
                 </View>
               </Pressable>
             </View>
             <View
               className="mx-1 flex-row items-center justify-center border-b pb-3"
-              style={{ borderColor: "#B8B8B8", borderBottomWidth: 0.4 }}
+              style={{ borderColor: Colors.mainGray, borderBottomWidth: 0.4 }}
             >
               <View className="mx-1.5">
-                {<Feather name="settings" size={24} color="#B8B8B8" />}
+                {<Feather name="settings" size={24} color={Colors.mainGray} />}
               </View>
               <View className="mx-1.5">
                 <Text className="text-lg">Preferences</Text>
@@ -133,7 +134,7 @@ const NavigateSettingsModal = () => {
                   className="mx-2"
                   name="arrow-right"
                   size={28}
-                  color="#FFFFFF"
+                  color={Colors.white}
                 />
               }
               disabled={!navigateSettingsModalState.link}

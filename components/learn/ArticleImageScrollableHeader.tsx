@@ -1,6 +1,7 @@
 import { Image } from "expo-image";
 import { Animated, Dimensions, View } from "react-native";
 import BackButton from "@/components/BackButton";
+import { Colors } from "@/constants/styles/colorTheme";
 import { handleAddFinishedArticle } from "@/db/learn";
 
 type ArticleImageScrollableHeaderTypes = {
@@ -44,7 +45,7 @@ const ArticleImageScrollableHeader = ({
         }}
       >
         <BackButton
-          color="#FBFBFB"
+          color={Colors.offWhite}
           handleBackButtonPress={() => handleAddFinishedArticle(id)}
         />
       </Animated.View>

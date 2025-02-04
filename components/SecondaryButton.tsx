@@ -1,4 +1,5 @@
 import { TouchableOpacity, View } from "react-native";
+import { Colors } from "@/constants/styles/colorTheme";
 import Text from "./global/Text";
 
 interface SecondaryButtonProps {
@@ -16,7 +17,7 @@ const SecondaryButton = ({
   return (
     <TouchableOpacity
       className={`items-center justify-center rounded border-2 ${className}`}
-      style={{ borderColor: "#4391BC" }}
+      style={{ borderColor: Colors.darkBlue }}
       onPress={onPress}
     >
       <View className="h-12 w-36 items-center justify-center">

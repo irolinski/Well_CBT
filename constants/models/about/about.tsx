@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { Colors } from "@/constants/styles/colorTheme";
 import { MaterialIcons } from "@expo/vector-icons";
 import { ToolList } from "../home/activity_log";
 
@@ -6,7 +7,7 @@ export enum ballSizeParameter {
   min = 0.175,
   max = 0.525,
 }
-export const ballColors = ["#FF997C", "#008A63", "#F9A947", "#4391BC"];
+export const ballColors = ["#FF997C", "#008A63", "#F9A947", Colors.darkBlue];
 
 export type StatsObj = {
   name: string;
@@ -24,7 +25,11 @@ export const statObjectsList: StatsObj[] = [
     name: "highestVisitStreak",
     caption: "Visited most days in-row",
     icon: (
-      <MaterialIcons name="lightbulb-outline" size={24} color={"#B8B8B8"} />
+      <MaterialIcons
+        name="lightbulb-outline"
+        size={24}
+        color={Colors.mainGray}
+      />
     ),
     ballSize: {
       min: 2,

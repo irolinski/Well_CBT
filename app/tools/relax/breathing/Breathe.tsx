@@ -6,6 +6,7 @@ import { Animated, Dimensions, Easing, Pressable, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import AdvanceButton from "@/components/AdvanceButton";
 import Text from "@/components/global/Text";
+import { Colors } from "@/constants/styles/colorTheme";
 import { handleLogRelaxActivity } from "@/db/tools";
 import { toggleModal } from "@/state/features/tools/breatheSettingsSlice";
 import { AppDispatch, RootState } from "@/state/store";
@@ -319,7 +320,7 @@ const Breathe = () => {
         transition={600}
       />
       <LinearGradient
-        colors={["#D9D9D9", "#FBFBFB"]} // Updated hex code
+        colors={[Colors.lightGray, Colors.offWhite]} // Updated hex code
         start={[0, 0]}
         end={[0, 1]}
         style={{
@@ -389,9 +390,9 @@ const Breathe = () => {
               height: outerCircleSize,
               borderRadius: outerCircleSize,
               // transform: [{ scale: innerCircleAnim }],
-              backgroundColor: "#D9D9D9",
+              backgroundColor: Colors.lightGray,
               opacity: 0.7,
-              borderColor: "#B8B8B8",
+              borderColor: Colors.mainGray,
             }}
           >
             {/* Main circle */}
@@ -442,7 +443,7 @@ const Breathe = () => {
                     <Text
                       style={{
                         fontFamily: "KodchasanMedium",
-                        color: "#27261F",
+                        color: Colors.offBlack,
                       }}
                       className="text-center text-4xl"
                     >
@@ -452,7 +453,7 @@ const Breathe = () => {
                     <Text
                       style={{
                         fontFamily: "KodchasanMedium",
-                        color: "#27261F",
+                        color: Colors.offBlack,
                       }}
                       className="text-center text-4xl"
                     >
@@ -462,7 +463,7 @@ const Breathe = () => {
                     <Text
                       style={{
                         fontFamily: "KodchasanMedium",
-                        color: "#27261F",
+                        color: Colors.offBlack,
                       }}
                       className="text-center text-4xl"
                     >
@@ -486,7 +487,7 @@ const Breathe = () => {
               style={{
                 width: barLength,
                 height: 6,
-                backgroundColor: "#FBFBFB",
+                backgroundColor: Colors.offWhite,
                 borderRadius: 5,
               }}
             >
@@ -494,7 +495,7 @@ const Breathe = () => {
                 style={{
                   width: barLength,
                   height: 6,
-                  backgroundColor: "#757575",
+                  backgroundColor: Colors.darkGray,
                   transform: [
                     {
                       translateX: progressBarAnim,
@@ -514,7 +515,11 @@ const Breathe = () => {
                 backgroundColor: "rgba(251, 251, 251, 0.95)",
                 top: 40,
               }}
-              textStyle={{ color: "#27261F", opacity: 0.65, fontSize: 17 }}
+              textStyle={{
+                color: Colors.offBlack,
+                opacity: 0.65,
+                fontSize: 17,
+              }}
             />
           </View>
         </View>

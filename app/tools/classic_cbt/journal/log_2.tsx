@@ -10,6 +10,7 @@ import ToolHeader from "@/components/tools/ToolHeader";
 import ToolNav from "@/components/tools/ToolNav";
 import { emotionObjType } from "@/constants/models/home/activity_log";
 import { emotionList } from "@/constants/models/tools/journal";
+import { Colors } from "@/constants/styles/colorTheme";
 import { setEmotions } from "@/state/features/tools/journalSlice";
 import { AppDispatch, RootState } from "@/state/store";
 
@@ -61,7 +62,9 @@ const Log_2 = () => {
                   className="text-right text-xs"
                   style={{
                     color:
-                      journalState.emotions.length < 5 ? "#757575" : "#D46A6A",
+                      journalState.emotions.length < 5
+                        ? Colors.darkGray
+                        : "#D46A6A",
                   }}
                 >
                   {journalState.emotions.length} of 5 selected

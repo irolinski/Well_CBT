@@ -2,6 +2,7 @@ import { Image } from "expo-image";
 import React from "react";
 import { DimensionValue, Text, View } from "react-native";
 import { achievementLockedImage } from "@/assets/images/about/achievements/achievements";
+import { Colors } from "@/constants/styles/colorTheme";
 import { interpolateNumbers } from "@/utils/algorithms";
 import { Feather } from "@expo/vector-icons";
 
@@ -41,7 +42,7 @@ const AchievementCard = ({
   return (
     <View
       className="my-2 w-full flex-row rounded-2xl border pb-4 pt-2"
-      style={{ borderColor: "#D9D9D9" }}
+      style={{ borderColor: Colors.lightGray }}
     >
       <View className="w-1/3 flex-row items-center justify-center">
         <Image
@@ -57,7 +58,7 @@ const AchievementCard = ({
           </Text>
           <View
             className="absolute right-0 h-6 w-6 items-center justify-center rounded-full"
-            style={{ backgroundColor: unlocked ? "#FCCC15" : "#B8B8B8" }}
+            style={{ backgroundColor: unlocked ? "#FCCC15" : Colors.mainGray }}
           >
             {unlocked ? (
               <Feather name="check" size={20} color="white" />
@@ -76,7 +77,7 @@ const AchievementCard = ({
             {score_current && score_required ? (
               <View
                 className="mr-2 h-2 w-3/4 justify-center"
-                style={{ backgroundColor: "#B8B8B8" }}
+                style={{ backgroundColor: Colors.mainGray }}
               >
                 <View
                   className="h-full bg-yellow-400"

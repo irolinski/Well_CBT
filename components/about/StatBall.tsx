@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Animated, ColorValue, View } from "react-native";
+import { Colors } from "@/constants/styles/colorTheme";
 
 type StatBallType = {
   ballSize: number;
@@ -74,7 +75,7 @@ const StatBall = ({
         }}
       >
         <Animated.Text
-          style={{ color: "#FFFFFF", fontSize: 26, fontWeight: "bold" }}
+          style={{ color: Colors.white, fontSize: 26, fontWeight: "bold" }}
         >
           {displayedNumber}
         </Animated.Text>

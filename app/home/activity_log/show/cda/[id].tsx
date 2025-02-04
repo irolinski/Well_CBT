@@ -8,6 +8,7 @@ import ActivityShowNav from "@/components/home/ActivityShowNav";
 import CDATextBox from "@/components/tools/cda/CDATextBox";
 import ToolHeader from "@/components/tools/ToolHeader";
 import { cdaEntryType } from "@/constants/models/tools/cda";
+import { Colors } from "@/constants/styles/colorTheme";
 import { fetchCDAEntry } from "@/db/activity_log";
 import { deleteCDAEntry } from "@/db/tools";
 import { formatDateStringForWrapping } from "@/utils/dates";
@@ -51,7 +52,7 @@ const ActivityShowPage = () => {
                 className="wrap mt-0.5 overflow-hidden text-lg"
                 style={{
                   fontFamily: "KodchasanMedium",
-                  color: "#B8B8B8",
+                  color: Colors.mainGray,
                   flexShrink: 1,
                 }}
               >
@@ -63,7 +64,7 @@ const ActivityShowPage = () => {
                 <Text>Situation: </Text>
                 <View
                   className="mb-4 border-b px-2 py-7"
-                  style={{ borderColor: "#D9D9D9" }}
+                  style={{ borderColor: Colors.lightGray }}
                 >
                   <Text className="mx-4 text-start">
                     {fetchedEntry.situation}
@@ -76,7 +77,7 @@ const ActivityShowPage = () => {
               </View>
               <View
                 className="mb-4 border-b border-t px-2 py-7"
-                style={{ borderColor: "#D9D9D9" }}
+                style={{ borderColor: Colors.lightGray }}
               >
                 <Text>Cognitive Distortion:</Text>
                 <View className="mx-auto mt-4 w-3/4 px-4">

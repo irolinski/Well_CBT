@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
+import { Colors } from "@/constants/styles/colorTheme";
 
 type NavigationModalButtonTypes = {
   title: string;
@@ -20,14 +21,14 @@ const NavigationModalButton = ({
       style={{
         width: 0.75 * 320,
         height: 50,
-        backgroundColor: !disabled ? "#4391BC" : "#B8B8B8",
+        backgroundColor: !disabled ? Colors.darkBlue : Colors.mainGray,
       }}
       disabled={disabled}
       onPress={() => {
         onPress();
       }}
     >
-      <Text className="mx-1" style={{ color: "#FFFFFF" }}>
+      <Text className="mx-1" style={{ color: Colors.white }}>
         {title}
       </Text>
       {icon && <View className="mx-1">{icon}</View>}

@@ -1,5 +1,6 @@
 import React, { ReactNode } from "react";
 import { ColorValue, Dimensions, View } from "react-native";
+import { Colors } from "@/constants/styles/colorTheme";
 import Text from "../global/Text";
 import StatBall from "./StatBall";
 
@@ -58,7 +59,7 @@ const StatRow = ({
               <View className="w-full flex-row justify-start">{icon}</View>
               <Text
                 className="w-full pr-4 text-lg"
-                style={{ color: "#757575" }}
+                style={{ color: Colors.darkGray }}
               >
                 {caption}
               </Text>

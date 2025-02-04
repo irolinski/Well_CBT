@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { Colors } from "@/constants/styles/colorTheme";
 import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 import { monthNames } from "../dates";
 
@@ -41,14 +42,14 @@ export const ToolList: Record<ToolNames, ToolType> = {
       <MaterialCommunityIcons
         name="thought-bubble-outline"
         size={32}
-        color="#B8B8B8"
+        color={Colors.mainGray}
       />
     ),
     iconBright: (
       <MaterialCommunityIcons
         name="thought-bubble-outline"
         size={32}
-        color="#FFFFFF"
+        color={Colors.white}
       />
     ),
     requiresInput: true,
@@ -60,14 +61,14 @@ export const ToolList: Record<ToolNames, ToolType> = {
       <MaterialCommunityIcons
         name="notebook-outline"
         size={32}
-        color="#B8B8B8"
+        color={Colors.mainGray}
       />
     ),
     iconBright: (
       <MaterialCommunityIcons
         name="notebook-outline"
         size={32}
-        color="#FFFFFF"
+        color={Colors.white}
       />
     ),
     requiresInput: true,
@@ -75,8 +76,8 @@ export const ToolList: Record<ToolNames, ToolType> = {
   breathing: {
     name: "Breathing",
     category: "Relax",
-    icon: <Feather name="wind" size={32} color="#B8B8B8" />,
-    iconBright: <Feather name="wind" size={32} color="#FFFFFF" />,
+    icon: <Feather name="wind" size={32} color={Colors.mainGray} />,
+    iconBright: <Feather name="wind" size={32} color={Colors.white} />,
   },
 };
 
@@ -89,23 +90,31 @@ export const ToolCategories: Record<
       <MaterialCommunityIcons
         name="head-cog-outline"
         size={32}
-        color="#B8B8B8"
+        color={Colors.mainGray}
       />
     ),
     iconBright: (
       <MaterialCommunityIcons
         name="head-cog-outline"
         size={32}
-        color="#FFFFFF"
+        color={Colors.white}
       />
     ),
   },
   Relax: {
     icon: (
-      <MaterialCommunityIcons name="meditation" size={36} color="#B8B8B8" />
+      <MaterialCommunityIcons
+        name="meditation"
+        size={36}
+        color={Colors.mainGray}
+      />
     ),
     iconBright: (
-      <MaterialCommunityIcons name="meditation" size={36} color="#FFFFFF" />
+      <MaterialCommunityIcons
+        name="meditation"
+        size={36}
+        color={Colors.white}
+      />
     ),
   },
   Journal: {
@@ -113,14 +122,14 @@ export const ToolCategories: Record<
       <MaterialCommunityIcons
         name="notebook-outline"
         size={32}
-        color="#B8B8B8"
+        color={Colors.mainGray}
       />
     ),
     iconBright: (
       <MaterialCommunityIcons
         name="notebook-outline"
         size={32}
-        color="#FFFFFF"
+        color={Colors.white}
       />
     ),
   },

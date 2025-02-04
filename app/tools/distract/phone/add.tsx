@@ -16,6 +16,7 @@ import { phoneFacePlaceholder } from "@/assets/images/tools/phone/phoneFaces";
 import BackButton from "@/components/BackButton";
 import Text from "@/components/global/Text";
 import ToolHeader from "@/components/tools/ToolHeader";
+import { Colors } from "@/constants/styles/colorTheme";
 import { setContact, setContactWithPicture } from "@/db/tools";
 import { RootState } from "@/state/store";
 import formatPhoneNumber from "@/utils/formatPhoneNumber";
@@ -123,14 +124,18 @@ const Add = () => {
         <View>
           <View
             className="h-12 w-full flex-row rounded-lg border bg-gray-100"
-            style={{ borderColor: "#B8B8B8" }}
+            style={{ borderColor: Colors.mainGray }}
           >
             <View className="mx-3 justify-center" style={{ width: "10%" }}>
-              <MaterialIcons name="search" size={32} color="#212529" />
+              <MaterialIcons
+                name="search"
+                size={32}
+                color={Colors.blackPearl}
+              />
             </View>
             <TextInput
               className="h-12 w-full rounded-lg text-lg"
-              style={{ borderColor: "#B8B8B8", width: "80%" }}
+              style={{ borderColor: Colors.mainGray, width: "80%" }}
               onChangeText={(value) => {
                 if (isValidName(value)) {
                   setSearchValue(value);
@@ -148,7 +153,7 @@ const Add = () => {
           </View>
           <View
             className="mt-8 items-center justify-center rounded-xl border"
-            style={{ borderColor: "#B8B8B8", height: windowHeight * 0.5 }}
+            style={{ borderColor: Colors.mainGray, height: windowHeight * 0.5 }}
           >
             <ScrollView className="w-full">
               {filteredData.length > 0 ? (
@@ -181,7 +186,7 @@ const Add = () => {
                                   className="mt-2 border-b px-2"
                                   style={{
                                     width: "90%",
-                                    borderColor: "#B8B8B8",
+                                    borderColor: Colors.mainGray,
                                   }}
                                   key={i}
                                 >
@@ -231,7 +236,7 @@ const Add = () => {
                 <View>
                   <Text
                     className="top-16 p-12 text-center align-middle text-2xl"
-                    style={{ color: "#B8B8B8" }}
+                    style={{ color: Colors.mainGray }}
                   >
                     {searchValue
                       ? "No results."

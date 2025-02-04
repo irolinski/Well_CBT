@@ -4,6 +4,7 @@ import { ScrollView } from "react-native-gesture-handler";
 import BackButton from "@/components/BackButton";
 import DividerLine from "@/components/DividerLine";
 import Text from "@/components/global/Text";
+import { Colors } from "@/constants/styles/colorTheme";
 import {
   AntDesign,
   FontAwesome5,
@@ -24,11 +25,19 @@ const index = () => {
       },
       {
         title: "Notifications",
-        icon: <Ionicons name="notifications" size={40} color="#212529" />,
+        icon: (
+          <Ionicons name="notifications" size={40} color={Colors.blackPearl} />
+        ),
       },
       {
         title: "Subscription",
-        icon: <FontAwesome6 name="arrows-spin" size={40} color="#212529" />,
+        icon: (
+          <FontAwesome6
+            name="arrows-spin"
+            size={40}
+            color={Colors.blackPearl}
+          />
+        ),
       },
     ],
   };
@@ -38,11 +47,23 @@ const index = () => {
     items: [
       {
         title: "FAQ",
-        icon: <AntDesign name="questioncircleo" size={40} color="#212529" />,
+        icon: (
+          <AntDesign
+            name="questioncircleo"
+            size={40}
+            color={Colors.blackPearl}
+          />
+        ),
       },
       {
         title: "Report a Bug",
-        icon: <FontAwesome6 name="arrows-spin" size={40} color="#212529" />,
+        icon: (
+          <FontAwesome6
+            name="arrows-spin"
+            size={40}
+            color={Colors.blackPearl}
+          />
+        ),
       },
       {
         title: "Leave Feedback",
@@ -50,7 +71,7 @@ const index = () => {
           <MaterialCommunityIcons
             name="message-processing-outline"
             size={40}
-            color="#212529"
+            color={Colors.blackPearl}
           />
         ),
       },
@@ -65,22 +86,22 @@ const index = () => {
       <View
         className={`z-10 w-full border-b`}
         style={{
-          borderColor: "#D9D9D9",
-          backgroundColor: "#8DBED8",
+          borderColor: Colors.lightGray,
+          backgroundColor: Colors.mainBlue,
           paddingTop: windowHeight * 0.065,
           paddingBottom: 16,
         }}
       >
         <View className="z-10 w-full flex-row items-center justify-between px-6">
           <View>
-            <BackButton color="#FBFBFB" />
+            <BackButton color={Colors.offWhite} />
           </View>
           <View className="flex-row justify-end">
             <Text
               className={`text-left text-2xl`}
               style={{
                 fontFamily: "KodchasanMedium",
-                color: "#F5F5F5",
+                color: Colors.whiteSmoke,
               }}
             >
               Settings
@@ -96,7 +117,11 @@ const index = () => {
             <View className="mb-12" key={indexNum}>
               <Text
                 className="mb-4 mt-2 text-left"
-                style={{ color: "#27261F", fontSize: 26, fontWeight: 600 }}
+                style={{
+                  color: Colors.offBlack,
+                  fontSize: 26,
+                  fontWeight: 600,
+                }}
               >
                 {segment.title}
               </Text>
@@ -108,7 +133,7 @@ const index = () => {
                         <View className="absolute left-0">
                           <DividerLine
                             width={"95%"}
-                            color="#B8B8B8"
+                            color={Colors.mainGray}
                             weight={0.6}
                           />
                         </View>

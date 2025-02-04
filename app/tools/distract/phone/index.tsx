@@ -12,6 +12,7 @@ import BackButton from "@/components/BackButton";
 import Text from "@/components/global/Text";
 import ContactPic from "@/components/tools/phone/ContactPic";
 import ToolHeader from "@/components/tools/ToolHeader";
+import { Colors } from "@/constants/styles/colorTheme";
 import { getPhoneData } from "@/db/tools";
 import {
   setShowModal,
@@ -100,7 +101,7 @@ const Phone = () => {
         </View>
         <View
           className="rounded-3xl border"
-          style={{ height: windowHeight / 1.6, borderColor: "#B8B8B8" }}
+          style={{ height: windowHeight / 1.6, borderColor: Colors.mainGray }}
         >
           <View className="mt-4">
             <ContactPic
@@ -145,7 +146,7 @@ const Phone = () => {
               onPress={() => callContact(phoneState.supportContact!.phone)}
               disabled={!phoneState.supportContact}
             >
-              <AntDesign name="phone" size={24} color="#FBFBFB" />
+              <AntDesign name="phone" size={24} color={Colors.offWhite} />
             </TouchableOpacity>
             <TouchableOpacity
               activeOpacity={0.7}
@@ -153,7 +154,7 @@ const Phone = () => {
               style={{
                 width: windowHeight / 10,
                 height: windowHeight / 10,
-                backgroundColor: "#4391BC",
+                backgroundColor: Colors.darkBlue,
                 opacity: !phoneState.supportContact ? 0.5 : 1,
               }}
               onPress={() => {
@@ -164,7 +165,7 @@ const Phone = () => {
               <MaterialCommunityIcons
                 name="email-outline"
                 size={24}
-                color="#FFFFFF"
+                color={Colors.white}
               />
             </TouchableOpacity>
           </View>
@@ -176,8 +177,8 @@ const Phone = () => {
               className="my-4 h-12 flex-row items-center justify-center rounded-xl border"
               style={[
                 {
-                  borderColor: "#B8B8B8",
-                  backgroundColor: "#FBFBFB",
+                  borderColor: Colors.mainGray,
+                  backgroundColor: Colors.offWhite,
                   opacity: 8,
                 },
               ]}
@@ -185,14 +186,14 @@ const Phone = () => {
                 dispatch(setShowModal(true));
               }}
             >
-              <Text className="mx-2" style={{ color: "#212529" }}>
+              <Text className="mx-2" style={{ color: Colors.blackPearl }}>
                 Conversation Topics
               </Text>
               <View className="mx-2">
                 <MaterialCommunityIcons
                   name="message-reply-text-outline"
                   size={24}
-                  color="#212529"
+                  color={Colors.blackPearl}
                 />
               </View>
             </TouchableOpacity>
@@ -202,20 +203,20 @@ const Phone = () => {
               className="my-4 h-12 flex-row items-center justify-center rounded-xl"
               style={[
                 {
-                  backgroundColor: "#4391BC",
+                  backgroundColor: Colors.darkBlue,
                   opacity: 8,
                 },
               ]}
               onPress={() => router.replace("tools/distract/phone/add" as Href)}
             >
-              <Text className="mx-2" style={{ color: "#FBFBFB" }}>
+              <Text className="mx-2" style={{ color: Colors.offWhite }}>
                 Add contact
               </Text>
               <View className="mx-2">
                 <MaterialIcons
                   name="person-add-alt-1"
                   size={24}
-                  color="#FBFBFB"
+                  color={Colors.offWhite}
                 />
               </View>
             </TouchableOpacity>

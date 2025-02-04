@@ -10,6 +10,7 @@ import CDATextBox from "@/components/tools/cda/CDATextBox";
 import ToolHeader from "@/components/tools/ToolHeader";
 import ToolNav from "@/components/tools/ToolNav";
 import { moodValueTitles } from "@/constants/models/tools/journal";
+import { Colors } from "@/constants/styles/colorTheme";
 import { handleSaveJournalEntry } from "@/db/tools";
 import {
   journalResetState,
@@ -62,12 +63,12 @@ const Log_5 = () => {
                             ? "#F38E4E"
                             : "#AED581"
                       }
-                      maximumTrackTintColor="#F5F5F5"
-                      thumbTintColor="#F5F5F5"
+                      maximumTrackTintColor={Colors.whiteSmoke}
+                      thumbTintColor={Colors.whiteSmoke}
                       trackStyle={{
                         paddingTop: 10,
                         borderRadius: 50,
-                        borderColor: "#D9D9D9",
+                        borderColor: Colors.lightGray,
                         borderStyle: "solid",
                         borderWidth: 1,
                       }}
@@ -82,7 +83,7 @@ const Log_5 = () => {
               </View>
               <View
                 className="my-8 border-b border-t px-2 py-7"
-                style={{ borderColor: "#D9D9D9" }}
+                style={{ borderColor: Colors.lightGray }}
               >
                 <Text>Emotions:</Text>
                 <View className="mx-auto mt-6 w-[95%] flex-row flex-wrap px-4">
@@ -137,9 +138,9 @@ const Log_5 = () => {
                   <View
                     className="h-6 w-6 rounded-md border"
                     style={{
-                      borderColor: "#4391BC",
+                      borderColor: Colors.darkBlue,
                       backgroundColor: journalState.save
-                        ? "#8DBED8"
+                        ? Colors.mainBlue
                         : "transparent",
                     }}
                   >
@@ -151,7 +152,7 @@ const Log_5 = () => {
                   </View>
                   <Text
                     className="mx-4 my-1 text-center"
-                    style={{ color: "#4391BC" }}
+                    style={{ color: Colors.darkBlue }}
                   >
                     Save to journal?
                   </Text>

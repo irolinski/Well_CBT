@@ -12,6 +12,7 @@ import {
   AchievementProgressObj,
   allAchievementsModelsArr,
 } from "@/constants/models/about/achievements";
+import { Colors } from "@/constants/styles/colorTheme";
 import { handleGetAchievementProgressData } from "@/db/achievements/controllers";
 import { Feather } from "@expo/vector-icons";
 import AdvanceButton from "../AdvanceButton";
@@ -108,7 +109,7 @@ const RecentAchievements = () => {
       <View
         className="overflow-hidden rounded-xl"
         style={{
-          backgroundColor: "#F5F5F5",
+          backgroundColor: Colors.whiteSmoke,
           height: windowHeight > 750 ? windowHeight * 0.57 : windowHeight * 0.6,
         }}
       >
@@ -176,7 +177,7 @@ const RecentAchievements = () => {
             style={{
               width: 650,
               height: 650,
-              backgroundColor: "#8DBED8",
+              backgroundColor: Colors.mainBlue,
               top: 0,
             }}
           ></View>
@@ -190,7 +191,11 @@ const RecentAchievements = () => {
                     style={{ top: 0.085 * windowHeight }}
                     onPress={() => prevPosition()}
                   >
-                    <Feather name="chevron-left" size={36} color="#FFFFFF" />
+                    <Feather
+                      name="chevron-left"
+                      size={36}
+                      color={Colors.white}
+                    />
                   </TouchableOpacity>
                 )}
                 {selectedIndex < recentAchievementsDataState.length - 1 && (
@@ -199,7 +204,11 @@ const RecentAchievements = () => {
                     style={{ top: 0.085 * windowHeight }}
                     onPress={() => nextPosition()}
                   >
-                    <Feather name="chevron-right" size={36} color="#FFFFFF" />
+                    <Feather
+                      name="chevron-right"
+                      size={36}
+                      color={Colors.white}
+                    />
                   </TouchableOpacity>
                 )}
               </React.Fragment>
@@ -238,10 +247,10 @@ const RecentAchievements = () => {
               height: 45,
               backgroundColor: "white",
               borderWidth: 1,
-              borderColor: "#D9D9D9",
+              borderColor: Colors.lightGray,
               borderRadius: 12,
             }}
-            textStyle={{ color: "#27261F" }}
+            textStyle={{ color: Colors.offBlack }}
           />
         </View>
       </View>

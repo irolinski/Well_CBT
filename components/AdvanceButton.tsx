@@ -1,5 +1,6 @@
 import React from "react";
 import { TouchableOpacity } from "react-native";
+import { Colors } from "@/constants/styles/colorTheme";
 import Text from "./global/Text";
 
 interface AdvanceButtonProps {
@@ -27,7 +28,7 @@ const AdvanceButton = ({
         btnStyle,
         {
           borderRadius: btnStyle.borderRadius ?? 4,
-          backgroundColor: btnStyle.backgroundColor ?? "#4391BC",
+          backgroundColor: btnStyle.backgroundColor ?? Colors.darkBlue,
           opacity: disabled ? 0.25 : 1,
         },
       ]}
@@ -36,7 +37,7 @@ const AdvanceButton = ({
     >
       <Text
         className="font-semibold"
-        style={[textStyle, { color: textStyle.color ?? "#F5F5F5" }]}
+        style={[textStyle, { color: textStyle.color ?? Colors.whiteSmoke }]}
       >
         {title}
       </Text>

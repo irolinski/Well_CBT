@@ -4,6 +4,7 @@ import {
   welcomeTexts_pt1,
   welcomeTexts_pt2,
 } from "@/constants/models/home/welcomeTexts";
+import { Colors } from "@/constants/styles/colorTheme";
 import { UserType } from "@/db/models";
 import { fetchUserData } from "@/db/user";
 import DividerLine from "../DividerLine";
@@ -60,7 +61,7 @@ const WelcomeTypewriterText = () => {
           text={getWelcomeText(userName && userName)}
           speed="fast"
           fontFamily="KodchasanMedium"
-          color="#757575"
+          color={Colors.darkGray}
           letterSpacing={2}
           lineHeight={1.5}
           hideCursorOnFinish={true}

@@ -9,6 +9,7 @@ import ArticleTextHeader from "@/components/learn/ArticleTextHeader";
 import RelatedArticleCard from "@/components/learn/RelatedArticleCard";
 import { learnArticles } from "@/constants/models/learn/articles";
 import { articleParagraph, ArticleTypes } from "@/constants/models/learn/learn";
+import { Colors } from "@/constants/styles/colorTheme";
 import ArticleImageScrollableHeader from "./ArticleImageScrollableHeader";
 
 const getRelatedArticles = (idArr: number[] | undefined) => {
@@ -63,7 +64,7 @@ const ArticlePage = ({
       >
         <View
           className="px-6"
-          style={{ width: "100%", backgroundColor: "#FFFFFF" }}
+          style={{ width: "100%", backgroundColor: Colors.white }}
         >
           {/* Article Header */}
           <ArticleTextHeader

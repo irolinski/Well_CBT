@@ -7,6 +7,7 @@ import {
   ToolCategories,
   ToolList,
 } from "@/constants/models/home/activity_log";
+import { Colors } from "@/constants/styles/colorTheme";
 import { getOrdinalSuffix } from "@/utils/dates";
 import { Entypo } from "@expo/vector-icons";
 import { Slider } from "@miblanchard/react-native-slider";
@@ -45,7 +46,7 @@ const JournalCard = ({ toolName, link, datetime, value }: JournalCardProps) => {
           <View className="w-1/4">
             <View
               className="mb-8 h-3/4 w-full items-center justify-center border-r"
-              style={{ borderColor: "#B8B8B8" }}
+              style={{ borderColor: Colors.mainGray }}
             >
               <View>{ToolCategories[ToolList[toolName].category].icon}</View>
             </View>
@@ -60,7 +61,10 @@ const JournalCard = ({ toolName, link, datetime, value }: JournalCardProps) => {
               <Text className="text-left text-base">
                 {ToolList[toolName].category}
               </Text>
-              <Text className="text-right text-sm" style={{ color: "#B8B8B8" }}>
+              <Text
+                className="text-right text-sm"
+                style={{ color: Colors.mainGray }}
+              >
                 {/* {cardDate + " " + cardTime} */}
 
                 {cardDateTime.month +
@@ -92,11 +96,11 @@ const JournalCard = ({ toolName, link, datetime, value }: JournalCardProps) => {
                                   ? "#F38E4E"
                                   : "#AED581"
                             }
-                            maximumTrackTintColor="#F5F5F5"
+                            maximumTrackTintColor={Colors.whiteSmoke}
                             trackStyle={{
                               paddingTop: 15,
                               borderRadius: 50,
-                              borderColor: "#D9D9D9",
+                              borderColor: Colors.lightGray,
                               borderStyle: "solid",
                               borderWidth: 1,
                             }}

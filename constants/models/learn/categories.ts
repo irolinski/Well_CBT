@@ -1,5 +1,6 @@
 import { Image } from "expo-image";
 import { ColorValue } from "react-native";
+import { Colors } from "@/constants/styles/colorTheme";
 
 export type learnCategoriesTypes = {
   title: string;
@@ -11,7 +12,7 @@ export type learnCategoriesTypes = {
 export const learnCategories: learnCategoriesTypes[] = [
   {
     title: "Science",
-    color: "#8DBED8",
+    color: Colors.mainBlue,
     image: require("@/assets/images/learn/science.jpg"),
     description: `“All of science is nothing more than the refinement of everyday thinking.” ${"\n"} ${"\n"} - Albert Einstein`,
   },

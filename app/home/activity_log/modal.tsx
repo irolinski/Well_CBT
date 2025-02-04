@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import DividerLine from "@/components/DividerLine";
 import Text from "@/components/global/Text";
 import CategoryFilter from "@/components/home/CategoryFilter";
+import { Colors } from "@/constants/styles/colorTheme";
 import { setShowActivityLogModal } from "@/state/features/menus/activityLogModalSlice";
 import { AppDispatch, RootState } from "@/state/store";
 import { Feather } from "@expo/vector-icons";
@@ -37,7 +38,7 @@ const ActivityLogModal = () => {
             top: 0,
             width: windowWidth,
             height: windowHeight, //remove if more height needed
-            backgroundColor: "#FBFBFB",
+            backgroundColor: Colors.offWhite,
           }}
         >
           <Pressable
@@ -52,13 +53,13 @@ const ActivityLogModal = () => {
             </View>
           </Pressable>
           <View className="items-center">
-            <Text className="text-xl" style={{ color: "#B8B8B8" }}>
+            <Text className="text-xl" style={{ color: Colors.mainGray }}>
               Settings
             </Text>
           </View>
           <View className="mt-8">
             <View>
-              <Text className="mb-2 text-lg" style={{ color: "#B8B8B8" }}>
+              <Text className="mb-2 text-lg" style={{ color: Colors.mainGray }}>
                 Select dates
               </Text>
               <View className="flex-row justify-around">
@@ -71,7 +72,7 @@ const ActivityLogModal = () => {
           </View>
           <View className="mb-8 mt-4">
             <View>
-              <Text className="text-lg" style={{ color: "#B8B8B8" }}>
+              <Text className="text-lg" style={{ color: Colors.mainGray }}>
                 Show only
               </Text>
               <CategoryFilter />

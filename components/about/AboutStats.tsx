@@ -7,6 +7,7 @@ import {
   statObjectsList,
   StatsObj,
 } from "@/constants/models/about/about";
+import { Colors } from "@/constants/styles/colorTheme";
 import { fetchStatsData } from "@/db/about";
 import { StatsDataObjType } from "@/db/models";
 import { interpolateNumbers } from "@/utils/algorithms";
@@ -61,7 +62,7 @@ const AboutStats = () => {
   }, []);
 
   return (
-    <View className="rounded-xl" style={{ backgroundColor: "#F5F5F5" }}>
+    <View className="rounded-xl" style={{ backgroundColor: Colors.whiteSmoke }}>
       <View className="w-full py-8">
         {statsData && statsData.length > 1 ? (
           <React.Fragment>

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Pressable, Text, View } from "react-native";
 import { DistortionPillTypes } from "@/constants/models/tools/cda_distortionList";
+import { Colors } from "@/constants/styles/colorTheme";
 
 const DistortionPill = ({
   title,
@@ -8,7 +9,7 @@ const DistortionPill = ({
   onLongPress,
   checked,
   highlighted,
-  customColor = "#4391BC",
+  customColor = Colors.darkBlue,
 }: DistortionPillTypes) => {
   function forceUpdateOnHighlight() {
     const [value, setValue] = useState(false);
@@ -28,12 +29,12 @@ const DistortionPill = ({
         className={`mx-1 my-1 w-auto rounded-full border-2 p-2`}
         style={{
           borderColor: customColor,
-          backgroundColor: checked ? customColor : "#FBFBFB",
+          backgroundColor: checked ? customColor : Colors.offWhite,
         }}
       >
         <Text
           className="text-center text-[12px]"
-          style={{ color: checked ? "#F5F5F5" : "#27261F" }}
+          style={{ color: checked ? Colors.whiteSmoke : Colors.offBlack }}
         >
           {title}
         </Text>

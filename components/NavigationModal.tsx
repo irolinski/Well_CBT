@@ -1,6 +1,7 @@
 import { Href, router } from "expo-router";
 import { ReactNode, useEffect } from "react";
 import { Modal, Pressable, Text, View } from "react-native";
+import { Colors } from "react-native/Libraries/NewAppScreen";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/state/store";
 import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
@@ -56,7 +57,7 @@ const NavigationModal = ({
           style={{
             width: 320,
             // height: 425,
-            borderColor: "#B8B8B8",
+            borderColor: Colors.mainGray,
           }}
         >
           {/* Header */}
@@ -67,14 +68,14 @@ const NavigationModal = ({
                   <MaterialCommunityIcons
                     name="window-close"
                     size={24}
-                    color="#B8B8B8"
+                    color={Colors.mainGray}
                   />
                 </View>
               </Pressable>
             </View>
             <View
               className="mx-1 flex-row items-center justify-center border-b pb-3"
-              style={{ borderColor: "#B8B8B8", borderBottomWidth: 0.4 }}
+              style={{ borderColor: Colors.mainGray, borderBottomWidth: 0.4 }}
             >
               <View className="mx-1.5">{icon}</View>
               <View className="mx-1.5">
@@ -121,7 +122,7 @@ const NavigationModal = ({
                   className="mx-2"
                   name="arrow-right"
                   size={28}
-                  color="#FFFFFF"
+                  color={Colors.white}
                 />
               }
               disabled={!modalState.link}

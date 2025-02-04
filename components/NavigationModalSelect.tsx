@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import { Pressable, Text, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
+import { Colors } from "@/constants/styles/colorTheme";
 import { setNewActivityModalSelectedLink } from "@/state/features/menus/newActivityModalSlice";
 import { AppDispatch, RootState } from "@/state/store";
 import { UnknownAction } from "@reduxjs/toolkit";
@@ -34,8 +35,9 @@ const NavigationModalSelect = ({
       style={{
         width: 0.7 * 320,
         height: 47,
-        borderColor: "#B8B8B8",
-        backgroundColor: modalState.link === link ? "#8DBED8" : "transparent",
+        borderColor: Colors.mainGray,
+        backgroundColor:
+          modalState.link === link ? Colors.mainBlue : "transparent",
       }}
       onPress={() => handleSelect(link)}
     >
@@ -44,7 +46,7 @@ const NavigationModalSelect = ({
       <Text
         className="mx-2"
         style={{
-          color: modalState.link === link ? "#FFFFFF" : "#757575",
+          color: modalState.link === link ? Colors.white : Colors.darkGray,
         }}
       >
         {name}

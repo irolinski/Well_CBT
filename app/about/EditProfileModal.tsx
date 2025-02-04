@@ -15,6 +15,7 @@ import { allFaces } from "@/assets/images/global/faces/faces";
 import DividerLine from "@/components/DividerLine";
 import Text from "@/components/global/Text";
 import NavigationModalButton from "@/components/NavigationModalButton";
+import { Colors } from "@/constants/styles/colorTheme";
 import {
   fetchUserData,
   handleSetName,
@@ -98,7 +99,7 @@ const EditProfileModal = () => {
           style={{
             top: 0,
             width: windowWidth,
-            backgroundColor: "#FBFBFB",
+            backgroundColor: Colors.offWhite,
           }}
         >
           <Pressable
@@ -113,13 +114,13 @@ const EditProfileModal = () => {
             </View>
           </Pressable>
           <View className="items-center">
-            <Text className="text-xl" style={{ color: "#B8B8B8" }}>
+            <Text className="text-xl" style={{ color: Colors.mainGray }}>
               Edit Profile
             </Text>
           </View>
           <View className="mt-8">
             <View>
-              <Text className="mb-2 text-lg" style={{ color: "#B8B8B8" }}>
+              <Text className="mb-2 text-lg" style={{ color: Colors.mainGray }}>
                 Your profile
               </Text>
               <View className="justify-center">
@@ -149,8 +150,8 @@ const EditProfileModal = () => {
                         size={38}
                         color={
                           editProfileModalState.nameInputIsActive
-                            ? "#B8B8B8"
-                            : "#212529"
+                            ? Colors.mainGray
+                            : Colors.blackPearl
                         }
                       />
                     </TouchableOpacity>
@@ -161,8 +162,8 @@ const EditProfileModal = () => {
                         color: editProfileModalState.nameInputIsActive
                           ? "black"
                           : "#616161",
-                        borderColor: "#d9d9d9",
-                        backgroundColor: "#FBFBFB",
+                        borderColor: Colors.lightGray,
+                        backgroundColor: Colors.offWhite,
                         textAlignVertical: "center",
                       }}
                       selectTextOnFocus={true}
@@ -197,7 +198,7 @@ const EditProfileModal = () => {
           </View>
           <View className="my-8" style={{ height: 225 }}>
             <View>
-              <Text className="mb-4 text-lg" style={{ color: "#B8B8B8" }}>
+              <Text className="mb-4 text-lg" style={{ color: Colors.mainGray }}>
                 Select profile picture
               </Text>
               <ScrollView
@@ -208,7 +209,7 @@ const EditProfileModal = () => {
                   paddingTop: 16,
                   paddingBottom: 16,
                 }}
-                style={{ borderColor: "#B8B8B8", borderRadius: 20 }}
+                style={{ borderColor: Colors.mainGray, borderRadius: 20 }}
                 className="border px-4"
               >
                 {allFaces.map(
@@ -222,7 +223,7 @@ const EditProfileModal = () => {
                       style={{
                         borderColor:
                           faceObj.id === editProfileModalState.selectedFaceId
-                            ? "#D9D9D9"
+                            ? Colors.lightGray
                             : "transparent",
                         borderWidth: 6,
                       }}
@@ -244,7 +245,7 @@ const EditProfileModal = () => {
               onPress={() => {
                 handleSaveChanges();
               }}
-              icon={<Feather name="save" size={24} color="#ffffff" />}
+              icon={<Feather name="save" size={24} color={Colors.white} />}
             />
           </View>
         </View>

@@ -13,6 +13,7 @@ import {
   JournalEntryMainType,
 } from "@/constants/models/home/activity_log";
 import { emotionList, moodValueTitles } from "@/constants/models/tools/journal";
+import { Colors } from "@/constants/styles/colorTheme";
 import { fetchJournalEntry } from "@/db/activity_log";
 import { deleteJournalEntry } from "@/db/tools";
 import { handleDeleteEntry } from "@/utils/deleteEntry";
@@ -55,7 +56,10 @@ const ActivityShowPage = () => {
               <View className="justify-center">
                 <Text
                   className="mt-0.5 text-lg"
-                  style={{ fontFamily: "KodchasanMedium", color: "#B8B8B8" }}
+                  style={{
+                    fontFamily: "KodchasanMedium",
+                    color: Colors.mainGray,
+                  }}
                 >
                   {date}
                 </Text>
@@ -80,11 +84,11 @@ const ActivityShowPage = () => {
                               ? "#F38E4E"
                               : "#AED581"
                         }
-                        maximumTrackTintColor="#F5F5F5"
+                        maximumTrackTintColor={Colors.whiteSmoke}
                         trackStyle={{
                           paddingTop: 15,
                           borderRadius: 50,
-                          borderColor: "#D9D9D9",
+                          borderColor: Colors.lightGray,
                           borderStyle: "solid",
                           borderWidth: 1,
                         }}
@@ -100,7 +104,7 @@ const ActivityShowPage = () => {
               )}
               <View
                 className="my-8 justify-center border-b border-t px-2 py-7"
-                style={{ borderColor: "#D9D9D9" }}
+                style={{ borderColor: Colors.lightGray }}
               >
                 <Text className="absolute top-4">Emotions:</Text>
                 <View className="mx-auto mt-6 w-[95%] flex-row flex-wrap px-4">
@@ -154,7 +158,7 @@ const ActivityShowPage = () => {
                 ) : (
                   <View
                     className="mt-4 h-28 justify-center rounded-lg"
-                    style={{ borderColor: "#B8B8B8" }}
+                    style={{ borderColor: Colors.mainGray }}
                   >
                     <Text className="text-center">
                       No note added to this log.

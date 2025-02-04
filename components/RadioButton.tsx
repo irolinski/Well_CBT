@@ -1,4 +1,5 @@
 import { ColorValue, Pressable, View } from "react-native";
+import { Colors } from "@/constants/styles/colorTheme";
 
 type RadioButtonTypes = {
   isActive: boolean;
@@ -15,19 +16,19 @@ const RadioButton = ({
   return !onPress ? (
     <View
       className="mx-2 h-5 w-5 items-center justify-center rounded-full border"
-      style={{ borderColor: borderColor ?? "#212529" }}
+      style={{ borderColor: borderColor ?? Colors.blackPearl }}
     >
       {isActive && (
         <View
           className="h-3 w-3 rounded-xl"
-          style={{ backgroundColor: checkedColor ?? "#4391BC" }}
+          style={{ backgroundColor: checkedColor ?? Colors.darkBlue }}
         ></View>
       )}
     </View>
   ) : (
     <Pressable
       className="mx-2 h-5 w-5 items-center justify-center rounded-full border"
-      style={{ borderColor: borderColor ?? "#212529" }}
+      style={{ borderColor: borderColor ?? Colors.blackPearl }}
       onPress={() => {
         onPress && onPress();
       }}
@@ -35,7 +36,7 @@ const RadioButton = ({
       {isActive && (
         <View
           className="h-3 w-3 rounded-xl"
-          style={{ backgroundColor: checkedColor ?? "#4391BC" }}
+          style={{ backgroundColor: checkedColor ?? Colors.darkBlue }}
         ></View>
       )}
     </Pressable>

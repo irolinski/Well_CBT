@@ -14,6 +14,7 @@ import topicList from "@/assets/text/conversation_topics.json";
 import DividerLine from "@/components/DividerLine";
 import { Logo } from "@/components/global/Logo";
 import Text from "@/components/global/Text";
+import { Colors } from "@/constants/styles/colorTheme";
 import { achievementHandlersObj } from "@/db/achievements/controllers";
 import { setShowModal } from "@/state/features/tools/phoneSlice";
 import { AppDispatch, RootState } from "@/state/store";
@@ -160,7 +161,7 @@ const ConversationModal = () => {
           style={{
             height: windowHeight,
             width: windowWidth,
-            backgroundColor: "#fbfbfb",
+            backgroundColor: Colors.offWhite,
           }}
         >
           <Pressable
@@ -198,7 +199,7 @@ const ConversationModal = () => {
                         <Text
                           className="mt-16 px-6 text-center text-2xl"
                           style={{
-                            color: "#FBFBFB",
+                            color: Colors.offWhite,
                             opacity: 0.95,
                             fontWeight: 500,
                           }}
@@ -209,7 +210,7 @@ const ConversationModal = () => {
                       <View>
                         <Text
                           className="text-center text-xl font-bold"
-                          style={{ color: "#FBFBFB", opacity: 0.35 }}
+                          style={{ color: Colors.offWhite, opacity: 0.35 }}
                         >
                           Tap to uncover
                         </Text>
@@ -240,7 +241,7 @@ const ConversationModal = () => {
             <TouchableOpacity
               className="mx-2 h-14 w-24 items-center justify-center rounded-xl border"
               style={{
-                backgroundColor: "#FBFBFB",
+                backgroundColor: Colors.offWhite,
                 opacity: isRefreshing ? 0.5 : 1,
               }}
               onPress={shareTopic}
@@ -257,14 +258,14 @@ const ConversationModal = () => {
             <TouchableOpacity
               className="mx-2 h-14 w-40 items-center justify-center rounded-xl"
               style={{
-                backgroundColor: "#4391BC",
+                backgroundColor: Colors.darkBlue,
                 opacity: isRefreshing ? 0.5 : 1,
               }}
               onPress={refreshCard}
               disabled={isRefreshing}
             >
               <View>
-                <Feather name="refresh-cw" size={28} color="#FBFBFB" />
+                <Feather name="refresh-cw" size={28} color={Colors.offWhite} />
               </View>
             </TouchableOpacity>
           </View>

@@ -1,5 +1,6 @@
 import React from "react";
 import { Dimensions, ScrollView, View } from "react-native";
+import { Colors } from "@/constants/styles/colorTheme";
 import { Logo } from "../global/Logo";
 import ToolHeader from "../tools/ToolHeader";
 
@@ -19,7 +20,7 @@ const FrameMenu = (props: any) => {
         style={{
           width: windowWidth,
           height: topFrameHeight,
-          backgroundColor: "#8dbed8",
+          backgroundColor: Colors.mainBlue,
         }}
       >
         <View

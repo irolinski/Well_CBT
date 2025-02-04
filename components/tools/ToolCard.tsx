@@ -1,8 +1,9 @@
-import { View, Text, Pressable } from "react-native";
-import React from "react";
-import { Href, router } from "expo-router";
-import { LinearGradient } from "expo-linear-gradient";
 import { Image, ImageSource } from "expo-image";
+import { LinearGradient } from "expo-linear-gradient";
+import { Href, router } from "expo-router";
+import React from "react";
+import { Pressable, Text, View } from "react-native";
+import { Colors } from "@/constants/styles/colorTheme";
 
 const ToolCard = ({
   name,
@@ -34,14 +35,14 @@ const ToolCard = ({
           position: "absolute", // Ensures the gradient is on top
           height: "100%",
           width: "100%",
-          borderRadius: 8, 
+          borderRadius: 8,
         }}
       ></LinearGradient>
 
       <View className="absolute flex h-full w-full justify-center">
         <Text
           className="z-10 ml-4 text-left text-lg"
-          style={{ color: "#F5F5F5" }}
+          style={{ color: Colors.whiteSmoke }}
         >
           {name}
         </Text>

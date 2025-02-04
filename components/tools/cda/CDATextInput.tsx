@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Dimensions, Keyboard, TextInput, View } from "react-native";
+import { Colors } from "@/constants/styles/colorTheme";
 import { isValidExerciseInput } from "@/utils/inputValidations";
 import Text from "../../global/Text";
 
@@ -20,8 +21,8 @@ export default function CDATextInput({
       <TextInput
         className="my-2 h-28 rounded-md border p-4"
         style={{
-          borderColor: "#d9d9d9",
-          backgroundColor: "#FBFBFB",
+          borderColor: Colors.lightGray,
+          backgroundColor: Colors.offWhite,
           textAlignVertical: "top",
         }}
         value={value}

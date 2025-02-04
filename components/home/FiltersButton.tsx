@@ -1,5 +1,6 @@
 import { TouchableOpacity, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
+import { Colors } from "@/constants/styles/colorTheme";
 import { setShowActivityLogModal } from "@/state/features/menus/activityLogModalSlice";
 import { AppDispatch, RootState } from "@/state/store";
 import { AntDesign } from "@expo/vector-icons";
@@ -21,7 +22,7 @@ const FiltersButton = () => {
   return (
     <TouchableOpacity
       className="h-full flex-row items-center justify-center rounded-lg border"
-      style={{ borderColor: "#B8B8B8" }}
+      style={{ borderColor: Colors.mainGray }}
       onPress={() => {
         dispatch(setShowActivityLogModal(true));
       }}
@@ -40,7 +41,7 @@ const FiltersButton = () => {
             >
               <Text
                 className="text-center text-sm"
-                style={{ color: "#FFFFFF" }}
+                style={{ color: Colors.white }}
               >
                 {numOfFilters}
               </Text>

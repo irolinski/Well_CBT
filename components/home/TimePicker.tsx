@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Colors } from "@/constants/styles/colorTheme";
 import DividerLine from "../DividerLine";
 
 export type TimePickerReturnObj = {
@@ -104,9 +105,9 @@ const TimePicker = ({ initialTime, onChange, disabled }: TimePickerTypes) => {
           style={{
             height: 56,
             width: 56,
-            color: disabled ? "#B8B8B8" : "",
-            borderColor: "#d9d9d9",
-            backgroundColor: "#FBFBFB",
+            color: disabled ? Colors.mainGray : "",
+            borderColor: Colors.lightGray,
+            backgroundColor: Colors.offWhite,
             textAlignVertical: "top",
           }}
           value={hourInput}
@@ -126,7 +127,7 @@ const TimePicker = ({ initialTime, onChange, disabled }: TimePickerTypes) => {
         />
         <Text
           className="mx-2 text-2xl"
-          style={{ color: disabled ? "#B8B8B8" : "" }}
+          style={{ color: disabled ? Colors.mainGray : "" }}
         >
           :
         </Text>
@@ -135,9 +136,9 @@ const TimePicker = ({ initialTime, onChange, disabled }: TimePickerTypes) => {
           style={{
             height: 56,
             width: 56,
-            color: disabled ? "#B8B8B8" : "",
-            borderColor: "#d9d9d9",
-            backgroundColor: "#FBFBFB",
+            color: disabled ? Colors.mainGray : "",
+            borderColor: Colors.lightGray,
+            backgroundColor: Colors.offWhite,
             textAlignVertical: "top",
           }}
           value={minuteInput}
@@ -163,8 +164,8 @@ const TimePicker = ({ initialTime, onChange, disabled }: TimePickerTypes) => {
         className="rounded-lg border"
         style={{
           width: 64,
-          borderColor: "#d9d9d9",
-          backgroundColor: "#FBFBFB",
+          borderColor: Colors.lightGray,
+          backgroundColor: Colors.offWhite,
         }}
       >
         <TouchableOpacity
@@ -176,15 +177,17 @@ const TimePicker = ({ initialTime, onChange, disabled }: TimePickerTypes) => {
             backgroundColor:
               meridiem === "AM"
                 ? disabled
-                  ? "#B8B8B8"
-                  : "#4391BC"
-                : "#FFFFFF",
+                  ? Colors.mainGray
+                  : Colors.darkBlue
+                : Colors.white,
           }}
           disabled={disabled}
         >
           <Text
             className="text-center"
-            style={{ color: meridiem === "AM" ? "#FFFFFF" : "#757575" }}
+            style={{
+              color: meridiem === "AM" ? Colors.white : Colors.darkGray,
+            }}
           >
             AM
           </Text>
@@ -199,15 +202,17 @@ const TimePicker = ({ initialTime, onChange, disabled }: TimePickerTypes) => {
             backgroundColor:
               meridiem === "PM"
                 ? disabled
-                  ? "#B8B8B8"
-                  : "#4391BC"
-                : "#FFFFFF",
+                  ? Colors.mainGray
+                  : Colors.darkBlue
+                : Colors.white,
           }}
           disabled={disabled}
         >
           <Text
             className="text-center"
-            style={{ color: meridiem === "PM" ? "#FFFFFF" : "#757575" }}
+            style={{
+              color: meridiem === "PM" ? Colors.white : Colors.darkGray,
+            }}
           >
             PM
           </Text>

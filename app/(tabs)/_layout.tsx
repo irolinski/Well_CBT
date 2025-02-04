@@ -1,7 +1,7 @@
 import { Tabs } from "expo-router";
 import React from "react";
 import { Dimensions, View } from "react-native";
-import { Colors } from "@/constants/Colors";
+import { Colors } from "@/constants/styles/colorTheme";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import {
   Feather,
@@ -19,7 +19,7 @@ const TabLayout = () => {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
+        tabBarActiveTintColor: Colors.offBlack,
         headerShown: false,
         tabBarStyle: {
           paddingBottom: tabBarPaddingY + 5,

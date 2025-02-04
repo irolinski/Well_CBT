@@ -7,6 +7,7 @@ import Text from "@/components/global/Text";
 import ToolHeader from "@/components/tools/ToolHeader";
 import ToolNav from "@/components/tools/ToolNav";
 import { moodValueTitles } from "@/constants/models/tools/journal";
+import { Colors } from "@/constants/styles/colorTheme";
 import {
   journalResetState,
   setMoodValue,
@@ -111,20 +112,20 @@ const Log_1 = () => {
                     ? "#F38E4E"
                     : "#AED581"
               }
-              maximumTrackTintColor="#f5f5f5"
-              thumbTintColor="#F5F5F5"
+              maximumTrackTintColor={Colors.whiteSmoke}
+              thumbTintColor={Colors.whiteSmoke}
               thumbStyle={{
                 padding: 15,
                 borderRadius: 50,
                 borderStyle: "solid",
-                borderColor: "#D9D9D9",
+                borderColor: Colors.lightGray,
                 borderWidth: 2,
               }}
               trackStyle={{
                 padding: 7,
                 marginLeft: 5,
                 borderRadius: 50,
-                borderColor: "#D9D9D9",
+                borderColor: Colors.lightGray,
                 borderStyle: "solid",
                 borderWidth: 2,
               }}
@@ -172,7 +173,7 @@ const Log_1 = () => {
                   <Animated.Text
                     className="mb-8 text-center text-3xl"
                     style={{
-                      color: "#B8B8B8",
+                      color: Colors.mainGray,
                       // textShadowColor: "rgba(63, 63, 63, 0.4)",
                       // textShadowOffset: { width: -1, height: 1 },
                       // textShadowRadius: 4,
@@ -180,8 +181,12 @@ const Log_1 = () => {
                   >
                     Swipe up!
                   </Animated.Text>
-                  <MaterialIcons name="swipe-up" size={58} color="#B8B8B8" />
-                  {/* <Fontisto name="angle-dobule-left" size={36} color="#B8B8B8" /> */}
+                  <MaterialIcons
+                    name="swipe-up"
+                    size={58}
+                    color={Colors.mainGray}
+                  />
+                  {/* <Fontisto name="angle-dobule-left" size={36} color=Colors.mainGray /> */}
                 </Animated.View>
               </Animated.View>
             )}

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Modal, Pressable, Switch, Text, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
+import { Colors } from "@/constants/styles/colorTheme";
 import { setShowNotificationModal } from "@/state/features/menus/notificationModalSlice";
 import { AppDispatch, RootState } from "@/state/store";
 import {
@@ -88,8 +89,8 @@ const NotificationsModal = () => {
           style={{
             width: 320,
             height: 380,
-            backgroundColor: "#FFFFFF",
-            borderColor: "#B8B8B8",
+            backgroundColor: Colors.white,
+            borderColor: Colors.mainGray,
           }}
         >
           {/* Header */}
@@ -105,20 +106,20 @@ const NotificationsModal = () => {
                   <MaterialCommunityIcons
                     name="window-close"
                     size={24}
-                    color="#B8B8B8"
+                    color={Colors.mainGray}
                   />
                 </View>
               </Pressable>
             </View>
             <View
               className="mx-1 flex-row items-center justify-center border-b py-3"
-              style={{ borderColor: "#B8B8B8", borderBottomWidth: 0.4 }}
+              style={{ borderColor: Colors.mainGray, borderBottomWidth: 0.4 }}
             >
               <View className="mx-1">
                 <MaterialCommunityIcons
                   name="bell-plus"
                   size={30}
-                  color="#D9D9D9"
+                  color={Colors.lightGray}
                 />
               </View>
               <Text className="mx-1 text-lg">Set a reminder?</Text>
@@ -133,8 +134,11 @@ const NotificationsModal = () => {
                   className="mx-2"
                   value={enableNotifications}
                   onValueChange={(val) => setEnableNotifications(val)}
-                  ios_backgroundColor={"#D9D9D9"}
-                  trackColor={{ false: "#D9D9D9", true: "#4391BC" }}
+                  ios_backgroundColor={Colors.lightGray}
+                  trackColor={{
+                    false: Colors.lightGray,
+                    true: Colors.darkBlue,
+                  }}
                 />
               </View>
               {/* TimePicker */}
@@ -149,7 +153,7 @@ const NotificationsModal = () => {
               >
                 <ModalButton
                   title="Save preferences"
-                  icon={<Feather name="save" size={24} color="#FFFFFF" />}
+                  icon={<Feather name="save" size={24} color={Colors.white} />}
                   disabled={
                     selectedTime.minute.length !== 2 ||
                     selectedTime.hour.length !== 2
@@ -166,7 +170,7 @@ const NotificationsModal = () => {
                 <MaterialCommunityIcons
                   name="bell-off"
                   size={56}
-                  color="#B8B8B8"
+                  color={Colors.mainGray}
                 />
               </View>
               <View className="items-center justify-center">

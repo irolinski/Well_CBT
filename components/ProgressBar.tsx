@@ -1,5 +1,7 @@
 import React from "react";
 import { View } from "react-native";
+import { Colors } from "@/constants/styles/colorTheme";
+
 const ProgressBar = ({
   currentPage,
   numOfAllPages,
@@ -16,7 +18,8 @@ const ProgressBar = ({
             style={{
               width: 15,
               height: 15,
-              backgroundColor: i + 1 > currentPage ? "#D9D9D9" : "#8DBED8",
+              backgroundColor:
+                i + 1 > currentPage ? Colors.lightGray : Colors.mainBlue,
             }}
             key={i}
           ></View>
