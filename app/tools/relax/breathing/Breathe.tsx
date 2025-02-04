@@ -1,16 +1,16 @@
 import { Image } from "expo-image";
+import { LinearGradient } from "expo-linear-gradient";
 import { router } from "expo-router";
 import React, { useEffect, useRef, useState } from "react";
 import { Animated, Dimensions, Easing, Pressable, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import AdvanceButton from "@/components/AdvanceButton";
 import Text from "@/components/global/Text";
+import { handleLogRelaxActivity } from "@/db/tools";
 import { toggleModal } from "@/state/features/tools/breatheSettingsSlice";
 import { AppDispatch, RootState } from "@/state/store";
 import { Feather } from "@expo/vector-icons";
 import BreatheModal from "./modal";
-import { LinearGradient } from "expo-linear-gradient";
-import { handleLogRelaxActivity } from "@/db/tools";
 
 const Breathe = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -39,7 +39,8 @@ const Breathe = () => {
   const [repsDone, setRepsDone] = useState(0);
 
   // DB
-
+  //the VV below VV state is to prevent accidental multiple db requests
+  const [hasLoggedTimeToDb, setHasLoggedTimeToDb] = useState(false);
   let ellapsedTime =
     5 *
     breatheSettings.numOfSets *
@@ -116,7 +117,6 @@ const Breathe = () => {
 
   const handleHold = () => {
     setShowHold(true);
-    // console.log("HOLD!");
     setStepsDone((prev) => prev + 1);
     slideHoldColor();
     animateProgressBar(breatheSettings.mode.holdTime * 1000);
@@ -135,7 +135,6 @@ const Breathe = () => {
     ? 4 * repsToDo
     : 3 * repsToDo;
   const [stepsDone, setStepsDone] = useState(0);
-  // console.log(stepsDone + " / " + stepsToDo);
 
   const animateProgressBar = (duration: number) => {
     let stepsToAdd = breatheSettings.mode.doubleHold
@@ -161,7 +160,6 @@ const Breathe = () => {
   const resetExercise = () => {
     counterOn && setCounterOn(false);
     setRepsDone(0);
-    // setShowHold(false);
     handleHoldEnd();
     setBreathInOut(true);
     setCounterVal(breatheSettings.mode.breatheInTime);
@@ -173,6 +171,7 @@ const Breathe = () => {
   const startExercise = () => {
     resetExercise();
     setCounterOn(true);
+    setHasLoggedTimeToDb(false);
   };
 
   const startExerciseWithCountdown = () => {
@@ -226,12 +225,12 @@ const Breathe = () => {
 
   // MAIN TIMER EFFECT
   useEffect(() => {
-    // ONLY FOR TESTING
-    handleLogRelaxActivity(ellapsedTime);
-    // ONLY FOR TESTING
     if (repsDone === repsToDo) {
       setCounterOn(false);
-      handleLogRelaxActivity(ellapsedTime);
+      if (!hasLoggedTimeToDb) {
+        setHasLoggedTimeToDb(true);
+        handleLogRelaxActivity(ellapsedTime);
+      }
     }
 
     if (counterOn && !pause) {
@@ -327,7 +326,7 @@ const Breathe = () => {
           position: "absolute", // Ensures the gradient is on top
           height: "100%",
           width: "100%",
-          borderRadius: 8, // Optional: adds rounded corners
+          borderRadius: 8,
           opacity: 0.5,
         }}
       ></LinearGradient>

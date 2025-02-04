@@ -122,7 +122,7 @@ export const handleLogRelaxActivity = async (relaxTime: number) => {
 
     // Insert data into table
     // and save id to use it for joint emotion table
-    const insertIntoJournalResult = await db.runAsync(`
+    await db.runAsync(`
                   INSERT INTO relaxActivities (id, activityName, secondsRelaxed, datetime) VALUES (
                     NULL, 'breathing', '${relaxTime}', DATETIME('now', 'localtime')
                   );
