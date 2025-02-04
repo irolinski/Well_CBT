@@ -135,27 +135,35 @@ export const handleLogRelaxActivity = async (relaxTime: number) => {
 export const getPhoneData = async () => {
   const db = await SQLite.openDatabaseAsync(dbName);
   try {
+    db.execAsync(`CREATE TABLE IF NOT EXISTS phoneAFriend (
+          name VARCHAR(100),
+          phone VARCHAR(100)
+      );`);
     const pd: { name: string; phone: string }[] = await db.getAllAsync(
       "SELECT * FROM phoneAFriend",
     );
     return pd;
   } catch (err) {
-    console.error("no data found");
+    console.error(err);
   }
 };
 
 export const setContact = async (name: string, phone: string) => {
   const db = await SQLite.openDatabaseAsync(dbName);
-  await db.execAsync(`
+  try {
+    await db.execAsync(`
       DROP TABLE IF EXISTS phoneAFriend;
       CREATE TABLE phoneAFriend (
-          name VARCHAR(100) NOT NULL,
-          phone VARCHAR(100) NOT NULL
+          name VARCHAR(100),
+          phone VARCHAR(100)
       );
   `);
-  await db.execAsync(
-    `INSERT INTO phoneAFriend (name, phone) VALUES ('${name}', '${phone}');`,
-  );
+    await db.execAsync(
+      `INSERT INTO phoneAFriend (name, phone) VALUES ('${name}', '${phone}');`,
+    );
+  } catch (err) {
+    console.error(err);
+  }
 };
 
 export const setContactWithPicture = async (
@@ -164,7 +172,8 @@ export const setContactWithPicture = async (
   pictureURI: string,
 ) => {
   const db = await SQLite.openDatabaseAsync(dbName);
-  await db.execAsync(`
+  try {
+    await db.execAsync(`
       DROP TABLE IF EXISTS phoneAFriend;
       CREATE TABLE phoneAFriend (
           name VARCHAR(100) NOT NULL,
@@ -172,7 +181,10 @@ export const setContactWithPicture = async (
           pictureURI VARCHAR(400)
       );
   `);
-  await db.execAsync(
-    `INSERT INTO phoneAFriend (name, phone, pictureURI) VALUES ('${name}', '${phone}', '${pictureURI}');`,
-  );
+    await db.execAsync(
+      `INSERT INTO phoneAFriend (name, phone, pictureURI) VALUES ('${name}', '${phone}', '${pictureURI}');`,
+    );
+  } catch (err) {
+    console.error(err);
+  }
 };
