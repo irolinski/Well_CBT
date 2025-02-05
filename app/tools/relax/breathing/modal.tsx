@@ -1,3 +1,4 @@
+import { Image } from "expo-image";
 import { Dimensions, Modal, Pressable, ScrollView, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import Text from "@/components/global/Text";
@@ -84,7 +85,10 @@ const BreatheModal = ({ ellapsedTime }: { ellapsedTime: number }) => {
                       />
                     </View>
                     <View className="items-center">
-                      <View className="m-2 h-16 w-16 rounded-xl border"></View>
+                      <Image
+                        className="m-2 h-16 w-16 rounded-xl"
+                        source={require("@/assets/images/tools/breathe/mode_1.webp")}
+                      />
                       <Text
                         className="text-lg"
                         style={{ color: Colors.mainGray }}
@@ -108,7 +112,10 @@ const BreatheModal = ({ ellapsedTime }: { ellapsedTime: number }) => {
                       />
                     </View>
                     <View className="items-center">
-                      <View className="m-2 h-16 w-16 rounded-xl border"></View>
+                      <Image
+                        className="m-2 h-16 w-16 rounded-xl"
+                        source={require("@/assets/images/tools/breathe/mode_2.webp")}
+                      />
                       <Text
                         className="text-lg"
                         style={{ color: Colors.mainGray }}
