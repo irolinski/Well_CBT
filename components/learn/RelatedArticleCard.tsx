@@ -14,11 +14,11 @@ const RelatedArticleCard = ({
 }: learnArticleCardTypes) => {
   return (
     <Pressable
-      className="rounded-2xl border px-4"
+      className="my-2 rounded-2xl border px-4"
       style={{
         width: "100%",
         height: 140,
-        borderColor: Colors.blackPearl,
+        borderColor: Colors.lightGray,
       }}
       onPress={() => router.replace(link as Href)}
     >
@@ -28,10 +28,12 @@ const RelatedArticleCard = ({
         </View>
         <View className="w-3/5">
           <View className="py-5">
-            <View>
-              <Text className="text-base">{title} </Text>
+            <View className="pb-3">
+              <Text className="wrap h-12 w-full overflow-hidden text-base">
+                {title}{" "}
+              </Text>
             </View>
-            <View className="mt-2 flex-row items-end justify-between">
+            <View className="flex-row items-end justify-between">
               <Text
                 className="mb-2 text-sm"
                 style={{ color: Colors.blackPearl }}

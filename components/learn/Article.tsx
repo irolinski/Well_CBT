@@ -105,18 +105,21 @@ const ArticlePage = ({
             {relatedArticles.length > 0 && (
               <React.Fragment>
                 <View>
-                  <Text className="pb-6 text-xl">Related Articles</Text>
+                  <Text className="pb-2 text-xl">Related Articles</Text>
                 </View>
                 <View className="my-4 items-center">
                   {relatedArticles.length > 0 &&
-                    relatedArticles.map((a: ArticleTypes) => (
-                      <RelatedArticleCard
-                        title={a.title}
-                        time={a.time}
-                        image={a.bgImage.image}
-                        link={`/${a.id}`}
-                      />
-                    ))}
+                    relatedArticles.map(
+                      (article: ArticleTypes, indexNum: number) => (
+                        <RelatedArticleCard
+                          title={article.title}
+                          time={article.time}
+                          image={article.bgImage.image}
+                          link={`/learn/categories/${article.category}/${article.id}`}
+                          key={indexNum}
+                        />
+                      ),
+                    )}
                 </View>
               </React.Fragment>
             )}

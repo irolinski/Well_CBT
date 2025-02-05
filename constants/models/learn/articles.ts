@@ -28,7 +28,7 @@ export const learnArticles: ArticleTypes[] = [
         body: "There are numerous ways you can work with your breath. For a holistic approach you may want to look into mindfulness meditation or find a therapist providing  ACT therapy in your vicinity.  Our app offers a bunch of ways to soothe your anxiety with breathing.",
       },
     ],
-    relatedArticleIds: [],
+    relatedArticleIds: [4, 5],
     id: 1,
   },
   {
@@ -121,7 +121,7 @@ export const learnArticles: ArticleTypes[] = [
         body: "Social media's impact on mental health is multifaceted. While it can often exacerbate mental health challenges, it also holds the potential to enhance well-being through connection and support. The key, most probably, lies in mindful and balanced use, supported by ongoing research to better understand its effects.",
       },
     ],
-    relatedArticleIds: [],
+    relatedArticleIds: [1, 5],
     id: 4,
   },
   {
@@ -163,6 +163,7 @@ export const learnArticles: ArticleTypes[] = [
         body: "Techniques like deep breathing or progressive muscle relaxation help reduce stress hormones and promote relaxation before bed (Morin & Espie, 2009).",
       },
     ],
+    relatedArticleIds: [1, 4],
     id: 5,
   },
   {
@@ -216,6 +217,7 @@ export const learnArticles: ArticleTypes[] = [
         body: "Known as 'Going Home,' this movement is deeply calming and reflective.\nRecommended Recording: Berlin Philharmonic, Herbert von Karajan (Deutsche Grammophon).",
       },
     ],
+    relatedArticleIds: [],
     id: 6,
   },
   {
@@ -253,6 +255,7 @@ export const learnArticles: ArticleTypes[] = [
         body: "Non-traditional CBT approaches are not without limitations. For instance, adherence can be low, and individuals with severe symptoms may require professional guidance. However, ongoing research is refining these interventions, with promising innovations like artificial intelligence to personalize CBT delivery.",
       },
     ],
+    relatedArticleIds: [],
     id: 7,
   },
 ];
