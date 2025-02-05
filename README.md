@@ -1,6 +1,9 @@
 <h1 align="center">Well &nbsp;&nbsp;<img width="50px" src="https://github.com/user-attachments/assets/56328749-dc38-4143-976a-8e695b6ca0ee"/></h1>
 
-<h3 align="center">An Evidence-Based Mobile Self-Help Aid</h3>
+<h3 align="center">An Evidence-Based Mobile Self-Help Aid <br/> <br/>
+ <img height="175px" src="https://github.com/user-attachments/assets/73cb834c-c322-472a-96b8-1960bd3ff2db" />
+
+</h3>
 
 ## Release
 <h4>This app will be released on: </h4> 
