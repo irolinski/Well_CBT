@@ -55,7 +55,7 @@ export const statObjectsList: StatsObj[] = [
     },
   },
   {
-    name: "journalEntries",
+    name: "journalCount",
     caption: "Journal Entries",
     icon: ToolList.journal.icon,
     ballSize: {
