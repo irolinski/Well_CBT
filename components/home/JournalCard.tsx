@@ -8,6 +8,7 @@ import {
   ToolList,
 } from "@/constants/models/home/activity_log";
 import { Colors } from "@/constants/styles/colorTheme";
+import { journalStyleConstants } from "@/constants/styles/values";
 import { getOrdinalSuffix } from "@/utils/dates";
 import { Entypo } from "@expo/vector-icons";
 import { Slider } from "@miblanchard/react-native-slider";
@@ -65,8 +66,6 @@ const JournalCard = ({ toolName, link, datetime, value }: JournalCardProps) => {
                 className="text-right text-sm"
                 style={{ color: Colors.mainGray }}
               >
-                {/* {cardDate + " " + cardTime} */}
-
                 {cardDateTime.month +
                   " " +
                   cardDateTime.day +
@@ -84,15 +83,19 @@ const JournalCard = ({ toolName, link, datetime, value }: JournalCardProps) => {
                       <View className="pt-2">
                         {value && (
                           <Slider
-                            minimumValue={0} // 0.1 causes a visual glitch
-                            maximumValue={0.6}
+                            minimumValue={journalStyleConstants.SLIDER_MIN_VAL}
+                            maximumValue={
+                              journalStyleConstants.MOOD_SLIDER_MAX_VAL
+                            }
                             value={(value - 1) / 10}
                             disabled
                             renderThumbComponent={() => <View></View>}
                             minimumTrackTintColor={
-                              value < 4
+                              value <
+                              journalStyleConstants.SLIDER_COLOR_2_TRESHOLD
                                 ? "#D46A6A"
-                                : value < 6
+                                : value <
+                                    journalStyleConstants.SLIDER_COLOR_3_TRESHOLD
                                   ? "#F38E4E"
                                   : "#AED581"
                             }

@@ -4,6 +4,7 @@ import DividerLine from "@/components/DividerLine";
 import Text from "@/components/global/Text";
 import CategoryFilter from "@/components/home/CategoryFilter";
 import { Colors } from "@/constants/styles/colorTheme";
+import { CLOSE_MODAL_OFFSET_TRESHOLD } from "@/constants/styles/values";
 import { setShowActivityLogModal } from "@/state/features/menus/activityLogModalSlice";
 import { AppDispatch, RootState } from "@/state/store";
 import { Feather } from "@expo/vector-icons";
@@ -28,7 +29,7 @@ const ActivityLogModal = () => {
     >
       <ScrollView
         onScroll={(evt) => {
-          evt.nativeEvent.contentOffset.y < -175 &&
+          evt.nativeEvent.contentOffset.y < CLOSE_MODAL_OFFSET_TRESHOLD &&
             dispatch(setShowActivityLogModal(false));
         }}
       >

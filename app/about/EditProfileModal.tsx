@@ -16,6 +16,7 @@ import DividerLine from "@/components/DividerLine";
 import Text from "@/components/global/Text";
 import NavigationModalButton from "@/components/NavigationModalButton";
 import { Colors } from "@/constants/styles/colorTheme";
+import { CLOSE_MODAL_OFFSET_TRESHOLD } from "@/constants/styles/values";
 import {
   fetchUserData,
   handleSetName,
@@ -31,6 +32,8 @@ import {
 import { AppDispatch, RootState } from "@/state/store";
 import { isValidName } from "@/utils/inputValidations";
 import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
+
+const MAX_NAME_LENGTH = 13;
 
 const EditProfileModal = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -87,9 +90,8 @@ const EditProfileModal = () => {
     >
       <ScrollView
         onScroll={(evt) => {
-          evt.nativeEvent.contentOffset.y < -175 &&
+          evt.nativeEvent.contentOffset.y < CLOSE_MODAL_OFFSET_TRESHOLD &&
             dispatch(setShowEditProfileModal(false));
-          // dispatch(editProfileModalResetState());
         }}
         indicatorStyle="black"
         persistentScrollbar={true} // works only on android
@@ -174,7 +176,7 @@ const EditProfileModal = () => {
                       }}
                       editable={editProfileModalState.nameInputIsActive}
                       multiline={false}
-                      maxLength={13}
+                      maxLength={MAX_NAME_LENGTH}
                       autoFocus={editProfileModalState.nameInputIsActive}
                       returnKeyType="done"
                       onKeyPress={(evt) => {

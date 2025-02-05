@@ -10,6 +10,7 @@ import ToolNav from "@/components/tools/ToolNav";
 import { emotionObjType } from "@/constants/models/home/activity_log";
 import { emotionStrengthTitles } from "@/constants/models/tools/journal";
 import { Colors } from "@/constants/styles/colorTheme";
+import { journalStyleConstants } from "@/constants/styles/values";
 import { setEmotions } from "@/state/features/tools/journalSlice";
 import { AppDispatch, RootState } from "@/state/store";
 import { Slider } from "@miblanchard/react-native-slider";
@@ -69,8 +70,10 @@ const Log_3 = () => {
                       <Slider
                         animateTransitions
                         trackClickable
-                        minimumValue={0} // 0.1 causes a visual glitch
-                        maximumValue={0.4}
+                        minimumValue={journalStyleConstants.SLIDER_MIN_VAL} // 0.1 causes a visual glitch
+                        maximumValue={
+                          journalStyleConstants.EMOTION_SLIDER_MAX_VAL
+                        }
                         onValueChange={(evt) => {
                           handleSlide(
                             emotionObj,

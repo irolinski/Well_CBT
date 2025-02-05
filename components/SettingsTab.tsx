@@ -1,7 +1,7 @@
-import { FontAwesome6 } from "@expo/vector-icons";
 import { Href, router } from "expo-router";
 import React, { ReactElement } from "react";
 import { Pressable, Text, View } from "react-native";
+import { FontAwesome6 } from "@expo/vector-icons";
 
 const SettingsTab = ({
   name,
@@ -14,12 +14,12 @@ const SettingsTab = ({
 }) => {
   return (
     <Pressable onPress={() => router.push(link as Href)}>
-      <View className="flex-row h-16 mb-8 bg-gray-200">
+      <View className="mb-8 h-16 flex-row bg-gray-200">
         <View className="w-1/5 justify-center">
           <View className="mx-auto">{icon}</View>
         </View>
         <View className="w-3/5 justify-center">
-          <Text className="text-center translate-x-4 font-bold text-xl">
+          <Text className="translate-x-4 text-center text-xl font-bold">
             {name}
           </Text>
         </View>

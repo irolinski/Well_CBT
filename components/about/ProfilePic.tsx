@@ -1,7 +1,6 @@
 import { Image } from "expo-image";
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode } from "react";
 import { Dimensions, StyleSheet, TouchableOpacity, View } from "react-native";
-import { allFaces } from "@/assets/images/global/faces/faces";
 import { UnknownAction } from "@reduxjs/toolkit";
 
 const windowHeight = Dimensions.get("window").height;
@@ -15,10 +14,6 @@ const ProfilePic = ({
   handlePress?: () => UnknownAction;
   buttonIcon?: ReactNode;
 }) => {
-  const [faceNumber, setFaceNumber] = useState(
-    (Math.random() * (allFaces.length - 1)) | 0,
-  );
-
   return (
     <View>
       <View

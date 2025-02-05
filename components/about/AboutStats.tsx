@@ -14,6 +14,8 @@ import { interpolateNumbers } from "@/utils/algorithms";
 import Text from "../global/Text";
 import StatRow from "./StatRow";
 
+const MIN_STATS_LENGHT = 1;
+
 const getBallSize = (statNumber: number, minSize: number, maxSize: number) => {
   const ballSize = interpolateNumbers(
     statNumber,
@@ -64,7 +66,7 @@ const AboutStats = () => {
   return (
     <View className="rounded-xl" style={{ backgroundColor: Colors.whiteSmoke }}>
       <View className="w-full py-8">
-        {statsData && statsData.length > 1 ? (
+        {statsData && statsData.length > MIN_STATS_LENGHT ? (
           <React.Fragment>
             {statsData?.map((statsObj: StatsObj, indexNum: number) => (
               <StatRow

@@ -8,6 +8,7 @@ import ToolHeader from "@/components/tools/ToolHeader";
 import ToolNav from "@/components/tools/ToolNav";
 import { moodValueTitles } from "@/constants/models/tools/journal";
 import { Colors } from "@/constants/styles/colorTheme";
+import { journalStyleConstants } from "@/constants/styles/values";
 import {
   journalResetState,
   setMoodValue,
@@ -100,8 +101,8 @@ const Log_1 = () => {
               animateTransitions
               vertical
               trackClickable
-              minimumValue={0} // 0.1 causes a visual glitch
-              maximumValue={0.6}
+              minimumValue={journalStyleConstants.SLIDER_MIN_VAL}
+              maximumValue={journalStyleConstants.MOOD_SLIDER_MAX_VAL}
               onValueChange={(evt) => {
                 dispatch(setMoodValue(Math.round(Number(evt) * 10) + 1));
               }}
@@ -161,9 +162,6 @@ const Log_1 = () => {
                 <Animated.View
                   className="items-center justify-center"
                   style={{
-                    // width: 70,
-                    // height: 70,
-                    // borderRadius: 100,
                     width: 130,
                     height: 130,
                     opacity: swipeUpAnimOpacity,
@@ -174,9 +172,6 @@ const Log_1 = () => {
                     className="mb-8 text-center text-3xl"
                     style={{
                       color: Colors.mainGray,
-                      // textShadowColor: "rgba(63, 63, 63, 0.4)",
-                      // textShadowOffset: { width: -1, height: 1 },
-                      // textShadowRadius: 4,
                     }}
                   >
                     Swipe up!
@@ -186,7 +181,6 @@ const Log_1 = () => {
                     size={58}
                     color={Colors.mainGray}
                   />
-                  {/* <Fontisto name="angle-dobule-left" size={36} color=Colors.mainGray /> */}
                 </Animated.View>
               </Animated.View>
             )}

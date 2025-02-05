@@ -29,17 +29,10 @@ const Learn = () => {
               imagePlacement={
                 learnArticles[articleNumber].bgImage.cardPlacementY
               }
-              // frameColor={
-              //   learnCategories.filter(
-              //     (category) =>
-              //       category.title === learnArticles[articleNumber].category,
-              //   )[0].color
-              // }
               frameColor={"#F28E4E"}
             />
           </View>
         </View>
-
         <Text
           className="mb-4 mt-2 text-left text-2xl"
           style={{ color: Colors.offBlack }}

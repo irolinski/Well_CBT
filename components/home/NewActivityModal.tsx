@@ -2,7 +2,6 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { ToolList } from "@/constants/models/home/activity_log";
 import { Colors } from "@/constants/styles/colorTheme";
-import { setNavigateSettingsModalSelectedLink } from "@/state/features/menus/navigateSettingsModalSlice";
 import {
   setNewActivityModalSelectedLink,
   setShowNewActivityModal,

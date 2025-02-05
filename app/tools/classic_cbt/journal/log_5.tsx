@@ -11,6 +11,7 @@ import ToolHeader from "@/components/tools/ToolHeader";
 import ToolNav from "@/components/tools/ToolNav";
 import { moodValueTitles } from "@/constants/models/tools/journal";
 import { Colors } from "@/constants/styles/colorTheme";
+import { journalStyleConstants } from "@/constants/styles/values";
 import { handleSaveJournalEntry } from "@/db/tools";
 import {
   journalResetState,
@@ -45,8 +46,8 @@ const Log_5 = () => {
                     <Slider
                       animateTransitions
                       trackClickable
-                      minimumValue={0} // 0.1 causes a visual glitch
-                      maximumValue={0.6}
+                      minimumValue={journalStyleConstants.SLIDER_MIN_VAL} // 0.1 causes a visual glitch
+                      maximumValue={journalStyleConstants.MOOD_SLIDER_MAX_VAL}
                       disabled
                       value={(journalState.moodValue! - 1) / 10}
                       renderThumbComponent={() => (

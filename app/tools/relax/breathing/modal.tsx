@@ -5,6 +5,7 @@ import Text from "@/components/global/Text";
 import RadioButton from "@/components/RadioButton";
 import MethodInfo from "@/components/tools/breathe/MethodInfo";
 import { Colors } from "@/constants/styles/colorTheme";
+import { CLOSE_MODAL_OFFSET_TRESHOLD } from "@/constants/styles/values";
 import {
   mode_4_7_8,
   mode_box_4s,
@@ -35,7 +36,7 @@ const BreatheModal = ({ ellapsedTime }: { ellapsedTime: number }) => {
     >
       <ScrollView
         onScroll={(evt) => {
-          evt.nativeEvent.contentOffset.y < -175 &&
+          evt.nativeEvent.contentOffset.y < CLOSE_MODAL_OFFSET_TRESHOLD &&
             dispatch(toggleModal(false));
         }}
       >

@@ -1,6 +1,6 @@
 import { Image } from "expo-image";
 import { useEffect, useState } from "react";
-import { Dimensions, TouchableOpacity, View } from "react-native";
+import { Dimensions, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { allFaces } from "@/assets/images/global/faces/faces";
 import ProfilePic from "@/components/about/ProfilePic";

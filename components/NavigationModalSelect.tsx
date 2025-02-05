@@ -1,9 +1,6 @@
 import { ReactNode } from "react";
 import { Pressable, Text, View } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
 import { Colors } from "@/constants/styles/colorTheme";
-import { setNewActivityModalSelectedLink } from "@/state/features/menus/newActivityModalSlice";
-import { AppDispatch, RootState } from "@/state/store";
 import { UnknownAction } from "@reduxjs/toolkit";
 
 export type NavigationModalObj = {

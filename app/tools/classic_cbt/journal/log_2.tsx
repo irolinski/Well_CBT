@@ -14,6 +14,9 @@ import { Colors } from "@/constants/styles/colorTheme";
 import { setEmotions } from "@/state/features/tools/journalSlice";
 import { AppDispatch, RootState } from "@/state/store";
 
+const MIN_SELECTED_EMOTIONS = 2;
+const MAX_SELECTED_EMOTIONS = 5;
+
 const Log_2 = () => {
   // tool state
   const journalState = useSelector((state: RootState) => state.journal);
@@ -31,7 +34,7 @@ const Log_2 = () => {
     if (index >= 0) {
       newArr.splice(index, 1);
     } else {
-      if (newArr.length < 5) newArr = [...newArr, emotion];
+      if (newArr.length < MAX_SELECTED_EMOTIONS) newArr = [...newArr, emotion];
     }
     dispatch(setEmotions(newArr));
   };
@@ -62,12 +65,13 @@ const Log_2 = () => {
                   className="text-right text-xs"
                   style={{
                     color:
-                      journalState.emotions.length < 5
+                      journalState.emotions.length < MAX_SELECTED_EMOTIONS
                         ? Colors.darkGray
                         : "#D46A6A",
                   }}
                 >
-                  {journalState.emotions.length} of 5 selected
+                  {journalState.emotions.length} of ${MAX_SELECTED_EMOTIONS}{" "}
+                  selected
                 </Text>
                 <View className="mt-2 flex-row flex-wrap">
                   {emotionList.map((e, index) => (
@@ -90,7 +94,9 @@ const Log_2 = () => {
           <AdvanceButton
             title="Next"
             onPress={() => router.navigate("./log_3")}
-            disabled={journalState.emotions.length < 1 && true}
+            disabled={
+              journalState.emotions.length <= MIN_SELECTED_EMOTIONS && true
+            }
           />
         </View>
       </ScrollView>

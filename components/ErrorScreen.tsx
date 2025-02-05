@@ -13,7 +13,7 @@ const ErrorScreen = () => {
         onPress={() => router.back()}
       >
         <View className="mx-1">
-          <Entypo name="chevron-left" size={24} color={""} />
+          <Entypo name="chevron-left" size={24} />
         </View>
         <Text className="mx-1 font-semibold">Go back</Text>
       </Pressable>
