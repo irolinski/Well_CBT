@@ -67,7 +67,8 @@ const AchievementsPage = () => {
                 (achievement: AchievementObj, indexNum: number) => (
                   <AchievementCard
                     title={achievement.title}
-                    description={achievement.description_before}
+                    description_before={achievement.description_before}
+                    description_after={achievement.description_after}
                     image={achievement.image}
                     score_current={achievement.score_current}
                     score_required={achievement.score_required}

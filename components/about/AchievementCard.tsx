@@ -1,14 +1,16 @@
 import { Image } from "expo-image";
 import React from "react";
-import { DimensionValue, Text, View } from "react-native";
+import { DimensionValue, View } from "react-native";
 import { achievementLockedImage } from "@/assets/images/about/achievements/achievements";
 import { Colors } from "@/constants/styles/colorTheme";
 import { interpolateNumbers } from "@/utils/algorithms";
 import { Feather } from "@expo/vector-icons";
+import Text from "../global/Text";
 
 export type AchievementCardType = {
   title: string;
-  description: string;
+  description_before: string;
+  description_after: string;
   image: Image;
   score_current: number | undefined;
   score_required: number | undefined;
@@ -16,7 +18,8 @@ export type AchievementCardType = {
 
 const AchievementCard = ({
   title,
-  description,
+  description_before,
+  description_after,
   image,
   score_current,
   score_required,
@@ -37,8 +40,10 @@ const AchievementCard = ({
   const progressPercentValString =
     `${getProgressPercentVal()}%` as DimensionValue;
 
-  const unlocked = score_current === score_required;
-
+  let isUnlocked = false;
+  if (score_current && score_required) {
+    isUnlocked = score_current >= score_required;
+  }
   return (
     <View
       className="my-2 w-full flex-row rounded-2xl border pb-4 pt-2"
@@ -47,7 +52,7 @@ const AchievementCard = ({
       <View className="w-1/3 flex-row items-center justify-center">
         <Image
           className="h-24 w-24"
-          source={unlocked ? image : achievementLockedImage}
+          source={isUnlocked ? image : achievementLockedImage}
           contentFit="contain"
         />
       </View>
@@ -57,10 +62,12 @@ const AchievementCard = ({
             {title}
           </Text>
           <View
-            className="absolute right-0 h-6 w-6 items-center justify-center rounded-full"
-            style={{ backgroundColor: unlocked ? "#FCCC15" : Colors.mainGray }}
+            className="absolute right-1 h-6 w-6 items-center justify-center rounded-full"
+            style={{
+              backgroundColor: isUnlocked ? "#FCCC15" : Colors.mainGray,
+            }}
           >
-            {unlocked ? (
+            {isUnlocked ? (
               <Feather name="check" size={20} color="white" />
             ) : (
               <View style={{ marginBottom: 1 }}>
@@ -70,14 +77,14 @@ const AchievementCard = ({
           </View>
         </View>
         <View className="my-2 w-3/4">
-          <Text>{description}</Text>
+          <Text>{isUnlocked ? description_after : description_before}</Text>
         </View>
         {score_required && score_required > 1 && (
           <View className="flex-row items-center">
             {score_current && score_required ? (
               <View
-                className="mr-2 h-2 w-3/4 justify-center"
-                style={{ backgroundColor: Colors.mainGray }}
+                className="mr-2 h-2 justify-center"
+                style={{ backgroundColor: Colors.mainGray, width: "70%" }}
               >
                 <View
                   className="h-full bg-yellow-400"
@@ -85,8 +92,7 @@ const AchievementCard = ({
                 ></View>
               </View>
             ) : null}
-
-            <View className="mx-1">
+            <View className="mx-1 items-center" style={{ width: "20%" }}>
               {score_current && score_required ? (
                 <Text>
                   {score_current}/{score_required}
