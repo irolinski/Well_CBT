@@ -31,11 +31,11 @@ const Cda = () => {
                   className="my-2 text-sm"
                   style={{ color: Colors.offWhite }}
                 >
-                  Lorem ipsum dolor sit amet consectetur. Amet maecenas varius
-                  non urna eget vulputate vulputate viverra. Amet in lectus nisl
-                  phasellus sit nunc cum ac duis. Pharetra eget sociis sit id
-                  sit mattis est nunc. Habitasse tincidunt risus felis in nibh
-                  nam adipiscing.
+                  CBT Journaling helps track and manage emotions effectively.
+                  You’ll start by rating your mood, then select the emotions
+                  you’re feeling from a list and think a bit about your
+                  feelings' context. This process promotes self-awareness and
+                  emotional clarity.
                 </Text>
               </View>
             </View>

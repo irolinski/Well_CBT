@@ -31,11 +31,17 @@ const Cda = () => {
                   className="my-2 text-sm"
                   style={{ color: Colors.offWhite }}
                 >
-                  Lorem ipsum dolor sit amet consectetur. Amet maecenas varius
-                  non urna eget vulputate vulputate viverra. Amet in lectus nisl
-                  phasellus sit nunc cum ac duis. Pharetra eget sociis sit id
-                  sit mattis est nunc. Habitasse tincidunt risus felis in nibh
-                  nam adipiscing.
+                  Cognitive Distortion Analysis is an exercise designed to
+                  target negative thought patterns.{"\n\n"}
+                  You’ll <Text style={{ fontWeight: 500 }}>describe</Text> a
+                  situation, <Text style={{ fontWeight: 500 }}>note</Text> an
+                  automatic thought,{" "}
+                  <Text style={{ fontWeight: 500 }}>identify</Text> any
+                  cognitive distortions, and{" "}
+                  <Text style={{ fontWeight: 500 }}>reformulate</Text> the
+                  thought more rationally.
+                  {"\n\n"}For more details, go to a detailed by clicking the
+                  link below.
                 </Text>
               </View>
             </View>

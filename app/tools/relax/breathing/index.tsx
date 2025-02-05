@@ -31,11 +31,13 @@ const BreathingIndexPage = () => {
                   className="my-2 text-sm"
                   style={{ color: Colors.offWhite }}
                 >
-                  Lorem ipsum dolor sit amet consectetur. Amet maecenas varius
-                  non urna eget vulputate vulputate viverra. Amet in lectus nisl
-                  phasellus sit nunc cum ac duis. Pharetra eget sociis sit id
-                  sit mattis est nunc. Habitasse tincidunt risus felis in nibh
-                  nam adipiscing.
+                  In the following exercise, you'll practice{" "}
+                  <Text style={{ fontWeight: 500 }}>calming your nerves</Text>{" "}
+                  using deep breathing.{"\n\n"}You may start right away, or you
+                  can <Text style={{ fontWeight: 500 }}>customize</Text> the
+                  exercise to better fit your needs using the settings panel
+                  (accessible by clicking the icon in the top-right corner of
+                  the screen).
                 </Text>
               </View>
             </View>
