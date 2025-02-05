@@ -2,9 +2,12 @@ import { useState } from "react";
 import { Dimensions, Keyboard, TextInput, View } from "react-native";
 import { Colors } from "@/constants/styles/colorTheme";
 import { isValidExerciseInput } from "@/utils/inputValidations";
-import Text from "../../global/Text";
+import Text from "../global/Text";
 
-export default function CDATextInput({
+const MAX_INPUT_LENGTH = 200;
+const NUM_OF_LINES = 5;
+
+const ToolTextInput = ({
   value,
   handleChangeText,
   keyboardMargin,
@@ -12,7 +15,7 @@ export default function CDATextInput({
   value: string;
   handleChangeText: (evt: string) => void;
   keyboardMargin: boolean;
-}) {
+}) => {
   const windowHeight = Dimensions.get("window").height;
   const [spaceForKeyboard, setSpaceForKeyboard] = useState<boolean>(false);
 
@@ -33,8 +36,8 @@ export default function CDATextInput({
         }}
         editable
         multiline={true}
-        numberOfLines={4}
-        maxLength={150}
+        numberOfLines={NUM_OF_LINES}
+        maxLength={MAX_INPUT_LENGTH}
         returnKeyType="done"
         onKeyPress={(evt) =>
           evt.nativeEvent.key == "Enter" && Keyboard.dismiss()
@@ -51,7 +54,11 @@ export default function CDATextInput({
           }
         }}
       ></TextInput>
-      <Text className="text-right">{value.length}/150</Text>
+      <Text className="text-right">
+        {value.length}/{MAX_INPUT_LENGTH}
+      </Text>
     </View>
   );
-}
+};
+
+export default ToolTextInput;

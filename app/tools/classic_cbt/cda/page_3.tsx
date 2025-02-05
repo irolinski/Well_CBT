@@ -12,9 +12,9 @@ import DistortionPill from "@/components/DistortionPill";
 import Frame from "@/components/Frame";
 import Text from "@/components/global/Text";
 import CDATextBox from "@/components/tools/cda/CDATextBox";
-import CDATextInput from "@/components/tools/cda/CDATextInput";
 import ToolHeader from "@/components/tools/ToolHeader";
 import ToolNav from "@/components/tools/ToolNav";
+import ToolTextInput from "@/components/tools/ToolTextInput";
 import { Colors } from "@/constants/styles/colorTheme";
 import { setNewThought } from "@/state/features/tools/cdaSlice";
 import { AppDispatch, RootState } from "@/state/store";
@@ -56,7 +56,7 @@ const Page_3 = () => {
                     Now, let's try to think of a more rational way to look at
                     this situation:
                   </Text>
-                  <CDATextInput
+                  <ToolTextInput
                     value={cdaState.newThought}
                     handleChangeText={(evt: string) =>
                       dispatch(setNewThought(evt))

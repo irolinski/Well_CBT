@@ -1,15 +1,20 @@
-import { router } from 'expo-router';
-import React from 'react';
-import { Keyboard, ScrollView, TouchableWithoutFeedback, View } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
-import AdvanceButton from '@/components/AdvanceButton';
-import Frame from '@/components/Frame';
-import Text from '@/components/global/Text';
-import CDATextInput from '@/components/tools/cda/CDATextInput';
-import ToolHeader from '@/components/tools/ToolHeader';
-import ToolNav from '@/components/tools/ToolNav';
-import { setOldThought, setSituation } from '@/state/features/tools/cdaSlice';
-import { AppDispatch, RootState } from '@/state/store';
+import { router } from "expo-router";
+import React from "react";
+import {
+  Keyboard,
+  ScrollView,
+  TouchableWithoutFeedback,
+  View,
+} from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import AdvanceButton from "@/components/AdvanceButton";
+import Frame from "@/components/Frame";
+import Text from "@/components/global/Text";
+import ToolHeader from "@/components/tools/ToolHeader";
+import ToolNav from "@/components/tools/ToolNav";
+import ToolTextInput from "@/components/tools/ToolTextInput";
+import { setOldThought, setSituation } from "@/state/features/tools/cdaSlice";
+import { AppDispatch, RootState } from "@/state/store";
 
 const Page_1 = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -33,7 +38,7 @@ const Page_1 = () => {
                   <Text className="mr-[15%] text-left">
                     Describe the context of the thought in a few words:
                   </Text>
-                  <CDATextInput
+                  <ToolTextInput
                     value={cdaState.situation}
                     handleChangeText={(evt: string) =>
                       dispatch(setSituation(evt))
@@ -46,7 +51,7 @@ const Page_1 = () => {
                     Now, choose and write down one thought that has arised, that
                     may be particulary painful:
                   </Text>
-                  <CDATextInput
+                  <ToolTextInput
                     value={cdaState.oldThought}
                     handleChangeText={(evt: string) =>
                       dispatch(setOldThought(evt))

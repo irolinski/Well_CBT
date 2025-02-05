@@ -10,9 +10,9 @@ import { useDispatch, useSelector } from "react-redux";
 import AdvanceButton from "@/components/AdvanceButton";
 import Frame from "@/components/Frame";
 import Text from "@/components/global/Text";
-import CDATextInput from "@/components/tools/cda/CDATextInput";
 import ToolHeader from "@/components/tools/ToolHeader";
 import ToolNav from "@/components/tools/ToolNav";
+import ToolTextInput from "@/components/tools/ToolTextInput";
 import { setNote } from "@/state/features/tools/journalSlice";
 import { AppDispatch, RootState } from "@/state/store";
 
@@ -41,7 +41,7 @@ const Log_4 = () => {
                   <Text className="mr-[15%] text-left">
                     Note down anything you deem worthy.
                   </Text>
-                  <CDATextInput
+                  <ToolTextInput
                     value={journalState.note}
                     handleChangeText={(evt: string) => dispatch(setNote(evt))}
                     keyboardMargin={false}
