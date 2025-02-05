@@ -2,15 +2,15 @@
 
 <h3 align="center">An Evidence-Based Mobile Self-Help Aid <br/> <br/>
  <img height="175px" src="https://github.com/user-attachments/assets/73cb834c-c322-472a-96b8-1960bd3ff2db" />
-
 </h3>
 
-## Release
-<h4>This app will be released on: </h4> 
-<ul>
- <li>App Store: Second quarter of 2025 </li>
- <li>Google Play: Date TBA</li>
-</ul>
+## Description
+<p>
+  <b>Well</b> is a mobile app that offers evidence-based, easy-to-use <b>cognitive-behavioral psychotherapeutic interventions</b>.<br/><br/>
+  Our mission is to promote <b>mental well-being</b> for all by <b>making science-based self-help tools more accessible</b> in today’s fast-paced world.<br/><br/>
+<b>Well</b> is also, to us, a <b>passion project</b>. It is currently in its early stages, with a commitment to continuous development.
+</p>
+
 
 
 ## Features
@@ -66,6 +66,14 @@
 </div>
 
 ---
+
+## Release
+<h4>This app will be released on: </h4> 
+<ul>
+ <li>App Store: Second quarter of 2025 </li>
+ <li>Google Play: Date TBA</li>
+</ul>
+
 
 ## Credits  
 
