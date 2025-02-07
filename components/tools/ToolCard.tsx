@@ -12,7 +12,7 @@ const ToolCard = ({
 }: {
   name: string;
   image?: ImageSource;
-  link: string;
+  link: Href;
 }) => {
   return (
     <Pressable
