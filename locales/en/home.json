@@ -27,5 +27,25 @@
       "enable_notifications": "Enable notifications",
       "save": "Save preferences"
     }
+  },
+  "welcome_text": {
+    "hi": "Hi",
+    "good_to_see_you": "Good to see you",
+    "welcome": "Welcome",
+    "hello": "Hello",
+    "hi_there": "Hi there",
+    "greetings": "Greetings",
+    "how_are_you_today": "How are you today?",
+    "glad_youre_here": "We're glad you're here today!",
+    "hows_everything_going": "How’s everything going?",
+    "what_brings_you_here": "What brings you here today?",
+    "how_may_we_help": "How may we help you today?",
+    "hows_it_going": "How’s it going?",
+    "hope_youre_feeling_well": "Hope you're feeling well!",
+    "how_are_things": "How are things with you?",
+    "hows_your_day_so_far": "How’s your day so far?",
+    "how_have_you_been": "How have you been?",
+    "hope_youre_doing_well": "We hope you’re doing well.",
+    "how_are_you_feeling_today": "How are you feeling today?"
   }
 }

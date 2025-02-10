@@ -25,5 +25,25 @@
       "title": "Przypomnienia",
       "enable_notifications": "Włącz przypomnienia"
     }
+  },
+  "welcome_text": {
+    "hi": "Cześć",
+    "good_to_see_you": "Dobrze Cię widzieć",
+    "welcome": "Witamy",
+    "hello": "Witaj",
+    "hi_there": "Hej",
+    "greetings": "Pozdrowienia",
+    "how_are_you_today": "Jak się dzisiaj masz?",
+    "glad_youre_here": "Cieszymy się, że tu jesteś!",
+    "hows_everything_going": "Jak się masz?",
+    "what_brings_you_here": "Co Cię tutaj sprowadza?",
+    "how_may_we_help": "Jak możemy Ci pomóc?",
+    "hows_it_going": "Jak leci?",
+    "hope_youre_feeling_well": "Mam nadzieję, że dobrze się czujesz!",
+    "how_are_things": "Jak tam u Ciebie?",
+    "hows_your_day_so_far": "Jak Ci mija dzień?",
+    "how_have_you_been": "Jak się masz?",
+    "hope_youre_doing_well": "Mamy nadzieję, że wszystko u Ciebie w porządku.",
+    "how_are_you_feeling_today": "Jak się dziś czujesz?"
   }
 }

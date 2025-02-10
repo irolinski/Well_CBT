@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Dimensions, View } from "react-native";
 import {
   welcomeTexts_pt1,
@@ -11,17 +12,20 @@ import DividerLine from "../DividerLine";
 import TypewriterText from "../TypewriterText";
 
 const getWelcomeText = (userName?: string): string => {
+  const { t } = useTranslation("home");
+
   const textPt1Index = (Math.random() * (welcomeTexts_pt1.length - 1)) | 0;
   const textPt2Index = (Math.random() * (welcomeTexts_pt2.length - 1)) | 0;
-  const textPt1String = welcomeTexts_pt1[textPt1Index].text;
-  const textPt2String = welcomeTexts_pt2[textPt2Index];
+  const textPt1String = t(
+    `welcome_text.${welcomeTexts_pt1[textPt1Index].text}`,
+  );
+  const textPt2String = t(`welcome_text.${welcomeTexts_pt2[textPt2Index]}`);
 
   const insertUsername: boolean = welcomeTexts_pt1[textPt1Index].followedByName;
   let welcomeText: string;
 
   if (userName && insertUsername) {
     welcomeText = textPt1String + ", " + userName + "! " + textPt2String;
-    // welcomeText = `Hi${userName && ", " + userName}! How are you, today? `;
   } else {
     welcomeText = textPt1String + "! " + textPt2String;
   }
