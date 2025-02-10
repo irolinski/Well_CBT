@@ -1,10 +1,12 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { Text, View } from "react-native";
 import { useSelector } from "react-redux";
 import { Colors } from "@/constants/styles/colorTheme";
 import { RootState } from "@/state/store";
 
 const EntryLogDisplayInfo = () => {
+  const { t } = useTranslation("home");
   const activityLogState = useSelector((state: RootState) => state.activityLog);
 
   return (
@@ -17,8 +19,7 @@ const EntryLogDisplayInfo = () => {
               style={{ fontSize: 13, color: Colors.darkGray }}
             >
               <Text style={{ fontSize: 13, color: Colors.darkGray }}>
-                {"from:"}
-                {"\nto:"}
+                {t("activity_log.from_to")}
               </Text>
             </Text>
           </View>
@@ -40,21 +41,19 @@ const EntryLogDisplayInfo = () => {
         <React.Fragment>
           {Array.isArray(activityLogState.displayedData) &&
             Array.isArray(activityLogState.entryData) && (
-              <Text
-                className="mb-1 text-sm"
-                style={{ fontSize: 13, color: Colors.darkGray }}
-              >
-                Showing{" "}
-                {activityLogState.displayedData.reduce(
-                  (sum, item) => sum + item.data.length,
-                  0,
-                )}{" "}
-                of{" "}
-                {activityLogState.entryData &&
-                  activityLogState.entryData.reduce(
+              <Text>
+                {t("activity_log.showing_current_of_total", {
+                  current: activityLogState.displayedData.reduce(
                     (sum, item) => sum + item.data.length,
                     0,
-                  )}
+                  ),
+                  total:
+                    activityLogState.entryData &&
+                    activityLogState.entryData.reduce(
+                      (sum, item) => sum + item.data.length,
+                      0,
+                    ),
+                })}
               </Text>
             )}
         </React.Fragment>

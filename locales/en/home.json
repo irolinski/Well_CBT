@@ -1,0 +1,31 @@
+{
+  "index": {
+    "title": "Home",
+    "quote_of_the_day": "Quote of the day",
+    "recent_activity": "Your recent activity:"
+  },
+  "activity_log": {
+    "title": "Entry Log",
+    "filters": "Filters",
+    "from_to": "from: \n to:",
+    "showing_current_of_total": "Showing {{current}} of {{total}}",
+    "modal": {
+      "title": "Settings",
+      "select_dates": "Select dates",
+      "show_only": "Show only",
+      "no_data": "No data found"
+    }
+  },
+
+  "modals": {
+    "new_activity": {
+      "title": "Add a new activity",
+      "redirect": "Redirect"
+    },
+    "notifications": {
+      "title": "Set a reminder?",
+      "enable_notifications": "Enable notifications",
+      "save": "Save preferences"
+    }
+  }
+}

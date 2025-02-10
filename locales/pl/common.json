@@ -1,4 +1,7 @@
 {
-  "welcome": "Witaj w aplikacji!!",
-  "change_language": "Zmień język"
+  "buttons": {
+    "see_all": "Zobacz wszystkie",
+    "save_preferences": "Zachowaj ustawienia",
+    "redirect": "Wybierz"
+  }
 }

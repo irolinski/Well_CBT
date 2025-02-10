@@ -1,0 +1,29 @@
+{
+  "index": {
+    "title": "Strona główna",
+    "quote_of_the_day": "Cytat na dziś",
+    "recent_activity": "Twoje aktywności:"
+  },
+  "activity_log": {
+    "title": "Dziennik",
+    "filters": "Filtry",
+    "from_to": "od: \n do:",
+    "showing_current_of_total": "Wyświetlono {{current}} z {{total}}",
+    "modal": {
+      "title": "Ustawienia",
+      "select_dates": "Wybierz daty",
+      "show_only": "Pokaż tylko",
+      "no_data": "Brak danych"
+    }
+  },
+
+  "modals": {
+    "new_activity": {
+      "title": "Nowa aktywność"
+    },
+    "notifications": {
+      "title": "Przypomnienia",
+      "enable_notifications": "Włącz przypomnienia"
+    }
+  }
+}

@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { TouchableOpacity, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { Colors } from "@/constants/styles/colorTheme";
@@ -7,6 +8,7 @@ import { AntDesign } from "@expo/vector-icons";
 import Text from "../global/Text";
 
 const FiltersButton = () => {
+  const { t } = useTranslation("home");
   const dispatch = useDispatch<AppDispatch>();
   const activityLogState = useSelector((state: RootState) => state.activityLog);
 
@@ -30,7 +32,7 @@ const FiltersButton = () => {
       <View className="mx-3.5 w-32 flex-row items-center justify-center">
         <View className="relative w-full flex-row items-center justify-start">
           <Text style={{ color: "#1E1E1E" }} className="text-left text-base">
-            Filters
+            {t("activity_log.filters")}
           </Text>
         </View>
         <View className="absolute right-0 flex-row items-center justify-center">

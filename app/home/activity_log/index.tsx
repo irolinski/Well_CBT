@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { Dimensions, SectionList, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import DividerLine from "@/components/DividerLine";
@@ -29,6 +30,8 @@ import useActivityLogActions from "./hooks";
 import ActivityLogModal from "./modal";
 
 const ActivityLog = () => {
+  const { t } = useTranslation("home");
+
   const windowHeight = Dimensions.get("window").height;
   const windowWidth = Dimensions.get("window").width;
 
@@ -79,7 +82,7 @@ const ActivityLog = () => {
       >
         {/* Nav */}
         <MenuNav
-          name="Entry Log"
+          name={t("activity_log.title")}
           handleBackButtonPress={() => {
             dispatch(activityLogResetState());
           }}

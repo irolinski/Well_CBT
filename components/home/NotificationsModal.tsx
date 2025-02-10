@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Modal, Pressable, Switch, Text, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { Colors } from "@/constants/styles/colorTheme";
@@ -15,6 +16,8 @@ import ModalButton from "../NavigationModalButton";
 import TimePicker, { TimePickerReturnObj } from "./TimePicker";
 
 const NotificationsModal = () => {
+  const { t } = useTranslation(["home", "common"]);
+
   const notificationModalState = useSelector(
     (state: RootState) => state.notificationModal,
   );
@@ -122,14 +125,18 @@ const NotificationsModal = () => {
                   color={Colors.lightGray}
                 />
               </View>
-              <Text className="mx-1 text-lg">Set a reminder?</Text>
+              <Text className="mx-1 text-lg">
+                {t("modals.notifications.title")}
+              </Text>
             </View>
           </View>
           {/* Main */}
           {hasPermission ? (
             <React.Fragment>
               <View className="my-2 flex-row items-center justify-center py-4">
-                <Text className="mx-2 text-lg">Enable notifications:</Text>
+                <Text className="mx-2 text-lg">
+                  {t("modals.notifications.enable_notifications")}
+                </Text>
                 <Switch
                   className="mx-2"
                   value={enableNotifications}
@@ -152,7 +159,7 @@ const NotificationsModal = () => {
                 style={{ width: 320 }}
               >
                 <ModalButton
-                  title="Save preferences"
+                  title={t("buttons.save_preferences", { ns: "common" })}
                   icon={<Feather name="save" size={24} color={Colors.white} />}
                   disabled={
                     selectedTime.minute.length !== 2 ||

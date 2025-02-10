@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { ToolList } from "@/constants/models/home/activity_log";
 import { Colors } from "@/constants/styles/colorTheme";
@@ -37,6 +38,8 @@ const itemList: NavigationModalObj[][] = [
 ];
 
 const NewActivityModal = () => {
+  const { t } = useTranslation("home");
+
   const newActivityModalState = useSelector(
     (state: RootState) => state.newActivityModal,
   );
@@ -44,7 +47,7 @@ const NewActivityModal = () => {
   return (
     <React.Fragment>
       <NavigationModal
-        title="Add a new activity"
+        title={t("modals.new_activity.title")}
         icon={<Entypo name="new-message" size={28} color={Colors.lightGray} />}
         items={itemList}
         modalState={newActivityModalState}

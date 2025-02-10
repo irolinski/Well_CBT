@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { Dimensions, Modal, Pressable, ScrollView, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import DividerLine from "@/components/DividerLine";
@@ -11,6 +12,8 @@ import { Feather } from "@expo/vector-icons";
 import ActivityLogCalendar from "./Calendar";
 
 const ActivityLogModal = () => {
+  const { t } = useTranslation("home");
+
   const dispatch = useDispatch<AppDispatch>();
   const activityLogModalState = useSelector(
     (state: RootState) => state.activityLogModal,
@@ -55,13 +58,13 @@ const ActivityLogModal = () => {
           </Pressable>
           <View className="items-center">
             <Text className="text-xl" style={{ color: Colors.mainGray }}>
-              Settings
+              {t("activity_log.modal.title")}
             </Text>
           </View>
           <View className="mt-8">
             <View>
               <Text className="mb-2 text-lg" style={{ color: Colors.mainGray }}>
-                Select dates
+                {t("activity_log.modal.select_dates")}
               </Text>
               <View className="flex-row justify-around">
                 <ActivityLogCalendar />
@@ -74,7 +77,7 @@ const ActivityLogModal = () => {
           <View className="mb-8 mt-4">
             <View>
               <Text className="text-lg" style={{ color: Colors.mainGray }}>
-                Show only
+                {t("activity_log.modal.show_only")}
               </Text>
               <CategoryFilter />
             </View>

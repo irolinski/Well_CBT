@@ -21,7 +21,7 @@ import { Entypo } from "@expo/vector-icons";
 const MIN_RECENT_ACTIVITY_LENGTH = 2;
 
 const Home = () => {
-  const { t } = useTranslation("home");
+  const { t } = useTranslation(["home", "common"]);
   const dispatch = useDispatch<AppDispatch>();
   const [recentEntriesArr, setRecentEntriesArr] = useState<EntryViewTableRow[]>(
     [],
@@ -43,7 +43,7 @@ const Home = () => {
   }, []);
 
   return (
-    <FrameMenu title="Home" className="items-center justify-center">
+    <FrameMenu title={t("index.title")} className="items-center justify-center">
       <View>
         {/* Welcome */}
         <WelcomeTypewriterText />
@@ -56,7 +56,7 @@ const Home = () => {
           <View>
             <View className="mx-4 flex-row justify-between">
               <Text className="my-6 text-left text-2xl">
-                Your recent activity:
+                {t("index.recent_activity")}
               </Text>
               <Pressable
                 className="justify-center"
@@ -87,7 +87,7 @@ const Home = () => {
               )}
               <View className="mt-5 flex-row justify-end">
                 <AdvanceButton
-                  title="See all"
+                  title={t("buttons.see_all", { ns: "common" })}
                   onPress={() => {
                     router.push("/home/activity_log/" as Href);
                   }}

@@ -1,5 +1,6 @@
 import { Href, router } from "expo-router";
 import { ReactNode, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { Modal, Pressable, Text, View } from "react-native";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 import { useDispatch } from "react-redux";
@@ -32,6 +33,8 @@ const NavigationModal = ({
   handleShowModal,
   handleSelect,
 }: NavigationModalTypes) => {
+  const { t } = useTranslation(["common"]);
+
   const dispatch = useDispatch<AppDispatch>();
 
   const handleNavigate = async (selectedLink: string) => {
@@ -115,7 +118,7 @@ const NavigationModal = ({
             style={{ width: 320 }}
           >
             <NavigationModalButton
-              title="Redirect"
+              title={t("buttons.redirect")}
               onPress={() => handleNavigate(modalState.link)}
               icon={
                 <Feather

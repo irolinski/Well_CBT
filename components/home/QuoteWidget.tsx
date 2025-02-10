@@ -1,5 +1,6 @@
 import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
+import { useTranslation } from "react-i18next";
 import { Dimensions, Pressable, View } from "react-native";
 import quoteImages from "@/assets/images/home/quote_widget/images";
 import quotesList from "@/assets/text/quotes.json";
@@ -11,6 +12,8 @@ import Text from "../global/Text";
 const windowWidth = Dimensions.get("window").width;
 
 const QuoteWidget = () => {
+  const { t } = useTranslation("home");
+
   const quoteNumber = (Math.random() * (quotesList.length - 1)) | 0;
   const imageNumber = (Math.random() * (quoteImages.length - 1)) | 0;
 
@@ -48,7 +51,7 @@ const QuoteWidget = () => {
       >
         <View className="mx-4 flex-row justify-start">
           <Text className="text-xl" style={{ color: "white" }}>
-            Quote of the day
+            {t("index.quote_of_the_day")}
           </Text>
         </View>
         <View
