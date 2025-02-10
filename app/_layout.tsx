@@ -1,3 +1,4 @@
+import "@/hooks/i18n";
 import { useFonts } from "expo-font";
 import { setNotificationHandler } from "expo-notifications";
 import { Stack } from "expo-router";
@@ -16,7 +17,6 @@ import { store } from "@/state/store";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
-
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({
     Inter: require("../assets/fonts/Inter-Standard.ttf"),

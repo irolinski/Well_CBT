@@ -1,6 +1,7 @@
 import { Image } from "expo-image";
 import { Href, router } from "expo-router";
 import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Pressable, View } from "react-native";
 import { useDispatch } from "react-redux";
 import AdvanceButton from "@/components/AdvanceButton";
@@ -20,6 +21,7 @@ import { Entypo } from "@expo/vector-icons";
 const MIN_RECENT_ACTIVITY_LENGTH = 2;
 
 const Home = () => {
+  const { t } = useTranslation("home");
   const dispatch = useDispatch<AppDispatch>();
   const [recentEntriesArr, setRecentEntriesArr] = useState<EntryViewTableRow[]>(
     [],
