@@ -8,5 +8,9 @@
     "again": "Do one more?",
     "go_to_journal": "See journal",
     "return_to_tools": "Return to Tools"
+  },
+
+  "nav_elements": {
+    "step_count": "Step {{current}} <muted>of {{total}}</muted>"
   }
 }

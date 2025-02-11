@@ -40,12 +40,12 @@ const Page_4 = () => {
         <Frame>
           <View className="py-10">
             <ToolHeader>
-              {t(`tools.${TOOL_NAME}.exercise.page_4.header`)}
+              {t(`tools.${TOOL_NAME}.exercise.summary.header`)}
             </ToolHeader>
             <View className="my-8">
               <View>
                 <Text>
-                  {t(`tools.${TOOL_NAME}.exercise.page_4.subheader_1`)}
+                  {t(`tools.${TOOL_NAME}.exercise.summary.distorted_thought`)}
                 </Text>
                 <CDATextBox textContent={cdaState.oldThought} />
               </View>
@@ -54,11 +54,15 @@ const Page_4 = () => {
                 style={{ borderColor: Colors.lightGray }}
               >
                 <Text>
-                  {t(`tools.${TOOL_NAME}.exercise.page_4.subheader_2`)}
+                  {t(
+                    `tools.${TOOL_NAME}.exercise.summary.cognitive_distortion`,
+                  )}
                 </Text>
                 <View className="mx-auto mt-4 w-3/4 px-4">
                   <DistortionPill
-                    title={cdaState.distortion}
+                    title={t(
+                      `tools.${TOOL_NAME}.distortion_list.${cdaState.distortion}.name`,
+                    )}
                     checked={true}
                     highlighted={false}
                   />
@@ -66,7 +70,7 @@ const Page_4 = () => {
               </View>
               <View className="mt-4">
                 <Text>
-                  {t(`tools.${TOOL_NAME}.exercise.page_4.subheader_3`)}
+                  {t(`tools.${TOOL_NAME}.exercise.summary.rational_thought`)}
                 </Text>
                 <CDATextBox textContent={cdaState.newThought} />
               </View>
@@ -91,7 +95,7 @@ const Page_4 = () => {
                     className="mx-4 my-1 text-center"
                     style={{ color: Colors.darkBlue }}
                   >
-                    {t(`tools.${TOOL_NAME}.exercise.page_4.save_to_journal`)}
+                    {t(`tools.${TOOL_NAME}.exercise.summary.save_to_journal`)}
                   </Text>
                 </View>
               </Pressable>

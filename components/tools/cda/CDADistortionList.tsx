@@ -6,11 +6,14 @@ import {
   cognitiveDistortions,
   DistortionListProps,
 } from "@/constants/models/tools/cda_distortionList";
+import { cda_tool } from "@/constants/models/tools/tools";
 import { Colors } from "@/constants/styles/colorTheme";
 import { setDistortion } from "@/state/features/tools/cdaSlice";
 import { AppDispatch, RootState } from "@/state/store";
 import DistortionPill from "../../DistortionPill";
 import Text from "../../global/Text";
+
+const TOOL_NAME = cda_tool.name;
 
 const CDADistortionList = ({
   showDistortionTooltip,
@@ -25,15 +28,15 @@ const CDADistortionList = ({
   return (
     <View className="mt-6 flex-row flex-wrap">
       <Text
-        className="pb-6"
+        className="w-full pb-6"
         style={{
           color: Colors.mainGray,
           fontSize: 14,
         }}
       >
-        {t(`tools.cognitive_distortion_analysis.exercise.page_2.instruction_2`)}
+        {t(`tools.${TOOL_NAME}.exercise.page_2.instruction_2`)}
       </Text>
-      {cognitiveDistortions.map((distortionObj, index) => (
+      {cognitiveDistortions.map((distortion, index) => (
         <Tooltip
           isVisible={showDistortionTooltip === index && true}
           content={
@@ -46,7 +49,9 @@ const CDADistortionList = ({
                 paddingRight: 20,
               }}
             >
-              {distortionObj.description}
+              {t(
+                `tools.${TOOL_NAME}.distortion_list.${distortion}.description`,
+              )}
             </Text>
           }
           useInteractionManager={true}
@@ -66,11 +71,11 @@ const CDADistortionList = ({
           key={index}
         >
           <DistortionPill
-            title={distortionObj.name}
-            checked={Boolean(distortionObj.name === cdaState.distortion)}
+            title={t(`tools.${TOOL_NAME}.distortion_list.${distortion}.name`)}
+            checked={Boolean(distortion === cdaState.distortion)}
             highlighted={showDistortionTooltip === index}
             onPress={() => {
-              dispatch(setDistortion(distortionObj.name));
+              dispatch(setDistortion(distortion));
             }}
             onLongPress={() => handleShowTooltip(tooltipY, index)}
           />

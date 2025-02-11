@@ -3,7 +3,14 @@
     "see_all": "Zobacz wszystkie",
     "save_preferences": "Zachowaj ustawienia",
     "redirect": "Wybierz",
-    "lets_begin": "Zacznij",
-    "finish": "Zakończ"
+    "lets_begin": "Rozpocznij",
+    "next": "Kolejna strona",
+    "finish": "Zakończ",
+    "again": "Jeszcze raz?",
+    "go_to_journal": "Idź do dziennika",
+    "return_to_tools": "Idź do Narzędzi"
+  },
+  "nav_elements": {
+    "step_count": "Krok {{current}} <muted>z {{total}}</muted>"
   }
 }

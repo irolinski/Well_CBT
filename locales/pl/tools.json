@@ -1,44 +1,99 @@
 {
-  "index": { "title": "Tools" },
-  "types": { "exercise": "Exercise", "journal": "journal", "relax": "Relax" },
+  "index": { "title": "Narzędzia" },
+  "types": {
+    "exercise": "Ćwiczenie",
+    "journal": "Dziennik",
+    "relax": "Relaks"
+  },
   "categories": {
-    "cbt": "Classic CBT",
-    "relax": "Relax",
-    "distraction": "Distract Yourself"
+    "cbt": "Klasyczne CBT",
+    "relax": "Relaks",
+    "distraction": "Odwróć uwagę"
   },
   "tools": {
-    "breathing": { "title": "Deep Breathing" },
+    "breathing": { "title": "Głębokie oddychanie" },
     "cognitive_distortion_analysis": {
-      "title": "Thoughts Challange",
-      "description": "Cognitive Distortion Analysis is an exercise designed to target negative thought patterns.\n\nYou’ll <bold>describe</bold> a situation, <bold>note</bold> an automatic thought, <bold>identify</bold> any cognitive distortions, and <bold>reformulate</bold> the thought more rationally.\n\nFor more details, go to a detailed by clicking the link below.",
+      "title": "Analiza zniekształceń",
+      "description": "Analiza zniekształceń poznawczych to ćwiczenie zaprojektowane w celu identyfikacji negatywnych wzorców myślenia.\n\nBędziesz <bold>opisywać</bold> sytuację, <bold>zauważać</bold> automatyczną myśl, <bold>identyfikować</bold> zniekształcenia poznawcze i <bold>przekształcać</bold> myśl w bardziej racjonalną.\n\nAby uzyskać więcej informacji, przejdź do szczegółowego opisu, klikając poniższy link.",
       "exercise": {
         "page_1": {
-          "header": "Write down a thought that's bothering you.",
-          "instruction_1": "Describe the context of the thought in a few words:",
-          "instruction_2": "Now, choose and write down one thought that has arised, that may be particulary painful:"
+          "header": "Zapisz myśl, która Cię niepokoi.",
+          "instruction_1": "Opisz kontekst tej myśli w kilku słowach:",
+          "instruction_2": "Teraz wybierz i zapisz jedną myśl, która się pojawiła i może być szczególnie bolesna:"
         },
         "page_2": {
-          "header": "Now, let's take a closer look...",
-          "subheader_1": "Distorted thought:",
-          "instruction_1": "Here is a list of some of the most common <bold>cognitive distortions</bold>. Choose <bold>one</bold> that most accurately describes your thought:",
-          "instruction_2": "Press and hold to see the description."
+          "header": "Teraz przyjrzyjmy się temu bliżej...",
+          "subheader_1": "Zniekształcona myśl:",
+          "instruction_1": "Oto lista najczęstszych <bold>zniekształceń poznawczych</bold>. Wybierz <bold>jedno</bold>, które najlepiej opisuje Twoją myśl:",
+          "instruction_2": "Przytrzymaj, aby zobaczyć opis."
         },
         "page_3": {
-          "header": "Now, let's try to make it rational!",
-          "subheader_1": "Distorted thought:",
-          "subheader_2": "Cognitive Distortion:",
-          "instruction_1": "Now, let's try to think of a more rational way to look atthis situation:"
+          "header": "Teraz spróbujmy podejść do tego racjonalnie!",
+          "subheader_1": "Zniekształcona myśl:",
+          "subheader_2": "Zniekształcenie poznawcze:",
+          "instruction_1": "Teraz spróbujmy znaleźć bardziej racjonalne spojrzenie na tę sytuację:"
         },
-        "page_4": {
-          "header": "Here are your results. Try to meditate on them for a second.",
-          "subheader_1": "Distorted thought:",
-          "subheader_2": "Cognitive Distortion:",
-          "subheader_3": "Rational Thought:",
-          "save_to_journal": "Save to journal?"
+        "summary": {
+          "header": "Oto Twoje wyniki. Poświęć chwilę, aby się nad nimi zastanowić.",
+          "situation": "Sytuacja/Kontekst:",
+          "distorted_thought": "Zniekształcona myśl:",
+          "cognitive_distortion": "Zniekształcenie poznawcze:",
+          "rational_thought": "Racjonalna myśl:",
+          "save_to_journal": "Zapisać w dzienniku?"
+        },
+        "page_finish": {
+          "message_1": "Gratulacje! Twoja zniekształcona myśl stała się trochę bardziej racjonalna.",
+          "message_2": "Regularnie analizuj swoje bolesne myśli, aby zmniejszyć ich wpływ na Ciebie."
+        }
+      },
+      "distortion_list": {
+        "all_or_nothing": {
+          "name": "Myślenie zero-jedynkowe",
+          "description": "Postrzeganie sytuacji w skrajnych kategoriach, bez miejsca na niuanse czy odcienie szarości."
+        },
+        "mental_filter": {
+          "name": "Filtr poznawczy",
+          "description": "Koncentrowanie się na negatywnych aspektach, pomijając pozytywne strony."
+        },
+        "overgeneralization": {
+          "name": "Nadmierne uogólnianie",
+          "description": "Postrzeganie pojedynczego negatywnego zdarzenia jako niekończącego się cyklu porażek."
+        },
+        "mind_reading": {
+          "name": "Czytanie w myślach",
+          "description": "Zakładanie, że wiesz, co myślą inni ludzie."
+        },
+        "discounting_positives": {
+          "name": "Pomniejszanie pozytywów",
+          "description": "Odrzucanie pozytywnych aspektów siebie lub sytuacji jako nieistotnych lub niezasługujących na uwagę."
+        },
+        "fortune_telling": {
+          "name": "Przepowiadanie przyszłości",
+          "description": "Zakładanie, że wydarzenia potoczą się źle, bez wystarczających dowodów."
+        },
+        "magnification_minimization": {
+          "name": "Wyolbrzymianie i umniejszanie",
+          "description": "Przesadzanie z wagą problemów lub umniejszanie ich znaczenia."
+        },
+        "labeling": {
+          "name": "Etykietowanie",
+          "description": "Nadawanie sobie lub innym negatywnych etykiet (np. 'przegrany', 'nieudacznik')."
+        },
+        "reasoning_from_emotions": {
+          "name": "Emocjonalne rozumowanie",
+          "description": "Zakładanie, że Twoje uczucia zawsze odzwierciedlają rzeczywistość. Przykład: 'Czuję się zawstydzony, więc musiałem zrobić coś zawstydzającego.'"
+        },
+        "should_statements": {
+          "name": "Myśli typu 'powinienem'",
+          "description": "Stawianie sobie lub innym sztywnych wymagań, używając słów takich jak 'powinienem', 'muszę', 'należy'."
+        },
+        "personalization_blame": {
+          "name": "Personalizacja i obwinianie",
+          "description": "Obwinianie siebie za sytuacje poza Twoją kontrolą lub przerzucanie odpowiedzialności na innych."
         }
       }
     },
-    "journal": { "title": "Mood Journal" },
-    "phone_a_friend": { "title": "Phone a Friend" }
+    "journal": { "title": "Dziennik nastroju" },
+    "phone_a_friend": { "title": "Zadzwoń do przyjaciela" }
   }
 }

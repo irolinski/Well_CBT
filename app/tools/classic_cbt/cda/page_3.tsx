@@ -61,8 +61,11 @@ const Page_3 = () => {
                     {t(`tools.${TOOL_NAME}.exercise.page_3.subheader_2`)}
                   </Text>
                   <View className="mx-auto mt-4 w-3/4 px-4">
+                    {/* title={t(`tools.${TOOL_NAME}.distortion_list.${distortion}.name`)} */}
                     <DistortionPill
-                      title={cdaState.distortion}
+                      title={t(
+                        `tools.${TOOL_NAME}.distortion_list.${cdaState.distortion}.name`,
+                      )}
                       checked={true}
                       highlighted={false}
                     />

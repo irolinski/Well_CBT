@@ -29,16 +29,63 @@
           "subheader_2": "Cognitive Distortion:",
           "instruction_1": "Now, let's try to think of a more rational way to look atthis situation:"
         },
-        "page_4": {
+        "summary": {
           "header": "Here are your results. Try to meditate on them for a second.",
-          "subheader_1": "Distorted thought:",
-          "subheader_2": "Cognitive Distortion:",
-          "subheader_3": "Rational Thought:",
+          "situation": "Situation",
+          "distorted_thought": "Distorted thought:",
+          "cognitive_distortion": "Cognitive Distortion:",
+          "rational_thought": "Rational Thought:",
           "save_to_journal": "Save to journal?"
         },
         "page_finish": {
           "message_1": "Congratulations! Your distorted thought just became a little more rational.",
           "message_2": "Analyse your painful thoughts often to lessen their power over you."
+        }
+      },
+      "distortion_list": {
+        "all_or_nothing": {
+          "name": "All-or-nothing thinking",
+          "description": "Perceiving situations in black-and-white extremes, with no room for nuance or gray areas."
+        },
+        "mental_filter": {
+          "name": "Mental filter",
+          "description": "Concentrating on the negative details, overlooking the positive aspects."
+        },
+        "overgeneralization": {
+          "name": "Overgeneralization",
+          "description": "Seeing a single negative event as a continuous cycle of failure."
+        },
+        "mind_reading": {
+          "name": "Mind reading",
+          "description": "Assuming you know what other people are thinking."
+        },
+        "discounting_positives": {
+          "name": "Discounting positives",
+          "description": "Dismissing the positive aspects about you or a situation as insignificant or unworthy."
+        },
+        "fortune_telling": {
+          "name": "Fortune telling",
+          "description": "Predicting events will turn out badly without sufficient evidence."
+        },
+        "magnification_minimization": {
+          "name": "Magnification and minimization",
+          "description": "Either exaggerating the importance of issues or trivializing their significance."
+        },
+        "labeling": {
+          "name": "Labeling",
+          "description": "Labeling yourself or others harshly (e.g., 'loser', 'failure')."
+        },
+        "reasoning_from_emotions": {
+          "name": "Emotional reasoning",
+          "description": "Concluding that your feelings must always reflect reality. Example: 'I feel ashamed, so I must've done something shameful.'"
+        },
+        "should_statements": {
+          "name": "'Should' statements",
+          "description": "Placing rigid demands on yourself or others using terms like 'should,' 'ought to,' and 'must.'"
+        },
+        "personalization_blame": {
+          "name": "Personalization and blame",
+          "description": "Holding yourself accountable for situations beyond your control or deflecting responsibility onto others."
         }
       }
     },
