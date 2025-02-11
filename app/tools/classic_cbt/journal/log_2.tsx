@@ -1,20 +1,20 @@
-import { router } from "expo-router";
-import React from "react";
-import { useTranslation } from "react-i18next";
-import { ScrollView, View } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
-import AdvanceButton from "@/components/AdvanceButton";
-import DistortionPill from "@/components/DistortionPill";
-import Frame from "@/components/Frame";
-import Text from "@/components/global/Text";
-import ToolHeader from "@/components/tools/ToolHeader";
-import ToolNav from "@/components/tools/ToolNav";
-import { emotionObjType } from "@/constants/models/home/activity_log";
-import { emotionList } from "@/constants/models/tools/journal";
-import { journal_tool } from "@/constants/models/tools/tools";
-import { Colors } from "@/constants/styles/colorTheme";
-import { setEmotions } from "@/state/features/tools/journalSlice";
-import { AppDispatch, RootState } from "@/state/store";
+import { router } from 'expo-router';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { ScrollView, View } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import AdvanceButton from '@/components/AdvanceButton';
+import DistortionPill from '@/components/DistortionPill';
+import Frame from '@/components/Frame';
+import Text from '@/components/global/Text';
+import ToolHeader from '@/components/tools/ToolHeader';
+import ToolNav from '@/components/tools/ToolNav';
+import { emotionObjType } from '@/constants/models/home/activity_log';
+import { emotionList } from '@/constants/models/tools/journal';
+import { journal_tool } from '@/constants/models/tools/tools';
+import { Colors } from '@/constants/styles/colorTheme';
+import { setEmotions } from '@/state/features/tools/journalSlice';
+import { AppDispatch, RootState } from '@/state/store';
 
 const TOOL_NAME = journal_tool.name;
 const CURRENT_PAGE = 2;
@@ -83,9 +83,6 @@ const Log_2 = () => {
                         : "#D46A6A",
                   }}
                 >
-                  {/* {journalState.emotions.length} of ${MAX_SELECTED_EMOTIONS}{" "}
-                  selected */}
-
                   {t(
                     `tools.${TOOL_NAME}.exercise.page_2.selected_current_of_total`,
                     {
@@ -95,13 +92,18 @@ const Log_2 = () => {
                   )}
                 </Text>
                 <View className="mt-2 flex-row flex-wrap">
-                  {emotionList.map((e, index) => (
+                  {emotionList.map((emotionObj, index) => (
                     <DistortionPill
-                      title={e.name}
-                      checked={isChecked(e.name)}
-                      customColor={e.color}
+                      title={t(
+                        `tools.${TOOL_NAME}.emotion_list.${emotionObj.name}`,
+                      )}
+                      checked={isChecked(emotionObj.name)}
+                      customColor={emotionObj.color}
                       onPress={() =>
-                        handlePress({ name: e.name, color: e.color })
+                        handlePress({
+                          name: emotionObj.name,
+                          color: emotionObj.color,
+                        })
                       }
                       key={index}
                     />

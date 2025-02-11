@@ -1,26 +1,29 @@
-import { Image } from "expo-image";
-import { useLocalSearchParams } from "expo-router";
-import React, { useEffect, useState } from "react";
-import { ScrollView, View } from "react-native";
-import { logoImages } from "@/assets/images/global/logo/logo";
-import DistortionPill from "@/components/DistortionPill";
-import ErrorScreen from "@/components/ErrorScreen";
-import Text from "@/components/global/Text";
-import ActivityShowNav from "@/components/home/ActivityShowNav";
-import CDATextBox from "@/components/tools/cda/CDATextBox";
-import ToolHeader from "@/components/tools/ToolHeader";
-import {
-  emotionObjType,
-  JournalEntryMainType,
-} from "@/constants/models/home/activity_log";
-import { emotionList, moodValueTitles } from "@/constants/models/tools/journal";
-import { Colors } from "@/constants/styles/colorTheme";
-import { fetchJournalEntry } from "@/db/activity_log";
-import { deleteJournalEntry } from "@/db/tools";
-import { handleDeleteEntry } from "@/utils/deleteEntry";
-import { Slider } from "@miblanchard/react-native-slider";
+import { Image } from 'expo-image';
+import { useLocalSearchParams } from 'expo-router';
+import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { ScrollView, View } from 'react-native';
+import { logoImages } from '@/assets/images/global/logo/logo';
+import DistortionPill from '@/components/DistortionPill';
+import ErrorScreen from '@/components/ErrorScreen';
+import Text from '@/components/global/Text';
+import ActivityShowNav from '@/components/home/ActivityShowNav';
+import CDATextBox from '@/components/tools/cda/CDATextBox';
+import ToolHeader from '@/components/tools/ToolHeader';
+import { emotionObjType, JournalEntryMainType } from '@/constants/models/home/activity_log';
+import { emotionList, moodValueTitles } from '@/constants/models/tools/journal';
+import { journal_tool } from '@/constants/models/tools/tools';
+import { Colors } from '@/constants/styles/colorTheme';
+import { fetchJournalEntry } from '@/db/activity_log';
+import { deleteJournalEntry } from '@/db/tools';
+import { handleDeleteEntry } from '@/utils/deleteEntry';
+import { Slider } from '@miblanchard/react-native-slider';
+
+const TOOL_NAME = journal_tool.name;
 
 const ActivityShowPage = () => {
+  const { t } = useTranslation(["tools", "common"]);
+
   const id: number = Number(useLocalSearchParams<{ id: string }>().id);
 
   const [fetchedEntryMain, setFetchedEntryMain] = useState<
@@ -53,7 +56,10 @@ const ActivityShowPage = () => {
         <View className={`mx-6 my-10 flex-1 justify-center`}>
           <View className="mb-12 pb-10">
             <View className="mb-8 flex-row justify-between">
-              <ToolHeader>Journal Entry </ToolHeader>
+              <ToolHeader>
+                {" "}
+                {t(`tools.${TOOL_NAME}.exercise.summary.title`)}
+              </ToolHeader>
               <View className="justify-center">
                 <Text
                   className="mt-0.5 text-lg"
@@ -69,7 +75,9 @@ const ActivityShowPage = () => {
             <View className="my-8">
               {fetchedEntryMain.moodValue && (
                 <View>
-                  <Text>Mood rating: </Text>
+                  <Text>
+                    {t(`tools.${TOOL_NAME}.exercise.summary.mood_rating`)}
+                  </Text>
                   <View className="flex-row">
                     <View className="w-3/4 px-2 pt-2">
                       <Slider
@@ -97,7 +105,10 @@ const ActivityShowPage = () => {
                     </View>
                     <View className="w-1/4 items-center justify-center">
                       <Text className="text-center text-xl">
-                        {moodValueTitles[fetchedEntryMain.moodValue! - 1]}
+                        {/* {moodValueTitles[fetchedEntryMain.moodValue! - 1]} */}
+                        {t(
+                          `tools.${TOOL_NAME}.mood_value_titles.${moodValueTitles[fetchedEntryMain.moodValue! - 1]}`,
+                        )}
                       </Text>
                     </View>
                   </View>
@@ -107,19 +118,24 @@ const ActivityShowPage = () => {
                 className="my-8 justify-center border-b border-t px-2 py-7"
                 style={{ borderColor: Colors.lightGray }}
               >
-                <Text className="absolute top-4">Emotions:</Text>
+                <Text className="absolute top-4">
+                  {t(`tools.${TOOL_NAME}.exercise.summary.emotions`)}
+                </Text>
                 <View className="mx-auto mt-6 w-[95%] flex-row flex-wrap px-4">
                   {fetchedEntryEmotions.map(
-                    (e: emotionObjType, index: number) => (
+                    (emotionObj: emotionObjType, index: number) => (
                       <View
                         className="w-full flex-row items-center justify-between"
                         key={index}
                       >
                         <DistortionPill
-                          title={e.name}
+                          title={t(
+                            `tools.${TOOL_NAME}.emotion_list.${emotionObj.name}`,
+                          )}
                           customColor={
-                            emotionList.find((obj) => obj.name === e.name)
-                              ?.color || "transparent"
+                            emotionList.find(
+                              (obj) => obj.name === emotionObj.name,
+                            )?.color || "transparent"
                           }
                           checked={true}
                           key={index}
@@ -131,11 +147,12 @@ const ActivityShowPage = () => {
                                 <View
                                   className="mx-1 h-4 w-4 rounded-full"
                                   style={
-                                    i <= e.strength!
+                                    i <= emotionObj.strength!
                                       ? {
                                           backgroundColor: `${
                                             emotionList.find(
-                                              (obj) => obj.name === e.name,
+                                              (obj) =>
+                                                obj.name === emotionObj.name,
                                             )?.color || "transparent"
                                           }`,
                                         }
@@ -153,7 +170,7 @@ const ActivityShowPage = () => {
                 </View>
               </View>
               <View className="mt-4">
-                <Text>Note:</Text>
+                <Text>{t(`tools.${TOOL_NAME}.exercise.summary.note`)}</Text>
                 {fetchedEntryMain.note ? (
                   <CDATextBox textContent={fetchedEntryMain.note} />
                 ) : (
@@ -162,7 +179,9 @@ const ActivityShowPage = () => {
                     style={{ borderColor: Colors.mainGray }}
                   >
                     <Text className="text-center">
-                      No note added to this log.
+                      {t(
+                        `tools.${TOOL_NAME}.exercise.summary.no_note_placeholder`,
+                      )}
                     </Text>
                   </View>
                 )}

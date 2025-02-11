@@ -1,21 +1,21 @@
-import { router } from "expo-router";
-import React from "react";
-import { useTranslation } from "react-i18next";
-import { ScrollView, View } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
-import AdvanceButton from "@/components/AdvanceButton";
-import Frame from "@/components/Frame";
-import Text from "@/components/global/Text";
-import ToolHeader from "@/components/tools/ToolHeader";
-import ToolNav from "@/components/tools/ToolNav";
-import { emotionObjType } from "@/constants/models/home/activity_log";
-import { emotionStrengthTitles } from "@/constants/models/tools/journal";
-import { journal_tool } from "@/constants/models/tools/tools";
-import { Colors } from "@/constants/styles/colorTheme";
-import { journalStyleConstants } from "@/constants/styles/values";
-import { setEmotions } from "@/state/features/tools/journalSlice";
-import { AppDispatch, RootState } from "@/state/store";
-import { Slider } from "@miblanchard/react-native-slider";
+import { router } from 'expo-router';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { ScrollView, View } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import AdvanceButton from '@/components/AdvanceButton';
+import Frame from '@/components/Frame';
+import Text from '@/components/global/Text';
+import ToolHeader from '@/components/tools/ToolHeader';
+import ToolNav from '@/components/tools/ToolNav';
+import { emotionObjType } from '@/constants/models/home/activity_log';
+import { emotionStrengthTitles } from '@/constants/models/tools/journal';
+import { journal_tool } from '@/constants/models/tools/tools';
+import { Colors } from '@/constants/styles/colorTheme';
+import { journalStyleConstants } from '@/constants/styles/values';
+import { setEmotions } from '@/state/features/tools/journalSlice';
+import { AppDispatch, RootState } from '@/state/store';
+import { Slider } from '@miblanchard/react-native-slider';
 
 const TOOL_NAME = journal_tool.name;
 const CURRENT_PAGE = 3;
@@ -71,7 +71,9 @@ const Log_3 = () => {
                           fontWeight: 500,
                         }}
                       >
-                        {emotionObj.name}
+                        {t(
+                          `tools.${TOOL_NAME}.emotion_list.${emotionObj.name}`,
+                        )}
                       </Text>
                       <Slider
                         animateTransitions
@@ -123,7 +125,10 @@ const Log_3 = () => {
                           className="h-5 justify-end"
                           style={{ color: Colors.darkGray }}
                         >
-                          {emotionStrengthTitles[emotionObj.strength! - 1]}
+                          {emotionObj.strength &&
+                            t(
+                              `tools.${TOOL_NAME}.emotion_strength_titles.${emotionStrengthTitles[emotionObj.strength - 1]}`,
+                            )}
                         </Text>
                       </View>
                     </View>

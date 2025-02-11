@@ -1,23 +1,20 @@
-import { router } from "expo-router";
-import React, { useEffect, useRef } from "react";
-import { useTranslation } from "react-i18next";
-import { Animated, Dimensions, Easing, View } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
-import AdvanceButton from "@/components/AdvanceButton";
-import Text from "@/components/global/Text";
-import ToolHeader from "@/components/tools/ToolHeader";
-import ToolNav from "@/components/tools/ToolNav";
-import { moodValueTitles } from "@/constants/models/tools/journal";
-import { journal_tool } from "@/constants/models/tools/tools";
-import { Colors } from "@/constants/styles/colorTheme";
-import { journalStyleConstants } from "@/constants/styles/values";
-import {
-  journalResetState,
-  setMoodValue,
-} from "@/state/features/tools/journalSlice";
-import { AppDispatch, RootState } from "@/state/store";
-import { MaterialIcons } from "@expo/vector-icons";
-import { Slider } from "@miblanchard/react-native-slider";
+import { router } from 'expo-router';
+import React, { useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Animated, Dimensions, Easing, View } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import AdvanceButton from '@/components/AdvanceButton';
+import Text from '@/components/global/Text';
+import ToolHeader from '@/components/tools/ToolHeader';
+import ToolNav from '@/components/tools/ToolNav';
+import { moodValueTitles } from '@/constants/models/tools/journal';
+import { journal_tool } from '@/constants/models/tools/tools';
+import { Colors } from '@/constants/styles/colorTheme';
+import { journalStyleConstants } from '@/constants/styles/values';
+import { journalResetState, setMoodValue } from '@/state/features/tools/journalSlice';
+import { AppDispatch, RootState } from '@/state/store';
+import { MaterialIcons } from '@expo/vector-icons';
+import { Slider } from '@miblanchard/react-native-slider';
 
 const TOOL_NAME = journal_tool.name;
 const CURRENT_PAGE = 1;
@@ -153,7 +150,9 @@ const Log_1 = () => {
             >
               <Text className="text-3xl">{journalState.moodValue}</Text>
               <Text className="text-2xl">
-                {moodValueTitles[journalState.moodValue! - 1]}
+                {t(
+                  `tools.${TOOL_NAME}.mood_value_titles.${moodValueTitles[journalState.moodValue! - 1]}`,
+                )}
               </Text>
             </Animated.View>
 

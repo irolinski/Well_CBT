@@ -108,7 +108,7 @@
           "selected_current_of_total": "{{current}} z {{total}} wybranych"
         },
         "page_3": {
-          "header": "Jak silne są emocje, które odczuwasz?",
+          "header": "Jak silne odczuwasz wymienione emocje?",
           "instruction_1": "Użyj suwaków, aby ocenić intensywność wybranych emocji."
         },
         "page_4": {
@@ -122,12 +122,82 @@
           "message_2_discarded": "Możesz zapisać przyszłe wpisy w dzienniku, zaznaczając pole na końcu formularza."
         },
         "summary": {
+          "title": "Wpis do dziennika",
           "header": "Podsumowanie",
           "mood_rating": "Ocena nastroju:",
           "emotions": "Emocje:",
           "note": "Notatka:",
           "no_note_placeholder": "Brak dodanej notatki do tego wpisu."
         }
+      },
+
+      "emotion_list": {
+        "calm": "Spokój",
+        "relaxed": "Relaks",
+        "peaceful": "Pokój",
+        "serene": "Spokój ducha",
+        "joyful": "Radość",
+        "ecstatic": "Euforia",
+        "hopeful": "Nadzieja",
+        "optimistic": "Optymizm",
+        "grateful": "Wdzięczność",
+        "proud": "Duma",
+        "satisfied": "Satysfakcja",
+        "triumphant": "Triumf",
+        "capable": "Kompetencja",
+        "talented": "Uzdolnienie",
+        "loving": "Miłość",
+        "protected": "Poczucie bezpieczeństwa",
+        "respected": "Szacunek",
+        "energized": "Energia",
+        "motivated": "Motywacja",
+        "curious": "Ciekawość",
+        "confused": "Zdezorientowanie",
+        "surprised": "Zaskoczenie",
+        "shocked": "Szok",
+        "puzzled": "Zakłopotanie",
+        "interested": "Zainteresowanie",
+        "baffled": "Zdumienie",
+        "indecisive": "Niezdecydowanie",
+        "torn": "Rozdarcie",
+        "ambivalent": "Ambiwalencja",
+        "hesitant": "Wahanie",
+        "stunned": "Oszłomienie",
+        "astonished": "Zdumienie",
+        "startled": "Zaskoczenie",
+        "overwhelmed": "Przytłoczenie",
+        "anxious": "Niepokój",
+        "fearful": "Strach",
+        "appalled": "Zbulwersowanie",
+        "repulsed": "Wstręt",
+        "upset": "Smutek",
+        "frightened": "Przerażenie",
+        "angry": "Złość",
+        "furious": "Wściekłość",
+        "irritated": "Irytacja",
+        "sad": "Smutek",
+        "depressed": "Depresja",
+        "lonely": "Samotność",
+        "betrayed": "Zdrada",
+        "guilty": "Wina",
+        "ashamed": "Wstyd",
+        "helpless": "Bezradność"
+      },
+      "mood_value_titles": {
+        "terrible": "Okropnie",
+        "bad": "Źle",
+        "rather_bad": "Raczej źle",
+        "average": "Średnio",
+        "rather_good": "Nieźle",
+        "good": "Dobrze",
+        "very_good": "Bardzo dobrze"
+      },
+      "emotion_strength_titles": {
+        "barely_noticable": "Ledwie zauważalnie",
+        "weak": "Słabo",
+        "significant": "Znacząco",
+        "strong": "Silnie",
+        "overwhealmingly_strong": "Przytłaczająco silnie"
       }
     },
     "phone_a_friend": { "title": "Zadzwoń do przyjaciela" }

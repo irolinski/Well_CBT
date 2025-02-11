@@ -1,27 +1,24 @@
-import { router } from "expo-router";
-import React from "react";
-import { useTranslation } from "react-i18next";
-import { Pressable, ScrollView, View } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
-import AdvanceButton from "@/components/AdvanceButton";
-import DistortionPill from "@/components/DistortionPill";
-import Frame from "@/components/Frame";
-import Text from "@/components/global/Text";
-import CDATextBox from "@/components/tools/cda/CDATextBox";
-import ToolHeader from "@/components/tools/ToolHeader";
-import ToolNav from "@/components/tools/ToolNav";
-import { moodValueTitles } from "@/constants/models/tools/journal";
-import { journal_tool } from "@/constants/models/tools/tools";
-import { Colors } from "@/constants/styles/colorTheme";
-import { journalStyleConstants } from "@/constants/styles/values";
-import { handleSaveJournalEntry } from "@/db/tools";
-import {
-  journalResetState,
-  toggleSave,
-} from "@/state/features/tools/journalSlice";
-import { AppDispatch, RootState } from "@/state/store";
-import Feather from "@expo/vector-icons/Feather";
-import { Slider } from "@miblanchard/react-native-slider";
+import { router } from 'expo-router';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { Pressable, ScrollView, View } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import AdvanceButton from '@/components/AdvanceButton';
+import DistortionPill from '@/components/DistortionPill';
+import Frame from '@/components/Frame';
+import Text from '@/components/global/Text';
+import CDATextBox from '@/components/tools/cda/CDATextBox';
+import ToolHeader from '@/components/tools/ToolHeader';
+import ToolNav from '@/components/tools/ToolNav';
+import { moodValueTitles } from '@/constants/models/tools/journal';
+import { journal_tool } from '@/constants/models/tools/tools';
+import { Colors } from '@/constants/styles/colorTheme';
+import { journalStyleConstants } from '@/constants/styles/values';
+import { handleSaveJournalEntry } from '@/db/tools';
+import { journalResetState, toggleSave } from '@/state/features/tools/journalSlice';
+import { AppDispatch, RootState } from '@/state/store';
+import Feather from '@expo/vector-icons/Feather';
+import { Slider } from '@miblanchard/react-native-slider';
 
 const TOOL_NAME = journal_tool.name;
 const CURRENT_PAGE = 5;
@@ -91,7 +88,9 @@ const Log_5 = () => {
                   </View>
                   <View className="w-1/4 items-center justify-center">
                     <Text className="text-center text-xl">
-                      {moodValueTitles[journalState.moodValue! - 1]}
+                      {t(
+                        `tools.${TOOL_NAME}.mood_value_titles.${moodValueTitles[journalState.moodValue! - 1]}`,
+                      )}
                     </Text>
                   </View>
                 </View>
@@ -102,14 +101,16 @@ const Log_5 = () => {
               >
                 <Text>{t(`tools.${TOOL_NAME}.exercise.summary.emotions`)}</Text>
                 <View className="mx-auto mt-6 w-[95%] flex-row flex-wrap px-4">
-                  {journalState.emotions.map((e, index) => (
+                  {journalState.emotions.map((emotionObj, index) => (
                     <View
                       className="w-full flex-row items-center justify-between"
                       key={index}
                     >
                       <DistortionPill
-                        title={e.name}
-                        customColor={e.color}
+                        title={t(
+                          `tools.${TOOL_NAME}.emotion_list.${emotionObj.name}`,
+                        )}
+                        customColor={emotionObj.color}
                         checked={true}
                         key={index}
                       />
@@ -120,8 +121,8 @@ const Log_5 = () => {
                               <View
                                 className="mx-1 h-4 w-4 rounded-full"
                                 style={
-                                  i <= e.strength!
-                                    ? { backgroundColor: `${e.color}` }
+                                  i <= emotionObj.strength!
+                                    ? { backgroundColor: `${emotionObj.color}` }
                                     : { backgroundColor: "#FAF9F6" }
                                 }
                                 key={i}
