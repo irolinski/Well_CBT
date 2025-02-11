@@ -1,5 +1,6 @@
 import { router } from "expo-router";
 import React, { useState } from "react";
+import { Trans, useTranslation } from "react-i18next";
 import { ScrollView, View } from "react-native";
 import { useSelector } from "react-redux";
 import AdvanceButton from "@/components/AdvanceButton";
@@ -9,9 +10,15 @@ import CDADistortionList from "@/components/tools/cda/CDADistortionList";
 import CDATextBox from "@/components/tools/cda/CDATextBox";
 import ToolHeader from "@/components/tools/ToolHeader";
 import ToolNav from "@/components/tools/ToolNav";
+import { cda_tool } from "@/constants/models/tools/tools";
 import { RootState } from "@/state/store";
 
+const CURRENT_PAGE = 2;
+const TOOL_NAME = cda_tool.name;
+
 const Page_2 = () => {
+  const { t } = useTranslation(["tools", "common"]);
+
   // tool state
   const cdaState = useSelector((state: RootState) => state.cda);
 
@@ -38,19 +45,27 @@ const Page_2 = () => {
           handleSetTooltipY(evt.nativeEvent.pageY);
         }}
       >
-        <ToolNav currentPage={2} numOfAllPages={5} />
+        <ToolNav
+          currentPage={CURRENT_PAGE}
+          numOfAllPages={cda_tool.num_of_pages}
+        />
         <Frame>
           <View className="py-10">
-            <ToolHeader>Now, let's take a closer look...</ToolHeader>
+            <ToolHeader>
+              {t(`tools.${TOOL_NAME}.exercise.page_2.header`)}
+            </ToolHeader>
             <View className="my-8">
-              <Text>Distorted thought: </Text>
+              <Text>{t(`tools.${TOOL_NAME}.exercise.page_2.subheader_1`)}</Text>
               <CDATextBox textContent={cdaState.oldThought} />
               <View className="mx-auto mt-8">
                 <Text className="mr-[10%] text-left">
-                  Here is a list of some of the most common{" "}
-                  <Text className="font-bold">cognitive distortions</Text>.
-                  Choose <Text className="font-bold">one</Text> that most
-                  accurately describes your thought:
+                  <Trans
+                    i18nKey="tools.cognitive_distortion_analysis.exercise.page_2.instruction_1"
+                    ns="tools"
+                    components={{
+                      bold: <Text style={{ fontWeight: "bold" }} />,
+                    }}
+                  />
                 </Text>
                 <CDADistortionList
                   showDistortionTooltip={showDistortionTooltip}
@@ -66,8 +81,8 @@ const Page_2 = () => {
         </Frame>
         <View className="bottom-16 mx-6">
           <AdvanceButton
-            title="Next"
-            onPress={() => router.navigate("./page_3")}
+            title={t("buttons.next", { ns: "common" })}
+            onPress={() => router.navigate(`./page_${CURRENT_PAGE + 1}`)}
             disabled={!cdaState.distortion}
           />
         </View>

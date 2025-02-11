@@ -2,6 +2,8 @@
   "buttons": {
     "see_all": "Zobacz wszystkie",
     "save_preferences": "Zachowaj ustawienia",
-    "redirect": "Wybierz"
+    "redirect": "Wybierz",
+    "lets_begin": "Zacznij",
+    "finish": "Zakończ"
   }
 }

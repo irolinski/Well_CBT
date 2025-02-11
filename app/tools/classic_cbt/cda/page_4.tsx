@@ -1,5 +1,6 @@
 import { router } from "expo-router";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { Pressable, ScrollView, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import AdvanceButton from "@/components/AdvanceButton";
@@ -9,13 +10,18 @@ import Text from "@/components/global/Text";
 import CDATextBox from "@/components/tools/cda/CDATextBox";
 import ToolHeader from "@/components/tools/ToolHeader";
 import ToolNav from "@/components/tools/ToolNav";
+import { cda_tool } from "@/constants/models/tools/tools";
 import { Colors } from "@/constants/styles/colorTheme";
 import { handleSaveCDAEntry } from "@/db/tools";
 import { cdaResetState, toggleSave } from "@/state/features/tools/cdaSlice";
 import { AppDispatch, RootState } from "@/state/store";
 import Feather from "@expo/vector-icons/Feather";
 
+const CURRENT_PAGE = 4;
+const TOOL_NAME = cda_tool.name;
+
 const Page_4 = () => {
+  const { t } = useTranslation(["tools", "common"]);
   const cdaState = useSelector((state: RootState) => state.cda);
   const dispatch = useDispatch<AppDispatch>();
 
@@ -27,22 +33,29 @@ const Page_4 = () => {
   return (
     <React.Fragment>
       <ScrollView>
-        <ToolNav currentPage={4} numOfAllPages={5} />
+        <ToolNav
+          currentPage={CURRENT_PAGE}
+          numOfAllPages={cda_tool.num_of_pages}
+        />
         <Frame>
           <View className="py-10">
             <ToolHeader>
-              Here are your results. Try to meditate on them for a second.
+              {t(`tools.${TOOL_NAME}.exercise.page_4.header`)}
             </ToolHeader>
             <View className="my-8">
               <View>
-                <Text>Distorted thought: </Text>
+                <Text>
+                  {t(`tools.${TOOL_NAME}.exercise.page_4.subheader_1`)}
+                </Text>
                 <CDATextBox textContent={cdaState.oldThought} />
               </View>
               <View
                 className="my-8 border-b border-t px-2 py-7"
                 style={{ borderColor: Colors.lightGray }}
               >
-                <Text>Cognitive Distortion:</Text>
+                <Text>
+                  {t(`tools.${TOOL_NAME}.exercise.page_4.subheader_2`)}
+                </Text>
                 <View className="mx-auto mt-4 w-3/4 px-4">
                   <DistortionPill
                     title={cdaState.distortion}
@@ -52,7 +65,9 @@ const Page_4 = () => {
                 </View>
               </View>
               <View className="mt-4">
-                <Text>Rational thought:</Text>
+                <Text>
+                  {t(`tools.${TOOL_NAME}.exercise.page_4.subheader_3`)}
+                </Text>
                 <CDATextBox textContent={cdaState.newThought} />
               </View>
               <Pressable onPress={() => dispatch(toggleSave())}>
@@ -76,7 +91,7 @@ const Page_4 = () => {
                     className="mx-4 my-1 text-center"
                     style={{ color: Colors.darkBlue }}
                   >
-                    Save to journal?
+                    {t(`tools.${TOOL_NAME}.exercise.page_4.save_to_journal`)}
                   </Text>
                 </View>
               </Pressable>
@@ -85,7 +100,7 @@ const Page_4 = () => {
         </Frame>
         <View className="bottom-16 mx-6">
           <AdvanceButton
-            title="Finish"
+            title={t("buttons.finish", { ns: "common" })}
             onPress={() => {
               handleSave();
               router.navigate("./page_finish");

@@ -1,12 +1,18 @@
 import { Href, router } from "expo-router";
 import React from "react";
+import { Trans, useTranslation } from "react-i18next";
 import { ImageBackground, Text, View } from "react-native";
 import { toolBackgrounds } from "@/assets/images/tools/backgrounds/backgrounds";
 import AdvanceButton from "@/components/AdvanceButton";
 import BackButton from "@/components/BackButton";
+import { cda_tool } from "@/constants/models/tools/tools";
 import { Colors } from "@/constants/styles/colorTheme";
 
+const TOOL_NAME = cda_tool.name;
+
 const Cda = () => {
+  const { t } = useTranslation(["tools", "common"]);
+
   return (
     <React.Fragment>
       <ImageBackground source={toolBackgrounds.thought_challange}>
@@ -25,30 +31,26 @@ const Cda = () => {
                     color: Colors.whiteSmoke,
                   }}
                 >
-                  Cognitive Distortion Analysis
+                  {t(`tools.${TOOL_NAME}.title`)}
                 </Text>
                 <Text
                   className="my-2 text-sm"
                   style={{ color: Colors.offWhite }}
                 >
-                  Cognitive Distortion Analysis is an exercise designed to
-                  target negative thought patterns.{"\n\n"}
-                  You’ll <Text style={{ fontWeight: 500 }}>describe</Text> a
-                  situation, <Text style={{ fontWeight: 500 }}>note</Text> an
-                  automatic thought,{" "}
-                  <Text style={{ fontWeight: 500 }}>identify</Text> any
-                  cognitive distortions, and{" "}
-                  <Text style={{ fontWeight: 500 }}>reformulate</Text> the
-                  thought more rationally.
-                  {"\n\n"}For more details, go to a detailed by clicking the
-                  link below.
+                  <Trans
+                    i18nKey="tools.cognitive_distortion_analysis.description"
+                    ns="tools"
+                    components={{
+                      bold: <Text style={{ fontWeight: "bold" }} />,
+                    }}
+                  />
                 </Text>
               </View>
             </View>
             <View className="my-16 w-full">
               <AdvanceButton
                 className="w-full"
-                title="Let's begin"
+                title={t("buttons.lets_begin", { ns: "common" })}
                 onPress={() =>
                   router.replace("tools/classic_cbt/cda/page_1" as Href)
                 }

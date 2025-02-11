@@ -1,5 +1,6 @@
 import { router } from "expo-router";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import {
   Keyboard,
   ScrollView,
@@ -15,34 +16,50 @@ import CDATextBox from "@/components/tools/cda/CDATextBox";
 import ToolHeader from "@/components/tools/ToolHeader";
 import ToolNav from "@/components/tools/ToolNav";
 import ToolTextInput from "@/components/tools/ToolTextInput";
+import { cda_tool } from "@/constants/models/tools/tools";
 import { Colors } from "@/constants/styles/colorTheme";
 import { setNewThought } from "@/state/features/tools/cdaSlice";
 import { AppDispatch, RootState } from "@/state/store";
 
+const CURRENT_PAGE = 3;
+const TOOL_NAME = cda_tool.name;
+
 const Page_3 = () => {
+  const { t } = useTranslation(["tools", "common"]);
+
   const dispatch = useDispatch<AppDispatch>();
   const cdaState = useSelector((state: RootState) => state.cda);
   return (
     <React.Fragment>
       <ScrollView>
-        <ToolNav currentPage={3} numOfAllPages={5} />
+        <ToolNav
+          currentPage={CURRENT_PAGE}
+          numOfAllPages={cda_tool.num_of_pages}
+        />
         <Frame>
           <View className="py-10">
-            <ToolHeader>Now, let's try to make it rational!</ToolHeader>
+            <ToolHeader>
+              {t(`tools.${TOOL_NAME}.exercise.page_3.header`)}
+            </ToolHeader>
             <TouchableWithoutFeedback
               onPress={Keyboard.dismiss}
               accessible={false}
             >
               <View className="my-8">
                 <View>
-                  <Text>Distorted thought: </Text>
+                  <Text>
+                    {t(`tools.${TOOL_NAME}.exercise.page_3.subheader_1`)}
+                  </Text>
                   <CDATextBox textContent={cdaState.oldThought} />
                 </View>
                 <View
                   className="my-8 border-b border-t px-2 py-7"
                   style={{ borderColor: Colors.lightGray }}
                 >
-                  <Text>Cognitive Distortion:</Text>
+                  <Text>
+                    {" "}
+                    {t(`tools.${TOOL_NAME}.exercise.page_3.subheader_2`)}
+                  </Text>
                   <View className="mx-auto mt-4 w-3/4 px-4">
                     <DistortionPill
                       title={cdaState.distortion}
@@ -53,8 +70,7 @@ const Page_3 = () => {
                 </View>
                 <View>
                   <Text>
-                    Now, let's try to think of a more rational way to look at
-                    this situation:
+                    {t(`tools.${TOOL_NAME}.exercise.page_3.instruction_1`)}
                   </Text>
                   <ToolTextInput
                     value={cdaState.newThought}
@@ -70,7 +86,7 @@ const Page_3 = () => {
         </Frame>
         <View className="bottom-16 mx-6">
           <AdvanceButton
-            title="Next"
+            title={t("buttons.next", { ns: "common" })}
             onPress={() => router.navigate("./page_4")}
             disabled={!cdaState.newThought}
           />

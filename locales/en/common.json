@@ -2,6 +2,11 @@
   "buttons": {
     "see_all": "See all",
     "save_preferences": "Save preferences",
-    "redirect": "Redirect"
+    "redirect": "Redirect",
+    "next": "Next",
+    "finish": "Finish",
+    "again": "Do one more?",
+    "go_to_journal": "See journal",
+    "return_to_tools": "Return to Tools"
   }
 }

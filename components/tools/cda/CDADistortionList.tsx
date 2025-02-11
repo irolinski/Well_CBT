@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { View } from "react-native";
 import Tooltip from "react-native-walkthrough-tooltip";
 import { useDispatch, useSelector } from "react-redux";
@@ -17,6 +18,7 @@ const CDADistortionList = ({
   tooltipY,
   handleShowTooltip,
 }: DistortionListProps) => {
+  const { t } = useTranslation("tools");
   const dispatch = useDispatch<AppDispatch>();
   const cdaState = useSelector((state: RootState) => state.cda);
 
@@ -29,7 +31,7 @@ const CDADistortionList = ({
           fontSize: 14,
         }}
       >
-        Press and hold to see the description.
+        {t(`tools.cognitive_distortion_analysis.exercise.page_2.instruction_2`)}
       </Text>
       {cognitiveDistortions.map((distortionObj, index) => (
         <Tooltip

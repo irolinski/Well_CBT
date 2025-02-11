@@ -1,0 +1,44 @@
+{
+  "index": { "title": "Tools" },
+  "types": { "exercise": "Exercise", "journal": "journal", "relax": "Relax" },
+  "categories": {
+    "cbt": "Classic CBT",
+    "relax": "Relax",
+    "distraction": "Distract Yourself"
+  },
+  "tools": {
+    "breathing": { "title": "Deep Breathing" },
+    "cognitive_distortion_analysis": {
+      "title": "Thoughts Challange",
+      "description": "Cognitive Distortion Analysis is an exercise designed to target negative thought patterns.\n\nYou’ll <bold>describe</bold> a situation, <bold>note</bold> an automatic thought, <bold>identify</bold> any cognitive distortions, and <bold>reformulate</bold> the thought more rationally.\n\nFor more details, go to a detailed by clicking the link below.",
+      "exercise": {
+        "page_1": {
+          "header": "Write down a thought that's bothering you.",
+          "instruction_1": "Describe the context of the thought in a few words:",
+          "instruction_2": "Now, choose and write down one thought that has arised, that may be particulary painful:"
+        },
+        "page_2": {
+          "header": "Now, let's take a closer look...",
+          "subheader_1": "Distorted thought:",
+          "instruction_1": "Here is a list of some of the most common <bold>cognitive distortions</bold>. Choose <bold>one</bold> that most accurately describes your thought:",
+          "instruction_2": "Press and hold to see the description."
+        },
+        "page_3": {
+          "header": "Now, let's try to make it rational!",
+          "subheader_1": "Distorted thought:",
+          "subheader_2": "Cognitive Distortion:",
+          "instruction_1": "Now, let's try to think of a more rational way to look atthis situation:"
+        },
+        "page_4": {
+          "header": "Here are your results. Try to meditate on them for a second.",
+          "subheader_1": "Distorted thought:",
+          "subheader_2": "Cognitive Distortion:",
+          "subheader_3": "Rational Thought:",
+          "save_to_journal": "Save to journal?"
+        }
+      }
+    },
+    "journal": { "title": "Mood Journal" },
+    "phone_a_friend": { "title": "Phone a Friend" }
+  }
+}

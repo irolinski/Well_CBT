@@ -1,5 +1,6 @@
 import { router } from "expo-router";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import {
   Keyboard,
   ScrollView,
@@ -13,20 +14,31 @@ import Text from "@/components/global/Text";
 import ToolHeader from "@/components/tools/ToolHeader";
 import ToolNav from "@/components/tools/ToolNav";
 import ToolTextInput from "@/components/tools/ToolTextInput";
+import { cda_tool } from "@/constants/models/tools/tools";
 import { setOldThought, setSituation } from "@/state/features/tools/cdaSlice";
 import { AppDispatch, RootState } from "@/state/store";
 
+const CURRENT_PAGE = 1;
+const TOOL_NAME = cda_tool.name;
+
 const Page_1 = () => {
+  const { t } = useTranslation(["tools", "common"]);
+
   const dispatch = useDispatch<AppDispatch>();
   const cdaState = useSelector((state: RootState) => state.cda);
 
   return (
     <React.Fragment>
       <ScrollView className="pb-8">
-        <ToolNav currentPage={1} numOfAllPages={5} />
+        <ToolNav
+          currentPage={CURRENT_PAGE}
+          numOfAllPages={cda_tool.num_of_pages}
+        />
         <Frame>
           <View className="py-10">
-            <ToolHeader>Write down a thought that's bothering you.</ToolHeader>
+            <ToolHeader>
+              {t(`tools.${TOOL_NAME}.exercise.page_1.header`)}
+            </ToolHeader>
             <TouchableWithoutFeedback
               onPress={() => {
                 Keyboard.dismiss;
@@ -36,7 +48,7 @@ const Page_1 = () => {
               <View className="my-8">
                 <View className="mb-2">
                   <Text className="mr-[15%] text-left">
-                    Describe the context of the thought in a few words:
+                    {t(`tools.${TOOL_NAME}.exercise.page_1.instruction_1`)}{" "}
                   </Text>
                   <ToolTextInput
                     value={cdaState.situation}
@@ -48,8 +60,7 @@ const Page_1 = () => {
                 </View>
                 <View>
                   <Text className="mr-[15%] text-left">
-                    Now, choose and write down one thought that has arised, that
-                    may be particulary painful:
+                    {t(`tools.${TOOL_NAME}.exercise.page_1.instruction_2`)}
                   </Text>
                   <ToolTextInput
                     value={cdaState.oldThought}
@@ -65,8 +76,8 @@ const Page_1 = () => {
         </Frame>
         <View className="bottom-16 mx-6">
           <AdvanceButton
-            title="Next"
-            onPress={() => router.navigate("./page_2")}
+            title={t("buttons.next", { ns: "common" })}
+            onPress={() => router.navigate(`./page_${CURRENT_PAGE + 1}`)}
             disabled={!cdaState.oldThought || !cdaState.situation}
           />
         </View>
