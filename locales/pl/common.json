@@ -11,6 +11,12 @@
     "return_to_tools": "Idź do Narzędzi",
     "save_to_journal": "Zapisz w dzienniku"
   },
+  "tabbar": {
+    "home": "Str. Główna",
+    "tools": "Narzędzia",
+    "learn": "Wiedza",
+    "about_me": "O mnie"
+  },
   "nav_elements": {
     "step_count": "Krok {{current}} <muted>z {{total}}</muted>"
   }

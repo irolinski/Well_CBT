@@ -10,7 +10,12 @@
     "return_to_tools": "Return to Tools",
     "save_to_journal": "Save to journal"
   },
-
+  "tabbar": {
+    "home": "Home",
+    "tools": "Tools",
+    "learn": "Learn",
+    "about_me": "About Me"
+  },
   "nav_elements": {
     "step_count": "Step {{current}} <muted>of {{total}}</muted>"
   }

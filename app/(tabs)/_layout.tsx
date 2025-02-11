@@ -1,14 +1,13 @@
-import { Tabs } from "expo-router";
-import React from "react";
-import { Dimensions, View } from "react-native";
-import { Colors } from "@/constants/styles/colorTheme";
-import {
-  Feather,
-  MaterialCommunityIcons,
-  MaterialIcons,
-} from "@expo/vector-icons";
+import { Tabs } from 'expo-router';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { Dimensions, View } from 'react-native';
+import { Colors } from '@/constants/styles/colorTheme';
+import { Feather, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 
 const TabLayout = () => {
+  const { t } = useTranslation("common");
+
   const windowHeight = Dimensions.get("window").height;
 
   const tabBarHeight = windowHeight / 9;
@@ -29,7 +28,7 @@ const TabLayout = () => {
       <Tabs.Screen
         name="index"
         options={{
-          title: "Home",
+          title: t("tabbar.home") ?? "Home",
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons
               name="home-outline"
@@ -42,7 +41,7 @@ const TabLayout = () => {
       <Tabs.Screen
         name="tools"
         options={{
-          title: "Tools",
+          title: t("tabbar.tools") ?? "Tools",
           tabBarIcon: ({ color }) => (
             <View style={{ marginBottom: 0.6 }}>
               <MaterialCommunityIcons
@@ -57,7 +56,7 @@ const TabLayout = () => {
       <Tabs.Screen
         name="learn"
         options={{
-          title: "Learn",
+          title: t("tabbar.learn") ?? "Learn",
           tabBarIcon: ({ focused }) => (
             <MaterialIcons
               name="lightbulb-outline"
@@ -70,7 +69,7 @@ const TabLayout = () => {
       <Tabs.Screen
         name="about"
         options={{
-          title: "About Me",
+          title: t("tabbar.about_me") ?? "About Me",
           tabBarIcon: ({ color }) => (
             <Feather name="user" size={24} color={color} />
           ),

@@ -70,7 +70,6 @@ const Log_2 = () => {
             </ToolHeader>
             <View className="my-6">
               <Text className="text-xs">
-                {" "}
                 {t(`tools.${TOOL_NAME}.exercise.page_2.instruction_1`)}
               </Text>
               <View className="mx-2 mt-5">
