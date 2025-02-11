@@ -1,17 +1,17 @@
-import { router } from "expo-router";
-import React, { useState } from "react";
-import { Trans, useTranslation } from "react-i18next";
-import { ScrollView, View } from "react-native";
-import { useSelector } from "react-redux";
-import AdvanceButton from "@/components/AdvanceButton";
-import Frame from "@/components/Frame";
-import Text from "@/components/global/Text";
-import CDADistortionList from "@/components/tools/cda/CDADistortionList";
-import CDATextBox from "@/components/tools/cda/CDATextBox";
-import ToolHeader from "@/components/tools/ToolHeader";
-import ToolNav from "@/components/tools/ToolNav";
-import { cda_tool } from "@/constants/models/tools/tools";
-import { RootState } from "@/state/store";
+import { router } from 'expo-router';
+import React, { useState } from 'react';
+import { Trans, useTranslation } from 'react-i18next';
+import { ScrollView, View } from 'react-native';
+import { useSelector } from 'react-redux';
+import AdvanceButton from '@/components/AdvanceButton';
+import Frame from '@/components/Frame';
+import Text from '@/components/global/Text';
+import CDADistortionList from '@/components/tools/cda/CDADistortionList';
+import CDATextBox from '@/components/tools/cda/CDATextBox';
+import ToolHeader from '@/components/tools/ToolHeader';
+import ToolNav from '@/components/tools/ToolNav';
+import { cda_tool } from '@/constants/models/tools/tools';
+import { RootState } from '@/state/store';
 
 const CURRENT_PAGE = 2;
 const TOOL_NAME = cda_tool.name;
@@ -60,7 +60,7 @@ const Page_2 = () => {
               <View className="mx-auto mt-8">
                 <Text className="mr-[10%] text-left">
                   <Trans
-                    i18nKey="tools.cognitive_distortion_analysis.exercise.page_2.instruction_1"
+                    i18nKey="tools.cda.exercise.page_2.instruction_1"
                     ns="tools"
                     components={{
                       bold: <Text style={{ fontWeight: "bold" }} />,

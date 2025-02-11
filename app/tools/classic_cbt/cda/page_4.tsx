@@ -1,21 +1,21 @@
-import { router } from "expo-router";
-import React from "react";
-import { useTranslation } from "react-i18next";
-import { Pressable, ScrollView, View } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
-import AdvanceButton from "@/components/AdvanceButton";
-import DistortionPill from "@/components/DistortionPill";
-import Frame from "@/components/Frame";
-import Text from "@/components/global/Text";
-import CDATextBox from "@/components/tools/cda/CDATextBox";
-import ToolHeader from "@/components/tools/ToolHeader";
-import ToolNav from "@/components/tools/ToolNav";
-import { cda_tool } from "@/constants/models/tools/tools";
-import { Colors } from "@/constants/styles/colorTheme";
-import { handleSaveCDAEntry } from "@/db/tools";
-import { cdaResetState, toggleSave } from "@/state/features/tools/cdaSlice";
-import { AppDispatch, RootState } from "@/state/store";
-import Feather from "@expo/vector-icons/Feather";
+import { router } from 'expo-router';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { Pressable, ScrollView, View } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import AdvanceButton from '@/components/AdvanceButton';
+import DistortionPill from '@/components/DistortionPill';
+import Frame from '@/components/Frame';
+import Text from '@/components/global/Text';
+import CDATextBox from '@/components/tools/cda/CDATextBox';
+import ToolHeader from '@/components/tools/ToolHeader';
+import ToolNav from '@/components/tools/ToolNav';
+import { cda_tool } from '@/constants/models/tools/tools';
+import { Colors } from '@/constants/styles/colorTheme';
+import { handleSaveCDAEntry } from '@/db/tools';
+import { cdaResetState, toggleSave } from '@/state/features/tools/cdaSlice';
+import { AppDispatch, RootState } from '@/state/store';
+import Feather from '@expo/vector-icons/Feather';
 
 const CURRENT_PAGE = 4;
 const TOOL_NAME = cda_tool.name;
@@ -95,7 +95,7 @@ const Page_4 = () => {
                     className="mx-4 my-1 text-center"
                     style={{ color: Colors.darkBlue }}
                   >
-                    {t(`tools.${TOOL_NAME}.exercise.summary.save_to_journal`)}
+                    {t("buttons.save_to_journal", { ns: "common" })}
                   </Text>
                 </View>
               </Pressable>

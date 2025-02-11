@@ -1,12 +1,12 @@
-import { Href, router } from "expo-router";
-import React from "react";
-import { Trans, useTranslation } from "react-i18next";
-import { ImageBackground, Text, View } from "react-native";
-import { toolBackgrounds } from "@/assets/images/tools/backgrounds/backgrounds";
-import AdvanceButton from "@/components/AdvanceButton";
-import BackButton from "@/components/BackButton";
-import { cda_tool } from "@/constants/models/tools/tools";
-import { Colors } from "@/constants/styles/colorTheme";
+import { Href, router } from 'expo-router';
+import React from 'react';
+import { Trans, useTranslation } from 'react-i18next';
+import { ImageBackground, Text, View } from 'react-native';
+import { toolBackgrounds } from '@/assets/images/tools/backgrounds/backgrounds';
+import AdvanceButton from '@/components/AdvanceButton';
+import BackButton from '@/components/BackButton';
+import { cda_tool } from '@/constants/models/tools/tools';
+import { Colors } from '@/constants/styles/colorTheme';
 
 const TOOL_NAME = cda_tool.name;
 
@@ -38,7 +38,7 @@ const Cda = () => {
                   style={{ color: Colors.offWhite }}
                 >
                   <Trans
-                    i18nKey="tools.cognitive_distortion_analysis.description"
+                    i18nKey="tools.cda.description"
                     ns="tools"
                     components={{
                       bold: <Text style={{ fontWeight: "bold" }} />,

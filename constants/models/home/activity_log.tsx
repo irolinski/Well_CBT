@@ -1,7 +1,7 @@
-import { ReactNode } from "react";
-import { Colors } from "@/constants/styles/colorTheme";
-import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
-import { monthNames } from "../dates";
+import { ReactNode } from 'react';
+import { Colors } from '@/constants/styles/colorTheme';
+import { Feather, MaterialCommunityIcons } from '@expo/vector-icons';
+import { monthNames } from '../dates';
 
 type ToolType = {
   name: string;
@@ -37,7 +37,7 @@ export type emotionObjType = {
 export const ToolList: Record<ToolNames, ToolType> = {
   cda: {
     name: "Thoughts Challenge",
-    category: "Exercise",
+    category: "exercise",
     icon: (
       <MaterialCommunityIcons
         name="thought-bubble-outline"
@@ -56,7 +56,7 @@ export const ToolList: Record<ToolNames, ToolType> = {
   },
   journal: {
     name: "Mood Journal",
-    category: "Journal",
+    category: "journal",
     icon: (
       <MaterialCommunityIcons
         name="notebook-outline"
@@ -75,17 +75,17 @@ export const ToolList: Record<ToolNames, ToolType> = {
   },
   breathing: {
     name: "Breathing",
-    category: "Relax",
+    category: "relax",
     icon: <Feather name="wind" size={32} color={Colors.mainGray} />,
     iconBright: <Feather name="wind" size={32} color={Colors.white} />,
   },
 };
 
 export const ToolCategories: Record<
-  "Exercise" | "Relax" | "Journal",
+  "exercise" | "relax" | "journal",
   { icon: ReactNode; iconBright: ReactNode }
 > = {
-  Exercise: {
+  exercise: {
     icon: (
       <MaterialCommunityIcons
         name="head-cog-outline"
@@ -101,7 +101,7 @@ export const ToolCategories: Record<
       />
     ),
   },
-  Relax: {
+  relax: {
     icon: (
       <MaterialCommunityIcons
         name="meditation"
@@ -117,7 +117,7 @@ export const ToolCategories: Record<
       />
     ),
   },
-  Journal: {
+  journal: {
     icon: (
       <MaterialCommunityIcons
         name="notebook-outline"

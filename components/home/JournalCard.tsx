@@ -1,20 +1,19 @@
-import { Href, router } from "expo-router";
-import React from "react";
-import { TouchableOpacity, View } from "react-native";
-import { monthNamesShort } from "@/constants/models/dates";
-import {
-  JournalCardProps,
-  ToolCategories,
-  ToolList,
-} from "@/constants/models/home/activity_log";
-import { Colors } from "@/constants/styles/colorTheme";
-import { journalStyleConstants } from "@/constants/styles/values";
-import { getOrdinalSuffix } from "@/utils/dates";
-import { Entypo } from "@expo/vector-icons";
-import { Slider } from "@miblanchard/react-native-slider";
-import Text from "../global/Text";
+import { Href, router } from 'expo-router';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { TouchableOpacity, View } from 'react-native';
+import { monthNamesShort } from '@/constants/models/dates';
+import { JournalCardProps, ToolCategories, ToolList } from '@/constants/models/home/activity_log';
+import { Colors } from '@/constants/styles/colorTheme';
+import { journalStyleConstants } from '@/constants/styles/values';
+import { getOrdinalSuffix } from '@/utils/dates';
+import { Entypo } from '@expo/vector-icons';
+import { Slider } from '@miblanchard/react-native-slider';
+import Text from '../global/Text';
 
 const JournalCard = ({ toolName, link, datetime, value }: JournalCardProps) => {
+  const { t } = useTranslation("tools");
+
   let cardTime = datetime.split(" ")[1];
   cardTime = cardTime.slice(0, cardTime.lastIndexOf(":"));
 
@@ -60,7 +59,7 @@ const JournalCard = ({ toolName, link, datetime, value }: JournalCardProps) => {
             {/* Upper Row */}
             <View className="h-2/5 w-full flex-row items-center justify-between pl-4">
               <Text className="text-left text-base">
-                {ToolList[toolName].category}
+                {t(`types.${ToolList[toolName].category}`)}
               </Text>
               <Text
                 className="text-right text-sm"
@@ -126,7 +125,7 @@ const JournalCard = ({ toolName, link, datetime, value }: JournalCardProps) => {
                         }}
                         numberOfLines={2}
                       >
-                        {ToolList[toolName].name}
+                        {t(`tools.${toolName}.title`)}
                       </Text>
                     </View>
                   </View>
