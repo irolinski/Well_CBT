@@ -1,12 +1,18 @@
 import { Href, router } from "expo-router";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { ImageBackground, Text, View } from "react-native";
 import { toolBackgrounds } from "@/assets/images/tools/backgrounds/backgrounds";
 import AdvanceButton from "@/components/AdvanceButton";
 import BackButton from "@/components/BackButton";
+import { journal_tool } from "@/constants/models/tools/tools";
 import { Colors } from "@/constants/styles/colorTheme";
 
-const Cda = () => {
+const TOOL_NAME = journal_tool.name;
+
+const Journal_Index = () => {
+  const { t } = useTranslation(["tools", "common"]);
+
   return (
     <React.Fragment>
       <ImageBackground source={toolBackgrounds.mood_journal}>
@@ -25,24 +31,20 @@ const Cda = () => {
                     color: Colors.whiteSmoke,
                   }}
                 >
-                  Mood Journal
+                  {t(`tools.${TOOL_NAME}.title`)}
                 </Text>
                 <Text
                   className="my-2 text-sm"
                   style={{ color: Colors.offWhite }}
                 >
-                  CBT Journaling helps track and manage emotions effectively.
-                  You’ll start by rating your mood, then select the emotions
-                  you’re feeling from a list and think a bit about your
-                  feelings' context. This process promotes self-awareness and
-                  emotional clarity.
+                  {t(`tools.${TOOL_NAME}.description`)}
                 </Text>
               </View>
             </View>
             <View className="my-16 w-full">
               <AdvanceButton
                 className="w-full"
-                title="Let's begin"
+                title={t("buttons.lets_begin", { ns: "common" })}
                 onPress={() =>
                   router.replace("tools/classic_cbt/journal/log_1" as Href)
                 }
@@ -55,4 +57,4 @@ const Cda = () => {
   );
 };
 
-export default Cda;
+export default Journal_Index;

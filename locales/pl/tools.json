@@ -93,7 +93,43 @@
         }
       }
     },
-    "journal": { "title": "Dziennik nastroju" },
+    "journal": {
+      "title": "Dziennik nastroju",
+      "description": "Prowadzenie dziennika CBT pomaga skutecznie śledzić i zarządzać emocjami. \n\nZaczniesz od oceny swojego nastroju, następnie wybierzesz emocje, które odczuwasz, z listy i zastanowisz się nad kontekstem swoich uczuć. \n\nTen proces sprzyja samoświadomości i jasności emocjonalnej.",
+      "exercise": {
+        "page_1": {
+          "header": "Jak się dziś czujesz?",
+          "instruction_1": "Użyj suwaka, by określić swoje samopoczucie na skali od 1 do 7.",
+          "instruction_2": "Przesuń w górę!"
+        },
+        "page_2": {
+          "header": "Jakie emocje odczuwasz w tej chwili?",
+          "instruction_1": "Spośród poniższych, wybierz jedną lub więcej.",
+          "selected_current_of_total": "{{current}} z {{total}} wybranych"
+        },
+        "page_3": {
+          "header": "Jak silne są emocje, które odczuwasz?",
+          "instruction_1": "Użyj suwaków, aby ocenić intensywność wybranych emocji."
+        },
+        "page_4": {
+          "header": "Co robiłeś przez ostatni czas?",
+          "instruction_1": "Zapisz wszystko, co uważasz za ważne."
+        },
+        "page_finish": {
+          "message_1_saved": "Zapisano w dzienniku",
+          "message_1_discarded": "Wpis w dzienniku odrzucony",
+          "message_2_saved": "Codzienne rejestrowanie swojego nastroju to świetny sposób na lepsze poznanie swoich uczuć.",
+          "message_2_discarded": "Możesz zapisać przyszłe wpisy w dzienniku, zaznaczając pole na końcu formularza."
+        },
+        "summary": {
+          "header": "Podsumowanie",
+          "mood_rating": "Ocena nastroju:",
+          "emotions": "Emocje:",
+          "note": "Notatka:",
+          "no_note_placeholder": "Brak dodanej notatki do tego wpisu."
+        }
+      }
+    },
     "phone_a_friend": { "title": "Zadzwoń do przyjaciela" }
   }
 }

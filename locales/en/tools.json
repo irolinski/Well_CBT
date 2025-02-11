@@ -89,7 +89,43 @@
         }
       }
     },
-    "journal": { "title": "Mood Journal" },
+    "journal": {
+      "title": "Mood Journal",
+      "description": "CBT Journaling helps track and manage emotions effectively. \n\nYou’ll start by rating your mood, then select the emotions you’re feeling from a list and think a bit about your feelings' context. \n\nThis process promotes self-awareness and emotional clarity.",
+      "exercise": {
+        "page_1": {
+          "header": "How would you rate your mood today?",
+          "instruction_1": "Use the slider to indicate how you are feeling.",
+          "instruction_2": "Swipe up!"
+        },
+        "page_2": {
+          "header": "What emotions are you feeling right now?",
+          "instruction_1": "Choose at lest one (but it’s also ok to pick many).",
+          "selected_current_of_total": "{{current}} of {{total}} selected"
+        },
+        "page_3": {
+          "header": "How strong are the emotions you are feeling?",
+          "instruction_1": "Use the sliding meters to assess the intensity of the emotions you have chosen."
+        },
+        "page_4": {
+          "header": "What have you been up to recently?",
+          "instruction_1": "Note down anything you deem worthy."
+        },
+        "page_finish": {
+          "message_1_saved": "Saved in journal",
+          "message_1_discarded": "Journal entry discarded",
+          "message_2_saved": "Logging your mood daily is a great way to get to know your feelings well.",
+          "message_2_discarded": "You can save your future journal entries by checking the box at the end of the form."
+        },
+        "summary": {
+          "header": "Overview",
+          "mood_rating": "Mood rating:",
+          "emotions": "Emotions:",
+          "note": "Note:",
+          "no_note_placeholder": "No note added to this log."
+        }
+      }
+    },
     "phone_a_friend": { "title": "Phone a Friend" }
   }
 }

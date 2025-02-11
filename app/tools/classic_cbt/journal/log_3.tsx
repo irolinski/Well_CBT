@@ -1,5 +1,6 @@
 import { router } from "expo-router";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { ScrollView, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import AdvanceButton from "@/components/AdvanceButton";
@@ -9,13 +10,19 @@ import ToolHeader from "@/components/tools/ToolHeader";
 import ToolNav from "@/components/tools/ToolNav";
 import { emotionObjType } from "@/constants/models/home/activity_log";
 import { emotionStrengthTitles } from "@/constants/models/tools/journal";
+import { journal_tool } from "@/constants/models/tools/tools";
 import { Colors } from "@/constants/styles/colorTheme";
 import { journalStyleConstants } from "@/constants/styles/values";
 import { setEmotions } from "@/state/features/tools/journalSlice";
 import { AppDispatch, RootState } from "@/state/store";
 import { Slider } from "@miblanchard/react-native-slider";
 
+const TOOL_NAME = journal_tool.name;
+const CURRENT_PAGE = 3;
+
 const Log_3 = () => {
+  const { t } = useTranslation(["tools", "common"]);
+
   //tool state
   const journalState = useSelector((state: RootState) => state.journal);
   const dispatch = useDispatch<AppDispatch>();
@@ -37,8 +44,8 @@ const Log_3 = () => {
     <React.Fragment>
       <ScrollView>
         <ToolNav
-          currentPage={3}
-          numOfAllPages={6}
+          currentPage={CURRENT_PAGE}
+          numOfAllPages={journal_tool.num_of_pages}
           handleBackButtonPress={() => {
             setDefaultStrenght();
           }}
@@ -47,12 +54,11 @@ const Log_3 = () => {
           <View className="h-full">
             <View className="py-10">
               <ToolHeader noIndent={true}>
-                How strong are the emotions you are feeling?
+                {t(`tools.${TOOL_NAME}.exercise.page_3.header`)}
               </ToolHeader>
               <View className="my-6">
                 <Text className="text-xs">
-                  Use the sliding meters to assess the intensity of the emotions
-                  you have chosen.
+                  {t(`tools.${TOOL_NAME}.exercise.page_3.instruction_1`)}
                 </Text>
                 <View className="mx-6 mt-4">
                   {journalState.emotions.map((emotionObj, index) => (
@@ -129,7 +135,7 @@ const Log_3 = () => {
         </Frame>
         <View className="bottom-16 mx-6">
           <AdvanceButton
-            title="Next"
+            title={t("buttons.next", { ns: "common" })}
             onPress={() => router.navigate("./log_4")}
             disabled={!journalState.emotions.every((e) => e.strength)}
           />

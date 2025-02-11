@@ -1,5 +1,6 @@
 import { router } from "expo-router";
 import React, { useEffect, useRef } from "react";
+import { useTranslation } from "react-i18next";
 import { Animated, Dimensions, Easing, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import AdvanceButton from "@/components/AdvanceButton";
@@ -7,6 +8,7 @@ import Text from "@/components/global/Text";
 import ToolHeader from "@/components/tools/ToolHeader";
 import ToolNav from "@/components/tools/ToolNav";
 import { moodValueTitles } from "@/constants/models/tools/journal";
+import { journal_tool } from "@/constants/models/tools/tools";
 import { Colors } from "@/constants/styles/colorTheme";
 import { journalStyleConstants } from "@/constants/styles/values";
 import {
@@ -17,7 +19,12 @@ import { AppDispatch, RootState } from "@/state/store";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Slider } from "@miblanchard/react-native-slider";
 
+const TOOL_NAME = journal_tool.name;
+const CURRENT_PAGE = 1;
+
 const Log_1 = () => {
+  const { t } = useTranslation(["tools", "common"]);
+
   const windowWidth = Dimensions.get("window").width;
   const windowHeight = Dimensions.get("window").height;
 
@@ -68,8 +75,8 @@ const Log_1 = () => {
   return (
     <React.Fragment>
       <ToolNav
-        currentPage={1}
-        numOfAllPages={6}
+        currentPage={CURRENT_PAGE}
+        numOfAllPages={journal_tool.num_of_pages}
         handleBackButtonPress={() => {
           dispatch(journalResetState());
         }}
@@ -80,10 +87,10 @@ const Log_1 = () => {
           style={{ top: windowHeight / 7, borderColor: "blue" }}
         >
           <ToolHeader noIndent={true}>
-            How would you rate your mood today?
+            {t(`tools.${TOOL_NAME}.exercise.page_1.header`)}
           </ToolHeader>
           <Text className="my-4">
-            Use the slider to indicate how you are feeling.
+            {t(`tools.${TOOL_NAME}.exercise.page_1.instruction_1`)}
           </Text>
         </View>
         <View
@@ -174,7 +181,7 @@ const Log_1 = () => {
                       color: Colors.mainGray,
                     }}
                   >
-                    Swipe up!
+                    {t(`tools.${TOOL_NAME}.exercise.page_1.instruction_2`)}
                   </Animated.Text>
                   <MaterialIcons
                     name="swipe-up"
@@ -189,7 +196,7 @@ const Log_1 = () => {
       </View>
       <View className="mx-6" style={{ bottom: 0.02 * windowHeight }}>
         <AdvanceButton
-          title="Next"
+          title={t("buttons.next", { ns: "common" })}
           onPress={() => router.navigate("./log_2")}
           btnStyle={{ bottom: windowHeight / 20 }}
           disabled={!journalState.moodValue}

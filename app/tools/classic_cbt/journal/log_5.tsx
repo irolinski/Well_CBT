@@ -1,5 +1,6 @@
 import { router } from "expo-router";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { Pressable, ScrollView, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import AdvanceButton from "@/components/AdvanceButton";
@@ -10,6 +11,7 @@ import CDATextBox from "@/components/tools/cda/CDATextBox";
 import ToolHeader from "@/components/tools/ToolHeader";
 import ToolNav from "@/components/tools/ToolNav";
 import { moodValueTitles } from "@/constants/models/tools/journal";
+import { journal_tool } from "@/constants/models/tools/tools";
 import { Colors } from "@/constants/styles/colorTheme";
 import { journalStyleConstants } from "@/constants/styles/values";
 import { handleSaveJournalEntry } from "@/db/tools";
@@ -21,7 +23,12 @@ import { AppDispatch, RootState } from "@/state/store";
 import Feather from "@expo/vector-icons/Feather";
 import { Slider } from "@miblanchard/react-native-slider";
 
+const TOOL_NAME = journal_tool.name;
+const CURRENT_PAGE = 5;
+
 const Log_5 = () => {
+  const { t } = useTranslation(["tools", "common"]);
+
   //tool state
   const dispatch = useDispatch<AppDispatch>();
   const journalState = useSelector((state: RootState) => state.journal);
@@ -34,13 +41,20 @@ const Log_5 = () => {
   return (
     <React.Fragment>
       <ScrollView>
-        <ToolNav currentPage={5} numOfAllPages={6} />
+        <ToolNav
+          currentPage={CURRENT_PAGE}
+          numOfAllPages={journal_tool.num_of_pages}
+        />
         <Frame>
           <View className="py-10">
-            <ToolHeader>Overview </ToolHeader>
+            <ToolHeader>
+              {t(`tools.${TOOL_NAME}.exercise.summary.header`)}
+            </ToolHeader>
             <View className="my-8">
               <View>
-                <Text>Mood rating: </Text>
+                <Text>
+                  {t(`tools.${TOOL_NAME}.exercise.summary.mood_rating`)}
+                </Text>
                 <View className="flex-row">
                   <View className="w-3/4 px-2 pt-2">
                     <Slider
@@ -86,7 +100,7 @@ const Log_5 = () => {
                 className="my-8 border-b border-t px-2 py-7"
                 style={{ borderColor: Colors.lightGray }}
               >
-                <Text>Emotions:</Text>
+                <Text>{t(`tools.${TOOL_NAME}.exercise.summary.emotions`)}</Text>
                 <View className="mx-auto mt-6 w-[95%] flex-row flex-wrap px-4">
                   {journalState.emotions.map((e, index) => (
                     <View
@@ -121,12 +135,16 @@ const Log_5 = () => {
                 </View>
               </View>
               <View className="mt-4">
-                <Text>Note:</Text>
+                <Text> {t(`tools.${TOOL_NAME}.exercise.summary.header`)}</Text>
                 {journalState.note ? (
                   <CDATextBox textContent={journalState.note} />
                 ) : (
                   <View className="items-center justify-center p-8">
-                    <Text>No note added to this log.</Text>
+                    <Text>
+                      {t(
+                        `tools.${TOOL_NAME}.exercise.summary.no_note_placeholder`,
+                      )}
+                    </Text>
                   </View>
                 )}
               </View>
@@ -155,7 +173,7 @@ const Log_5 = () => {
                     className="mx-4 my-1 text-center"
                     style={{ color: Colors.darkBlue }}
                   >
-                    Save to journal?
+                    {t("buttons.save_to_journal", { ns: "common" })}
                   </Text>
                 </View>
               </Pressable>
@@ -164,7 +182,7 @@ const Log_5 = () => {
         </Frame>
         <View className="bottom-16 mx-6">
           <AdvanceButton
-            title="Finish"
+            title={t("buttons.next", { ns: "common" })}
             onPress={() => {
               handleSave();
               router.navigate("./log_finish");

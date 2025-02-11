@@ -7,7 +7,8 @@
     "finish": "Finish",
     "again": "Do one more?",
     "go_to_journal": "See journal",
-    "return_to_tools": "Return to Tools"
+    "return_to_tools": "Return to Tools",
+    "save_to_journal": "Save to journal"
   },
 
   "nav_elements": {

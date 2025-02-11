@@ -1,5 +1,6 @@
 import { router } from "expo-router";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import {
   Dimensions,
   Keyboard,
@@ -13,10 +14,16 @@ import Text from "@/components/global/Text";
 import ToolHeader from "@/components/tools/ToolHeader";
 import ToolNav from "@/components/tools/ToolNav";
 import ToolTextInput from "@/components/tools/ToolTextInput";
+import { journal_tool } from "@/constants/models/tools/tools";
 import { setNote } from "@/state/features/tools/journalSlice";
 import { AppDispatch, RootState } from "@/state/store";
 
+const TOOL_NAME = journal_tool.name;
+const CURRENT_PAGE = 4;
+
 const Log_4 = () => {
+  const { t } = useTranslation(["tools", "common"]);
+
   const windowHeight = Dimensions.get("window").height;
 
   //tool state
@@ -25,11 +32,16 @@ const Log_4 = () => {
   console.log(journalState);
   return (
     <React.Fragment>
-      <ToolNav currentPage={4} numOfAllPages={6} />
+      <ToolNav
+        currentPage={CURRENT_PAGE}
+        numOfAllPages={journal_tool.num_of_pages}
+      />
       <Frame>
         <View className="h-full">
           <View className="py-12">
-            <ToolHeader>What have you been up to recently?</ToolHeader>
+            <ToolHeader>
+              {t(`tools.${TOOL_NAME}.exercise.page_4.header`)}
+            </ToolHeader>
             <TouchableWithoutFeedback
               onPress={() => {
                 Keyboard.dismiss;
@@ -39,7 +51,7 @@ const Log_4 = () => {
               <View className="my-8">
                 <View className="mb-2">
                   <Text className="mr-[15%] text-left">
-                    Note down anything you deem worthy.
+                    {t(`tools.${TOOL_NAME}.exercise.page_4.instruction_1`)}
                   </Text>
                   <ToolTextInput
                     value={journalState.note}
@@ -54,7 +66,7 @@ const Log_4 = () => {
       </Frame>
       <View className="bottom-16 mx-6">
         <AdvanceButton
-          title="Next"
+          title={t("buttons.next", { ns: "common" })}
           onPress={() => router.navigate("./log_5")}
           btnStyle={{ bottom: windowHeight / 20 }}
         />

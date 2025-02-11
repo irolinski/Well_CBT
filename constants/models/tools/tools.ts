@@ -25,7 +25,7 @@ export const cda_tool: ToolTypeWithForm = {
   num_of_pages: 5,
 };
 
-const journal_tool: ToolTypeWithForm = {
+export const journal_tool: ToolTypeWithForm = {
   name: "journal",
   card_bg: toolCardImages.journal,
   link: "/tools/classic_cbt/journal",

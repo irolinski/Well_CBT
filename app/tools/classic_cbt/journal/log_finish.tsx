@@ -1,5 +1,6 @@
 import { Href, router } from "expo-router";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { Dimensions, ScrollView, View } from "react-native";
 import { useSelector } from "react-redux";
 import AdvanceButton from "@/components/AdvanceButton";
@@ -7,9 +8,15 @@ import { LogoDark } from "@/components/global/Logo";
 import Text from "@/components/global/Text";
 import SecondaryButton from "@/components/SecondaryButton";
 import ToolNav from "@/components/tools/ToolNav";
+import { journal_tool } from "@/constants/models/tools/tools";
 import { RootState } from "@/state/store";
 
+const CURRENT_PAGE = 6;
+const TOOL_NAME = journal_tool.name;
+
 const Log_finish = () => {
+  const { t } = useTranslation(["tools", "common"]);
+
   const windowHeight = Dimensions.get("window").height;
 
   //tool state
@@ -18,7 +25,11 @@ const Log_finish = () => {
   return (
     <React.Fragment>
       <ScrollView className="relative">
-        <ToolNav currentPage={6} numOfAllPages={6} hideBackButton={true} />
+        <ToolNav
+          currentPage={CURRENT_PAGE}
+          numOfAllPages={journal_tool.num_of_pages}
+          hideBackButton={true}
+        />
         <View
           className="mx-6 flex-1 justify-center"
           style={{ height: windowHeight }}
@@ -29,27 +40,43 @@ const Log_finish = () => {
               className="my-4 px-4 text-center text-2xl"
               style={{ fontFamily: "KodchasanMedium", color: "#1E1E1E" }}
             >
-              {journalState.save
-                ? "Saved in journal"
-                : "Journal entry discarded"}
+              {journalState.save ? (
+                <Text>
+                  {t(`tools.${TOOL_NAME}.exercise.page_finish.message_1_saved`)}
+                </Text>
+              ) : (
+                <Text>
+                  {t(
+                    `tools.${TOOL_NAME}.exercise.page_finish.message_1_discarded`,
+                  )}
+                </Text>
+              )}
             </Text>
             <Text className="my-1 mr-[10w] text-center">
-              {journalState.save
-                ? "Logging your mood daily is a great way to get to know your feelings well."
-                : "You can save your future journal entries by checking the box at the end of the form."}
+              {journalState.save ? (
+                <Text>
+                  {t(`tools.${TOOL_NAME}.exercise.page_finish.message_2_saved`)}
+                </Text>
+              ) : (
+                <Text>
+                  {t(
+                    `tools.${TOOL_NAME}.exercise.page_finish.message_2_discarded`,
+                  )}
+                </Text>
+              )}
             </Text>
           </View>
           <View className="absolute bottom-16 left-0 right-0">
             <View className="mb-4 flex-row justify-between">
               <SecondaryButton
-                title="Go to journal"
+                title={t("buttons.go_to_journal", { ns: "common" })}
                 className="w-[45%]"
                 onPress={() => {}}
               />
             </View>
             <AdvanceButton
               className="mb-4 justify-center"
-              title="Return to Tools"
+              title={t("buttons.return_to_tools", { ns: "common" })}
               onPress={() => {
                 router.replace("tools" as Href);
               }}
