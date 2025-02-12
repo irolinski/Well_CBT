@@ -9,7 +9,9 @@
     "again": "Jeszcze raz?",
     "go_to_journal": "Idź do dziennika",
     "return_to_tools": "Idź do Narzędzi",
-    "save_to_journal": "Zapisz w dzienniku"
+    "save_to_journal": "Zapisz w dzienniku",
+    "start": "Start",
+    "pause": "Pauza"
   },
   "dates": {
     "months": {

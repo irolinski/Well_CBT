@@ -1,6 +1,10 @@
-import { View } from "react-native";
-import Text from "@/components/global/Text";
-import { Colors } from "@/constants/styles/colorTheme";
+import { useTranslation } from 'react-i18next';
+import { View } from 'react-native';
+import Text from '@/components/global/Text';
+import { breathing_tool } from '@/constants/models/tools/tools';
+import { Colors } from '@/constants/styles/colorTheme';
+
+const TOOL_NAME = breathing_tool.name;
 
 type MethodInfoCircleProps = {
   step: "in" | "out" | "hold";
@@ -8,6 +12,8 @@ type MethodInfoCircleProps = {
 };
 
 const MethodInfoCircle = ({ step, time }: MethodInfoCircleProps) => {
+  const { t } = useTranslation("tools");
+
   return (
     <View className="mx-2 items-center">
       <View
@@ -22,17 +28,17 @@ const MethodInfoCircle = ({ step, time }: MethodInfoCircleProps) => {
         >
           {step === "in" && (
             <Text className="text-center" style={{ fontSize: 12 }}>
-              Breathe in
+              {t(`tools.${TOOL_NAME}.exercise.commands.breathe_in`)}
             </Text>
           )}
           {step === "hold" && (
             <Text className="text-center" style={{ fontSize: 12 }}>
-              Hold
+              {t(`tools.${TOOL_NAME}.exercise.commands.hold`)}
             </Text>
           )}
           {step === "out" && (
             <Text className="text-center" style={{ fontSize: 12 }}>
-              Breathe out
+              {t(`tools.${TOOL_NAME}.exercise.commands.breathe_out`)}
             </Text>
           )}
         </View>

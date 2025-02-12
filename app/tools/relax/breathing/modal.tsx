@@ -1,24 +1,26 @@
-import { Image } from "expo-image";
-import { Dimensions, Modal, Pressable, ScrollView, View } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
-import Text from "@/components/global/Text";
-import RadioButton from "@/components/RadioButton";
-import MethodInfo from "@/components/tools/breathe/MethodInfo";
-import { Colors } from "@/constants/styles/colorTheme";
-import { CLOSE_MODAL_OFFSET_TRESHOLD } from "@/constants/styles/values";
+import { Image } from 'expo-image';
+import { useTranslation } from 'react-i18next';
+import { Dimensions, Modal, Pressable, ScrollView, View } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import Text from '@/components/global/Text';
+import RadioButton from '@/components/RadioButton';
+import MethodInfo from '@/components/tools/breathe/MethodInfo';
+import { breathing_tool } from '@/constants/models/tools/tools';
+import { Colors } from '@/constants/styles/colorTheme';
+import { CLOSE_MODAL_OFFSET_TRESHOLD } from '@/constants/styles/values';
 import {
-  mode_4_7_8,
-  mode_box_4s,
-  setMode,
-  setNumOfSets,
-  toggleCountdown,
-  toggleModal,
-} from "@/state/features/tools/breatheSettingsSlice";
-import { AppDispatch, RootState } from "@/state/store";
-import { Feather } from "@expo/vector-icons";
-import { Slider } from "@miblanchard/react-native-slider";
+    mode_4_7_8, mode_box_4s, setMode, setNumOfSets, toggleCountdown, toggleModal
+} from '@/state/features/tools/breatheSettingsSlice';
+import { AppDispatch, RootState } from '@/state/store';
+import { isPolishFew } from '@/utils/locales';
+import { Feather } from '@expo/vector-icons';
+import { Slider } from '@miblanchard/react-native-slider';
+
+const TOOL_NAME = breathing_tool.name;
 
 const BreatheModal = ({ ellapsedTime }: { ellapsedTime: number }) => {
+  const { t } = useTranslation(["tools", "common"]);
+
   const windowWidth = Dimensions.get("window").width;
   const windowHeight = Dimensions.get("window").height;
 
@@ -61,7 +63,7 @@ const BreatheModal = ({ ellapsedTime }: { ellapsedTime: number }) => {
           </Pressable>
           <View className="items-center">
             <Text className="text-xl" style={{ color: Colors.mainGray }}>
-              Settings
+              {t(`tools.${TOOL_NAME}.exercise.settings.settings`)}
             </Text>
           </View>
           <View className="my-8">
@@ -70,7 +72,7 @@ const BreatheModal = ({ ellapsedTime }: { ellapsedTime: number }) => {
               style={{ borderColor: Colors.mainGray }}
             >
               <Text className="text-lg" style={{ color: Colors.mainGray }}>
-                Breathing mode
+                {t(`tools.${TOOL_NAME}.exercise.settings.breathing_mode`)}
               </Text>
               <View className="m-4 flex-row justify-around">
                 <Pressable
@@ -94,7 +96,7 @@ const BreatheModal = ({ ellapsedTime }: { ellapsedTime: number }) => {
                         className="text-lg"
                         style={{ color: Colors.mainGray }}
                       >
-                        Box
+                        {t(`tools.${TOOL_NAME}.exercise.settings.box`)}
                       </Text>
                     </View>
                   </View>
@@ -121,20 +123,20 @@ const BreatheModal = ({ ellapsedTime }: { ellapsedTime: number }) => {
                         className="text-lg"
                         style={{ color: Colors.mainGray }}
                       >
-                        4-7-8
+                        {t(`tools.${TOOL_NAME}.exercise.settings.4_7_8`)}
                       </Text>
                     </View>
                   </View>
                 </Pressable>
               </View>
-              {/* Here add mode settings, if needed */}
+              {/* Here add mode settings, if needed in the future */}
             </View>
             <View
               className="border-b py-3"
               style={{ borderColor: Colors.mainGray }}
             >
               <Text className="text-lg" style={{ color: Colors.mainGray }}>
-                Method
+                {t(`tools.${TOOL_NAME}.exercise.settings.method`)}
               </Text>
               <View className="mt-4">
                 <MethodInfo />
@@ -145,7 +147,7 @@ const BreatheModal = ({ ellapsedTime }: { ellapsedTime: number }) => {
               style={{ borderColor: Colors.mainGray }}
             >
               <Text className="text-lg" style={{ color: Colors.mainGray }}>
-                Customize
+                {t(`tools.${TOOL_NAME}.exercise.settings.customize`)}
               </Text>
               <View className="m-4 flex-row py-4">
                 <Pressable
@@ -173,7 +175,7 @@ const BreatheModal = ({ ellapsedTime }: { ellapsedTime: number }) => {
                       className="text-center text-base"
                       style={{ color: Colors.darkGray }}
                     >
-                      Count-in before start
+                      {t(`tools.${TOOL_NAME}.exercise.settings.count_in`)}
                     </Text>
                   </View>
                 </Pressable>
@@ -181,7 +183,7 @@ const BreatheModal = ({ ellapsedTime }: { ellapsedTime: number }) => {
             </View>
             <View className="py-3" style={{ borderColor: Colors.mainGray }}>
               <Text className="text-lg" style={{ color: Colors.mainGray }}>
-                Duration
+                {t(`tools.${TOOL_NAME}.exercise.settings.duration`)}
               </Text>
               <View className="my-4">
                 <View className="mx-10 mt-4">
@@ -204,7 +206,13 @@ const BreatheModal = ({ ellapsedTime }: { ellapsedTime: number }) => {
                       className="text-base"
                       style={{ color: Colors.mainGray }}
                     >
-                      {breatheSettings.numOfSets} sets
+                      {t(`tools.${TOOL_NAME}.exercise.settings.set`, {
+                        count: breatheSettings.numOfSets,
+                        //fix for i18n pl pluralization bug which omits 'few'
+                        context: isPolishFew(breatheSettings.numOfSets)
+                          ? "few"
+                          : "",
+                      })}
                     </Text>
                     <Text
                       className="text-base"

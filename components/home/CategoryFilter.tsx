@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { Pressable, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { ToolList, toolNameList, ToolNames } from '@/constants/models/home/activity_log';
+import { toolNameList, ToolNames } from '@/constants/models/home/activity_log';
 import { Colors } from '@/constants/styles/colorTheme';
 import { setFilterCategories } from '@/state/features/menus/activityLogSlice';
 import { AppDispatch, RootState } from '@/state/store';
@@ -9,7 +9,6 @@ import Text from '../global/Text';
 import RadioButton from '../RadioButton';
 
 const CategoryFilter = () => {
-  // -- i18n init --
   const { t } = useTranslation("tools");
   const dispatch = useDispatch<AppDispatch>();
   const activityLogState = useSelector((state: RootState) => state.activityLog);

@@ -1,19 +1,25 @@
-import { Image } from "expo-image";
-import { LinearGradient } from "expo-linear-gradient";
-import { router } from "expo-router";
-import React, { useEffect, useRef, useState } from "react";
-import { Animated, Dimensions, Easing, Pressable, View } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
-import AdvanceButton from "@/components/AdvanceButton";
-import Text from "@/components/global/Text";
-import { Colors } from "@/constants/styles/colorTheme";
-import { handleLogRelaxActivity } from "@/db/tools";
-import { toggleModal } from "@/state/features/tools/breatheSettingsSlice";
-import { AppDispatch, RootState } from "@/state/store";
-import { Feather } from "@expo/vector-icons";
-import BreatheModal from "./modal";
+import { Image } from 'expo-image';
+import { LinearGradient } from 'expo-linear-gradient';
+import { router } from 'expo-router';
+import React, { useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Animated, Dimensions, Easing, Pressable, View } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import AdvanceButton from '@/components/AdvanceButton';
+import Text from '@/components/global/Text';
+import { breathing_tool } from '@/constants/models/tools/tools';
+import { Colors } from '@/constants/styles/colorTheme';
+import { handleLogRelaxActivity } from '@/db/tools';
+import { toggleModal } from '@/state/features/tools/breatheSettingsSlice';
+import { AppDispatch, RootState } from '@/state/store';
+import { Feather } from '@expo/vector-icons';
+import BreatheModal from './modal';
+
+const TOOL_NAME = breathing_tool.name;
 
 const Breathe = () => {
+  const { t } = useTranslation(["tools", "common"]);
+
   const dispatch = useDispatch<AppDispatch>();
   const breatheSettings = useSelector(
     (state: RootState) => state.breatheSettings,
@@ -367,7 +373,6 @@ const Breathe = () => {
           }}
         >
           {/* Reps counter - for development purposes only */}
-
           {/* <Text>
             Reps done: {Math.floor(repsDone)}/{repsToDo} 
           </Text> */}
@@ -447,7 +452,7 @@ const Breathe = () => {
                       }}
                       className="text-center text-4xl"
                     >
-                      HOLD IT!
+                      {t(`tools.${TOOL_NAME}.exercise.commands.hold`)}
                     </Text>
                   ) : breatheInOut ? (
                     <Text
@@ -457,7 +462,7 @@ const Breathe = () => {
                       }}
                       className="text-center text-4xl"
                     >
-                      Breathe in!
+                      {t(`tools.${TOOL_NAME}.exercise.commands.breathe_in`)}
                     </Text>
                   ) : (
                     <Text
@@ -467,7 +472,7 @@ const Breathe = () => {
                       }}
                       className="text-center text-4xl"
                     >
-                      Breathe out!
+                      {t(`tools.${TOOL_NAME}.exercise.commands.breathe_out`)}
                     </Text>
                   )}
                 </View>
@@ -507,7 +512,11 @@ const Breathe = () => {
             </View>
 
             <AdvanceButton
-              title={!counterOn || pause ? "Start" : "Pause"}
+              title={
+                !counterOn || pause
+                  ? t("buttons.start", { ns: "common" })
+                  : t("buttons.pause", { ns: "common" })
+              }
               disabled={countdownActive} // disable button when count-in is actiive for UI clarity
               onPress={() => handleStartButton()}
               btnStyle={{

@@ -34,7 +34,7 @@ export const journal_tool: ToolTypeWithForm = {
 //   link: "/tools/classic_cbt/grounding",
 // };
 
-const breathing_tool: ToolType = {
+export const breathing_tool: ToolType = {
   name: "breathing",
   card_bg: toolCardImages.breathing,
   link: "/tools/relax/breathing",

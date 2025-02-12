@@ -11,7 +11,31 @@
     "distraction": "Odwróć uwagę"
   },
   "tools": {
-    "breathing": { "title": "Głębokie oddychanie" },
+    "breathing": {
+      "title": "Głębokie oddychanie",
+      "description": "W poniższym ćwiczeniu będziesz praktykować <bold>uspokajanie nerwów</bold> za pomocą głębokiego oddychania. \n\nMożesz rozpocząć od razu lub <bold>dostosować</bold> ćwiczenie do swoich potrzeb, korzystając z panelu ustawień (dostępnego po kliknięciu ikony w prawym górnym rogu ekranu).",
+      "exercise": {
+        "commands": {
+          "breathe_in": "Wdech!",
+          "breathe_out": "Wydech!",
+          "hold": "Trzymaj oddech!"
+        },
+        "settings": {
+          "settings": "Ustawienia",
+          "breathing_mode": "Oddychanie",
+          "box": "Kwadratowe",
+          "4_7_8": "4-7-8",
+          "method": "Metoda",
+          "customize": "Dostosuj",
+          "count_in": "Pokaż odliczanie przed rozpoczęciem",
+          "duration": "Czas trwania",
+          "set_one": "{{count}} seria",
+          "set_few": "{{count}} serie",
+          "set_many": "{{count}} serii",
+          "set_other": "{{count}} serii"
+        }
+      }
+    },
     "cda": {
       "title": "Analiza zniekształceń",
       "description": "Analiza zniekształceń poznawczych to ćwiczenie zaprojektowane w celu identyfikacji negatywnych wzorców myślenia.\n\nBędziesz <bold>opisywać</bold> sytuację, <bold>zauważać</bold> automatyczną myśl, <bold>identyfikować</bold> zniekształcenia poznawcze i <bold>przekształcać</bold> myśl w bardziej racjonalną.\n\nAby uzyskać więcej informacji, przejdź do szczegółowego opisu, klikając poniższy link.",

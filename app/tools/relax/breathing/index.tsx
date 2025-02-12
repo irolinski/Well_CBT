@@ -1,12 +1,18 @@
-import { Href, router } from "expo-router";
-import React from "react";
-import { ImageBackground, Text, View } from "react-native";
-import { toolBackgrounds } from "@/assets/images/tools/backgrounds/backgrounds";
-import AdvanceButton from "@/components/AdvanceButton";
-import BackButton from "@/components/BackButton";
-import { Colors } from "@/constants/styles/colorTheme";
+import { Href, router } from 'expo-router';
+import React from 'react';
+import { Trans, useTranslation } from 'react-i18next';
+import { ImageBackground, Text, View } from 'react-native';
+import { toolBackgrounds } from '@/assets/images/tools/backgrounds/backgrounds';
+import AdvanceButton from '@/components/AdvanceButton';
+import BackButton from '@/components/BackButton';
+import { breathing_tool } from '@/constants/models/tools/tools';
+import { Colors } from '@/constants/styles/colorTheme';
+
+const TOOL_NAME = breathing_tool.name;
 
 const BreathingIndexPage = () => {
+  const { t } = useTranslation(["tools", "common"]);
+
   return (
     <React.Fragment>
       <ImageBackground source={toolBackgrounds.breathing}>
@@ -25,26 +31,26 @@ const BreathingIndexPage = () => {
                     color: Colors.whiteSmoke,
                   }}
                 >
-                  Relax with breathing
+                  {t(`tools.${TOOL_NAME}.title`)}
                 </Text>
                 <Text
                   className="my-2 text-sm"
                   style={{ color: Colors.offWhite }}
                 >
-                  In the following exercise, you'll practice{" "}
-                  <Text style={{ fontWeight: 500 }}>calming your nerves</Text>{" "}
-                  using deep breathing.{"\n\n"}You may start right away, or you
-                  can <Text style={{ fontWeight: 500 }}>customize</Text> the
-                  exercise to better fit your needs using the settings panel
-                  (accessible by clicking the icon in the top-right corner of
-                  the screen).
+                  <Trans
+                    i18nKey="tools.breathing.description"
+                    ns="tools"
+                    components={{
+                      bold: <Text style={{ fontWeight: "bold" }} />,
+                    }}
+                  />
                 </Text>
               </View>
             </View>
             <View className="my-16 w-full">
               <AdvanceButton
                 className="w-full"
-                title="Let's begin"
+                title={t("buttons.lets_begin", { ns: "common" })}
                 onPress={() =>
                   router.replace("tools/relax/breathing/Breathe" as Href)
                 }

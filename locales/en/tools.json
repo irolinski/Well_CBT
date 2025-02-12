@@ -7,7 +7,31 @@
     "distraction": "Distract Yourself"
   },
   "tools": {
-    "breathing": { "title": "Deep Breathing" },
+    "breathing": {
+      "title": "Deep Breathing",
+      "description": "In the following exercise, you'll practice <bold>calming your nerves</bold> using deep breathing. \n\nYou may start right away, or you can <bold>customize</bold> the exercise to better fit your needs using the settings panel (accessible by clicking the icon in the top-right corner of the screen).",
+      "exercise": {
+        "commands": {
+          "breathe_in": "Breathe in!",
+          "breathe_out": "Breathe out!",
+          "hold": "Hold it!"
+        },
+        "settings": {
+          "settings": "Settings",
+          "breathing_mode": "Breathing mode",
+          "box": "Box",
+          "4_7_8": "4-7-8",
+          "method": "Method",
+          "customize": "Customize",
+          "count_in": "Count-in before start",
+          "duration": "Duration",
+          "set_one": "{{count}} set",
+          "set_few": "{{count}}  sets",
+          "set_many": "{{count}} sets",
+          "set_other": "{{count}} sets"
+        }
+      }
+    },
     "cda": {
       "title": "Thoughts Challange",
       "description": "Cognitive Distortion Analysis is an exercise designed to target negative thought patterns.\n\nYou’ll <bold>describe</bold> a situation, <bold>note</bold> an automatic thought, <bold>identify</bold> any cognitive distortions, and <bold>reformulate</bold> the thought more rationally.\n\nFor more details, go to a detailed by clicking the link below.",
