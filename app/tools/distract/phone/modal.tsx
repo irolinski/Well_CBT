@@ -1,25 +1,70 @@
-import { useRef, useState } from "react";
+import { useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
-  Animated,
-  Dimensions,
-  Modal,
-  Pressable,
-  StyleSheet,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
-  View,
-} from "react-native";
-import { useDispatch, useSelector } from "react-redux";
-import topicList from "@/assets/text/conversation_topics.json";
-import DividerLine from "@/components/DividerLine";
-import { Logo } from "@/components/global/Logo";
-import Text from "@/components/global/Text";
-import { Colors } from "@/constants/styles/colorTheme";
-import { achievementHandlersObj } from "@/db/achievements/controllers";
-import { setShowModal } from "@/state/features/tools/phoneSlice";
-import { AppDispatch, RootState } from "@/state/store";
-import handleShare from "@/utils/handleShare";
-import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
+    Animated, Dimensions, Modal, Pressable, StyleSheet, TouchableOpacity, TouchableWithoutFeedback,
+    View
+} from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import DividerLine from '@/components/DividerLine';
+import { Logo } from '@/components/global/Logo';
+import Text from '@/components/global/Text';
+import { phoneAFriend_tool } from '@/constants/models/tools/tools';
+import { Colors } from '@/constants/styles/colorTheme';
+import { achievementHandlersObj } from '@/db/achievements/controllers';
+import { setShowModal } from '@/state/features/tools/phoneSlice';
+import { AppDispatch, RootState } from '@/state/store';
+import handleShare from '@/utils/handleShare';
+import { Feather, MaterialCommunityIcons } from '@expo/vector-icons';
+
+const TOOL_NAME = phoneAFriend_tool.name;
+
+const topicList = [
+  "dream_vacation",
+  "favorite_food",
+  "funny_animals",
+  "science_facts",
+  "favorite_weather",
+  "would_you_rather",
+  "dream_superpowers",
+  "favorite_colors",
+  "fictional_worlds",
+  "favorite_tv_movies",
+  "creative_hobbies",
+  "outdoor_activity",
+  "mysteries",
+  "holiday_traditions",
+  "space_exploration",
+  "cozy_drinks",
+  "dream_home",
+  "favorite_plants",
+  "comfort_foods",
+  "night_sky",
+  "board_games",
+  "rainy_day",
+  "cute_animals",
+  "favorite_scents",
+  "beaches_lakes",
+  "clouds_weather",
+  "fictional_friends",
+  "seasonal_decor",
+  "ways_to_relax",
+  "nature_sounds",
+  "ice_cream",
+  "sunsets_sunrises",
+  "fictional_creatures",
+  "seasonal_activities",
+  "cozy_things",
+  "describe_surroundings",
+  "relaxing_music",
+  "movies_that_make_you_smile",
+  "relaxing_video_games",
+  "sports_outdoor",
+  "favorite_soundscapes",
+  "inspirational_books",
+  "happy_memories",
+  "sports_moments",
+  "dream_room",
+];
 
 const cardColors = [
   { front: "#801515", back: "#F59074" },
@@ -30,6 +75,8 @@ const cardColors = [
 ];
 
 const ConversationModal = () => {
+  const { t } = useTranslation(["tools", "common"]);
+
   const windowHeight = Dimensions.get("window").height;
   const windowWidth = Dimensions.get("window").width;
 
@@ -108,13 +155,11 @@ const ConversationModal = () => {
   };
 
   const shareTopic = async () => {
-    const message = `Hey, I need to get my mind off things. Do you want to talk about something nice like ${topicList[topicNumber].name.toLowerCase()}?`;
+    const message = `${t(`tools.${TOOL_NAME}.modal.message_boilerplate`)} ${t(`tools.${TOOL_NAME}.modal.conversation_topics.${topicList[topicNumber]}.name`)}?`;
     if (!isRefreshing) {
       handleShare(message);
     }
-
     // give an achievement
-
     achievementHandlersObj[3]();
   };
 
@@ -175,7 +220,7 @@ const ConversationModal = () => {
           </Pressable>
           <View className="flex-row justify-center">
             <Text className="text-center text-xl">
-              {"Draw a card to pick a \n" + "random coversation topic."}
+              {t(`tools.${TOOL_NAME}.modal.instruction`)}
             </Text>
           </View>
           <View className="h-3/4 justify-center">
@@ -204,7 +249,9 @@ const ConversationModal = () => {
                             fontWeight: 500,
                           }}
                         >
-                          {topicList[topicNumber].name}
+                          {t(
+                            `tools.${TOOL_NAME}.modal.conversation_topics.${topicList[topicNumber]}.name`,
+                          )}
                         </Text>
                       </View>
                       <View>
@@ -212,7 +259,7 @@ const ConversationModal = () => {
                           className="text-center text-xl font-bold"
                           style={{ color: Colors.offWhite, opacity: 0.35 }}
                         >
-                          Tap to uncover
+                          {t(`tools.${TOOL_NAME}.modal.tap_to_uncover`)}
                         </Text>
                       </View>
                     </View>
@@ -226,7 +273,9 @@ const ConversationModal = () => {
                     </View>
                     <View className="mb-6">
                       <Text className="px-4 text-xl" style={{ color: "white" }}>
-                        {topicList[topicNumber].description}
+                        {t(
+                          `tools.${TOOL_NAME}.modal.conversation_topics.${topicList[topicNumber]}.description`,
+                        )}
                       </Text>
                     </View>
                     <View className="mt-4 flex-row opacity-50">

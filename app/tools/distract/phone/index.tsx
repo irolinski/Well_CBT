@@ -1,33 +1,26 @@
-import { Href, router, useFocusEffect } from "expo-router";
-import React from "react";
-import {
-  Alert,
-  Dimensions,
-  Linking,
-  TouchableOpacity,
-  View,
-} from "react-native";
-import { useDispatch, useSelector } from "react-redux";
-import BackButton from "@/components/BackButton";
-import Text from "@/components/global/Text";
-import ContactPic from "@/components/tools/phone/ContactPic";
-import ToolHeader from "@/components/tools/ToolHeader";
-import { Colors } from "@/constants/styles/colorTheme";
-import { getPhoneData } from "@/db/tools";
-import {
-  setShowModal,
-  setSupportContact,
-} from "@/state/features/tools/phoneSlice";
-import { AppDispatch, RootState } from "@/state/store";
-import formatPhoneNumber from "@/utils/formatPhoneNumber";
-import {
-  AntDesign,
-  MaterialCommunityIcons,
-  MaterialIcons,
-} from "@expo/vector-icons";
-import ConversationModal from "./modal";
+import { Href, router, useFocusEffect } from 'expo-router';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { Alert, Dimensions, Linking, TouchableOpacity, View } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import BackButton from '@/components/BackButton';
+import Text from '@/components/global/Text';
+import ContactPic from '@/components/tools/phone/ContactPic';
+import ToolHeader from '@/components/tools/ToolHeader';
+import { phoneAFriend_tool } from '@/constants/models/tools/tools';
+import { Colors } from '@/constants/styles/colorTheme';
+import { getPhoneData } from '@/db/tools';
+import { setShowModal, setSupportContact } from '@/state/features/tools/phoneSlice';
+import { AppDispatch, RootState } from '@/state/store';
+import formatPhoneNumber from '@/utils/formatPhoneNumber';
+import { AntDesign, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
+import ConversationModal from './modal';
+
+const TOOL_NAME = phoneAFriend_tool.name;
 
 const Phone = () => {
+  const { t } = useTranslation(["tools", "common"]);
+
   const windowHeight = Dimensions.get("window").height;
 
   const dispatch = useDispatch<AppDispatch>();
@@ -54,7 +47,7 @@ const Phone = () => {
     if (supported) {
       Linking.openURL(url);
     } else {
-      Alert.alert("Error", "SMS not supported on this device");
+      Alert.alert("Error", "Calling not supported on this device");
     }
   };
 
@@ -97,7 +90,7 @@ const Phone = () => {
         }}
       >
         <View className="mb-8">
-          <ToolHeader>Phone a friend</ToolHeader>
+          <ToolHeader>{t(`tools.${TOOL_NAME}.title`)}</ToolHeader>
         </View>
         <View
           className="rounded-3xl border"
@@ -116,7 +109,7 @@ const Phone = () => {
             {!phoneState.supportContact ? (
               <View>
                 <Text className="text-center text-2xl font-semibold">
-                  You don't have a chosen contact yet.
+                  {t(`tools.${TOOL_NAME}.main.no_contact`)}
                 </Text>
               </View>
             ) : (
@@ -187,7 +180,7 @@ const Phone = () => {
               }}
             >
               <Text className="mx-2" style={{ color: Colors.blackPearl }}>
-                Conversation Topics
+                {t(`tools.${TOOL_NAME}.main.conversation_topics_button`)}
               </Text>
               <View className="mx-2">
                 <MaterialCommunityIcons
@@ -210,7 +203,7 @@ const Phone = () => {
               onPress={() => router.replace("tools/distract/phone/add" as Href)}
             >
               <Text className="mx-2" style={{ color: Colors.offWhite }}>
-                Add contact
+                {t(`tools.${TOOL_NAME}.main.add_contact_button`)}
               </Text>
               <View className="mx-2">
                 <MaterialIcons

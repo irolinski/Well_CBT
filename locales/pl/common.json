@@ -42,6 +42,9 @@
   "nav_elements": {
     "step_count": "Krok {{current}} <muted>z {{total}}</muted>"
   },
+  "lists_and_tables": {
+    "showing_current_of_total": "Wyświetlono {{current}} z {{total}}"
+  },
   "tabbar": {
     "home": "Str. Główna",
     "tools": "Narzędzia",

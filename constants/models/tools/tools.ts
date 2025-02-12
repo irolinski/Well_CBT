@@ -39,7 +39,7 @@ export const breathing_tool: ToolType = {
   card_bg: toolCardImages.breathing,
   link: "/tools/relax/breathing",
 };
-const phone_tool: ToolType = {
+export const phoneAFriend_tool: ToolType = {
   name: "phone_a_friend",
   card_bg: toolCardImages.phone,
   link: "/tools/distract/phone",
@@ -47,6 +47,6 @@ const phone_tool: ToolType = {
 
 const cbtTools = { name: "cbt", tools: [cda_tool, journal_tool] };
 const relaxTools = { name: "relax", tools: [breathing_tool] };
-const distractTools = { name: "distraction", tools: [phone_tool] };
+const distractTools = { name: "distraction", tools: [phoneAFriend_tool] };
 
 export const allToolCategoriesArr = [cbtTools, relaxTools, distractTools];

@@ -41,6 +41,9 @@
   "nav_elements": {
     "step_count": "Step {{current}} <muted>of {{total}}</muted>"
   },
+  "lists_and_tables": {
+    "showing_current_of_total": "Showing {{current}} of {{total}}"
+  },
   "tabbar": {
     "home": "Home",
     "tools": "Tools",

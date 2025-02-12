@@ -219,6 +219,210 @@
         "overwhealmingly_strong": "Overwhealming"
       }
     },
-    "phone_a_friend": { "title": "Phone a Friend" }
+    "phone_a_friend": {
+      "title": "Phone a Friend",
+      "main": {
+        "no_contact": "You don't have a chosen contact yet",
+        "conversation_topics_button": "Pick a conversation topic",
+        "add_contact_button": "Add contact"
+      },
+      "change_contact": {
+        "title_change": "Change contact",
+        "title_add": "Add Contact",
+        "no_results": "No results",
+        "search_placeholder": "Start typing to see contacts...",
+        "alert_header": "Do you want to set this person as your emotional support contact?",
+        "alert_body": "You'll be able to change it anytime, later",
+        "alert_no": "No, I want to make a different choice",
+        "alert_yes": "Yes, continue"
+      },
+      "modal": {
+        "instruction": "Draw a card to pick a random conversation topic.",
+        "tap_to_uncover": "Tap to uncover",
+        "message_boilerplate": "Hey, I need to get my mind off things. Do you want to talk about something nice like ",
+        "conversation_topics": {
+          "dream_vacation": {
+            "name": "Wymarzone Miejsca na Wakacje",
+            "description": "Porozmawiaj o miejscach, które chciałbyś odwiedzić i co czyni je ekscytującymi."
+          },
+          "favorite_food": {
+            "name": "Ulubione Jedzenie lub Przekąski",
+            "description": "Porozmawiaj o ulubionych kuchniach lub przekąskach, którym nie możesz się oprzeć."
+          },
+          "funny_animals": {
+            "name": "Zabawne Historie o Zwierzętach",
+            "description": "Podziel się zabawnymi lub uroczymi historiami o zwierzętach lub domowych pupilach."
+          },
+          "science_facts": {
+            "name": "Ciekawe Fakty Naukowe",
+            "description": "Wymieńcie się ciekawostkami o kosmosie, naturze lub technologii."
+          },
+          "favorite_weather": {
+            "name": "Ulubiona Pogoda lub Pory Roku",
+            "description": "Porozmawiaj o swojej ulubionej pogodzie i dlaczego ją lubisz."
+          },
+          "would_you_rather": {
+            "name": "Pytania 'Wolałbyś...?'",
+            "description": "Wymyślaj i odpowiadaj na zabawne lub kreatywne pytania typu 'wolałbyś...'."
+          },
+          "dream_superpowers": {
+            "name": "Wymarzone Supermoce",
+            "description": "Wyobraź sobie posiadanie supermocy i jak byś ją wykorzystał."
+          },
+          "favorite_colors": {
+            "name": "Ulubione Kolory i Dlaczego",
+            "description": "Porozmawiaj o swoich ulubionych kolorach i z czym ci się kojarzą."
+          },
+          "fictional_worlds": {
+            "name": "Fikcyjne Światy, Które Chciałbyś Odwiedzić",
+            "description": "Porozmawiaj o swoich ulubionych światach z książek lub filmów."
+          },
+          "favorite_tv_movies": {
+            "name": "Ulubione Filmy lub Seriale",
+            "description": "Porozmawiaj o filmach lub serialach, które ostatnio ci się podobały."
+          },
+          "creative_hobbies": {
+            "name": "Kreatywne Hobby lub Rękodzieło",
+            "description": "Podziel się pomysłami na kreatywne projekty lub rzeczy, które warto wypróbować."
+          },
+          "outdoor_activity": {
+            "name": "Ulubiona Aktywność na Świeżym Powietrzu",
+            "description": "Porozmawiaj o ulubionych aktywnościach, jak pikniki, spacery czy obserwowanie gwiazd."
+          },
+          "mysteries": {
+            "name": "Tajemnice i Zagadki",
+            "description": "Podyskutuj o ciekawych zagadkach i tajemnicach, które cię intrygują."
+          },
+          "holiday_traditions": {
+            "name": "Nietypowe Świąteczne Tradycje",
+            "description": "Podziel się zabawnymi lub niezwykłymi tradycjami, które celebrujesz."
+          },
+          "space_exploration": {
+            "name": "Eksploracja Kosmosu",
+            "description": "Porozmawiaj o cudach wszechświata lub ekscytujących misjach kosmicznych."
+          },
+          "cozy_drinks": {
+            "name": "Ulubione Ciepłe Napoje",
+            "description": "Porozmawiaj o ulubionych napojach, jak herbata, kawa czy gorąca czekolada."
+          },
+          "dream_home": {
+            "name": "Dom Marzeń",
+            "description": "Opisz swój wymarzony dom i jakie miałby wyjątkowe elementy."
+          },
+          "favorite_plants": {
+            "name": "Ulubione Rośliny i Kwiaty",
+            "description": "Porozmawiaj o roślinach lub kwiatach, które uważasz za piękne lub ciekawe."
+          },
+          "comfort_foods": {
+            "name": "Najlepsze Jedzenie na Poprawę Nastroju",
+            "description": "Podziel się ulubionymi daniami lub przekąskami, które zawsze poprawiają ci humor."
+          },
+          "night_sky": {
+            "name": "Gwieździste Niebo i Nocne Widoki",
+            "description": "Porozmawiaj o obserwacji gwiazd, konstelacjach lub pięknie nocnego nieba."
+          },
+          "board_games": {
+            "name": "Ulubione Gry Planszowe lub Karciane",
+            "description": "Porozmawiaj o grach, które lubisz grać z przyjaciółmi lub rodziną."
+          },
+          "rainy_day": {
+            "name": "Aktywności na Deszczowy Dzień",
+            "description": "Podziel się pomysłami na spędzanie czasu w domu podczas deszczu."
+          },
+          "cute_animals": {
+            "name": "Urocze Zwierzęta",
+            "description": "Podyskutuj o słodkich zwierzakach, które widziałeś w internecie lub na żywo."
+          },
+          "favorite_scents": {
+            "name": "Ulubione Zapachy i Świece",
+            "description": "Porozmawiaj o zapachach, które sprawiają, że czujesz się szczęśliwy lub zrelaksowany."
+          },
+          "beaches_lakes": {
+            "name": "Piękne Plaże i Jeziora",
+            "description": "Porozmawiaj o spokojnych miejscach nad wodą, które chciałbyś odwiedzić."
+          },
+          "clouds_weather": {
+            "name": "Chmury i Zjawiska Pogodowe",
+            "description": "Porozmawiaj o ciekawych kształtach chmur, zachodach słońca czy innych zjawiskach pogodowych."
+          },
+          "fictional_friends": {
+            "name": "Fikcyjne Postacie, z Którymi Chciałbyś się Przyjaźnić",
+            "description": "Wyobraź sobie spotkanie z postacią z fikcji i dlaczego chciałbyś ją poznać."
+          },
+          "seasonal_decor": {
+            "name": "Sezonowe Dekoracje",
+            "description": "Podziel się pomysłami na dekorowanie przestrzeni zgodnie z porami roku."
+          },
+          "ways_to_relax": {
+            "name": "Sposoby na Relaks",
+            "description": "Porozmawiaj o metodach na odprężenie po długim dniu."
+          },
+          "nature_sounds": {
+            "name": "Dźwięki Natury",
+            "description": "Porozmawiaj o dźwiękach przyrody, które uważasz za kojące, jak fale czy śpiew ptaków."
+          },
+          "ice_cream": {
+            "name": "Ulubione Smaki Lodów",
+            "description": "Podziel się smakami lodów, które najbardziej lubisz."
+          },
+          "sunsets_sunrises": {
+            "name": "Zachody i Wschody Słońca",
+            "description": "Porozmawiaj o pięknych wschodach lub zachodach słońca, które widziałeś lub sobie wyobrażasz."
+          },
+          "fictional_creatures": {
+            "name": "Ulubione Fikcyjne Stworzenia",
+            "description": "Porozmawiaj o magicznych lub mitycznych istotach, które uważasz za fascynujące."
+          },
+          "seasonal_activities": {
+            "name": "Sezonowe Aktywności",
+            "description": "Podziel się pomysłami na zajęcia związane z porami roku, jak lepienie bałwana czy zbieranie liści."
+          },
+          "cozy_things": {
+            "name": "Miłe i Przytulne Rzeczy",
+            "description": "Porozmawiaj o rzeczach, które sprawiają, że czujesz się komfortowo, jak ciepłe koce czy wełniane skarpety."
+          },
+          "describe_surroundings": {
+            "name": "Opisz Swoje Otoczenie",
+            "description": "Porozmawiaj o przestrzeni, w której się znajdujesz, jak pokój lub pogoda na zewnątrz."
+          },
+          "relaxing_music": {
+            "name": "Ulubiona Muzyka Relaksacyjna",
+            "description": "Podziel się utworami lub artystami, którzy pomagają ci się zrelaksować."
+          },
+          "movies_that_make_you_smile": {
+            "name": "Filmy lub Seriale, Które Sprawiają, że Się Uśmiechasz",
+            "description": "Porozmawiaj o filmach lub serialach, które wywołały u ciebie uśmiech lub pozytywne uczucia."
+          },
+          "relaxing_video_games": {
+            "name": "Gry Wideo na Relaks",
+            "description": "Porozmawiaj o grach, które są zabawne lub uspokajające do grania."
+          },
+          "sports_outdoor": {
+            "name": "Sporty lub Aktywności na Świeżym Powietrzu",
+            "description": "Porozmawiaj o sportach lub aktywnościach na świeżym powietrzu, które sprawiają ci radość."
+          },
+          "favorite_soundscapes": {
+            "name": "Ulubione Pejzaże Dźwiękowe",
+            "description": "Porozmawiaj o dźwiękach, które uwielbiasz, jak deszcz, fale lub śpiew ptaków."
+          },
+          "inspirational_books": {
+            "name": "Książki lub Historie, Które Cię Inspirują",
+            "description": "Podziel się ulubioną książką lub opowieścią, która cię zainspirowała."
+          },
+          "happy_memories": {
+            "name": "Szczęśliwe Wspomnienia lub Małe Radości",
+            "description": "Porozmawiaj o drobnych rzeczach, które poprawiły twój dzień."
+          },
+          "sports_moments": {
+            "name": "Ulubione Chwile Sportowe",
+            "description": "Porozmawiaj o ekscytujących lub wzruszających chwilach sportowych, które widziałeś lub doświadczyłeś."
+          },
+          "dream_room": {
+            "name": "Urządzanie Pokoju Marzeń",
+            "description": "Wyobraź sobie, jak wyglądałby twój idealny pokój i co by się w nim znalazło."
+          }
+        }
+      }
+    }
   }
 }

@@ -1,28 +1,24 @@
-import * as Contacts from "expo-contacts";
-import { Image } from "expo-image";
-import { Href, router } from "expo-router";
-import React, { useEffect, useState } from "react";
-import {
-  Alert,
-  Dimensions,
-  Keyboard,
-  Pressable,
-  ScrollView,
-  TextInput,
-  View,
-} from "react-native";
-import { useSelector } from "react-redux";
-import { logoImages } from "@/assets/images/global/logo/logo";
-import { phoneFacePlaceholder } from "@/assets/images/tools/phone/phoneFaces";
-import BackButton from "@/components/BackButton";
-import Text from "@/components/global/Text";
-import ToolHeader from "@/components/tools/ToolHeader";
-import { Colors } from "@/constants/styles/colorTheme";
-import { setContact, setContactWithPicture } from "@/db/tools";
-import { RootState } from "@/state/store";
-import formatPhoneNumber from "@/utils/formatPhoneNumber";
-import { isValidName } from "@/utils/inputValidations";
-import { MaterialIcons } from "@expo/vector-icons";
+import * as Contacts from 'expo-contacts';
+import { Image } from 'expo-image';
+import { Href, router } from 'expo-router';
+import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Alert, Dimensions, Keyboard, Pressable, ScrollView, TextInput, View } from 'react-native';
+import { useSelector } from 'react-redux';
+import { logoImages } from '@/assets/images/global/logo/logo';
+import { phoneFacePlaceholder } from '@/assets/images/tools/phone/phoneFaces';
+import BackButton from '@/components/BackButton';
+import Text from '@/components/global/Text';
+import ToolHeader from '@/components/tools/ToolHeader';
+import { phoneAFriend_tool } from '@/constants/models/tools/tools';
+import { Colors } from '@/constants/styles/colorTheme';
+import { setContact, setContactWithPicture } from '@/db/tools';
+import { RootState } from '@/state/store';
+import formatPhoneNumber from '@/utils/formatPhoneNumber';
+import { isValidName } from '@/utils/inputValidations';
+import { MaterialIcons } from '@expo/vector-icons';
+
+const TOOL_NAME = phoneAFriend_tool.name;
 
 interface PhoneNumberObj {
   countryCode: string;
@@ -33,6 +29,7 @@ interface PhoneNumberObj {
 }
 
 const Add = () => {
+  const { t } = useTranslation(["tools", "common"]);
   const windowHeight = Dimensions.get("window").height;
   const phoneState = useSelector((state: RootState) => state.phone);
 
@@ -77,14 +74,16 @@ const Add = () => {
     pictureURI?: string,
   ) => {
     Alert.alert(
-      "Do you want to set this person as your emotional support contact?",
-      "\nYou'll be able to change it anytime, later.",
+      t(`tools.${TOOL_NAME}.change_contact.alert_header`),
+      t(`tools.${TOOL_NAME}.change_contact.alert_body`),
+
       [
         {
-          text: "No, I want to make a different choice",
+          text: t(`tools.${TOOL_NAME}.change_contact.alert_no`),
         },
         {
-          text: "Yes, continue",
+          text: t(`tools.${TOOL_NAME}.change_contact.alert_yes`),
+
           onPress: () => {
             try {
               if (!pictureURI) {
@@ -119,7 +118,9 @@ const Add = () => {
       >
         <View className="mb-8">
           <ToolHeader>
-            {!phoneState.supportContact ? "Add contact" : "Change contact"}
+            {!phoneState.supportContact
+              ? t(`tools.${TOOL_NAME}.change_contact.title_add`)
+              : t(`tools.${TOOL_NAME}.change_contact.title_change`)}
           </ToolHeader>
         </View>
         <View>
@@ -240,8 +241,10 @@ const Add = () => {
                     style={{ color: Colors.mainGray }}
                   >
                     {searchValue
-                      ? "No results."
-                      : "Start typing to see contacts..."}
+                      ? t(`tools.${TOOL_NAME}.change_contact.no_results`)
+                      : t(
+                          `tools.${TOOL_NAME}.change_contact.search_placeholder`,
+                        )}
                   </Text>
                   <Image
                     className="absolute bottom-0 left-1/3 h-4 w-1/3 translate-y-16"
@@ -253,7 +256,11 @@ const Add = () => {
           </View>
           <View className="mx-2 mt-2.5">
             <Text className="text-right">
-              Showing {filteredData.length} of {contactData.length}
+              {t("lists_and_tables.showing_current_of_total", {
+                ns: "common",
+                current: filteredData.length,
+                total: contactData.length,
+              })}
             </Text>
           </View>
         </View>

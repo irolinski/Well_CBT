@@ -1,12 +1,12 @@
-import React from "react";
-import { useTranslation } from "react-i18next";
-import { Text, View } from "react-native";
-import { useSelector } from "react-redux";
-import { Colors } from "@/constants/styles/colorTheme";
-import { RootState } from "@/state/store";
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { Text, View } from 'react-native';
+import { useSelector } from 'react-redux';
+import { Colors } from '@/constants/styles/colorTheme';
+import { RootState } from '@/state/store';
 
 const EntryLogDisplayInfo = () => {
-  const { t } = useTranslation("home");
+  const { t } = useTranslation(["home", "common"]);
   const activityLogState = useSelector((state: RootState) => state.activityLog);
 
   return (
@@ -42,7 +42,8 @@ const EntryLogDisplayInfo = () => {
           {Array.isArray(activityLogState.displayedData) &&
             Array.isArray(activityLogState.entryData) && (
               <Text>
-                {t("activity_log.showing_current_of_total", {
+                {t("lists_and_tables.showing_current_of_total", {
+                  ns: "common",
                   current: activityLogState.displayedData.reduce(
                     (sum, item) => sum + item.data.length,
                     0,
