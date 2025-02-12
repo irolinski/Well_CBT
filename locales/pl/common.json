@@ -25,7 +25,17 @@
       "october": { "full": "Październik", "short": "Paź." },
       "november": { "full": "Listopad", "short": "Lis." },
       "december": { "full": "Grudzień", "short": "Gru." }
-    }
+    },
+    "days": {
+      "sunday": { "full": "Niedziela", "short": "Nie." },
+      "monday": { "full": "Poniedziałek", "short": "Pon." },
+      "tuesday": { "full": "Wtorek", "short": "Wto." },
+      "wednesday": { "full": "Środa", "short": "Śro." },
+      "thursday": { "full": "Czwartek", "short": "Czw." },
+      "friday": { "full": "Piątek", "short": "Pią." },
+      "saturday": { "full": "Sobota", "short": "Sob." }
+    },
+    "today": "Dziś"
   },
   "nav_elements": {
     "step_count": "Krok {{current}} <muted>z {{total}}</muted>"

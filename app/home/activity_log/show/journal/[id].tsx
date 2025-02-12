@@ -16,13 +16,15 @@ import { journal_tool } from '@/constants/models/tools/tools';
 import { Colors } from '@/constants/styles/colorTheme';
 import { fetchJournalEntry } from '@/db/activity_log';
 import { deleteJournalEntry } from '@/db/tools';
+import { convertIsoToEuropeanDate, formatDateStringForWrapping } from '@/utils/dates';
 import { handleDeleteEntry } from '@/utils/deleteEntry';
 import { Slider } from '@miblanchard/react-native-slider';
 
 const TOOL_NAME = journal_tool.name;
 
 const ActivityShowPage = () => {
-  const { t } = useTranslation(["tools", "common"]);
+  const { t, i18n } = useTranslation(["tools", "common"]);
+  const currentLanguage = i18n.language;
 
   const id: number = Number(useLocalSearchParams<{ id: string }>().id);
 
@@ -46,6 +48,10 @@ const ActivityShowPage = () => {
     let date;
     if (fetchedEntryMain.datetime) {
       date = fetchedEntryMain.datetime.split(" ")[0];
+      if (currentLanguage === "pl") {
+        date = convertIsoToEuropeanDate(date);
+      }
+      date = formatDateStringForWrapping(date);
     }
 
     return (

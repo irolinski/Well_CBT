@@ -1,17 +1,16 @@
-import { Pressable, View } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  ToolList,
-  toolNameList,
-  ToolNames,
-} from "@/constants/models/home/activity_log";
-import { Colors } from "@/constants/styles/colorTheme";
-import { setFilterCategories } from "@/state/features/menus/activityLogSlice";
-import { AppDispatch, RootState } from "@/state/store";
-import Text from "../global/Text";
-import RadioButton from "../RadioButton";
+import { useTranslation } from 'react-i18next';
+import { Pressable, View } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import { ToolList, toolNameList, ToolNames } from '@/constants/models/home/activity_log';
+import { Colors } from '@/constants/styles/colorTheme';
+import { setFilterCategories } from '@/state/features/menus/activityLogSlice';
+import { AppDispatch, RootState } from '@/state/store';
+import Text from '../global/Text';
+import RadioButton from '../RadioButton';
 
 const CategoryFilter = () => {
+  // -- i18n init --
+  const { t } = useTranslation("tools");
   const dispatch = useDispatch<AppDispatch>();
   const activityLogState = useSelector((state: RootState) => state.activityLog);
 
@@ -39,16 +38,16 @@ const CategoryFilter = () => {
           }}
           key={index}
         >
-          <View className="flex-row items-center">
+          <View className="h-12 flex-row items-center" style={{ width: "80%" }}>
             <RadioButton
               isActive={activityLogState.filterCategories.includes(
                 categoryName,
               )}
               checkedColor={"rgba(242, 141, 78, 0.75)"}
             />
-            <View className="items-center">
+            <View className="mx-1 items-center">
               <Text className="text-base" style={{ color: Colors.mainGray }}>
-                {ToolList[categoryName].name}
+                {t(`tools.${categoryName}.title`)}
               </Text>
             </View>
           </View>

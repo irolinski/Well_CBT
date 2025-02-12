@@ -83,11 +83,11 @@ const JournalCard = ({ toolName, link, datetime, value }: JournalCardProps) => {
                   className="text-right text-sm"
                   style={{ color: Colors.mainGray }}
                 >
-                  {t(`dates.months.${cardDateTime.month}.short`, {
-                    ns: "common",
-                  }) +
+                  {cardDateTime.day +
                     " " +
-                    cardDateTime.day +
+                    t(`dates.months.${cardDateTime.month}.short`, {
+                      ns: "common",
+                    }) +
                     "  |  " +
                     cardDateTime.time}
                 </Text>

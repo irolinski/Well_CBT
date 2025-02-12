@@ -1,12 +1,8 @@
-import { ImageSource } from "expo-image";
-import { Href } from "expo-router";
-import { toolCardImages } from "@/assets/images/tools/cards/cards";
+import { ImageSource } from 'expo-image';
+import { Href } from 'expo-router';
+import { toolCardImages } from '@/assets/images/tools/cards/cards';
 
-type ToolName =
-  | "breathing"
-  | "cognitive_distortion_analysis"
-  | "journal"
-  | "phone_a_friend";
+type ToolName = "breathing" | "cda" | "journal" | "phone_a_friend";
 
 type ToolType = {
   name: ToolName;
@@ -19,7 +15,7 @@ type ToolType = {
 type ToolTypeWithForm = ToolType & { num_of_pages: number };
 
 export const cda_tool: ToolTypeWithForm = {
-  name: "cognitive_distortion_analysis",
+  name: "cda",
   card_bg: toolCardImages.thoughtsChallange,
   link: "/tools/classic_cbt/cda",
   num_of_pages: 5,

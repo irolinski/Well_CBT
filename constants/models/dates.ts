@@ -27,3 +27,15 @@ export const monthNamesShort = [
   "nov.",
   "dec.",
 ];
+
+export const dayNames = [
+  "sunday",
+  "monday",
+  "tuesday",
+  "wednesday",
+  "thursday",
+  "friday",
+  "saturday",
+];
+
+export const dayNamesShort = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];

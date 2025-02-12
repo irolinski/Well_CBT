@@ -36,7 +36,7 @@ export type emotionObjType = {
 
 export const ToolList: Record<ToolNames, ToolType> = {
   cda: {
-    name: "Thoughts Challenge",
+    name: "cda",
     category: "exercise",
     icon: (
       <MaterialCommunityIcons
@@ -55,7 +55,7 @@ export const ToolList: Record<ToolNames, ToolType> = {
     requiresInput: true,
   },
   journal: {
-    name: "Mood Journal",
+    name: "journal",
     category: "journal",
     icon: (
       <MaterialCommunityIcons
@@ -74,7 +74,7 @@ export const ToolList: Record<ToolNames, ToolType> = {
     requiresInput: true,
   },
   breathing: {
-    name: "Breathing",
+    name: "breathing",
     category: "relax",
     icon: <Feather name="wind" size={32} color={Colors.mainGray} />,
     iconBright: <Feather name="wind" size={32} color={Colors.white} />,

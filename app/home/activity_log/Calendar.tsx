@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { Calendar } from "react-native-calendars";
-import { useDispatch, useSelector } from "react-redux";
-import { Colors } from "@/constants/styles/colorTheme";
-import { setFilterPeriod } from "@/state/features/menus/activityLogSlice";
-import { AppDispatch, RootState } from "@/state/store";
+import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Calendar, LocaleConfig } from 'react-native-calendars';
+import { useDispatch, useSelector } from 'react-redux';
+import { dayNames, monthNames, monthNamesShort } from '@/constants/models/dates';
+import { Colors } from '@/constants/styles/colorTheme';
+import { setFilterPeriod } from '@/state/features/menus/activityLogSlice';
+import { AppDispatch, RootState } from '@/state/store';
 
 type CalendarCallbackEvent = {
   day: number;
@@ -14,12 +16,19 @@ type CalendarCallbackEvent = {
 };
 
 const ActivityLogCalendar = () => {
+  // -- i18n init --
+  const { t } = useTranslation("common");
+
+  // -- redux state --
   const dispatch = useDispatch<AppDispatch>();
   const activityLogState = useSelector((state: RootState) => state.activityLog);
 
+  // -- local state -
   const [markedDates, setMarkedDates] = useState({});
   const [initialDate] = useState(new Date().toISOString().split("T")[0]);
   const [currentDate, setCurrentDate] = useState(initialDate);
+
+  //-- functions --
 
   const getMarkedDates = () => {
     const markedDatesObj: any = {};
@@ -63,7 +72,7 @@ const ActivityLogCalendar = () => {
     }
   };
 
-  // helper function -- get all days between two days
+  // get all days between two days
   const getDaysArray = function (start: string, end: string) {
     const arr = [];
     for (
@@ -75,6 +84,22 @@ const ActivityLogCalendar = () => {
     }
     return arr;
   };
+
+  //-- locale config --
+
+  LocaleConfig.locales["i18n"] = {
+    monthNames: monthNames.map((month) => t(`dates.months.${month}.full`)),
+    monthNamesShort: monthNamesShort.map((month) =>
+      t(`dates.months.${month}.short`),
+    ),
+    dayNames: dayNames.map((day) => t(`dates.days.${day}.full`)),
+    dayNamesShort: dayNames.map((day) => t(`dates.days.${day}.short`)),
+    today: t("dates.today"),
+  };
+
+  LocaleConfig.defaultLocale = "i18n";
+
+  //-- use effects --
 
   useEffect(() => {
     // do nothing if there is no raw data

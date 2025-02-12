@@ -1,4 +1,4 @@
-import { monthNamesShort } from "@/constants/models/dates";
+import { monthNamesShort } from '@/constants/models/dates';
 
 export const getOrdinalSuffix = (number: number) => {
   const lastDigit = Number(number.toString().slice(-1));
@@ -90,4 +90,18 @@ export const isSameDate = (date1: Date, date2: Date) => {
     date1.getMonth() === date2.getMonth() &&
     date1.getFullYear() === date2.getFullYear()
   );
+};
+
+export const convertIsoToEuropeanDate = (dateStr: string): string => {
+  const datePattern = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/;
+
+  if (!datePattern.test(dateStr)) {
+    console.log(
+      "Invalid date format. Expected YYYY-MM-DD (ISO 8601). Returning date string unchanged in ISO format.",
+    );
+    return dateStr;
+  }
+
+  const [year, month, day] = dateStr.split("-");
+  return `${day}-${month}-${year}`;
 };
