@@ -1,4 +1,6 @@
+import { useTranslation } from 'react-i18next';
 import { monthNamesShort } from '@/constants/models/dates';
+import { uncapitalizeString } from './algorithms';
 
 export const getOrdinalSuffix = (number: number) => {
   const lastDigit = Number(number.toString().slice(-1));
@@ -55,6 +57,28 @@ export const formatDateToMonthAndDay = (timestamp: Date): string => {
   const day = date.getDate(); // Get the day of the month
   const month = monthNamesShort[date.getMonth()];
   return `${day} ${month}`; // Combine the day and month
+};
+
+export const getLastVisitString = (lastVisitDate: Date | undefined): string => {
+  const { t } = useTranslation("common");
+
+  let lastVisitString: string = "";
+  if (lastVisitDate) {
+    const daysSinceLastVisit = dateDaysAgo(lastVisitDate);
+    if (daysSinceLastVisit > 14) {
+      lastVisitString = formatDateToMonthAndDay(lastVisitDate);
+    } else {
+      if (daysSinceLastVisit === 0) {
+        lastVisitString = t("dates.today", { ns: "common" });
+      } else if (daysSinceLastVisit === 1) {
+        lastVisitString = t("dates.yesterday", { ns: "common" });
+      } else {
+        lastVisitString = `${daysSinceLastVisit} ${t("days_ago", { count: daysSinceLastVisit })}`;
+      }
+    }
+  }
+  lastVisitString = uncapitalizeString(lastVisitString);
+  return lastVisitString;
 };
 
 export const returnDaysAgoString = (

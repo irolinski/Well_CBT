@@ -1,35 +1,37 @@
-import { Href, router } from "expo-router";
-import { Modal, Pressable, Text, View } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
-import { Colors } from "@/constants/styles/colorTheme";
-import { setShowEditProfileModal } from "@/state/features/menus/editProfileModalSlice";
+import { Href, router } from 'expo-router';
+import { useTranslation } from 'react-i18next';
+import { Modal, Pressable, Text, View } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import { Colors } from '@/constants/styles/colorTheme';
+import { setShowEditProfileModal } from '@/state/features/menus/editProfileModalSlice';
 import {
-  setNavigateSettingsModalSelectedLink,
-  setShowNavigateSettingsModal,
-} from "@/state/features/menus/navigateSettingsModalSlice";
-import { AppDispatch, RootState } from "@/state/store";
-import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
-import NavigationModalButton from "../NavigationModalButton";
-import NavigationModalSelect from "../NavigationModalSelect";
-
-const items = {
-  editProfile: {
-    name: "Edit Profile",
-    icon: <Feather name="user" size={32} color={Colors.mainGray} />,
-    iconBright: <Feather name="user" size={32} color={Colors.white} />,
-    // fake link - used instead of an enum to prevent component redesign
-    link: "about/editProfile",
-  },
-  settings: {
-    name: "Settings",
-    icon: <Feather name="tool" size={32} color={Colors.mainGray} />,
-    iconBright: <Feather name="tool" size={32} color={Colors.white} />,
-    link: "about/settings",
-    handleOpenModal: setShowNavigateSettingsModal,
-  },
-};
+    setNavigateSettingsModalSelectedLink, setShowNavigateSettingsModal
+} from '@/state/features/menus/navigateSettingsModalSlice';
+import { AppDispatch, RootState } from '@/state/store';
+import { Feather, MaterialCommunityIcons } from '@expo/vector-icons';
+import NavigationModalButton from '../NavigationModalButton';
+import NavigationModalSelect from '../NavigationModalSelect';
 
 const NavigateSettingsModal = () => {
+  const { t } = useTranslation(["about", "common"]);
+
+  const items = {
+    editProfile: {
+      name: t("edit_profile.title"),
+      icon: <Feather name="user" size={32} color={Colors.mainGray} />,
+      iconBright: <Feather name="user" size={32} color={Colors.white} />,
+      // fake link - used instead of an enum to prevent component redesign
+      link: "about/editProfile",
+    },
+    settings: {
+      name: t("settings.title"),
+      icon: <Feather name="tool" size={32} color={Colors.mainGray} />,
+      iconBright: <Feather name="tool" size={32} color={Colors.white} />,
+      link: "about/settings",
+      handleOpenModal: setShowNavigateSettingsModal,
+    },
+  };
+
   const navigateSettingsModalState = useSelector(
     (state: RootState) => state.navigateSettingsModal,
   );
@@ -97,7 +99,9 @@ const NavigateSettingsModal = () => {
                 {<Feather name="settings" size={24} color={Colors.mainGray} />}
               </View>
               <View className="mx-1.5">
-                <Text className="text-lg">Preferences</Text>
+                <Text className="text-lg">
+                  {t("index.modals.navigate_settings.title")}
+                </Text>
               </View>
             </View>
           </View>
@@ -127,7 +131,7 @@ const NavigateSettingsModal = () => {
             style={{ width: 320 }}
           >
             <NavigationModalButton
-              title="Redirect"
+              title={t("buttons.redirect", { ns: "common" })}
               onPress={() => handleButonPress()}
               icon={
                 <Feather

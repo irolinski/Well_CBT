@@ -16,3 +16,7 @@ export const interpolateNumbers = (
 
   return outputValue;
 };
+
+export const uncapitalizeString = (string: string) => {
+  return string.charAt(0).toLowerCase() + string.slice(1);
+};

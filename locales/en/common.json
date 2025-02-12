@@ -1,7 +1,6 @@
 {
   "buttons": {
     "see_all": "See all",
-    "save_preferences": "Save preferences",
     "redirect": "Redirect",
     "next": "Next",
     "finish": "Finish",
@@ -9,6 +8,8 @@
     "go_to_journal": "See journal",
     "return_to_tools": "Return to Tools",
     "save_to_journal": "Save to journal",
+    "save_preferences": "Save preferences",
+    "save_changes": "Save changes",
     "start": "Start",
     "pause": "Pause"
   },
@@ -36,7 +37,10 @@
       "friday": { "full": "Friday", "short": "Fri." },
       "saturday": { "full": "Saturday", "short": "Sat." }
     },
-    "today": "Today"
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "days_ago_one": "day ago",
+    "days_ago_other": "days ago"
   },
   "nav_elements": {
     "step_count": "Step {{current}} <muted>of {{total}}</muted>"

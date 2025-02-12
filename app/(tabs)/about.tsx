@@ -1,17 +1,20 @@
-import React from "react";
-import { View } from "react-native";
-import AboutStats from "@/components/about/AboutStats";
-import AboutUser from "@/components/about/AboutUser";
-import NavigateSettingsModal from "@/components/about/NavigateSettingsModal";
-import RecentAchievements from "@/components/about/RecentAchievements";
-import Text from "@/components/global/Text";
-import FrameMenu from "@/components/home/FrameMenu";
-import { Colors } from "@/constants/styles/colorTheme";
-import EditProfileModal from "../about/EditProfileModal";
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { View } from 'react-native';
+import AboutStats from '@/components/about/AboutStats';
+import AboutUser from '@/components/about/AboutUser';
+import NavigateSettingsModal from '@/components/about/NavigateSettingsModal';
+import RecentAchievements from '@/components/about/RecentAchievements';
+import Text from '@/components/global/Text';
+import FrameMenu from '@/components/home/FrameMenu';
+import { Colors } from '@/constants/styles/colorTheme';
+import EditProfileModal from '../about/EditProfileModal';
 
 const About = () => {
+  const { t } = useTranslation("about");
+
   return (
-    <FrameMenu title="About Me">
+    <FrameMenu title={t(`index.title`)}>
       <View>
         <View className="m-4">
           <View className="mt-4 items-center">
@@ -22,7 +25,7 @@ const About = () => {
               className="mb-4 mt-2 text-left text-2xl"
               style={{ color: Colors.offBlack }}
             >
-              Recent Achievements
+              {t(`index.recent_achievements`)}
             </Text>
             <View>
               <RecentAchievements />
@@ -33,7 +36,7 @@ const About = () => {
               className="mb-4 mt-2 text-left text-2xl"
               style={{ color: Colors.offBlack }}
             >
-              Stats
+              {t(`index.stats`)}
             </Text>
             <View>
               <AboutStats />

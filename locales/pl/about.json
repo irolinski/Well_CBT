@@ -1,0 +1,43 @@
+{
+  "index": {
+    "title": "O mnie",
+    "last_visit": "Ostatnia wizyta: ",
+    "completed_activities": "Ukończone aktywności: ",
+    "recent_achievements": "Ostatnie osiągnięcia",
+    "stats": "Statystyki",
+    "modals": {
+      "navigate_settings": {
+        "title": "Preferencje"
+      }
+    }
+  },
+  "edit_profile": {
+    "title": "Edytuj profil",
+    "your_profile": "Twój profil",
+    "select_profile_picture": "Wybierz zdjęcie profilowe"
+  },
+  "settings": {
+    "title": "Ustawienia"
+  },
+
+  "achievements": {},
+  "stats": {
+    "title": "Statystyki",
+    "visit_streak": "Odwiedzono najwięcej dni z rzędu",
+    "placeholder_text": "Korzystaj z Well, aby zobaczyć swoje pierwsze statystyki aktywności!",
+    "stats_objects": {
+      "highestVisitStreak": {
+        "caption": "Odwiedzono najwięcej dni z rzędu"
+      },
+      "cbtCount": {
+        "caption": "Rozplątane myśli"
+      },
+      "relaxTimeMin": {
+        "caption": "Minuty relaksu"
+      },
+      "journalCount": {
+        "caption": "Wpisy w dzienniku"
+      }
+    }
+  }
+}

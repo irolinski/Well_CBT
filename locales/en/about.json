@@ -1,0 +1,43 @@
+{
+  "index": {
+    "title": "About Me",
+    "last_visit": "Last visit: ",
+    "completed_activities": "Completed activities: ",
+    "recent_achievements": "Recent Achivements",
+    "stats": "Stats",
+    "modals": {
+      "navigate_settings": {
+        "title": "Preferences"
+      }
+    }
+  },
+  "edit_profile": {
+    "title": "Edit Profile",
+    "your_profile": "Your profile",
+    "select_profile_picture": "Select profile picture"
+  },
+  "settings": {
+    "title": "Settings"
+  },
+
+  "achievements": {},
+  "stats": {
+    "title": "Stats",
+    "visit_streak": "Visited most days-in-row",
+    "placeholder_text": "Keep using Well to see your first activity statistics!",
+    "stats_objects": {
+      "highestVisitStreak": {
+        "caption": "Visited most days in-row"
+      },
+      "cbtCount": {
+        "caption": "Thoughts untangled"
+      },
+      "relaxTimeMin": {
+        "caption": "Minutes of relaxation"
+      },
+      "journalCount": {
+        "caption": "Journal Entries"
+      }
+    }
+  }
+}
