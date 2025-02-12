@@ -45,7 +45,9 @@ const AboutUser = () => {
   }, [editProfileModalState]);
 
   const userName =
-    userData && userData.name.length > 0 ? userData.name : "Your profile";
+    userData && userData.name.length > 0
+      ? userData.name
+      : t("index.your_profile");
   const lastVisitString = getLastVisitString(userData?.lastVisit);
   const completedActivities = userData && userData.numOfAllEntries;
 

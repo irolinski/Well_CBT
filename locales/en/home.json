@@ -9,11 +9,11 @@
     "filters": "Filters",
     "from_to": "from: \n to:",
     "showing_current_of_total": "Showing {{current}} of {{total}}",
+    "no_data": "No data found",
     "modal": {
       "title": "Settings",
       "select_dates": "Select dates",
-      "show_only": "Show only",
-      "no_data": "No data found"
+      "show_only": "Show only"
     }
   },
 

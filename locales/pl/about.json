@@ -2,6 +2,7 @@
   "index": {
     "title": "O mnie",
     "last_visit": "Ostatnia wizyta: ",
+    "your_profile": "Twój profil",
     "completed_activities": "Ukończone aktywności: ",
     "recent_achievements": "Ostatnie osiągnięcia",
     "stats": "Statystyki",
@@ -20,7 +21,79 @@
     "title": "Ustawienia"
   },
 
-  "achievements": {},
+  "achievements": {
+    "title": "Osiągnięcia",
+    "all_achievements": "Wszystkie osiągnięcia",
+    "recent_achievements_placeholder_title": "Osiągnięcia przed Tobą!",
+    "recent_achievements_placeholder_description": "Korzystaj z Well, aby odblokować nowe osiągnięcia!",
+    "achievement_data": {
+      "1": {
+        "title": "Pierwsze kroki",
+        "description_before": "Ukończ pierwsze ćwiczenie",
+        "description_after": "Zrobiłeś pierwszy krok, ukończyłeś swoje pierwsze ćwiczenie. Tak trzymaj!"
+      },
+      "2": {
+        "title": "Miło mnie poznać",
+        "description_before": "Dodaj swoje imię",
+        "description_after": "Zrobiłeś pierwszy krok, przedstawiając się. Miło Cię poznać!"
+      },
+      "3": {
+        "title": "Początek rozmowy",
+        "description_before": "Dodaj kontakt do znajomego i udostępnij temat rozmowy",
+        "description_after": "Otworzyłeś kanał komunikacji, dzieląc się tematem rozmowy. Kontynuuj!"
+      },
+      "4": {
+        "title": "Pierwsze zaangażowanie",
+        "description_before": "Odwiedź Well przez 7 kolejnych dni",
+        "description_after": "Twoje zaangażowanie jest widoczne! Odwiedziłeś Well przez 7 dni z rzędu. Świetna robota!"
+      },
+      "5": {
+        "title": "Użytkownik miesiąca",
+        "description_before": "Odwiedź Well przez 30 kolejnych dni",
+        "description_after": "Odwiedzałeś Well przez 30 dni z rzędu. To naprawdę imponująca konsekwencja!"
+      },
+      "6": {
+        "title": "Stała obecność",
+        "description_before": "Odwiedź Well przez 180 dni (niekoniecznie z rzędu)",
+        "description_after": "Odwiedziłeś Well przez 180 różnych dni. Dziękujemy za Twoje zaangażowanie. Mamy nadzieję, że Twoja praca przynosi efekty!"
+      },
+      "7": {
+        "title": "Noworoczne postanowienie",
+        "description_before": "Odwiedź Well przez 365 dni (niekoniecznie z rzędu)",
+        "description_after": "Rok zaangażowania! Odwiedziłeś Well przez 365 dni. Kontynuuj tę niesamowitą pracę!"
+      },
+      "8": {
+        "title": "Racjonalista",
+        "description_before": "Ukończ 20 różnych ćwiczeń poznawczo-behawioralnych",
+        "description_after": "Twoje racjonalne myślenie błyszczy! Ukończyłeś 20 ćwiczeń poznawczo-behawioralnych."
+      },
+      "9": {
+        "title": "Mól książkowy",
+        "description_before": "Przeczytaj 10 artykułów",
+        "description_after": "Poszerzyłeś swoją wiedzę, czytając 10 artykułów. Kontynuuj rozwój!"
+      },
+      "10": {
+        "title": "Stoik",
+        "description_before": "Spędź łącznie ponad 60 minut na ćwiczeniach relaksacyjnych",
+        "description_after": "Twoja opanowanie i spokój są godne podziwu. Spędziłeś ponad 60 minut na ćwiczeniach relaksacyjnych."
+      },
+      "11": {
+        "title": "Mnich",
+        "description_before": "Spędź łącznie ponad 180 minut na ćwiczeniach relaksacyjnych",
+        "description_after": "Osiągnąłeś głęboki stan uważności, spędzając ponad 180 minut na ćwiczeniach relaksacyjnych."
+      },
+      "12": {
+        "title": "Filozof",
+        "description_before": "Udostępnij 10 cytatów",
+        "description_after": "Twoja mądrość błyszczy! Udostępniłeś 10 cytatów, inspirując innych do przemyśleń."
+      },
+      "13": {
+        "title": "Płodny pisarz",
+        "description_before": "Zapisz 30 wpisów w dzienniku",
+        "description_after": "Udało Ci się udokumentować swoją podróż dzięki 30 wpisom w dzienniku. Kontynuuj wyrażanie siebie!"
+      }
+    }
+  },
   "stats": {
     "title": "Statystyki",
     "visit_streak": "Odwiedzono najwięcej dni z rzędu",

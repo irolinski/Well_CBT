@@ -1,25 +1,24 @@
-import { Href, router } from "expo-router";
-import React, { useEffect, useState } from "react";
-import { Dimensions, Pressable, TouchableOpacity, View } from "react-native";
+import { Href, router } from 'expo-router';
+import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Dimensions, Pressable, TouchableOpacity, View } from 'react-native';
+import { Directions, Gesture, GestureDetector } from 'react-native-gesture-handler';
 import {
-  Directions,
-  Gesture,
-  GestureDetector,
-} from "react-native-gesture-handler";
-import { recentAchievementsPlaceholderImage } from "@/assets/images/about/achievements/achievements";
+    recentAchievementsPlaceholderImage
+} from '@/assets/images/about/achievements/achievements';
 import {
-  AchievementObj,
-  AchievementProgressObj,
-  allAchievementsModelsArr,
-} from "@/constants/models/about/achievements";
-import { Colors } from "@/constants/styles/colorTheme";
-import { handleGetAchievementProgressData } from "@/db/achievements/controllers";
-import { Feather } from "@expo/vector-icons";
-import AdvanceButton from "../AdvanceButton";
-import CarouselBadge from "./CarouselBadge";
-import CarouselDetails from "./CarouselDetails";
+    AchievementObj, AchievementProgressObj, allAchievementsModelsArr
+} from '@/constants/models/about/achievements';
+import { Colors } from '@/constants/styles/colorTheme';
+import { handleGetAchievementProgressData } from '@/db/achievements/controllers';
+import { Feather } from '@expo/vector-icons';
+import AdvanceButton from '../AdvanceButton';
+import CarouselBadge from './CarouselBadge';
+import CarouselDetails from './CarouselDetails';
 
 const RecentAchievements = () => {
+  const { t } = useTranslation(["about", "common"]);
+
   const windowHeight = Dimensions.get("window").height;
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [recentAchievementsDataState, setRecentAchievementsDataState] =
@@ -61,9 +60,7 @@ const RecentAchievements = () => {
 
       setRecentAchievementsDataState(sortedRecentAchievementList);
     } else {
-      throw Error(
-        "Error: Occurred a problem while fetching achievement progress data.",
-      );
+      throw Error("Error: Problem while fetching achievement progress data.");
     }
   };
 
@@ -216,10 +213,14 @@ const RecentAchievements = () => {
 
           {recentAchievementsDataState &&
           recentAchievementsDataState.length > 0 ? (
-            recentAchievementsDataState.map((datum, indexNum) => (
+            recentAchievementsDataState.map((achievement, indexNum) => (
               <CarouselDetails
-                title={datum.title}
-                description={datum.description_after}
+                title={t(
+                  `achievements.achievement_data.${achievement.id}.title`,
+                )}
+                description={t(
+                  `achievements.achievement_data.${achievement.id}.description_after`,
+                )}
                 index={indexNum}
                 selectedIndex={selectedIndex}
                 key={indexNum}
@@ -228,8 +229,10 @@ const RecentAchievements = () => {
           ) : (
             <React.Fragment>
               <CarouselDetails
-                title="No achievements yet"
-                description="Keep using Well to unlock new achievements!"
+                title={t(`achievements.recent_achievements_placeholder_title`)}
+                description={t(
+                  `achievements.recent_achievements_placeholder_description`,
+                )}
                 index={0}
                 selectedIndex={0}
               />
@@ -238,7 +241,7 @@ const RecentAchievements = () => {
         </View>
         <View className="absolute bottom-0 right-4 z-20 my-4 flex-row justify-end">
           <AdvanceButton
-            title="See all"
+            title={t("buttons.see_all", { ns: "common" })}
             onPress={() => {
               router.push("/about/achievements" as Href);
             }}

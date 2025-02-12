@@ -1,9 +1,12 @@
-import { Image } from "expo-image";
-import { Text, View } from "react-native";
-import { logoImages } from "@/assets/images/global/logo/logo";
-import { Colors } from "@/constants/styles/colorTheme";
+import { Image } from 'expo-image';
+import { useTranslation } from 'react-i18next';
+import { Text, View } from 'react-native';
+import { logoImages } from '@/assets/images/global/logo/logo';
+import { Colors } from '@/constants/styles/colorTheme';
 
 const EntryLogListPlaceholder = () => {
+  const { t } = useTranslation("home");
+
   return (
     <View className="mx-4 h-3/4 items-center justify-center">
       <View className="h-full w-full flex-row items-center justify-around">
@@ -31,7 +34,7 @@ const EntryLogListPlaceholder = () => {
             className="px-8 text-left text-xl"
             style={{ color: Colors.lightGray }}
           >
-            No data found
+            {t("activity_log.no_data")}
           </Text>
         </View>
       </View>

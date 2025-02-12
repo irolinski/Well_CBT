@@ -1,19 +1,20 @@
-import { Image } from "expo-image";
-import React, { useEffect, useState } from "react";
-import { ScrollView, View } from "react-native";
-import { logoImages } from "@/assets/images/global/logo/logo";
-import AchievementCard from "@/components/about/AchievementCard";
-import MenuNav from "@/components/global/MenuNav";
-import Text from "@/components/global/Text";
+import { Image } from 'expo-image';
+import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { ScrollView, View } from 'react-native';
+import { logoImages } from '@/assets/images/global/logo/logo';
+import AchievementCard from '@/components/about/AchievementCard';
+import MenuNav from '@/components/global/MenuNav';
+import Text from '@/components/global/Text';
 import {
-  AchievementObj,
-  AchievementProgressObj,
-  allAchievementsModelsArr,
-} from "@/constants/models/about/achievements";
-import { Colors } from "@/constants/styles/colorTheme";
-import { handleGetAchievementProgressData } from "@/db/achievements/controllers";
+    AchievementObj, AchievementProgressObj, allAchievementsModelsArr
+} from '@/constants/models/about/achievements';
+import { Colors } from '@/constants/styles/colorTheme';
+import { handleGetAchievementProgressData } from '@/db/achievements/controllers';
 
 const AchievementsPage = () => {
+  const { t } = useTranslation("about");
+
   const [achievementsDataState, setAchievementsDataState] = useState<
     AchievementObj[] | undefined
   >();
@@ -53,22 +54,28 @@ const AchievementsPage = () => {
         style={{ backgroundColor: Colors.offWhite }}
       >
         {/* Nav */}
-        <MenuNav name="Achievements" />
+        <MenuNav name={t(`achievements.title`)} />
         <View className="mx-5 mt-8">
           <Text
             className="mb-4 mt-2 text-left text-2xl"
             style={{ color: Colors.offBlack }}
           >
-            All achievements
+            {t(`achievements.all_achievements`)}
           </Text>
           <View className="pb-10">
             {achievementsDataState &&
               achievementsDataState.map(
                 (achievement: AchievementObj, indexNum: number) => (
                   <AchievementCard
-                    title={achievement.title}
-                    description_before={achievement.description_before}
-                    description_after={achievement.description_after}
+                    title={t(
+                      `achievements.achievement_data.${achievement.id}.title`,
+                    )}
+                    description_before={t(
+                      `achievements.achievement_data.${achievement.id}.description_before`,
+                    )}
+                    description_after={t(
+                      `achievements.achievement_data.${achievement.id}.description_after`,
+                    )}
                     image={achievement.image}
                     score_current={achievement.score_current}
                     score_required={achievement.score_required}
