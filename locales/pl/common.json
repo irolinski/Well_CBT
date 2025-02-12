@@ -11,13 +11,29 @@
     "return_to_tools": "Idź do Narzędzi",
     "save_to_journal": "Zapisz w dzienniku"
   },
+  "dates": {
+    "months": {
+      "january": { "full": "Styczeń", "short": "Sty." },
+      "february": { "full": "Luty", "short": "Lut." },
+      "march": { "full": "Marzec", "short": "Mar." },
+      "april": { "full": "Kwiecień", "short": "Kwi." },
+      "may": { "full": "Maj", "short": "Maj" },
+      "june": { "full": "Czerwiec", "short": "Cze." },
+      "july": { "full": "Lipiec", "short": "Lip." },
+      "august": { "full": "Sierpień", "short": "Sie." },
+      "september": { "full": "Wrzesień", "short": "Wrz." },
+      "october": { "full": "Październik", "short": "Paź." },
+      "november": { "full": "Listopad", "short": "Lis." },
+      "december": { "full": "Grudzień", "short": "Gru." }
+    }
+  },
+  "nav_elements": {
+    "step_count": "Krok {{current}} <muted>z {{total}}</muted>"
+  },
   "tabbar": {
     "home": "Str. Główna",
     "tools": "Narzędzia",
     "learn": "Wiedza",
     "about_me": "O mnie"
-  },
-  "nav_elements": {
-    "step_count": "Krok {{current}} <muted>z {{total}}</muted>"
   }
 }

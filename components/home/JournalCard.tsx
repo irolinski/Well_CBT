@@ -2,7 +2,7 @@ import { Href, router } from 'expo-router';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { TouchableOpacity, View } from 'react-native';
-import { monthNamesShort } from '@/constants/models/dates';
+import { monthNames, monthNamesShort } from '@/constants/models/dates';
 import { JournalCardProps, ToolCategories, ToolList } from '@/constants/models/home/activity_log';
 import { Colors } from '@/constants/styles/colorTheme';
 import { journalStyleConstants } from '@/constants/styles/values';
@@ -12,14 +12,15 @@ import { Slider } from '@miblanchard/react-native-slider';
 import Text from '../global/Text';
 
 const JournalCard = ({ toolName, link, datetime, value }: JournalCardProps) => {
-  const { t } = useTranslation("tools");
+  const { t, i18n } = useTranslation("tools");
+  const currentLanguage = i18n.language;
 
   let cardTime = datetime.split(" ")[1];
   cardTime = cardTime.slice(0, cardTime.lastIndexOf(":"));
 
   const cardDateTime = {
     day: new Date(datetime).getDate(),
-    month: monthNamesShort[new Date(datetime).getMonth()],
+    month: monthNames[new Date(datetime).getMonth()],
     time: cardTime,
   };
 
@@ -61,17 +62,36 @@ const JournalCard = ({ toolName, link, datetime, value }: JournalCardProps) => {
               <Text className="text-left text-base">
                 {t(`types.${ToolList[toolName].category}`)}
               </Text>
-              <Text
-                className="text-right text-sm"
-                style={{ color: Colors.mainGray }}
-              >
-                {cardDateTime.month +
-                  " " +
-                  cardDateTime.day +
-                  getOrdinalSuffix(cardDateTime.day) +
-                  "  |  " +
-                  cardDateTime.time}
-              </Text>
+              {currentLanguage === "en" && (
+                <Text
+                  className="text-right text-sm"
+                  style={{ color: Colors.mainGray }}
+                >
+                  {t(`dates.months.${cardDateTime.month}.short`, {
+                    ns: "common",
+                  }) +
+                    " " +
+                    cardDateTime.day +
+                    getOrdinalSuffix(cardDateTime.day) +
+                    "  |  " +
+                    cardDateTime.time}
+                </Text>
+              )}
+
+              {currentLanguage === "pl" && (
+                <Text
+                  className="text-right text-sm"
+                  style={{ color: Colors.mainGray }}
+                >
+                  {t(`dates.months.${cardDateTime.month}.short`, {
+                    ns: "common",
+                  }) +
+                    " " +
+                    cardDateTime.day +
+                    "  |  " +
+                    cardDateTime.time}
+                </Text>
+              )}
             </View>
             {/* Lower Row */}
             <View className="flex-row">

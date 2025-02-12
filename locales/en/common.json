@@ -10,13 +10,29 @@
     "return_to_tools": "Return to Tools",
     "save_to_journal": "Save to journal"
   },
+  "dates": {
+    "months": {
+      "january": { "full": "January", "short": "Jan." },
+      "february": { "full": "February", "short": "Feb." },
+      "march": { "full": "March", "short": "Mar." },
+      "april": { "full": "April", "short": "Apr." },
+      "may": { "full": "May", "short": "May" },
+      "june": { "full": "June", "short": "June" },
+      "july": { "full": "July", "short": "July" },
+      "august": { "full": "August", "short": "Aug." },
+      "september": { "full": "September", "short": "Sept." },
+      "october": { "full": "October", "short": "Oct." },
+      "november": { "full": "November", "short": "Nov." },
+      "december": { "full": "December", "short": "Dec." }
+    }
+  },
+  "nav_elements": {
+    "step_count": "Step {{current}} <muted>of {{total}}</muted>"
+  },
   "tabbar": {
     "home": "Home",
     "tools": "Tools",
     "learn": "Learn",
     "about_me": "About Me"
-  },
-  "nav_elements": {
-    "step_count": "Step {{current}} <muted>of {{total}}</muted>"
   }
 }

@@ -1,36 +1,31 @@
-import React, { useEffect } from "react";
-import { useTranslation } from "react-i18next";
-import { Dimensions, SectionList, View } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
-import DividerLine from "@/components/DividerLine";
-import MenuNav from "@/components/global/MenuNav";
-import EntryLogDisplayInfo from "@/components/home/EntryLogDisplayInfo";
-import EntryLogListPlaceholder from "@/components/home/EntryLogListPlaceholder";
-import FiltersButton from "@/components/home/FiltersButton";
-import JournalCard from "@/components/home/JournalCard";
-import NewActivityModal from "@/components/home/NewActivityModal";
-import NotificationButton from "@/components/home/NotificationsButton";
-import NotificationsModal from "@/components/home/NotificationsModal";
-import PlusButton from "@/components/home/PlusButton";
-import LoadingIndicator from "@/components/LoadingIndicator";
-import ToolHeader from "@/components/tools/ToolHeader";
+import React, { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Dimensions, SectionList, View } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import DividerLine from '@/components/DividerLine';
+import MenuNav from '@/components/global/MenuNav';
+import EntryLogDisplayInfo from '@/components/home/EntryLogDisplayInfo';
+import EntryLogListPlaceholder from '@/components/home/EntryLogListPlaceholder';
+import FiltersButton from '@/components/home/FiltersButton';
+import JournalCard from '@/components/home/JournalCard';
+import NewActivityModal from '@/components/home/NewActivityModal';
+import NotificationButton from '@/components/home/NotificationsButton';
+import NotificationsModal from '@/components/home/NotificationsModal';
+import PlusButton from '@/components/home/PlusButton';
+import LoadingIndicator from '@/components/LoadingIndicator';
+import ToolHeader from '@/components/tools/ToolHeader';
+import { EntryListSection, EntryViewTableRow } from '@/constants/models/home/activity_log';
+import { Colors } from '@/constants/styles/colorTheme';
+import { fetchEntryData } from '@/db/activity_log';
 import {
-  EntryListSection,
-  EntryViewTableRow,
-} from "@/constants/models/home/activity_log";
-import { Colors } from "@/constants/styles/colorTheme";
-import { fetchEntryData } from "@/db/activity_log";
-import {
-  activityLogResetState,
-  setIsLoading,
-  setRawData,
-} from "@/state/features/menus/activityLogSlice";
-import { AppDispatch, RootState } from "@/state/store";
-import useActivityLogActions from "./hooks";
-import ActivityLogModal from "./modal";
+    activityLogResetState, setIsLoading, setRawData
+} from '@/state/features/menus/activityLogSlice';
+import { AppDispatch, RootState } from '@/state/store';
+import useActivityLogActions from './hooks';
+import ActivityLogModal from './modal';
 
 const ActivityLog = () => {
-  const { t } = useTranslation("home");
+  const { t } = useTranslation(["home", "common"]);
 
   const windowHeight = Dimensions.get("window").height;
   const windowWidth = Dimensions.get("window").width;
@@ -120,7 +115,11 @@ const ActivityLog = () => {
                     style={{ backgroundColor: Colors.offWhite }}
                   >
                     <ToolHeader style={{ marginBottom: 16, fontSize: 18 }}>
-                      {title}
+                      {t(`dates.months.${title.split(" ")[0]}.full`, {
+                        ns: "common",
+                      }) +
+                        " " +
+                        title.split(" ")[1]}
                     </ToolHeader>
                   </View>
                 )}
