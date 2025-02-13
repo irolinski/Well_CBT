@@ -33,7 +33,7 @@ const RelatedArticleCard = ({
           <View className="py-5">
             <View className="pb-3">
               <Text className="wrap h-12 w-full overflow-hidden text-base">
-                {title}{" "}
+                {title}
               </Text>
             </View>
             <View className="flex-row items-end justify-between">

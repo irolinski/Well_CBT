@@ -61,6 +61,7 @@ const CategoryPage = () => {
                       subtitle={el.subtitle}
                       time={el.time}
                       link={`./${categoryTitle}/${el.id}`}
+                      id={el.id}
                       image={el.bgImage.image}
                       imagePlacement={el.bgImage.cardPlacementY}
                       frameColor={categoryData.color}

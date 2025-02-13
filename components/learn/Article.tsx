@@ -1,16 +1,15 @@
 import { Image } from "expo-image";
 import React, { useRef } from "react";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 import { Animated, Dimensions, ScrollView, View } from "react-native";
 import { logoImages } from "@/assets/images/global/logo/logo";
 import DividerLine from "@/components/DividerLine";
 import Text from "@/components/global/Text";
 import ArticleImage from "@/components/learn/ArticleCustomImage";
-import ArticleParagraph from "@/components/learn/ArticleParagraph";
 import ArticleTextHeader from "@/components/learn/ArticleTextHeader";
 import RelatedArticleCard from "@/components/learn/RelatedArticleCard";
 import { learnArticles } from "@/constants/models/learn/articles";
-import { articleParagraph, ArticleTypes } from "@/constants/models/learn/learn";
+import { ArticleTypes } from "@/constants/models/learn/learn";
 import { Colors } from "@/constants/styles/colorTheme";
 import ArticleImageScrollableHeader from "./ArticleImageScrollableHeader";
 
@@ -26,12 +25,9 @@ const getRelatedArticles = (idArr: number[] | undefined) => {
 };
 
 const ArticlePage = ({
-  title,
-  subtitle,
   category,
   time,
   bgImage,
-  articleBody,
   customImage,
   relatedArticleIds,
   id,
@@ -72,17 +68,24 @@ const ArticlePage = ({
         >
           {/* Article Header */}
           <ArticleTextHeader
-            title={title}
-            subtitle={subtitle}
+            title={t(`article_data.${id}.title`)}
+            subtitle={t(`article_data.${id}.subtitle`)}
             time={time}
             category={t(`categories.${category}.title`)}
           />
           {/* Article Body */}
           <View className="mt-10">
-            {/* Single paragraph w/ header */}
-            {articleBody.map((p: articleParagraph, index: number) => (
-              <ArticleParagraph header={p.header} body={p.body} key={index} />
-            ))}
+            <Trans
+              i18nKey={t(`article_data.${id}.body`)}
+              ns="learn"
+              components={{
+                paragraph: <View className="mt-3" />,
+                header: <Text className="w-3/4 text-lg font-semibold" />,
+                body: <Text className="m-3 text-base leading-6" />,
+                bold: <Text style={{ fontWeight: 600 }} />,
+              }}
+            />
+
             {/* optional image */}
             {customImage && (
               <ArticleImage
@@ -121,6 +124,7 @@ const ArticlePage = ({
                           time={article.time}
                           image={article.bgImage.image}
                           link={`/learn/categories/${article.category}/${article.id}`}
+                          id={article.id}
                           key={indexNum}
                         />
                       ),

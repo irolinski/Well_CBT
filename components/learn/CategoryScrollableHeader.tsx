@@ -40,7 +40,10 @@ const CategoryScrollableHeader = ({
         className={`absolute top-2 z-30 flex-row`} //idk why top-2 works here but it does
         style={{ opacity: hideNav }}
       >
-        <MenuNav name={t("index.title")} backgroundColor="transparent" />
+        <MenuNav
+          name={t(`categories.${title}.title`)}
+          backgroundColor="transparent"
+        />
       </Animated.View>
       <Animated.View
         style={{

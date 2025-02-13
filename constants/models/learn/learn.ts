@@ -14,11 +14,10 @@ type articleBgImage = {
 
 export type ArticleTypes = {
   title: string;
-  subtitle: string;
+  subtitle?: string;
   category: string;
   time?: number;
   bgImage: articleBgImage;
-  articleBody: articleBody;
   customImage?: articleCustomImage;
   relatedArticleIds?: number[];
   id: number;
@@ -30,6 +29,7 @@ export type learnRelatedArticleCardTypes = {
   image: Image;
   imagePlacement?: number;
   link: string;
+  id: number;
 };
 
 export type learnArticleCardTypes = learnRelatedArticleCardTypes & {

@@ -18,6 +18,7 @@ const LearnArticleCard = ({
   subtitle,
   time,
   link,
+  id,
   image,
   imagePlacement,
   frameColor,
@@ -53,16 +54,15 @@ const LearnArticleCard = ({
               className="text-lg"
               style={{ color: Colors.white, fontWeight: 500 }}
             >
-              {title}
+              {t(`article_data.${id}.title`)}
             </Text>
-            {subtitle && (
-              <Text
-                className="my-1.5 text-base italic"
-                style={{ color: Colors.white }}
-              >
-                {subtitle}
-              </Text>
-            )}
+
+            <Text
+              className="my-1.5 text-base italic"
+              style={{ color: Colors.white }}
+            >
+              {t(`article_data.${id}.subtitle`)}
+            </Text>
           </View>
           <View
             className="mt-0.5 w-full flex-row justify-between"
