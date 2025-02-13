@@ -5,7 +5,7 @@ export const learnArticles: ArticleTypes[] = [
     title: "The Art of Mindful Breathing",
     subtitle: "How breathing can make or break our anxieties?",
     time: 5,
-    category: "Psychology",
+    category: "psychology",
     bgImage: {
       image: require(`@/assets/images/learn/articles/bg/bg_1.webp`),
       cardPlacementY: 37,
@@ -64,7 +64,7 @@ export const learnArticles: ArticleTypes[] = [
     title: "The Role of Diet in Mental Health",
     subtitle: "Insights from the Gut-Brain Axis",
     time: 6,
-    category: "Science",
+    category: "science",
     bgImage: {
       image: require(`@/assets/images/learn/articles/bg/bg_3.webp`),
       cardPlacementY: 19,
@@ -94,7 +94,7 @@ export const learnArticles: ArticleTypes[] = [
     title: "Social Media vs. Mental Health",
     subtitle: "A Look at the Latest Evidence",
     time: 7,
-    category: "Science",
+    category: "science",
     bgImage: {
       image: require(`@/assets/images/learn/articles/bg/bg_4.webp`),
       cardPlacementY: 40,
@@ -128,7 +128,7 @@ export const learnArticles: ArticleTypes[] = [
     title: "How to get a Good Night's Sleep",
     subtitle: "7 science-backed rituals",
     time: 5,
-    category: "Lifestyle",
+    category: "lifestyle",
     bgImage: {
       image: require(`@/assets/images/learn/articles/bg/bg_5.webp`),
       cardPlacementY: 47,
@@ -170,7 +170,7 @@ export const learnArticles: ArticleTypes[] = [
     title: "Relax with the Classics",
     subtitle: "10 Classical Music Pieces to Unwind and Relax To",
     time: 3,
-    category: "Lifestyle",
+    category: "lifestyle",
     bgImage: {
       image: require(`@/assets/images/learn/articles/bg/bg_6.webp`),
       cardPlacementY: 0,
@@ -224,7 +224,7 @@ export const learnArticles: ArticleTypes[] = [
     title: "CBT Outside the Therapist's Office",
     subtitle: "Exploring the Efficacy of Self-Help CBT Interventions",
     time: 6,
-    category: "Science",
+    category: "science",
     bgImage: {
       image: require(`@/assets/images/learn/articles/bg/bg_7.webp`),
       cardPlacementY: 35,

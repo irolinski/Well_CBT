@@ -1,0 +1,29 @@
+{
+  "index": {
+    "title": "Nauka",
+    "todays_pick": "Dzisiejszy wybór",
+    "categories": "Kategorie",
+    "go_to_article": "Przejdź do artykułu"
+  },
+  "articles": {
+    "title": "Artykuły",
+    "category": "Kategoria"
+  },
+  "article_card": { "num_minute_read": "Czas: {{num}} min" },
+  "article_page": {
+    "related_articles": "Powiązane artykuły",
+    "num_minute_read": "{{num}} min czytania"
+  },
+  "categories": {
+    "science": {
+      "title": "Nauka",
+      "description": "„Cała nauka jest niczym innym jak udoskonaleniem codziennego myślenia.” \n \n - Albert Einstein"
+    },
+    "lifestyle": {
+      "title": "Styl życia",
+      "description": "„Jesteśmy tym, co wciąż powtarzamy. Doskonałość więc nie jest aktem, lecz nawykiem.”\n\n – Arystoteles"
+    },
+    "tutorials": { "title": "Samouczki", "description": "" },
+    "psychology": { "title": "Psychologia", "description": "" }
+  }
+}

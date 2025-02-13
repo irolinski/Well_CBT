@@ -1,5 +1,6 @@
 import { Image } from "expo-image";
 import React, { useRef } from "react";
+import { useTranslation } from "react-i18next";
 import { Animated, Dimensions, ScrollView, View } from "react-native";
 import { logoImages } from "@/assets/images/global/logo/logo";
 import DividerLine from "@/components/DividerLine";
@@ -16,7 +17,7 @@ import ArticleImageScrollableHeader from "./ArticleImageScrollableHeader";
 const getRelatedArticles = (idArr: number[] | undefined) => {
   let relatedArticlesArr: ArticleTypes[] = [];
   if (idArr) {
-    idArr.map((id: number) => {
+    idArr.forEach((id: number) => {
       let relatedArticle = learnArticles.find((a) => a.id === id);
       relatedArticle && relatedArticlesArr.push(relatedArticle);
     });
@@ -35,6 +36,8 @@ const ArticlePage = ({
   relatedArticleIds,
   id,
 }: ArticleTypes) => {
+  const { t } = useTranslation(["learn", "common"]);
+
   const windowHeight = Dimensions.get("window").height;
   const windowWidth = Dimensions.get("window").width;
   const headerHeight = windowHeight * 0.4;
@@ -72,7 +75,7 @@ const ArticlePage = ({
             title={title}
             subtitle={subtitle}
             time={time}
-            category={category}
+            category={t(`categories.${category}.title`)}
           />
           {/* Article Body */}
           <View className="mt-10">
@@ -105,7 +108,9 @@ const ArticlePage = ({
             {relatedArticles.length > 0 && (
               <React.Fragment>
                 <View>
-                  <Text className="pb-2 text-xl">Related Articles</Text>
+                  <Text className="pb-2 text-xl">
+                    {t(`article_page.related_articles`)}
+                  </Text>
                 </View>
                 <View className="my-4 items-center">
                   {relatedArticles.length > 0 &&

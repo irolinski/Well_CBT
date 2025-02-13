@@ -1,6 +1,7 @@
 import { Image } from "expo-image";
 import { Href, router } from "expo-router";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import {
   Dimensions,
   Pressable,
@@ -22,6 +23,8 @@ const LearnArticleCard = ({
   frameColor,
   textColor,
 }: learnArticleCardTypes) => {
+  const { t } = useTranslation("learn");
+
   const windowWidth = Dimensions.get("window").width;
 
   return (
@@ -71,7 +74,7 @@ const LearnArticleCard = ({
                   className="text-base"
                   style={{ color: textColor ?? Colors.white, opacity: 0.75 }}
                 >
-                  {time} min read
+                  {t(`article_card.num_minute_read`, { num: time })}
                 </Text>
               )}
             </View>
@@ -92,7 +95,7 @@ const LearnArticleCard = ({
                   className="mx-1 text-sm"
                   style={{ color: Colors.blackPearl }}
                 >
-                  Go to article
+                  {t("index.go_to_article")}
                 </Text>
                 <View className="mx-1">
                   <Feather

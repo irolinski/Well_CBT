@@ -1,5 +1,6 @@
 import { Image } from "expo-image";
 import { Href, router } from "expo-router";
+import { useTranslation } from "react-i18next";
 import { Pressable, View } from "react-native";
 import Text from "@/components/global/Text";
 import { learnArticleCardTypes } from "@/constants/models/learn/learn";
@@ -12,6 +13,8 @@ const RelatedArticleCard = ({
   image,
   link,
 }: learnArticleCardTypes) => {
+  const { t } = useTranslation("learn");
+
   return (
     <Pressable
       className="my-2 rounded-2xl border px-4"
@@ -38,7 +41,7 @@ const RelatedArticleCard = ({
                 className="mb-2 text-sm"
                 style={{ color: Colors.blackPearl }}
               >
-                {time} min read
+                {t(`article_card.num_minute_read`, { num: time })}
               </Text>
               <View
                 className="items-center justify-center rounded-xl"

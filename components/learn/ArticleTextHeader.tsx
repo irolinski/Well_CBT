@@ -1,5 +1,6 @@
-import Text from "@/components/global/Text";
+import { useTranslation } from "react-i18next";
 import { View } from "react-native";
+import Text from "@/components/global/Text";
 import DividerLine from "../DividerLine";
 
 type ArticleTextHeaderTypes = {
@@ -15,11 +16,15 @@ const ArticleTextHeader = ({
   time,
   category,
 }: ArticleTextHeaderTypes) => {
+  const { t } = useTranslation("learn");
+
   return (
     <View>
       <View className="mt-3.5 flex-row justify-between">
         <Text className="text-center text-base">{category}</Text>
-        <Text className="italic opacity-80">{time} min read</Text>
+        <Text className="italic opacity-80">
+          {t(`article_page.num_minute_read`, { num: time })}
+        </Text>
       </View>
       <View className="mt-7 flex-row justify-center">
         <Text

@@ -1,6 +1,7 @@
 import { Image } from "expo-image";
 import { useLocalSearchParams } from "expo-router";
 import React, { useRef } from "react";
+import { useTranslation } from "react-i18next";
 import { Animated, Dimensions, ScrollView, View } from "react-native";
 import { logoImages } from "@/assets/images/global/logo/logo";
 import LearnArticleCard from "@/components/learn/ArticleCard";
@@ -12,6 +13,8 @@ import Text from "../global/Text";
 import CategoryScrollableHeader from "./CategoryScrollableHeader";
 
 const CategoryPage = () => {
+  const { t } = useTranslation(["learn", "common"]);
+
   const windowHeight = Dimensions.get("window").height;
   const headerHeight = windowHeight * 0.5;
   const scrollOffsetY = useRef(new Animated.Value(0)).current;
@@ -46,7 +49,7 @@ const CategoryPage = () => {
           onScroll={handleScroll}
         >
           <View className="ml-8 mt-4">
-            <Text className="text-2xl">Articles</Text>
+            <Text className="text-2xl">{t("articles.title")}</Text>
           </View>
           <View className="mx-4 mb-4">
             <View style={{ backgroundColor: Colors.offWhite }}>
@@ -66,7 +69,11 @@ const CategoryPage = () => {
                 ))}
                 <View className="my-5 w-full flex-row justify-end px-6">
                   <Text>
-                    Showing {articles.length} of {articles.length}
+                    {t("lists_and_tables.showing_current_of_total", {
+                      ns: "common",
+                      current: articles.length,
+                      total: articles.length,
+                    })}
                   </Text>
                 </View>
               </View>

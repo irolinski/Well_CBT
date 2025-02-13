@@ -1,0 +1,29 @@
+{
+  "index": {
+    "title": "Learn",
+    "todays_pick": "Today's pick",
+    "categories": "Categories",
+    "go_to_article": "Go to article"
+  },
+  "articles": {
+    "title": "Articles",
+    "category": "Category"
+  },
+  "article_card": { "num_minute_read": "{{num}} min read" },
+  "article_page": {
+    "related_articles": "Related Articles",
+    "num_minute_read": "{{num}} min read"
+  },
+  "categories": {
+    "science": {
+      "title": "Science",
+      "description": "“All of science is nothing more than the refinement of everyday thinking.” \n \n - Albert Einstein"
+    },
+    "lifestyle": {
+      "title": "Lifestyle",
+      "description": "We are what we repeatedly do. Excellence, then, is not an act, but a habit.\n\n – Aristotle"
+    },
+    "tutorials": { "title": "Tutorials", "description": "" },
+    "psychology": { "title": "Psychology", "description": "" }
+  }
+}
