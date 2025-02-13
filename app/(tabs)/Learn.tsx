@@ -1,16 +1,13 @@
-import React from "react";
-import { useTranslation } from "react-i18next";
-import { View } from "react-native";
-import Text from "@/components/global/Text";
-import FrameMenu from "@/components/home/FrameMenu";
-import LearnArticleCard from "@/components/learn/ArticleCard";
-import LearnCategoryCard from "@/components/learn/LearnCategoryCard";
-import { learnArticles } from "@/constants/models/learn/articles";
-import {
-  learnCategories,
-  learnCategoriesTypes,
-} from "@/constants/models/learn/categories";
-import { Colors } from "@/constants/styles/colorTheme";
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { View } from 'react-native';
+import Text from '@/components/global/Text';
+import FrameMenu from '@/components/home/FrameMenu';
+import LearnArticleCard from '@/components/learn/ArticleCard';
+import LearnCategoryCard from '@/components/learn/LearnCategoryCard';
+import { learnArticles } from '@/constants/models/learn/articles';
+import { learnCategories, learnCategoriesTypes } from '@/constants/models/learn/categories';
+import { Colors } from '@/constants/styles/colorTheme';
 
 const Learn = () => {
   const { t } = useTranslation("learn");
@@ -30,6 +27,7 @@ const Learn = () => {
               subtitle={learnArticles[articleNumber].subtitle}
               time={learnArticles[articleNumber].time}
               link={`/learn/categories/${learnArticles[articleNumber].category}/${learnArticles[articleNumber].id}`}
+              id={learnArticles[articleNumber].id}
               image={learnArticles[articleNumber].bgImage.image}
               imagePlacement={
                 learnArticles[articleNumber].bgImage.cardPlacementY
