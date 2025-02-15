@@ -1,20 +1,24 @@
-import { Href, router } from 'expo-router';
-import React, { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { Dimensions, Pressable, TouchableOpacity, View } from 'react-native';
-import { Directions, Gesture, GestureDetector } from 'react-native-gesture-handler';
+import { Href, router } from "expo-router";
+import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { Dimensions, Pressable, TouchableOpacity, View } from "react-native";
 import {
-    recentAchievementsPlaceholderImage
-} from '@/assets/images/about/achievements/achievements';
+  Directions,
+  Gesture,
+  GestureDetector,
+} from "react-native-gesture-handler";
+import { recentAchievementsPlaceholderImage } from "@/assets/images/about/achievements/achievements";
 import {
-    AchievementObj, AchievementProgressObj, allAchievementsModelsArr
-} from '@/constants/models/about/achievements';
-import { Colors } from '@/constants/styles/colorTheme';
-import { handleGetAchievementProgressData } from '@/db/achievements/controllers';
-import { Feather } from '@expo/vector-icons';
-import AdvanceButton from '../AdvanceButton';
-import CarouselBadge from './CarouselBadge';
-import CarouselDetails from './CarouselDetails';
+  AchievementObj,
+  AchievementProgressObj,
+  allAchievementsModelsArr,
+} from "@/constants/models/about/achievements";
+import { Colors } from "@/constants/styles/colorTheme";
+import { handleGetAchievementProgressData } from "@/db/achievements/controllers";
+import { Feather } from "@expo/vector-icons";
+import AdvanceButton from "../AdvanceButton";
+import CarouselBadge from "./CarouselBadge";
+import CarouselDetails from "./CarouselDetails";
 
 const RecentAchievements = () => {
   const { t } = useTranslation(["about", "common"]);
@@ -107,7 +111,8 @@ const RecentAchievements = () => {
         className="overflow-hidden rounded-xl"
         style={{
           backgroundColor: Colors.whiteSmoke,
-          height: windowHeight > 750 ? windowHeight * 0.57 : windowHeight * 0.6,
+          height:
+            windowHeight > 750 ? windowHeight * 0.57 : windowHeight * 0.67,
         }}
       >
         {/* Top Section */}
