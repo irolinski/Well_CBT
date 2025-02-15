@@ -1,23 +1,28 @@
-import { Href, router } from 'expo-router';
-import React from 'react';
-import { Trans, useTranslation } from 'react-i18next';
-import { ImageBackground, Text, View } from 'react-native';
-import { toolBackgrounds } from '@/assets/images/tools/backgrounds/backgrounds';
-import AdvanceButton from '@/components/AdvanceButton';
-import BackButton from '@/components/BackButton';
-import { breathing_tool } from '@/constants/models/tools/tools';
-import { Colors } from '@/constants/styles/colorTheme';
+import { Href, router } from "expo-router";
+import React from "react";
+import { Trans, useTranslation } from "react-i18next";
+import { Dimensions, ImageBackground, Text, View } from "react-native";
+import { toolBackgrounds } from "@/assets/images/tools/backgrounds/backgrounds";
+import AdvanceButton from "@/components/AdvanceButton";
+import BackButton from "@/components/BackButton";
+import { breathing_tool } from "@/constants/models/tools/tools";
+import { Colors } from "@/constants/styles/colorTheme";
 
 const TOOL_NAME = breathing_tool.name;
 
 const BreathingIndexPage = () => {
+  const windowHeight = Dimensions.get("window").height;
+
   const { t } = useTranslation(["tools", "common"]);
 
   return (
     <React.Fragment>
       <ImageBackground source={toolBackgrounds.breathing}>
-        <View className="absolute left-6 top-12 z-10">
-          <BackButton />
+        <View
+          className="absolute left-6 z-10"
+          style={{ top: windowHeight * 0.075 }}
+        >
+          <BackButton color={Colors.whiteSmoke} />
         </View>
         <View className="h-full justify-center px-6">
           <View className="items-center justify-center">

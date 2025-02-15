@@ -1,7 +1,7 @@
 import { Href, router } from "expo-router";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { ImageBackground, Text, View } from "react-native";
+import { Dimensions, ImageBackground, Text, View } from "react-native";
 import { toolBackgrounds } from "@/assets/images/tools/backgrounds/backgrounds";
 import AdvanceButton from "@/components/AdvanceButton";
 import BackButton from "@/components/BackButton";
@@ -12,12 +12,16 @@ const TOOL_NAME = journal_tool.name;
 
 const Journal_Index = () => {
   const { t } = useTranslation(["tools", "common"]);
+  const windowHeight = Dimensions.get("window").height;
 
   return (
     <React.Fragment>
       <ImageBackground source={toolBackgrounds.mood_journal}>
-        <View className="absolute left-6 top-12 z-10">
-          <BackButton />
+        <View
+          className="absolute left-6 z-10"
+          style={{ top: windowHeight * 0.075 }}
+        >
+          <BackButton color={Colors.whiteSmoke} />
         </View>
         <View className="h-full justify-center px-6">
           <View className="items-center justify-center">
