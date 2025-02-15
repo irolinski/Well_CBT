@@ -79,11 +79,22 @@ const Home = () => {
                   ),
                 )
               ) : (
-                <Image
-                  style={{ height: 215, width: "100%" }}
-                  contentFit="contain"
-                  source={require("@/assets/images/home/recent_activity_placeholder.webp")}
-                />
+                <View
+                  className="justify-around overflow-hidden rounded-xl border"
+                  style={{ borderColor: Colors.lightGray }}
+                >
+                  <Image
+                    className="top-0"
+                    style={{ height: 140, width: "100%" }}
+                    source={require("@/assets/images/home/recent_activity_placeholder_image.webp")}
+                  />
+                  <Text
+                    className="mx-8 mb-8 mt-4 text-center text-base"
+                    style={{ color: Colors.darkGray }}
+                  >
+                    {t("index.recent_activity_placeholder")}
+                  </Text>
+                </View>
               )}
               <View className="mt-5 flex-row justify-end">
                 <AdvanceButton

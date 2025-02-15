@@ -2,7 +2,8 @@
   "index": {
     "title": "Home",
     "quote_of_the_day": "Quote of the day",
-    "recent_activity": "Your recent activity:"
+    "recent_activity": "Your recent activity:",
+    "recent_activity_placeholder": "As you complete your first entries on Well, they will appearhere."
   },
   "activity_log": {
     "title": "Entry Log",
