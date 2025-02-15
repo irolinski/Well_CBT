@@ -1,21 +1,25 @@
-import { useLocalSearchParams } from 'expo-router';
-import { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { Dimensions, Image, ScrollView, View } from 'react-native';
-import { logoImages } from '@/assets/images/global/logo/logo';
-import DistortionPill from '@/components/DistortionPill';
-import ErrorScreen from '@/components/ErrorScreen';
-import Text from '@/components/global/Text';
-import ActivityShowNav from '@/components/home/ActivityShowNav';
-import CDATextBox from '@/components/tools/cda/CDATextBox';
-import ToolHeader from '@/components/tools/ToolHeader';
-import { cdaEntryType } from '@/constants/models/tools/cda';
-import { cda_tool } from '@/constants/models/tools/tools';
-import { Colors } from '@/constants/styles/colorTheme';
-import { fetchCDAEntry } from '@/db/activity_log';
-import { deleteCDAEntry } from '@/db/tools';
-import { convertIsoToEuropeanDate, formatDateStringForWrapping } from '@/utils/dates';
-import { handleDeleteEntry } from '@/utils/deleteEntry';
+import { useLocalSearchParams } from "expo-router";
+import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { Dimensions, Image, ScrollView, View } from "react-native";
+import { logoImages } from "@/assets/images/global/logo/logo";
+import DistortionPill from "@/components/DistortionPill";
+import ErrorScreen from "@/components/ErrorScreen";
+import Text from "@/components/global/Text";
+import ActivityShowNav from "@/components/home/ActivityShowNav";
+import ShowPageHeaderDate from "@/components/home/ShowPageHeaderDate";
+import CDATextBox from "@/components/tools/cda/CDATextBox";
+import ToolHeader from "@/components/tools/ToolHeader";
+import { cdaEntryType } from "@/constants/models/tools/cda";
+import { cda_tool } from "@/constants/models/tools/tools";
+import { Colors } from "@/constants/styles/colorTheme";
+import { fetchCDAEntry } from "@/db/activity_log";
+import { deleteCDAEntry } from "@/db/tools";
+import {
+  convertIsoToEuropeanDate,
+  formatDateStringForWrapping,
+} from "@/utils/dates";
+import { handleDeleteEntry } from "@/utils/deleteEntry";
 
 const TOOL_NAME = cda_tool.name;
 
@@ -39,10 +43,13 @@ const ActivityShowPage = () => {
     }
   }, []);
 
+  let date = "";
+  let time = "";
   if (fetchedEntry) {
-    let date;
     if (fetchedEntry.datetime) {
       date = fetchedEntry.datetime.split(" ")[0];
+      time = fetchedEntry.datetime.split(" ")[1];
+      time = time.slice(0, -3);
       if (currentLanguage === "pl") {
         date = convertIsoToEuropeanDate(date);
       }
@@ -55,25 +62,14 @@ const ActivityShowPage = () => {
           handlePressDelete={() => handleDeleteEntry(deleteCDAEntry, id)}
         />
         <View className={`mx-6 my-10 flex-1 justify-center`}>
-          <View className="mb-12 pb-10" style={{ height: windowHeight * 0.8 }}>
-            <View className="wrap mb-8 w-full flex-row justify-between overflow-hidden">
+          <View className="mb-12 pb-10">
+            <View className="wrap mb-8 w-full justify-between overflow-hidden">
               <ToolHeader> {t(`tools.${TOOL_NAME}.title`)}</ToolHeader>
-
-              <Text
-                className="wrap mt-0.5 overflow-hidden text-lg"
-                style={{
-                  fontFamily: "KodchasanMedium",
-                  color: Colors.mainGray,
-                  flexShrink: 1,
-                }}
-              >
-                {date}
-              </Text>
+              <ShowPageHeaderDate date={date} time={time} />
             </View>
             <View className="mx-4 my-8">
               <View className="mb-4">
                 <Text>
-                  {" "}
                   {t(`tools.${TOOL_NAME}.exercise.summary.situation`)}
                 </Text>
                 <View

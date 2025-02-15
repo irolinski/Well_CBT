@@ -1,24 +1,31 @@
-import { Image } from 'expo-image';
-import { useLocalSearchParams } from 'expo-router';
-import React, { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { ScrollView, View } from 'react-native';
-import { logoImages } from '@/assets/images/global/logo/logo';
-import DistortionPill from '@/components/DistortionPill';
-import ErrorScreen from '@/components/ErrorScreen';
-import Text from '@/components/global/Text';
-import ActivityShowNav from '@/components/home/ActivityShowNav';
-import CDATextBox from '@/components/tools/cda/CDATextBox';
-import ToolHeader from '@/components/tools/ToolHeader';
-import { emotionObjType, JournalEntryMainType } from '@/constants/models/home/activity_log';
-import { emotionList, moodValueTitles } from '@/constants/models/tools/journal';
-import { journal_tool } from '@/constants/models/tools/tools';
-import { Colors } from '@/constants/styles/colorTheme';
-import { fetchJournalEntry } from '@/db/activity_log';
-import { deleteJournalEntry } from '@/db/tools';
-import { convertIsoToEuropeanDate, formatDateStringForWrapping } from '@/utils/dates';
-import { handleDeleteEntry } from '@/utils/deleteEntry';
-import { Slider } from '@miblanchard/react-native-slider';
+import { Image } from "expo-image";
+import { useLocalSearchParams } from "expo-router";
+import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { ScrollView, View } from "react-native";
+import { logoImages } from "@/assets/images/global/logo/logo";
+import DistortionPill from "@/components/DistortionPill";
+import ErrorScreen from "@/components/ErrorScreen";
+import Text from "@/components/global/Text";
+import ActivityShowNav from "@/components/home/ActivityShowNav";
+import ShowPageHeaderDate from "@/components/home/ShowPageHeaderDate";
+import CDATextBox from "@/components/tools/cda/CDATextBox";
+import ToolHeader from "@/components/tools/ToolHeader";
+import {
+  emotionObjType,
+  JournalEntryMainType,
+} from "@/constants/models/home/activity_log";
+import { emotionList, moodValueTitles } from "@/constants/models/tools/journal";
+import { journal_tool } from "@/constants/models/tools/tools";
+import { Colors } from "@/constants/styles/colorTheme";
+import { fetchJournalEntry } from "@/db/activity_log";
+import { deleteJournalEntry } from "@/db/tools";
+import {
+  convertIsoToEuropeanDate,
+  formatDateStringForWrapping,
+} from "@/utils/dates";
+import { handleDeleteEntry } from "@/utils/deleteEntry";
+import { Slider } from "@miblanchard/react-native-slider";
 
 const TOOL_NAME = journal_tool.name;
 
@@ -44,10 +51,14 @@ const ActivityShowPage = () => {
     }
   }, []);
 
-  if (fetchedEntryMain && fetchedEntryEmotions) {
-    let date;
+  let date = "";
+  let time = "";
+
+  if (fetchedEntryMain) {
     if (fetchedEntryMain.datetime) {
       date = fetchedEntryMain.datetime.split(" ")[0];
+      time = fetchedEntryMain.datetime.split(" ")[1];
+      time = time.slice(0, -3);
       if (currentLanguage === "pl") {
         date = convertIsoToEuropeanDate(date);
       }
@@ -61,22 +72,11 @@ const ActivityShowPage = () => {
         />
         <View className={`mx-6 my-10 flex-1 justify-center`}>
           <View className="mb-12 pb-10">
-            <View className="mb-8 flex-row justify-between">
+            <View className="mb-8 justify-between">
               <ToolHeader>
-                {" "}
                 {t(`tools.${TOOL_NAME}.exercise.summary.title`)}
               </ToolHeader>
-              <View className="justify-center">
-                <Text
-                  className="mt-0.5 text-lg"
-                  style={{
-                    fontFamily: "KodchasanMedium",
-                    color: Colors.mainGray,
-                  }}
-                >
-                  {date}
-                </Text>
-              </View>
+              <ShowPageHeaderDate date={date} time={time} />
             </View>
             <View className="my-8">
               {fetchedEntryMain.moodValue && (
@@ -128,51 +128,52 @@ const ActivityShowPage = () => {
                   {t(`tools.${TOOL_NAME}.exercise.summary.emotions`)}
                 </Text>
                 <View className="mx-auto mt-6 w-[95%] flex-row flex-wrap px-4">
-                  {fetchedEntryEmotions.map(
-                    (emotionObj: emotionObjType, index: number) => (
-                      <View
-                        className="w-full flex-row items-center justify-between"
-                        key={index}
-                      >
-                        <DistortionPill
-                          title={t(
-                            `tools.${TOOL_NAME}.emotion_list.${emotionObj.name}`,
-                          )}
-                          customColor={
-                            emotionList.find(
-                              (obj) => obj.name === emotionObj.name,
-                            )?.color || "transparent"
-                          }
-                          checked={true}
+                  {fetchedEntryEmotions &&
+                    fetchedEntryEmotions.map(
+                      (emotionObj: emotionObjType, index: number) => (
+                        <View
+                          className="w-full flex-row items-center justify-between"
                           key={index}
-                        />
-                        <View className="flex-row">
-                          {Array.from({ length: 5 }).map(
-                            (q: unknown, i: number) => {
-                              return (
-                                <View
-                                  className="mx-1 h-4 w-4 rounded-full"
-                                  style={
-                                    i <= emotionObj.strength!
-                                      ? {
-                                          backgroundColor: `${
-                                            emotionList.find(
-                                              (obj) =>
-                                                obj.name === emotionObj.name,
-                                            )?.color || "transparent"
-                                          }`,
-                                        }
-                                      : { backgroundColor: "#FAF9F6" }
-                                  }
-                                  key={i}
-                                ></View>
-                              );
-                            },
-                          )}
+                        >
+                          <DistortionPill
+                            title={t(
+                              `tools.${TOOL_NAME}.emotion_list.${emotionObj.name}`,
+                            )}
+                            customColor={
+                              emotionList.find(
+                                (obj) => obj.name === emotionObj.name,
+                              )?.color || "transparent"
+                            }
+                            checked={true}
+                            key={index}
+                          />
+                          <View className="flex-row">
+                            {Array.from({ length: 5 }).map(
+                              (q: unknown, i: number) => {
+                                return (
+                                  <View
+                                    className="mx-1 h-4 w-4 rounded-full"
+                                    style={
+                                      i <= emotionObj.strength!
+                                        ? {
+                                            backgroundColor: `${
+                                              emotionList.find(
+                                                (obj) =>
+                                                  obj.name === emotionObj.name,
+                                              )?.color || "transparent"
+                                            }`,
+                                          }
+                                        : { backgroundColor: "#FAF9F6" }
+                                    }
+                                    key={i}
+                                  ></View>
+                                );
+                              },
+                            )}
+                          </View>
                         </View>
-                      </View>
-                    ),
-                  )}
+                      ),
+                    )}
                 </View>
               </View>
               <View className="mt-4">
