@@ -1,20 +1,33 @@
-import { Href, router, useFocusEffect } from 'expo-router';
-import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { Alert, Dimensions, Linking, TouchableOpacity, View } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
-import BackButton from '@/components/BackButton';
-import Text from '@/components/global/Text';
-import ContactPic from '@/components/tools/phone/ContactPic';
-import ToolHeader from '@/components/tools/ToolHeader';
-import { phoneAFriend_tool } from '@/constants/models/tools/tools';
-import { Colors } from '@/constants/styles/colorTheme';
-import { getPhoneData } from '@/db/tools';
-import { setShowModal, setSupportContact } from '@/state/features/tools/phoneSlice';
-import { AppDispatch, RootState } from '@/state/store';
-import formatPhoneNumber from '@/utils/formatPhoneNumber';
-import { AntDesign, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
-import ConversationModal from './modal';
+import { Href, router, useFocusEffect } from "expo-router";
+import React from "react";
+import { useTranslation } from "react-i18next";
+import {
+  Alert,
+  Dimensions,
+  Linking,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import BackButton from "@/components/BackButton";
+import Text from "@/components/global/Text";
+import ContactPic from "@/components/tools/phone/ContactPic";
+import ToolHeader from "@/components/tools/ToolHeader";
+import { phoneAFriend_tool } from "@/constants/models/tools/tools";
+import { Colors } from "@/constants/styles/colorTheme";
+import { getPhoneData } from "@/db/tools";
+import {
+  setShowModal,
+  setSupportContact,
+} from "@/state/features/tools/phoneSlice";
+import { AppDispatch, RootState } from "@/state/store";
+import formatPhoneNumber from "@/utils/formatPhoneNumber";
+import {
+  AntDesign,
+  MaterialCommunityIcons,
+  MaterialIcons,
+} from "@expo/vector-icons";
+import ConversationModal from "./modal";
 
 const TOOL_NAME = phoneAFriend_tool.name;
 
@@ -108,7 +121,10 @@ const Phone = () => {
           <View className="mx-4 justify-end" style={{ height: "20%" }}>
             {!phoneState.supportContact ? (
               <View>
-                <Text className="text-center text-2xl font-semibold">
+                <Text
+                  className="text-center text-2xl"
+                  style={{ fontWeight: 500 }}
+                >
                   {t(`tools.${TOOL_NAME}.main.no_contact`)}
                 </Text>
               </View>
