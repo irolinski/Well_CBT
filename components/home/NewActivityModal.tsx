@@ -12,33 +12,35 @@ import { Entypo } from "@expo/vector-icons";
 import NavigationModal from "../NavigationModal";
 import { NavigationModalObj } from "../NavigationModalSelect";
 
-const itemList: NavigationModalObj[][] = [
-  [
-    {
-      name: ToolList.journal.name,
-      icon: ToolList.journal.icon,
-      iconBright: ToolList.journal.iconBright,
-      link: "/tools/classic_cbt/journal",
-    },
-    {
-      name: ToolList.cda.name,
-      icon: ToolList.cda.icon,
-      iconBright: ToolList.cda.iconBright,
-      link: "tools/classic_cbt/cda",
-    },
-  ],
-  [
-    {
-      name: ToolList.breathing.name,
-      icon: ToolList.breathing.icon,
-      iconBright: ToolList.breathing.iconBright,
-      link: "tools/relax/breathing",
-    },
-  ],
-];
-
 const NewActivityModal = () => {
-  const { t } = useTranslation("home");
+  const { t } = useTranslation(["home", "tools"]);
+
+  const itemList: NavigationModalObj[][] = [
+    [
+      {
+        name: t(`tools.${ToolList.journal.name}.title`, { ns: "tools" }),
+        icon: ToolList.journal.icon,
+        iconBright: ToolList.journal.iconBright,
+        link: "/tools/classic_cbt/journal",
+      },
+      {
+        name: t(`tools.${ToolList.cda.name}.title`, { ns: "tools" }),
+
+        icon: ToolList.cda.icon,
+        iconBright: ToolList.cda.iconBright,
+        link: "tools/classic_cbt/cda",
+      },
+    ],
+    [
+      {
+        name: t(`tools.${ToolList.breathing.name}.title`, { ns: "tools" }),
+
+        icon: ToolList.breathing.icon,
+        iconBright: ToolList.breathing.iconBright,
+        link: "tools/relax/breathing",
+      },
+    ],
+  ];
 
   const newActivityModalState = useSelector(
     (state: RootState) => state.newActivityModal,
