@@ -1,14 +1,15 @@
-import { Image } from 'expo-image';
-import { LinearGradient } from 'expo-linear-gradient';
-import { useTranslation } from 'react-i18next';
-import { Dimensions, Pressable, View } from 'react-native';
-import quoteImages from '@/assets/images/home/quote_widget/images';
-import quotesListLocales from '@/assets/text/quotes.json';
-import { achievementHandlersObj } from '@/db/achievements/controllers';
-import { AvailableLanguage } from '@/hooks/i18n';
-import handleShare from '@/utils/handleShare';
-import { Feather } from '@expo/vector-icons';
-import Text from '../global/Text';
+import { Image } from "expo-image";
+import { LinearGradient } from "expo-linear-gradient";
+import { useTranslation } from "react-i18next";
+import { Dimensions, Pressable, View } from "react-native";
+import quoteImages from "@/assets/images/home/quote_widget/images";
+import quotesListLocales from "@/assets/text/quotes.json";
+import { Colors } from "@/constants/styles/colorTheme";
+import { achievementHandlersObj } from "@/db/achievements/controllers";
+import { AvailableLanguage } from "@/hooks/i18n";
+import handleShare from "@/utils/handleShare";
+import { Feather } from "@expo/vector-icons";
+import Text from "../global/Text";
 
 const windowWidth = Dimensions.get("window").width;
 
@@ -32,7 +33,10 @@ const QuoteWidget = () => {
   };
 
   return (
-    <View className="w-full flex-1 rounded-xl border" style={{ height: 240 }}>
+    <View
+      className="w-full flex-1 rounded-xl border"
+      style={{ height: 240, borderColor: Colors.lightGray }}
+    >
       <Image
         source={quoteImages[imageNumber]}
         className="z-0 rounded-xl"

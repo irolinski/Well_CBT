@@ -2,8 +2,8 @@ import { Href, router } from "expo-router";
 import { ReactNode } from "react";
 import { useTranslation } from "react-i18next";
 import { Modal, Pressable, Text, View } from "react-native";
-import { Colors } from "react-native/Libraries/NewAppScreen";
 import { useDispatch } from "react-redux";
+import { Colors } from "@/constants/styles/colorTheme";
 import { AppDispatch } from "@/state/store";
 import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 import { UnknownAction } from "@reduxjs/toolkit";
@@ -59,7 +59,6 @@ const NavigationModal = ({
           className="rounded-xl border bg-white px-8 pt-4"
           style={{
             width: 320,
-            // height: 425,
             borderColor: Colors.mainGray,
           }}
         >
