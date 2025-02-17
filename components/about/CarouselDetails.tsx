@@ -1,7 +1,8 @@
-import React from "react";
-import { Dimensions, View } from "react-native";
-import { Colors } from "@/constants/styles/colorTheme";
-import Text from "../global/Text";
+import React from 'react';
+import { View } from 'react-native';
+import { Colors } from '@/constants/styles/colorTheme';
+import { SCREEN_HEIGHT } from '@/constants/styles/values';
+import Text from '../global/Text';
 
 const CarouselDetails = ({
   title,
@@ -14,14 +15,13 @@ const CarouselDetails = ({
   index: number;
   selectedIndex: number;
 }) => {
-  const windowHeight = Dimensions.get("window").height;
   const distanceFromSelectedIndex = index - selectedIndex;
 
   if (distanceFromSelectedIndex === 0) {
     return (
       <View
         className="absolute z-20 w-full items-center justify-center"
-        style={{ top: 0.09 * windowHeight, height: 0.2 * windowHeight }}
+        style={{ top: 0.09 * SCREEN_HEIGHT, height: 0.2 * SCREEN_HEIGHT }}
       >
         <View className="absolute top-0">
           <Text
@@ -40,7 +40,7 @@ const CarouselDetails = ({
             className="w-80 px-10 text-center"
             style={{
               color: Colors.white,
-              fontSize: windowHeight > 750 ? 16 : 14,
+              fontSize: SCREEN_HEIGHT > 750 ? 16 : 14,
             }}
           >
             {description}

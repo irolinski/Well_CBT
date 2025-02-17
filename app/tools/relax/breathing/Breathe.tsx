@@ -3,12 +3,13 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { router } from 'expo-router';
 import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Animated, Dimensions, Easing, Pressable, View } from 'react-native';
+import { Animated, Easing, Pressable, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import AdvanceButton from '@/components/AdvanceButton';
 import Text from '@/components/global/Text';
 import { breathing_tool } from '@/constants/models/tools/tools';
 import { Colors } from '@/constants/styles/colorTheme';
+import { SCREEN_HEIGHT, SCREEN_WIDTH } from '@/constants/styles/values';
 import { handleLogRelaxActivity } from '@/db/tools';
 import { toggleModal } from '@/state/features/tools/breatheSettingsSlice';
 import { AppDispatch, RootState } from '@/state/store';
@@ -26,9 +27,8 @@ const Breathe = () => {
   );
 
   //UI STATE
-  const windowWidth = Dimensions.get("window").width;
-  const windowHeight = Dimensions.get("window").height;
-  const outerCircleSize = windowWidth / 1.25;
+
+  const outerCircleSize = SCREEN_WIDTH / 1.25;
 
   // COUNTDOWN STATE
   const [countdownVal, setCountdownVal] = useState(3);
@@ -135,7 +135,7 @@ const Breathe = () => {
   };
 
   // progress bar
-  const barLength = windowWidth * 0.85;
+  const barLength = SCREEN_WIDTH * 0.85;
   const progressBarAnim = useRef(new Animated.Value(-barLength)).current;
 
   const stepsToDo = breatheSettings.mode.doubleHold
@@ -339,11 +339,11 @@ const Breathe = () => {
       ></LinearGradient>
       <View
         className="m-2 flex-1 items-center justify-center"
-        style={{ height: windowHeight }}
+        style={{ height: SCREEN_HEIGHT }}
       >
         <View
-          className={`absolute flex-row justify-between px-8 ${windowHeight > 850 ? "top-20" : "top-12"}`}
-          style={{ width: windowWidth, backgroundColor: "transparent" }}
+          className={`absolute flex-row justify-between px-8 ${SCREEN_HEIGHT > 850 ? "top-20" : "top-12"}`}
+          style={{ width: SCREEN_WIDTH, backgroundColor: "transparent" }}
         >
           <Pressable onPress={() => router.back()} className="">
             <View>
@@ -367,9 +367,9 @@ const Breathe = () => {
         <View
           className="relative"
           style={{
-            width: windowWidth,
-            height: windowHeight / 2,
-            bottom: windowHeight * 0.05,
+            width: SCREEN_WIDTH,
+            height: SCREEN_HEIGHT / 2,
+            bottom: SCREEN_HEIGHT * 0.05,
           }}
         >
           {/* Reps counter - for development purposes only */}
@@ -381,7 +381,7 @@ const Breathe = () => {
           {showHold && (
             <Text
               className="absolute -translate-y-8 text-center text-4xl"
-              style={{ width: windowWidth }}
+              style={{ width: SCREEN_WIDTH }}
             >
               {counterVal}
             </Text>
@@ -390,7 +390,7 @@ const Breathe = () => {
             className="absolute justify-center overflow-hidden border"
             style={{
               alignSelf: "center",
-              top: 0.04 * windowHeight,
+              top: 0.04 * SCREEN_HEIGHT,
               width: outerCircleSize,
               height: outerCircleSize,
               borderRadius: outerCircleSize,
@@ -411,7 +411,7 @@ const Breathe = () => {
               height: outerCircleSize,
               borderColor: "black",
               backgroundColor: "transparent",
-              top: 0.04 * windowHeight,
+              top: 0.04 * SCREEN_HEIGHT,
             }}
           >
             <Animated.View
@@ -483,7 +483,7 @@ const Breathe = () => {
           <View
             className="absolute items-center justify-center"
             style={{
-              width: windowWidth,
+              width: SCREEN_WIDTH,
               transform: [{ translateY: outerCircleSize + 84 }],
             }}
           >

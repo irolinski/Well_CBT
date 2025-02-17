@@ -1,7 +1,7 @@
 import { Image } from 'expo-image';
 import React, { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Animated, Dimensions, ScrollView, View } from 'react-native';
+import { Animated, ScrollView, View } from 'react-native';
 import { ArticleTypesWithArticleBody } from '@/app/learn/categories/[category]/[articleId]';
 import { logoImages } from '@/assets/images/global/logo/logo';
 import learnArticlesLocales from '@/assets/text/learn_articles.json';
@@ -15,8 +15,11 @@ import {
     ArticlesInCurrentLanguageType, ArticleTypes, learnRelatedArticleCardTypes
 } from '@/constants/models/learn/learn';
 import { Colors } from '@/constants/styles/colorTheme';
+import { SCREEN_HEIGHT, SCREEN_WIDTH } from '@/constants/styles/values';
 import { AvailableLanguage } from '@/hooks/i18n';
 import ArticleImageScrollableHeader from './ArticleImageScrollableHeader';
+
+const HEADER_HEIGHT = SCREEN_HEIGHT * 0.4;
 
 const ArticlePage = ({
   title,
@@ -31,9 +34,6 @@ const ArticlePage = ({
 }: ArticleTypesWithArticleBody) => {
   const { t, i18n } = useTranslation(["learn", "common"]);
 
-  const windowHeight = Dimensions.get("window").height;
-  const windowWidth = Dimensions.get("window").width;
-  const headerHeight = windowHeight * 0.4;
   const scrollOffsetY = useRef(new Animated.Value(0)).current;
 
   const selectedLanguage: AvailableLanguage =
@@ -80,7 +80,7 @@ const ArticlePage = ({
       {/* Page Header */}
       <ArticleImageScrollableHeader
         value={scrollOffsetY}
-        headerHeight={headerHeight}
+        headerHeight={HEADER_HEIGHT}
         image={bgImage.image}
         id={id}
       />
@@ -88,7 +88,7 @@ const ArticlePage = ({
         scrollEventThrottle={5}
         showsVerticalScrollIndicator={false}
         onScroll={handleScroll}
-        style={{ paddingTop: headerHeight }}
+        style={{ paddingTop: HEADER_HEIGHT }}
       >
         <View
           className="px-6"
@@ -116,7 +116,7 @@ const ArticlePage = ({
 
           <View className="py-8">
             {relatedArticles.length > 0 ? (
-              <DividerLine width={windowWidth * 0.65} />
+              <DividerLine width={SCREEN_WIDTH * 0.65} />
             ) : (
               <View className="mt-6 h-4 w-full flex-row items-center justify-center">
                 <Image

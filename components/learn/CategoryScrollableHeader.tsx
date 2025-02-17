@@ -1,9 +1,10 @@
-import { Image } from "expo-image";
-import { useTranslation } from "react-i18next";
-import { Animated, ColorValue, Dimensions, View } from "react-native";
-import { Colors } from "@/constants/styles/colorTheme";
-import MenuNav from "../global/MenuNav";
-import Text from "../global/Text";
+import { Image } from 'expo-image';
+import { useTranslation } from 'react-i18next';
+import { Animated, View } from 'react-native';
+import { Colors } from '@/constants/styles/colorTheme';
+import { SCREEN_HEIGHT } from '@/constants/styles/values';
+import MenuNav from '../global/MenuNav';
+import Text from '../global/Text';
 
 type CategoryScrollableHeaderTypes = {
   title: string;
@@ -19,8 +20,6 @@ const CategoryScrollableHeader = ({
   image,
 }: CategoryScrollableHeaderTypes) => {
   const { t } = useTranslation(["learn", "common"]);
-
-  const windowHeight = Dimensions.get("window").height;
 
   const animateHeaderHeight = value.interpolate({
     inputRange: [0, headerHeight],
@@ -61,7 +60,7 @@ const CategoryScrollableHeader = ({
         <Animated.View className="z-30" style={{ opacity: hideNav }}>
           <View
             className="flex-row justify-center"
-            style={{ marginTop: windowHeight * 0.03 }}
+            style={{ marginTop: SCREEN_HEIGHT * 0.03 }}
           >
             <Text
               className="text-center text-lg"

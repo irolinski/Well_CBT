@@ -2,7 +2,7 @@ import { Image } from 'expo-image';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-    Dimensions, Keyboard, Modal, Pressable, ScrollView, TextInput, TouchableOpacity, View
+    Keyboard, Modal, Pressable, ScrollView, TextInput, TouchableOpacity, View
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { allFaces } from '@/assets/images/global/faces/faces';
@@ -10,7 +10,9 @@ import DividerLine from '@/components/DividerLine';
 import Text from '@/components/global/Text';
 import NavigationModalButton from '@/components/NavigationModalButton';
 import { Colors } from '@/constants/styles/colorTheme';
-import { CLOSE_MODAL_OFFSET_TRESHOLD } from '@/constants/styles/values';
+import {
+    CLOSE_MODAL_OFFSET_TRESHOLD, SCREEN_HEIGHT, SCREEN_WIDTH
+} from '@/constants/styles/values';
 import { fetchUserData, handleSetName, handleSetProfilePicId, UserType } from '@/db/user';
 import {
     setName, setNameInputIsActive, setProfilePicId, setShowEditProfileModal
@@ -30,10 +32,6 @@ const EditProfileModal = () => {
   );
   const [isLoading, setIsLoading] = useState(false);
   const [profilePic, setProfilePic] = useState<Image | undefined>();
-
-  //UI STATE
-  const windowWidth = Dimensions.get("window").width;
-  const windowHeight = Dimensions.get("window").height;
 
   useEffect(() => {
     setIsLoading(true);
@@ -85,10 +83,10 @@ const EditProfileModal = () => {
         persistentScrollbar={true} // works only on android
       >
         <View
-          className={`px-4 ${windowHeight > 850 ? "pb-12 pt-20" : "py-12"}`}
+          className={`px-4 ${SCREEN_HEIGHT > 850 ? "pb-12 pt-20" : "py-12"}`}
           style={{
             top: 0,
-            width: windowWidth,
+            width: SCREEN_WIDTH,
             backgroundColor: Colors.offWhite,
           }}
         >
@@ -117,8 +115,8 @@ const EditProfileModal = () => {
                 <View className="flex-row justify-center">
                   <Image
                     style={{
-                      width: 0.4 * windowWidth,
-                      height: 0.4 * windowWidth,
+                      width: 0.4 * SCREEN_WIDTH,
+                      height: 0.4 * SCREEN_WIDTH,
                     }}
                     source={profilePic}
                   ></Image>
@@ -184,7 +182,7 @@ const EditProfileModal = () => {
             </View>
           </View>
           <View className="mb-4">
-            <DividerLine width={windowWidth * 0.5} />
+            <DividerLine width={SCREEN_WIDTH * 0.5} />
           </View>
           <View className="my-8" style={{ height: 225 }}>
             <View>

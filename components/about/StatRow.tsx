@@ -6,7 +6,7 @@ import Text from '../global/Text';
 import StatBall from './StatBall';
 
 // setting ball size and row width takes two parameters - it is manipulated
-// using left container size (height/width) (a fraction of windowWidth)
+// using left container size (height/width) (a fraction of SCREEN_WIDTH)
 // AND a fraction of that size for the ball height/width
 
 const StatRow = ({
@@ -26,8 +26,8 @@ const StatRow = ({
 }) => {
   const { t } = useTranslation("about");
 
-  const windowWidth = Dimensions.get("window").width;
-  const ballContainerSize = ballSizeParameter * windowWidth; // 0.6 = max, 0.25 = min
+  const SCREEN_WIDTH = Dimensions.get("window").width;
+  const ballContainerSize = ballSizeParameter * SCREEN_WIDTH; // 0.6 = max, 0.25 = min
   const ballSize = 0.8 * ballContainerSize;
 
   if (statNumber)
@@ -51,7 +51,7 @@ const StatRow = ({
             className="mx-4 items-center justify-center"
             style={{
               height: 50,
-              width: 0.33 * windowWidth,
+              width: 0.33 * SCREEN_WIDTH,
               top: ballSize * 0.6,
             }}
           >

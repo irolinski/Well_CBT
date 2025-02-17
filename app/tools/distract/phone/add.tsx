@@ -3,7 +3,7 @@ import { Image } from 'expo-image';
 import { Href, router } from 'expo-router';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, Dimensions, Keyboard, Pressable, ScrollView, TextInput, View } from 'react-native';
+import { Alert, Keyboard, Pressable, ScrollView, TextInput, View } from 'react-native';
 import { useSelector } from 'react-redux';
 import { logoImages } from '@/assets/images/global/logo/logo';
 import { phoneFacePlaceholder } from '@/assets/images/tools/phone/phoneFaces';
@@ -12,6 +12,7 @@ import Text from '@/components/global/Text';
 import ToolHeader from '@/components/tools/ToolHeader';
 import { phoneAFriend_tool } from '@/constants/models/tools/tools';
 import { Colors } from '@/constants/styles/colorTheme';
+import { SCREEN_HEIGHT } from '@/constants/styles/values';
 import { setContact, setContactWithPicture } from '@/db/tools';
 import { RootState } from '@/state/store';
 import formatPhoneNumber from '@/utils/formatPhoneNumber';
@@ -30,7 +31,6 @@ interface PhoneNumberObj {
 
 const Add = () => {
   const { t } = useTranslation(["tools", "common"]);
-  const windowHeight = Dimensions.get("window").height;
   const phoneState = useSelector((state: RootState) => state.phone);
 
   // search feature state
@@ -106,14 +106,14 @@ const Add = () => {
   return (
     <React.Fragment>
       <View
-        className={`z-10 mx-6 ${windowHeight > 750 ? "top-20" : "top-12"} flex-row justify-start`}
+        className={`z-10 mx-6 ${SCREEN_HEIGHT > 750 ? "top-20" : "top-12"} flex-row justify-start`}
       >
         <BackButton />
       </View>
       <View
-        className={`mx-6 ${windowHeight > 750 ? "top-24" : "top-16"}`}
+        className={`mx-6 ${SCREEN_HEIGHT > 750 ? "top-24" : "top-16"}`}
         style={{
-          height: windowHeight - windowHeight / 5,
+          height: SCREEN_HEIGHT - SCREEN_HEIGHT / 5,
         }}
       >
         <View className="mb-8">
@@ -155,7 +155,10 @@ const Add = () => {
           </View>
           <View
             className="mt-8 items-center justify-center rounded-xl border"
-            style={{ borderColor: Colors.mainGray, height: windowHeight * 0.5 }}
+            style={{
+              borderColor: Colors.mainGray,
+              height: SCREEN_HEIGHT * 0.5,
+            }}
           >
             <ScrollView className="w-full">
               {filteredData.length > 0 ? (

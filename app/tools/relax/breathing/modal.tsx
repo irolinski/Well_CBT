@@ -7,7 +7,9 @@ import RadioButton from '@/components/RadioButton';
 import MethodInfo from '@/components/tools/breathe/MethodInfo';
 import { breathing_tool } from '@/constants/models/tools/tools';
 import { Colors } from '@/constants/styles/colorTheme';
-import { CLOSE_MODAL_OFFSET_TRESHOLD } from '@/constants/styles/values';
+import {
+    CLOSE_MODAL_OFFSET_TRESHOLD, SCREEN_HEIGHT, SCREEN_WIDTH
+} from '@/constants/styles/values';
 import {
     mode_4_7_8, mode_box_4s, setMode, setNumOfSets, toggleCountdown, toggleModal
 } from '@/state/features/tools/breatheSettingsSlice';
@@ -20,9 +22,6 @@ const TOOL_NAME = breathing_tool.name;
 
 const BreatheModal = ({ ellapsedTime }: { ellapsedTime: number }) => {
   const { t } = useTranslation(["tools", "common"]);
-
-  const windowWidth = Dimensions.get("window").width;
-  const windowHeight = Dimensions.get("window").height;
 
   const dispatch = useDispatch<AppDispatch>();
   const breatheSettings = useSelector(
@@ -43,10 +42,10 @@ const BreatheModal = ({ ellapsedTime }: { ellapsedTime: number }) => {
         }}
       >
         <View
-          className={`px-4 ${windowHeight > 850 ? "py-20" : "py-12"}`}
+          className={`px-4 ${SCREEN_HEIGHT > 850 ? "py-20" : "py-12"}`}
           style={{
             top: 0,
-            width: windowWidth,
+            width: SCREEN_WIDTH,
             backgroundColor: Colors.offWhite,
           }}
         >

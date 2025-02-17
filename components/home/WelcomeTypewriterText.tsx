@@ -1,15 +1,12 @@
-import { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { Dimensions, View } from "react-native";
-import {
-  welcomeTexts_pt1,
-  welcomeTexts_pt2,
-} from "@/constants/models/home/welcomeTexts";
-import { Colors } from "@/constants/styles/colorTheme";
-import { UserType } from "@/db/models";
-import { fetchUserData } from "@/db/user";
-import DividerLine from "../DividerLine";
-import TypewriterText from "../TypewriterText";
+import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Dimensions, View } from 'react-native';
+import { welcomeTexts_pt1, welcomeTexts_pt2 } from '@/constants/models/home/welcomeTexts';
+import { Colors } from '@/constants/styles/colorTheme';
+import { UserType } from '@/db/models';
+import { fetchUserData } from '@/db/user';
+import DividerLine from '../DividerLine';
+import TypewriterText from '../TypewriterText';
 
 const getWelcomeText = (userName?: string): string => {
   const { t } = useTranslation("home");
@@ -34,7 +31,7 @@ const getWelcomeText = (userName?: string): string => {
 };
 
 const WelcomeTypewriterText = () => {
-  const windowWidth = Dimensions.get("window").width;
+  const SCREEN_WIDTH = Dimensions.get("window").width;
 
   const [userData, setUserData] = useState<UserType>();
   const [isLoading, setIsLoading] = useState(false);
@@ -71,7 +68,7 @@ const WelcomeTypewriterText = () => {
           hideCursorOnFinish={true}
         />
       </View>
-      <DividerLine width={windowWidth / 1.5} weight={0.5} />
+      <DividerLine width={SCREEN_WIDTH / 1.5} weight={0.5} />
     </View>
   );
 };

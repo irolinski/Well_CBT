@@ -10,18 +10,19 @@ import { learnArticles } from '@/constants/models/learn/articles';
 import { learnCategories } from '@/constants/models/learn/categories';
 import { ArticlesInCurrentLanguageType } from '@/constants/models/learn/learn';
 import { Colors } from '@/constants/styles/colorTheme';
+import { SCREEN_HEIGHT } from '@/constants/styles/values';
 import { AvailableLanguage } from '@/hooks/i18n';
 import ErrorScreen from '../ErrorScreen';
 import Text from '../global/Text';
 import CategoryScrollableHeader from './CategoryScrollableHeader';
+
+const HEADER_HEIGHT = SCREEN_HEIGHT * 0.5;
 
 const CategoryPage = () => {
   const { t, i18n } = useTranslation(["learn", "common"]);
   const selectedLanguage: AvailableLanguage =
     i18n.language as AvailableLanguage;
 
-  const windowHeight = Dimensions.get("window").height;
-  const headerHeight = windowHeight * 0.5;
   const scrollOffsetY = useRef(new Animated.Value(0)).current;
 
   const handleScroll = Animated.event(
@@ -51,7 +52,7 @@ const CategoryPage = () => {
       <React.Fragment>
         <CategoryScrollableHeader
           value={scrollOffsetY}
-          headerHeight={headerHeight}
+          headerHeight={HEADER_HEIGHT}
           {...categoryData}
         />
         <ScrollView
@@ -59,7 +60,7 @@ const CategoryPage = () => {
           showsVerticalScrollIndicator={false}
           style={{
             backgroundColor: Colors.offWhite,
-            paddingTop: headerHeight,
+            paddingTop: HEADER_HEIGHT,
           }}
           onScroll={handleScroll}
         >

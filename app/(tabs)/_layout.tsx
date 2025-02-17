@@ -1,17 +1,16 @@
 import { Tabs } from 'expo-router';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Dimensions, View } from 'react-native';
+import { View } from 'react-native';
 import { Colors } from '@/constants/styles/colorTheme';
+import { SCREEN_HEIGHT } from '@/constants/styles/values';
 import { Feather, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
+
+const TABBAR_HEIGHT = SCREEN_HEIGHT / 9;
+const TABBAR_PADDING_Y = TABBAR_HEIGHT / 6;
 
 const TabLayout = () => {
   const { t } = useTranslation("common");
-
-  const windowHeight = Dimensions.get("window").height;
-
-  const tabBarHeight = windowHeight / 9;
-  const tabBarPaddingY = tabBarHeight / 6;
 
   return (
     <Tabs
@@ -19,9 +18,9 @@ const TabLayout = () => {
         tabBarActiveTintColor: Colors.offBlack,
         headerShown: false,
         tabBarStyle: {
-          paddingBottom: tabBarPaddingY + 5,
-          paddingTop: tabBarPaddingY,
-          height: tabBarHeight,
+          paddingBottom: TABBAR_PADDING_Y + 5,
+          paddingTop: TABBAR_PADDING_Y,
+          height: TABBAR_HEIGHT,
         },
       }}
     >

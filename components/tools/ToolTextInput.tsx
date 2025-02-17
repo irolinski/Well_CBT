@@ -1,8 +1,9 @@
-import { useState } from "react";
-import { Dimensions, Keyboard, TextInput, View } from "react-native";
-import { Colors } from "@/constants/styles/colorTheme";
-import { isValidExerciseInput } from "@/utils/inputValidations";
-import Text from "../global/Text";
+import { useState } from 'react';
+import { Keyboard, TextInput, View } from 'react-native';
+import { Colors } from '@/constants/styles/colorTheme';
+import { SCREEN_HEIGHT } from '@/constants/styles/values';
+import { isValidExerciseInput } from '@/utils/inputValidations';
+import Text from '../global/Text';
 
 const MAX_INPUT_LENGTH = 200;
 const NUM_OF_LINES = 5;
@@ -16,11 +17,10 @@ const ToolTextInput = ({
   handleChangeText: (evt: string) => void;
   keyboardMargin: boolean;
 }) => {
-  const windowHeight = Dimensions.get("window").height;
   const [spaceForKeyboard, setSpaceForKeyboard] = useState<boolean>(false);
 
   return (
-    <View style={{ marginBottom: spaceForKeyboard ? windowHeight / 5 : 8 }}>
+    <View style={{ marginBottom: spaceForKeyboard ? SCREEN_HEIGHT / 5 : 8 }}>
       <TextInput
         className="my-2 h-28 rounded-md border p-4"
         style={{

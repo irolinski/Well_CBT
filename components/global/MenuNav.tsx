@@ -1,7 +1,8 @@
-import { ColorValue, Dimensions, View } from "react-native";
-import { Colors } from "@/constants/styles/colorTheme";
-import BackButton from "../BackButton";
-import ToolHeader from "../tools/ToolHeader";
+import { ColorValue, View } from 'react-native';
+import { Colors } from '@/constants/styles/colorTheme';
+import { SCREEN_HEIGHT } from '@/constants/styles/values';
+import BackButton from '../BackButton';
+import ToolHeader from '../tools/ToolHeader';
 
 type menuNavTypes = {
   name: string;
@@ -16,11 +17,9 @@ const MenuNav = ({
   backgroundColor,
   handleBackButtonPress,
 }: menuNavTypes) => {
-  const windowHeight = Dimensions.get("window").height;
-
   return (
     <View
-      className={`z-10 w-full ${windowHeight > 750 ? "pb-4 pt-16" : "pb-4 pt-8"}`} // border-b?
+      className={`z-10 w-full ${SCREEN_HEIGHT > 750 ? "pb-4 pt-16" : "pb-4 pt-8"}`} // border-b?
       style={{
         borderColor: Colors.lightGray,
         backgroundColor: backgroundColor ?? Colors.mainBlue,

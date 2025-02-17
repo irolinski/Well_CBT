@@ -19,12 +19,12 @@ const LearnArticleCard = ({
 }: learnArticleCardTypes) => {
   const { t } = useTranslation("learn");
 
-  const windowWidth = Dimensions.get("window").width;
+  const SCREEN_WIDTH = Dimensions.get("window").width;
 
   return (
     <Pressable
       className="relative mx-8 flex-1 justify-center overflow-hidden rounded-xl"
-      style={{ height: 250, width: windowWidth * 0.9 }}
+      style={{ height: 250, width: SCREEN_WIDTH * 0.9 }}
       onPress={() => router.push(link as Href)}
     >
       <Image

@@ -1,25 +1,25 @@
-import { Href, router } from "expo-router";
-import React from "react";
-import { useTranslation } from "react-i18next";
-import { Dimensions, ImageBackground, Text, View } from "react-native";
-import { toolBackgrounds } from "@/assets/images/tools/backgrounds/backgrounds";
-import AdvanceButton from "@/components/AdvanceButton";
-import BackButton from "@/components/BackButton";
-import { journal_tool } from "@/constants/models/tools/tools";
-import { Colors } from "@/constants/styles/colorTheme";
+import { Href, router } from 'expo-router';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { ImageBackground, Text, View } from 'react-native';
+import { toolBackgrounds } from '@/assets/images/tools/backgrounds/backgrounds';
+import AdvanceButton from '@/components/AdvanceButton';
+import BackButton from '@/components/BackButton';
+import { journal_tool } from '@/constants/models/tools/tools';
+import { Colors } from '@/constants/styles/colorTheme';
+import { SCREEN_HEIGHT } from '@/constants/styles/values';
 
 const TOOL_NAME = journal_tool.name;
 
 const Journal_Index = () => {
   const { t } = useTranslation(["tools", "common"]);
-  const windowHeight = Dimensions.get("window").height;
 
   return (
     <React.Fragment>
       <ImageBackground source={toolBackgrounds.mood_journal}>
         <View
           className="absolute left-6 z-10"
-          style={{ top: windowHeight * 0.075 }}
+          style={{ top: SCREEN_HEIGHT * 0.075 }}
         >
           <BackButton color={Colors.whiteSmoke} />
         </View>

@@ -1,14 +1,8 @@
-import { Href, router } from "expo-router";
-import {
-  ColorValue,
-  Dimensions,
-  Pressable,
-  TouchableOpacity,
-  View,
-} from "react-native";
-import Text from "@/components/global/Text";
-import { Colors } from "@/constants/styles/colorTheme";
-import { Feather } from "@expo/vector-icons";
+import { Href, router } from 'expo-router';
+import { ColorValue, Dimensions, Pressable, TouchableOpacity, View } from 'react-native';
+import Text from '@/components/global/Text';
+import { Colors } from '@/constants/styles/colorTheme';
+import { Feather } from '@expo/vector-icons';
 
 export type LearnCategoryCardTypes = {
   name: string;
@@ -21,14 +15,14 @@ const LearnCategoryCard = ({
   backgroundColor,
   link,
 }: LearnCategoryCardTypes) => {
-  const windowWidth = Dimensions.get("window").width;
+  const SCREEN_WIDTH = Dimensions.get("window").width;
 
   return (
     <Pressable
       className="m-2.5 rounded-xl"
       style={{
-        height: 0.4 * windowWidth,
-        width: 0.4 * windowWidth,
+        height: 0.4 * SCREEN_WIDTH,
+        width: 0.4 * SCREEN_WIDTH,
         backgroundColor: backgroundColor,
       }}
       onPress={() => router.push(`${link}` as Href)}

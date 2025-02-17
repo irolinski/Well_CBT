@@ -1,9 +1,10 @@
-import { Trans, useTranslation } from "react-i18next";
-import { Dimensions, View } from "react-native";
-import { Colors } from "@/constants/styles/colorTheme";
-import BackButton from "../BackButton";
-import Text from "../global/Text";
-import ProgressBar from "../ProgressBar";
+import { Trans } from 'react-i18next';
+import { View } from 'react-native';
+import { Colors } from '@/constants/styles/colorTheme';
+import { SCREEN_HEIGHT } from '@/constants/styles/values';
+import BackButton from '../BackButton';
+import Text from '../global/Text';
+import ProgressBar from '../ProgressBar';
 
 const ToolNav = ({
   currentPage,
@@ -16,14 +17,10 @@ const ToolNav = ({
   handleBackButtonPress?: () => void;
   hideBackButton?: Boolean;
 }) => {
-  const { t } = useTranslation("common");
-
-  const windowHeight = Dimensions.get("window").height;
-
   return (
     <View className="z-10">
       <View
-        className={`absolute z-10 box-border w-full border-b pb-7 ${windowHeight > 750 ? "top-20" : "top-12"}`}
+        className={`absolute z-10 box-border w-full border-b pb-7 ${SCREEN_HEIGHT > 750 ? "top-20" : "top-12"}`}
         style={{
           borderColor: Colors.lightGray,
         }}
@@ -53,16 +50,7 @@ const ToolNav = ({
                 components={{
                   muted: <Text style={{ color: "#525252" }} />,
                 }}
-              >
-                {/* <Text className="text-xs">
-                  {t("nav_elements.step_count", {
-                    current: currentPage,
-                    total: numOfAllPages,
-                  })}{" "}
-                  {currentPage}{" "}
-                  <Text style={{ color: "#525252" }}>of {numOfAllPages}</Text>
-                </Text> */}
-              </Trans>
+              ></Trans>
             </Text>
           </View>
         </View>

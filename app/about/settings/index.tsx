@@ -1,21 +1,16 @@
-import React from "react";
-import { Dimensions, TouchableOpacity, View } from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
-import BackButton from "@/components/BackButton";
-import DividerLine from "@/components/DividerLine";
-import Text from "@/components/global/Text";
-import { Colors } from "@/constants/styles/colorTheme";
+import React from 'react';
+import { TouchableOpacity, View } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
+import BackButton from '@/components/BackButton';
+import DividerLine from '@/components/DividerLine';
+import Text from '@/components/global/Text';
+import { Colors } from '@/constants/styles/colorTheme';
+import { SCREEN_HEIGHT } from '@/constants/styles/values';
 import {
-  AntDesign,
-  FontAwesome5,
-  FontAwesome6,
-  Ionicons,
-  MaterialCommunityIcons,
-} from "@expo/vector-icons";
+    AntDesign, FontAwesome5, FontAwesome6, Ionicons, MaterialCommunityIcons
+} from '@expo/vector-icons';
 
 const index = () => {
-  const windowHeight = Dimensions.get("window").height;
-
   const fakeData_1 = {
     title: "Preferences",
     items: [
@@ -88,7 +83,7 @@ const index = () => {
         style={{
           borderColor: Colors.lightGray,
           backgroundColor: Colors.mainBlue,
-          paddingTop: windowHeight * 0.065,
+          paddingTop: SCREEN_HEIGHT * 0.065,
           paddingBottom: 16,
         }}
       >

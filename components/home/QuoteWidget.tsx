@@ -1,17 +1,17 @@
-import { Image } from "expo-image";
-import { LinearGradient } from "expo-linear-gradient";
-import { useTranslation } from "react-i18next";
-import { Dimensions, Pressable, View } from "react-native";
-import quoteImages from "@/assets/images/home/quote_widget/images";
-import quotesListLocales from "@/assets/text/quotes.json";
-import { Colors } from "@/constants/styles/colorTheme";
-import { achievementHandlersObj } from "@/db/achievements/controllers";
-import { AvailableLanguage } from "@/hooks/i18n";
-import handleShare from "@/utils/handleShare";
-import { Feather } from "@expo/vector-icons";
-import Text from "../global/Text";
+import { Image } from 'expo-image';
+import { LinearGradient } from 'expo-linear-gradient';
+import { useTranslation } from 'react-i18next';
+import { Dimensions, Pressable, View } from 'react-native';
+import quoteImages from '@/assets/images/home/quote_widget/images';
+import quotesListLocales from '@/assets/text/quotes.json';
+import { Colors } from '@/constants/styles/colorTheme';
+import { achievementHandlersObj } from '@/db/achievements/controllers';
+import { AvailableLanguage } from '@/hooks/i18n';
+import handleShare from '@/utils/handleShare';
+import { Feather } from '@expo/vector-icons';
+import Text from '../global/Text';
 
-const windowWidth = Dimensions.get("window").width;
+const SCREEN_WIDTH = Dimensions.get("window").width;
 
 const QuoteWidget = () => {
   const { t, i18n } = useTranslation("home");
@@ -69,7 +69,7 @@ const QuoteWidget = () => {
             marginTop: 16,
             marginBottom: 0,
             marginLeft: 20,
-            marginRight: windowWidth / 6,
+            marginRight: SCREEN_WIDTH / 6,
           }}
         >
           <Text

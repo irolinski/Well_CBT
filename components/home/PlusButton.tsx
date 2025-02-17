@@ -1,11 +1,11 @@
-import { Dimensions, TouchableOpacity, View } from "react-native";
-import { useDispatch } from "react-redux";
-import { setShowNewActivityModal } from "@/state/features/menus/newActivityModalSlice";
-import { AppDispatch } from "@/state/store";
-import { Feather } from "@expo/vector-icons";
+import { TouchableOpacity, View } from 'react-native';
+import { useDispatch } from 'react-redux';
+import { SCREEN_HEIGHT } from '@/constants/styles/values';
+import { setShowNewActivityModal } from '@/state/features/menus/newActivityModalSlice';
+import { AppDispatch } from '@/state/store';
+import { Feather } from '@expo/vector-icons';
 
 const PlusButton = () => {
-  const windowHeight = Dimensions.get("window").height;
   const dispatch = useDispatch<AppDispatch>();
 
   return (
@@ -13,10 +13,10 @@ const PlusButton = () => {
       <View
         className="absolute items-center justify-center rounded-full"
         style={{
-          width: windowHeight * 0.085,
-          height: windowHeight * 0.085,
-          right: windowHeight * 0.04,
-          bottom: windowHeight * 0.06,
+          width: SCREEN_HEIGHT * 0.085,
+          height: SCREEN_HEIGHT * 0.085,
+          right: SCREEN_HEIGHT * 0.04,
+          bottom: SCREEN_HEIGHT * 0.06,
           backgroundColor: "#E57353",
         }}
       >

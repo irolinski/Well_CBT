@@ -1,17 +1,17 @@
-import { Image } from "expo-image";
-import { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { Dimensions, View } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
-import { allFaces } from "@/assets/images/global/faces/faces";
-import ProfilePic from "@/components/about/ProfilePic";
-import { Colors } from "@/constants/styles/colorTheme";
-import { fetchUserData, UserType } from "@/db/user";
-import { setShowNavigateSettingsModal } from "@/state/features/menus/navigateSettingsModalSlice";
-import { AppDispatch, RootState } from "@/state/store";
-import { getLastVisitString } from "@/utils/dates";
-import { Feather } from "@expo/vector-icons";
-import Text from "../global/Text";
+import { Image } from 'expo-image';
+import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Dimensions, View } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import { allFaces } from '@/assets/images/global/faces/faces';
+import ProfilePic from '@/components/about/ProfilePic';
+import { Colors } from '@/constants/styles/colorTheme';
+import { fetchUserData, UserType } from '@/db/user';
+import { setShowNavigateSettingsModal } from '@/state/features/menus/navigateSettingsModalSlice';
+import { AppDispatch, RootState } from '@/state/store';
+import { getLastVisitString } from '@/utils/dates';
+import { Feather } from '@expo/vector-icons';
+import Text from '../global/Text';
 
 const AboutUser = () => {
   const { t } = useTranslation(["about", "common"]);
@@ -20,7 +20,7 @@ const AboutUser = () => {
   const editProfileModalState = useSelector(
     (state: RootState) => state.editProfileModal,
   );
-  const windowWidth = Dimensions.get("window").width;
+  const SCREEN_WIDTH = Dimensions.get("window").width;
   const [userData, setUserData] = useState<UserType>();
   const [profilePic, setProfilePic] = useState<Image>();
   const [isLoading, setIsLoading] = useState(false);
@@ -55,8 +55,8 @@ const AboutUser = () => {
     <View
       className="h-40 flex-1 rounded-3xl"
       style={{
-        width: windowWidth * 0.9,
-        height: windowWidth * 0.9 * 0.94,
+        width: SCREEN_WIDTH * 0.9,
+        height: SCREEN_WIDTH * 0.9 * 0.94,
       }}
     >
       <View className="flex-row justify-center">
@@ -84,7 +84,7 @@ const AboutUser = () => {
             </Text>
             <Text
               className="my-2 text-center text-base"
-              style={{ color: Colors.darkGray, width: windowWidth * 0.4 }}
+              style={{ color: Colors.darkGray, width: SCREEN_WIDTH * 0.4 }}
             >
               {t(`index.completed_activities`)}
               {completedActivities}

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Dimensions, SectionList, View } from 'react-native';
+import { SectionList, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import DividerLine from '@/components/DividerLine';
 import MenuNav from '@/components/global/MenuNav';
@@ -16,6 +16,7 @@ import LoadingIndicator from '@/components/LoadingIndicator';
 import ToolHeader from '@/components/tools/ToolHeader';
 import { EntryListSection, EntryViewTableRow } from '@/constants/models/home/activity_log';
 import { Colors } from '@/constants/styles/colorTheme';
+import { SCREEN_HEIGHT, SCREEN_WIDTH } from '@/constants/styles/values';
 import { fetchEntryData } from '@/db/activity_log';
 import {
     activityLogResetState, setIsLoading, setRawData
@@ -26,9 +27,6 @@ import ActivityLogModal from './modal';
 
 const ActivityLog = () => {
   const { t } = useTranslation(["home", "common"]);
-
-  const windowHeight = Dimensions.get("window").height;
-  const windowWidth = Dimensions.get("window").width;
 
   const dispatch = useDispatch<AppDispatch>();
   const activityLogState = useSelector((state: RootState) => state.activityLog);
@@ -94,12 +92,12 @@ const ActivityLog = () => {
               </View>
               <FiltersButton />
             </View>
-            <DividerLine width={windowWidth * 0.9} />
+            <DividerLine width={SCREEN_WIDTH * 0.9} />
           </View>
           {/* List */}
           <View
             className="relative px-1"
-            style={{ height: windowHeight * 0.75 }}
+            style={{ height: SCREEN_HEIGHT * 0.75 }}
           >
             {activityLogState.displayedData.length > 0 &&
             activityLogState.entryData.length > 0 ? (
@@ -134,10 +132,10 @@ const ActivityLog = () => {
                 ListFooterComponent={
                   <DividerLine
                     viewStyle={{
-                      marginBottom: windowHeight * 0.1,
-                      marginTop: windowHeight * 0.05,
+                      marginBottom: SCREEN_HEIGHT * 0.1,
+                      marginTop: SCREEN_HEIGHT * 0.05,
                     }}
-                    width={windowWidth / 2}
+                    width={SCREEN_WIDTH / 2}
                   />
                 }
               />

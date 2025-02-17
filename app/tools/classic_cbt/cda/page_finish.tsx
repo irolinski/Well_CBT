@@ -1,13 +1,14 @@
-import { Href, router } from "expo-router";
-import React from "react";
-import { useTranslation } from "react-i18next";
-import { Dimensions, ScrollView, View } from "react-native";
-import AdvanceButton from "@/components/AdvanceButton";
-import { LogoDark } from "@/components/global/Logo";
-import Text from "@/components/global/Text";
-import SecondaryButton from "@/components/SecondaryButton";
-import ToolNav from "@/components/tools/ToolNav";
-import { cda_tool } from "@/constants/models/tools/tools";
+import { Href, router } from 'expo-router';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { ScrollView, View } from 'react-native';
+import AdvanceButton from '@/components/AdvanceButton';
+import { LogoDark } from '@/components/global/Logo';
+import Text from '@/components/global/Text';
+import SecondaryButton from '@/components/SecondaryButton';
+import ToolNav from '@/components/tools/ToolNav';
+import { cda_tool } from '@/constants/models/tools/tools';
+import { SCREEN_HEIGHT } from '@/constants/styles/values';
 
 const CURRENT_PAGE = 5;
 const TOOL_NAME = cda_tool.name;
@@ -15,7 +16,6 @@ const TOOL_NAME = cda_tool.name;
 const Page_finish = () => {
   const { t } = useTranslation(["tools", "common"]);
 
-  const windowHeight = Dimensions.get("window").height;
   return (
     <React.Fragment>
       <ScrollView className="relative">
@@ -25,7 +25,7 @@ const Page_finish = () => {
         />
         <View
           className="mx-6 flex-1 justify-center"
-          style={{ height: windowHeight }}
+          style={{ height: SCREEN_HEIGHT }}
         >
           <View className="items-center justify-center pb-32">
             <LogoDark sizePx={80} />

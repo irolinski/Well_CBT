@@ -1,8 +1,8 @@
-import { Image } from "expo-image";
-import { Dimensions, Text, View } from "react-native";
-import { Colors } from "@/constants/styles/colorTheme";
+import { Image } from 'expo-image';
+import { Dimensions, Text, View } from 'react-native';
+import { Colors } from '@/constants/styles/colorTheme';
 
-const windowWidth = Dimensions.get("window").width;
+const SCREEN_WIDTH = Dimensions.get("window").width;
 
 const ArticleImage = ({
   image,
@@ -13,7 +13,7 @@ const ArticleImage = ({
 }) => {
   return (
     <View className="my-6 items-center">
-      <View style={{ width: windowWidth * 0.8, height: 240 }}>
+      <View style={{ width: SCREEN_WIDTH * 0.8, height: 240 }}>
         <Image
           className="rounded-lg"
           style={{ width: "100%", height: "100%" }}

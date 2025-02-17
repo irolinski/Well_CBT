@@ -1,23 +1,22 @@
-import { Href, router } from "expo-router";
-import React from "react";
-import { useTranslation } from "react-i18next";
-import { Dimensions, ScrollView, View } from "react-native";
-import { useSelector } from "react-redux";
-import AdvanceButton from "@/components/AdvanceButton";
-import { LogoDark } from "@/components/global/Logo";
-import Text from "@/components/global/Text";
-import SecondaryButton from "@/components/SecondaryButton";
-import ToolNav from "@/components/tools/ToolNav";
-import { journal_tool } from "@/constants/models/tools/tools";
-import { RootState } from "@/state/store";
+import { Href, router } from 'expo-router';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { ScrollView, View } from 'react-native';
+import { useSelector } from 'react-redux';
+import AdvanceButton from '@/components/AdvanceButton';
+import { LogoDark } from '@/components/global/Logo';
+import Text from '@/components/global/Text';
+import SecondaryButton from '@/components/SecondaryButton';
+import ToolNav from '@/components/tools/ToolNav';
+import { journal_tool } from '@/constants/models/tools/tools';
+import { SCREEN_HEIGHT } from '@/constants/styles/values';
+import { RootState } from '@/state/store';
 
 const CURRENT_PAGE = 6;
 const TOOL_NAME = journal_tool.name;
 
 const Log_finish = () => {
   const { t } = useTranslation(["tools", "common"]);
-
-  const windowHeight = Dimensions.get("window").height;
 
   //tool state
   const journalState = useSelector((state: RootState) => state.journal);
@@ -32,7 +31,7 @@ const Log_finish = () => {
         />
         <View
           className="mx-6 flex-1 justify-center"
-          style={{ height: windowHeight }}
+          style={{ height: SCREEN_HEIGHT }}
         >
           <View className="items-center justify-center pb-32">
             <LogoDark sizePx={80} />

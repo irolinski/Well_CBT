@@ -1,7 +1,7 @@
 import { router } from 'expo-router';
 import React, { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Animated, Dimensions, Easing, View } from 'react-native';
+import { Animated, Easing, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import AdvanceButton from '@/components/AdvanceButton';
 import Text from '@/components/global/Text';
@@ -10,7 +10,7 @@ import ToolNav from '@/components/tools/ToolNav';
 import { moodValueTitles } from '@/constants/models/tools/journal';
 import { journal_tool } from '@/constants/models/tools/tools';
 import { Colors } from '@/constants/styles/colorTheme';
-import { journalStyleConstants } from '@/constants/styles/values';
+import { journalStyleConstants, SCREEN_HEIGHT, SCREEN_WIDTH } from '@/constants/styles/values';
 import { journalResetState, setMoodValue } from '@/state/features/tools/journalSlice';
 import { AppDispatch, RootState } from '@/state/store';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -22,9 +22,6 @@ const CURRENT_PAGE = 1;
 const Log_1 = () => {
   const { t } = useTranslation(["tools", "common"]);
 
-  const windowWidth = Dimensions.get("window").width;
-  const windowHeight = Dimensions.get("window").height;
-
   // tool state
   const journalState = useSelector((state: RootState) => state.journal);
   const dispatch = useDispatch<AppDispatch>();
@@ -32,7 +29,7 @@ const Log_1 = () => {
   //swipe-up animation
 
   const swipeUpAnimMotion = useRef(
-    new Animated.Value(windowHeight / 6),
+    new Animated.Value(SCREEN_HEIGHT / 6),
   ).current;
   const swipeUpAnimOpacity = useRef(new Animated.Value(0)).current;
 
@@ -46,7 +43,7 @@ const Log_1 = () => {
             useNativeDriver: true,
           }),
           Animated.timing(swipeUpAnimMotion, {
-            toValue: -windowHeight / 6 + 20, // Move to a position close to final with some overlap
+            toValue: -SCREEN_HEIGHT / 6 + 20, // Move to a position close to final with some overlap
             duration: 1500, //2000 for ball
             useNativeDriver: true,
             easing: Easing.bounce, // Initial easing effect
@@ -78,10 +75,10 @@ const Log_1 = () => {
           dispatch(journalResetState());
         }}
       />
-      <View className="mx-2 my-4 flex-1" style={{ height: windowHeight }}>
+      <View className="mx-2 my-4 flex-1" style={{ height: SCREEN_HEIGHT }}>
         <View
           className="absolute mx-6"
-          style={{ top: windowHeight / 7, borderColor: "blue" }}
+          style={{ top: SCREEN_HEIGHT / 7, borderColor: "blue" }}
         >
           <ToolHeader noIndent={true}>
             {t(`tools.${TOOL_NAME}.exercise.page_1.header`)}
@@ -92,13 +89,13 @@ const Log_1 = () => {
         </View>
         <View
           className="relative flex-row pt-10"
-          style={{ top: windowHeight / 2.1 }}
+          style={{ top: SCREEN_HEIGHT / 2.1 }}
         >
           <View
             style={{
               height: 300,
-              width: (windowWidth * 2) / 3,
-              right: windowWidth / 15,
+              width: (SCREEN_WIDTH * 2) / 3,
+              right: SCREEN_WIDTH / 15,
             }}
           >
             <Slider
@@ -140,9 +137,9 @@ const Log_1 = () => {
             className="absolute mr-8"
             style={{
               height: 200,
-              width: (windowWidth * 1) / 3,
+              width: (SCREEN_WIDTH * 1) / 3,
               borderColor: "red",
-              right: windowWidth / 15,
+              right: SCREEN_WIDTH / 15,
             }}
           >
             <Animated.View
@@ -160,9 +157,9 @@ const Log_1 = () => {
               <Animated.View
                 className="items-center justify-center"
                 style={{
-                  width: windowWidth / 4,
-                  height: windowHeight / 3,
-                  bottom: windowHeight / 10,
+                  width: SCREEN_WIDTH / 4,
+                  height: SCREEN_HEIGHT / 3,
+                  bottom: SCREEN_HEIGHT / 10,
                 }}
               >
                 <Animated.View
@@ -193,11 +190,11 @@ const Log_1 = () => {
           </View>
         </View>
       </View>
-      <View className="mx-6" style={{ bottom: 0.02 * windowHeight }}>
+      <View className="mx-6" style={{ bottom: 0.02 * SCREEN_HEIGHT }}>
         <AdvanceButton
           title={t("buttons.next", { ns: "common" })}
           onPress={() => router.navigate("./log_2")}
-          btnStyle={{ bottom: windowHeight / 20 }}
+          btnStyle={{ bottom: SCREEN_HEIGHT / 20 }}
           disabled={!journalState.moodValue}
         />
       </View>

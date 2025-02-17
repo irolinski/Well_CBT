@@ -1,3 +1,7 @@
+import { Dimensions } from 'react-native';
+
+export const SCREEN_WIDTH = Dimensions.get("screen").width;
+export const SCREEN_HEIGHT = Dimensions.get("screen").height;
 export const CLOSE_MODAL_OFFSET_TRESHOLD = -175;
 
 export const journalStyleConstants = {

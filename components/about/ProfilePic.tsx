@@ -1,9 +1,8 @@
-import { Image } from "expo-image";
-import React, { ReactNode } from "react";
-import { Dimensions, StyleSheet, TouchableOpacity, View } from "react-native";
-import { UnknownAction } from "@reduxjs/toolkit";
-
-const windowHeight = Dimensions.get("window").height;
+import { Image } from 'expo-image';
+import React, { ReactNode } from 'react';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
+import { SCREEN_HEIGHT } from '@/constants/styles/values';
+import { UnknownAction } from '@reduxjs/toolkit';
 
 const ProfilePic = ({
   image,
@@ -53,9 +52,9 @@ const ProfilePic = ({
 
 const styles = StyleSheet.create({
   image: {
-    height: windowHeight / 5,
-    width: windowHeight / 5,
-    borderRadius: windowHeight / 8,
+    height: SCREEN_HEIGHT / 5,
+    width: SCREEN_HEIGHT / 5,
+    borderRadius: SCREEN_HEIGHT / 8,
   },
 });
 

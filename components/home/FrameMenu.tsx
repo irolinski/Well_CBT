@@ -1,50 +1,53 @@
-import React from "react";
-import { Dimensions, ScrollView, View } from "react-native";
-import { Colors } from "@/constants/styles/colorTheme";
-import { Logo } from "../global/Logo";
-import ToolHeader from "../tools/ToolHeader";
+import React from 'react';
+import { Dimensions, ScrollView, View } from 'react-native';
+import { Colors } from '@/constants/styles/colorTheme';
+import { SCREEN_HEIGHT, SCREEN_WIDTH } from '@/constants/styles/values';
+import { Logo } from '../global/Logo';
+import ToolHeader from '../tools/ToolHeader';
+
+const TOP_FRAME_HEIGHT = SCREEN_HEIGHT / 6.5;
+const SCROLL_VIEW_HEIGHT = SCREEN_HEIGHT - TOP_FRAME_HEIGHT;
+
+const LOGO_SIZE = 52;
+const LOGO_VIEW_WIDTH = SCREEN_WIDTH * 0.85;
+const LOGO_VIEW_OFFSET_BOTTOM = SCREEN_HEIGHT * 0.03;
 
 const FrameMenu = (props: any) => {
-  const windowWidth = Dimensions.get("window").width;
-  const windowHeight = Dimensions.get("window").height;
-  const topFrameHeight = windowHeight / 6.5;
-  const scrollViewHeight = windowHeight - topFrameHeight;
-
-  const logoViewWidth = windowWidth * 0.85;
-  const logoViewOffsetBottom = windowHeight * 0.03;
-
   return (
     <React.Fragment>
       <View
         className="absolute justify-center"
         style={{
-          width: windowWidth,
-          height: topFrameHeight,
+          width: SCREEN_WIDTH,
+          height: TOP_FRAME_HEIGHT,
           backgroundColor: Colors.mainBlue,
         }}
       >
         <View
           className="absolute mx-8 mt-8 flex-row items-center justify-between"
           style={{
-            width: logoViewWidth,
-            bottom: logoViewOffsetBottom,
+            width: LOGO_VIEW_WIDTH,
+            bottom: LOGO_VIEW_OFFSET_BOTTOM,
           }}
         >
           <ToolHeader className="text-3xl" bright={true}>
             {props.title}
           </ToolHeader>
-          <Logo sizePx={52} />
+          <Logo sizePx={LOGO_SIZE} />
         </View>
       </View>
       <ScrollView
         className="absolute flex-1 rounded-2xl bg-white pt-4"
         style={{
-          top: topFrameHeight - 15,
-          width: windowWidth,
-          height: scrollViewHeight,
+          top: TOP_FRAME_HEIGHT - 15,
+          width: SCREEN_WIDTH,
+          height: SCROLL_VIEW_HEIGHT,
         }}
       >
-        <View className="mx-4" style={{ paddingBottom: topFrameHeight * 1.2 }}>
+        <View
+          className="mx-4"
+          style={{ paddingBottom: TOP_FRAME_HEIGHT * 1.2 }}
+        >
           {props.children}
         </View>
       </ScrollView>

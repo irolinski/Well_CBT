@@ -1,29 +1,25 @@
-import { Href, router } from "expo-router";
-import React, { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { Dimensions, Pressable, TouchableOpacity, View } from "react-native";
+import { Href, router } from 'expo-router';
+import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Pressable, TouchableOpacity, View } from 'react-native';
+import { Directions, Gesture, GestureDetector } from 'react-native-gesture-handler';
 import {
-  Directions,
-  Gesture,
-  GestureDetector,
-} from "react-native-gesture-handler";
-import { recentAchievementsPlaceholderImage } from "@/assets/images/about/achievements/achievements";
+    recentAchievementsPlaceholderImage
+} from '@/assets/images/about/achievements/achievements';
 import {
-  AchievementObj,
-  AchievementProgressObj,
-  allAchievementsModelsArr,
-} from "@/constants/models/about/achievements";
-import { Colors } from "@/constants/styles/colorTheme";
-import { handleGetAchievementProgressData } from "@/db/achievements/controllers";
-import { Feather } from "@expo/vector-icons";
-import AdvanceButton from "../AdvanceButton";
-import CarouselBadge from "./CarouselBadge";
-import CarouselDetails from "./CarouselDetails";
+    AchievementObj, AchievementProgressObj, allAchievementsModelsArr
+} from '@/constants/models/about/achievements';
+import { Colors } from '@/constants/styles/colorTheme';
+import { SCREEN_HEIGHT } from '@/constants/styles/values';
+import { handleGetAchievementProgressData } from '@/db/achievements/controllers';
+import { Feather } from '@expo/vector-icons';
+import AdvanceButton from '../AdvanceButton';
+import CarouselBadge from './CarouselBadge';
+import CarouselDetails from './CarouselDetails';
 
 const RecentAchievements = () => {
   const { t } = useTranslation(["about", "common"]);
 
-  const windowHeight = Dimensions.get("window").height;
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [recentAchievementsDataState, setRecentAchievementsDataState] =
     useState<AchievementObj[] | undefined>();
@@ -112,7 +108,7 @@ const RecentAchievements = () => {
         style={{
           backgroundColor: Colors.whiteSmoke,
           height:
-            windowHeight > 750 ? windowHeight * 0.57 : windowHeight * 0.67,
+            SCREEN_HEIGHT > 750 ? SCREEN_HEIGHT * 0.57 : SCREEN_HEIGHT * 0.67,
         }}
       >
         {/* Top Section */}
@@ -190,7 +186,7 @@ const RecentAchievements = () => {
                 {selectedIndex > 0 && (
                   <TouchableOpacity
                     className="absolute left-0 z-30 h-12 w-14 items-start justify-center"
-                    style={{ top: 0.085 * windowHeight }}
+                    style={{ top: 0.085 * SCREEN_HEIGHT }}
                     onPress={() => prevPosition()}
                   >
                     <Feather
@@ -203,7 +199,7 @@ const RecentAchievements = () => {
                 {selectedIndex < recentAchievementsDataState.length - 1 && (
                   <TouchableOpacity
                     className="absolute right-0 z-30 h-12 w-14 items-end justify-center"
-                    style={{ top: 0.085 * windowHeight }}
+                    style={{ top: 0.085 * SCREEN_HEIGHT }}
                     onPress={() => nextPosition()}
                   >
                     <Feather

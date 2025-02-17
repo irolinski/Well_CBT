@@ -1,8 +1,7 @@
 import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-    Animated, Dimensions, Modal, Pressable, StyleSheet, TouchableOpacity, TouchableWithoutFeedback,
-    View
+    Animated, Modal, Pressable, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, View
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import DividerLine from '@/components/DividerLine';
@@ -10,6 +9,7 @@ import { Logo } from '@/components/global/Logo';
 import Text from '@/components/global/Text';
 import { phoneAFriend_tool } from '@/constants/models/tools/tools';
 import { Colors } from '@/constants/styles/colorTheme';
+import { SCREEN_HEIGHT, SCREEN_WIDTH } from '@/constants/styles/values';
 import { achievementHandlersObj } from '@/db/achievements/controllers';
 import { setShowModal } from '@/state/features/tools/phoneSlice';
 import { AppDispatch, RootState } from '@/state/store';
@@ -76,9 +76,6 @@ const cardColors = [
 
 const ConversationModal = () => {
   const { t } = useTranslation(["tools", "common"]);
-
-  const windowHeight = Dimensions.get("window").height;
-  const windowWidth = Dimensions.get("window").width;
 
   const dispatch = useDispatch<AppDispatch>();
   const phoneState = useSelector((state: RootState) => state.phone);
@@ -172,14 +169,14 @@ const ConversationModal = () => {
 
       // Slide out to the right
       Animated.timing(slideAnimation, {
-        toValue: windowWidth, // Slide out completely to the right
+        toValue: SCREEN_WIDTH, // Slide out completely to the right
         duration: 400,
         useNativeDriver: true,
       }).start(() => {
         setTopicNumber((Math.random() * (topicList.length - 1)) | 0); //Redraw random topic
         setCardColorNum((Math.random() * (cardColors.length - 1)) | 0); //Redraw random color
         // Reset position to the left and slide in
-        slideAnimation.setValue(-windowWidth); // Move to the left off-screen
+        slideAnimation.setValue(-SCREEN_WIDTH); // Move to the left off-screen
         Animated.timing(slideAnimation, {
           toValue: 0, // Slide back to the center
           duration: 400,
@@ -202,10 +199,10 @@ const ConversationModal = () => {
         style={{ backgroundColor: "rgba(20, 20, 20, 0.75)" }}
       >
         <View
-          className={`px-6 ${windowHeight > 850 ? "py-20" : "py-12"}`}
+          className={`px-6 ${SCREEN_HEIGHT > 850 ? "py-20" : "py-12"}`}
           style={{
-            height: windowHeight,
-            width: windowWidth,
+            height: SCREEN_HEIGHT,
+            width: SCREEN_WIDTH,
             backgroundColor: Colors.offWhite,
           }}
         >

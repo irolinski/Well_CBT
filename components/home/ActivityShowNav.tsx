@@ -1,17 +1,17 @@
-import { Dimensions, Pressable, View } from "react-native";
-import { useDispatch } from "react-redux";
-import { Colors } from "@/constants/styles/colorTheme";
-import { activityLogResetState } from "@/state/features/menus/activityLogSlice";
-import { AppDispatch } from "@/state/store";
-import { Ionicons } from "@expo/vector-icons";
-import BackButton from "../BackButton";
+import { Dimensions, Pressable, View } from 'react-native';
+import { useDispatch } from 'react-redux';
+import { Colors } from '@/constants/styles/colorTheme';
+import { SCREEN_HEIGHT } from '@/constants/styles/values';
+import { activityLogResetState } from '@/state/features/menus/activityLogSlice';
+import { AppDispatch } from '@/state/store';
+import { Ionicons } from '@expo/vector-icons';
+import BackButton from '../BackButton';
 
 type ActivityShowNavTypes = {
   handlePressDelete: () => void;
 };
 
 const ActivityShowNav = ({ handlePressDelete }: ActivityShowNavTypes) => {
-  const windowHeight = Dimensions.get("window").height;
   const dispatch = useDispatch<AppDispatch>();
 
   return (
@@ -20,7 +20,7 @@ const ActivityShowNav = ({ handlePressDelete }: ActivityShowNavTypes) => {
       style={{
         borderColor: Colors.lightGray,
         backgroundColor: Colors.mainBlue,
-        paddingTop: windowHeight * 0.065,
+        paddingTop: SCREEN_HEIGHT * 0.065,
         paddingBottom: 16,
       }}
     >

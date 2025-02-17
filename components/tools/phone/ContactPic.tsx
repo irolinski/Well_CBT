@@ -1,20 +1,10 @@
-import { Image } from "expo-image";
-import React, { useEffect, useRef, useState } from "react";
-import {
-  Animated,
-  Dimensions,
-  Pressable,
-  StyleSheet,
-  View,
-} from "react-native";
-import { useSelector } from "react-redux";
-import {
-  phoneFacePlaceholder,
-  phoneFaces,
-} from "@/assets/images/tools/phone/phoneFaces";
-import { RootState } from "@/state/store";
-
-const windowHeight = Dimensions.get("window").height;
+import { Image } from 'expo-image';
+import React, { useEffect, useRef, useState } from 'react';
+import { Animated, Pressable, StyleSheet, View } from 'react-native';
+import { useSelector } from 'react-redux';
+import { phoneFacePlaceholder, phoneFaces } from '@/assets/images/tools/phone/phoneFaces';
+import { SCREEN_HEIGHT } from '@/constants/styles/values';
+import { RootState } from '@/state/store';
 
 const ContactPic = ({
   pictureURI,
@@ -86,9 +76,9 @@ const ContactPic = ({
 
 const styles = StyleSheet.create({
   image: {
-    height: windowHeight / 4,
-    width: windowHeight / 4,
-    borderRadius: windowHeight / 8,
+    height: SCREEN_HEIGHT / 4,
+    width: SCREEN_HEIGHT / 4,
+    borderRadius: SCREEN_HEIGHT / 8,
   },
 });
 

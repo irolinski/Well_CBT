@@ -1,40 +1,26 @@
-import { Href, router, useFocusEffect } from "expo-router";
-import React from "react";
-import { useTranslation } from "react-i18next";
-import {
-  Alert,
-  Dimensions,
-  Linking,
-  TouchableOpacity,
-  View,
-} from "react-native";
-import { useDispatch, useSelector } from "react-redux";
-import BackButton from "@/components/BackButton";
-import Text from "@/components/global/Text";
-import ContactPic from "@/components/tools/phone/ContactPic";
-import ToolHeader from "@/components/tools/ToolHeader";
-import { phoneAFriend_tool } from "@/constants/models/tools/tools";
-import { Colors } from "@/constants/styles/colorTheme";
-import { getPhoneData } from "@/db/tools";
-import {
-  setShowModal,
-  setSupportContact,
-} from "@/state/features/tools/phoneSlice";
-import { AppDispatch, RootState } from "@/state/store";
-import formatPhoneNumber from "@/utils/formatPhoneNumber";
-import {
-  AntDesign,
-  MaterialCommunityIcons,
-  MaterialIcons,
-} from "@expo/vector-icons";
-import ConversationModal from "./modal";
+import { Href, router, useFocusEffect } from 'expo-router';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { Alert, Linking, TouchableOpacity, View } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import BackButton from '@/components/BackButton';
+import Text from '@/components/global/Text';
+import ContactPic from '@/components/tools/phone/ContactPic';
+import ToolHeader from '@/components/tools/ToolHeader';
+import { phoneAFriend_tool } from '@/constants/models/tools/tools';
+import { Colors } from '@/constants/styles/colorTheme';
+import { SCREEN_HEIGHT } from '@/constants/styles/values';
+import { getPhoneData } from '@/db/tools';
+import { setShowModal, setSupportContact } from '@/state/features/tools/phoneSlice';
+import { AppDispatch, RootState } from '@/state/store';
+import formatPhoneNumber from '@/utils/formatPhoneNumber';
+import { AntDesign, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
+import ConversationModal from './modal';
 
 const TOOL_NAME = phoneAFriend_tool.name;
 
 const Phone = () => {
   const { t } = useTranslation(["tools", "common"]);
-
-  const windowHeight = Dimensions.get("window").height;
 
   const dispatch = useDispatch<AppDispatch>();
   const phoneState = useSelector((state: RootState) => state.phone);
@@ -81,7 +67,7 @@ const Phone = () => {
   return (
     <React.Fragment>
       <View
-        className={`z-10 mx-6 ${windowHeight > 750 ? "top-20" : "top-12"} flex-row justify-between`}
+        className={`z-10 mx-6 ${SCREEN_HEIGHT > 750 ? "top-20" : "top-12"} flex-row justify-between`}
       >
         <BackButton />
         {phoneState.supportContact && (
@@ -97,9 +83,9 @@ const Phone = () => {
         )}
       </View>
       <View
-        className={`mx-6 ${windowHeight > 750 ? "top-24" : "top-16"}`}
+        className={`mx-6 ${SCREEN_HEIGHT > 750 ? "top-24" : "top-16"}`}
         style={{
-          height: windowHeight - windowHeight / 5,
+          height: SCREEN_HEIGHT - SCREEN_HEIGHT / 5,
         }}
       >
         <View className="mb-8">
@@ -107,7 +93,7 @@ const Phone = () => {
         </View>
         <View
           className="rounded-3xl border"
-          style={{ height: windowHeight / 1.6, borderColor: Colors.mainGray }}
+          style={{ height: SCREEN_HEIGHT / 1.6, borderColor: Colors.mainGray }}
         >
           <View className="mt-4">
             <ContactPic
@@ -147,8 +133,8 @@ const Phone = () => {
               activeOpacity={0.7}
               className="mx-8 items-center justify-center rounded-full"
               style={{
-                width: windowHeight / 10,
-                height: windowHeight / 10,
+                width: SCREEN_HEIGHT / 10,
+                height: SCREEN_HEIGHT / 10,
                 backgroundColor: "#81C784",
                 opacity: !phoneState.supportContact ? 0.5 : 1,
               }}
@@ -161,8 +147,8 @@ const Phone = () => {
               activeOpacity={0.7}
               className="mx-8 items-center justify-center rounded-full"
               style={{
-                width: windowHeight / 10,
-                height: windowHeight / 10,
+                width: SCREEN_HEIGHT / 10,
+                height: SCREEN_HEIGHT / 10,
                 backgroundColor: Colors.darkBlue,
                 opacity: !phoneState.supportContact ? 0.5 : 1,
               }}
