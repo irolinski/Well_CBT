@@ -1,17 +1,61 @@
-import { useLocalSearchParams } from "expo-router";
-import ErrorScreen from "@/components/ErrorScreen";
-import ArticlePage from "@/components/learn/Article";
-import { learnArticles } from "@/constants/models/learn/articles";
-import { ArticleTypes } from "@/constants/models/learn/learn";
+import { useLocalSearchParams } from 'expo-router';
+import { ReactElement } from 'react';
+import { Trans, useTranslation } from 'react-i18next';
+import { View } from 'react-native';
+import learnArticlesLocales from '@/assets/text/learn_articles.json';
+import ErrorScreen from '@/components/ErrorScreen';
+import Text from '@/components/global/Text';
+import ArticlePage from '@/components/learn/Article';
+import { learnArticles } from '@/constants/models/learn/articles';
+import { ArticlesInCurrentLanguageType, ArticleTypes } from '@/constants/models/learn/learn';
+import { AvailableLanguage } from '@/hooks/i18n';
+
+export type ArticleTypesWithArticleBody = ArticleTypes & { body: ReactElement };
 
 const index = () => {
+  const { i18n } = useTranslation("learn");
+  const selectedLanguage: AvailableLanguage =
+    i18n.language as AvailableLanguage;
+
   const articleId: number = Number(
     useLocalSearchParams<{ articleId: string }>().articleId,
   );
 
-  const article: ArticleTypes | undefined = learnArticles.find(
-    (el) => el.id === articleId,
-  );
+  const articlesInCurrentLanguage = learnArticlesLocales[
+    selectedLanguage
+  ] as ArticlesInCurrentLanguageType;
+
+  const articleLocaleObj = articlesInCurrentLanguage[articleId];
+
+  const articleMediaObj = learnArticles.find((el) => el.id === articleId);
+
+  const articleBody = () => {
+    return (
+      <Trans
+        // i18nKey={t(`article_data.${id}.body`)}
+        defaults={articleLocaleObj.body}
+        ns="learn"
+        components={{
+          paragraph: <View className="mt-3" />,
+          header: <Text className="w-3/4 text-lg font-semibold" />,
+          body: <Text className="m-3 text-base leading-6" />,
+          bold: <Text style={{ fontWeight: 600 }} />,
+        }}
+      />
+    );
+  };
+
+  const article: ArticleTypesWithArticleBody = {
+    title: articleLocaleObj.title,
+    subtitle: articleLocaleObj.subtitle,
+    category: articleMediaObj!.category,
+    body: articleBody(),
+    time: articleMediaObj!.time,
+    bgImage: articleMediaObj!.bgImage,
+    customImage: articleMediaObj?.customImage,
+    relatedArticleIds: articleMediaObj?.relatedArticleIds,
+    id: articleMediaObj!.id,
+  };
 
   if (article) {
     return <ArticlePage {...article} />;

@@ -1,24 +1,17 @@
-import { Image } from "expo-image";
-import { Href, router } from "expo-router";
-import React from "react";
-import { useTranslation } from "react-i18next";
-import {
-  Dimensions,
-  Pressable,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
-import { learnArticleCardTypes } from "@/constants/models/learn/learn";
-import { Colors } from "@/constants/styles/colorTheme";
-import { Feather } from "@expo/vector-icons";
+import { Image } from 'expo-image';
+import { Href, router } from 'expo-router';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { Dimensions, Pressable, Text, TouchableOpacity, View } from 'react-native';
+import { learnArticleCardTypes } from '@/constants/models/learn/learn';
+import { Colors } from '@/constants/styles/colorTheme';
+import { Feather } from '@expo/vector-icons';
 
 const LearnArticleCard = ({
   title,
   subtitle,
   time,
   link,
-  id,
   image,
   imagePlacement,
   frameColor,
@@ -54,14 +47,14 @@ const LearnArticleCard = ({
               className="text-lg"
               style={{ color: Colors.white, fontWeight: 500 }}
             >
-              {t(`article_data.${id}.title`)}
+              {title}
             </Text>
 
             <Text
               className="my-1.5 text-base italic"
               style={{ color: Colors.white }}
             >
-              {t(`article_data.${id}.subtitle`)}
+              {subtitle}
             </Text>
           </View>
           <View

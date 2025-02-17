@@ -1,18 +1,37 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { View } from 'react-native';
+import learnArticlesLocales from '@/assets/text/learn_articles.json';
 import Text from '@/components/global/Text';
 import FrameMenu from '@/components/home/FrameMenu';
 import LearnArticleCard from '@/components/learn/ArticleCard';
 import LearnCategoryCard from '@/components/learn/LearnCategoryCard';
 import { learnArticles } from '@/constants/models/learn/articles';
 import { learnCategories, learnCategoriesTypes } from '@/constants/models/learn/categories';
+import { ArticlesInCurrentLanguageType } from '@/constants/models/learn/learn';
 import { Colors } from '@/constants/styles/colorTheme';
+import { AvailableLanguage } from '@/hooks/i18n';
 
 const Learn = () => {
-  const { t } = useTranslation("learn");
+  const { t, i18n } = useTranslation("learn");
+  const selectedLanguage: AvailableLanguage =
+    i18n.language as AvailableLanguage;
 
-  const articleNumber = (Math.random() * (learnArticles.length - 1)) | 0;
+  const articlesInCurrentLanguage = learnArticlesLocales[
+    selectedLanguage
+  ] as ArticlesInCurrentLanguageType;
+
+  const availableArticles = learnArticles.filter((articleObj) =>
+    Object.keys(articlesInCurrentLanguage).includes(String(articleObj.id)),
+  );
+
+  const articleNumber =
+    (Math.random() * (Object.keys(availableArticles).length - 1)) | 0;
+
+  const featuredArticle = availableArticles[articleNumber];
+  const featuredcategoryData = learnCategories.find(
+    (c) => c.title === featuredArticle.category,
+  );
 
   return (
     <FrameMenu title={t("index.title")}>
@@ -23,16 +42,14 @@ const Learn = () => {
           </Text>
           <View className="items-center justify-center">
             <LearnArticleCard
-              title={learnArticles[articleNumber].title}
-              subtitle={learnArticles[articleNumber].subtitle}
-              time={learnArticles[articleNumber].time}
-              link={`/learn/categories/${learnArticles[articleNumber].category}/${learnArticles[articleNumber].id}`}
-              id={learnArticles[articleNumber].id}
-              image={learnArticles[articleNumber].bgImage.image}
-              imagePlacement={
-                learnArticles[articleNumber].bgImage.cardPlacementY
-              }
-              frameColor={"#F28E4E"}
+              title={articlesInCurrentLanguage[featuredArticle.id].title}
+              subtitle={articlesInCurrentLanguage[featuredArticle.id].subtitle}
+              time={featuredArticle.time}
+              link={`/learn/categories/${featuredArticle.category}/${availableArticles[articleNumber].id}`}
+              id={featuredArticle.id}
+              image={featuredArticle.bgImage.image}
+              imagePlacement={featuredArticle.bgImage.cardPlacementY}
+              frameColor={featuredcategoryData?.color}
             />
           </View>
         </View>

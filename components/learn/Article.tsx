@@ -1,43 +1,71 @@
-import { Image } from "expo-image";
-import React, { useRef } from "react";
-import { Trans, useTranslation } from "react-i18next";
-import { Animated, Dimensions, ScrollView, View } from "react-native";
-import { logoImages } from "@/assets/images/global/logo/logo";
-import DividerLine from "@/components/DividerLine";
-import Text from "@/components/global/Text";
-import ArticleImage from "@/components/learn/ArticleCustomImage";
-import ArticleTextHeader from "@/components/learn/ArticleTextHeader";
-import RelatedArticleCard from "@/components/learn/RelatedArticleCard";
-import { learnArticles } from "@/constants/models/learn/articles";
-import { ArticleTypes } from "@/constants/models/learn/learn";
-import { Colors } from "@/constants/styles/colorTheme";
-import ArticleImageScrollableHeader from "./ArticleImageScrollableHeader";
-
-const getRelatedArticles = (idArr: number[] | undefined) => {
-  let relatedArticlesArr: ArticleTypes[] = [];
-  if (idArr) {
-    idArr.forEach((id: number) => {
-      let relatedArticle = learnArticles.find((a) => a.id === id);
-      relatedArticle && relatedArticlesArr.push(relatedArticle);
-    });
-  }
-  return relatedArticlesArr;
-};
+import { Image } from 'expo-image';
+import React, { useRef } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Animated, Dimensions, ScrollView, View } from 'react-native';
+import { ArticleTypesWithArticleBody } from '@/app/learn/categories/[category]/[articleId]';
+import { logoImages } from '@/assets/images/global/logo/logo';
+import learnArticlesLocales from '@/assets/text/learn_articles.json';
+import DividerLine from '@/components/DividerLine';
+import Text from '@/components/global/Text';
+import ArticleImage from '@/components/learn/ArticleCustomImage';
+import ArticleTextHeader from '@/components/learn/ArticleTextHeader';
+import RelatedArticleCard from '@/components/learn/RelatedArticleCard';
+import { learnArticles } from '@/constants/models/learn/articles';
+import {
+    ArticlesInCurrentLanguageType, ArticleTypes, learnRelatedArticleCardTypes
+} from '@/constants/models/learn/learn';
+import { Colors } from '@/constants/styles/colorTheme';
+import { AvailableLanguage } from '@/hooks/i18n';
+import ArticleImageScrollableHeader from './ArticleImageScrollableHeader';
 
 const ArticlePage = ({
+  title,
+  subtitle,
+  body,
   category,
   time,
   bgImage,
   customImage,
   relatedArticleIds,
   id,
-}: ArticleTypes) => {
-  const { t } = useTranslation(["learn", "common"]);
+}: ArticleTypesWithArticleBody) => {
+  const { t, i18n } = useTranslation(["learn", "common"]);
 
   const windowHeight = Dimensions.get("window").height;
   const windowWidth = Dimensions.get("window").width;
   const headerHeight = windowHeight * 0.4;
   const scrollOffsetY = useRef(new Animated.Value(0)).current;
+
+  const selectedLanguage: AvailableLanguage =
+    i18n.language as AvailableLanguage;
+
+  const getRelatedArticles = (idArr: number[] | undefined) => {
+    let relatedArticlesArr: learnRelatedArticleCardTypes[] = [];
+
+    if (idArr) {
+      idArr.forEach((id: number) => {
+        const relatedArticleLocaleObj = articlesInCurrentLanguage[id];
+        let relatedArticleMediaObj = learnArticles.find((a) => a.id === id);
+
+        const relatedArticle: learnRelatedArticleCardTypes = {
+          title: relatedArticleLocaleObj.title,
+          image: relatedArticleMediaObj!.bgImage.image!,
+          time: relatedArticleMediaObj!.time,
+          link: `/learn/categories/${relatedArticleMediaObj!.category}/${relatedArticleMediaObj!.id}`,
+          id: relatedArticleMediaObj!.id,
+        };
+
+        if (relatedArticle) {
+          relatedArticlesArr.push(relatedArticle);
+        }
+      });
+    }
+    return relatedArticlesArr;
+  };
+
+  const articlesInCurrentLanguage = learnArticlesLocales[
+    selectedLanguage
+  ] as ArticlesInCurrentLanguageType;
 
   const relatedArticles = getRelatedArticles(relatedArticleIds);
   const handleScroll = Animated.event(
@@ -68,23 +96,14 @@ const ArticlePage = ({
         >
           {/* Article Header */}
           <ArticleTextHeader
-            title={t(`article_data.${id}.title`)}
-            subtitle={t(`article_data.${id}.subtitle`)}
+            title={title}
+            subtitle={subtitle ?? ""}
             time={time}
             category={t(`categories.${category}.title`)}
           />
           {/* Article Body */}
           <View className="mt-10">
-            <Trans
-              i18nKey={t(`article_data.${id}.body`)}
-              ns="learn"
-              components={{
-                paragraph: <View className="mt-3" />,
-                header: <Text className="w-3/4 text-lg font-semibold" />,
-                body: <Text className="m-3 text-base leading-6" />,
-                bold: <Text style={{ fontWeight: 600 }} />,
-              }}
-            />
+            {body}
 
             {/* optional image */}
             {customImage && (
@@ -118,16 +137,10 @@ const ArticlePage = ({
                 <View className="my-4 items-center">
                   {relatedArticles.length > 0 &&
                     relatedArticles.map(
-                      (article: ArticleTypes, indexNum: number) => (
-                        <RelatedArticleCard
-                          title={article.title}
-                          time={article.time}
-                          image={article.bgImage.image}
-                          link={`/learn/categories/${article.category}/${article.id}`}
-                          id={article.id}
-                          key={indexNum}
-                        />
-                      ),
+                      (
+                        article: learnRelatedArticleCardTypes,
+                        indexNum: number,
+                      ) => <RelatedArticleCard {...article} key={indexNum} />,
                     )}
                 </View>
               </React.Fragment>

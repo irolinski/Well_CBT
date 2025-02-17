@@ -1,5 +1,5 @@
-import { Image } from "expo-image";
-import { ColorValue } from "react-native";
+import { Image } from 'expo-image';
+import { ColorValue } from 'react-native';
 
 export type articleParagraph = { header: string; body: string };
 export type articleBody = articleParagraph[];
@@ -12,10 +12,12 @@ type articleBgImage = {
   cardPlacementY?: number;
 };
 
+type ArticleCategory = "psychology" | "science" | "tutorial" | "lifestyle";
+
 export type ArticleTypes = {
   title: string;
   subtitle?: string;
-  category: string;
+  category: ArticleCategory;
   time?: number;
   bgImage: articleBgImage;
   customImage?: articleCustomImage;
@@ -37,3 +39,12 @@ export type learnArticleCardTypes = learnRelatedArticleCardTypes & {
   frameColor?: ColorValue;
   textColor?: string;
 };
+
+export type ArticlesInCurrentLanguageType = Record<
+  string,
+  {
+    title: `${number}`;
+    subtitle: string;
+    body: string;
+  }
+>;

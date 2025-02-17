@@ -1,19 +1,24 @@
-import { Image } from "expo-image";
-import { useLocalSearchParams } from "expo-router";
-import React, { useRef } from "react";
-import { useTranslation } from "react-i18next";
-import { Animated, Dimensions, ScrollView, View } from "react-native";
-import { logoImages } from "@/assets/images/global/logo/logo";
-import LearnArticleCard from "@/components/learn/ArticleCard";
-import { learnArticles } from "@/constants/models/learn/articles";
-import { learnCategories } from "@/constants/models/learn/categories";
-import { Colors } from "@/constants/styles/colorTheme";
-import ErrorScreen from "../ErrorScreen";
-import Text from "../global/Text";
-import CategoryScrollableHeader from "./CategoryScrollableHeader";
+import { Image } from 'expo-image';
+import { useLocalSearchParams } from 'expo-router';
+import React, { useRef } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Animated, Dimensions, ScrollView, View } from 'react-native';
+import { logoImages } from '@/assets/images/global/logo/logo';
+import learnArticlesLocales from '@/assets/text/learn_articles.json';
+import LearnArticleCard from '@/components/learn/ArticleCard';
+import { learnArticles } from '@/constants/models/learn/articles';
+import { learnCategories } from '@/constants/models/learn/categories';
+import { ArticlesInCurrentLanguageType } from '@/constants/models/learn/learn';
+import { Colors } from '@/constants/styles/colorTheme';
+import { AvailableLanguage } from '@/hooks/i18n';
+import ErrorScreen from '../ErrorScreen';
+import Text from '../global/Text';
+import CategoryScrollableHeader from './CategoryScrollableHeader';
 
 const CategoryPage = () => {
-  const { t } = useTranslation(["learn", "common"]);
+  const { t, i18n } = useTranslation(["learn", "common"]);
+  const selectedLanguage: AvailableLanguage =
+    i18n.language as AvailableLanguage;
 
   const windowHeight = Dimensions.get("window").height;
   const headerHeight = windowHeight * 0.5;
@@ -28,10 +33,20 @@ const CategoryPage = () => {
 
   const categoryTitle: string = useLocalSearchParams<{ category: string }>()
     .category;
-  const articles = learnArticles.filter((a) => a.category === categoryTitle);
+
+  const articlesInCurrentLanguage = learnArticlesLocales[
+    selectedLanguage
+  ] as ArticlesInCurrentLanguageType;
+
+  const availableArticles = learnArticles.filter((articleObj) =>
+    Object.keys(articlesInCurrentLanguage).includes(String(articleObj.id)),
+  );
+  const displayedArticles = availableArticles.filter(
+    (a) => a.category === categoryTitle,
+  );
   const categoryData = learnCategories.find((c) => c.title === categoryTitle);
 
-  if (articles.length > 0 && categoryData) {
+  if (displayedArticles.length > 0 && categoryData) {
     return (
       <React.Fragment>
         <CategoryScrollableHeader
@@ -54,16 +69,16 @@ const CategoryPage = () => {
           <View className="mx-4 mb-4">
             <View style={{ backgroundColor: Colors.offWhite }}>
               <View className="items-center justify-center">
-                {articles.map((el, index: number) => (
+                {displayedArticles.map((article, index: number) => (
                   <View className="mt-5 flex-1" key={index}>
                     <LearnArticleCard
-                      title={el.title}
-                      subtitle={el.subtitle}
-                      time={el.time}
-                      link={`./${categoryTitle}/${el.id}`}
-                      id={el.id}
-                      image={el.bgImage.image}
-                      imagePlacement={el.bgImage.cardPlacementY}
+                      title={articlesInCurrentLanguage[article.id].title}
+                      subtitle={articlesInCurrentLanguage[article.id].subtitle}
+                      time={article.time}
+                      link={`./${categoryTitle}/${article.id}`}
+                      id={article.id}
+                      image={article.bgImage.image}
+                      imagePlacement={article.bgImage.cardPlacementY}
                       frameColor={categoryData.color}
                     />
                   </View>
@@ -72,8 +87,8 @@ const CategoryPage = () => {
                   <Text>
                     {t("lists_and_tables.showing_current_of_total", {
                       ns: "common",
-                      current: articles.length,
-                      total: articles.length,
+                      current: displayedArticles.length,
+                      total: displayedArticles.length,
                     })}
                   </Text>
                 </View>

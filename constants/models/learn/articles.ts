@@ -1,4 +1,4 @@
-import { ArticleTypes } from "./learn";
+import { ArticleTypes } from './learn';
 
 //article details to be found in locale/--language--/learn.json files
 
@@ -17,7 +17,7 @@ export const learnArticles: ArticleTypes[] = [
   {
     title: "What is CBT?",
     time: 4,
-    category: "Psychology",
+    category: "psychology",
     bgImage: {
       image: require(`@/assets/images/learn/articles/bg/bg_2.webp`),
     },
