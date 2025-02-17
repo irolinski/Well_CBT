@@ -11,7 +11,8 @@
     "save_preferences": "Save preferences",
     "save_changes": "Save changes",
     "start": "Start",
-    "pause": "Pause"
+    "pause": "Pause",
+    "go_back": "Go back"
   },
   "dates": {
     "months": {
@@ -53,5 +54,12 @@
     "tools": "Tools",
     "learn": "Learn",
     "about_me": "About Me"
+  },
+  "errors": {
+    "wrong_way": {
+      "header_1": "Wrong way!",
+      "header_2": "Sorry, there is currently nothing to see here.",
+      "body": "We're probably already on it and if you suspect we aren't report a bug using the suitable button in settings menu. \n\nThank you."
+    }
   }
 }

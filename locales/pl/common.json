@@ -12,7 +12,8 @@
     "save_preferences": "Zachowaj ustawienia",
     "save_changes": "Zachowaj zmiany",
     "start": "Start",
-    "pause": "Pauza"
+    "pause": "Pauza",
+    "go_back": "Wróć"
   },
   "dates": {
     "months": {
@@ -51,5 +52,12 @@
     "tools": "Narzędzia",
     "learn": "Wiedza",
     "about_me": "O mnie"
+  },
+  "errors": {
+    "wrong_way": {
+      "header_1": "Ślepa uliczka!",
+      "header_2": "Wybacz, w tej chwili nic tu nie ma.",
+      "body": "Najprawdopodobniej już nad tym pracujemy, ale jeśli masz wątpliwości, zgłoś błąd używając odpowiedniego kafla w menu 'Ustawienia'. \n\n Dziękujemy."
+    }
   }
 }
