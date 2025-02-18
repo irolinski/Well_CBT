@@ -1,3 +1,4 @@
+import { Href, router } from 'expo-router';
 import React from 'react';
 import { TouchableOpacity, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -6,26 +7,19 @@ import DividerLine from '@/components/DividerLine';
 import Text from '@/components/global/Text';
 import { Colors } from '@/constants/styles/colorTheme';
 import { SCREEN_HEIGHT } from '@/constants/styles/values';
-import {
-    AntDesign, FontAwesome5, FontAwesome6, Ionicons, MaterialCommunityIcons
-} from '@expo/vector-icons';
+import { FontAwesome5, FontAwesome6, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 
 const index = () => {
-  const fakeData_1 = {
+  const preferencesObj = {
     title: "Preferences",
     items: [
       {
-        title: "General Settings",
+        title: "Language Settings",
         icon: <FontAwesome5 name="smile" size={40} color="black" />,
+        link: "/about/settings/preferences/language",
       },
       {
-        title: "Notifications",
-        icon: (
-          <Ionicons name="notifications" size={40} color={Colors.blackPearl} />
-        ),
-      },
-      {
-        title: "Subscription",
+        title: "Storage",
         icon: (
           <FontAwesome6
             name="arrows-spin"
@@ -33,23 +27,14 @@ const index = () => {
             color={Colors.blackPearl}
           />
         ),
+        link: "/about/settings/preferences/storage",
       },
     ],
   };
 
-  const fakeData_2 = {
+  const moreObj = {
     title: "More",
     items: [
-      {
-        title: "FAQ",
-        icon: (
-          <AntDesign
-            name="questioncircleo"
-            size={40}
-            color={Colors.blackPearl}
-          />
-        ),
-      },
       {
         title: "Report a Bug",
         icon: (
@@ -59,21 +44,12 @@ const index = () => {
             color={Colors.blackPearl}
           />
         ),
-      },
-      {
-        title: "Leave Feedback",
-        icon: (
-          <MaterialCommunityIcons
-            name="message-processing-outline"
-            size={40}
-            color={Colors.blackPearl}
-          />
-        ),
+        link: "/about/settings/more/report_a_bug",
       },
     ],
   };
 
-  const settingsData = [fakeData_1, fakeData_2];
+  const settingsData = [preferencesObj, moreObj];
 
   return (
     <ScrollView>
@@ -137,7 +113,7 @@ const index = () => {
                     <TouchableOpacity
                       className="mr-4 flex-row py-6"
                       key={indexNum}
-                      onPress={() => alert("Pressed!")}
+                      onPress={() => router.push(`${item.link}` as Href)}
                     >
                       <View className="w-full flex-row">
                         <View className="ml-3 w-1/5">{item.icon}</View>
