@@ -18,7 +18,12 @@
     "select_profile_picture": "Wybierz zdjęcie profilowe"
   },
   "settings": {
-    "title": "Ustawienia"
+    "title": "Ustawienia",
+
+    "language": {
+      "title": "Ustawienia języka",
+      "select_language": "Wybierz język:"
+    }
   },
 
   "achievements": {

@@ -55,6 +55,7 @@
     "learn": "Learn",
     "about_me": "About Me"
   },
+  "languages": { "en": "English", "pl": "Polish" },
   "errors": {
     "wrong_way": {
       "header_1": "Wrong way!",

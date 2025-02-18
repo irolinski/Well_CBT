@@ -21,7 +21,8 @@ const NavigationModalButton = ({
       style={{
         width: 0.75 * 320,
         height: 50,
-        backgroundColor: !disabled ? Colors.darkBlue : Colors.mainGray,
+        backgroundColor: Colors.darkBlue,
+        opacity: disabled ? 0.4 : 1,
       }}
       disabled={disabled}
       onPress={() => {

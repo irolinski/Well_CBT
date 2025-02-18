@@ -53,6 +53,7 @@
     "learn": "Wiedza",
     "about_me": "O mnie"
   },
+  "languages": { "en": "Angielski", "pl": "Polski" },
   "errors": {
     "wrong_way": {
       "header_1": "Ślepa uliczka!",

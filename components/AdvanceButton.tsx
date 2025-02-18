@@ -1,5 +1,5 @@
-import React from "react";
-import { TouchableOpacity } from "react-native";
+import React, { ReactNode } from "react";
+import { TouchableOpacity, View } from "react-native";
 import { Colors } from "@/constants/styles/colorTheme";
 import Text from "./global/Text";
 
@@ -9,6 +9,7 @@ interface AdvanceButtonProps {
   className?: string;
   btnStyle?: any;
   textStyle?: any;
+  icon?: ReactNode;
   disabled?: boolean;
 }
 
@@ -18,12 +19,13 @@ const AdvanceButton = ({
   className = "",
   btnStyle = {},
   textStyle = {},
+  icon,
   disabled,
 }: AdvanceButtonProps) => {
   return (
     <TouchableOpacity
       activeOpacity={0.7}
-      className={`h-12 items-center justify-center ${className}`}
+      className={`h-12 flex-row items-center justify-center ${className}`}
       style={[
         btnStyle,
         {
@@ -36,11 +38,12 @@ const AdvanceButton = ({
       disabled={disabled}
     >
       <Text
-        className="font-semibold"
+        className="mx-2 font-semibold"
         style={[textStyle, { color: textStyle.color ?? Colors.whiteSmoke }]}
       >
         {title}
       </Text>
+      {icon && <View>{icon}</View>}
     </TouchableOpacity>
   );
 };
