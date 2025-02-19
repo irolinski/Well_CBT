@@ -15,9 +15,9 @@ const SETTING_NAME = "language";
 
 const LanguageSettingsPage = () => {
   const { t, i18n } = useTranslation(["about", "common"]);
-  const [selectedLanguage, setSelectedLanguage] = useState();
-
   const currentLanguage = i18n.language;
+
+  const [selectedLanguage, setSelectedLanguage] = useState(currentLanguage);
 
   return (
     <ScrollView scrollEnabled={false}>
