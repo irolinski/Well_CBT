@@ -4,9 +4,10 @@ import { ScrollView, View } from "react-native";
 import AdvanceButton from "@/components/AdvanceButton";
 import BackButton from "@/components/BackButton";
 import DividerLine from "@/components/DividerLine";
+import MenuNav from "@/components/global/MenuNav";
 import Text from "@/components/global/Text";
 import { Colors } from "@/constants/styles/colorTheme";
-import { SCREEN_HEIGHT, SCREEN_WIDTH } from "@/constants/styles/values";
+import { SCREEN_WIDTH } from "@/constants/styles/values";
 import { availableLanguagesArr } from "@/hooks/i18n";
 import { Feather } from "@expo/vector-icons";
 import { Picker } from "@react-native-picker/picker";
@@ -21,32 +22,7 @@ const LanguageSettingsPage = () => {
 
   return (
     <ScrollView scrollEnabled={false}>
-      <View
-        className={`z-10 w-full border-b`}
-        style={{
-          borderColor: Colors.lightGray,
-          backgroundColor: Colors.mainBlue,
-          paddingTop: SCREEN_HEIGHT * 0.065,
-          paddingBottom: 16,
-        }}
-      >
-        <View className="z-10 w-full flex-row items-center justify-between px-6">
-          <View>
-            <BackButton color={Colors.offWhite} />
-          </View>
-          <View className="flex-row justify-end">
-            <Text
-              className={`text-left text-2xl`}
-              style={{
-                fontFamily: "KodchasanMedium",
-                color: Colors.whiteSmoke,
-              }}
-            >
-              {t(`settings.${SETTING_NAME}.title`)}
-            </Text>
-          </View>
-        </View>
-      </View>
+      <MenuNav name={t(`settings.${SETTING_NAME}.title`)} />
       <View className="m-4">
         <View className="mt-10">
           <Text className="text-xl">
@@ -57,7 +33,6 @@ const LanguageSettingsPage = () => {
               style={{
                 padding: 0,
                 margin: 0,
-                // transform: [{ translateY }],
               }}
               selectedValue={selectedLanguage}
               onValueChange={(itemValue) => setSelectedLanguage(itemValue)}

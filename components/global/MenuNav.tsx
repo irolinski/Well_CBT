@@ -1,8 +1,8 @@
-import { ColorValue, View } from 'react-native';
-import { Colors } from '@/constants/styles/colorTheme';
-import { SCREEN_HEIGHT } from '@/constants/styles/values';
-import BackButton from '../BackButton';
-import ToolHeader from '../tools/ToolHeader';
+import { ColorValue, View } from "react-native";
+import { Colors } from "@/constants/styles/colorTheme";
+import { SCREEN_HEIGHT } from "@/constants/styles/values";
+import BackButton from "../BackButton";
+import ToolHeader from "../tools/ToolHeader";
 
 type menuNavTypes = {
   name: string;

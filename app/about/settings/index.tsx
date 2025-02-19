@@ -1,15 +1,17 @@
-import { Href, router } from 'expo-router';
-import React from 'react';
-import { TouchableOpacity, View } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
-import BackButton from '@/components/BackButton';
-import DividerLine from '@/components/DividerLine';
-import Text from '@/components/global/Text';
-import { Colors } from '@/constants/styles/colorTheme';
-import { SCREEN_HEIGHT } from '@/constants/styles/values';
-import { FontAwesome5, FontAwesome6, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import { Href, router } from "expo-router";
+import React from "react";
+import { useTranslation } from "react-i18next";
+import { TouchableOpacity, View } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
+import DividerLine from "@/components/DividerLine";
+import MenuNav from "@/components/global/MenuNav";
+import Text from "@/components/global/Text";
+import { Colors } from "@/constants/styles/colorTheme";
+import { FontAwesome5, FontAwesome6 } from "@expo/vector-icons";
 
 const index = () => {
+  const { t } = useTranslation(["about", "common"]);
+
   const preferencesObj = {
     title: "Preferences",
     items: [
@@ -53,35 +55,7 @@ const index = () => {
 
   return (
     <ScrollView>
-      {/* Nav */}
-      <View
-        className={`z-10 w-full border-b`}
-        style={{
-          borderColor: Colors.lightGray,
-          backgroundColor: Colors.mainBlue,
-          paddingTop: SCREEN_HEIGHT * 0.065,
-          paddingBottom: 16,
-        }}
-      >
-        <View className="z-10 w-full flex-row items-center justify-between px-6">
-          <View>
-            <BackButton color={Colors.offWhite} />
-          </View>
-          <View className="flex-row justify-end">
-            <Text
-              className={`text-left text-2xl`}
-              style={{
-                fontFamily: "KodchasanMedium",
-                color: Colors.whiteSmoke,
-              }}
-            >
-              Settings
-            </Text>
-          </View>
-        </View>
-      </View>
-      {/* /Nav */}
-
+      <MenuNav name={t(`settings.title`)} />
       <View className="m-4">
         <View className="mt-4">
           {settingsData.map((segment, indexNum: number) => (

@@ -1,16 +1,18 @@
-import { Image } from 'expo-image';
-import React, { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { ScrollView, View } from 'react-native';
-import { logoImages } from '@/assets/images/global/logo/logo';
-import AchievementCard from '@/components/about/AchievementCard';
-import MenuNav from '@/components/global/MenuNav';
-import Text from '@/components/global/Text';
+import { Image } from "expo-image";
+import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { ScrollView, View } from "react-native";
+import { logoImages } from "@/assets/images/global/logo/logo";
+import AchievementCard from "@/components/about/AchievementCard";
+import MenuNav from "@/components/global/MenuNav";
+import Text from "@/components/global/Text";
 import {
-    AchievementObj, AchievementProgressObj, allAchievementsModelsArr
-} from '@/constants/models/about/achievements';
-import { Colors } from '@/constants/styles/colorTheme';
-import { handleGetAchievementProgressData } from '@/db/achievements/controllers';
+  AchievementObj,
+  AchievementProgressObj,
+  allAchievementsModelsArr,
+} from "@/constants/models/about/achievements";
+import { Colors } from "@/constants/styles/colorTheme";
+import { handleGetAchievementProgressData } from "@/db/achievements/controllers";
 
 const AchievementsPage = () => {
   const { t } = useTranslation("about");
@@ -35,7 +37,6 @@ const AchievementsPage = () => {
         return obj;
       });
       setAchievementsDataState(achievementListWithProgressData);
-      // console.log(achievementProgressData);
     } else {
       throw Error(
         "Error: Occured a problem while fetching achievement progress data.",
