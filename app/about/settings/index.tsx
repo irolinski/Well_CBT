@@ -7,7 +7,7 @@ import DividerLine from "@/components/DividerLine";
 import MenuNav from "@/components/global/MenuNav";
 import Text from "@/components/global/Text";
 import { Colors } from "@/constants/styles/colorTheme";
-import { FontAwesome5, FontAwesome6 } from "@expo/vector-icons";
+import { FontAwesome6, MaterialIcons } from "@expo/vector-icons";
 
 const index = () => {
   const { t } = useTranslation(["about", "common"]);
@@ -16,19 +16,15 @@ const index = () => {
     title: "Preferences",
     items: [
       {
-        title: "Language Settings",
-        icon: <FontAwesome5 name="smile" size={40} color="black" />,
+        title: t(`settings.language.title`),
+        icon: (
+          <MaterialIcons name="language" size={40} color={Colors.offBlack} />
+        ),
         link: "/about/settings/preferences/language",
       },
       {
-        title: "Storage",
-        icon: (
-          <FontAwesome6
-            name="arrows-spin"
-            size={40}
-            color={Colors.blackPearl}
-          />
-        ),
+        title: t(`settings.storage.title`),
+        icon: <MaterialIcons name="save" size={40} color={Colors.offBlack} />,
         link: "/about/settings/preferences/storage",
       },
     ],

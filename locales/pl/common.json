@@ -1,4 +1,7 @@
 {
+  "alerts": {
+    "warning": "Ostrzeżenie"
+  },
   "buttons": {
     "see_all": "Zobacz wszystkie",
     "redirect": "Wybierz",

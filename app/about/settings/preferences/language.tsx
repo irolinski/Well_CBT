@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { ScrollView, View } from "react-native";
 import AdvanceButton from "@/components/AdvanceButton";
-import BackButton from "@/components/BackButton";
 import DividerLine from "@/components/DividerLine";
 import MenuNav from "@/components/global/MenuNav";
 import Text from "@/components/global/Text";

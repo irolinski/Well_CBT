@@ -23,6 +23,17 @@
     "language": {
       "title": "Ustawienia języka",
       "select_language": "Wybierz język:"
+    },
+    "storage": {
+      "title": "Zapisane dane",
+      "remove_all_data": "Usuń wszystkie zapisane dane",
+      "warning_message": "Przycisk poniżej usuwa wszystkie dane zapisane na Twoim urządzeniu, związane z tą aplikacją: wszystkie dane dotyczące ćwiczeń, osiągnięcia, statystyki użytkownika itp.",
+      "remove_all_alert": {
+        "header": "Czy na pewno chcesz kontynuować?",
+        "body": "Ta akcja jest nieodwracalna.\nStracisz cały zapisany postęp!",
+        "yes": "Tak, kontynuuj",
+        "no": "Nie, wróć"
+      }
     }
   },
 

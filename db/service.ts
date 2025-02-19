@@ -2,6 +2,8 @@ import * as SQLite from "expo-sqlite";
 
 export const dbName = "well-test-db-044";
 
+//setUpDB needs to be updated with other tables that are created elsewhere for db reliability
+
 export const setUpDB = async () => {
   try {
     const db = await SQLite.openDatabaseAsync(dbName);
@@ -71,4 +73,19 @@ export const createActivityViewTable = async () => {
     FROM relaxActivities
     ORDER BY datetime DESC;
   `);
+};
+
+export const deleteAllDBData = async () => {
+  const db = await SQLite.openDatabaseAsync(dbName);
+  await db.execAsync(`
+    DROP TABLE IF EXISTS userData;
+    DROP TABLE IF EXISTS journalEntries;
+    DROP TABLE IF EXISTS journalEntryEmotions;
+    DROP TABLE IF EXISTS cdaArchive;
+    DROP TABLE IF EXISTS relaxActivities;
+    DROP TABLE IF EXISTS learnFinishedArticles;
+    DROP TABLE IF EXISTS achievementProgress;
+    DROP TABLE IF EXISTS phoneAFriend;
+  `);
+  await setUpDB();
 };

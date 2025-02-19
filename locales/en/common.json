@@ -1,4 +1,7 @@
 {
+  "alerts": {
+    "warning": "Warning"
+  },
   "buttons": {
     "see_all": "See all",
     "redirect": "Redirect",
@@ -43,6 +46,7 @@
     "days_ago_one": "day ago",
     "days_ago_other": "days ago"
   },
+
   "nav_elements": {
     "step_count": "Step {{current}} <muted>of {{total}}</muted>"
   },
