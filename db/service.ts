@@ -2,8 +2,6 @@ import * as SQLite from "expo-sqlite";
 
 export const dbName = "well-test-db-044";
 
-//setUpDB needs to be updated with other tables that are created elsewhere for db reliability
-
 export const setUpDB = async () => {
   try {
     const db = await SQLite.openDatabaseAsync(dbName);
@@ -37,9 +35,18 @@ export const setUpDB = async () => {
         id INTEGER PRIMARY KEY AUTOINCREMENT, activityName VARCHAR(100), secondsRelaxed INT, datetime NOT NULL
       );
 
+      CREATE TABLE IF NOT EXISTS phoneAFriend (
+          name VARCHAR(100),
+          phone VARCHAR(100)
+      );
+
       CREATE TABLE IF NOT EXISTS learnFinishedArticles (
         articleId INT NOT NULL
       );
+
+       CREATE TABLE IF NOT EXISTS achievementProgress (
+          id INT, currentScore INT, requiredScore INT, dateUnlocked VARCHAR (30) 
+        );
       
     `);
   } catch (err) {
