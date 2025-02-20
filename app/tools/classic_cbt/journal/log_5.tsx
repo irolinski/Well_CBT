@@ -1,24 +1,28 @@
-import { router } from 'expo-router';
-import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { Pressable, ScrollView, View } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
-import AdvanceButton from '@/components/AdvanceButton';
-import DistortionPill from '@/components/DistortionPill';
-import Frame from '@/components/Frame';
-import Text from '@/components/global/Text';
-import CDATextBox from '@/components/tools/cda/CDATextBox';
-import ToolHeader from '@/components/tools/ToolHeader';
-import ToolNav from '@/components/tools/ToolNav';
-import { moodValueTitles } from '@/constants/models/tools/journal';
-import { journal_tool } from '@/constants/models/tools/tools';
-import { Colors } from '@/constants/styles/colorTheme';
-import { journalStyleConstants } from '@/constants/styles/values';
-import { handleSaveJournalEntry } from '@/db/tools';
-import { journalResetState, toggleSave } from '@/state/features/tools/journalSlice';
-import { AppDispatch, RootState } from '@/state/store';
-import Feather from '@expo/vector-icons/Feather';
-import { Slider } from '@miblanchard/react-native-slider';
+import { router } from "expo-router";
+import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { Pressable, ScrollView, View } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import AdvanceButton from "@/components/AdvanceButton";
+import DistortionPill from "@/components/DistortionPill";
+import Frame from "@/components/Frame";
+import Text from "@/components/global/Text";
+import CDATextBox from "@/components/tools/cda/CDATextBox";
+import ToolHeader from "@/components/tools/ToolHeader";
+import ToolNav from "@/components/tools/ToolNav";
+import { moodValueTitles } from "@/constants/models/tools/journal";
+import { journal_tool } from "@/constants/models/tools/tools";
+import { Colors } from "@/constants/styles/colorTheme";
+import { journalStyleConstants } from "@/constants/styles/values";
+import { getUserSettingsData, UserSettingsDataObj } from "@/db/settings";
+import { handleSaveJournalEntry } from "@/db/tools";
+import {
+  journalResetState,
+  setSave,
+} from "@/state/features/tools/journalSlice";
+import { AppDispatch, RootState } from "@/state/store";
+import Feather from "@expo/vector-icons/Feather";
+import { Slider } from "@miblanchard/react-native-slider";
 
 const TOOL_NAME = journal_tool.name;
 const CURRENT_PAGE = 5;
@@ -29,11 +33,33 @@ const Log_5 = () => {
   //tool state
   const dispatch = useDispatch<AppDispatch>();
   const journalState = useSelector((state: RootState) => state.journal);
+  const [settingsData, setSettingsData] = useState<UserSettingsDataObj>();
 
   const handleSave = async () => {
     handleSaveJournalEntry(journalState);
     dispatch(journalResetState());
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res: UserSettingsDataObj =
+          (await getUserSettingsData()) as UserSettingsDataObj;
+        if (res) {
+          console.log(res);
+          setSettingsData(res);
+        }
+      } catch (error) {
+        console.error("Error fetching user settings:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    dispatch(setSave(settingsData?.exerciseAutoSaveIsActive));
+  }, [settingsData]);
 
   return (
     <React.Fragment>
@@ -151,7 +177,7 @@ const Log_5 = () => {
               </View>
               <Pressable
                 onPress={() => {
-                  dispatch(toggleSave());
+                  dispatch(setSave(!journalState.save));
                 }}
               >
                 <View className="mx-2 mt-10 flex flex-row pt-4">
@@ -164,11 +190,11 @@ const Log_5 = () => {
                         : "transparent",
                     }}
                   >
-                    {journalState.save && (
+                    {journalState.save ? (
                       <View className="mx-auto">
                         <Feather name="check" size={22} color="#F7F7F7" />
                       </View>
-                    )}
+                    ) : null}
                   </View>
                   <Text
                     className="mx-4 my-1 text-center"

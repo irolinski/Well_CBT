@@ -28,8 +28,8 @@ const journalSlice = createSlice({
     setNote: (state, action) => {
       state.note = action.payload;
     },
-    toggleSave: (state) => {
-      state.save = !state.save;
+    setSave: (state, action) => {
+      state.save = action.payload;
     },
     journalResetState: (state) => {
       state.moodValue = journalSliceInitialState.moodValue;
@@ -43,7 +43,7 @@ export const {
   setMoodValue,
   setEmotions,
   setNote,
-  toggleSave,
+  setSave,
   journalResetState,
 } = journalSlice.actions;
 

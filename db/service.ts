@@ -4,6 +4,7 @@ export const dbName = "well-test-db-044";
 
 export const setUpDB = async () => {
   try {
+    //correct the below query to remove filling the tables with default data
     const db = await SQLite.openDatabaseAsync(dbName);
     await db.execAsync(`
     
@@ -15,7 +16,13 @@ export const setUpDB = async () => {
       INSERT INTO userData (name, lastVisit, currentVisitStreak, highestVisitStreak, numOfAllVisits, profilePicId) VALUES (
       "", DATETIME('now', 'localtime'), 1, 1, 1, 0
       );
+      
+      CREATE TABLE IF NOT EXISTS userSettings (
+        exerciseAutoSaveIsActive INT, language VARCHAR(10)
+      );
 
+      INSERT INTO userSettings (exerciseAutoSaveIsActive, language) VALUES (1, "");
+      
 
       CREATE TABLE IF NOT EXISTS journalEntries (
        id INTEGER PRIMARY KEY AUTOINCREMENT, moodValue INT NOT NULL, note VARCHAR(200), datetime NOT NULL

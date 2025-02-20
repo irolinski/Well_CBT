@@ -29,9 +29,10 @@ const cdaSlice = createSlice({
     setNewThought: (state, action) => {
       state.newThought = action.payload;
     },
-    toggleSave: (state) => {
-      state.save = !state.save;
+    setSave: (state, action) => {
+      state.save = action.payload;
     },
+
     cdaResetState: () => cdaSliceInitialState,
   },
 });
@@ -41,7 +42,7 @@ export const {
   setOldThought,
   setDistortion,
   setNewThought,
-  toggleSave,
+  setSave,
   cdaResetState,
 } = cdaSlice.actions;
 export default cdaSlice.reducer;

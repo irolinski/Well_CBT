@@ -1,20 +1,35 @@
 import { reloadAppAsync } from "expo";
 import { router } from "expo-router";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Alert, ScrollView, View } from "react-native";
+import { Alert, ScrollView, Switch, View } from "react-native";
 import AdvanceButton from "@/components/AdvanceButton";
 import DividerLine from "@/components/DividerLine";
 import MenuNav from "@/components/global/MenuNav";
 import Text from "@/components/global/Text";
+import { Colors } from "@/constants/styles/colorTheme";
 import { SCREEN_WIDTH } from "@/constants/styles/values";
 import { deleteAllDBData } from "@/db/service";
+import {
+  getUserSettingsData,
+  handleSetExerciseAutoSaveIsActive,
+  UserSettingsDataObj,
+} from "@/db/settings";
 import { MaterialIcons } from "@expo/vector-icons";
 
 const SETTING_NAME = "storage";
 
 const StorageSettingsPage = () => {
   const { t } = useTranslation(["about", "common"]);
+
+  const [settingsData, setSettingsData] = useState<UserSettingsDataObj>();
+  const [enableExerciseAutoSave, setEnableExerciseAutoSave] =
+    useState<boolean>(false);
+
+  const handleSaveSettings = async () => {
+    await handleSetExerciseAutoSaveIsActive(enableExerciseAutoSave);
+  };
+
   const handlePressDeleteAllData = () => {
     Alert.alert(
       t(`settings.${SETTING_NAME}.remove_all_alert.header`),
@@ -40,10 +55,64 @@ const StorageSettingsPage = () => {
     );
   };
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res: UserSettingsDataObj =
+          (await getUserSettingsData()) as UserSettingsDataObj;
+        if (res) {
+          console.log(res);
+          setSettingsData(res);
+        }
+      } catch (error) {
+        console.error("Error fetching user settings:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const loadSavedSettings = () => {
+      if (settingsData) {
+        setEnableExerciseAutoSave(
+          Boolean(settingsData.exerciseAutoSaveIsActive),
+        );
+      }
+    };
+    loadSavedSettings();
+  }, [settingsData]);
+
   return (
-    <ScrollView scrollEnabled={false}>
-      <MenuNav name={t(`settings.${SETTING_NAME}.title`)} />
+    <ScrollView>
+      <MenuNav
+        name={t(`settings.${SETTING_NAME}.title`)}
+        handleBackButtonPress={async () => {
+          await handleSaveSettings();
+        }}
+      />
       <View className="m-4">
+        {/* Auto-save exercises */}
+        <View className="mb-10 mt-10">
+          <Text className="text-xl">Ćwiczenia</Text>
+          <View className="mx-8 my-2 flex-row items-center justify-center py-4">
+            <Text className="mx-2 text-lg">
+              Automatycznie zaznacz opcję zapisywania w ćwiczeniach
+            </Text>
+            <Switch
+              className="mx-2"
+              value={enableExerciseAutoSave}
+              onValueChange={(val) => setEnableExerciseAutoSave(val)}
+              ios_backgroundColor={Colors.lightGray}
+              trackColor={{
+                false: Colors.lightGray,
+                true: Colors.darkBlue,
+              }}
+            />
+          </View>
+        </View>
+        <DividerLine width={SCREEN_WIDTH * 0.5} />
+        {/* Delete all data */}
         <View className="mt-10">
           <Text className="text-xl">
             {t(`settings.${SETTING_NAME}.remove_all_data`)}
@@ -56,12 +125,9 @@ const StorageSettingsPage = () => {
               >
                 {t(`alerts.warning`, { ns: "common" })}!
               </Text>
-              <Text className="mx-2">
+              <Text className="mx-2 text-center">
                 {t(`settings.${SETTING_NAME}.warning_message`)}
               </Text>
-              <View className="mt-10">
-                <DividerLine width={0.4 * SCREEN_WIDTH} />
-              </View>
             </View>
             <AdvanceButton
               title={t(`settings.${SETTING_NAME}.remove_all_data`)}
