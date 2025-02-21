@@ -1,16 +1,19 @@
-import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { View } from 'react-native';
-import learnArticlesLocales from '@/assets/text/learn_articles.json';
-import Text from '@/components/global/Text';
-import FrameMenu from '@/components/home/FrameMenu';
-import LearnArticleCard from '@/components/learn/ArticleCard';
-import LearnCategoryCard from '@/components/learn/LearnCategoryCard';
-import { learnArticles } from '@/constants/models/learn/articles';
-import { learnCategories, learnCategoriesTypes } from '@/constants/models/learn/categories';
-import { ArticlesInCurrentLanguageType } from '@/constants/models/learn/learn';
-import { Colors } from '@/constants/styles/colorTheme';
-import { AvailableLanguage } from '@/hooks/i18n';
+import React from "react";
+import { useTranslation } from "react-i18next";
+import { View } from "react-native";
+import learnArticlesLocales from "@/assets/text/learn_articles.json";
+import Text from "@/components/global/Text";
+import FrameMenu from "@/components/home/FrameMenu";
+import LearnArticleCard from "@/components/learn/ArticleCard";
+import LearnCategoryCard from "@/components/learn/LearnCategoryCard";
+import { learnArticles } from "@/constants/models/learn/articles";
+import {
+  learnCategories,
+  learnCategoriesTypes,
+} from "@/constants/models/learn/categories";
+import { ArticlesInCurrentLanguageType } from "@/constants/models/learn/learn";
+import { Colors } from "@/constants/styles/colorTheme";
+import { AvailableLanguage } from "@/hooks/i18n";
 
 const Learn = () => {
   const { t, i18n } = useTranslation("learn");
@@ -64,7 +67,7 @@ const Learn = () => {
             (category: learnCategoriesTypes, index: number) => (
               <LearnCategoryCard
                 name={t(`categories.${category.title}.title`)}
-                backgroundColor={category.color}
+                backgroundImage={category.image}
                 link={`/learn/categories/${category.title}`}
                 key={index}
               />

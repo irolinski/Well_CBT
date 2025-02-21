@@ -33,8 +33,7 @@ const resources = {
 };
 
 export const availableLanguagesArr = Object.keys(resources);
-//this type needs a fix
-export type AvailableLanguage = typeof availableLanguagesArr;
+export type AvailableLanguage = keyof typeof resources;
 
 // Initialize i18next
 i18n.use(initReactI18next).init({
@@ -43,7 +42,6 @@ i18n.use(initReactI18next).init({
   supportedLngs: ["en", "pl"],
   defaultNS: "common",
   ns: ["common", "home", "tools", "learn", "about"],
-  // i18n.language || "pl", // Get current language or default to English
   fallbackLng: "en",
   interpolation: { escapeValue: false },
 });
