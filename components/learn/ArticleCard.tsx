@@ -1,11 +1,18 @@
-import { Image } from 'expo-image';
-import { Href, router } from 'expo-router';
-import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { Dimensions, Pressable, Text, TouchableOpacity, View } from 'react-native';
-import { learnArticleCardTypes } from '@/constants/models/learn/learn';
-import { Colors } from '@/constants/styles/colorTheme';
-import { Feather } from '@expo/vector-icons';
+import { BlurView } from "expo-blur";
+import { Image, ImageBackground } from "expo-image";
+import { Href, router } from "expo-router";
+import React from "react";
+import { useTranslation } from "react-i18next";
+import {
+  Dimensions,
+  Pressable,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import { learnArticleCardTypes } from "@/constants/models/learn/learn";
+import { Colors } from "@/constants/styles/colorTheme";
+import { Feather } from "@expo/vector-icons";
 
 const LearnArticleCard = ({
   title,
@@ -14,12 +21,13 @@ const LearnArticleCard = ({
   link,
   image,
   imagePlacement,
-  frameColor,
+  // frameColor,
   textColor,
 }: learnArticleCardTypes) => {
   const { t } = useTranslation("learn");
 
   const SCREEN_WIDTH = Dimensions.get("window").width;
+  console.log(SCREEN_WIDTH);
 
   return (
     <Pressable
@@ -29,19 +37,23 @@ const LearnArticleCard = ({
     >
       <Image
         source={image}
-        className="absolute top-0 h-full w-full justify-center rounded-xl"
+        className="top-0 w-full justify-center rounded-xl"
         style={{
-          transform: [{ translateY: `-${imagePlacement}%` as `${number}%` }],
+          height: 400,
+          transform: [{ translateY: `${imagePlacement}%` as `${number}%` }],
         }}
+        contentFit="cover"
       />
-      <View
+      <BlurView
         className="absolute bottom-0 w-full px-4 pb-4 pt-5"
         style={{
           height: "56%",
-          backgroundColor: frameColor ?? Colors.mainBlue,
+          backgroundColor: "rgba(184, 184, 184, 0.65)",
         }}
+        intensity={25}
+        tint="systemMaterialDark"
       >
-        <View className="">
+        <View>
           <View style={{ height: "50%" }}>
             <Text
               className="text-lg"
@@ -101,7 +113,7 @@ const LearnArticleCard = ({
             </View>
           </View>
         </View>
-      </View>
+      </BlurView>
     </Pressable>
   );
 };

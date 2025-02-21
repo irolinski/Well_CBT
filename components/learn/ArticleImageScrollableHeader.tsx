@@ -1,9 +1,9 @@
-import { Image } from 'expo-image';
-import { Animated, View } from 'react-native';
-import BackButton from '@/components/BackButton';
-import { Colors } from '@/constants/styles/colorTheme';
-import { SCREEN_HEIGHT } from '@/constants/styles/values';
-import { handleAddFinishedArticle } from '@/db/learn';
+import { Image } from "expo-image";
+import { Animated, View } from "react-native";
+import BackButton from "@/components/BackButton";
+import { Colors } from "@/constants/styles/colorTheme";
+import { SCREEN_HEIGHT } from "@/constants/styles/values";
+import { handleAddFinishedArticle } from "@/db/learn";
 
 type ArticleImageScrollableHeaderTypes = {
   value: any;
@@ -59,8 +59,10 @@ const ArticleImageScrollableHeader = ({
         }}
       >
         <Image
-          style={{ width: "100%", height: "100%" }}
+          style={{ width: "100%", height: 475 }}
           source={image}
+          contentFit="cover"
+          contentPosition="top"
           cachePolicy="memory" // necessary to prevent image flicker onScroll
         />
         <Animated.View

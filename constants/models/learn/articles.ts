@@ -1,4 +1,4 @@
-import { ArticleTypes } from './learn';
+import { ArticleTypes } from "./learn";
 
 //article details to be found in locale/--language--/learn.json files
 
@@ -9,7 +9,7 @@ export const learnArticles: ArticleTypes[] = [
     category: "psychology",
     bgImage: {
       image: require(`@/assets/images/learn/articles/bg/bg_1.webp`),
-      cardPlacementY: 37,
+      cardPlacementY: 17,
     },
     relatedArticleIds: [4, 5],
     id: 1,
@@ -30,7 +30,7 @@ export const learnArticles: ArticleTypes[] = [
     category: "science",
     bgImage: {
       image: require(`@/assets/images/learn/articles/bg/bg_3.webp`),
-      cardPlacementY: 19,
+      cardPlacementY: 15,
     },
     relatedArticleIds: [],
     id: 3,
@@ -41,7 +41,7 @@ export const learnArticles: ArticleTypes[] = [
     category: "science",
     bgImage: {
       image: require(`@/assets/images/learn/articles/bg/bg_4.webp`),
-      cardPlacementY: 40,
+      cardPlacementY: 15,
     },
 
     relatedArticleIds: [1, 5],
@@ -53,7 +53,7 @@ export const learnArticles: ArticleTypes[] = [
     category: "lifestyle",
     bgImage: {
       image: require(`@/assets/images/learn/articles/bg/bg_5.webp`),
-      cardPlacementY: 47,
+      cardPlacementY: 5,
     },
     relatedArticleIds: [1, 4],
     id: 5,
@@ -64,7 +64,7 @@ export const learnArticles: ArticleTypes[] = [
     category: "lifestyle",
     bgImage: {
       image: require(`@/assets/images/learn/articles/bg/bg_6.webp`),
-      cardPlacementY: 0,
+      cardPlacementY: -3,
     },
     relatedArticleIds: [],
     id: 6,
@@ -75,7 +75,7 @@ export const learnArticles: ArticleTypes[] = [
     category: "science",
     bgImage: {
       image: require(`@/assets/images/learn/articles/bg/bg_7.webp`),
-      cardPlacementY: 35,
+      cardPlacementY: -35,
     },
     relatedArticleIds: [],
     id: 7,

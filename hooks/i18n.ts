@@ -33,6 +33,7 @@ const resources = {
 };
 
 export const availableLanguagesArr = Object.keys(resources);
+//this type needs a fix
 export type AvailableLanguage = typeof availableLanguagesArr;
 
 // Initialize i18next

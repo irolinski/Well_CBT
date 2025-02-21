@@ -27,7 +27,16 @@ const RelatedArticleCard = ({
     >
       <View className="h-full flex-row">
         <View className="h-full w-2/5 justify-center">
-          <Image className="h-24 w-24 rounded-xl" source={image} />
+          {/* Image is placed in a wrapper to get the right fit
+         w/ contentPosition & to get a three-rounded borders effect */}
+          <View className="w-25 h-24 overflow-hidden rounded-xl">
+            <Image
+              className="w-24 rounded-xl"
+              style={{ height: 140 }}
+              source={image}
+              contentPosition="top"
+            />
+          </View>
         </View>
         <View className="w-3/5">
           <View className="py-5">
