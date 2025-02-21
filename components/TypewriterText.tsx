@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Animated, Text, View } from "react-native";
+import { Colors } from "@/constants/styles/colorTheme";
 
 interface TypewriterTextProps {
   text: string;
@@ -10,6 +11,7 @@ interface TypewriterTextProps {
   letterSpacing?: number;
   lineHeight?: 1 | 1.5 | 2 | 2.5 | 3 | 3.5 | 4;
   hideCursorOnFinish?: boolean;
+  isActive?: boolean;
 }
 
 const speedValues = {
@@ -22,11 +24,12 @@ const TypewriterText = ({
   text = "",
   speed = "fast",
   size = 24,
-  color = "black",
+  color = Colors.offBlack,
   fontFamily = "",
   letterSpacing = 1.5,
   lineHeight = 1.5,
   hideCursorOnFinish = true,
+  isActive = true,
 }: TypewriterTextProps) => {
   // state
   const [displayedText, setDisplayedText] = useState("");
@@ -57,10 +60,7 @@ const TypewriterText = ({
     ).start();
   };
 
-  useEffect(() => {
-    startCursorAnimation();
-  }, []);
-
+  // Hide/Leave cursor onFinish
   useEffect(() => {
     if (hideCursorOnFinish) {
       if (displayedText.length === text.length - 1) {
@@ -72,23 +72,25 @@ const TypewriterText = ({
     }
   }, [charIndex]);
 
-  // Typing Animation
+  // Run typing Animation
   useEffect(() => {
-    let typingSpeed =
-      Math.floor(
-        Math.random() * (speedValues[speed] - (speedValues[speed] - 100) + 1),
-      ) +
-      (speedValues[speed] - 100); // make the timeOut time time a bit random for the sake of realism
+    if (isActive) {
+      let typingSpeed =
+        Math.floor(
+          Math.random() * (speedValues[speed] - (speedValues[speed] - 100) + 1),
+        ) +
+        (speedValues[speed] - 100); // make the timeOut time time a bit random for the sake of realism
 
-    const typingTimeOut = setTimeout(() => {
-      if (charIndex < text.length) {
-        setDisplayedText(text.slice(0, charIndex + 1));
-        setCharIndex(charIndex + 1);
-      }
-    }, typingSpeed);
+      const typingTimeOut = setTimeout(() => {
+        if (charIndex < text.length) {
+          setDisplayedText(text.slice(0, charIndex + 1));
+          setCharIndex(charIndex + 1);
+        }
+      }, typingSpeed);
 
-    return () => clearTimeout(typingTimeOut);
-  }, [charIndex]);
+      return () => clearTimeout(typingTimeOut);
+    }
+  }, [charIndex, isActive]);
 
   return (
     <View
