@@ -31,8 +31,8 @@ const LearnArticleCard = ({
 
   return (
     <Pressable
-      className="relative mx-8 flex-1 justify-center overflow-hidden rounded-xl"
-      style={{ height: 250, width: SCREEN_WIDTH * 0.9 }}
+      className="relative mx-8 justify-center overflow-hidden rounded-xl"
+      style={{ height: 280, width: SCREEN_WIDTH * 0.9 }}
       onPress={() => router.push(link as Href)}
     >
       <Image
@@ -45,7 +45,7 @@ const LearnArticleCard = ({
         contentFit="cover"
       />
       <BlurView
-        className="absolute bottom-0 w-full px-4 pb-4 pt-5"
+        className="absolute bottom-0 w-full justify-center px-4 pb-4 pt-5"
         style={{
           height: "56%",
           backgroundColor: "rgba(184, 184, 184, 0.65)",
@@ -54,7 +54,7 @@ const LearnArticleCard = ({
         tint="systemMaterialDark"
       >
         <View>
-          <View style={{ height: "50%" }}>
+          <View>
             <Text
               className="text-lg"
               style={{ color: Colors.white, fontWeight: 500 }}
@@ -71,7 +71,7 @@ const LearnArticleCard = ({
           </View>
           <View
             className="mt-0.5 w-full flex-row justify-between"
-            style={{ height: "50%" }}
+            style={{ height: 50 }}
           >
             <View className="justify-center">
               {time && (
@@ -91,7 +91,7 @@ const LearnArticleCard = ({
                 className="flex-row items-center justify-center rounded-lg"
                 style={{
                   width: "95%",
-                  height: "85%",
+                  height: "90%",
                   backgroundColor: Colors.offWhite,
                 }}
                 onPress={() => router.push(`${link}` as Href)}
