@@ -2,23 +2,27 @@ import { useEffect, useState } from "react";
 import { Animated, Text, View } from "react-native";
 import { Colors } from "@/constants/styles/colorTheme";
 
+const speedValues = {
+  slow: 150,
+  medium: 125,
+  fast: 100,
+  very_fast: 75,
+  fastest: 50,
+};
+
 interface TypewriterTextProps {
   text: string;
-  speed?: "slow" | "medium" | "fast";
+  speed?: keyof typeof speedValues;
   size?: number;
   color?: string;
   fontFamily?: string;
   letterSpacing?: number;
-  lineHeight?: 1 | 1.5 | 2 | 2.5 | 3 | 3.5 | 4;
+  lineHeight?: 1.25 | 1.5 | 2 | 2.5 | 3 | 3.5 | 4;
   hideCursorOnFinish?: boolean;
+  showOverflow?: boolean;
   isActive?: boolean;
+  delaySeconds?: number;
 }
-
-const speedValues = {
-  slow: 300,
-  medium: 200,
-  fast: 100,
-};
 
 const TypewriterText = ({
   text = "",
@@ -29,11 +33,14 @@ const TypewriterText = ({
   letterSpacing = 1.5,
   lineHeight = 1.5,
   hideCursorOnFinish = true,
+  showOverflow = false, //true prevents visial glitches in some usecases
   isActive = true,
+  delaySeconds,
 }: TypewriterTextProps) => {
   // state
   const [displayedText, setDisplayedText] = useState("");
   const [charIndex, setCharIndex] = useState(0);
+  const [isWaiting, setIsWaiting] = useState(false);
 
   // Cursor Animation
   const cursorOpacity = useState(new Animated.Value(1))[0];
@@ -60,6 +67,11 @@ const TypewriterText = ({
     ).start();
   };
 
+  // Run cursor blinking
+  useEffect(() => {
+    startCursorAnimation();
+  }, []);
+
   // Hide/Leave cursor onFinish
   useEffect(() => {
     if (hideCursorOnFinish) {
@@ -72,9 +84,24 @@ const TypewriterText = ({
     }
   }, [charIndex]);
 
+  // Delay run if needed
+  useEffect(() => {
+    if (delaySeconds) {
+      setIsWaiting(true);
+
+      const delayTimeout = setTimeout(() => {
+        setIsWaiting(false);
+      }, delaySeconds * 1000);
+
+      return () => clearTimeout(delayTimeout); // Cleanup timeout
+    } else {
+      setIsWaiting(false);
+    }
+  }, [isActive]);
+
   // Run typing Animation
   useEffect(() => {
-    if (isActive) {
+    if (isActive && !isWaiting) {
       let typingSpeed =
         Math.floor(
           Math.random() * (speedValues[speed] - (speedValues[speed] - 100) + 1),
@@ -90,7 +117,7 @@ const TypewriterText = ({
 
       return () => clearTimeout(typingTimeOut);
     }
-  }, [charIndex, isActive]);
+  }, [charIndex, isActive, isWaiting]);
 
   return (
     <View
@@ -98,7 +125,7 @@ const TypewriterText = ({
         position: "relative",
         justifyContent: "center",
         alignItems: "center",
-        overflow: "hidden",
+        overflow: showOverflow ? "visible" : "hidden",
       }}
     >
       {/* Placeholder Text Component
