@@ -22,6 +22,7 @@ interface TypewriterTextProps {
   showOverflow?: boolean;
   isActive?: boolean;
   delaySeconds?: number;
+  onFinish?: () => any;
 }
 
 const TypewriterText = ({
@@ -36,6 +37,7 @@ const TypewriterText = ({
   showOverflow = false, //true prevents visial glitches in some usecases
   isActive = true,
   delaySeconds,
+  onFinish,
 }: TypewriterTextProps) => {
   // state
   const [displayedText, setDisplayedText] = useState("");
@@ -64,7 +66,7 @@ const TypewriterText = ({
           useNativeDriver: true,
         }),
       ]),
-    ).start();
+    ).start(onFinish && onFinish);
   };
 
   // Run cursor blinking
