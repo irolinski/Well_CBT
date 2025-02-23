@@ -61,8 +61,6 @@ const Ground_Touch_Page_2 = ({
     }
   }, [groundYourselfToolState.currentSlide]);
 
-  console.log(SCREEN_HEIGHT);
-
   return (
     <React.Fragment>
       <View

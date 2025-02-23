@@ -12,6 +12,7 @@ import { setCurrentSlide } from "@/state/features/tools/groundYourselfSlice";
 import { AppDispatch, RootState } from "@/state/store";
 import Ground_Touch_Page_1 from "./touch/page_1";
 import Ground_Touch_Page_2 from "./touch/page_2";
+import Ground_Touch_Page_3 from "./touch/page_3";
 
 // time per slide is a bad idea as I want to show different elements at different times in the space of a single slide too
 // i need a hook that runs a function upon finishing typewriter effect or upon displaying the next slide;
@@ -108,14 +109,12 @@ const GroundYourself = () => {
                 }}
               />
 
-              <View key="3">
-                <TypewriterText
-                  text="Focus on the fabric of your clothes, from head to toe."
-                  size={20}
-                  speed="very_fast"
-                  isActive={groundYourselfToolState.currentSlide === 2}
-                />
-              </View>
+              <Ground_Touch_Page_3
+                objKey={3}
+                onButtonPress={() => {
+                  nextSlide();
+                }}
+              />
 
               <View key="4">
                 <TypewriterText
