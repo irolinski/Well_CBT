@@ -32,6 +32,10 @@
         }
       }
     },
+    "ground_yourself": {
+      "title": "Ground Yourself",
+      "description": "In the following exercise, you'll practice <bold>grounding yourself</bold> using simple DBT techniques. \n\nYou'll see <bold>step-by-step instructions</bold> on the screen—just follow along to guide yourself through the process."
+    },
     "cda": {
       "title": "Thoughts Challange",
       "description": "Cognitive Distortion Analysis is an exercise designed to target negative thought patterns.\n\nYou’ll <bold>describe</bold> a situation, <bold>note</bold> an automatic thought, <bold>identify</bold> any cognitive distortions, and <bold>reformulate</bold> the thought more rationally.\n\nFor more details, go to a detailed by clicking the link below.",

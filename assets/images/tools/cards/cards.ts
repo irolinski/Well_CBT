@@ -8,7 +8,7 @@ import phoneCardImage from "@/assets/images/tools/cards/phone.webp";
 export const toolCardImages = {
   thoughtsChallange: distortionsCardImage,
   journal: journalCardImage,
-  grounding: groundCardImage,
+  groundYourself: groundCardImage,
   breathing: breatheCardImage,
   phone: phoneCardImage,
   music: musicCardImage,

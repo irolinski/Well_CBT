@@ -6,18 +6,20 @@ import { SCREEN_HEIGHT } from "@/constants/styles/values";
 import { Entypo, Feather } from "@expo/vector-icons";
 
 const Ground_Touch_Page_1 = ({
+  objKey,
   onButtonPress,
 }: {
+  objKey: number;
   onButtonPress: () => void;
 }) => {
   return (
-    <Animated.View key="1">
+    <Animated.View key={objKey} style={{ paddingTop: SCREEN_HEIGHT * 0.05 }}>
       <TypewriterText
         text="With this exercise you will try to ground yourself using the sense of touch."
         size={20}
         letterSpacing={1.25}
         lineHeight={1.25}
-        speed="medium"
+        speed="fast"
       />
       <View
         className="flex-row justify-center"
@@ -29,6 +31,7 @@ const Ground_Touch_Page_1 = ({
         <TypewriterText
           text="Tap the button below to proceed."
           speed="fast"
+          delaySeconds={3}
           size={18}
           color={Colors.mainGray}
           hideCursorOnFinish={false}

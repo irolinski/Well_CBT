@@ -1,5 +1,5 @@
-import React from "react";
 import { Stack } from "expo-router";
+import React from "react";
 
 const ToolLayout = () => {
   return (
@@ -10,6 +10,10 @@ const ToolLayout = () => {
         options={{ headerShown: false }}
       />
       <Stack.Screen name="relax/breathing" options={{ headerShown: false }} />
+      <Stack.Screen
+        name="relax/ground_yourself"
+        options={{ headerShown: false }}
+      />
       <Stack.Screen name="distract/phone" options={{ headerShown: false }} />
     </Stack>
   );
