@@ -7,7 +7,7 @@ const speedValues = {
   medium: 125,
   fast: 100,
   very_fast: 75,
-  fastest: 50,
+  fastest: 55,
 };
 
 interface TypewriterTextProps {
