@@ -1,9 +1,10 @@
 import React from "react";
-import { Animated, TouchableOpacity, View } from "react-native";
+import { Animated, View } from "react-native";
+import ArrowRightButton from "@/components/ArrowRightButton";
 import TypewriterText from "@/components/TypewriterText";
 import { Colors } from "@/constants/styles/colorTheme";
 import { SCREEN_HEIGHT } from "@/constants/styles/values";
-import { Entypo, Feather } from "@expo/vector-icons";
+import { Entypo } from "@expo/vector-icons";
 
 const Ground_Touch_Page_1 = ({
   objKey,
@@ -37,13 +38,10 @@ const Ground_Touch_Page_1 = ({
           hideCursorOnFinish={false}
         />
       </View>
-      <TouchableOpacity
-        className="flex-row justify-center"
+      <ArrowRightButton
         style={{ marginTop: SCREEN_HEIGHT * 0.15 }}
         onPress={() => onButtonPress()}
-      >
-        <Feather name="arrow-right-circle" size={48} color={Colors.mainGray} />
-      </TouchableOpacity>
+      />
     </Animated.View>
   );
 };

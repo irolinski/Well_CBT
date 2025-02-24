@@ -1,13 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Animated, Easing, TouchableOpacity, View } from "react-native";
+import { Animated, Easing, View } from "react-native";
 import { useSelector } from "react-redux";
+import ArrowRightButton from "@/components/ArrowRightButton";
 import FadeInView from "@/components/FadeInView";
 import Text from "@/components/global/Text";
 import TypewriterText from "@/components/TypewriterText";
 import { Colors } from "@/constants/styles/colorTheme";
 import { SCREEN_HEIGHT } from "@/constants/styles/values";
 import { RootState } from "@/state/store";
-import { Feather } from "@expo/vector-icons";
 
 const Ground_Touch_Page_2 = ({
   objKey,
@@ -64,7 +64,6 @@ const Ground_Touch_Page_2 = ({
   return (
     <React.Fragment>
       <View
-        className=""
         style={{
           paddingTop: SCREEN_HEIGHT > 750 ? SCREEN_HEIGHT * 0.05 : null,
         }}
@@ -128,16 +127,7 @@ const Ground_Touch_Page_2 = ({
           className="w-full flex-row justify-center"
           style={{ top: SCREEN_HEIGHT * 0.05 }}
         >
-          <TouchableOpacity
-            className="flex-row justify-center"
-            onPress={() => onButtonPress()}
-          >
-            <Feather
-              name="arrow-right-circle"
-              size={48}
-              color={Colors.mainGray}
-            />
-          </TouchableOpacity>
+          <ArrowRightButton onPress={() => onButtonPress()} />
         </View>
       </View>
     </React.Fragment>
