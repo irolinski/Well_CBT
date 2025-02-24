@@ -1,24 +1,17 @@
 import React, { useRef, useState } from "react";
-import {
-  Keyboard,
-  NativeSyntheticEvent,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { NativeSyntheticEvent, TouchableOpacity, View } from "react-native";
 import PagerView from "react-native-pager-view";
-import { Colors } from "react-native/Libraries/NewAppScreen";
 import { Double } from "react-native/Libraries/Types/CodegenTypes";
 import { useSelector } from "react-redux";
-import DividerLine from "@/components/DividerLine";
+import ColorPicker, { Panel3 } from "reanimated-color-picker";
 import Text from "@/components/global/Text";
+import OneWordTextInput from "@/components/tools/ground_yourself/OneWordTextInput";
 import TypewriterText from "@/components/TypewriterText";
-import { SCREEN_HEIGHT, SCREEN_WIDTH } from "@/constants/styles/values";
+import { Colors } from "@/constants/styles/colorTheme";
+import { SCREEN_HEIGHT } from "@/constants/styles/values";
 import { RootState } from "@/state/store";
 import { isValidName } from "@/utils/inputValidations";
-import { Feather } from "@expo/vector-icons";
-
-const MAX_TEXT_INPUT_LENGTH = 15;
+import { AntDesign } from "@expo/vector-icons";
 
 const Ground_Touch_Page_3 = ({
   objKey,
@@ -30,11 +23,12 @@ const Ground_Touch_Page_3 = ({
   const groundYourselfToolState = useSelector(
     (state: RootState) => state.ground_yourself,
   );
-  const [activeInput, setActiveInput] = useState<"feel" | "texture" | null>(
-    null,
-  );
+  const [activeInput, setActiveInput] = useState<
+    "feel" | "texture" | "color" | null
+  >(null);
   const [feelInput, setFeelInput] = useState<string>("");
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [selectedColor, setSelectedColor] = useState(Colors.mainBlue);
   const [textureInput, setTextureInput] = useState<string>("");
 
   const refPagerView = useRef<PagerView>(null);
@@ -99,59 +93,90 @@ const Ground_Touch_Page_3 = ({
               setActiveInput("texture");
             }}
           />
-          <View className="mt-8 h-24 w-full items-center">
-            <View className="relative h-16 flex-row items-center justify-center">
-              <TouchableOpacity
-                className="absolute right-0 top-3 z-20 pb-8"
-                onPress={() => {
-                  nextSlide();
-                  setActiveInput("feel");
-                }}
-              >
-                <Feather name="check" size={38} color="black" />
-              </TouchableOpacity>
-              <TextInput
-                className="z-10 h-full w-full text-center text-2xl"
-                value={textureInput}
-                style={{
-                  color: "black",
-                  borderColor: Colors.lightGray,
-                  backgroundColor: Colors.lightGray,
-                  textAlignVertical: "center",
-                }}
-                selectTextOnFocus={true}
-                onChangeText={(value) => {
-                  if (isValidName(value)) {
-                    setTextureInput(value);
-                  }
-                }}
-                editable={activeInput === "texture"}
-                multiline={false}
-                maxLength={MAX_TEXT_INPUT_LENGTH}
-                autoFocus={activeInput === "texture"}
-                returnKeyType="done"
-                onKeyPress={(evt) => {
-                  if (evt.nativeEvent.key == "Enter") {
-                    Keyboard.dismiss();
-                  }
-                }}
-                clearButtonMode="never"
-                onBlur={() => {
-                  Keyboard.dismiss();
-                }}
-              />
-            </View>
-            <View className="mb-4 flex-row justify-center">
-              <DividerLine width={SCREEN_WIDTH * 0.5} color={Colors.mainGray} />
-            </View>
-          </View>
+          <OneWordTextInput
+            value={textureInput}
+            editable={activeInput === "texture"}
+            autoFocus={activeInput === "texture"}
+            onChangeText={(value) => {
+              if (isValidName(value)) {
+                setTextureInput(value);
+              }
+            }}
+            onPressButton={() => {
+              nextSlide();
+              setActiveInput("color");
+            }}
+            textAlign={"center"}
+          />
         </View>
-        {/* feel slide */}
-
+        {/* color slide */}
         <View
           style={{ marginTop: SCREEN_HEIGHT * 0.075 }}
           className="items-center"
           key="3"
+        >
+          <TypewriterText
+            text="Can you tell what color is it?"
+            color={Colors.darkGray}
+            size={20}
+            speed="fast"
+            showOverflow={true}
+            isActive={activeInput === "color"}
+          />
+          <TypewriterText
+            text="(pick using the color picker below)"
+            color={Colors.mainGray}
+            size={12}
+            speed="fast"
+            showOverflow={true}
+            isActive={activeInput === "color"}
+          />
+          <View className="mt-8 w-full flex-row items-center justify-between">
+            <ColorPicker
+              style={{ width: "60%" }}
+              value={selectedColor}
+              onChange={({ hex }) => {
+                setSelectedColor(hex);
+              }}
+            >
+              <Panel3 />
+            </ColorPicker>
+
+            <View className="mb-1 items-center">
+              <Text style={{ color: Colors.darkGray, fontFamily: "Kodchasan" }}>
+                Selected Color:
+              </Text>
+              <View
+                className="mt-3 h-12 w-12 rounded-full"
+                style={{ borderWidth: 2, borderColor: Colors.mainGray }}
+              >
+                <View
+                  className="h-full w-full rounded-full"
+                  style={{
+                    backgroundColor: selectedColor,
+                    borderColor: Colors.offWhite,
+                    borderWidth: 1.5,
+                  }}
+                />
+              </View>
+            </View>
+          </View>
+          <TouchableOpacity
+            className="flex-row justify-center"
+            onPress={() => {
+              setActiveInput("feel");
+              nextSlide();
+            }}
+            style={{ marginTop: SCREEN_HEIGHT * 0.075 }}
+          >
+            <AntDesign name="checkcircleo" size={48} color={Colors.darkGray} />
+          </TouchableOpacity>
+        </View>
+        {/* feel slide */}
+        <View
+          style={{ marginTop: SCREEN_HEIGHT * 0.075 }}
+          className="items-center"
+          key="4"
         >
           <TypewriterText
             text="How does it make you feel?"
@@ -173,49 +198,20 @@ const Ground_Touch_Page_3 = ({
               setActiveInput("feel");
             }}
           />
-          <View className="mt-8 h-24 w-full items-center">
-            <View className="relative h-16 flex-row items-center justify-center">
-              <TouchableOpacity
-                className="absolute right-0 top-3 z-10 pb-8 pl-8"
-                onPress={() => {}}
-              >
-                <Feather name="check" size={38} color="black" />
-              </TouchableOpacity>
-              <TextInput
-                className="z-10 h-full w-full text-center text-3xl"
-                value={feelInput}
-                style={{
-                  color: "black",
-                  borderColor: Colors.lightGray,
-                  backgroundColor: Colors.lightGray,
-                  textAlignVertical: "center",
-                }}
-                selectTextOnFocus={true}
-                onChangeText={(value) => {
-                  if (isValidName(value)) {
-                    setFeelInput(value);
-                  }
-                }}
-                editable={activeInput === "feel"}
-                multiline={false}
-                maxLength={MAX_TEXT_INPUT_LENGTH}
-                autoFocus={activeInput === "feel"}
-                returnKeyType="done"
-                onKeyPress={(evt) => {
-                  if (evt.nativeEvent.key == "Enter") {
-                    Keyboard.dismiss();
-                  }
-                }}
-                clearButtonMode="never"
-                onBlur={() => {
-                  Keyboard.dismiss();
-                }}
-              />
-            </View>
-            <View className="mb-4 flex-row justify-center">
-              <DividerLine width={SCREEN_WIDTH * 0.5} color={Colors.mainGray} />
-            </View>
-          </View>
+          <OneWordTextInput
+            value={feelInput}
+            editable={activeInput === "feel"}
+            autoFocus={activeInput === "feel"}
+            onChangeText={(value) => {
+              if (isValidName(value)) {
+                setFeelInput(value);
+              }
+            }}
+            onPressButton={() => {
+              onButtonPress();
+            }}
+            textAlign={"center"}
+          />
         </View>
       </PagerView>
     </View>

@@ -13,6 +13,7 @@ import { AppDispatch, RootState } from "@/state/store";
 import Ground_Touch_Page_1 from "./touch/page_1";
 import Ground_Touch_Page_2 from "./touch/page_2";
 import Ground_Touch_Page_3 from "./touch/page_3";
+import Ground_Touch_Page_4 from "./touch/page_4";
 
 // time per slide is a bad idea as I want to show different elements at different times in the space of a single slide too
 // i need a hook that runs a function upon finishing typewriter effect or upon displaying the next slide;
@@ -116,32 +117,12 @@ const GroundYourself = () => {
                 }}
               />
 
-              <View key="4">
-                <TypewriterText
-                  text="How would you describe its texture?"
-                  size={20}
-                  speed="fast"
-                  isActive={groundYourselfToolState.currentSlide === 3}
-                />
-              </View>
-
-              <View key="5">
-                <TypewriterText
-                  text="What is its color?"
-                  size={20}
-                  speed="fast"
-                  isActive={groundYourselfToolState.currentSlide === 4}
-                />
-              </View>
-
-              <View key="6">
-                <TypewriterText
-                  text="How does it make you feel?"
-                  size={20}
-                  speed="fast"
-                  isActive={groundYourselfToolState.currentSlide === 5}
-                />
-              </View>
+              <Ground_Touch_Page_4
+                objKey={4}
+                onButtonPress={() => {
+                  console.log("finished");
+                }}
+              />
             </PagerView>
 
             {/* Progress bar */}
