@@ -44,6 +44,7 @@ const Ground_Touch_Page_3 = ({
       <TypewriterText
         text="Focus on the surface you're touching right now."
         size={20}
+        cursorColor={Colors.mainGray}
         speed="fast"
         isActive={groundYourselfToolState.currentSlide === objKey - 1}
         onFinish={() => {
@@ -67,8 +68,16 @@ const Ground_Touch_Page_3 = ({
         }}
       >
         {/* blank slide */}
-        <View key="1">
-          <Text style={{ fontSize: 24, color: "black" }}>First Slide</Text>
+        <View className="h-full w-full items-center justify-start" key="1">
+          <Image
+            contentFit="fill"
+            style={{
+              marginTop: SCREEN_HEIGHT * 0.2,
+              height: SCREEN_HEIGHT * 0.1,
+              width: SCREEN_HEIGHT * 0.1 * 1.3,
+            }}
+            source={groundYourselfImages.birds}
+          />
         </View>
         {/* texture slide */}
         <View
@@ -80,6 +89,7 @@ const Ground_Touch_Page_3 = ({
             text="How would you describe its texture?"
             textColor={Colors.darkGray}
             size={20}
+            cursorColor={Colors.mainGray}
             speed="fast"
             isActive={activeInput === "texture"}
             showOverflow={true}
@@ -110,6 +120,15 @@ const Ground_Touch_Page_3 = ({
             }}
             textAlign={"center"}
           />
+          <Image
+            contentFit="fill"
+            style={{
+              marginTop: SCREEN_HEIGHT * 0.06,
+              height: SCREEN_HEIGHT * 0.1,
+              width: SCREEN_HEIGHT * 0.1 * 1.3,
+            }}
+            source={groundYourselfImages.texture_1}
+          />
         </View>
         {/* color slide */}
         <View
@@ -120,6 +139,7 @@ const Ground_Touch_Page_3 = ({
           <TypewriterText
             text="Can you tell what color is it?"
             textColor={Colors.darkGray}
+            cursorColor={Colors.mainGray}
             size={20}
             speed="fast"
             showOverflow={true}
@@ -183,6 +203,7 @@ const Ground_Touch_Page_3 = ({
           <TypewriterText
             text="How does it make you feel?"
             textColor={Colors.darkGray}
+            cursorColor={Colors.mainGray}
             size={20}
             speed="fast"
             showOverflow={true}
@@ -218,7 +239,7 @@ const Ground_Touch_Page_3 = ({
             className="h-28 w-32"
             contentFit="fill"
             style={{ marginTop: SCREEN_HEIGHT * 0.05 }}
-            source={groundYourselfImages.colour}
+            source={groundYourselfImages.flower}
           />
         </View>
       </PagerView>

@@ -6,8 +6,12 @@ import FadeInView from "@/components/FadeInView";
 import Text from "@/components/global/Text";
 import TypewriterText from "@/components/TypewriterText";
 import { Colors } from "@/constants/styles/colorTheme";
-import { SCREEN_HEIGHT } from "@/constants/styles/values";
+import { SCREEN_HEIGHT, SCREEN_WIDTH } from "@/constants/styles/values";
 import { RootState } from "@/state/store";
+
+const BREATHE_IN_TIME_MS = 5000;
+const HOLD_TIME_MS = 6000 - 500;
+const BREATHE_OUT_TIME_MS = 7000;
 
 const Ground_Touch_Page_2 = ({
   objKey,
@@ -20,6 +24,11 @@ const Ground_Touch_Page_2 = ({
     (state: RootState) => state.ground_yourself,
   );
   const innerCircleAnim = useRef(new Animated.Value(0.55)).current;
+  const holdProgressBarAnim = useRef(
+    new Animated.Value(-SCREEN_WIDTH * 0.75),
+  ).current;
+  const instruction2PositionAnim = useRef(new Animated.Value(0)).current;
+
   const [breatheState, setBreatheState] = useState<"in" | "out" | "hold">("in");
   const [instruction2IsActive, setInstruction2IsActive] = useState(false);
 
@@ -41,15 +50,33 @@ const Ground_Touch_Page_2 = ({
     });
   };
 
+  const fillHoldProgressBarAnim = (duration: number) => {
+    return Animated.timing(holdProgressBarAnim, {
+      toValue: 0,
+      duration: HOLD_TIME_MS,
+      useNativeDriver: true,
+      easing: Easing.linear,
+    });
+  };
+
+  const liftInstruction2PositionAnim = (duration: number) => {
+    return Animated.timing(instruction2PositionAnim, {
+      toValue: -SCREEN_HEIGHT * 0.3,
+      duration: 1000,
+      useNativeDriver: true,
+      easing: Easing.ease,
+    });
+  };
+
   const animateinnerCircle = (duration: number) => {
-    expandInnerCircleAnim(7000).start(() => {
+    expandInnerCircleAnim(BREATHE_IN_TIME_MS).start(() => {
       setBreatheState("hold");
-      setTimeout(() => {
-        shrinkInnerCircleAnim(7000).start(() => {
+      fillHoldProgressBarAnim(HOLD_TIME_MS).start(() => {
+        shrinkInnerCircleAnim(BREATHE_OUT_TIME_MS).start(() => {
           setInstruction2IsActive(true);
         });
         setBreatheState("out");
-      }, 5000);
+      });
     });
   };
 
@@ -68,67 +95,106 @@ const Ground_Touch_Page_2 = ({
           paddingTop: SCREEN_HEIGHT > 750 ? SCREEN_HEIGHT * 0.05 : null,
         }}
       >
-        <TypewriterText
-          text="Ok, now take a deep breath"
-          size={20}
-          speed="very_fast"
-          isActive={groundYourselfToolState.currentSlide === objKey - 1}
-        />
         <FadeInView
-          isActive={groundYourselfToolState.currentSlide === objKey - 1}
+          inputVal={1}
+          outputVal={0}
+          duration={1000}
+          isActive={instruction2IsActive}
+          onFinish={() => liftInstruction2PositionAnim(1000).start()}
         >
-          <View className="my-8 flex-row justify-center">
-            <View
-              className="h-56 w-56 rounded-full border"
-              style={{
-                height: SCREEN_HEIGHT * 0.275,
-                width: SCREEN_HEIGHT * 0.275,
-                borderColor: Colors.mainGray,
-              }}
-            >
-              <View className="absolute h-full w-full flex-row items-center justify-center">
-                <Text
-                  className="z-10 text-2xl"
-                  style={{ color: Colors.offWhite, fontFamily: "Kodchasan" }}
-                >
-                  {breatheState}
-                </Text>
-              </View>
-              <Animated.View
-                className="relative h-full w-full items-center justify-center rounded-full"
+          <TypewriterText
+            text="Ok, now, let's take a deep breath"
+            size={20}
+            cursorColor={Colors.mainGray}
+            speed="very_fast"
+            isActive={groundYourselfToolState.currentSlide === objKey - 1}
+          />
+          {/* Breather w/ Progress Bar */}
+          <FadeInView
+            isActive={groundYourselfToolState.currentSlide === objKey - 1}
+          >
+            {/* Breather */}
+            <View className="my-8 flex-row justify-center">
+              <View
+                className="h-56 w-56 rounded-full border"
                 style={{
-                  backgroundColor: Colors.mainBlue,
-                  transform: [{ scale: innerCircleAnim }],
+                  height: SCREEN_HEIGHT * 0.275,
+                  width: SCREEN_HEIGHT * 0.275,
+                  borderColor: Colors.mainGray,
                 }}
-              ></Animated.View>
+              >
+                <View className="absolute h-full w-full flex-row items-center justify-center">
+                  <Text
+                    className="z-10 text-2xl"
+                    style={{ color: Colors.offWhite, fontFamily: "Kodchasan" }}
+                  >
+                    {breatheState}
+                  </Text>
+                </View>
+                <Animated.View
+                  className="relative h-full w-full items-center justify-center rounded-full"
+                  style={{
+                    backgroundColor: Colors.mainBlue,
+                    transform: [{ scale: innerCircleAnim }],
+                  }}
+                ></Animated.View>
+              </View>
+            </View>
+            {/* Progress bar */}
+            <View className="absolute bottom-0 h-0 w-full">
+              <View className="h-4 items-center">
+                <View
+                  className="absolute top-0 h-2 w-3/4 overflow-hidden rounded-xl border"
+                  style={{ borderColor: Colors.mainGray }}
+                >
+                  <Animated.View
+                    className="absolute top-0 h-2 w-full rounded-xl"
+                    style={{
+                      backgroundColor: Colors.mainGray,
+                      transform: [{ translateX: holdProgressBarAnim }],
+                    }}
+                  />
+                </View>
+              </View>
+            </View>
+          </FadeInView>
+        </FadeInView>
+        <FadeInView
+          isActive={instruction2IsActive}
+          inputVal={0}
+          duration={2500}
+          style={{ transform: [{ translateY: instruction2PositionAnim }] }}
+        >
+          <View className="mb-8">
+            <View>
+              <TypewriterText
+                text="Now, following this breathing pace, place one of your hands firmly on one of your thighs."
+                size={20}
+                cursorColor={Colors.mainGray}
+                speed="fast"
+                delaySeconds={1.5}
+                isActive={instruction2IsActive}
+              />
             </View>
           </View>
-        </FadeInView>
-        <View className="mb-8">
-          <FadeInView>
+          <FadeInView isActive={instruction2IsActive}>
             <TypewriterText
-              text="Now, place one of your hands firmly on one of your thighs."
-              size={20}
+              text="(you may also use a surface on which you're sitting if that's what you prefer)"
+              textColor={Colors.darkGray}
+              cursorColor={Colors.mainGray}
+              size={14}
               speed="very_fast"
-              delaySeconds={1.5}
+              delaySeconds={6}
               isActive={instruction2IsActive}
             />
+            <View
+              className="w-full flex-row justify-center"
+              style={{ top: SCREEN_HEIGHT * 0.05 }}
+            >
+              <ArrowRightButton onPress={() => onButtonPress()} />
+            </View>
           </FadeInView>
-        </View>
-        <TypewriterText
-          text="(you may also use a surface on which you're sitting if that's what you prefer)"
-          textColor={Colors.darkGray}
-          size={14}
-          speed="very_fast"
-          delaySeconds={4}
-          isActive={instruction2IsActive}
-        />
-        <View
-          className="w-full flex-row justify-center"
-          style={{ top: SCREEN_HEIGHT * 0.05 }}
-        >
-          <ArrowRightButton onPress={() => onButtonPress()} />
-        </View>
+        </FadeInView>
       </View>
     </React.Fragment>
   );
