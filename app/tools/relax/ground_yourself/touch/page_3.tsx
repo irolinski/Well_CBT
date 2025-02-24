@@ -1,9 +1,11 @@
+import { Image } from "expo-image";
 import React, { useRef, useState } from "react";
 import { NativeSyntheticEvent, TouchableOpacity, View } from "react-native";
 import PagerView from "react-native-pager-view";
 import { Double } from "react-native/Libraries/Types/CodegenTypes";
 import { useSelector } from "react-redux";
 import ColorPicker, { Panel3 } from "reanimated-color-picker";
+import { groundYourselfImages } from "@/assets/images/tools/ground_yourself/ground_yourself";
 import Text from "@/components/global/Text";
 import OneWordTextInput from "@/components/tools/ground_yourself/OneWordTextInput";
 import TypewriterText from "@/components/TypewriterText";
@@ -76,7 +78,7 @@ const Ground_Touch_Page_3 = ({
         >
           <TypewriterText
             text="How would you describe its texture?"
-            color={Colors.darkGray}
+            textColor={Colors.darkGray}
             size={20}
             speed="fast"
             isActive={activeInput === "texture"}
@@ -84,7 +86,7 @@ const Ground_Touch_Page_3 = ({
           />
           <TypewriterText
             text="(think of an adjective)"
-            color={Colors.mainGray}
+            textColor={Colors.mainGray}
             size={12}
             speed="fast"
             isActive={activeInput === "texture"}
@@ -117,7 +119,7 @@ const Ground_Touch_Page_3 = ({
         >
           <TypewriterText
             text="Can you tell what color is it?"
-            color={Colors.darkGray}
+            textColor={Colors.darkGray}
             size={20}
             speed="fast"
             showOverflow={true}
@@ -125,7 +127,7 @@ const Ground_Touch_Page_3 = ({
           />
           <TypewriterText
             text="(pick using the color picker below)"
-            color={Colors.mainGray}
+            textColor={Colors.mainGray}
             size={12}
             speed="fast"
             showOverflow={true}
@@ -180,7 +182,7 @@ const Ground_Touch_Page_3 = ({
         >
           <TypewriterText
             text="How does it make you feel?"
-            color={Colors.darkGray}
+            textColor={Colors.darkGray}
             size={20}
             speed="fast"
             showOverflow={true}
@@ -188,7 +190,7 @@ const Ground_Touch_Page_3 = ({
           />
           <TypewriterText
             text="(enter a feeling or an adjective)"
-            color={Colors.mainGray}
+            textColor={Colors.mainGray}
             size={12}
             speed="fast"
             showOverflow={true}
@@ -211,6 +213,12 @@ const Ground_Touch_Page_3 = ({
               onButtonPress();
             }}
             textAlign={"center"}
+          />
+          <Image
+            className="h-28 w-32"
+            contentFit="fill"
+            style={{ marginTop: SCREEN_HEIGHT * 0.05 }}
+            source={groundYourselfImages.colour}
           />
         </View>
       </PagerView>

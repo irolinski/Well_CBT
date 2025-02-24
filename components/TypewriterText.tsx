@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Animated, Text, View } from "react-native";
+import { Animated, ColorValue, Text, View } from "react-native";
 import { Colors } from "@/constants/styles/colorTheme";
 
 const speedValues = {
@@ -14,7 +14,8 @@ interface TypewriterTextProps {
   text: string;
   speed?: keyof typeof speedValues;
   size?: number;
-  color?: string;
+  textColor?: ColorValue;
+  cursorColor?: ColorValue;
   fontFamily?: string;
   letterSpacing?: number;
   lineHeight?: 1.25 | 1.5 | 2 | 2.5 | 3 | 3.5 | 4;
@@ -29,7 +30,8 @@ const TypewriterText = ({
   text = "",
   speed = "fast",
   size = 24,
-  color = Colors.offBlack,
+  textColor = Colors.offBlack,
+  cursorColor,
   fontFamily = "",
   letterSpacing = 1.5,
   lineHeight = 1.5,
@@ -149,7 +151,7 @@ const TypewriterText = ({
         <Text
           style={{
             fontFamily: fontFamily,
-            color: color,
+            color: textColor,
             fontSize: size,
             letterSpacing: letterSpacing,
             lineHeight: size * lineHeight,
@@ -164,7 +166,7 @@ const TypewriterText = ({
               transform: [{ translateX: size / 2 }],
               marginBottom: lineHeight * 2.25 * lineHeight - lineHeight,
               opacity: cursorOpacity,
-              backgroundColor: color,
+              backgroundColor: cursorColor ? cursorColor : textColor,
             }}
           />
         </Text>

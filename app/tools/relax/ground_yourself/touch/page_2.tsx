@@ -117,7 +117,7 @@ const Ground_Touch_Page_2 = ({
         </View>
         <TypewriterText
           text="(you may also use a surface on which you're sitting if that's what you prefer)"
-          color={Colors.darkGray}
+          textColor={Colors.darkGray}
           size={14}
           speed="very_fast"
           delaySeconds={4}

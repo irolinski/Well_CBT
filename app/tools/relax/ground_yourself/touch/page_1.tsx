@@ -34,7 +34,7 @@ const Ground_Touch_Page_1 = ({
           speed="fast"
           delaySeconds={3}
           size={18}
-          color={Colors.mainGray}
+          textColor={Colors.mainGray}
           hideCursorOnFinish={false}
         />
       </View>
