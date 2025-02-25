@@ -12,11 +12,11 @@ const ArrowRightButton = ({
 }) => {
   return (
     <TouchableOpacity
-      className="flex-row justify-center"
+      className="h-12 w-12 flex-row items-center justify-center rounded-full"
       onPress={() => onPress()}
-      style={style}
+      style={[style, { backgroundColor: Colors.mainBlue }]}
     >
-      <Feather name="arrow-right-circle" size={48} color={Colors.mainGray} />
+      <Feather name="arrow-right" size={38} color={Colors.white} />
     </TouchableOpacity>
   );
 };

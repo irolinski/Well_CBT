@@ -83,10 +83,12 @@ const Ground_Touch_Page_1 = ({
         />
       </View>
 
-      <ArrowRightButton
-        style={{ marginTop: SCREEN_HEIGHT * 0.15 }}
-        onPress={onButtonPress}
-      />
+      <View className="flex-row justify-center">
+        <ArrowRightButton
+          style={{ marginTop: SCREEN_HEIGHT * 0.15 }}
+          onPress={onButtonPress}
+        />
+      </View>
     </Animated.View>
   );
 };

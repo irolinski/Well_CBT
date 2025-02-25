@@ -1,6 +1,7 @@
 import React from "react";
 import { Keyboard, TextStyle, TouchableOpacity, View } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
+import ArrowRightButton from "@/components/ArrowRightButton";
 import DividerLine from "@/components/DividerLine";
 import { Colors } from "@/constants/styles/colorTheme";
 import { SCREEN_WIDTH } from "@/constants/styles/values";
@@ -9,7 +10,7 @@ import { Feather } from "@expo/vector-icons";
 const MAX_TEXT_INPUT_LENGTH = 15;
 
 const OneWordTextInput = ({
-  value,
+  value = "",
   editable,
   autoFocus,
   textAlign = "center",
@@ -26,12 +27,11 @@ const OneWordTextInput = ({
   return (
     <View className="mt-8 h-24 w-full items-center px-4">
       <View className="relative h-16 w-full flex-row items-center justify-start">
-        <TouchableOpacity
-          className="absolute right-0 top-3 z-20 pb-8"
-          onPress={() => (onPressButton ? onPressButton() : null)}
-        >
-          <Feather name="check" size={38} color="black" />
-        </TouchableOpacity>
+        <View className="absolute right-0">
+          <ArrowRightButton
+            onPress={() => (onPressButton ? onPressButton() : null)}
+          />
+        </View>
         <TextInput
           className="z-10 h-full w-3/4 text-left text-2xl"
           value={value}
