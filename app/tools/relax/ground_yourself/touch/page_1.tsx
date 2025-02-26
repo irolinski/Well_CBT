@@ -58,7 +58,37 @@ const Ground_Touch_Page_1 = ({
 
   return (
     <GroundYourselfSlideFrame exerciseName={exerciseName}>
-      <Animated.View key={objKey} style={{ paddingTop: SCREEN_HEIGHT * 0.05 }}>
+      <Animated.View
+        key={objKey}
+        style={{
+          paddingTop: SCREEN_HEIGHT > 750 ? SCREEN_HEIGHT * 0.05 : null,
+        }}
+      >
+        <Text
+          className="mb-4 text-2xl font-semibold"
+          style={{ fontFamily: "Kodchasan" }}
+        >
+          Touch
+        </Text>
+        {/* Hand animation */}
+        <FadeInView
+          className="flex-row justify-center"
+          style={{
+            marginTop: SCREEN_HEIGHT * 0.1,
+            marginBottom: SCREEN_HEIGHT * 0.1,
+          }}
+          duration={1500}
+          inputVal={0.1}
+          outputVal={1}
+        >
+          <Animated.View style={{ transform: [{ rotate }] }}>
+            <Entypo
+              name="hand"
+              size={SCREEN_HEIGHT * 0.075}
+              color={Colors.mainGray}
+            />
+          </Animated.View>
+        </FadeInView>
         <TypewriterText
           text="With this exercise you will try to ground yourself using the sense of touch."
           size={20}
@@ -68,23 +98,8 @@ const Ground_Touch_Page_1 = ({
           lineHeight={1.25}
           speed="fastest"
         />
-        <FadeInView
-          className="flex-row justify-center"
-          style={{ marginTop: SCREEN_HEIGHT * 0.1 }}
-          duration={1500}
-          inputVal={0.1}
-          outputVal={1}
-        >
-          {/* Animated hand with waving effect */}
-          <Animated.View style={{ transform: [{ rotate }] }}>
-            <Entypo
-              name="hand"
-              size={SCREEN_HEIGHT * 0.075}
-              color={Colors.mainGray}
-            />
-          </Animated.View>
-        </FadeInView>
-        <View style={{ marginTop: SCREEN_HEIGHT * 0.1 }}>
+
+        <View style={{ marginTop: SCREEN_HEIGHT * 0.025 }}>
           <TypewriterText
             text="Tap the button below to proceed."
             speed="fast"
