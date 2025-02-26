@@ -1,19 +1,25 @@
 import React, { useEffect, useRef } from "react";
 import { Animated, View } from "react-native";
+import { useSelector } from "react-redux";
 import ArrowRightButton from "@/components/ArrowRightButton";
 import FadeInView from "@/components/FadeInView";
+import Text from "@/components/global/Text";
+import GroundYourselfSlideFrame from "@/components/tools/ground_yourself/GroundYourselfSlideFrame";
 import TypewriterText from "@/components/TypewriterText";
+import { GroundYourselfSlideProps } from "@/constants/models/tools/ground_yourself";
 import { Colors } from "@/constants/styles/colorTheme";
 import { SCREEN_HEIGHT } from "@/constants/styles/values";
+import { RootState } from "@/state/store";
 import { Entypo } from "@expo/vector-icons";
 
 const Ground_Touch_Page_1 = ({
+  exerciseName,
   objKey,
   onButtonPress,
-}: {
-  objKey: number;
-  onButtonPress: () => void;
-}) => {
+}: GroundYourselfSlideProps) => {
+  const groundYourselfToolState = useSelector(
+    (state: RootState) => state.ground_yourself,
+  );
   // Animated value for rotation
   const waveAnim = useRef(new Animated.Value(0)).current;
 
@@ -45,51 +51,52 @@ const Ground_Touch_Page_1 = ({
   });
 
   return (
-    <Animated.View key={objKey} style={{ paddingTop: SCREEN_HEIGHT * 0.05 }}>
-      <TypewriterText
-        text="With this exercise you will try to ground yourself using the sense of touch."
-        size={20}
-        cursorColor={Colors.mainGray}
-        letterSpacing={1.25}
-        lineHeight={1.25}
-        speed="fastest"
-      />
-
-      <FadeInView
-        className="flex-row justify-center"
-        style={{ marginTop: SCREEN_HEIGHT * 0.1 }}
-        duration={1500}
-        inputVal={0.1}
-        outputVal={1}
-      >
-        {/* Animated hand with waving effect */}
-        <Animated.View style={{ transform: [{ rotate }] }}>
-          <Entypo
-            name="hand"
-            size={SCREEN_HEIGHT * 0.075}
-            color={Colors.mainGray}
-          />
-        </Animated.View>
-      </FadeInView>
-
-      <View style={{ marginTop: SCREEN_HEIGHT * 0.1 }}>
+    <GroundYourselfSlideFrame exerciseName={exerciseName}>
+      <Animated.View key={objKey} style={{ paddingTop: SCREEN_HEIGHT * 0.05 }}>
         <TypewriterText
-          text="Tap the button below to proceed."
-          speed="fast"
-          delaySeconds={1.5}
-          size={18}
-          textColor={Colors.mainGray}
-          hideCursorOnFinish={false}
+          text="With this exercise you will try to ground yourself using the sense of touch."
+          size={20}
+          cursorColor={Colors.mainGray}
+          isActive={groundYourselfToolState.currentSlide === objKey}
+          letterSpacing={1.25}
+          lineHeight={1.25}
+          speed="fastest"
         />
-      </View>
-
-      <View className="flex-row justify-center">
-        <ArrowRightButton
-          style={{ marginTop: SCREEN_HEIGHT * 0.15 }}
-          onPress={onButtonPress}
-        />
-      </View>
-    </Animated.View>
+        <FadeInView
+          className="flex-row justify-center"
+          style={{ marginTop: SCREEN_HEIGHT * 0.1 }}
+          duration={1500}
+          inputVal={0.1}
+          outputVal={1}
+        >
+          {/* Animated hand with waving effect */}
+          <Animated.View style={{ transform: [{ rotate }] }}>
+            <Entypo
+              name="hand"
+              size={SCREEN_HEIGHT * 0.075}
+              color={Colors.mainGray}
+            />
+          </Animated.View>
+        </FadeInView>
+        <View style={{ marginTop: SCREEN_HEIGHT * 0.1 }}>
+          <TypewriterText
+            text="Tap the button below to proceed."
+            speed="fast"
+            isActive={groundYourselfToolState.currentSlide === objKey}
+            delaySeconds={1.5}
+            size={18}
+            textColor={Colors.mainGray}
+            hideCursorOnFinish={false}
+          />
+        </View>
+        <View className="flex-row justify-center">
+          <ArrowRightButton
+            style={{ marginTop: SCREEN_HEIGHT * 0.15 }}
+            onPress={onButtonPress}
+          />
+        </View>
+      </Animated.View>
+    </GroundYourselfSlideFrame>
   );
 };
 

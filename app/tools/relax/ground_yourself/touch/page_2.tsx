@@ -4,7 +4,9 @@ import { useSelector } from "react-redux";
 import ArrowRightButton from "@/components/ArrowRightButton";
 import FadeInView from "@/components/FadeInView";
 import Text from "@/components/global/Text";
+import GroundYourselfSlideFrame from "@/components/tools/ground_yourself/GroundYourselfSlideFrame";
 import TypewriterText from "@/components/TypewriterText";
+import { GroundYourselfSlideProps } from "@/constants/models/tools/ground_yourself";
 import { Colors } from "@/constants/styles/colorTheme";
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from "@/constants/styles/values";
 import { RootState } from "@/state/store";
@@ -14,12 +16,10 @@ const HOLD_TIME_MS = 6000 - 500;
 const BREATHE_OUT_TIME_MS = 7000;
 
 const Ground_Touch_Page_2 = ({
+  exerciseName,
   objKey,
   onButtonPress,
-}: {
-  objKey: number;
-  onButtonPress: () => void;
-}) => {
+}: GroundYourselfSlideProps) => {
   const groundYourselfToolState = useSelector(
     (state: RootState) => state.ground_yourself,
   );
@@ -81,7 +81,7 @@ const Ground_Touch_Page_2 = ({
   };
 
   useEffect(() => {
-    if (groundYourselfToolState.currentSlide === objKey - 1) {
+    if (groundYourselfToolState.currentSlide === objKey) {
       setTimeout(() => {
         animateinnerCircle(7000);
       }, 2000);
@@ -89,7 +89,7 @@ const Ground_Touch_Page_2 = ({
   }, [groundYourselfToolState.currentSlide]);
 
   return (
-    <React.Fragment>
+    <GroundYourselfSlideFrame exerciseName={exerciseName}>
       <View
         style={{
           paddingTop: SCREEN_HEIGHT > 750 ? SCREEN_HEIGHT * 0.05 : null,
@@ -107,11 +107,11 @@ const Ground_Touch_Page_2 = ({
             size={20}
             cursorColor={Colors.mainGray}
             speed="very_fast"
-            isActive={groundYourselfToolState.currentSlide === objKey - 1}
+            isActive={groundYourselfToolState.currentSlide === objKey}
           />
           {/* Breather w/ Progress Bar */}
           <FadeInView
-            isActive={groundYourselfToolState.currentSlide === objKey - 1}
+            isActive={groundYourselfToolState.currentSlide === objKey}
           >
             {/* Breather */}
             <View className="my-8 flex-row justify-center">
@@ -196,7 +196,7 @@ const Ground_Touch_Page_2 = ({
           </FadeInView>
         </FadeInView>
       </View>
-    </React.Fragment>
+    </GroundYourselfSlideFrame>
   );
 };
 
