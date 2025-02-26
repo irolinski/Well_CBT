@@ -23,8 +23,6 @@ import { AppDispatch, RootState } from "@/state/store";
 import { isValidName } from "@/utils/inputValidations";
 import { AntDesign } from "@expo/vector-icons";
 
-const SLIDE_NUM = 2;
-
 const Ground_Touch_Page_3 = ({
   exerciseName,
   objKey,
@@ -87,9 +85,8 @@ const Ground_Touch_Page_3 = ({
     });
   };
 
-  // this triggers showHandTextureAnimationAndGoToNextSlide on subsequent exercise repeats
   useEffect(() => {
-    if (groundYourselfToolState.currentSlide === SLIDE_NUM) {
+    if (groundYourselfToolState.currentSlide === objKey) {
       setTimeout(() => {
         showHandTextureAnimationAndGoToNextSlide();
       }, 1000);

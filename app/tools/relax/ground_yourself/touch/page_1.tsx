@@ -21,34 +21,40 @@ const Ground_Touch_Page_1 = ({
     (state: RootState) => state.ground_yourself,
   );
   // Animated value for rotation
-  const waveAnim = useRef(new Animated.Value(0)).current;
+  const waveAnimRef = useRef(new Animated.Value(0)).current;
 
-  // Start waving animation on mount
-  useEffect(() => {
-    Animated.sequence([
-      Animated.timing(waveAnim, {
+  // Interpolate rotation degrees
+  const rotate = waveAnimRef.interpolate({
+    inputRange: [-1, 0, 1],
+    outputRange: ["-20deg", "0deg", "20deg"],
+  });
+
+  const waveHandAnim = () => {
+    return Animated.sequence([
+      Animated.timing(waveAnimRef, {
         toValue: 1,
         duration: 300,
         useNativeDriver: true,
       }),
-      Animated.timing(waveAnim, {
+      Animated.timing(waveAnimRef, {
         toValue: -1,
         duration: 300,
         useNativeDriver: true,
       }),
-      Animated.timing(waveAnim, {
+      Animated.timing(waveAnimRef, {
         toValue: 0,
         duration: 300,
         useNativeDriver: true,
       }),
-    ]).start();
-  }, [waveAnim]);
+    ]);
+  };
 
-  // Interpolate rotation degrees
-  const rotate = waveAnim.interpolate({
-    inputRange: [-1, 0, 1],
-    outputRange: ["-20deg", "0deg", "20deg"],
-  });
+  // Start waving animation on mount
+  useEffect(() => {
+    if (groundYourselfToolState.currentSlide === objKey) {
+      waveHandAnim().start();
+    }
+  }, [groundYourselfToolState.currentSlide]);
 
   return (
     <GroundYourselfSlideFrame exerciseName={exerciseName}>
