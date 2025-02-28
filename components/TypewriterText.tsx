@@ -1,5 +1,12 @@
 import { useEffect, useState } from "react";
-import { Animated, ColorValue, Text, View } from "react-native";
+import {
+  Animated,
+  ColorValue,
+  StyleProp,
+  Text,
+  View,
+  ViewStyle,
+} from "react-native";
 import { Colors } from "@/constants/styles/colorTheme";
 
 const speedValues = {
@@ -12,6 +19,8 @@ const speedValues = {
 
 interface TypewriterTextProps {
   text: string;
+  className?: string;
+  style?: StyleProp<ViewStyle>;
   speed?: keyof typeof speedValues;
   size?: number;
   textColor?: ColorValue;
@@ -28,6 +37,8 @@ interface TypewriterTextProps {
 
 const TypewriterText = ({
   text = "",
+  className = "",
+  style,
   speed = "fast",
   size = 24,
   textColor = Colors.offBlack,
@@ -125,12 +136,16 @@ const TypewriterText = ({
 
   return (
     <View
-      style={{
-        position: "relative",
-        justifyContent: "center",
-        alignItems: "center",
-        overflow: showOverflow ? "visible" : "hidden",
-      }}
+      className={className}
+      style={[
+        {
+          position: "relative",
+          justifyContent: "center",
+          alignItems: "center",
+          overflow: showOverflow ? "visible" : "hidden",
+        },
+        style,
+      ]}
     >
       {/* Placeholder Text Component
        - it's here to make space for the actual text so that the
