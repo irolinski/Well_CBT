@@ -22,7 +22,6 @@ const FadeInView = ({
   style,
   onFinish,
 }: FadeInViewProps) => {
-  console.log(className);
   const fadeAnim = useRef(new Animated.Value(inputVal)).current;
 
   const fadeAnimation = () => {
