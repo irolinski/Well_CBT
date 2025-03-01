@@ -174,9 +174,9 @@ const Ground_Body_Page_2 = ({
             delaySeconds={1.5}
             isActive={instruction2IsActive}
           />
-          <FadeInView isActive={instruction2IsActive}>
+          <FadeInView isActive={instruction2IsActive} className="my-4">
             <TypewriterText
-              text="(While doing this exercise, take notice of your physical sensations)"
+              text="(while doing this exercise, take notice of your physical sensations)"
               textColor={Colors.darkGray}
               cursorColor={Colors.mainGray}
               size={15}

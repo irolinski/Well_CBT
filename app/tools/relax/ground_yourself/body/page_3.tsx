@@ -17,7 +17,7 @@ import { SCREEN_HEIGHT } from "@/constants/styles/values";
 import { RootState } from "@/state/store";
 import { isValidName } from "@/utils/inputValidations";
 
-const FIRST_SLIDE_TIME_MS = 1000;
+const FIRST_SLIDE_TIME_MS = 2500;
 
 const Ground_Body_Page_3 = ({
   exerciseName,
@@ -120,7 +120,7 @@ const Ground_Body_Page_3 = ({
   useEffect(() => {
     if (currentInstruction === "back_2") {
       Animated.timing(lift_back_2, {
-        toValue: -50,
+        toValue: -100,
         duration: 300,
         easing: Easing.out(Easing.ease),
         useNativeDriver: true,
@@ -165,7 +165,15 @@ const Ground_Body_Page_3 = ({
           {/* blank slide */}
           <View className="h-full w-full items-center justify-start" key="1">
             <View>
-              <Text>First slide</Text>
+              <Image
+                source={groundYourselfImages.feelyourbody}
+                style={{
+                  marginTop: SCREEN_HEIGHT * 0.1,
+                  marginBottom: SCREEN_HEIGHT * 0.1,
+                  height: SCREEN_HEIGHT * 0.2,
+                  width: SCREEN_HEIGHT * 0.25,
+                }}
+              ></Image>
             </View>
           </View>
           {/* toes slide */}
@@ -216,11 +224,21 @@ const Ground_Body_Page_3 = ({
                 />
                 <TypewriterText
                   className="mt-4"
-                  text="(notice the feeling, take your time)"
-                  textColor={Colors.mainGray}
+                  text="notice the feeling, take your time"
+                  textColor={Colors.darkGray}
                   size={14}
                   speed="fast"
-                  delaySeconds={2.5}
+                  delaySeconds={3}
+                  isActive={currentInstruction === "toes_2"}
+                  showOverflow={true}
+                />
+                <TypewriterText
+                  className="mt-2"
+                  text="(when you're ready, tap the button below)"
+                  textColor={Colors.mainGray}
+                  size={13}
+                  speed="very_fast"
+                  delaySeconds={6}
                   isActive={currentInstruction === "toes_2"}
                   onFinish={() => setCurrentInstruction("toes_3")}
                   showOverflow={true}
@@ -271,7 +289,7 @@ const Ground_Body_Page_3 = ({
               isActive={currentInstruction === "fingers"}
             />
             <TypewriterText
-              className="mt-8"
+              className="mb-6 mt-2"
               text="(hands can follow their lead if they wish)"
               textColor={Colors.mainGray}
               size={14}
@@ -282,13 +300,13 @@ const Ground_Body_Page_3 = ({
             <Image
               contentFit="fill"
               style={{
-                marginTop: SCREEN_HEIGHT * 0.1,
-                marginBottom: SCREEN_HEIGHT * 0.1,
+                marginTop: SCREEN_HEIGHT * 0.05,
+                marginBottom: SCREEN_HEIGHT * 0.125,
 
-                height: SCREEN_HEIGHT * 0.1,
-                width: SCREEN_HEIGHT * 0.1 * 1.3,
+                height: SCREEN_HEIGHT * 0.2,
+                width: SCREEN_HEIGHT * 0.25,
               }}
-              source={groundYourselfImages.birds}
+              source={groundYourselfImages.stretchfingers}
             />
 
             <View className="flex-row items-center justify-center">
@@ -360,26 +378,26 @@ const Ground_Body_Page_3 = ({
                     contentFit="fill"
                     style={{
                       marginTop: SCREEN_HEIGHT * 0.06,
-                      marginBottom: SCREEN_HEIGHT * 0.1,
+                      marginBottom: SCREEN_HEIGHT * 0.15,
                     }}
                     source={groundYourselfImages.stretch}
                   />
                 </View>
               </FadeInView>
+              <FadeInView
+                className="flex-row items-center justify-center"
+                inputVal={0}
+                outputVal={1}
+                isActive={currentInstruction === "back_3"}
+              >
+                <ArrowRightButton
+                  onPress={() => {
+                    nextSlide();
+                    setCurrentInstruction("feel");
+                  }}
+                />
+              </FadeInView>
             </Animated.View>
-            <FadeInView
-              className="flex-row items-center justify-center"
-              inputVal={0}
-              outputVal={1}
-              isActive={currentInstruction === "back_3"}
-            >
-              <ArrowRightButton
-                onPress={() => {
-                  nextSlide();
-                  setCurrentInstruction("feel");
-                }}
-              />
-            </FadeInView>
           </View>
           <View
             style={{ marginTop: SCREEN_HEIGHT * 0.075 }}
@@ -387,7 +405,7 @@ const Ground_Body_Page_3 = ({
             key="5"
           >
             <TypewriterText
-              text="Now, name one sensation you feel in your body"
+              text="Now, name one sensation you feel in any of your limbs"
               textColor={Colors.darkGray}
               cursorColor={Colors.mainGray}
               size={20}
@@ -397,7 +415,7 @@ const Ground_Body_Page_3 = ({
             />
             <TypewriterText
               className="mt-4"
-              text="(it can also be a feeling you hot while doing this exercise)"
+              text="(it can also be a feeling you got while doing this exercise)"
               textColor={Colors.mainGray}
               size={12}
               speed="fast"
@@ -426,7 +444,7 @@ const Ground_Body_Page_3 = ({
                 marginTop: SCREEN_HEIGHT * 0.06,
                 marginBottom: SCREEN_HEIGHT * 0.1,
               }}
-              source={groundYourselfImages.flower}
+              source={groundYourselfImages.scanbody}
             />
           </View>
         </PagerView>
