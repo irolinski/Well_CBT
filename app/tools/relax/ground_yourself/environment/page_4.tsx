@@ -15,7 +15,7 @@ const BREATHE_IN_TIME_MS = 5000;
 const HOLD_TIME_MS = 6000 - 500;
 const BREATHE_OUT_TIME_MS = 7000;
 
-const Ground_Environment_Page_2 = ({
+const Ground_Environment_Page_4 = ({
   exerciseName,
   objKey,
   onButtonPress,
@@ -30,9 +30,7 @@ const Ground_Environment_Page_2 = ({
   const instruction2PositionAnim = useRef(new Animated.Value(0)).current;
 
   const [breatheState, setBreatheState] = useState<"in" | "out" | "hold">("in");
-  const [currentInstruction, setCurrentInstruction] = useState<
-    "instruction_1" | "instruction_2" | "instruction_3" | null
-  >("instruction_1");
+  const [instruction2IsActive, setInstruction2IsActive] = useState(false);
 
   const expandInnerCircleAnim = (duration: number) => {
     return Animated.timing(innerCircleAnim, {
@@ -75,7 +73,7 @@ const Ground_Environment_Page_2 = ({
       setBreatheState("hold");
       fillHoldProgressBarAnim(HOLD_TIME_MS).start(() => {
         shrinkInnerCircleAnim(BREATHE_OUT_TIME_MS).start(() => {
-          setCurrentInstruction("instruction_2");
+          setInstruction2IsActive(true);
         });
         setBreatheState("out");
       });
@@ -101,15 +99,24 @@ const Ground_Environment_Page_2 = ({
           inputVal={1}
           outputVal={0}
           duration={1000}
-          isActive={currentInstruction === "instruction_2"}
+          isActive={instruction2IsActive}
           onFinish={() => liftInstruction2PositionAnim(1000).start()}
         >
           <TypewriterText
-            text="Ok, now, let's take a deep breath"
+            text="Ok, now, let's do another deep breath."
             size={20}
             cursorColor={Colors.mainGray}
             speed="very_fast"
             isActive={groundYourselfToolState.currentSlide === objKey}
+          />
+          <TypewriterText
+            text="(while noticing the sensations in your hands, legs, feet and back)"
+            textColor={Colors.mainGray}
+            size={12}
+            speed="fast"
+            isActive={groundYourselfToolState.currentSlide === objKey}
+            delaySeconds={1}
+            showOverflow={true}
           />
           {/* Breather w/ Progress Bar */}
           <FadeInView
@@ -162,51 +169,39 @@ const Ground_Environment_Page_2 = ({
           </FadeInView>
         </FadeInView>
         <FadeInView
-          isActive={currentInstruction === "instruction_2"}
+          isActive={instruction2IsActive}
           inputVal={0}
           duration={2500}
           style={{ transform: [{ translateY: instruction2PositionAnim }] }}
         >
-          <TypewriterText
-            className="mb-8"
-            text="Now, following this breathing pace, take a look around."
-            size={20}
-            cursorColor={Colors.mainGray}
-            speed="fast"
-            delaySeconds={1.5}
-            isActive={currentInstruction === "instruction_2"}
-          />
-          <FadeInView
-            isActive={currentInstruction === "instruction_2"}
-            className="my-4"
-          >
+          <View className="mb-8">
+            <View>
+              <TypewriterText
+                text="Now, we'll head to the next exercise which will help ground you further"
+                size={20}
+                cursorColor={Colors.mainGray}
+                speed="fast"
+                delaySeconds={1.5}
+                isActive={instruction2IsActive}
+              />
+            </View>
+          </View>
+          <FadeInView isActive={instruction2IsActive}>
             <TypewriterText
-              text="Notice the things around you..."
+              text="(tap the button below to proceed)"
               textColor={Colors.darkGray}
               cursorColor={Colors.mainGray}
-              size={15}
+              size={14}
               speed="very_fast"
               delaySeconds={6}
-              isActive={currentInstruction === "instruction_2"}
-              onFinish={() => setCurrentInstruction("instruction_3")}
+              isActive={instruction2IsActive}
             />
-            <TypewriterText
-              className="mt-8"
-              text="Try to think of how would you describe their colours, shapes, textures..."
-              textColor={Colors.darkGray}
-              cursorColor={Colors.mainGray}
-              size={15}
-              speed="very_fast"
-              delaySeconds={2}
-              isActive={currentInstruction === "instruction_3"}
-            />
-            <FadeInView
-              isActive={currentInstruction === "instruction_3"}
+            <View
               className="w-full flex-row justify-center"
               style={{ top: SCREEN_HEIGHT * 0.05 }}
             >
               <ArrowRightButton onPress={() => onButtonPress()} />
-            </FadeInView>
+            </View>
           </FadeInView>
         </FadeInView>
       </View>
@@ -214,4 +209,4 @@ const Ground_Environment_Page_2 = ({
   );
 };
 
-export default Ground_Environment_Page_2;
+export default Ground_Environment_Page_4;

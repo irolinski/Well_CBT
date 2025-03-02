@@ -13,6 +13,8 @@ import Ground_Body_Page_3 from "./body/page_3";
 import Ground_Body_Page_4 from "./body/page_4";
 import Ground_Environment_Page_1 from "./environment/page_1";
 import Ground_Environment_Page_2 from "./environment/page_2";
+import Ground_Environment_Page_3 from "./environment/page_3";
+import Ground_Environment_Page_4 from "./environment/page_4";
 import Ground_Finish_Page from "./FinishPage";
 import Ground_Touch_Page_1 from "./touch/page_1";
 import Ground_Touch_Page_2 from "./touch/page_2";
@@ -20,6 +22,15 @@ import Ground_Touch_Page_3 from "./touch/page_3";
 import Ground_Touch_Page_4 from "./touch/page_4";
 
 const exercises = [
+  {
+    name: "Environment",
+    pages: [
+      Ground_Environment_Page_1,
+      Ground_Environment_Page_2,
+      Ground_Environment_Page_3,
+      Ground_Environment_Page_4,
+    ],
+  },
   {
     name: "Body",
     pages: [
@@ -37,10 +48,6 @@ const exercises = [
       Ground_Touch_Page_3,
       Ground_Touch_Page_4,
     ],
-  },
-  {
-    name: "Environment",
-    pages: [Ground_Environment_Page_1, Ground_Environment_Page_2],
   },
 ];
 
