@@ -7,7 +7,6 @@ import { useSelector } from "react-redux";
 import { groundYourselfImages } from "@/assets/images/tools/ground_yourself/ground_yourself";
 import ArrowRightButton from "@/components/ArrowRightButton";
 import FadeInView from "@/components/FadeInView";
-import Text from "@/components/global/Text";
 import GroundYourselfSlideFrame from "@/components/tools/ground_yourself/GroundYourselfSlideFrame";
 import OneWordTextInput from "@/components/tools/ground_yourself/OneWordTextInput";
 import TypewriterText from "@/components/TypewriterText";
@@ -149,6 +148,7 @@ const Ground_Body_Page_3 = ({
           isActive={groundYourselfToolState.currentSlide === objKey}
         />
         <PagerView
+          scrollEnabled={false}
           className="h-full w-full"
           initialPage={0}
           ref={refPagerView}
