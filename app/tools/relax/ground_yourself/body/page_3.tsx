@@ -168,7 +168,7 @@ const Ground_Body_Page_3 = ({
               <Image
                 source={groundYourselfImages.feelyourbody}
                 style={{
-                  marginTop: SCREEN_HEIGHT * 0.1,
+                  marginTop: SCREEN_HEIGHT * 0.2,
                   marginBottom: SCREEN_HEIGHT * 0.1,
                   height: SCREEN_HEIGHT * 0.2,
                   width: SCREEN_HEIGHT * 0.25,
@@ -190,7 +190,7 @@ const Ground_Body_Page_3 = ({
             >
               <View className="w-full">
                 <TypewriterText
-                  text="First, wiggle your toes"
+                  text="First, wiggle your feet"
                   textColor={Colors.darkGray}
                   size={20}
                   cursorColor={Colors.mainGray}
@@ -213,36 +213,28 @@ const Ground_Body_Page_3 = ({
               <View className="w-full">
                 <TypewriterText
                   className="mt-8"
-                  text="Now, stretch your legs and feet"
+                  text="Now, stretch your legs and toes"
                   textColor={Colors.darkGray}
                   size={20}
                   cursorColor={Colors.mainGray}
                   speed="fast"
                   delaySeconds={2}
                   isActive={currentInstruction === "toes_2"}
-                  showOverflow={true}
-                />
-                <TypewriterText
-                  className="mt-4"
-                  text="notice the feeling, take your time"
-                  textColor={Colors.darkGray}
-                  size={14}
-                  speed="fast"
-                  delaySeconds={3}
-                  isActive={currentInstruction === "toes_2"}
-                  showOverflow={true}
-                />
-                <TypewriterText
-                  className="mt-2"
-                  text="(when you're ready, tap the button below)"
-                  textColor={Colors.mainGray}
-                  size={13}
-                  speed="very_fast"
-                  delaySeconds={6}
-                  isActive={currentInstruction === "toes_2"}
                   onFinish={() => setCurrentInstruction("toes_3")}
                   showOverflow={true}
                 />
+                <FadeInView isActive={currentInstruction === "toes_3"}>
+                  <TypewriterText
+                    className="mt-4"
+                    text="(meditate on this feeling - when you're ready, tap the button below)"
+                    textColor={Colors.mainGray}
+                    size={13}
+                    speed="very_fast"
+                    delaySeconds={3}
+                    isActive={currentInstruction === "toes_3"}
+                    showOverflow={true}
+                  />
+                </FadeInView>
               </View>
             </FadeInView>
             <Animated.View

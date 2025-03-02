@@ -70,7 +70,6 @@ const Ground_Touch_Page_1 = ({
         >
           Touch
         </Text>
-        {/* Hand animation */}
         <FadeInView
           className="flex-row justify-center"
           style={{
