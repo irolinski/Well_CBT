@@ -7,17 +7,19 @@ import { setShowNotificationModal } from "@/state/features/menus/notificationMod
 import { AppDispatch, RootState } from "@/state/store";
 import {
   cancelDailyNotification,
-  getDailyNotificationTime,
+  getDailyNotificationTime_12h,
+  getDailyNotificationTime_24h,
   requestNotificationPermissions,
   scheduleDailyNotification,
 } from "@/utils/notifications";
 import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 import ModalButton from "../NavigationModalButton";
-import { TimePicker_12hReturnObj } from "./TimePicker_12h";
+import TimePicker_12h, { TimePicker_12hReturnObj } from "./TimePicker_12h";
 import TimePicker_24h, { TimePicker_24hReturnObj } from "./TimePicker_24h";
 
 const NotificationsModal = () => {
-  const { t } = useTranslation(["home", "common"]);
+  const { t, i18n } = useTranslation(["home", "common"]);
+  const currentLanguage = i18n.language;
 
   const notificationModalState = useSelector(
     (state: RootState) => state.notificationModal,
@@ -26,31 +28,71 @@ const NotificationsModal = () => {
   const [enableNotifications, setEnableNotifications] = useState(false);
   const [selectedTime, setSelectedTime] = useState<
     TimePicker_12hReturnObj | TimePicker_24hReturnObj
-  >({
-    hour: "",
-    minute: "",
-    meridiem: "PM",
-  });
+  >();
   const [hasPermission, setHasPermission] = useState<boolean>(true);
 
-  const handleSavePreferences = async () => {
-    if (enableNotifications) {
-      if ("meridiem" in selectedTime) {
-        await scheduleDailyNotification(
-          Number(selectedTime.hour),
-          Number(selectedTime.minute),
-          selectedTime.meridiem,
+  // set default selectedTime state to the time that is currently saved if there is one
+  const fetchNotificationTime = async () => {
+    let currentNotificationTime;
+
+    // if lang is en => 12h system
+    if (currentLanguage === "en") {
+      currentNotificationTime = await getDailyNotificationTime_12h();
+      if (
+        currentNotificationTime?.hour &&
+        currentNotificationTime?.minute &&
+        currentNotificationTime?.meridiem
+      ) {
+        setEnableNotifications(true);
+        setSelectedTime(currentNotificationTime);
+        console.log(
+          "12h " +
+            currentNotificationTime.hour +
+            " " +
+            currentNotificationTime.minute,
         );
       } else {
-        await scheduleDailyNotification(
-          Number(selectedTime.hour),
-          Number(selectedTime.minute),
-        );
+        setEnableNotifications(false);
       }
+
+      // if lang isn't en => 24h system
     } else {
-      cancelDailyNotification();
+      currentNotificationTime = await getDailyNotificationTime_24h();
+      if (currentNotificationTime?.hour && currentNotificationTime?.minute) {
+        setEnableNotifications(true);
+        setSelectedTime(currentNotificationTime);
+        console.log(
+          "24h " +
+            currentNotificationTime.hour +
+            " " +
+            currentNotificationTime.minute,
+        );
+      } else {
+        setEnableNotifications(false);
+      }
     }
-    dispatch(setShowNotificationModal(false));
+  };
+
+  const handleSavePreferences = async () => {
+    if (selectedTime) {
+      if (enableNotifications) {
+        if ("meridiem" in selectedTime && currentLanguage === "en") {
+          await scheduleDailyNotification(
+            Number(selectedTime.hour),
+            Number(selectedTime.minute),
+            selectedTime.meridiem,
+          );
+        } else {
+          await scheduleDailyNotification(
+            Number(selectedTime.hour),
+            Number(selectedTime.minute),
+          );
+        }
+      } else {
+        cancelDailyNotification();
+      }
+      dispatch(setShowNotificationModal(false));
+    }
   };
 
   useEffect(() => {
@@ -63,25 +105,6 @@ const NotificationsModal = () => {
   }, []);
 
   useEffect(() => {
-    // set default selectedTime state to the time that is currently saved if there is one
-    const fetchNotificationTime = async () => {
-      const currentNotificationTime = await getDailyNotificationTime();
-      if (
-        currentNotificationTime?.hour &&
-        currentNotificationTime?.minute &&
-        currentNotificationTime?.meridiem
-      ) {
-        setEnableNotifications(true);
-        setSelectedTime({
-          hour: currentNotificationTime.hour,
-          minute: currentNotificationTime.minute,
-          meridiem: currentNotificationTime.meridiem,
-        });
-        // console.log(currentNotificationTime);
-      } else {
-        setEnableNotifications(false);
-      }
-    };
     fetchNotificationTime();
   }, []);
 
@@ -158,11 +181,24 @@ const NotificationsModal = () => {
                 />
               </View>
               {/* TimePicker */}
-              <TimePicker_24h
-                initialTime={selectedTime && selectedTime}
-                disabled={!enableNotifications}
-                onChange={(time) => setSelectedTime(time)}
-              />
+              {currentLanguage === "en" ? (
+                <TimePicker_12h
+                  initialTime={
+                    selectedTime && "meridiem" in selectedTime
+                      ? selectedTime
+                      : { hour: "", minute: "", meridiem: "PM" }
+                  }
+                  disabled={!enableNotifications}
+                  onChange={(time) => setSelectedTime(time)}
+                />
+              ) : (
+                <TimePicker_24h
+                  initialTime={selectedTime && selectedTime}
+                  disabled={!enableNotifications}
+                  onChange={(time) => setSelectedTime(time)}
+                />
+              )}
+
               <View
                 className="absolute bottom-8 flex-row items-center justify-center"
                 style={{ width: 320 }}
@@ -171,6 +207,7 @@ const NotificationsModal = () => {
                   title={t("buttons.save_preferences", { ns: "common" })}
                   icon={<Feather name="save" size={24} color={Colors.white} />}
                   disabled={
+                    !selectedTime ||
                     selectedTime.minute.length !== 2 ||
                     selectedTime.hour.length !== 2
                   }

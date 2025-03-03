@@ -111,7 +111,34 @@ export const cancelDailyNotification = async () => {
   }
 };
 
-export const getDailyNotificationTime = async () => {
+export const getDailyNotificationTime_24h = async (): Promise<
+  TimePicker_24hReturnObj | undefined
+> => {
+  try {
+    const scheduledNotifications =
+      (await Notifications.getAllScheduledNotificationsAsync()) as any; // asserting any to prevent compiler err - bugs in trigger obj typing
+
+    if (scheduledNotifications[0]) {
+      const { hour, minute } =
+        scheduledNotifications[0].trigger?.dateComponents!;
+      // add zeroes to one-digit hours and turn
+      let displayedHour: string = numToString_addZero(hour);
+      let displayedMinute: string = numToString_addZero(minute);
+
+      const dailyNotificationTime: TimePicker_24hReturnObj = {
+        hour: displayedHour,
+        minute: displayedMinute,
+      };
+      return dailyNotificationTime;
+    }
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const getDailyNotificationTime_12h = async (): Promise<
+  TimePicker_12hReturnObj | undefined
+> => {
   try {
     const scheduledNotifications =
       (await Notifications.getAllScheduledNotificationsAsync()) as any; // asserting any to prevent compiler err - bugs in trigger obj typing
@@ -126,9 +153,7 @@ export const getDailyNotificationTime = async () => {
       let displayedHour: string = numToString_addZero(convertedTime.hour);
       let displayedMinute: string = numToString_addZero(convertedTime.minute);
 
-      const dailyNotificationTime:
-        | TimePicker_12hReturnObj
-        | TimePicker_24hReturnObj = {
+      const dailyNotificationTime: TimePicker_12hReturnObj = {
         hour: displayedHour,
         minute: displayedMinute,
         meridiem: convertedTime.meridiem && convertedTime.meridiem,
