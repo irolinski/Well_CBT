@@ -21,7 +21,11 @@ const defaultInitialTime: TimePicker_12hReturnObj = {
   meridiem: "PM",
 };
 
-const TimePicker = ({ initialTime, onChange, disabled }: TimePickerTypes) => {
+const TimePicker_12h = ({
+  initialTime,
+  onChange,
+  disabled,
+}: TimePickerTypes) => {
   const [hourInput, setHourInput] = useState(
     initialTime?.hour ?? defaultInitialTime.hour,
   );
@@ -221,4 +225,4 @@ const TimePicker = ({ initialTime, onChange, disabled }: TimePickerTypes) => {
     </View>
   );
 };
-export default TimePicker;
+export default TimePicker_12h;
