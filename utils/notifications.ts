@@ -1,7 +1,8 @@
 import * as Notifications from "expo-notifications";
 import { Alert } from "react-native";
 import notificationContent from "@/assets/text/notifications_daily.json";
-import { TimePickerReturnObj } from "@/components/home/TimePicker";
+import { TimePicker_12hReturnObj } from "@/components/home/TimePicker_12h";
+import { TimePicker_24hReturnObj } from "@/components/home/TimePicker_24h";
 import { numToString_addZero } from "./dates";
 
 //To have different notification body text everyday,
@@ -89,10 +90,6 @@ export const scheduleDailyNotification = async (
       },
     });
 
-    // get date - if needed for debugging
-    // const scheduledNotifications = await Notifications.getAllScheduledNotificationsAsync();
-    // console.log(scheduledNotifications[0].trigger.dateComponents);
-
     // add zeroes to one-digit hours
     let displayedHour: string = numToString_addZero(hour);
     let displayedMinute: string = numToString_addZero(minute);
@@ -129,10 +126,12 @@ export const getDailyNotificationTime = async () => {
       let displayedHour: string = numToString_addZero(convertedTime.hour);
       let displayedMinute: string = numToString_addZero(convertedTime.minute);
 
-      const dailyNotificationTime: TimePickerReturnObj = {
+      const dailyNotificationTime:
+        | TimePicker_12hReturnObj
+        | TimePicker_24hReturnObj = {
         hour: displayedHour,
         minute: displayedMinute,
-        meridiem: convertedTime.meridiem,
+        meridiem: convertedTime.meridiem && convertedTime.meridiem,
       };
       return dailyNotificationTime;
     }

@@ -13,7 +13,8 @@ import {
 } from "@/utils/notifications";
 import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 import ModalButton from "../NavigationModalButton";
-import TimePicker, { TimePickerReturnObj } from "./TimePicker";
+import { TimePicker_12hReturnObj } from "./TimePicker_12h";
+import TimePicker_24h, { TimePicker_24hReturnObj } from "./TimePicker_24h";
 
 const NotificationsModal = () => {
   const { t } = useTranslation(["home", "common"]);
@@ -23,7 +24,9 @@ const NotificationsModal = () => {
   );
   const dispatch = useDispatch<AppDispatch>();
   const [enableNotifications, setEnableNotifications] = useState(false);
-  const [selectedTime, setSelectedTime] = useState<TimePickerReturnObj>({
+  const [selectedTime, setSelectedTime] = useState<
+    TimePicker_12hReturnObj | TimePicker_24hReturnObj
+  >({
     hour: "",
     minute: "",
     meridiem: "PM",
@@ -32,15 +35,21 @@ const NotificationsModal = () => {
 
   const handleSavePreferences = async () => {
     if (enableNotifications) {
-      await scheduleDailyNotification(
-        Number(selectedTime.hour),
-        Number(selectedTime.minute),
-        selectedTime.meridiem,
-      );
+      if ("meridiem" in selectedTime) {
+        await scheduleDailyNotification(
+          Number(selectedTime.hour),
+          Number(selectedTime.minute),
+          selectedTime.meridiem,
+        );
+      } else {
+        await scheduleDailyNotification(
+          Number(selectedTime.hour),
+          Number(selectedTime.minute),
+        );
+      }
     } else {
       cancelDailyNotification();
     }
-    // console.log(await getDailyNotificationTime());
     dispatch(setShowNotificationModal(false));
   };
 
@@ -149,7 +158,7 @@ const NotificationsModal = () => {
                 />
               </View>
               {/* TimePicker */}
-              <TimePicker
+              <TimePicker_24h
                 initialTime={selectedTime && selectedTime}
                 disabled={!enableNotifications}
                 onChange={(time) => setSelectedTime(time)}

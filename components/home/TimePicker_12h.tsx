@@ -3,19 +3,19 @@ import { Text, TextInput, TouchableOpacity, View } from "react-native";
 import { Colors } from "@/constants/styles/colorTheme";
 import DividerLine from "../DividerLine";
 
-export type TimePickerReturnObj = {
+export type TimePicker_12hReturnObj = {
   hour: string;
   minute: string;
   meridiem: "AM" | "PM";
 };
 
 type TimePickerTypes = {
-  initialTime?: TimePickerReturnObj;
-  onChange?: (time: TimePickerReturnObj) => void;
+  initialTime?: TimePicker_12hReturnObj;
+  onChange?: (time: TimePicker_12hReturnObj) => void;
   disabled?: boolean;
 };
 
-const defaultInitialTime: TimePickerReturnObj = {
+const defaultInitialTime: TimePicker_12hReturnObj = {
   hour: "07",
   minute: "30",
   meridiem: "PM",
