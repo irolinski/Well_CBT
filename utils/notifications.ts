@@ -89,12 +89,16 @@ export const scheduleDailyNotification = async (
       },
     });
 
+    // get date - if needed for debugging
+    // const scheduledNotifications = await Notifications.getAllScheduledNotificationsAsync();
+    // console.log(scheduledNotifications[0].trigger.dateComponents);
+
     // add zeroes to one-digit hours
     let displayedHour: string = numToString_addZero(hour);
     let displayedMinute: string = numToString_addZero(minute);
 
     Alert.alert(
-      `Daily notification scheduled for: \n \n ${displayedHour}:${displayedMinute} ${meridiem}`,
+      `Daily notification scheduled for: \n \n ${displayedHour}:${displayedMinute} ${meridiem ? meridiem : ""}`,
     );
   } catch (err) {
     console.error(err);
