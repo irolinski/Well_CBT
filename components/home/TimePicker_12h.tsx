@@ -9,7 +9,7 @@ export type TimePicker_12hReturnObj = {
   meridiem: "AM" | "PM";
 };
 
-type TimePickerTypes = {
+type TimePicker_12hTypes = {
   initialTime?: TimePicker_12hReturnObj;
   onChange?: (time: TimePicker_12hReturnObj) => void;
   disabled?: boolean;
@@ -25,7 +25,7 @@ const TimePicker_12h = ({
   initialTime,
   onChange,
   disabled,
-}: TimePickerTypes) => {
+}: TimePicker_12hTypes) => {
   const [hourInput, setHourInput] = useState(
     initialTime?.hour ?? defaultInitialTime.hour,
   );
