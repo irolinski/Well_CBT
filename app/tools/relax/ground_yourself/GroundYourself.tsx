@@ -1,6 +1,6 @@
 import { router } from 'expo-router';
 import React, { useCallback, useEffect, useRef } from 'react';
-import { Animated, Easing, NativeSyntheticEvent, View } from 'react-native';
+import { Animated, Easing, NativeSyntheticEvent } from 'react-native';
 import PagerView from 'react-native-pager-view';
 import { Double } from 'react-native/Libraries/Types/CodegenTypes';
 import { useDispatch, useSelector } from 'react-redux';
@@ -16,6 +16,7 @@ import Ground_Environment_Page_2 from './environment/page_2';
 import Ground_Environment_Page_3 from './environment/page_3';
 import Ground_Environment_Page_4 from './environment/page_4';
 import Ground_Finish_Page from './FinishPage';
+import Ground_Time_Date from './time/Date';
 import Ground_Time_Day from './time/Day';
 import Ground_Touch_Page_1 from './touch/page_1';
 import Ground_Touch_Page_2 from './touch/page_2';
@@ -23,7 +24,8 @@ import Ground_Touch_Page_3 from './touch/page_3';
 import Ground_Touch_Page_4 from './touch/page_4';
 
 const exercises = [
-  { name: "Present moment", pages: [Ground_Time_Day] },
+  { name: "Date", pages: [Ground_Time_Date] },
+  { name: "Day", pages: [Ground_Time_Day] },
   {
     name: "Environment",
     pages: [
