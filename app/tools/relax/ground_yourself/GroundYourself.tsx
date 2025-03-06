@@ -16,14 +16,14 @@ import Ground_Environment_Page_2 from './environment/page_2';
 import Ground_Environment_Page_3 from './environment/page_3';
 import Ground_Environment_Page_4 from './environment/page_4';
 import Ground_Finish_Page from './FinishPage';
-import Ground_Time_Page_1 from './time/page_1';
+import Ground_Time_Day from './time/Day';
 import Ground_Touch_Page_1 from './touch/page_1';
 import Ground_Touch_Page_2 from './touch/page_2';
 import Ground_Touch_Page_3 from './touch/page_3';
 import Ground_Touch_Page_4 from './touch/page_4';
 
 const exercises = [
-  { name: "Present moment", pages: [Ground_Time_Page_1] },
+  { name: "Present moment", pages: [Ground_Time_Day] },
   {
     name: "Environment",
     pages: [
