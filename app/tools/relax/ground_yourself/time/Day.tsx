@@ -200,11 +200,10 @@ const Ground_Time_Day = ({
                       <TypewriterText
                         isActive={currentSlide === 1}
                         delaySeconds={3}
-                        fontFamily="Kodchasan"
-                        className="ml-4 mt-8"
+                        className="mt-4"
                         size={26}
                         speed="very_fast"
-                        text={`Today it is... `}
+                        text={`Today it's... `}
                         cursorColor={Colors.mainGray}
                         onFinish={() => {
                           setCurrentInstruction("result");
@@ -262,7 +261,7 @@ const Ground_Time_Day = ({
                           {/* underline */}
                           <Animated.View
                             style={{
-                              height: 4,
+                              height: 3,
                               backgroundColor: Colors.mainGray,
                               marginTop: 10,
                               width: underlineWidthAnim,
@@ -280,9 +279,7 @@ const Ground_Time_Day = ({
                     >
                       <ArrowRightButton
                         style={{ marginTop: SCREEN_HEIGHT * 0.1 }}
-                        onPress={() => {
-                          console.log("");
-                        }}
+                        onPress={() => onButtonPress()}
                       />
                     </FadeInView>
                   </View>
