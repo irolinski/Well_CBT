@@ -1,18 +1,18 @@
-import React, { useRef, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { Animated, Easing, NativeSyntheticEvent, View } from 'react-native';
-import PagerView from 'react-native-pager-view';
-import { Double } from 'react-native/Libraries/Types/CodegenTypes';
-import ArrowRightButton from '@/components/ArrowRightButton';
-import DatePicker from '@/components/DatePicker';
-import FadeInView from '@/components/FadeInView';
-import Text from '@/components/global/Text';
-import GroundYourselfSlideFrame from '@/components/tools/ground_yourself/GroundYourselfSlideFrame';
-import TypewriterText from '@/components/TypewriterText';
-import { GroundYourselfSlideProps } from '@/constants/models/tools/ground_yourself';
-import { Colors } from '@/constants/styles/colorTheme';
-import { SCREEN_HEIGHT } from '@/constants/styles/values';
-import { numToString_addZero } from '@/utils/dates';
+import React, { useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { Animated, Easing, NativeSyntheticEvent, View } from "react-native";
+import PagerView from "react-native-pager-view";
+import { Double } from "react-native/Libraries/Types/CodegenTypes";
+import ArrowRightButton from "@/components/ArrowRightButton";
+import DatePicker from "@/components/DatePicker";
+import FadeInView from "@/components/FadeInView";
+import Text from "@/components/global/Text";
+import GroundYourselfSlideFrame from "@/components/tools/ground_yourself/GroundYourselfSlideFrame";
+import TypewriterText from "@/components/TypewriterText";
+import { GroundYourselfSlideProps } from "@/constants/models/tools/ground_yourself";
+import { Colors } from "@/constants/styles/colorTheme";
+import { SCREEN_HEIGHT } from "@/constants/styles/values";
+import { numToString_addZero } from "@/utils/dates";
 
 const getCurrentDateObj = () => {
   const currentDate = new Date();
@@ -29,7 +29,8 @@ const Ground_Time_Day = ({
   objKey,
   onButtonPress,
 }: GroundYourselfSlideProps) => {
-  const { t } = useTranslation("common");
+  const { t, i18n } = useTranslation("common");
+  const currentLanguage = i18n.language;
 
   const [currentInstruction, setCurrentInstruction] = useState<
     "instruction_1" | "instruction_2" | "date_input" | "result" | "finish"
@@ -96,6 +97,17 @@ const Ground_Time_Day = ({
     console.log(selectedDateNumObj);
     console.log(currentDate);
     nextSlide();
+  };
+
+  const DisplayedDate = ({ dateFormat }: { dateFormat: "YMD" | "DMY" }) => {
+    return (
+      <Text className="text-2xl" style={{ color: Colors.white }}>
+        {dateFormat === "DMY" &&
+          `${numToString_addZero(currentDate.day)} - ${numToString_addZero(currentDate.month)} - ${currentDate.year}`}
+        {dateFormat === "YMD" &&
+          `${numToString_addZero(currentDate.year)} - ${numToString_addZero(currentDate.month)} - ${numToString_addZero(currentDate.day)}`}
+      </Text>
+    );
   };
 
   return (
@@ -171,7 +183,10 @@ const Ground_Time_Day = ({
                 >
                   <View key="1" className="h-full">
                     <Text className="text-xl">Today's date is:</Text>
-                    <DatePicker onChange={(date) => setSelectedDate(date)} />
+                    <DatePicker
+                      onChange={(date) => setSelectedDate(date)}
+                      dateFormat={currentLanguage === "en" ? "YMD" : "DMY"}
+                    />
                     <FadeInView
                       inputVal={0}
                       outputVal={1}
@@ -250,16 +265,11 @@ const Ground_Time_Day = ({
                             }}
                           >
                             {/* current date here */}
-                            {
-                              <Text
-                                className="text-2xl"
-                                style={{ color: Colors.white }}
-                              >
-                                {numToString_addZero(currentDate.day)} -{" "}
-                                {numToString_addZero(currentDate.month)} -{" "}
-                                {currentDate.year}
-                              </Text>
-                            }
+                            <DisplayedDate
+                              dateFormat={
+                                currentLanguage === "en" ? "YMD" : "DMY"
+                              }
+                            />
                           </Animated.Text>
                           {/* underline */}
                           <Animated.View

@@ -1,6 +1,6 @@
-import { useTranslation } from "react-i18next";
-import { monthNamesShort } from "@/constants/models/dates";
-import { uncapitalizeString } from "./algorithms";
+import { useTranslation } from 'react-i18next';
+import { monthNamesShort } from '@/constants/models/dates';
+import { uncapitalizeString } from './algorithms';
 
 export const getOrdinalSuffix = (number: number) => {
   const lastDigit = Number(number.toString().slice(-1));
@@ -118,7 +118,7 @@ export const convertIsoToEuropeanDate = (dateStr: string): string => {
   const datePattern = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/;
 
   if (!datePattern.test(dateStr)) {
-    console.log(
+    console.error(
       "Invalid date format. Expected YYYY-MM-DD (ISO 8601). Returning date string unchanged in ISO format.",
     );
     return dateStr;

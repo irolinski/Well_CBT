@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
-import { Text, TextInput, View } from 'react-native';
-import { Colors } from '@/constants/styles/colorTheme';
+import React, { useEffect, useState } from "react";
+import { Text, TextInput, View } from "react-native";
+import { Colors } from "@/constants/styles/colorTheme";
 
 export type DatePickerReturnObj = {
   day: string;
@@ -12,6 +12,7 @@ type DatePickerPropTypes = {
   initialTime?: DatePickerReturnObj;
   onChange?: (time: DatePickerReturnObj) => void;
   showInputTitles?: boolean;
+  dateFormat?: "YMD" | "DMY";
   disabled?: boolean;
 };
 
@@ -21,10 +22,140 @@ const defaultInitialDate: DatePickerReturnObj = {
   year: "",
 };
 
+type DatePickerInputPropTypes = {
+  value: string;
+  onChangeText: (value: string) => void;
+  onEndEditing?: () => void;
+  onBlur?: () => void;
+  disabled?: boolean;
+  showInputTitle?: boolean;
+};
+
+const DayTextInput = ({
+  value,
+  onChangeText,
+  onEndEditing,
+  onBlur,
+  disabled = false,
+  showInputTitle = true,
+}: DatePickerInputPropTypes) => {
+  return (
+    <View className="items-center">
+      <TextInput
+        className="my-2 rounded-md border text-center text-2xl"
+        style={{
+          height: 56,
+          width: 68,
+          color: disabled ? Colors.mainGray : "",
+          borderColor: Colors.lightGray,
+          backgroundColor: Colors.offWhite,
+          textAlignVertical: "top",
+        }}
+        value={value}
+        onChangeText={(val) => {
+          onChangeText && onChangeText(val);
+        }}
+        onEndEditing={() => {
+          onEndEditing && onEndEditing();
+        }}
+        onBlur={() => {
+          onBlur && onBlur();
+        }}
+        placeholder="DD"
+        editable={!disabled}
+        keyboardType="numeric"
+        numberOfLines={1}
+        maxLength={2}
+        returnKeyType="done"
+      />
+      <View className="h-4">{showInputTitle ? <Text>Day</Text> : null}</View>
+    </View>
+  );
+};
+
+const MonthTextInput = ({
+  value,
+  onChangeText,
+  onEndEditing,
+  onBlur,
+  disabled = false,
+  showInputTitle = true,
+}: DatePickerInputPropTypes) => {
+  return (
+    <View className="items-center">
+      <TextInput
+        className="my-2 rounded-md border text-center text-2xl"
+        style={{
+          height: 56,
+          width: 68,
+          color: disabled ? Colors.mainGray : "",
+          borderColor: Colors.lightGray,
+          backgroundColor: Colors.offWhite,
+          textAlignVertical: "top",
+        }}
+        value={value}
+        onChangeText={(val) => {
+          onChangeText(val);
+        }}
+        onEndEditing={() => {
+          onEndEditing && onEndEditing();
+        }}
+        onBlur={() => {
+          onBlur && onBlur();
+        }}
+        placeholder="MM"
+        editable={!disabled}
+        keyboardType="numeric"
+        numberOfLines={1}
+        maxLength={2}
+        returnKeyType="done"
+      />
+      <View className="h-4">{showInputTitle ? <Text>Month</Text> : null}</View>
+    </View>
+  );
+};
+
+const YearTextInput = ({
+  value,
+  onChangeText,
+  onEndEditing,
+  onBlur,
+  disabled = false,
+  showInputTitle = true,
+}: DatePickerInputPropTypes) => {
+  return (
+    <View className="items-center">
+      <TextInput
+        className="my-2 rounded-md border text-center text-2xl"
+        style={{
+          height: 56,
+          width: 100,
+          color: disabled ? Colors.mainGray : "",
+          borderColor: Colors.lightGray,
+          backgroundColor: Colors.offWhite,
+          textAlignVertical: "top",
+        }}
+        value={value}
+        onChangeText={(val) => {
+          onChangeText && onChangeText(val);
+        }}
+        placeholder="YYYY"
+        editable={!disabled}
+        keyboardType="numeric"
+        numberOfLines={1}
+        maxLength={4}
+        returnKeyType="done"
+      />
+      <View className="h-4">{showInputTitle ? <Text>Year</Text> : null}</View>
+    </View>
+  );
+};
+
 const DatePicker = ({
   initialTime,
   onChange,
   showInputTitles = true,
+  dateFormat = "DMY",
   disabled,
 }: DatePickerPropTypes) => {
   const [dayInput, setDayInput] = useState(
@@ -108,111 +239,102 @@ const DatePicker = ({
         year: yearInput,
       });
     }
-  }, [dayInput, monthInput]);
+  }, [dayInput, monthInput, yearInput]);
 
   return (
     <View className="my-2 flex-row items-center justify-center py-4">
       <View className="mt-2 flex-row items-center">
-        <View className="items-center">
-          <TextInput
-            className="my-2 rounded-md border text-center text-2xl"
-            style={{
-              height: 56,
-              width: 68,
-              color: disabled ? Colors.mainGray : "",
-              borderColor: Colors.lightGray,
-              backgroundColor: Colors.offWhite,
-              textAlignVertical: "top",
-            }}
-            value={dayInput}
-            onChangeText={(val) => {
-              handleDayInputTextChange(val);
-            }}
-            onEndEditing={() => handleDayInputEndEditing()}
-            onBlur={() => {
-              handleDayInputEndEditing();
-            }}
-            placeholder="DD"
-            editable={!disabled}
-            keyboardType="numeric"
-            numberOfLines={1}
-            maxLength={2}
-            returnKeyType="done"
-          />
-          <View className="h-4">
-            {showInputTitles ? <Text>Day</Text> : null}
-          </View>
-        </View>
-        <Text
-          className="mx-2 mb-4 text-2xl"
-          style={{ color: disabled ? Colors.mainGray : "" }}
-        >
-          -
-        </Text>
-        <View className="items-center">
-          <TextInput
-            className="my-2 rounded-md border text-center text-2xl"
-            style={{
-              height: 56,
-              width: 68,
-              color: disabled ? Colors.mainGray : "",
-              borderColor: Colors.lightGray,
-              backgroundColor: Colors.offWhite,
-              textAlignVertical: "top",
-            }}
-            value={monthInput}
-            onChangeText={(val) => {
-              handleMonthInputTextChange(val);
-            }}
-            onEndEditing={(val) => {
-              handleMonthInputEndEditing();
-            }}
-            onBlur={() => {
-              handleMonthInputEndEditing();
-            }}
-            placeholder="MM"
-            editable={!disabled}
-            keyboardType="numeric"
-            numberOfLines={1}
-            maxLength={2}
-            returnKeyType="done"
-          />
-          <View className="h-4">
-            {showInputTitles ? <Text>Month</Text> : null}
-          </View>
-        </View>
-        <Text
-          className="mx-2 mb-4 text-2xl"
-          style={{ color: disabled ? Colors.mainGray : "" }}
-        >
-          -
-        </Text>
-        <View className="items-center">
-          <TextInput
-            className="my-2 rounded-md border text-center text-2xl"
-            style={{
-              height: 56,
-              width: 100,
-              color: disabled ? Colors.mainGray : "",
-              borderColor: Colors.lightGray,
-              backgroundColor: Colors.offWhite,
-              textAlignVertical: "top",
-            }}
-            value={yearInput}
-            onChangeText={(val) => {
-              handleYearInputTextChange(val);
-            }}
-            placeholder="YYYY"
-            editable={!disabled}
-            keyboardType="numeric"
-            numberOfLines={1}
-            maxLength={4}
-            returnKeyType="done"
-          />
-          <View className="h-4">
-            {showInputTitles ? <Text>Year</Text> : null}
-          </View>
-        </View>
+        {dateFormat === "DMY" ? (
+          <React.Fragment>
+            <DayTextInput
+              value={dayInput}
+              onChangeText={(val) => {
+                handleDayInputTextChange(val);
+              }}
+              onEndEditing={() => handleDayInputEndEditing()}
+              onBlur={() => {
+                handleDayInputEndEditing();
+              }}
+            />
+            <Text
+              className="mx-2 mb-4 text-2xl"
+              style={{ color: disabled ? Colors.mainGray : "" }}
+            >
+              -
+            </Text>
+            <MonthTextInput
+              value={monthInput}
+              onChangeText={(val) => {
+                handleMonthInputTextChange(val);
+              }}
+              onEndEditing={() => {
+                handleMonthInputEndEditing();
+              }}
+              onBlur={() => {
+                handleMonthInputEndEditing();
+              }}
+              showInputTitle={true}
+              disabled={disabled ? disabled : false}
+            />
+            <Text
+              className="mx-2 mb-4 text-2xl"
+              style={{ color: disabled ? Colors.mainGray : "" }}
+            >
+              -
+            </Text>
+            <YearTextInput
+              value={yearInput}
+              onChangeText={(val) => {
+                handleYearInputTextChange(val);
+              }}
+            />
+          </React.Fragment>
+        ) : (
+          <React.Fragment>
+            <YearTextInput
+              value={yearInput}
+              onChangeText={(val) => {
+                handleYearInputTextChange(val);
+              }}
+            />
+            <Text
+              className="mx-2 mb-4 text-2xl"
+              style={{ color: disabled ? Colors.mainGray : "" }}
+            >
+              -
+            </Text>
+            <MonthTextInput
+              value={monthInput}
+              onChangeText={(val) => {
+                handleMonthInputTextChange(val);
+              }}
+              onEndEditing={() => {
+                handleMonthInputEndEditing();
+              }}
+              onBlur={() => {
+                handleMonthInputEndEditing();
+              }}
+              showInputTitle={true}
+              disabled={disabled ? disabled : false}
+            />
+            <Text
+              className="mx-2 mb-4 text-2xl"
+              style={{ color: disabled ? Colors.mainGray : "" }}
+            >
+              -
+            </Text>
+            <DayTextInput
+              value={dayInput}
+              onChangeText={(val) => {
+                handleDayInputTextChange(val);
+              }}
+              onEndEditing={() => handleDayInputEndEditing()}
+              onBlur={() => {
+                handleDayInputEndEditing();
+              }}
+            />
+          </React.Fragment>
+        )}
       </View>
     </View>
   );
