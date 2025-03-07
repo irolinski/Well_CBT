@@ -1,40 +1,39 @@
-import { router } from 'expo-router';
-import React, { useCallback, useEffect, useRef } from 'react';
-import { Animated, Easing, NativeSyntheticEvent } from 'react-native';
-import PagerView from 'react-native-pager-view';
-import { Double } from 'react-native/Libraries/Types/CodegenTypes';
-import { useDispatch, useSelector } from 'react-redux';
-import { GroundYourselfSlidePageComponent } from '@/constants/models/tools/ground_yourself';
-import { setCurrentSlide } from '@/state/features/tools/groundYourselfSlice';
-import { AppDispatch, RootState } from '@/state/store';
-import Ground_Body_Page_1 from './body/page_1';
-import Ground_Body_Page_2 from './body/page_2';
-import Ground_Body_Page_3 from './body/page_3';
-import Ground_Body_Page_4 from './body/page_4';
-import Ground_Environment_Page_1 from './environment/page_1';
-import Ground_Environment_Page_2 from './environment/page_2';
-import Ground_Environment_Page_3 from './environment/page_3';
-import Ground_Environment_Page_4 from './environment/page_4';
-import Ground_Finish_Page from './FinishPage';
-import Ground_Time_Date from './time/Date';
-import Ground_Time_Day from './time/Day';
-import Ground_Touch_Page_1 from './touch/page_1';
-import Ground_Touch_Page_2 from './touch/page_2';
-import Ground_Touch_Page_3 from './touch/page_3';
-import Ground_Touch_Page_4 from './touch/page_4';
+import { router } from "expo-router";
+import React, { useCallback, useEffect, useRef } from "react";
+import { Animated, Easing, NativeSyntheticEvent } from "react-native";
+import PagerView from "react-native-pager-view";
+import { Double } from "react-native/Libraries/Types/CodegenTypes";
+import { useDispatch, useSelector } from "react-redux";
+import { GroundYourselfSlidePageComponent } from "@/constants/models/tools/ground_yourself";
+import { setCurrentSlide } from "@/state/features/tools/groundYourselfSlice";
+import { AppDispatch, RootState } from "@/state/store";
+import Ground_Body_Page_1 from "./body/page_1";
+import Ground_Body_Page_2 from "./body/page_2";
+import Ground_Body_Page_3 from "./body/page_3";
+import Ground_Body_Page_4 from "./body/page_4";
+import Ground_Environment_Page_1 from "./environment/page_1";
+import Ground_Environment_Page_2 from "./environment/page_2";
+import Ground_Environment_Page_3 from "./environment/page_3";
+import Ground_Environment_Page_4 from "./environment/page_4";
+import Ground_Finish_Page from "./FinishPage";
+import Ground_Time_Date from "./time/Date";
+import Ground_Time_Day from "./time/Day";
+import Ground_Touch_Page_1 from "./touch/page_1";
+import Ground_Touch_Page_2 from "./touch/page_2";
+import Ground_Touch_Page_3 from "./touch/page_3";
+import Ground_Touch_Page_4 from "./touch/page_4";
 
 const exercises = [
-  { name: "Date", pages: [Ground_Time_Date] },
-  { name: "Day", pages: [Ground_Time_Day] },
   {
     name: "Environment",
     pages: [
       Ground_Environment_Page_1,
-      Ground_Environment_Page_2,
+      // Ground_Environment_Page_2,
       Ground_Environment_Page_3,
       Ground_Environment_Page_4,
     ],
   },
+  { name: "Date", pages: [Ground_Time_Date] },
   {
     name: "Body",
     pages: [
@@ -44,6 +43,7 @@ const exercises = [
       Ground_Body_Page_4,
     ],
   },
+  { name: "Day", pages: [Ground_Time_Day] },
   {
     name: "Touch",
     pages: [

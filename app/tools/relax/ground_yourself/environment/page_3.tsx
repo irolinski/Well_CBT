@@ -1,6 +1,6 @@
 import { Image } from "expo-image";
 import React, { useEffect, useRef, useState } from "react";
-import { Animated, Easing, NativeSyntheticEvent, View } from "react-native";
+import { Animated, ColorValue, NativeSyntheticEvent, View } from "react-native";
 import PagerView from "react-native-pager-view";
 import { Double } from "react-native/Libraries/Types/CodegenTypes";
 import { useSelector } from "react-redux";
@@ -8,16 +8,36 @@ import { groundYourselfImages } from "@/assets/images/tools/ground_yourself/grou
 import ArrowRightButton from "@/components/ArrowRightButton";
 import FadeInView from "@/components/FadeInView";
 import Text from "@/components/global/Text";
+import EnvironmentItemsListElement from "@/components/tools/ground_yourself/EnvironmentItemsListElement";
 import GroundYourselfSlideFrame from "@/components/tools/ground_yourself/GroundYourselfSlideFrame";
-import OneWordTextInput from "@/components/tools/ground_yourself/OneWordTextInput";
 import TypewriterText from "@/components/TypewriterText";
 import { GroundYourselfSlideProps } from "@/constants/models/tools/ground_yourself";
 import { Colors } from "@/constants/styles/colorTheme";
 import { SCREEN_HEIGHT } from "@/constants/styles/values";
 import { RootState } from "@/state/store";
-import { isValidName } from "@/utils/inputValidations";
 
 const FIRST_SLIDE_TIME_MS = 2500;
+const MAX_NUM_OF_ITEMS = 4;
+
+export type GroundEnvironmentItemAdjectiveType = {
+  name: string;
+  color: ColorValue;
+};
+
+type EnvironmentItem = {
+  itemName: string;
+  itemAdjectives?: GroundEnvironmentItemAdjectiveType[];
+};
+
+export type EnvironmentItemsListElementProps = EnvironmentItem & {
+  isAvailable: boolean;
+  isCurrentlyEdited: boolean;
+  onChangeText: (value: string) => void;
+  onPressAdd: () => void;
+  onConfirm: () => void;
+};
+
+const blankEnvironmentItem = { itemName: "", itemAdjectives: [] };
 
 const Ground_Environment_Page_3 = ({
   exerciseName,
@@ -31,8 +51,13 @@ const Ground_Environment_Page_3 = ({
     "instruction_1" | null
   >(null);
   const [currentSlide, setCurrentSlide] = useState(0);
-  const refPagerView = useRef<PagerView>(null);
+  const [itemsAroundMeArr, setItemsAroundMeArr] = useState<EnvironmentItem[]>([
+    blankEnvironmentItem,
+  ]);
+  const [textInputIsActive, setElementIsActive] = useState(false);
+  const [currentElementIndex, setCurrentElementIndex] = useState(0);
 
+  const refPagerView = useRef<PagerView>(null);
   const nextSlide = () => {
     refPagerView.current!.setPage(currentSlide + 1);
   };
@@ -80,261 +105,104 @@ const Ground_Environment_Page_3 = ({
           {/* blank slide */}
           <View className="h-full w-full items-center justify-start" key="1">
             <View
-              className="flex-row justify-between"
+              className="flex-row items-center justify-center"
               style={{
                 marginTop: SCREEN_HEIGHT * 0.1,
                 marginBottom: SCREEN_HEIGHT * 0.1,
               }}
             >
               <Image
-                contentFit="scale-down"
-                source={groundYourselfImages.chair}
+                contentFit="contain"
+                source={groundYourselfImages.lamp}
                 style={{
-                  height: SCREEN_HEIGHT * 0.15,
-                  width: SCREEN_HEIGHT * 0.15,
+                  height: SCREEN_HEIGHT * 0.12,
+                  width: SCREEN_HEIGHT * 0.13,
                 }}
               />
               <Image
-                contentFit="scale-down"
-                source={groundYourselfImages.streetlamp}
+                contentFit="contain"
+                source={groundYourselfImages.chair}
                 style={{
-                  height: SCREEN_HEIGHT * 0.15,
-                  width: SCREEN_HEIGHT * 0.15,
+                  height: SCREEN_HEIGHT * 0.13,
+                  width: SCREEN_HEIGHT * 0.13,
+                }}
+              />
+              <Image
+                contentFit="contain"
+                source={groundYourselfImages.glass}
+                style={{
+                  height: SCREEN_HEIGHT * 0.1,
+                  width: SCREEN_HEIGHT * 0.13,
                 }}
               />
             </View>
           </View>
-          {/* toes slide */}
+          {/* second slide */}
           <View
-            style={{ marginTop: SCREEN_HEIGHT * 0.075 }}
+            style={{ marginTop: SCREEN_HEIGHT * 0.025 }}
             className="items-center"
             key="2"
           >
-            {/* <FadeInView
-              className="w-full"
-              isActive={currentInstruction === "toes_2"}
-              inputVal={1}
-              outputVal={0}
-            >
-              <View className="w-full">
-                <TypewriterText
-                  text="First, wiggle your toes"
-                  textColor={Colors.darkGray}
-                  size={20}
-                  cursorColor={Colors.mainGray}
-                  speed="fast"
-                  delaySeconds={1}
-                  isActive={currentInstruction === "toes_1"}
-                  showOverflow={true}
-                  onFinish={() => setCurrentInstruction("toes_2")}
-                />
-              </View>
-            </FadeInView>
-
-            <FadeInView
-              className="w-full"
-              inputVal={0}
-              outputVal={1}
-              isActive={currentInstruction === "toes_2"}
-              style={{ transform: [{ translateY: lift_toes_2 }] }}
-            >
-              <View className="w-full">
-                <TypewriterText
-                  className="mt-8"
-                  text="Now, stretch your legs and feet"
-                  textColor={Colors.darkGray}
-                  size={20}
-                  cursorColor={Colors.mainGray}
-                  speed="fast"
-                  delaySeconds={2}
-                  isActive={currentInstruction === "toes_2"}
-                  showOverflow={true}
-                />
-                <TypewriterText
-                  className="mt-4"
-                  text="notice the feeling, take your time"
-                  textColor={Colors.darkGray}
-                  size={14}
-                  speed="fast"
-                  delaySeconds={3}
-                  isActive={currentInstruction === "toes_2"}
-                  showOverflow={true}
-                />
-                <TypewriterText
-                  className="mt-2"
-                  text="(when you're ready, tap the button below)"
-                  textColor={Colors.mainGray}
-                  size={13}
-                  speed="very_fast"
-                  delaySeconds={6}
-                  isActive={currentInstruction === "toes_2"}
-                  onFinish={() => setCurrentInstruction("toes_3")}
-                  showOverflow={true}
-                />
-              </View>
-            </FadeInView> */}
-            <Animated.View>
-              <Image
-                contentFit="fill"
-                style={{
-                  marginTop: SCREEN_HEIGHT * 0.06,
-                  marginBottom: SCREEN_HEIGHT * 0.1,
-                  height: SCREEN_HEIGHT * 0.1,
-                  width: SCREEN_HEIGHT * 0.1 * 1.3,
-                }}
-                source={groundYourselfImages.foot}
+            <View>
+              <TypewriterText
+                text="From the things around you, choose 4 (or less). Then, add them to the list below."
+                size={18}
+                cursorColor={Colors.mainGray}
+                speed="fast"
+                isActive={groundYourselfToolState.currentSlide === objKey}
               />
-            </Animated.View>
-            <FadeInView
-              inputVal={0}
-              outputVal={1}
-              className="flex-row items-center justify-center"
-            >
-              <ArrowRightButton
-                onPress={() => {
-                  nextSlide();
-                }}
-              />
-            </FadeInView>
-          </View>
-          {/* fingers slide */}
-          <View
-            style={{ marginTop: SCREEN_HEIGHT * 0.075 }}
-            className="items-center"
-            key="3"
-          >
-            <TypewriterText
-              text="Now, stretch your fingers"
-              textColor={Colors.darkGray}
-              cursorColor={Colors.mainGray}
-              size={20}
-              speed="fast"
-              showOverflow={true}
-            />
-            <TypewriterText
-              className="mb-6 mt-2"
-              text="(hands can follow their lead if they wish)"
-              textColor={Colors.mainGray}
-              size={14}
-              speed="fast"
-              showOverflow={true}
-            />
-            <Image
-              contentFit="fill"
-              style={{
-                marginTop: SCREEN_HEIGHT * 0.05,
-                marginBottom: SCREEN_HEIGHT * 0.125,
 
-                height: SCREEN_HEIGHT * 0.2,
-                width: SCREEN_HEIGHT * 0.25,
-              }}
-              source={groundYourselfImages.stretchfingers}
-            />
-
-            <View className="flex-row items-center justify-center">
-              <ArrowRightButton
-                onPress={() => {
-                  nextSlide();
-                }}
-              />
-            </View>
-          </View>
-          {/* back slide */}
-          <View
-            style={{ marginTop: SCREEN_HEIGHT * 0.075 }}
-            className="items-center"
-            key="4"
-          >
-            <Animated.View>
-              <FadeInView inputVal={1} outputVal={0}>
-                <TypewriterText
-                  text="Now, focus on your back"
-                  textColor={Colors.darkGray}
-                  cursorColor={Colors.mainGray}
-                  size={20}
-                  speed="fast"
-                  showOverflow={true}
-                />
-              </FadeInView>
-            </Animated.View>
-            <Animated.View>
-              <FadeInView className="mt-6" inputVal={0} outputVal={1}>
-                <View className="mt-8 w-full items-center">
-                  <TypewriterText
-                    text="Feel it around, stretch it out"
-                    textColor={Colors.darkGray}
-                    cursorColor={Colors.mainGray}
-                    size={20}
-                    delaySeconds={1.5}
-                    speed="fast"
-                    showOverflow={true}
-                  />
-                  <TypewriterText
-                    className="mt-4"
-                    text="(when you're done, tap the button to proceed)"
-                    textColor={Colors.mainGray}
-                    size={14}
-                    delaySeconds={2}
-                    speed="fast"
-                    showOverflow={true}
-                  />
-                </View>
-                <View className="flex-row justify-center">
-                  <Image
-                    className="h-28 w-32"
-                    contentFit="fill"
-                    style={{
-                      marginTop: SCREEN_HEIGHT * 0.06,
-                      marginBottom: SCREEN_HEIGHT * 0.15,
-                    }}
-                    source={groundYourselfImages.stretch}
-                  />
-                </View>
-              </FadeInView>
-              <FadeInView
-                className="flex-row items-center justify-center"
-                inputVal={0}
-                outputVal={1}
+              <Text
+                className="mt-4 text-center text-lg"
+                style={{ color: Colors.mainGray }}
               >
-                <ArrowRightButton
-                  onPress={() => {
-                    nextSlide();
-                  }}
-                />
-              </FadeInView>
-            </Animated.View>
-          </View>
-          <View
-            style={{ marginTop: SCREEN_HEIGHT * 0.075 }}
-            className="items-center"
-            key="5"
-          >
-            <TypewriterText
-              text="Now, name one sensation you feel in any of your limbs"
-              textColor={Colors.darkGray}
-              cursorColor={Colors.mainGray}
-              size={20}
-              speed="fast"
-              showOverflow={true}
-            />
-            <TypewriterText
-              className="mt-4"
-              text="(it can also be a feeling you got while doing this exercise)"
-              textColor={Colors.mainGray}
-              size={12}
-              speed="fast"
-              showOverflow={true}
-            />
-
-            <Image
-              className="h-28 w-32"
-              contentFit="fill"
-              style={{
-                marginTop: SCREEN_HEIGHT * 0.06,
-                marginBottom: SCREEN_HEIGHT * 0.1,
-              }}
-              source={groundYourselfImages.scanbody}
-            />
+                (Tap + to add an item, then describe it by tapping /)
+              </Text>
+            </View>
+            <View className="mt-8 w-full">
+              <View className="mb-4 w-full flex-row">
+                <Text className="justify-start text-xl">Things around me:</Text>
+              </View>
+              <View className="px-4">
+                {itemsAroundMeArr.map((itemObj, indexNum: number) => (
+                  <EnvironmentItemsListElement
+                    itemName={itemObj.itemName}
+                    itemAdjectives={itemObj.itemAdjectives}
+                    isAvailable={!textInputIsActive}
+                    isCurrentlyEdited={
+                      textInputIsActive && indexNum === currentElementIndex
+                    }
+                    key={indexNum}
+                    onChangeText={(value: string) => {
+                      setItemsAroundMeArr((prev) =>
+                        prev.map((item, i) =>
+                          i === indexNum ? { ...item, itemName: value } : item,
+                        ),
+                      );
+                    }}
+                    onPressAdd={function (): void {
+                      setElementIsActive(true);
+                      if (itemsAroundMeArr.length < MAX_NUM_OF_ITEMS) {
+                        setItemsAroundMeArr((prev) => [
+                          ...prev,
+                          blankEnvironmentItem,
+                        ]);
+                      }
+                    }}
+                    onConfirm={() => {
+                      setElementIsActive(false);
+                      setCurrentElementIndex((prev) => prev + 1);
+                    }}
+                  />
+                ))}
+                <FadeInView
+                  className="w-full flex-row justify-center"
+                  style={{ top: SCREEN_HEIGHT * 0.05 }}
+                >
+                  <ArrowRightButton onPress={() => onButtonPress()} />
+                </FadeInView>
+              </View>
+            </View>
           </View>
         </PagerView>
       </View>
