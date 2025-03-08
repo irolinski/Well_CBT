@@ -41,7 +41,7 @@ const Ground_Environment_Page_1 = ({
           }}
         >
           <TypewriterText
-            text="In following exercise you'll ground yourself by observing your environment."
+            text="In the following exercise you'll ground yourself by observing your environment."
             size={20}
             cursorColor={Colors.mainGray}
             isActive={groundYourselfToolState.currentSlide === objKey}

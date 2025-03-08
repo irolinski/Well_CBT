@@ -23,7 +23,7 @@ const EnvironmentItemsListElement = ({
     <View className="my-2 flex-row items-center justify-center">
       <View className="w-4/5 justify-center">
         <TextInput
-          className="mr-8 justify-center pb-1 text-xl font-semibold"
+          className="mr-8 justify-center pb-1 text-lg font-semibold"
           editable={isCurrentlyEdited}
           style={{
             borderColor: Colors.mainGray,
@@ -54,18 +54,22 @@ const EnvironmentItemsListElement = ({
           }}
         />
         {itemAdjectives.length > 0 && (
-          <Text className="text-base">
+          <Text className="text-sm" style={{ color: Colors.mainGray }}>
+            (
             {itemAdjectives.map(
               (
                 adjective: GroundEnvironmentItemAdjectiveType,
                 indexNum: number,
               ) => (
-                <Text style={{ color: adjective.color }}>
-                  {adjective.name}
-                  {indexNum !== itemAdjectives.length - 1 ? "," : null}
-                </Text>
+                <React.Fragment key={indexNum}>
+                  <Text className="text-sm" style={{ color: adjective.color }}>
+                    {adjective.name}
+                  </Text>
+                  {indexNum !== itemAdjectives.length - 1 && ", "}
+                </React.Fragment>
               ),
             )}
+            )
           </Text>
         )}
       </View>

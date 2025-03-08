@@ -15,6 +15,7 @@ import { GroundYourselfSlideProps } from "@/constants/models/tools/ground_yourse
 import { Colors } from "@/constants/styles/colorTheme";
 import { SCREEN_HEIGHT } from "@/constants/styles/values";
 import { RootState } from "@/state/store";
+import { FontAwesome } from "@expo/vector-icons";
 
 const FIRST_SLIDE_TIME_MS = 2500;
 const MAX_NUM_OF_ITEMS = 4;
@@ -48,8 +49,9 @@ const Ground_Environment_Page_3 = ({
     (state: RootState) => state.ground_yourself,
   );
   const [currentInstruction, setCurrentInstruction] = useState<
-    "instruction_1" | null
+    "instruction_1" | "instruction_2" | "item_list" | null
   >(null);
+
   const [currentSlide, setCurrentSlide] = useState(0);
   const [itemsAroundMeArr, setItemsAroundMeArr] = useState<EnvironmentItem[]>([
     blankEnvironmentItem,
@@ -61,33 +63,35 @@ const Ground_Environment_Page_3 = ({
   const nextSlide = () => {
     refPagerView.current!.setPage(currentSlide + 1);
   };
+  const liftInstruction_1AnimY = useRef(new Animated.Value(0)).current;
 
-  const goToFirstSlide = () => {
-    refPagerView.current!.setPage(0);
+  const liftInstruction_1Anim = (time: number) => {
+    return Animated.timing(liftInstruction_1AnimY, {
+      toValue: -140,
+      duration: time,
+      useNativeDriver: true,
+    });
   };
-
-  const rotation = useRef(new Animated.Value(0)).current;
 
   // run slides
   useEffect(() => {
     if (groundYourselfToolState.currentSlide === objKey) {
       setTimeout(() => {
-        setCurrentInstruction("instruction_1");
         nextSlide();
+        setCurrentInstruction("instruction_1");
       }, FIRST_SLIDE_TIME_MS);
     }
   }, [groundYourselfToolState.currentSlide]);
 
+  useEffect(() => {
+    if (currentInstruction === "item_list") {
+      liftInstruction_1Anim(750).start();
+    }
+  }, [currentInstruction]);
+
   return (
     <GroundYourselfSlideFrame exerciseName={exerciseName}>
-      <View key={objKey} style={{ paddingTop: SCREEN_HEIGHT * 0.05 }}>
-        <TypewriterText
-          text="Notice your surroundings"
-          size={20}
-          cursorColor={Colors.mainGray}
-          speed="fast"
-          isActive={groundYourselfToolState.currentSlide === objKey}
-        />
+      <View key={objKey}>
         <PagerView
           className="h-full w-full"
           initialPage={0}
@@ -101,9 +105,19 @@ const Ground_Environment_Page_3 = ({
           ) => {
             setCurrentSlide(evt.nativeEvent.position);
           }}
+          scrollEnabled={false}
         >
           {/* blank slide */}
           <View className="h-full w-full items-center justify-start" key="1">
+            <View>
+              <TypewriterText
+                text="Notice your surroundings"
+                size={22}
+                cursorColor={Colors.mainGray}
+                speed="fast"
+                isActive={groundYourselfToolState.currentSlide === objKey}
+              />
+            </View>
             <View
               className="flex-row items-center justify-center"
               style={{
@@ -143,66 +157,124 @@ const Ground_Environment_Page_3 = ({
             className="items-center"
             key="2"
           >
-            <View>
-              <TypewriterText
-                text="From the things around you, choose 4 (or less). Then, add them to the list below."
-                size={18}
-                cursorColor={Colors.mainGray}
-                speed="fast"
-                isActive={groundYourselfToolState.currentSlide === objKey}
-              />
-
-              <Text
-                className="mt-4 text-center text-lg"
-                style={{ color: Colors.mainGray }}
+            <Animated.View>
+              <FadeInView
+                inputVal={1}
+                outputVal={0}
+                duration={500}
+                isActive={currentInstruction === "item_list"}
               >
-                (Tap + to add an item, then describe it by tapping /)
-              </Text>
-            </View>
-            <View className="mt-8 w-full">
-              <View className="mb-4 w-full flex-row">
-                <Text className="justify-start text-xl">Things around me:</Text>
-              </View>
-              <View className="px-4">
-                {itemsAroundMeArr.map((itemObj, indexNum: number) => (
-                  <EnvironmentItemsListElement
-                    itemName={itemObj.itemName}
-                    itemAdjectives={itemObj.itemAdjectives}
-                    isAvailable={!textInputIsActive}
-                    isCurrentlyEdited={
-                      textInputIsActive && indexNum === currentElementIndex
-                    }
-                    key={indexNum}
-                    onChangeText={(value: string) => {
-                      setItemsAroundMeArr((prev) =>
-                        prev.map((item, i) =>
-                          i === indexNum ? { ...item, itemName: value } : item,
-                        ),
-                      );
-                    }}
-                    onPressAdd={function (): void {
-                      setElementIsActive(true);
-                      if (itemsAroundMeArr.length < MAX_NUM_OF_ITEMS) {
-                        setItemsAroundMeArr((prev) => [
-                          ...prev,
-                          blankEnvironmentItem,
-                        ]);
+                <TypewriterText
+                  text="From the things around you, choose 4 (or less). Then, add them to the list below."
+                  size={22}
+                  cursorColor={Colors.mainGray}
+                  speed="fast"
+                  delaySeconds={2.5}
+                  isActive={currentInstruction === "instruction_1"}
+                  onFinish={() => setCurrentInstruction("instruction_2")}
+                />
+              </FadeInView>
+            </Animated.View>
+            {/* legend */}
+            <Animated.View
+              style={{ transform: [{ translateY: liftInstruction_1AnimY }] }}
+            >
+              <FadeInView
+                className="items-start"
+                inputVal={0}
+                outputVal={1}
+                isActive={currentInstruction === "instruction_2"}
+                onFinish={() => {
+                  setCurrentInstruction("item_list");
+                }}
+              >
+                <View className="mt-8 w-full flex-row justify-between px-6">
+                  <View className="flex-row items-center">
+                    <View
+                      className="mr-4 h-6 w-6 items-center justify-center rounded-full"
+                      style={{ backgroundColor: Colors.mainBlue }}
+                    >
+                      <Text style={{ color: Colors.white }}>+</Text>
+                    </View>
+                    <Text> Add item</Text>
+                  </View>
+                  <View className="flex-row items-center">
+                    <View
+                      className="mr-4 h-6 w-6 items-center justify-center rounded-full"
+                      style={{ backgroundColor: "#FF997C" }}
+                    >
+                      <FontAwesome
+                        name="paint-brush"
+                        size={10}
+                        color={Colors.white}
+                      />
+                    </View>
+                    <Text>Describe item</Text>
+                  </View>
+                </View>
+              </FadeInView>
+              <FadeInView
+                duration={3000}
+                className="mt-8 w-full"
+                inputVal={0}
+                outputVal={1}
+                isActive={currentInstruction === "item_list"}
+              >
+                <View className="mb-4 w-full flex-row">
+                  <Text className="justify-start text-xl">
+                    Things around me:
+                  </Text>
+                </View>
+                <View className="px-4">
+                  {itemsAroundMeArr.map((itemObj, indexNum: number) => (
+                    <EnvironmentItemsListElement
+                      itemName={itemObj.itemName}
+                      itemAdjectives={itemObj.itemAdjectives}
+                      // itemAdjectives={[
+                      //   { name: "Complicated", color: "#F7392d" },
+                      //   { name: "Fergielicious", color: "red" },
+                      //   { name: "Conscintious", color: "blue" },
+                      // ]}
+                      isAvailable={!textInputIsActive}
+                      isCurrentlyEdited={
+                        textInputIsActive && indexNum === currentElementIndex
                       }
-                    }}
-                    onConfirm={() => {
-                      setElementIsActive(false);
-                      setCurrentElementIndex((prev) => prev + 1);
-                    }}
-                  />
-                ))}
-                <FadeInView
-                  className="w-full flex-row justify-center"
-                  style={{ top: SCREEN_HEIGHT * 0.05 }}
-                >
-                  <ArrowRightButton onPress={() => onButtonPress()} />
-                </FadeInView>
-              </View>
-            </View>
+                      key={indexNum}
+                      onChangeText={(value: string) => {
+                        setItemsAroundMeArr((prev) =>
+                          prev.map((item, i) =>
+                            i === indexNum
+                              ? { ...item, itemName: value }
+                              : item,
+                          ),
+                        );
+                      }}
+                      onPressAdd={function (): void {
+                        setElementIsActive(true);
+                        if (itemsAroundMeArr.length < MAX_NUM_OF_ITEMS) {
+                        }
+                      }}
+                      onConfirm={() => {
+                        if (itemsAroundMeArr.length < MAX_NUM_OF_ITEMS) {
+                          setItemsAroundMeArr((prev) => [
+                            ...prev,
+                            blankEnvironmentItem,
+                          ]);
+                        }
+                        setElementIsActive(false);
+                        setCurrentElementIndex((prev) => prev + 1);
+                      }}
+                    />
+                  ))}
+                  <FadeInView
+                    className="w-full flex-row justify-center"
+                    style={{ top: SCREEN_HEIGHT * 0.05 }}
+                  >
+                    <ArrowRightButton onPress={() => onButtonPress()} />
+                  </FadeInView>
+                </View>
+              </FadeInView>
+            </Animated.View>
           </View>
         </PagerView>
       </View>
