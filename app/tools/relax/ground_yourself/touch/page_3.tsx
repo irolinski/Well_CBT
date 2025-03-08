@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import PagerView from "react-native-pager-view";
 import { Double } from "react-native/Libraries/Types/CodegenTypes";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import ColorPicker, { Panel3 } from "reanimated-color-picker";
 import { groundYourselfImages } from "@/assets/images/tools/ground_yourself/ground_yourself";
 import Text from "@/components/global/Text";
@@ -18,8 +18,7 @@ import TypewriterText from "@/components/TypewriterText";
 import { GroundYourselfSlideProps } from "@/constants/models/tools/ground_yourself";
 import { Colors } from "@/constants/styles/colorTheme";
 import { SCREEN_HEIGHT } from "@/constants/styles/values";
-import { setTouchData } from "@/state/features/tools/groundYourselfSlice";
-import { AppDispatch, RootState } from "@/state/store";
+import { RootState } from "@/state/store";
 import { isValidName } from "@/utils/inputValidations";
 import { AntDesign } from "@expo/vector-icons";
 
@@ -28,7 +27,6 @@ const Ground_Touch_Page_3 = ({
   objKey,
   onButtonPress,
 }: GroundYourselfSlideProps) => {
-  const dispatch = useDispatch<AppDispatch>();
   const groundYourselfToolState = useSelector(
     (state: RootState) => state.ground_yourself,
   );
@@ -36,8 +34,12 @@ const Ground_Touch_Page_3 = ({
     "feel" | "texture" | "color" | null
   >(null);
   const [currentSlide, setCurrentSlide] = useState(0);
-  const touchData = groundYourselfToolState.touchData;
-  const numOfRepeats = groundYourselfToolState.numOfRepeats;
+  const [touchData, setTouchData] = useState({
+    texture: "",
+    color: Colors.mainBlue,
+    feel: "",
+  });
+  // const touchData = groundYourselfToolState.touchData;
 
   const refPagerView = useRef<PagerView>(null);
 
@@ -179,17 +181,15 @@ const Ground_Touch_Page_3 = ({
               }}
             />
             <OneWordTextInput
-              value={touchData[numOfRepeats].texture ?? ""}
+              value={touchData.texture ?? ""}
               editable={activeInput === "texture"}
               autoFocus={activeInput === "texture"}
               onChangeText={(value) => {
                 if (isValidName(value)) {
-                  const newObj = [...touchData];
-                  newObj[numOfRepeats] = {
-                    ...newObj[numOfRepeats],
+                  setTouchData((prevData) => ({
+                    ...prevData,
                     texture: value,
-                  };
-                  dispatch(setTouchData(newObj));
+                  }));
                 }
               }}
               onPressButton={() => {
@@ -234,14 +234,12 @@ const Ground_Touch_Page_3 = ({
             <View className="mt-8 w-full flex-row items-center justify-between">
               <ColorPicker
                 style={{ width: "60%" }}
-                value={touchData[numOfRepeats].color ?? Colors.mainBlue}
+                value={touchData.color ?? Colors.mainBlue}
                 onComplete={({ hex }) => {
-                  const newObj = [...touchData];
-                  newObj[numOfRepeats] = {
-                    ...newObj[numOfRepeats],
+                  setTouchData((prevData) => ({
+                    ...prevData,
                     color: hex,
-                  };
-                  dispatch(setTouchData(newObj));
+                  }));
                 }}
               >
                 <Panel3 />
@@ -259,7 +257,7 @@ const Ground_Touch_Page_3 = ({
                   <View
                     className="h-full w-full rounded-full"
                     style={{
-                      backgroundColor: touchData[numOfRepeats].color,
+                      backgroundColor: touchData.color,
                       borderColor: Colors.offWhite,
                       borderWidth: 1.5,
                     }}
@@ -306,21 +304,18 @@ const Ground_Touch_Page_3 = ({
               isActive={activeInput === "feel"}
             />
             <OneWordTextInput
-              value={touchData[numOfRepeats].feel ?? ""}
+              value={touchData.feel ?? ""}
               editable={activeInput === "feel"}
               autoFocus={activeInput === "feel"}
               onChangeText={(value) => {
                 if (isValidName(value)) {
-                  const newObj = [...touchData];
-                  newObj[numOfRepeats] = {
-                    ...newObj[numOfRepeats],
+                  setTouchData((prevData) => ({
+                    ...prevData,
                     feel: value,
-                  };
-                  dispatch(setTouchData(newObj));
+                  }));
                 }
               }}
               onPressButton={() => {
-                console.log(touchData);
                 goToFirstSlide();
                 onButtonPress();
               }}
