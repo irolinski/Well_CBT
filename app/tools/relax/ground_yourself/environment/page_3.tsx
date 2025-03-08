@@ -105,13 +105,14 @@ const Ground_Environment_Page_3 = ({
           ) => {
             setCurrentSlide(evt.nativeEvent.position);
           }}
-          scrollEnabled={false}
+          // scrollEnabled={false}
         >
           {/* blank slide */}
           <View className="h-full w-full items-center justify-start" key="1">
-            <View>
+            <View className="w-full">
               <TypewriterText
                 text="Notice your surroundings"
+                className="mt-4"
                 size={22}
                 cursorColor={Colors.mainGray}
                 speed="fast"
@@ -214,7 +215,7 @@ const Ground_Environment_Page_3 = ({
                 </View>
               </FadeInView>
               <FadeInView
-                duration={3000}
+                duration={2000}
                 className="mt-8 w-full"
                 inputVal={0}
                 outputVal={1}
