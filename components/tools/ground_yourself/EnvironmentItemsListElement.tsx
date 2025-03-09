@@ -1,12 +1,14 @@
-import React from "react";
-import { Keyboard, TextInput, TouchableOpacity, View } from "react-native";
+import React from 'react';
+import { Keyboard, TextInput, TouchableOpacity, View } from 'react-native';
+import { useDispatch } from 'react-redux';
 import {
-  EnvironmentItemsListElementProps,
-  GroundEnvironmentItemAdjectiveType,
-} from "@/app/tools/relax/ground_yourself/environment/page_3";
-import Text from "@/components/global/Text";
-import { Colors } from "@/constants/styles/colorTheme";
-import { Feather, FontAwesome } from "@expo/vector-icons";
+    EnvironmentItemsListElementProps, GroundEnvironmentItemAdjectiveType
+} from '@/app/tools/relax/ground_yourself/environment/page_3';
+import Text from '@/components/global/Text';
+import { Colors } from '@/constants/styles/colorTheme';
+import { setEnvironmentAdjectiveModalIsOpen } from '@/state/features/tools/groundYourselfSlice';
+import { AppDispatch } from '@/state/store';
+import { Feather, FontAwesome } from '@expo/vector-icons';
 
 const MAX_NAME_LENGTH = 15;
 
@@ -52,6 +54,8 @@ const EnvironmentItemsListElement = ({
           onBlur={() => {
             Keyboard.dismiss();
           }}
+          autoCorrect={false} //important! enabling autocorrect bugs out the whole component for some reason
+          autoCapitalize="sentences"
         />
         {itemAdjectives.length > 0 && (
           <Text className="text-sm" style={{ color: Colors.mainGray }}>
@@ -99,7 +103,6 @@ const EnvironmentItemsListElement = ({
               style={{
                 backgroundColor: "#FF997C",
               }}
-              onPress={() => {}}
             >
               <FontAwesome name="paint-brush" size={20} color={Colors.white} />
             </TouchableOpacity>
