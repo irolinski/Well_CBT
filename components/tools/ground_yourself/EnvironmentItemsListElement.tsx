@@ -6,11 +6,13 @@ import {
 } from '@/app/tools/relax/ground_yourself/environment/page_3';
 import Text from '@/components/global/Text';
 import { Colors } from '@/constants/styles/colorTheme';
-import { setEnvironmentAdjectiveModalIsOpen } from '@/state/features/tools/groundYourselfSlice';
+import {
+    setEnvironmentAdjectiveModalIsOpen, setEnvironmentItemsModalSelectedIndex
+} from '@/state/features/tools/groundYourselfSlice';
 import { AppDispatch } from '@/state/store';
 import { Feather, FontAwesome } from '@expo/vector-icons';
 
-const MAX_NAME_LENGTH = 15;
+const MAX_NAME_LENGTH = 20;
 
 const EnvironmentItemsListElement = ({
   itemName = "",
@@ -20,7 +22,10 @@ const EnvironmentItemsListElement = ({
   onChangeText,
   onPressAdd,
   onConfirm,
+  indexNum,
 }: EnvironmentItemsListElementProps) => {
+  const dispatch = useDispatch<AppDispatch>();
+
   return (
     <View className="my-2 flex-row items-center justify-center">
       <View className="w-4/5 justify-center">
@@ -57,23 +62,23 @@ const EnvironmentItemsListElement = ({
           autoCorrect={false} //important! enabling autocorrect bugs out the whole component for some reason
           autoCapitalize="sentences"
         />
-        {itemAdjectives.length > 0 && (
-          <Text className="text-sm" style={{ color: Colors.mainGray }}>
-            (
+        {itemAdjectives.length > 0 && itemAdjectives[0].name && (
+          <Text className="mr-8 text-lg" style={{ color: Colors.mainGray }}>
+            {"("}
             {itemAdjectives.map(
               (
                 adjective: GroundEnvironmentItemAdjectiveType,
                 indexNum: number,
               ) => (
                 <React.Fragment key={indexNum}>
-                  <Text className="text-sm" style={{ color: adjective.color }}>
+                  {indexNum !== 0 && indexNum !== itemAdjectives.length && ", "}
+                  <Text className="text-lg" style={{ color: adjective.color }}>
                     {adjective.name}
                   </Text>
-                  {indexNum !== itemAdjectives.length - 1 && ", "}
                 </React.Fragment>
               ),
             )}
-            )
+            {")"}
           </Text>
         )}
       </View>
@@ -102,6 +107,10 @@ const EnvironmentItemsListElement = ({
               className="h-10 w-10 items-center justify-center rounded-full"
               style={{
                 backgroundColor: "#FF997C",
+              }}
+              onPress={() => {
+                dispatch(setEnvironmentItemsModalSelectedIndex(indexNum));
+                dispatch(setEnvironmentAdjectiveModalIsOpen(true));
               }}
             >
               <FontAwesome name="paint-brush" size={20} color={Colors.white} />

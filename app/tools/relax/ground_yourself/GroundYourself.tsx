@@ -33,6 +33,15 @@ const exercises = [
       Ground_Environment_Page_4,
     ],
   },
+  {
+    name: "Touch",
+    pages: [
+      Ground_Touch_Page_1,
+      Ground_Touch_Page_2,
+      Ground_Touch_Page_3,
+      Ground_Touch_Page_4,
+    ],
+  },
   { name: "Date", pages: [Ground_Time_Date] },
   {
     name: "Body",
@@ -44,15 +53,6 @@ const exercises = [
     ],
   },
   { name: "Day", pages: [Ground_Time_Day] },
-  {
-    name: "Touch",
-    pages: [
-      Ground_Touch_Page_1,
-      Ground_Touch_Page_2,
-      Ground_Touch_Page_3,
-      Ground_Touch_Page_4,
-    ],
-  },
 ];
 
 const ALL_PAGES_LENGTH = exercises.flatMap((exercise) => exercise.pages).length;
