@@ -64,7 +64,7 @@
   },
   "languages": { "en": "Angielski", "pl": "Polski" },
   "instructions": {
-    "tap_button_below": "Naciśnij przycisk poniżej, żeby przejść dalej."
+    "tap_button_below": "Naciśnij przycisk poniżej, żeby przejść dalej"
   },
   "errors": {
     "wrong_way": {

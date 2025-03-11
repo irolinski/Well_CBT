@@ -40,9 +40,9 @@
       "title": "Ćwiczenia uziemiające",
       "description": "Z tym narzędzie będziesz praktykować <bold>ćwiczenia uziemiające</bold> za pomocą prostych technik typu mindfulness, podobnych do stosowanych w terapii DBT.\n\nNa ekranie zobaczysz <bold>instrukcje krok po kroku</bold>—po prostu za nimi podążaj, aby przejść się przez proces. Możesz przerwać w dowolnym momencie, ale zalecamy przejście przez wszystkie ćwiczenia - zajmie Ci to ok. <bold>10-15 minut</bold>.",
       "common": {
-        "now_deep_breath": "Dobrze, teraz weźmy głęboki oddech.",
+        "now_deep_breath": "Dobrze, teraz weźmy kilka głębokich oddechów.",
         "another_deep_breath": "Dobrze, teraz jeszcze kilka głębokich oddechów.",
-        "head_to_next_exercise": "Teraz przejdziemy do kolejnego ćwiczenia, które pomoże ci się jeszcze bardziej ugruntować."
+        "head_to_next_exercise": "Teraz, kontynuując uziemianie, przejdziemy do kolejnego ćwiczenia."
       },
       "time": {
         "date": {
@@ -61,6 +61,33 @@
           "today_its": "Dziś jest...",
           "success": "Świetnie!",
           "failure": "Ups, właściwie to..."
+        }
+      },
+      "body": {
+        "title": "Ciało",
+        "title_extended": "Poczuj swoje ciało",
+        "page_1": {
+          "instruction_1": "To krótkie ćwiczenie ma na celu pomóc Ci nawiązać kontakt ze swoim ciałem."
+        },
+        "page_2": {
+          "instruction_1": "Teraz, podążając za rytmem wyznaczonym przez oddech, spróbuj skupić się na swoim ciele.",
+          "instruction_2": "(podczas tego ćwiczenia zwracaj uwagę na swoje fizyczne odczucia)"
+        },
+        "page_3": {
+          "instruction_1": "Spróbujmy poczuć nasze ciało",
+          "toes_1": "Najpierw poruszaj stopami",
+          "toes_2": "Teraz wyprostuj nogi i palce u stóp",
+          "toes_3": "(skup się na tym odczuciu – gdy będziesz gotowy, naciśnij przycisk poniżej)",
+          "fingers_1": "Teraz rozprostuj palce u rąk",
+          "fingers_2": "(ręce i ramiona mogą zrobić to samo, jeśli zechcą)",
+          "back_1": "Teraz zwróć uwagę na swoje plecy",
+          "back_2": "Poczuj swoje plecy i ramiona, przeciągnij się",
+          "back_3": "(gdy skończysz, naciśnij przycisk, aby przejść dalej)",
+          "feel_1": "Co teraz czujesz?",
+          "feel_2": "(w ciele lub w ogóle - jakie uczucie, które pojawiło się podczas tego ćwiczenia)"
+        },
+        "page_4": {
+          "instruction_2": "(zwracając uwagę na odczucia w dłoniach, nogach, stopach i plecach)"
         }
       },
       "touch": {

@@ -1,15 +1,16 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Animated, Easing, View } from "react-native";
-import { useSelector } from "react-redux";
-import ArrowRightButton from "@/components/ArrowRightButton";
-import FadeInView from "@/components/FadeInView";
-import Text from "@/components/global/Text";
-import GroundYourselfSlideFrame from "@/components/tools/ground_yourself/GroundYourselfSlideFrame";
-import TypewriterText from "@/components/TypewriterText";
-import { GroundYourselfSlideProps } from "@/constants/models/tools/ground_yourself";
-import { Colors } from "@/constants/styles/colorTheme";
-import { SCREEN_HEIGHT, SCREEN_WIDTH } from "@/constants/styles/values";
-import { RootState } from "@/state/store";
+import React, { useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Animated, Easing, View } from 'react-native';
+import { useSelector } from 'react-redux';
+import ArrowRightButton from '@/components/ArrowRightButton';
+import FadeInView from '@/components/FadeInView';
+import Text from '@/components/global/Text';
+import GroundYourselfSlideFrame from '@/components/tools/ground_yourself/GroundYourselfSlideFrame';
+import TypewriterText from '@/components/TypewriterText';
+import { GroundYourselfSlideProps } from '@/constants/models/tools/ground_yourself';
+import { Colors } from '@/constants/styles/colorTheme';
+import { SCREEN_HEIGHT, SCREEN_WIDTH } from '@/constants/styles/values';
+import { RootState } from '@/state/store';
 
 const BREATHE_IN_TIME_MS = 5000;
 const HOLD_TIME_MS = 6000 - 500;
@@ -20,6 +21,8 @@ const Ground_Body_Page_2 = ({
   objKey,
   onButtonPress,
 }: GroundYourselfSlideProps) => {
+  const { t } = useTranslation(["tools", "common"]);
+
   const groundYourselfToolState = useSelector(
     (state: RootState) => state.ground_yourself,
   );
@@ -103,7 +106,7 @@ const Ground_Body_Page_2 = ({
           onFinish={() => liftInstruction2PositionAnim(1000).start()}
         >
           <TypewriterText
-            text="Ok, now, let's take a deep breath"
+            text={t("tools.ground_yourself.common.now_deep_breath")}
             size={20}
             cursorColor={Colors.mainGray}
             speed="very_fast"
@@ -128,7 +131,12 @@ const Ground_Body_Page_2 = ({
                     className="z-10 text-2xl"
                     style={{ color: Colors.offWhite, fontFamily: "Kodchasan" }}
                   >
-                    {breatheState}
+                    {breatheState === "in" &&
+                      t("tools.breathing.exercise.commands.breathe_in")}
+                    {breatheState === "out" &&
+                      t("tools.breathing.exercise.commands.breathe_out")}
+                    {breatheState === "hold" &&
+                      t("tools.breathing.exercise.commands.hold")}{" "}
                   </Text>
                 </View>
                 <Animated.View
@@ -167,7 +175,7 @@ const Ground_Body_Page_2 = ({
         >
           <TypewriterText
             className="mb-8"
-            text="Now, following this breathing pace, try to focus on your body."
+            text={t("tools.ground_yourself.body.page_2.instruction_1")}
             size={20}
             cursorColor={Colors.mainGray}
             speed="fast"
@@ -176,7 +184,7 @@ const Ground_Body_Page_2 = ({
           />
           <FadeInView isActive={instruction2IsActive} className="my-4">
             <TypewriterText
-              text="(while doing this exercise, take notice of your physical sensations)"
+              text={t("tools.ground_yourself.body.page_2.instruction_2")}
               textColor={Colors.darkGray}
               cursorColor={Colors.mainGray}
               size={15}

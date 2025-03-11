@@ -1,20 +1,21 @@
-import { Image } from "expo-image";
-import React, { useEffect, useRef, useState } from "react";
-import { Animated, Easing, NativeSyntheticEvent, View } from "react-native";
-import PagerView from "react-native-pager-view";
-import { Double } from "react-native/Libraries/Types/CodegenTypes";
-import { useSelector } from "react-redux";
-import { groundYourselfImages } from "@/assets/images/tools/ground_yourself/ground_yourself";
-import ArrowRightButton from "@/components/ArrowRightButton";
-import FadeInView from "@/components/FadeInView";
-import GroundYourselfSlideFrame from "@/components/tools/ground_yourself/GroundYourselfSlideFrame";
-import OneWordTextInput from "@/components/tools/ground_yourself/OneWordTextInput";
-import TypewriterText from "@/components/TypewriterText";
-import { GroundYourselfSlideProps } from "@/constants/models/tools/ground_yourself";
-import { Colors } from "@/constants/styles/colorTheme";
-import { SCREEN_HEIGHT } from "@/constants/styles/values";
-import { RootState } from "@/state/store";
-import { isValidName } from "@/utils/inputValidations";
+import { Image } from 'expo-image';
+import React, { useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Animated, Easing, NativeSyntheticEvent, View } from 'react-native';
+import PagerView from 'react-native-pager-view';
+import { Double } from 'react-native/Libraries/Types/CodegenTypes';
+import { useSelector } from 'react-redux';
+import { groundYourselfImages } from '@/assets/images/tools/ground_yourself/ground_yourself';
+import ArrowRightButton from '@/components/ArrowRightButton';
+import FadeInView from '@/components/FadeInView';
+import GroundYourselfSlideFrame from '@/components/tools/ground_yourself/GroundYourselfSlideFrame';
+import OneWordTextInput from '@/components/tools/ground_yourself/OneWordTextInput';
+import TypewriterText from '@/components/TypewriterText';
+import { GroundYourselfSlideProps } from '@/constants/models/tools/ground_yourself';
+import { Colors } from '@/constants/styles/colorTheme';
+import { SCREEN_HEIGHT } from '@/constants/styles/values';
+import { RootState } from '@/state/store';
+import { isValidName } from '@/utils/inputValidations';
 
 const FIRST_SLIDE_TIME_MS = 2500;
 
@@ -23,6 +24,8 @@ const Ground_Body_Page_3 = ({
   objKey,
   onButtonPress,
 }: GroundYourselfSlideProps) => {
+  const { t } = useTranslation(["tools", "common"]);
+
   const groundYourselfToolState = useSelector(
     (state: RootState) => state.ground_yourself,
   );
@@ -119,7 +122,7 @@ const Ground_Body_Page_3 = ({
   useEffect(() => {
     if (currentInstruction === "back_2") {
       Animated.timing(lift_back_2, {
-        toValue: -100,
+        toValue: -150,
         duration: 300,
         easing: Easing.out(Easing.ease),
         useNativeDriver: true,
@@ -141,7 +144,7 @@ const Ground_Body_Page_3 = ({
     <GroundYourselfSlideFrame exerciseName={exerciseName}>
       <View key={objKey} style={{ paddingTop: SCREEN_HEIGHT * 0.05 }}>
         <TypewriterText
-          text="Let's try to feel your body"
+          text={t("tools.ground_yourself.body.page_3.instruction_1")}
           size={20}
           cursorColor={Colors.mainGray}
           speed="fast"
@@ -190,7 +193,7 @@ const Ground_Body_Page_3 = ({
             >
               <View className="w-full">
                 <TypewriterText
-                  text="First, wiggle your feet"
+                  text={t("tools.ground_yourself.body.page_3.toes_1")}
                   textColor={Colors.darkGray}
                   size={20}
                   cursorColor={Colors.mainGray}
@@ -213,7 +216,7 @@ const Ground_Body_Page_3 = ({
               <View className="w-full">
                 <TypewriterText
                   className="mt-8"
-                  text="Now, stretch your legs and toes"
+                  text={t("tools.ground_yourself.body.page_3.toes_2")}
                   textColor={Colors.darkGray}
                   size={20}
                   cursorColor={Colors.mainGray}
@@ -226,7 +229,7 @@ const Ground_Body_Page_3 = ({
                 <FadeInView isActive={currentInstruction === "toes_3"}>
                   <TypewriterText
                     className="mt-4"
-                    text="(meditate on this feeling - when you're ready, tap the button below)"
+                    text={t("tools.ground_yourself.body.page_3.toes_3")}
                     textColor={Colors.mainGray}
                     size={13}
                     speed="very_fast"
@@ -272,7 +275,7 @@ const Ground_Body_Page_3 = ({
             key="3"
           >
             <TypewriterText
-              text="Now, stretch your fingers"
+              text={t("tools.ground_yourself.body.page_3.fingers_1")}
               textColor={Colors.darkGray}
               cursorColor={Colors.mainGray}
               size={20}
@@ -282,7 +285,7 @@ const Ground_Body_Page_3 = ({
             />
             <TypewriterText
               className="mb-6 mt-2"
-              text="(hands can follow their lead if they wish)"
+              text={t("tools.ground_yourself.body.page_3.fingers_2")}
               textColor={Colors.mainGray}
               size={14}
               speed="fast"
@@ -323,7 +326,7 @@ const Ground_Body_Page_3 = ({
                 isActive={currentInstruction === "back_2"}
               >
                 <TypewriterText
-                  text="Now, focus on your back"
+                  text={t("tools.ground_yourself.body.page_3.back_1")}
                   textColor={Colors.darkGray}
                   cursorColor={Colors.mainGray}
                   size={20}
@@ -343,7 +346,7 @@ const Ground_Body_Page_3 = ({
               >
                 <View className="mt-8 w-full items-center">
                   <TypewriterText
-                    text="Feel it around, stretch it out"
+                    text={t("tools.ground_yourself.body.page_3.back_2")}
                     textColor={Colors.darkGray}
                     cursorColor={Colors.mainGray}
                     size={20}
@@ -354,7 +357,7 @@ const Ground_Body_Page_3 = ({
                   />
                   <TypewriterText
                     className="mt-4"
-                    text="(when you're done, tap the button to proceed)"
+                    text={t("tools.ground_yourself.body.page_3.back_3")}
                     textColor={Colors.mainGray}
                     size={14}
                     delaySeconds={2}
@@ -397,7 +400,7 @@ const Ground_Body_Page_3 = ({
             key="5"
           >
             <TypewriterText
-              text="Now, name one sensation you feel in any of your limbs"
+              text={t("tools.ground_yourself.body.page_3.feel_1")}
               textColor={Colors.darkGray}
               cursorColor={Colors.mainGray}
               size={20}
@@ -407,7 +410,7 @@ const Ground_Body_Page_3 = ({
             />
             <TypewriterText
               className="mt-4"
-              text="(it can also be a feeling you got while doing this exercise)"
+              text={t("tools.ground_yourself.body.page_3.feel_2")}
               textColor={Colors.mainGray}
               size={12}
               speed="fast"

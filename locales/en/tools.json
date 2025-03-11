@@ -61,6 +61,34 @@
         }
       },
 
+      "body": {
+        "title": "Body",
+        "title_extended": "Feeling Your Body",
+        "page_1": {
+          "instruction_1": "This short exercise aims to help you reastablish your connection with your body."
+        },
+        "page_2": {
+          "instruction_1": "Now, following this breathing pace, try to focus on your body.",
+          "instruction_2": "(while doing this exercise, take notice of your physical sensations)"
+        },
+        "page_3": {
+          "instruction_1": "Let's try to feel your body",
+          "toes_1": "First, wiggle your feet",
+          "toes_2": "Now, stretch your legs and toes",
+          "toes_3": "(meditate on this feeling - when you're ready, tap the button below)",
+          "fingers_1": "Now, stretch your fingers",
+          "fingers_2": "(hands can follow their lead if they wish)",
+          "back_1": "Now, focus on your back",
+          "back_2": "Feel it around, stretch it out",
+          "back_3": "(when you're done, tap the button to proceed)",
+          "feel_1": "Now, name one sensation you feel in any of your limbs",
+          "feel_2": "(it can also be a feeling you got while doing this exercise)"
+        },
+        "page_4": {
+          "instruction_2": "(while noticing the sensations in your hands, legs, feet and back)"
+        }
+      },
+
       "touch": {
         "title": "Touch",
         "page_1": {
