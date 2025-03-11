@@ -1,16 +1,18 @@
-import React from 'react';
-import { Keyboard, TextInput, TouchableOpacity, View } from 'react-native';
-import { useDispatch } from 'react-redux';
+import React from "react";
+import { Keyboard, TextInput, TouchableOpacity, View } from "react-native";
+import { useDispatch } from "react-redux";
 import {
-    EnvironmentItemsListElementProps, GroundEnvironmentItemAdjectiveType
-} from '@/app/tools/relax/ground_yourself/environment/page_3';
-import Text from '@/components/global/Text';
-import { Colors } from '@/constants/styles/colorTheme';
+  EnvironmentItemsListElementProps,
+  GroundEnvironmentItemAdjectiveType,
+} from "@/app/tools/relax/ground_yourself/environment/page_3";
+import Text from "@/components/global/Text";
+import { Colors } from "@/constants/styles/colorTheme";
 import {
-    setEnvironmentAdjectiveModalIsOpen, setEnvironmentItemsModalSelectedIndex
-} from '@/state/features/tools/groundYourselfSlice';
-import { AppDispatch } from '@/state/store';
-import { Feather, FontAwesome } from '@expo/vector-icons';
+  setEnvironmentAdjectiveModalIsOpen,
+  setEnvironmentItemsModalSelectedIndex,
+} from "@/state/features/tools/groundYourselfSlice";
+import { AppDispatch } from "@/state/store";
+import { Feather, FontAwesome } from "@expo/vector-icons";
 
 const MAX_NAME_LENGTH = 20;
 
@@ -29,6 +31,12 @@ const EnvironmentItemsListElement = ({
   return (
     <View className="my-2 flex-row items-center justify-center">
       <View className="w-4/5 justify-center">
+        {!itemName && !isCurrentlyEdited && (
+          <TouchableOpacity
+            className="absolute z-20 h-12 w-full"
+            onPress={() => onPressAdd()}
+          />
+        )}
         <TextInput
           className="mr-8 justify-center pb-1 text-lg font-semibold"
           editable={isCurrentlyEdited}

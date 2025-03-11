@@ -1,16 +1,21 @@
-import React, { useState } from 'react';
-import { ColorValue, Keyboard, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import { Colors } from '@/constants/styles/colorTheme';
-import { Feather, MaterialIcons } from '@expo/vector-icons';
+import React, { useState } from "react";
+import {
+  ColorValue,
+  Keyboard,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import { Colors } from "@/constants/styles/colorTheme";
+import { Feather, MaterialIcons } from "@expo/vector-icons";
 
 const MAX_NAME_LENGTH = 18;
 const adjectiveColors = [
   Colors.offBlack,
-  "#FF997C",
   "#008A63",
   "#E57353",
   "#F5BB00",
-  "#90D005",
   "#B479FF",
   "#4391BC",
 ];
@@ -40,6 +45,12 @@ const EnvironmentAdjectiveListElement = ({
   return (
     <View className="flex-row">
       <View className="w-4/5 justify-center">
+        {!value && !isCurrentlyEdited && (
+          <TouchableOpacity
+            className="absolute top-0 z-20 h-10 w-full"
+            onPress={() => onPressAdd()}
+          />
+        )}
         <TextInput
           className="mb-12 mr-8 justify-center pb-1 text-lg font-semibold"
           editable={isCurrentlyEdited}
