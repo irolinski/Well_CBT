@@ -34,7 +34,42 @@
     },
     "ground_yourself": {
       "title": "Ground Yourself",
-      "description": "In the following exercise, you'll practice <bold>grounding yourself</bold> using simple DBT techniques. \n\nYou'll see <bold>step-by-step instructions</bold> on the screen—just follow along to guide yourself through the process."
+      "description": "In the following exercise, you'll practice <bold>grounding yourself</bold> using simple DBT techniques. \n\nYou'll see <bold>step-by-step instructions</bold> on the screen—just follow along to guide yourself through the process.",
+      "common": {
+        "now_deep_breath": "Ok, now, let's take a deep breath",
+        "another_deep_breath": "Ok, now, let's do another deep breath.",
+        "head_to_next_exercise": "Now, we'll head to the next exercise which will help ground you further"
+      },
+
+      "touch": {
+        "title": "Touch",
+        "page_1": {
+          "instruction_1": "With this exercise you will try to ground yourself using the sense of touch."
+        },
+        "page_2": {
+          "instruction_2": "Now, following this breathing pace, place one of your hands firmly on one of your thighs.",
+          "instruction_3": "(you may also use a surface on which you're sitting if that's what you prefer)"
+        },
+        "page_3": {
+          "instruction_1": "Focus on the surface you're touching right now.",
+          "slide_2": {
+            "instruction_1": "How would you describe its texture?",
+            "instruction_2": "(enter an adjective in the field below)"
+          },
+          "slide_3": {
+            "instruction_1": "Can you tell what color is it?",
+            "instruction_2": "(pick using the color picker below)",
+            "selected_color": "Selected Color:"
+          },
+          "slide_4": {
+            "instruction_1": "How does it make you feel?",
+            "instruction_2": "(enter a feeling or an adjective)"
+          }
+        },
+        "page_4": {
+          "instruction_2": "(while meditating on the texture, color of the thing that you're touching right now and the feelings that it evokes)"
+        }
+      }
     },
     "cda": {
       "title": "Thoughts Challange",

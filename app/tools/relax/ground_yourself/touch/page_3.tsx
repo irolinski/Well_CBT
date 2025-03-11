@@ -1,32 +1,30 @@
-import { Image } from "expo-image";
-import React, { useEffect, useRef, useState } from "react";
-import {
-  Animated,
-  NativeSyntheticEvent,
-  TouchableOpacity,
-  View,
-} from "react-native";
-import PagerView from "react-native-pager-view";
-import { Double } from "react-native/Libraries/Types/CodegenTypes";
-import { useSelector } from "react-redux";
-import ColorPicker, { Panel3 } from "reanimated-color-picker";
-import { groundYourselfImages } from "@/assets/images/tools/ground_yourself/ground_yourself";
-import Text from "@/components/global/Text";
-import GroundYourselfSlideFrame from "@/components/tools/ground_yourself/GroundYourselfSlideFrame";
-import OneWordTextInput from "@/components/tools/ground_yourself/OneWordTextInput";
-import TypewriterText from "@/components/TypewriterText";
-import { GroundYourselfSlideProps } from "@/constants/models/tools/ground_yourself";
-import { Colors } from "@/constants/styles/colorTheme";
-import { SCREEN_HEIGHT } from "@/constants/styles/values";
-import { RootState } from "@/state/store";
-import { isValidName } from "@/utils/inputValidations";
-import { AntDesign } from "@expo/vector-icons";
+import { Image } from 'expo-image';
+import React, { useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Animated, NativeSyntheticEvent, TouchableOpacity, View } from 'react-native';
+import PagerView from 'react-native-pager-view';
+import { Double } from 'react-native/Libraries/Types/CodegenTypes';
+import { useSelector } from 'react-redux';
+import ColorPicker, { Panel3 } from 'reanimated-color-picker';
+import { groundYourselfImages } from '@/assets/images/tools/ground_yourself/ground_yourself';
+import Text from '@/components/global/Text';
+import GroundYourselfSlideFrame from '@/components/tools/ground_yourself/GroundYourselfSlideFrame';
+import OneWordTextInput from '@/components/tools/ground_yourself/OneWordTextInput';
+import TypewriterText from '@/components/TypewriterText';
+import { GroundYourselfSlideProps } from '@/constants/models/tools/ground_yourself';
+import { Colors } from '@/constants/styles/colorTheme';
+import { SCREEN_HEIGHT } from '@/constants/styles/values';
+import { RootState } from '@/state/store';
+import { isValidName } from '@/utils/inputValidations';
+import { AntDesign } from '@expo/vector-icons';
 
 const Ground_Touch_Page_3 = ({
   exerciseName,
   objKey,
   onButtonPress,
 }: GroundYourselfSlideProps) => {
+  const { t } = useTranslation(["tools", "common"]);
+
   const groundYourselfToolState = useSelector(
     (state: RootState) => state.ground_yourself,
   );
@@ -99,7 +97,7 @@ const Ground_Touch_Page_3 = ({
     <GroundYourselfSlideFrame exerciseName={exerciseName}>
       <View key={objKey} style={{ paddingTop: SCREEN_HEIGHT * 0.05 }}>
         <TypewriterText
-          text="Focus on the surface you're touching right now."
+          text={t("tools.ground_yourself.touch.page_3.instruction_1")}
           size={20}
           cursorColor={Colors.mainGray}
           speed="fast"
@@ -161,7 +159,9 @@ const Ground_Touch_Page_3 = ({
             key="2"
           >
             <TypewriterText
-              text="How would you describe its texture?"
+              text={t(
+                "tools.ground_yourself.touch.page_3.slide_2.instruction_1",
+              )}
               textColor={Colors.darkGray}
               size={20}
               cursorColor={Colors.mainGray}
@@ -170,7 +170,9 @@ const Ground_Touch_Page_3 = ({
               showOverflow={true}
             />
             <TypewriterText
-              text="(enter an adjective in the field below)"
+              text={t(
+                "tools.ground_yourself.touch.page_3.slide_2.instruction_2",
+              )}
               textColor={Colors.mainGray}
               size={12}
               speed="fast"
@@ -215,7 +217,9 @@ const Ground_Touch_Page_3 = ({
             key="3"
           >
             <TypewriterText
-              text="Can you tell what color is it?"
+              text={t(
+                "tools.ground_yourself.touch.page_3.slide_3.instruction_1",
+              )}
               textColor={Colors.darkGray}
               cursorColor={Colors.mainGray}
               size={20}
@@ -224,7 +228,9 @@ const Ground_Touch_Page_3 = ({
               isActive={activeInput === "color"}
             />
             <TypewriterText
-              text="(pick using the color picker below)"
+              text={t(
+                "tools.ground_yourself.touch.page_3.slide_3.instruction_2",
+              )}
               textColor={Colors.mainGray}
               size={12}
               speed="fast"
@@ -248,7 +254,9 @@ const Ground_Touch_Page_3 = ({
                 <Text
                   style={{ color: Colors.darkGray, fontFamily: "Kodchasan" }}
                 >
-                  Selected Color:
+                  {t(
+                    "tools.ground_yourself.touch.page_3.slide_3.selected_color",
+                  )}
                 </Text>
                 <View
                   className="mt-3 h-12 w-12 rounded-full"
@@ -287,7 +295,9 @@ const Ground_Touch_Page_3 = ({
             key="4"
           >
             <TypewriterText
-              text="How does it make you feel?"
+              text={t(
+                "tools.ground_yourself.touch.page_3.slide_4.instruction_1",
+              )}
               textColor={Colors.darkGray}
               cursorColor={Colors.mainGray}
               size={20}
@@ -296,7 +306,9 @@ const Ground_Touch_Page_3 = ({
               isActive={activeInput === "feel"}
             />
             <TypewriterText
-              text="(enter a feeling or an adjective)"
+              text={t(
+                "tools.ground_yourself.touch.page_3.slide_4.instruction_2",
+              )}
               textColor={Colors.mainGray}
               size={12}
               speed="fast"

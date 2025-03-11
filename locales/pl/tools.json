@@ -36,6 +36,45 @@
         }
       }
     },
+    "ground_yourself": {
+      "title": "Ćwiczenia uziemiające",
+      "description": "Z tym narzędzie będziesz praktykować <bold>ćwiczenia uziemiające</bold> za pomocą prostych technik typu mindfulness, podobnych do stosowanych w terapii DBT.\n\nNa ekranie zobaczysz <bold>instrukcje krok po kroku</bold>—po prostu za nimi podążaj, aby przejść się przez proces. Możesz przerwać w dowolnym momencie, ale zalecamy przejście przez wszystkie ćwiczenia - zajmie Ci to ok. <bold>10-15 minut</bold>.",
+      "common": {
+        "now_deep_breath": "Dobrze, teraz weźmy głęboki oddech.",
+        "another_deep_breath": "Dobrze, teraz jeszcze kilka głębokich oddechów.",
+        "head_to_next_exercise": "Teraz przejdziemy do kolejnego ćwiczenia, które pomoże ci się jeszcze bardziej ugruntować."
+      },
+
+      "touch": {
+        "title": "Dotyk",
+        "page_1": {
+          "instruction_1": "W tym ćwiczeniu spróbujesz uziemić się z pomocą zmysłu dotyku."
+        },
+        "page_2": {
+          "instruction_2": "Teraz, oddychając nadal w tym samym tempie, połóż jedną dłoń na swoim udzie.",
+          "instruction_3": "(możesz również, jeśli wolisz, dotknąć powierzchni, na której siedzisz)"
+        },
+        "page_3": {
+          "instruction_1": "Skup się na powierzchni, której w tej chwili dotykasz.",
+          "slide_2": {
+            "instruction_1": "Jak opisałbyś jej fakturę?",
+            "instruction_2": "(wpisz przymiotnik w polu poniżej)"
+          },
+          "slide_3": {
+            "instruction_1": "Potrafisz wskazać jej kolor?",
+            "instruction_2": "(wybierz kolor za pomocą selektora poniżej)",
+            "selected_color": "Wybrany kolor:"
+          },
+          "slide_4": {
+            "instruction_1": "Jakie uczucia to w tobie wywołuje?",
+            "instruction_2": "(wpisz uczucie lub przymiotnik)"
+          }
+        },
+        "page_4": {
+          "instruction_2": "(zwracając nadal uwagę na fakturę, kolor i uczucia, które budzi rzecz, której właśnie dotykasz)"
+        }
+      }
+    },
     "cda": {
       "title": "Analiza zniekształceń",
       "description": "Analiza zniekształceń poznawczych to ćwiczenie zaprojektowane w celu identyfikacji negatywnych wzorców myślenia.\n\nBędziesz <bold>opisywać</bold> sytuację, <bold>zauważać</bold> automatyczną myśl, <bold>identyfikować</bold> zniekształcenia poznawcze i <bold>przekształcać</bold> myśl w bardziej racjonalną.\n\nAby uzyskać więcej informacji, przejdź do szczegółowego opisu, klikając poniższy link.",

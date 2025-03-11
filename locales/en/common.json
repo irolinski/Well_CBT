@@ -60,6 +60,9 @@
     "about_me": "About Me"
   },
   "languages": { "en": "English", "pl": "Polish" },
+  "instructions": {
+    "tap_button_below": "Tap the button below to proceed."
+  },
   "errors": {
     "wrong_way": {
       "header_1": "Wrong way!",
