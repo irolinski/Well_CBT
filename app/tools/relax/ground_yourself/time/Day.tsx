@@ -16,10 +16,9 @@ import { Picker } from '@react-native-picker/picker';
 
 const Ground_Time_Day = ({
   exerciseName,
-  objKey,
   onButtonPress,
 }: GroundYourselfSlideProps) => {
-  const { t } = useTranslation("common");
+  const { t } = useTranslation(["tools", "common"]);
 
   const [currentInstruction, setCurrentInstruction] = useState<
     | "instruction_1"
@@ -101,7 +100,7 @@ const Ground_Time_Day = ({
             isActive={currentInstruction === "day_of_week_input"}
           >
             <TypewriterText
-              text="Hey, let's stop for a second!"
+              text={t("tools.ground_yourself.time.day.instruction_1")}
               speed="medium"
               isActive={currentInstruction === "instruction_1"}
               cursorColor={Colors.mainGray}
@@ -120,7 +119,7 @@ const Ground_Time_Day = ({
               style={{ transform: [{ translateY: instruction2PositionAnim }] }}
             >
               <TypewriterText
-                text="Do you remember what day is it today?"
+                text={t("tools.ground_yourself.time.day.instruction_2")}
                 isActive={currentInstruction === "instruction_2"}
                 cursorColor={Colors.mainGray}
                 delaySeconds={3}
@@ -151,7 +150,9 @@ const Ground_Time_Day = ({
                   }}
                 >
                   <View key="1" className="h-full">
-                    <Text className="text-xl">Select a day:</Text>
+                    <Text className="text-xl">
+                      {t("tools.ground_yourself.time.day.select_a_day")}
+                    </Text>
                     <Picker
                       style={{
                         padding: 0,
@@ -193,7 +194,9 @@ const Ground_Time_Day = ({
                       <TypewriterText
                         isActive={currentSlide === 1}
                         text={
-                          exerciseIsCorrect ? "Good job!" : "Oops, actually..."
+                          exerciseIsCorrect
+                            ? t("tools.ground_yourself.time.day.success")
+                            : t("tools.ground_yourself.time.day.failure")
                         }
                         cursorColor={Colors.mainGray}
                       />
@@ -203,7 +206,7 @@ const Ground_Time_Day = ({
                         className="mt-4"
                         size={26}
                         speed="very_fast"
-                        text={`Today it's... `}
+                        text={t("tools.ground_yourself.time.day.today_its")}
                         cursorColor={Colors.mainGray}
                         onFinish={() => {
                           setCurrentInstruction("result");
@@ -256,7 +259,12 @@ const Ground_Time_Day = ({
                               ],
                             }}
                           >
-                            {dayNamesFromMonday[currentDayOfWeekNum - 1]}
+                            {t(
+                              "dates.days." +
+                                dayNamesFromMonday[currentDayOfWeekNum - 1] +
+                                ".full",
+                              { ns: "common" },
+                            )}
                           </Animated.Text>
                           {/* underline */}
                           <Animated.View

@@ -44,7 +44,7 @@ const exercises = [
       Ground_Touch_Page_4,
     ],
   },
-  { name: "day", pages: [Ground_Time_Day] },
+  { name: "time.day", pages: [Ground_Time_Day] },
   {
     name: "body",
     pages: [

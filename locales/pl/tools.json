@@ -48,10 +48,19 @@
         "date": {
           "title": "Data",
           "instruction_1": "Hej, zatrzymajmy się na chwilę!",
-          "instruction_2": "Czy pamiętasz, jaka jest dzisiaj data?",
+          "instruction_2": "Czy pamiętasz, jaka jest dziś data?",
           "todays_date_is": "Dzisiejsza data to",
           "success": "Świetnie!",
           "failure": "Ups, tak właściwie..."
+        },
+        "day": {
+          "title": "Dzień",
+          "instruction_1": "Hej, zatrzymajmy się na sekundę!",
+          "instruction_2": "Czy pamiętasz, jaki dziś dzień tygodnia?",
+          "select_a_day": "Wybierz dzień:",
+          "today_its": "Dziś jest...",
+          "success": "Świetnie!",
+          "failure": "Ups, właściwie to..."
         }
       },
       "touch": {

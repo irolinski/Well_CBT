@@ -48,6 +48,16 @@
           "todays_date_is": "Today's date is",
           "success": "Great!",
           "failure": "Oops, actually..."
+        },
+        "day": {
+          "title": "Day",
+          "instruction_1": "Hey, let's stop for a second!",
+
+          "instruction_2": "Do you remember what day is it today?",
+          "select_a_day": "Select a day:",
+          "today_its": "Today it's...",
+          "success": "Great!",
+          "failure": "Oops, actually..."
         }
       },
 
