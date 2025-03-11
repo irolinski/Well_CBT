@@ -41,6 +41,9 @@
       "friday": { "full": "Friday", "short": "Fri." },
       "saturday": { "full": "Saturday", "short": "Sat." }
     },
+    "day": "Day",
+    "month": "Month",
+    "year": "Year",
     "today": "Today",
     "yesterday": "Yesterday",
     "days_ago_one": "day ago",

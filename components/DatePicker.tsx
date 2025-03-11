@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { Text, TextInput, View } from "react-native";
-import { Colors } from "@/constants/styles/colorTheme";
+import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Text, TextInput, View } from 'react-native';
+import { Colors } from '@/constants/styles/colorTheme';
 
 export type DatePickerReturnObj = {
   day: string;
@@ -39,6 +40,8 @@ const DayTextInput = ({
   disabled = false,
   showInputTitle = true,
 }: DatePickerInputPropTypes) => {
+  const { t } = useTranslation(["common"]);
+
   return (
     <View className="items-center">
       <TextInput
@@ -68,7 +71,9 @@ const DayTextInput = ({
         maxLength={2}
         returnKeyType="done"
       />
-      <View className="h-4">{showInputTitle ? <Text>Day</Text> : null}</View>
+      <View className="h-4">
+        {showInputTitle ? <Text>{t("dates.day")}</Text> : null}
+      </View>
     </View>
   );
 };
@@ -81,6 +86,8 @@ const MonthTextInput = ({
   disabled = false,
   showInputTitle = true,
 }: DatePickerInputPropTypes) => {
+  const { t } = useTranslation(["common"]);
+
   return (
     <View className="items-center">
       <TextInput
@@ -110,7 +117,9 @@ const MonthTextInput = ({
         maxLength={2}
         returnKeyType="done"
       />
-      <View className="h-4">{showInputTitle ? <Text>Month</Text> : null}</View>
+      <View className="h-4">
+        {showInputTitle ? <Text>{t("dates.month")}</Text> : null}
+      </View>
     </View>
   );
 };
@@ -123,6 +132,8 @@ const YearTextInput = ({
   disabled = false,
   showInputTitle = true,
 }: DatePickerInputPropTypes) => {
+  const { t } = useTranslation(["common"]);
+
   return (
     <View className="items-center">
       <TextInput
@@ -146,7 +157,9 @@ const YearTextInput = ({
         maxLength={4}
         returnKeyType="done"
       />
-      <View className="h-4">{showInputTitle ? <Text>Year</Text> : null}</View>
+      <View className="h-4">
+        {showInputTitle ? <Text>{t("dates.year")}</Text> : null}
+      </View>
     </View>
   );
 };

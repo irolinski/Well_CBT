@@ -1,18 +1,18 @@
-import React, { useRef, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { Animated, Easing, NativeSyntheticEvent, View } from "react-native";
-import PagerView from "react-native-pager-view";
-import { Double } from "react-native/Libraries/Types/CodegenTypes";
-import ArrowRightButton from "@/components/ArrowRightButton";
-import DatePicker from "@/components/DatePicker";
-import FadeInView from "@/components/FadeInView";
-import Text from "@/components/global/Text";
-import GroundYourselfSlideFrame from "@/components/tools/ground_yourself/GroundYourselfSlideFrame";
-import TypewriterText from "@/components/TypewriterText";
-import { GroundYourselfSlideProps } from "@/constants/models/tools/ground_yourself";
-import { Colors } from "@/constants/styles/colorTheme";
-import { SCREEN_HEIGHT } from "@/constants/styles/values";
-import { numToString_addZero } from "@/utils/dates";
+import React, { useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Animated, Easing, NativeSyntheticEvent, View } from 'react-native';
+import PagerView from 'react-native-pager-view';
+import { Double } from 'react-native/Libraries/Types/CodegenTypes';
+import ArrowRightButton from '@/components/ArrowRightButton';
+import DatePicker from '@/components/DatePicker';
+import FadeInView from '@/components/FadeInView';
+import Text from '@/components/global/Text';
+import GroundYourselfSlideFrame from '@/components/tools/ground_yourself/GroundYourselfSlideFrame';
+import TypewriterText from '@/components/TypewriterText';
+import { GroundYourselfSlideProps } from '@/constants/models/tools/ground_yourself';
+import { Colors } from '@/constants/styles/colorTheme';
+import { SCREEN_HEIGHT } from '@/constants/styles/values';
+import { numToString_addZero } from '@/utils/dates';
 
 const getCurrentDateObj = () => {
   const currentDate = new Date();
@@ -29,7 +29,7 @@ const Ground_Time_Day = ({
   objKey,
   onButtonPress,
 }: GroundYourselfSlideProps) => {
-  const { t, i18n } = useTranslation("common");
+  const { t, i18n } = useTranslation(["tools", "common"]);
   const currentLanguage = i18n.language;
 
   const [currentInstruction, setCurrentInstruction] = useState<
@@ -132,7 +132,7 @@ const Ground_Time_Day = ({
             isActive={currentInstruction === "date_input"}
           >
             <TypewriterText
-              text="Hey, stop for a second!"
+              text={t("tools.ground_yourself.time.date.instruction_1")}
               speed="medium"
               isActive={currentInstruction === "instruction_1"}
               cursorColor={Colors.mainGray}
@@ -151,7 +151,7 @@ const Ground_Time_Day = ({
               style={{ transform: [{ translateY: instruction2PositionAnim }] }}
             >
               <TypewriterText
-                text="Do you recall what's the date today?"
+                text={t("tools.ground_yourself.time.date.instruction_2")}
                 isActive={currentInstruction === "instruction_2"}
                 cursorColor={Colors.mainGray}
                 delaySeconds={3}
@@ -182,7 +182,10 @@ const Ground_Time_Day = ({
                   }}
                 >
                   <View key="1" className="h-full">
-                    <Text className="text-xl">Today's date is:</Text>
+                    <Text className="text-xl">
+                      {t("tools.ground_yourself.time.date.todays_date_is") +
+                        ":"}
+                    </Text>
                     <DatePicker
                       onChange={(date) => setSelectedDate(date)}
                       dateFormat={currentLanguage === "en" ? "YMD" : "DMY"}
@@ -206,7 +209,9 @@ const Ground_Time_Day = ({
                       <TypewriterText
                         isActive={currentSlide === 1}
                         text={
-                          exerciseIsCorrect ? "Great!" : "Oops, actually..."
+                          exerciseIsCorrect
+                            ? t("tools.ground_yourself.time.date.success")
+                            : t("tools.ground_yourself.time.date.failure")
                         }
                         cursorColor={Colors.mainGray}
                       />
@@ -216,7 +221,10 @@ const Ground_Time_Day = ({
                         className="mt-4"
                         size={26}
                         speed="very_fast"
-                        text={`Today's date is... `}
+                        text={
+                          t("tools.ground_yourself.time.date.todays_date_is") +
+                          "..."
+                        }
                         cursorColor={Colors.mainGray}
                         onFinish={() => {
                           setCurrentInstruction("result");

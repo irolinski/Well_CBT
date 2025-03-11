@@ -25,16 +25,7 @@ import Ground_Touch_Page_3 from './touch/page_3';
 import Ground_Touch_Page_4 from './touch/page_4';
 
 const exercises = [
-  {
-    name: "touch",
-    pages: [
-      Ground_Touch_Page_1,
-      Ground_Touch_Page_2,
-      Ground_Touch_Page_3,
-      Ground_Touch_Page_4,
-    ],
-  },
-  { name: "date", pages: [Ground_Time_Date] },
+  { name: "time.date", pages: [Ground_Time_Date] },
   {
     name: "environment",
     pages: [
@@ -42,6 +33,15 @@ const exercises = [
       Ground_Environment_Page_2,
       Ground_Environment_Page_3,
       Ground_Environment_Page_4,
+    ],
+  },
+  {
+    name: "touch",
+    pages: [
+      Ground_Touch_Page_1,
+      Ground_Touch_Page_2,
+      Ground_Touch_Page_3,
+      Ground_Touch_Page_4,
     ],
   },
   { name: "day", pages: [Ground_Time_Day] },

@@ -44,7 +44,16 @@
         "another_deep_breath": "Dobrze, teraz jeszcze kilka głębokich oddechów.",
         "head_to_next_exercise": "Teraz przejdziemy do kolejnego ćwiczenia, które pomoże ci się jeszcze bardziej ugruntować."
       },
-
+      "time": {
+        "date": {
+          "title": "Data",
+          "instruction_1": "Hej, zatrzymajmy się na chwilę!",
+          "instruction_2": "Czy pamiętasz, jaka jest dzisiaj data?",
+          "todays_date_is": "Dzisiejsza data to",
+          "success": "Świetnie!",
+          "failure": "Ups, tak właściwie..."
+        }
+      },
       "touch": {
         "title": "Dotyk",
         "page_1": {

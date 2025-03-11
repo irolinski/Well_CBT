@@ -42,7 +42,13 @@
       "friday": { "full": "Piątek", "short": "Pią." },
       "saturday": { "full": "Sobota", "short": "Sob." }
     },
-    "today": "Dziś"
+    "day": "Dzień",
+    "month": "Miesiąc",
+    "year": "Rok",
+    "today": "Dziś",
+    "yesterday": "Wczoraj",
+    "days_ago_one": "dzień temu",
+    "days_ago_other": "dni temu"
   },
   "nav_elements": {
     "step_count": "Krok {{current}} <muted>z {{total}}</muted>"

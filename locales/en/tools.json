@@ -40,6 +40,16 @@
         "another_deep_breath": "Ok, now, let's do another deep breath.",
         "head_to_next_exercise": "Now, we'll head to the next exercise which will help ground you further"
       },
+      "time": {
+        "date": {
+          "title": "Date",
+          "instruction_1": "Hey, let's stop for a second!",
+          "instruction_2": "Do you recall what's the date today?",
+          "todays_date_is": "Today's date is",
+          "success": "Great!",
+          "failure": "Oops, actually..."
+        }
+      },
 
       "touch": {
         "title": "Touch",
