@@ -38,7 +38,7 @@
     },
     "ground_yourself": {
       "title": "Ćwiczenia uziemiające",
-      "description": "Z tym narzędzie będziesz praktykować <bold>ćwiczenia uziemiające</bold> za pomocą prostych technik typu mindfulness, podobnych do stosowanych w terapii DBT.\n\nNa ekranie zobaczysz <bold>instrukcje krok po kroku</bold>—po prostu za nimi podążaj, aby przejść się przez proces. Możesz przerwać w dowolnym momencie, ale zalecamy przejście przez wszystkie ćwiczenia - zajmie Ci to ok. <bold>10-15 minut</bold>.",
+      "description": "Z tym narzędziem będziesz praktykować <bold>ćwiczenia uziemiające</bold> za pomocą prostych technik typu mindfulness, podobnych do stosowanych w terapii DBT.\n\nNa ekranie zobaczysz <bold>instrukcje krok po kroku</bold>—po prostu za nimi podążaj, aby przejść się przez proces. Możesz przerwać w dowolnym momencie, ale zalecamy przejście przez wszystkie ćwiczenia - zajmie Ci to ok. <bold>10-15 minut</bold>.",
       "common": {
         "now_deep_breath": "Dobrze, teraz weźmy kilka głębokich oddechów.",
         "another_deep_breath": "Dobrze, teraz jeszcze kilka głębokich oddechów.",
@@ -63,11 +63,36 @@
           "failure": "Ups, właściwie to..."
         }
       },
+      "environment": {
+        "title": "Otoczenie",
+        "title_extended": "Uważność w otoczeniu",
+        "page_1": {
+          "instruction_1": "To narzędzie pomoże Ci w uziemieniu się poprzez uważne obserwowanie otoczenia."
+        },
+        "page_2": {
+          "instruction_2": "Teraz, podążając za tempem oddechu, rozejrzyj się dookoła",
+          "instruction_2_1": "Zwróć uwagę na rzeczy wokół siebie...",
+          "instruction_3": "Spróbuj określić ich kolory, kształty, faktury..."
+        },
+        "page_3": {
+          "header": "Obserwuj swoje otoczenie",
+          "instruction_1": "Wybierz 4 (lub mniej) rzeczy ze swojego otoczenia i dodaj je do poniższej listy.",
+          "add_item": "Dodaj rzecz",
+          "add_a_new_item": "Dodaj nową rzecz",
+          "add_a_new_adjective": "Nowy przymiotnik",
+          "describe_item": "Opisz rzecz",
+          "things_around_me": "Rzeczy wokół mnie:"
+        },
+        "page_4": {
+          "instruction_1": "(nadal obserwując, co się dzieje wokół Ciebie)",
+          "instruction_2": "Teraz przejdziemy do kolejnego ćwiczenia, które pomoże Ci w dalszym uziemianiu."
+        }
+      },
       "body": {
         "title": "Ciało",
         "title_extended": "Poczuj swoje ciało",
         "page_1": {
-          "instruction_1": "To krótkie ćwiczenie ma na celu pomóc Ci nawiązać kontakt ze swoim ciałem."
+          "instruction_1": "To krótkie ćwiczenie ma na celu pomóc Ci odbudować kontakt ze swoim ciałem."
         },
         "page_2": {
           "instruction_1": "Teraz, podążając za rytmem wyznaczonym przez oddech, spróbuj skupić się na swoim ciele.",

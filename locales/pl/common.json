@@ -16,7 +16,8 @@
     "save_changes": "Zachowaj zmiany",
     "start": "Start",
     "pause": "Pauza",
-    "go_back": "Wróć"
+    "go_back": "Wróć",
+    "done": "Gotowe"
   },
   "dates": {
     "months": {
@@ -64,7 +65,8 @@
   },
   "languages": { "en": "Angielski", "pl": "Polski" },
   "instructions": {
-    "tap_button_below": "Naciśnij przycisk poniżej, żeby przejść dalej"
+    "tap_button_below": "Naciśnij przycisk poniżej, żeby przejść dalej",
+    "tap_here_to_type": "Wpisz tutaj"
   },
   "errors": {
     "wrong_way": {

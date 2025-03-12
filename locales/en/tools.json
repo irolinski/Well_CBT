@@ -60,12 +60,36 @@
           "failure": "Oops, actually..."
         }
       },
-
+      "environment": {
+        "title": "Environment",
+        "title_extended": "Being in the environment",
+        "page_1": {
+          "instruction_1": "In the following exercise you'll ground yourself by observing your environment."
+        },
+        "page_2": {
+          "instruction_2": "Now, following this beathing pace, look around you",
+          "instruction_2_1": "Notice the things around you...",
+          "instruction_3": "Try to think of how would you describe their colours, shapes, textures..."
+        },
+        "page_3": {
+          "header": "Notice your surroundings",
+          "instruction_1": "From the things around you, choose 4 (or less). Then, add them to the list below.",
+          "add_item": "Add item",
+          "add_a_new_item": "Add a new item",
+          "add_a_new_adjective": "Add a new adjective",
+          "describe_item": "Describe item",
+          "things_around_me": "Things around me:"
+        },
+        "page_4": {
+          "instruction_1": "(while still noticing what's around you)",
+          "instruction_2": "Now, we'll head to the next exercise which will help ground you further"
+        }
+      },
       "body": {
         "title": "Body",
         "title_extended": "Feeling Your Body",
         "page_1": {
-          "instruction_1": "This short exercise aims to help you reastablish your connection with your body."
+          "instruction_1": "This short exercise aims to help you reestablish your connection with your body."
         },
         "page_2": {
           "instruction_1": "Now, following this breathing pace, try to focus on your body.",
@@ -88,7 +112,6 @@
           "instruction_2": "(while noticing the sensations in your hands, legs, feet and back)"
         }
       },
-
       "touch": {
         "title": "Touch",
         "page_1": {

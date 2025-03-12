@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Animated, Easing, View } from "react-native";
 import { useSelector } from "react-redux";
 import ArrowRightButton from "@/components/ArrowRightButton";
@@ -20,6 +21,8 @@ const Ground_Environment_Page_2 = ({
   objKey,
   onButtonPress,
 }: GroundYourselfSlideProps) => {
+  const { t } = useTranslation(["tools", "common"]);
+
   const groundYourselfToolState = useSelector(
     (state: RootState) => state.ground_yourself,
   );
@@ -105,7 +108,7 @@ const Ground_Environment_Page_2 = ({
           onFinish={() => liftInstruction2PositionAnim(1000).start()}
         >
           <TypewriterText
-            text="Ok, now, let's take a deep breath"
+            text={t("tools.ground_yourself.common.now_deep_breath")}
             size={20}
             cursorColor={Colors.mainGray}
             speed="very_fast"
@@ -130,7 +133,12 @@ const Ground_Environment_Page_2 = ({
                     className="z-10 text-2xl"
                     style={{ color: Colors.offWhite, fontFamily: "Kodchasan" }}
                   >
-                    {breatheState}
+                    {breatheState === "in" &&
+                      t("tools.breathing.exercise.commands.breathe_in")}
+                    {breatheState === "out" &&
+                      t("tools.breathing.exercise.commands.breathe_out")}
+                    {breatheState === "hold" &&
+                      t("tools.breathing.exercise.commands.hold")}
                   </Text>
                 </View>
                 <Animated.View
@@ -169,7 +177,7 @@ const Ground_Environment_Page_2 = ({
         >
           <TypewriterText
             className="mb-8"
-            text="Now, following this breathing pace, take a look around."
+            text={t("tools.ground_yourself.environment.page_2.instruction_2")}
             size={20}
             cursorColor={Colors.mainGray}
             speed="fast"
@@ -181,7 +189,9 @@ const Ground_Environment_Page_2 = ({
             className="my-4"
           >
             <TypewriterText
-              text="Notice the things around you..."
+              text={t(
+                "tools.ground_yourself.environment.page_2.instruction_2_1",
+              )}
               textColor={Colors.darkGray}
               cursorColor={Colors.mainGray}
               size={15}
@@ -192,7 +202,7 @@ const Ground_Environment_Page_2 = ({
             />
             <TypewriterText
               className="mt-8"
-              text="Try to think of how would you describe their colours, shapes, textures..."
+              text={t("tools.ground_yourself.environment.page_2.instruction_3")}
               textColor={Colors.darkGray}
               cursorColor={Colors.mainGray}
               size={15}

@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Animated, Easing, View } from "react-native";
 import { useSelector } from "react-redux";
 import ArrowRightButton from "@/components/ArrowRightButton";
@@ -20,6 +21,7 @@ const Ground_Environment_Page_4 = ({
   objKey,
   onButtonPress,
 }: GroundYourselfSlideProps) => {
+  const { t } = useTranslation(["tools", "common"]);
   const groundYourselfToolState = useSelector(
     (state: RootState) => state.ground_yourself,
   );
@@ -103,14 +105,14 @@ const Ground_Environment_Page_4 = ({
           onFinish={() => liftInstruction2PositionAnim(1000).start()}
         >
           <TypewriterText
-            text="Ok, now, let's do another deep breath."
+            text={t("tools.ground_yourself.common.another_deep_breath")}
             size={20}
             cursorColor={Colors.mainGray}
             speed="very_fast"
             isActive={groundYourselfToolState.currentSlide === objKey}
           />
           <TypewriterText
-            text="(while noticing the sensations in your hands, legs, feet and back)"
+            text={t("tools.ground_yourself.environment.page_4.instruction_1")}
             textColor={Colors.mainGray}
             size={12}
             speed="fast"
@@ -137,7 +139,12 @@ const Ground_Environment_Page_4 = ({
                     className="z-10 text-2xl"
                     style={{ color: Colors.offWhite, fontFamily: "Kodchasan" }}
                   >
-                    {breatheState}
+                    {breatheState === "in" &&
+                      t("tools.breathing.exercise.commands.breathe_in")}
+                    {breatheState === "out" &&
+                      t("tools.breathing.exercise.commands.breathe_out")}
+                    {breatheState === "hold" &&
+                      t("tools.breathing.exercise.commands.hold")}
                   </Text>
                 </View>
                 <Animated.View
@@ -177,7 +184,9 @@ const Ground_Environment_Page_4 = ({
           <View className="mb-8">
             <View>
               <TypewriterText
-                text="Now, we'll head to the next exercise which will help ground you further"
+                text={t(
+                  "tools.ground_yourself.environment.page_4.instruction_2",
+                )}
                 size={20}
                 cursorColor={Colors.mainGray}
                 speed="fast"
@@ -188,7 +197,13 @@ const Ground_Environment_Page_4 = ({
           </View>
           <FadeInView isActive={instruction2IsActive}>
             <TypewriterText
-              text="(tap the button below to proceed)"
+              text={
+                "(" +
+                t("instructions.tap_button_below", {
+                  ns: "common",
+                }).toLowerCase() +
+                ")"
+              }
               textColor={Colors.darkGray}
               cursorColor={Colors.mainGray}
               size={14}

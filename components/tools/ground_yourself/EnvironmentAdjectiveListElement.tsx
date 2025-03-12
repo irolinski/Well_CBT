@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   ColorValue,
   Keyboard,
@@ -20,6 +21,18 @@ const adjectiveColors = [
   "#4391BC",
 ];
 
+type EnvironmentAdjectiveListElementType = {
+  value: string;
+  color: ColorValue;
+  isAvailable: boolean;
+  isCurrentlyEdited: boolean;
+  onChangeText: (value: string) => void;
+  onConfirm: () => void;
+  onPressAdd: () => void;
+  onPressColor: (colorValue: ColorValue) => void;
+  indexNum: number;
+};
+
 const EnvironmentAdjectiveListElement = ({
   value,
   color,
@@ -30,17 +43,9 @@ const EnvironmentAdjectiveListElement = ({
   onPressAdd,
   onPressColor,
   indexNum,
-}: {
-  value: string;
-  color: ColorValue;
-  isAvailable: boolean;
-  isCurrentlyEdited: boolean;
-  onChangeText: (value: string) => void;
-  onConfirm: () => void;
-  onPressAdd: () => void;
-  onPressColor: (colorValue: ColorValue) => void;
-  indexNum: number;
-}) => {
+}: EnvironmentAdjectiveListElementType) => {
+  const { t } = useTranslation(["tools", "common"]);
+
   const [currentColorIndex, setCurrentColorIndex] = useState(0);
   return (
     <View className="flex-row">
@@ -63,9 +68,15 @@ const EnvironmentAdjectiveListElement = ({
           onChangeText={(val) => onChangeText(val)}
           placeholder={
             !value && !isCurrentlyEdited
-              ? "Add a new adjective"
+              ? t(
+                  "tools.ground_yourself.environment.page_3.add_a_new_adjective",
+                )
               : !value && isCurrentlyEdited
-                ? "Tap here to type"
+                ? "(" +
+                  t("instructions.tap_here_to_type", {
+                    ns: "common",
+                  }) +
+                  ")"
                 : ""
           }
           multiline={false}

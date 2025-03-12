@@ -15,7 +15,8 @@
     "save_changes": "Save changes",
     "start": "Start",
     "pause": "Pause",
-    "go_back": "Go back"
+    "go_back": "Go back",
+    "done": "Done"
   },
   "dates": {
     "months": {
@@ -49,7 +50,6 @@
     "days_ago_one": "day ago",
     "days_ago_other": "days ago"
   },
-
   "nav_elements": {
     "step_count": "Step {{current}} <muted>of {{total}}</muted>"
   },
@@ -64,7 +64,8 @@
   },
   "languages": { "en": "English", "pl": "Polish" },
   "instructions": {
-    "tap_button_below": "Tap the button below to proceed."
+    "tap_button_below": "Tap the button below to proceed.",
+    "tap_here_to_type": "Tap here to type"
   },
   "errors": {
     "wrong_way": {

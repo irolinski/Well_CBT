@@ -1,25 +1,32 @@
-import { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { ColorValue, Keyboard, Modal, Pressable, Text, View } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
-    GroundEnvironmentItemAdjectiveType
-} from '@/app/tools/relax/ground_yourself/environment/page_3';
-import NavigationModalButton from '@/components/NavigationModalButton';
-import { Colors } from '@/constants/styles/colorTheme';
-import { SCREEN_HEIGHT, SCREEN_WIDTH } from '@/constants/styles/values';
+  ColorValue,
+  Keyboard,
+  Modal,
+  Pressable,
+  Text,
+  View,
+} from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import { GroundEnvironmentItemAdjectiveType } from "@/app/tools/relax/ground_yourself/environment/page_3";
+import NavigationModalButton from "@/components/NavigationModalButton";
+import { Colors } from "@/constants/styles/colorTheme";
+import { SCREEN_HEIGHT, SCREEN_WIDTH } from "@/constants/styles/values";
 import {
-    defaultEnvironmentItem, setEnvironmentAdjectiveModalIsOpen, setEnvironmentItemsArr
-} from '@/state/features/tools/groundYourselfSlice';
-import { AppDispatch, RootState } from '@/state/store';
-import { Feather, MaterialCommunityIcons } from '@expo/vector-icons';
-import EnvironmentAdjectiveListElement from './EnvironmentAdjectiveListElement';
+  defaultEnvironmentItem,
+  setEnvironmentAdjectiveModalIsOpen,
+  setEnvironmentItemsArr,
+} from "@/state/features/tools/groundYourselfSlice";
+import { AppDispatch, RootState } from "@/state/store";
+import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
+import EnvironmentAdjectiveListElement from "./EnvironmentAdjectiveListElement";
 
 const MODAL_WIDTH = SCREEN_WIDTH * 0.8;
 const MAX_NUM_OF_ADJECTIVES = 3;
 
 const NavigationModal = () => {
-  const { t } = useTranslation(["common"]);
+  const { t } = useTranslation(["tools", "common"]);
   const groundYourselfToolState = useSelector(
     (state: RootState) => state.ground_yourself,
   );
@@ -110,7 +117,11 @@ const NavigationModal = () => {
             >
               <View className="mx-1.5">
                 <Text className="text-lg">
-                  <Text>{"Describe Item"}</Text>
+                  <Text>
+                    {t(
+                      "tools.ground_yourself.environment.page_3.describe_item",
+                    )}
+                  </Text>
                 </Text>
               </View>
             </View>
@@ -174,7 +185,9 @@ const NavigationModal = () => {
           >
             {/* here is a bug */}
             <NavigationModalButton
-              title={"Done"}
+              title={t("buttons.done", {
+                ns: "common",
+              })}
               onPress={() => {
                 const updatedItemsArr = [...environmentItemsArr];
 

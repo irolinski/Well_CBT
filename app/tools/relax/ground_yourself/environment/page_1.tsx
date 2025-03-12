@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import { useTranslation } from "react-i18next";
 import { Animated, View } from "react-native";
 import { useSelector } from "react-redux";
 import ArrowRightButton from "@/components/ArrowRightButton";
@@ -15,6 +16,8 @@ const Ground_Environment_Page_1 = ({
   objKey,
   onButtonPress,
 }: GroundYourselfSlideProps) => {
+  const { t } = useTranslation(["tools", "common"]);
+
   const groundYourselfToolState = useSelector(
     (state: RootState) => state.ground_yourself,
   );
@@ -33,7 +36,7 @@ const Ground_Environment_Page_1 = ({
             fontFamily: "Kodchasan",
           }}
         >
-          Describing Your Environment
+          {t("tools.ground_yourself.environment.title_extended")}
         </Text>
         <View
           style={{
@@ -41,7 +44,7 @@ const Ground_Environment_Page_1 = ({
           }}
         >
           <TypewriterText
-            text="In the following exercise you'll ground yourself by observing your environment."
+            text={t("tools.ground_yourself.environment.page_1.instruction_1")}
             size={20}
             cursorColor={Colors.mainGray}
             isActive={groundYourselfToolState.currentSlide === objKey}
@@ -57,7 +60,7 @@ const Ground_Environment_Page_1 = ({
           }}
         >
           <TypewriterText
-            text="Tap the button below to proceed."
+            text={t("instructions.tap_button_below", { ns: "common" })}
             speed="fast"
             isActive={groundYourselfToolState.currentSlide === objKey}
             delaySeconds={1.5}

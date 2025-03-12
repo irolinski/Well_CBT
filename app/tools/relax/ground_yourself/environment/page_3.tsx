@@ -1,25 +1,33 @@
-import { Image } from 'expo-image';
-import React, { useEffect, useRef, useState } from 'react';
-import { Animated, ColorValue, Keyboard, NativeSyntheticEvent, View } from 'react-native';
-import PagerView from 'react-native-pager-view';
-import { Double } from 'react-native/Libraries/Types/CodegenTypes';
-import { useDispatch, useSelector } from 'react-redux';
-import { groundYourselfImages } from '@/assets/images/tools/ground_yourself/ground_yourself';
-import ArrowRightButton from '@/components/ArrowRightButton';
-import FadeInView from '@/components/FadeInView';
-import Text from '@/components/global/Text';
-import EnvironmentAdjectiveModal from '@/components/tools/ground_yourself/EnvironmentAdjectiveModal';
-import EnvironmentItemsListElement from '@/components/tools/ground_yourself/EnvironmentItemsListElement';
-import GroundYourselfSlideFrame from '@/components/tools/ground_yourself/GroundYourselfSlideFrame';
-import TypewriterText from '@/components/TypewriterText';
-import { GroundYourselfSlideProps } from '@/constants/models/tools/ground_yourself';
-import { Colors } from '@/constants/styles/colorTheme';
-import { SCREEN_HEIGHT } from '@/constants/styles/values';
+import { Image } from "expo-image";
+import React, { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
-    defaultEnvironmentItem, setEnvironmentItemsArr
-} from '@/state/features/tools/groundYourselfSlice';
-import { AppDispatch, RootState } from '@/state/store';
-import { FontAwesome } from '@expo/vector-icons';
+  Animated,
+  ColorValue,
+  Keyboard,
+  NativeSyntheticEvent,
+  View,
+} from "react-native";
+import PagerView from "react-native-pager-view";
+import { Double } from "react-native/Libraries/Types/CodegenTypes";
+import { useDispatch, useSelector } from "react-redux";
+import { groundYourselfImages } from "@/assets/images/tools/ground_yourself/ground_yourself";
+import ArrowRightButton from "@/components/ArrowRightButton";
+import FadeInView from "@/components/FadeInView";
+import Text from "@/components/global/Text";
+import EnvironmentAdjectiveModal from "@/components/tools/ground_yourself/EnvironmentAdjectiveModal";
+import EnvironmentItemsListElement from "@/components/tools/ground_yourself/EnvironmentItemsListElement";
+import GroundYourselfSlideFrame from "@/components/tools/ground_yourself/GroundYourselfSlideFrame";
+import TypewriterText from "@/components/TypewriterText";
+import { GroundYourselfSlideProps } from "@/constants/models/tools/ground_yourself";
+import { Colors } from "@/constants/styles/colorTheme";
+import { SCREEN_HEIGHT } from "@/constants/styles/values";
+import {
+  defaultEnvironmentItem,
+  setEnvironmentItemsArr,
+} from "@/state/features/tools/groundYourselfSlice";
+import { AppDispatch, RootState } from "@/state/store";
+import { FontAwesome } from "@expo/vector-icons";
 
 const FIRST_SLIDE_TIME_MS = 2500;
 const MAX_NUM_OF_ITEMS = 4;
@@ -48,6 +56,8 @@ const Ground_Environment_Page_3 = ({
   objKey,
   onButtonPress,
 }: GroundYourselfSlideProps) => {
+  const { t } = useTranslation(["tools", "common"]);
+
   const groundYourselfToolState = useSelector(
     (state: RootState) => state.ground_yourself,
   );
@@ -116,7 +126,7 @@ const Ground_Environment_Page_3 = ({
           <View className="h-full w-full items-center justify-start" key="1">
             <View className="w-full">
               <TypewriterText
-                text="Notice your surroundings"
+                text={t("tools.ground_yourself.environment.page_3.header")}
                 className="mt-4"
                 size={22}
                 cursorColor={Colors.mainGray}
@@ -171,7 +181,9 @@ const Ground_Environment_Page_3 = ({
                 isActive={currentInstruction === "item_list"}
               >
                 <TypewriterText
-                  text="From the things around you, choose 4 (or less). Then, add them to the list below."
+                  text={t(
+                    "tools.ground_yourself.environment.page_3.instruction_1",
+                  )}
                   size={22}
                   cursorColor={Colors.mainGray}
                   speed="fast"
@@ -212,10 +224,13 @@ const Ground_Environment_Page_3 = ({
                           ],
                         }}
                       >
-                        +
+                        {"+"}
                       </Text>
                     </View>
-                    <Text> Add item</Text>
+                    <Text>
+                      {" "}
+                      {t("tools.ground_yourself.environment.page_3.add_item")}
+                    </Text>
                   </View>
                   <View className="flex-row items-center">
                     <View
@@ -230,7 +245,11 @@ const Ground_Environment_Page_3 = ({
                         color={Colors.white}
                       />
                     </View>
-                    <Text>Describe item</Text>
+                    <Text>
+                      {t(
+                        "tools.ground_yourself.environment.page_3.describe_item",
+                      )}
+                    </Text>
                   </View>
                 </View>
               </FadeInView>
@@ -243,7 +262,11 @@ const Ground_Environment_Page_3 = ({
               >
                 <View className="mb-4 w-full flex-row">
                   <Text className="justify-start text-xl">
-                    Things around me:
+                    <Text>
+                      {t(
+                        "tools.ground_yourself.environment.page_3.things_around_me",
+                      )}
+                    </Text>
                   </Text>
                 </View>
                 <View className="px-4">
@@ -251,11 +274,6 @@ const Ground_Environment_Page_3 = ({
                     <EnvironmentItemsListElement
                       itemName={itemObj.itemName}
                       itemAdjectives={itemObj.itemAdjectives}
-                      // itemAdjectives={[
-                      //   { name: "Complicated", color: "#F7392d" },
-                      //   { name: "Fergielicious", color: "red" },
-                      //   { name: "Conscintious", color: "blue" },
-                      // ]}
                       isAvailable={!textInputIsActive}
                       isCurrentlyEdited={
                         textInputIsActive && indexNum === currentElementIndex
@@ -274,7 +292,6 @@ const Ground_Environment_Page_3 = ({
                       }}
                       onConfirm={() => {
                         Keyboard.dismiss();
-
                         if (environmentItemsArr.length < MAX_NUM_OF_ITEMS) {
                           const prev = [...environmentItemsArr];
                           const updatedArr = [...prev, defaultEnvironmentItem];

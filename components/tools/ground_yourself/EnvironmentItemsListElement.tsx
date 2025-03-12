@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { Keyboard, TextInput, TouchableOpacity, View } from "react-native";
 import { useDispatch } from "react-redux";
 import {
@@ -26,6 +27,7 @@ const EnvironmentItemsListElement = ({
   onConfirm,
   indexNum,
 }: EnvironmentItemsListElementProps) => {
+  const { t } = useTranslation(["tools", "common"]);
   const dispatch = useDispatch<AppDispatch>();
 
   return (
@@ -49,9 +51,13 @@ const EnvironmentItemsListElement = ({
           onChangeText={(val) => onChangeText(val)}
           placeholder={
             !itemName && !isCurrentlyEdited
-              ? "Add a new item"
+              ? t("tools.ground_yourself.environment.page_3.add_a_new_item", {})
               : !itemName && isCurrentlyEdited
-                ? "Tap here to type"
+                ? "(" +
+                  t("instructions.tap_here_to_type", {
+                    ns: "common",
+                  }) +
+                  ")"
                 : ""
           }
           multiline={false}
