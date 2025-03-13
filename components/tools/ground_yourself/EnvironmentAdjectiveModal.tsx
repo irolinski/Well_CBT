@@ -188,9 +188,9 @@ const NavigationModal = () => {
               title={t("buttons.done", {
                 ns: "common",
               })}
+              disabled={textInputIsActive}
               onPress={() => {
                 const updatedItemsArr = [...environmentItemsArr];
-
                 let updatedAdjectivesArr = adjectivesArr;
                 // filter out empty positions
                 updatedAdjectivesArr = updatedAdjectivesArr.filter(
