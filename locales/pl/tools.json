@@ -143,6 +143,12 @@
         "page_4": {
           "instruction_2": "(zwracając nadal uwagę na fakturę, kolor i uczucia, które budzi rzecz, której właśnie dotykasz)"
         }
+      },
+      "finish": {
+        "congratulations": "Gratulacje!",
+        "instruction_1": "Ukończyłeś wszystkie nasze ćwiczenia uziemiające!",
+        "instruction_2": "Mamy nadzieję, że pomogliśmy Ci stać dziś twardo na ziemi.",
+        "instruction_3": "Możesz tu wracać tak często jak tylko zechcesz!"
       }
     },
     "cda": {

@@ -25,34 +25,34 @@ import Ground_Touch_Page_3 from './touch/page_3';
 import Ground_Touch_Page_4 from './touch/page_4';
 
 const exercises = [
-  {
-    name: "body",
-    pages: [
-      Ground_Body_Page_1,
-      Ground_Body_Page_2,
-      Ground_Body_Page_3,
-      Ground_Body_Page_4,
-    ],
-  },
-  { name: "time.date", pages: [Ground_Time_Date] },
-  {
-    name: "environment",
-    pages: [
-      Ground_Environment_Page_1,
-      Ground_Environment_Page_2,
-      Ground_Environment_Page_3,
-      Ground_Environment_Page_4,
-    ],
-  },
-  {
-    name: "touch",
-    pages: [
-      Ground_Touch_Page_1,
-      Ground_Touch_Page_2,
-      Ground_Touch_Page_3,
-      Ground_Touch_Page_4,
-    ],
-  },
+  // {
+  //   name: "body",
+  //   pages: [
+  //     Ground_Body_Page_1,
+  //     Ground_Body_Page_2,
+  //     Ground_Body_Page_3,
+  //     Ground_Body_Page_4,
+  //   ],
+  // },
+  // { name: "time.date", pages: [Ground_Time_Date] },
+  // {
+  //   name: "environment",
+  //   pages: [
+  //     Ground_Environment_Page_1,
+  //     Ground_Environment_Page_2,
+  //     Ground_Environment_Page_3,
+  //     Ground_Environment_Page_4,
+  //   ],
+  // },
+  // {
+  //   name: "touch",
+  //   pages: [
+  //     Ground_Touch_Page_1,
+  //     Ground_Touch_Page_2,
+  //     Ground_Touch_Page_3,
+  //     Ground_Touch_Page_4,
+  //   ],
+  // },
   { name: "time.day", pages: [Ground_Time_Day] },
 ];
 

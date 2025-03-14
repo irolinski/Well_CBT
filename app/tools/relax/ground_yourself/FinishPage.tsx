@@ -42,14 +42,14 @@ const Ground_Finish_Page = ({
     <GroundYourselfSlideFrame exerciseName={exerciseName}>
       <View>
         <TypewriterText
-          text={"Congratulations!"}
+          text={t("tools.ground_yourself.finish.congratulations")}
           size={24}
           isActive={currentInstruction === "instruction_1"}
         ></TypewriterText>
         <View className="mt-6">
           <TypewriterText
             size={20}
-            text={"You have completed all of our grounding exercises!"}
+            text={t("tools.ground_yourself.finish.instruction_1")}
             delaySeconds={2.5}
             onFinish={() => {
               setCurrentInstruction("instruction_2");
@@ -61,7 +61,7 @@ const Ground_Finish_Page = ({
             className="mt-4"
             textColor={Colors.mainGray}
             size={18}
-            text="We hope you're feeling a bit better now."
+            text={t("tools.ground_yourself.finish.instruction_2")}
             onFinish={() => {
               setCurrentInstruction("image");
             }}
@@ -85,7 +85,7 @@ const Ground_Finish_Page = ({
           <TypewriterText
             textColor={Colors.mainGray}
             size={18}
-            text="Come back here anytime you need!"
+            text={t("tools.ground_yourself.finish.instruction_3")}
             onFinish={() => {
               setCurrentInstruction("buttons");
             }}
@@ -114,7 +114,7 @@ const Ground_Finish_Page = ({
                   {ToolCategories.journal.iconBright}
                 </View>
                 <Text className="mt-2" style={{ letterSpacing: 1.25 }}>
-                  Go to journal
+                  {t("buttons.go_to_journal", { ns: "common" })}
                 </Text>
               </View>
             </TouchableOpacity>
@@ -132,7 +132,7 @@ const Ground_Finish_Page = ({
                   {ToolCategories.exercise.iconBright}
                 </View>
                 <Text className="mt-2" style={{ letterSpacing: 1.25 }}>
-                  Return to Tools
+                  {t("buttons.return_to_tools", { ns: "common" })}
                 </Text>
               </View>
             </TouchableOpacity>

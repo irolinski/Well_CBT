@@ -140,6 +140,12 @@
         "page_4": {
           "instruction_2": "(while meditating on the texture, color of the thing that you're touching right now and the feelings that it evokes)"
         }
+      },
+      "finish": {
+        "congratulations": "Congratulations!",
+        "instruction_1": "You have completed all of our grounding exercises!",
+        "instruction_2": "We hope that we have helped you stand firm on the ground today.",
+        "instruction_3": "Come back here anytime you need!"
       }
     },
     "cda": {
