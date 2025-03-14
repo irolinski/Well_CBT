@@ -1,47 +1,125 @@
-import React from "react";
-import { Animated, TouchableOpacity, View } from "react-native";
-import TypewriterText from "@/components/TypewriterText";
-import { Colors } from "@/constants/styles/colorTheme";
-import { SCREEN_HEIGHT } from "@/constants/styles/values";
-import { Entypo, Feather } from "@expo/vector-icons";
+import React, { useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Animated, View } from 'react-native';
+import { useSelector } from 'react-redux';
+import ArrowRightButton from '@/components/ArrowRightButton';
+import FadeInView from '@/components/FadeInView';
+import Text from '@/components/global/Text';
+import GroundYourselfSlideFrame from '@/components/tools/ground_yourself/GroundYourselfSlideFrame';
+import TypewriterText from '@/components/TypewriterText';
+import { GroundYourselfSlideProps } from '@/constants/models/tools/ground_yourself';
+import { Colors } from '@/constants/styles/colorTheme';
+import { SCREEN_HEIGHT } from '@/constants/styles/values';
+import { RootState } from '@/state/store';
+import { Entypo } from '@expo/vector-icons';
 
 const Ground_Touch_Page_1 = ({
+  exerciseName,
+  objKey,
   onButtonPress,
-}: {
-  onButtonPress: () => void;
-}) => {
+}: GroundYourselfSlideProps) => {
+  const { t } = useTranslation(["tools", "common"]);
+
+  const groundYourselfToolState = useSelector(
+    (state: RootState) => state.ground_yourself,
+  );
+  // Animated value for rotation
+  const waveAnimRef = useRef(new Animated.Value(0)).current;
+
+  // Interpolate rotation degrees
+  const rotate = waveAnimRef.interpolate({
+    inputRange: [-1, 0, 1],
+    outputRange: ["-20deg", "0deg", "20deg"],
+  });
+
+  const waveHandAnim = () => {
+    return Animated.sequence([
+      Animated.timing(waveAnimRef, {
+        toValue: 1,
+        duration: 300,
+        useNativeDriver: true,
+      }),
+      Animated.timing(waveAnimRef, {
+        toValue: -1,
+        duration: 300,
+        useNativeDriver: true,
+      }),
+      Animated.timing(waveAnimRef, {
+        toValue: 0,
+        duration: 300,
+        useNativeDriver: true,
+      }),
+    ]);
+  };
+
+  // Start waving animation on mount
+  useEffect(() => {
+    if (groundYourselfToolState.currentSlide === objKey) {
+      waveHandAnim().start();
+    }
+  }, [groundYourselfToolState.currentSlide]);
+
   return (
-    <Animated.View key="1">
-      <TypewriterText
-        text="With this exercise you will try to ground yourself using the sense of touch."
-        size={20}
-        letterSpacing={1.25}
-        lineHeight={1.25}
-        speed="medium"
-      />
-      <View
-        className="flex-row justify-center"
-        style={{ marginTop: SCREEN_HEIGHT * 0.1 }}
+    <GroundYourselfSlideFrame exerciseName={exerciseName}>
+      <Animated.View
+        key={objKey}
+        style={{
+          paddingTop: SCREEN_HEIGHT > 750 ? SCREEN_HEIGHT * 0.05 : null,
+        }}
       >
-        <Entypo name="hand" size={44} color={Colors.mainGray} />
-      </View>
-      <View style={{ marginTop: SCREEN_HEIGHT * 0.1 }}>
+        <Text
+          className="mb-4 text-2xl font-semibold"
+          style={{ fontFamily: "Kodchasan" }}
+        >
+          {t("tools.ground_yourself.touch.title")}
+        </Text>
+        <FadeInView
+          className="flex-row justify-center"
+          style={{
+            marginTop: SCREEN_HEIGHT * 0.1,
+            marginBottom: SCREEN_HEIGHT * 0.1,
+          }}
+          duration={1500}
+          inputVal={0.1}
+          outputVal={1}
+        >
+          <Animated.View style={{ transform: [{ rotate }] }}>
+            <Entypo
+              name="hand"
+              size={SCREEN_HEIGHT * 0.075}
+              color={Colors.mainGray}
+            />
+          </Animated.View>
+        </FadeInView>
         <TypewriterText
-          text="Tap the button below to proceed."
-          speed="fast"
-          size={18}
-          color={Colors.mainGray}
-          hideCursorOnFinish={false}
+          text={t("tools.ground_yourself.touch.page_1.instruction_1")}
+          size={20}
+          cursorColor={Colors.mainGray}
+          isActive={groundYourselfToolState.currentSlide === objKey}
+          letterSpacing={1.25}
+          lineHeight={1.25}
+          speed="fastest"
         />
-      </View>
-      <TouchableOpacity
-        className="flex-row justify-center"
-        style={{ marginTop: SCREEN_HEIGHT * 0.15 }}
-        onPress={() => onButtonPress()}
-      >
-        <Feather name="arrow-right-circle" size={48} color={Colors.mainGray} />
-      </TouchableOpacity>
-    </Animated.View>
+
+        <View style={{ marginTop: SCREEN_HEIGHT * 0.025 }}>
+          <TypewriterText
+            text={t("instructions.tap_button_below", { ns: "common" })}
+            speed="fast"
+            isActive={groundYourselfToolState.currentSlide === objKey}
+            delaySeconds={1.5}
+            size={18}
+            textColor={Colors.mainGray}
+            hideCursorOnFinish={false}
+          />
+        </View>
+        <View className="flex-row justify-center">
+          <ArrowRightButton
+            style={{ marginTop: SCREEN_HEIGHT * 0.15 }}
+            onPress={onButtonPress}
+          />
+        </View>
+      </Animated.View>
+    </GroundYourselfSlideFrame>
   );
 };
 

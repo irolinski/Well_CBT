@@ -49,7 +49,7 @@ const Page_finish = () => {
                 }}
               />
               <SecondaryButton
-                title={t("buttons.go_to_journal", { ns: "common" })}
+                title={t("buttons.see_journal", { ns: "common" })}
                 className="w-[45%]"
                 onPress={() => {}}
               />

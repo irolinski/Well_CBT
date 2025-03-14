@@ -32,6 +32,122 @@
         }
       }
     },
+    "ground_yourself": {
+      "title": "Ground Yourself",
+      "description": "In the following exercise, you'll practice <bold>grounding yourself</bold> using simple DBT techniques. \n\nYou'll see <bold>step-by-step instructions</bold> on the screen—just follow along to guide yourself through the process.",
+      "common": {
+        "now_deep_breath": "Ok, now, let's take a deep breath",
+        "another_deep_breath": "Ok, now, let's do another deep breath.",
+        "head_to_next_exercise": "Now, we'll head to the next exercise which will help ground you further"
+      },
+      "time": {
+        "date": {
+          "title": "Date",
+          "instruction_1": "Hey, let's stop for a second!",
+          "instruction_2": "Do you recall what's the date today?",
+          "todays_date_is": "Today's date is",
+          "success": "Great!",
+          "failure": "Oops, actually..."
+        },
+        "day": {
+          "title": "Day",
+          "instruction_1": "Hey, let's stop for a second!",
+
+          "instruction_2": "Do you remember what day is it today?",
+          "select_a_day": "Select a day:",
+          "today_its": "Today it's...",
+          "success": "Great!",
+          "failure": "Oops, actually..."
+        }
+      },
+      "environment": {
+        "title": "Environment",
+        "title_extended": "Being in the environment",
+        "page_1": {
+          "instruction_1": "In the following exercise you'll ground yourself by observing your environment."
+        },
+        "page_2": {
+          "instruction_2": "Now, following this beathing pace, look around you",
+          "instruction_2_1": "Notice the things around you...",
+          "instruction_3": "Try to think of how would you describe their colours, shapes, textures..."
+        },
+        "page_3": {
+          "header": "Notice your surroundings",
+          "instruction_1": "From the things around you, choose 4 (or less). Then, add them to the list below.",
+          "add_item": "Add item",
+          "add_a_new_item": "Add a new item",
+          "add_a_new_adjective": "Add a new adjective",
+          "describe_item": "Describe item",
+          "things_around_me": "Things around me:"
+        },
+        "page_4": {
+          "instruction_1": "(while still noticing what's around you)",
+          "instruction_2": "Now, we'll head to the next exercise which will help ground you further"
+        }
+      },
+      "body": {
+        "title": "Body",
+        "title_extended": "Feeling Your Body",
+        "page_1": {
+          "instruction_1": "This short exercise aims to help you reestablish your connection with your body."
+        },
+        "page_2": {
+          "instruction_1": "Now, following this breathing pace, try to focus on your body.",
+          "instruction_2": "(while doing this exercise, take notice of your physical sensations)"
+        },
+        "page_3": {
+          "instruction_1": "Let's try to feel your body",
+          "toes_1": "First, wiggle your feet",
+          "toes_2": "Now, stretch your legs and toes",
+          "toes_3": "(meditate on this feeling - when you're ready, tap the button below)",
+          "fingers_1": "Now, stretch your fingers",
+          "fingers_2": "(hands can follow their lead if they wish)",
+          "back_1": "Now, focus on your back",
+          "back_2": "Feel it around, stretch it out",
+          "back_3": "(when you're done, tap the button to proceed)",
+          "feel_1": "Now, name one sensation you feel in any of your limbs",
+          "feel_2": "(it can also be a feeling you got while doing this exercise)"
+        },
+        "page_4": {
+          "instruction_2": "(while noticing the sensations in your hands, legs, feet and back)"
+        }
+      },
+      "touch": {
+        "title": "Touch",
+        "page_1": {
+          "instruction_1": "With this exercise you will try to ground yourself using the sense of touch."
+        },
+        "page_2": {
+          "instruction_2": "Now, following this breathing pace, place one of your hands firmly on one of your thighs.",
+          "instruction_3": "(you may also use a surface on which you're sitting if that's what you prefer)"
+        },
+        "page_3": {
+          "instruction_1": "Focus on the surface you're touching right now.",
+          "slide_2": {
+            "instruction_1": "How would you describe its texture?",
+            "instruction_2": "(enter an adjective in the field below)"
+          },
+          "slide_3": {
+            "instruction_1": "Can you tell what color is it?",
+            "instruction_2": "(pick using the color picker below)",
+            "selected_color": "Selected Color:"
+          },
+          "slide_4": {
+            "instruction_1": "How does it make you feel?",
+            "instruction_2": "(enter a feeling or an adjective)"
+          }
+        },
+        "page_4": {
+          "instruction_2": "(while meditating on the texture, color of the thing that you're touching right now and the feelings that it evokes)"
+        }
+      },
+      "finish": {
+        "congratulations": "Congratulations!",
+        "instruction_1": "You have completed all of our grounding exercises!",
+        "instruction_2": "We hope that we have helped you stand firm on the ground today.",
+        "instruction_3": "Come back here anytime you need!"
+      }
+    },
     "cda": {
       "title": "Thoughts Challange",
       "description": "Cognitive Distortion Analysis is an exercise designed to target negative thought patterns.\n\nYou’ll <bold>describe</bold> a situation, <bold>note</bold> an automatic thought, <bold>identify</bold> any cognitive distortions, and <bold>reformulate</bold> the thought more rationally.\n\nFor more details, go to a detailed by clicking the link below.",

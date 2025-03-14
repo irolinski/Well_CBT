@@ -1,5 +1,12 @@
 import { useEffect, useState } from "react";
-import { Animated, Text, View } from "react-native";
+import {
+  Animated,
+  ColorValue,
+  StyleProp,
+  Text,
+  View,
+  ViewStyle,
+} from "react-native";
 import { Colors } from "@/constants/styles/colorTheme";
 
 const speedValues = {
@@ -7,14 +14,17 @@ const speedValues = {
   medium: 125,
   fast: 100,
   very_fast: 75,
-  fastest: 50,
+  fastest: 55,
 };
 
 interface TypewriterTextProps {
   text: string;
+  className?: string;
+  style?: StyleProp<ViewStyle>;
   speed?: keyof typeof speedValues;
   size?: number;
-  color?: string;
+  textColor?: ColorValue;
+  cursorColor?: ColorValue;
   fontFamily?: string;
   letterSpacing?: number;
   lineHeight?: 1.25 | 1.5 | 2 | 2.5 | 3 | 3.5 | 4;
@@ -22,13 +32,17 @@ interface TypewriterTextProps {
   showOverflow?: boolean;
   isActive?: boolean;
   delaySeconds?: number;
+  onFinish?: () => any;
 }
 
 const TypewriterText = ({
   text = "",
+  className = "",
+  style,
   speed = "fast",
   size = 24,
-  color = Colors.offBlack,
+  textColor = Colors.offBlack,
+  cursorColor,
   fontFamily = "",
   letterSpacing = 1.5,
   lineHeight = 1.5,
@@ -36,6 +50,7 @@ const TypewriterText = ({
   showOverflow = false, //true prevents visial glitches in some usecases
   isActive = true,
   delaySeconds,
+  onFinish,
 }: TypewriterTextProps) => {
   // state
   const [displayedText, setDisplayedText] = useState("");
@@ -64,7 +79,7 @@ const TypewriterText = ({
           useNativeDriver: true,
         }),
       ]),
-    ).start();
+    ).start(onFinish && onFinish);
   };
 
   // Run cursor blinking
@@ -121,12 +136,16 @@ const TypewriterText = ({
 
   return (
     <View
-      style={{
-        position: "relative",
-        justifyContent: "center",
-        alignItems: "center",
-        overflow: showOverflow ? "visible" : "hidden",
-      }}
+      className={className}
+      style={[
+        {
+          position: "relative",
+          justifyContent: "center",
+          alignItems: "center",
+          overflow: showOverflow ? "visible" : "hidden",
+        },
+        style,
+      ]}
     >
       {/* Placeholder Text Component
        - it's here to make space for the actual text so that the
@@ -147,7 +166,7 @@ const TypewriterText = ({
         <Text
           style={{
             fontFamily: fontFamily,
-            color: color,
+            color: textColor,
             fontSize: size,
             letterSpacing: letterSpacing,
             lineHeight: size * lineHeight,
@@ -162,7 +181,7 @@ const TypewriterText = ({
               transform: [{ translateX: size / 2 }],
               marginBottom: lineHeight * 2.25 * lineHeight - lineHeight,
               opacity: cursorOpacity,
-              backgroundColor: color,
+              backgroundColor: cursorColor ? cursorColor : textColor,
             }}
           />
         </Text>

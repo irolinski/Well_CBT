@@ -1,7 +1,8 @@
-import { ReactNode } from 'react';
-import { Colors } from '@/constants/styles/colorTheme';
-import { Feather, MaterialCommunityIcons } from '@expo/vector-icons';
-import { monthNames } from '../dates';
+import { Href } from "expo-router";
+import { ReactNode } from "react";
+import { Colors } from "@/constants/styles/colorTheme";
+import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
+import { monthNames } from "../dates";
 
 type ToolType = {
   name: string;
@@ -9,6 +10,7 @@ type ToolType = {
   icon?: ReactNode;
   iconBright?: ReactNode;
   requiresInput?: boolean;
+  URI: Href;
 };
 
 export const toolNameList = ["cda", "journal", "breathing"];
@@ -53,6 +55,7 @@ export const ToolList: Record<ToolNames, ToolType> = {
       />
     ),
     requiresInput: true,
+    URI: "/tools/classic_cbt/cda",
   },
   journal: {
     name: "journal",
@@ -72,12 +75,14 @@ export const ToolList: Record<ToolNames, ToolType> = {
       />
     ),
     requiresInput: true,
+    URI: "/tools/classic_cbt/journal",
   },
   breathing: {
     name: "breathing",
     category: "relax",
     icon: <Feather name="wind" size={32} color={Colors.mainGray} />,
     iconBright: <Feather name="wind" size={32} color={Colors.white} />,
+    URI: "/tools/relax/breathing/Breathe",
   },
 };
 

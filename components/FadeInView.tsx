@@ -1,20 +1,26 @@
 import React, { useEffect, useRef } from "react";
-import { Animated, Easing } from "react-native";
+import { Animated, Easing, StyleProp, ViewStyle } from "react-native";
 
 type FadeInViewProps = {
   children: React.ReactNode;
+  className?: string;
+  style?: StyleProp<ViewStyle>;
   isActive?: boolean;
   duration?: number;
   inputVal?: number;
   outputVal?: number;
+  onFinish?: () => any;
 };
 
 const FadeInView = ({
   children,
+  className,
   isActive = true,
   duration = 1500,
   inputVal = 0.5,
   outputVal = 1,
+  style,
+  onFinish,
 }: FadeInViewProps) => {
   const fadeAnim = useRef(new Animated.Value(inputVal)).current;
 
@@ -24,7 +30,7 @@ const FadeInView = ({
       duration: duration,
       useNativeDriver: true,
       easing: Easing.linear,
-    }).start();
+    }).start(onFinish && onFinish);
   };
 
   useEffect(() => {
@@ -34,7 +40,9 @@ const FadeInView = ({
   }, [isActive]);
 
   return (
-    <Animated.View style={{ opacity: fadeAnim }}>{children}</Animated.View>
+    <Animated.View className={className} style={[{ opacity: fadeAnim }, style]}>
+      {children}
+    </Animated.View>
   );
 };
 

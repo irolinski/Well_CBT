@@ -8,14 +8,16 @@
     "next": "Next",
     "finish": "Finish",
     "again": "Do one more?",
-    "go_to_journal": "See journal",
+    "see_journal": "See Journal",
+    "go_to_journal": "Go to Journal",
     "return_to_tools": "Return to Tools",
     "save_to_journal": "Save to journal",
     "save_preferences": "Save preferences",
     "save_changes": "Save changes",
     "start": "Start",
     "pause": "Pause",
-    "go_back": "Go back"
+    "go_back": "Go back",
+    "done": "Done"
   },
   "dates": {
     "months": {
@@ -41,12 +43,14 @@
       "friday": { "full": "Friday", "short": "Fri." },
       "saturday": { "full": "Saturday", "short": "Sat." }
     },
+    "day": "Day",
+    "month": "Month",
+    "year": "Year",
     "today": "Today",
     "yesterday": "Yesterday",
     "days_ago_one": "day ago",
     "days_ago_other": "days ago"
   },
-
   "nav_elements": {
     "step_count": "Step {{current}} <muted>of {{total}}</muted>"
   },
@@ -60,6 +64,10 @@
     "about_me": "About Me"
   },
   "languages": { "en": "English", "pl": "Polish" },
+  "instructions": {
+    "tap_button_below": "Tap the button below to proceed.",
+    "tap_here_to_type": "Tap here to type"
+  },
   "errors": {
     "wrong_way": {
       "header_1": "Wrong way!",

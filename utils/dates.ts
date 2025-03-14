@@ -26,9 +26,7 @@ export const getOrdinalSuffix = (number: number) => {
 export const numToString_addZero = (number: number) => {
   let numString: string = String(number);
   if (numString.length === 1) {
-    if (numString[0] !== "0") {
-      numString = `0${numString[0]}`;
-    }
+    numString = `0${numString[0]}`;
   }
   return numString;
 };
@@ -120,7 +118,7 @@ export const convertIsoToEuropeanDate = (dateStr: string): string => {
   const datePattern = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/;
 
   if (!datePattern.test(dateStr)) {
-    console.log(
+    console.error(
       "Invalid date format. Expected YYYY-MM-DD (ISO 8601). Returning date string unchanged in ISO format.",
     );
     return dateStr;

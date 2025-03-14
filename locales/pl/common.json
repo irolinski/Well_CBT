@@ -9,14 +9,15 @@
     "next": "Kolejna strona",
     "finish": "Zakończ",
     "again": "Jeszcze raz?",
-    "go_to_journal": "Idź do dziennika",
+    "go_to_journal": "Idź do Dziennika",
     "return_to_tools": "Idź do Narzędzi",
-    "save_to_journal": "Zapisz w dzienniku",
+    "save_to_journal": "Zapisz w Dzienniku",
     "save_preferences": "Zachowaj ustawienia",
     "save_changes": "Zachowaj zmiany",
     "start": "Start",
     "pause": "Pauza",
-    "go_back": "Wróć"
+    "go_back": "Wróć",
+    "done": "Gotowe"
   },
   "dates": {
     "months": {
@@ -42,7 +43,13 @@
       "friday": { "full": "Piątek", "short": "Pią." },
       "saturday": { "full": "Sobota", "short": "Sob." }
     },
-    "today": "Dziś"
+    "day": "Dzień",
+    "month": "Miesiąc",
+    "year": "Rok",
+    "today": "Dziś",
+    "yesterday": "Wczoraj",
+    "days_ago_one": "dzień temu",
+    "days_ago_other": "dni temu"
   },
   "nav_elements": {
     "step_count": "Krok {{current}} <muted>z {{total}}</muted>"
@@ -57,6 +64,10 @@
     "about_me": "O mnie"
   },
   "languages": { "en": "Angielski", "pl": "Polski" },
+  "instructions": {
+    "tap_button_below": "Naciśnij przycisk poniżej, żeby przejść dalej",
+    "tap_here_to_type": "Wpisz tutaj"
+  },
   "errors": {
     "wrong_way": {
       "header_1": "Ślepa uliczka!",

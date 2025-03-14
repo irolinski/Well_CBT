@@ -1,13 +1,17 @@
-import { ImageSource } from 'expo-image';
-import { Href } from 'expo-router';
-import { toolCardImages } from '@/assets/images/tools/cards/cards';
+import { ImageSource } from "expo-image";
+import { Href } from "expo-router";
+import { toolCardImages } from "@/assets/images/tools/cards/cards";
 
-type ToolName = "breathing" | "cda" | "journal" | "phone_a_friend";
+type ToolName =
+  | "breathing"
+  | "cda"
+  | "ground_yourself"
+  | "journal"
+  | "phone_a_friend";
 
 type ToolType = {
   name: ToolName;
   card_bg: ImageSource;
-  //   firstPage_bg: ExpoImage;
   link: Href;
   tutorial_link?: Href;
 };
@@ -28,11 +32,11 @@ export const journal_tool: ToolTypeWithForm = {
   num_of_pages: 6,
 };
 
-// const grounding_tool: ToolType = {
-//   name: "ground",
-//   card_bg: toolCardImages.grounding,
-//   link: "/tools/classic_cbt/grounding",
-// };
+export const groundYourself_tool: ToolType = {
+  name: "ground_yourself",
+  card_bg: toolCardImages.groundYourself,
+  link: "/tools/relax/ground_yourself",
+};
 
 export const breathing_tool: ToolType = {
   name: "breathing",
@@ -46,7 +50,10 @@ export const phoneAFriend_tool: ToolType = {
 };
 
 const cbtTools = { name: "cbt", tools: [cda_tool, journal_tool] };
-const relaxTools = { name: "relax", tools: [breathing_tool] };
+const relaxTools = {
+  name: "relax",
+  tools: [groundYourself_tool, breathing_tool],
+};
 const distractTools = { name: "distraction", tools: [phoneAFriend_tool] };
 
 export const allToolCategoriesArr = [cbtTools, relaxTools, distractTools];
