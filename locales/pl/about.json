@@ -27,7 +27,7 @@
     "storage": {
       "title": "Zapisane dane",
       "remove_all_data": "Usuń wszystkie zapisane dane",
-      "warning_message": "Przycisk poniżej usuwa wszystkie dane zapisane na Twoim urządzeniu, związane z tą aplikacją: wszystkie dane dotyczące ćwiczeń, osiągnięcia, statystyki użytkownika itp.",
+      "warning_message": "Przycisk poniżej usuwa wszystkie związane z tą aplikacją dane zapisane na Twoim urządzeniu: zapisane ćwiczenia, osiągnięcia, statystyki, profil użytkownika itd.",
       "remove_all_alert": {
         "header": "Czy na pewno chcesz kontynuować?",
         "body": "Ta akcja jest nieodwracalna.\nStracisz cały zapisany postęp!",
@@ -46,7 +46,7 @@
       "1": {
         "title": "Pierwsze kroki",
         "description_before": "Ukończ pierwsze ćwiczenie",
-        "description_after": "Zrobiłeś pierwszy krok, ukończyłeś swoje pierwsze ćwiczenie. Tak trzymaj!"
+        "description_after": "Pierwsze koty za płoty! Ukończyłeś swoje pierwsze ćwiczenie. Tak trzymaj!"
       },
       "2": {
         "title": "Miło mnie poznać",
@@ -56,27 +56,27 @@
       "3": {
         "title": "Początek rozmowy",
         "description_before": "Dodaj kontakt do znajomego i udostępnij temat rozmowy",
-        "description_after": "Otworzyłeś kanał komunikacji, dzieląc się tematem rozmowy. Kontynuuj!"
+        "description_after": "Rozpocząłeś rozmowę z przyjacielem na wylosowany temat. Niezłe wyjście z inicjatywą!"
       },
       "4": {
         "title": "Pierwsze zaangażowanie",
-        "description_before": "Odwiedź Well przez 7 kolejnych dni",
+        "description_before": "Odwiedź Well przez 7 dni z rzędu",
         "description_after": "Twoje zaangażowanie jest widoczne! Odwiedziłeś Well przez 7 dni z rzędu. Świetna robota!"
       },
       "5": {
         "title": "Użytkownik miesiąca",
-        "description_before": "Odwiedź Well przez 30 kolejnych dni",
+        "description_before": "Odwiedź Well przez 30 dni z rzędu",
         "description_after": "Odwiedzałeś Well przez 30 dni z rzędu. To naprawdę imponująca konsekwencja!"
       },
       "6": {
         "title": "Stała obecność",
         "description_before": "Odwiedź Well przez 180 dni (niekoniecznie z rzędu)",
-        "description_after": "Odwiedziłeś Well przez 180 różnych dni. Dziękujemy za Twoje zaangażowanie. Mamy nadzieję, że Twoja praca przynosi efekty!"
+        "description_after": "Odwiedziłeś Well w 180 różnych dni. Dziękujemy za Twoje zaangażowanie. Mamy nadzieję, że Twoja praca przynosi efekty!"
       },
       "7": {
-        "title": "Noworoczne postanowienie",
-        "description_before": "Odwiedź Well przez 365 dni (niekoniecznie z rzędu)",
-        "description_after": "Rok zaangażowania! Odwiedziłeś Well przez 365 dni. Kontynuuj tę niesamowitą pracę!"
+        "title": "Postanowienie noworoczne",
+        "description_before": "Odwiedź Well w 365 dni (niekoniecznie z rzędu)",
+        "description_after": "Rok zaangażowania! Odwiedziłeś Well w 365 dni. Kontynuuj tę niesamowitą pracę!"
       },
       "8": {
         "title": "Racjonalista",
@@ -86,7 +86,7 @@
       "9": {
         "title": "Mól książkowy",
         "description_before": "Przeczytaj 10 artykułów",
-        "description_after": "Poszerzyłeś swoją wiedzę, czytając 10 artykułów. Kontynuuj rozwój!"
+        "description_after": "Poszerzyłeś swoją wiedzę, czytając 10 artykułów. Oby tak dalej!"
       },
       "10": {
         "title": "Stoik",
