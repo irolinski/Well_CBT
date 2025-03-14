@@ -1,17 +1,143 @@
-import React from "react";
-import { Text, View } from "react-native";
-import GroundYourselfSlideFrame from "@/components/tools/ground_yourself/GroundYourselfSlideFrame";
-import { GroundYourselfSlideProps } from "@/constants/models/tools/ground_yourself";
+import { Image } from 'expo-image';
+import { Href, router } from 'expo-router';
+import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { TouchableOpacity, View } from 'react-native';
+import { useSelector } from 'react-redux';
+import { groundYourselfImages } from '@/assets/images/tools/ground_yourself/ground_yourself';
+import FadeInView from '@/components/FadeInView';
+import Text from '@/components/global/Text';
+import GroundYourselfSlideFrame from '@/components/tools/ground_yourself/GroundYourselfSlideFrame';
+import TypewriterText from '@/components/TypewriterText';
+import { ToolCategories, ToolList } from '@/constants/models/home/activity_log';
+import { GroundYourselfSlideProps } from '@/constants/models/tools/ground_yourself';
+import { Colors } from '@/constants/styles/colorTheme';
+import { SCREEN_HEIGHT } from '@/constants/styles/values';
+import { RootState } from '@/state/store';
 
 const Ground_Finish_Page = ({
   exerciseName,
   objKey,
-  onButtonPress,
 }: GroundYourselfSlideProps) => {
+  const { t } = useTranslation(["tools", "common"]);
+
+  const groundYourselfToolState = useSelector(
+    (state: RootState) => state.ground_yourself,
+  );
+  const [currentInstruction, setCurrentInstruction] = useState<
+    | "instruction_1"
+    | "instruction_2"
+    | "image"
+    | "instruction_3"
+    | "buttons"
+    | null
+  >(null);
+  useEffect(() => {
+    if (groundYourselfToolState.currentSlide === objKey) {
+      setCurrentInstruction("instruction_1");
+    }
+  }, [groundYourselfToolState.currentSlide]);
+
   return (
     <GroundYourselfSlideFrame exerciseName={exerciseName}>
       <View>
-        <Text>Ground_Finish_Page</Text>
+        <TypewriterText
+          text={"Congratulations!"}
+          size={24}
+          isActive={currentInstruction === "instruction_1"}
+        ></TypewriterText>
+        <View className="mt-6">
+          <TypewriterText
+            size={20}
+            text={"You have completed all of our grounding exercises!"}
+            delaySeconds={2.5}
+            onFinish={() => {
+              setCurrentInstruction("instruction_2");
+            }}
+            isActive={currentInstruction === "instruction_1"}
+          />
+
+          <TypewriterText
+            className="mt-4"
+            textColor={Colors.mainGray}
+            size={18}
+            text="We hope you're feeling a bit better now."
+            onFinish={() => {
+              setCurrentInstruction("image");
+            }}
+            isActive={currentInstruction === "instruction_2"}
+          />
+          <FadeInView
+            className="my-4 h-1/3 w-full flex-row justify-center"
+            inputVal={0}
+            outputVal={1}
+            duration={3000}
+            isActive={currentInstruction === "image"}
+            onFinish={() => {
+              setCurrentInstruction("instruction_3");
+            }}
+          >
+            <Image
+              style={{ width: 250, height: 150 }}
+              source={groundYourselfImages.relax_on_logo}
+            />
+          </FadeInView>
+          <TypewriterText
+            textColor={Colors.mainGray}
+            size={18}
+            text="Come back here anytime you need!"
+            onFinish={() => {
+              setCurrentInstruction("buttons");
+            }}
+            isActive={currentInstruction === "instruction_3"}
+          />
+
+          {/* Button row */}
+          <FadeInView
+            className="w-full flex-row justify-around"
+            style={{ marginTop: SCREEN_HEIGHT * 0.025 }}
+            isActive={currentInstruction === "buttons"}
+            inputVal={0}
+            outputVal={1}
+          >
+            <TouchableOpacity
+              className="flex-row justify-center"
+              onPress={() => {
+                router.replace(ToolList.journal.URI);
+              }}
+            >
+              <View className="items-center justify-center">
+                <View
+                  className="h-12 w-12 flex-row items-center justify-center rounded-full"
+                  style={[{ backgroundColor: Colors.mainBlue }]}
+                >
+                  {ToolCategories.journal.iconBright}
+                </View>
+                <Text className="mt-2" style={{ letterSpacing: 1.25 }}>
+                  Go to journal
+                </Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity
+              className="flex-row justify-center"
+              onPress={() => {
+                router.replace("tools" as Href);
+              }}
+            >
+              <View className="items-center justify-center">
+                <View
+                  className="h-12 w-12 flex-row items-center justify-center rounded-full"
+                  style={[{ backgroundColor: Colors.mainBlue }]}
+                >
+                  {ToolCategories.exercise.iconBright}
+                </View>
+                <Text className="mt-2" style={{ letterSpacing: 1.25 }}>
+                  Return to Tools
+                </Text>
+              </View>
+            </TouchableOpacity>
+          </FadeInView>
+        </View>
       </View>
     </GroundYourselfSlideFrame>
   );
