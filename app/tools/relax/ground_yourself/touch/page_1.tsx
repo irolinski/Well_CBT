@@ -1,17 +1,17 @@
-import React, { useEffect, useRef } from 'react';
-import { useTranslation } from 'react-i18next';
-import { Animated, View } from 'react-native';
-import { useSelector } from 'react-redux';
-import ArrowRightButton from '@/components/ArrowRightButton';
-import FadeInView from '@/components/FadeInView';
-import Text from '@/components/global/Text';
-import GroundYourselfSlideFrame from '@/components/tools/ground_yourself/GroundYourselfSlideFrame';
-import TypewriterText from '@/components/TypewriterText';
-import { GroundYourselfSlideProps } from '@/constants/models/tools/ground_yourself';
-import { Colors } from '@/constants/styles/colorTheme';
-import { SCREEN_HEIGHT } from '@/constants/styles/values';
-import { RootState } from '@/state/store';
-import { Entypo } from '@expo/vector-icons';
+import React, { useEffect, useRef } from "react";
+import { useTranslation } from "react-i18next";
+import { Animated, View } from "react-native";
+import { useSelector } from "react-redux";
+import ArrowRightButton from "@/components/ArrowRightButton";
+import FadeInView from "@/components/FadeInView";
+import Text from "@/components/global/Text";
+import GroundYourselfSlideFrame from "@/components/tools/ground_yourself/GroundYourselfSlideFrame";
+import TypewriterText from "@/components/TypewriterText";
+import { GroundYourselfSlideProps } from "@/constants/models/tools/ground_yourself";
+import { Colors } from "@/constants/styles/colorTheme";
+import { SCREEN_HEIGHT } from "@/constants/styles/values";
+import { RootState } from "@/state/store";
+import { Entypo } from "@expo/vector-icons";
 
 const Ground_Touch_Page_1 = ({
   exerciseName,
@@ -60,7 +60,7 @@ const Ground_Touch_Page_1 = ({
   }, [groundYourselfToolState.currentSlide]);
 
   return (
-    <GroundYourselfSlideFrame exerciseName={exerciseName}>
+    <GroundYourselfSlideFrame exerciseName={exerciseName} slideNum={objKey}>
       <Animated.View
         key={objKey}
         style={{

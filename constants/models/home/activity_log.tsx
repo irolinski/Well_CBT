@@ -1,7 +1,11 @@
 import { Href } from "expo-router";
 import { ReactNode } from "react";
 import { Colors } from "@/constants/styles/colorTheme";
-import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
+import {
+  Feather,
+  FontAwesome6,
+  MaterialCommunityIcons,
+} from "@expo/vector-icons";
 import { monthNames } from "../dates";
 
 type ToolType = {
@@ -13,8 +17,17 @@ type ToolType = {
   URI: Href;
 };
 
-export const toolNameList = ["cda", "journal", "breathing"];
-export type ToolNames = (typeof toolNameList)[number];
+const classicCBTToolNames = ["cda", "journal"] as const;
+export type classicCBTToolNames = (typeof classicCBTToolNames)[number];
+
+const relaxToolNames = ["breathing", "ground_yourself"] as const;
+export type RelaxToolNames = (typeof relaxToolNames)[number];
+
+export const allToolsNameList = [
+  ...classicCBTToolNames,
+  ...relaxToolNames,
+] as const;
+export type ToolNames = (typeof allToolsNameList)[number];
 
 export type JournalCardProps = {
   toolName: ToolNames;
@@ -83,6 +96,15 @@ export const ToolList: Record<ToolNames, ToolType> = {
     icon: <Feather name="wind" size={32} color={Colors.mainGray} />,
     iconBright: <Feather name="wind" size={32} color={Colors.white} />,
     URI: "/tools/relax/breathing/Breathe",
+  },
+  ground_yourself: {
+    name: "ground_yourself",
+    category: "relax",
+    icon: <FontAwesome6 name="street-view" size={24} color={Colors.mainGray} />,
+    iconBright: (
+      <FontAwesome6 name="street-view" size={24} color={Colors.white} />
+    ),
+    URI: "/tools/relax/ground_yourself",
   },
 };
 

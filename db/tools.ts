@@ -1,4 +1,5 @@
 import * as SQLite from "expo-sqlite";
+import { RelaxToolNames } from "@/constants/models/home/activity_log";
 import { cdaSliceTypes } from "@/state/features/tools/cdaSlice";
 import { journalSliceTypes } from "@/state/features/tools/journalSlice";
 import { dbName } from "./service";
@@ -31,7 +32,6 @@ export const handleSaveCDAEntry = async (cdaState: cdaSliceTypes) => {
               DATETIME('now', 'localtime')
             );
         `);
-      // console.log(await db.getAllAsync("SELECT * FROM cdaArchive"));
     } catch (err) {
       console.error(err);
     }
@@ -106,7 +106,10 @@ export const deleteJournalEntry = async (id: number) => {
   }
 };
 
-export const handleLogRelaxActivity = async (relaxTime: number) => {
+export const handleLogRelaxActivity = async (
+  activityName: RelaxToolNames,
+  relaxTime: number,
+) => {
   try {
     const db = await SQLite.openDatabaseAsync(dbName);
 
@@ -123,8 +126,18 @@ export const handleLogRelaxActivity = async (relaxTime: number) => {
     // Insert data into table
     // and save id to use it for joint emotion table
     await db.runAsync(`
-                  INSERT INTO relaxActivities (id, activityName, secondsRelaxed, datetime) VALUES (
-                    NULL, 'breathing', '${relaxTime}', DATETIME('now', 'localtime')
+                  INSERT INTO relaxActivities (
+                    id,
+                    activityName,
+                    secondsRelaxed,
+                    datetime
+                  ) VALUES (
+                    NULL,
+                    '${activityName}',
+                    '${relaxTime}',
+                    DATETIME('now',
+                    'localtime'
+                    )
                   );
                 `);
   } catch (err) {

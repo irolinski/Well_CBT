@@ -91,7 +91,7 @@ const Ground_Environment_Page_4 = ({
   }, [groundYourselfToolState.currentSlide]);
 
   return (
-    <GroundYourselfSlideFrame exerciseName={exerciseName}>
+    <GroundYourselfSlideFrame exerciseName={exerciseName} slideNum={objKey}>
       <View
         style={{
           paddingTop: SCREEN_HEIGHT > 750 ? SCREEN_HEIGHT * 0.05 : null,

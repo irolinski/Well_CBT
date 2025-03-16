@@ -1,20 +1,20 @@
-import { Image } from 'expo-image';
-import { LinearGradient } from 'expo-linear-gradient';
-import { router } from 'expo-router';
-import React, { useEffect, useRef, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { Animated, Easing, Pressable, View } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
-import AdvanceButton from '@/components/AdvanceButton';
-import Text from '@/components/global/Text';
-import { breathing_tool } from '@/constants/models/tools/tools';
-import { Colors } from '@/constants/styles/colorTheme';
-import { SCREEN_HEIGHT, SCREEN_WIDTH } from '@/constants/styles/values';
-import { handleLogRelaxActivity } from '@/db/tools';
-import { toggleModal } from '@/state/features/tools/breatheSettingsSlice';
-import { AppDispatch, RootState } from '@/state/store';
-import { Feather } from '@expo/vector-icons';
-import BreatheModal from './modal';
+import { Image } from "expo-image";
+import { LinearGradient } from "expo-linear-gradient";
+import { router } from "expo-router";
+import React, { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { Animated, Easing, Pressable, View } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import AdvanceButton from "@/components/AdvanceButton";
+import Text from "@/components/global/Text";
+import { breathing_tool } from "@/constants/models/tools/tools";
+import { Colors } from "@/constants/styles/colorTheme";
+import { SCREEN_HEIGHT, SCREEN_WIDTH } from "@/constants/styles/values";
+import { handleLogRelaxActivity } from "@/db/tools";
+import { toggleModal } from "@/state/features/tools/breatheSettingsSlice";
+import { AppDispatch, RootState } from "@/state/store";
+import { Feather } from "@expo/vector-icons";
+import BreatheModal from "./modal";
 
 const TOOL_NAME = breathing_tool.name;
 
@@ -236,7 +236,7 @@ const Breathe = () => {
       setCounterOn(false);
       if (!hasLoggedTimeToDb) {
         setHasLoggedTimeToDb(true);
-        handleLogRelaxActivity(ellapsedTime);
+        handleLogRelaxActivity("breathing", ellapsedTime);
       }
     }
 

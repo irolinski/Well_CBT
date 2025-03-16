@@ -1,12 +1,15 @@
-import { useTranslation } from 'react-i18next';
-import { Pressable, View } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
-import { toolNameList, ToolNames } from '@/constants/models/home/activity_log';
-import { Colors } from '@/constants/styles/colorTheme';
-import { setFilterCategories } from '@/state/features/menus/activityLogSlice';
-import { AppDispatch, RootState } from '@/state/store';
-import Text from '../global/Text';
-import RadioButton from '../RadioButton';
+import { useTranslation } from "react-i18next";
+import { Pressable, View } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  allToolsNameList,
+  ToolNames,
+} from "@/constants/models/home/activity_log";
+import { Colors } from "@/constants/styles/colorTheme";
+import { setFilterCategories } from "@/state/features/menus/activityLogSlice";
+import { AppDispatch, RootState } from "@/state/store";
+import Text from "../global/Text";
+import RadioButton from "../RadioButton";
 
 const CategoryFilter = () => {
   const { t } = useTranslation("tools");
@@ -28,7 +31,7 @@ const CategoryFilter = () => {
 
   return (
     <View className="my-4 w-full flex-row flex-wrap justify-between overflow-hidden">
-      {toolNameList.map((categoryName: ToolNames, index: number) => (
+      {allToolsNameList.map((categoryName: ToolNames, index: number) => (
         <Pressable
           className="mx-2 my-4"
           style={{ width: "40%" }}

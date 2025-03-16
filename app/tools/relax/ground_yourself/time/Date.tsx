@@ -1,18 +1,18 @@
-import React, { useRef, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { Animated, Easing, NativeSyntheticEvent, View } from 'react-native';
-import PagerView from 'react-native-pager-view';
-import { Double } from 'react-native/Libraries/Types/CodegenTypes';
-import ArrowRightButton from '@/components/ArrowRightButton';
-import DatePicker from '@/components/DatePicker';
-import FadeInView from '@/components/FadeInView';
-import Text from '@/components/global/Text';
-import GroundYourselfSlideFrame from '@/components/tools/ground_yourself/GroundYourselfSlideFrame';
-import TypewriterText from '@/components/TypewriterText';
-import { GroundYourselfSlideProps } from '@/constants/models/tools/ground_yourself';
-import { Colors } from '@/constants/styles/colorTheme';
-import { SCREEN_HEIGHT } from '@/constants/styles/values';
-import { numToString_addZero } from '@/utils/dates';
+import React, { useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { Animated, Easing, NativeSyntheticEvent, View } from "react-native";
+import PagerView from "react-native-pager-view";
+import { Double } from "react-native/Libraries/Types/CodegenTypes";
+import ArrowRightButton from "@/components/ArrowRightButton";
+import DatePicker from "@/components/DatePicker";
+import FadeInView from "@/components/FadeInView";
+import Text from "@/components/global/Text";
+import GroundYourselfSlideFrame from "@/components/tools/ground_yourself/GroundYourselfSlideFrame";
+import TypewriterText from "@/components/TypewriterText";
+import { GroundYourselfSlideProps } from "@/constants/models/tools/ground_yourself";
+import { Colors } from "@/constants/styles/colorTheme";
+import { SCREEN_HEIGHT } from "@/constants/styles/values";
+import { numToString_addZero } from "@/utils/dates";
 
 const getCurrentDateObj = () => {
   const currentDate = new Date();
@@ -111,7 +111,7 @@ const Ground_Time_Day = ({
   };
 
   return (
-    <GroundYourselfSlideFrame exerciseName={exerciseName}>
+    <GroundYourselfSlideFrame exerciseName={exerciseName} slideNum={objKey}>
       <View
         style={{
           paddingTop: SCREEN_HEIGHT > 750 ? SCREEN_HEIGHT * 0.05 : null,

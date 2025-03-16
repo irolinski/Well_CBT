@@ -1,22 +1,27 @@
-import { Image } from 'expo-image';
-import React, { useEffect, useRef, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { Animated, NativeSyntheticEvent, TouchableOpacity, View } from 'react-native';
-import PagerView from 'react-native-pager-view';
-import { Double } from 'react-native/Libraries/Types/CodegenTypes';
-import { useSelector } from 'react-redux';
-import ColorPicker, { Panel3 } from 'reanimated-color-picker';
-import { groundYourselfImages } from '@/assets/images/tools/ground_yourself/ground_yourself';
-import Text from '@/components/global/Text';
-import GroundYourselfSlideFrame from '@/components/tools/ground_yourself/GroundYourselfSlideFrame';
-import OneWordTextInput from '@/components/tools/ground_yourself/OneWordTextInput';
-import TypewriterText from '@/components/TypewriterText';
-import { GroundYourselfSlideProps } from '@/constants/models/tools/ground_yourself';
-import { Colors } from '@/constants/styles/colorTheme';
-import { SCREEN_HEIGHT } from '@/constants/styles/values';
-import { RootState } from '@/state/store';
-import { isValidName } from '@/utils/inputValidations';
-import { AntDesign } from '@expo/vector-icons';
+import { Image } from "expo-image";
+import React, { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
+import {
+  Animated,
+  NativeSyntheticEvent,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import PagerView from "react-native-pager-view";
+import { Double } from "react-native/Libraries/Types/CodegenTypes";
+import { useSelector } from "react-redux";
+import ColorPicker, { Panel3 } from "reanimated-color-picker";
+import { groundYourselfImages } from "@/assets/images/tools/ground_yourself/ground_yourself";
+import Text from "@/components/global/Text";
+import GroundYourselfSlideFrame from "@/components/tools/ground_yourself/GroundYourselfSlideFrame";
+import OneWordTextInput from "@/components/tools/ground_yourself/OneWordTextInput";
+import TypewriterText from "@/components/TypewriterText";
+import { GroundYourselfSlideProps } from "@/constants/models/tools/ground_yourself";
+import { Colors } from "@/constants/styles/colorTheme";
+import { SCREEN_HEIGHT } from "@/constants/styles/values";
+import { RootState } from "@/state/store";
+import { isValidName } from "@/utils/inputValidations";
+import { AntDesign } from "@expo/vector-icons";
 
 const Ground_Touch_Page_3 = ({
   exerciseName,
@@ -94,7 +99,7 @@ const Ground_Touch_Page_3 = ({
   }, [groundYourselfToolState.currentSlide]);
 
   return (
-    <GroundYourselfSlideFrame exerciseName={exerciseName}>
+    <GroundYourselfSlideFrame exerciseName={exerciseName} slideNum={objKey}>
       <View key={objKey} style={{ paddingTop: SCREEN_HEIGHT * 0.05 }}>
         <TypewriterText
           text={t("tools.ground_yourself.touch.page_3.instruction_1")}

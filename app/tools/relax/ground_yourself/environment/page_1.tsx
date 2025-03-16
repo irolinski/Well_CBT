@@ -23,7 +23,7 @@ const Ground_Environment_Page_1 = ({
   );
 
   return (
-    <GroundYourselfSlideFrame exerciseName={exerciseName}>
+    <GroundYourselfSlideFrame exerciseName={exerciseName} slideNum={objKey}>
       <Animated.View
         key={objKey}
         style={{

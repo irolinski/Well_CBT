@@ -105,7 +105,7 @@ const Ground_Environment_Page_3 = ({
   }, [currentInstruction]);
 
   return (
-    <GroundYourselfSlideFrame exerciseName={exerciseName}>
+    <GroundYourselfSlideFrame exerciseName={exerciseName} slideNum={objKey}>
       <View key={objKey}>
         <PagerView
           className="h-full w-full"
