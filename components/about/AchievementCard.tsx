@@ -95,7 +95,10 @@ const AchievementCard = ({
             <View className="mx-1 items-center" style={{ width: "20%" }}>
               {score_current && score_required ? (
                 <Text>
-                  {score_current}/{score_required}
+                  {score_current <= score_required
+                    ? score_current
+                    : score_required}
+                  /{score_required}
                 </Text>
               ) : null}
             </View>
