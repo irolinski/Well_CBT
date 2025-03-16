@@ -52,7 +52,6 @@ const Learn = () => {
               id={featuredArticle.id}
               image={featuredArticle.bgImage.image}
               imagePlacement={featuredArticle.bgImage.cardPlacementY}
-              frameColor={featuredcategoryData?.color}
             />
           </View>
         </View>

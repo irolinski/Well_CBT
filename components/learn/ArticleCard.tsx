@@ -1,5 +1,5 @@
 import { BlurView } from "expo-blur";
-import { Image, ImageBackground } from "expo-image";
+import { Image } from "expo-image";
 import { Href, router } from "expo-router";
 import React from "react";
 import { useTranslation } from "react-i18next";
@@ -21,7 +21,6 @@ const LearnArticleCard = ({
   link,
   image,
   imagePlacement,
-  // frameColor,
   textColor,
 }: learnArticleCardTypes) => {
   const { t } = useTranslation("learn");
