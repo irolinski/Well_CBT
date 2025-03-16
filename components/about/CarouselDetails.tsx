@@ -1,8 +1,8 @@
-import React from 'react';
-import { View } from 'react-native';
-import { Colors } from '@/constants/styles/colorTheme';
-import { SCREEN_HEIGHT } from '@/constants/styles/values';
-import Text from '../global/Text';
+import React from "react";
+import { View } from "react-native";
+import { Colors } from "@/constants/styles/colorTheme";
+import { SCREEN_HEIGHT } from "@/constants/styles/values";
+import Text from "../global/Text";
 
 const CarouselDetails = ({
   title,
@@ -23,7 +23,7 @@ const CarouselDetails = ({
         className="absolute z-20 w-full items-center justify-center"
         style={{ top: 0.09 * SCREEN_HEIGHT, height: 0.2 * SCREEN_HEIGHT }}
       >
-        <View className="absolute top-0">
+        <View className="absolute top-0 items-center">
           <Text
             className="mb-3 px-12"
             style={{
