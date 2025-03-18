@@ -1,25 +1,27 @@
-import { Image } from "expo-image";
-import { Href, router } from "expo-router";
-import React, { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { TouchableOpacity, View } from "react-native";
-import { useSelector } from "react-redux";
-import { groundYourselfImages } from "@/assets/images/tools/ground_yourself/ground_yourself";
-import FadeInView from "@/components/FadeInView";
-import Text from "@/components/global/Text";
-import GroundYourselfSlideFrame from "@/components/tools/ground_yourself/GroundYourselfSlideFrame";
-import TypewriterText from "@/components/TypewriterText";
-import { ToolCategories, ToolList } from "@/constants/models/home/activity_log";
-import { GroundYourselfSlideProps } from "@/constants/models/tools/ground_yourself";
-import { Colors } from "@/constants/styles/colorTheme";
-import { SCREEN_HEIGHT } from "@/constants/styles/values";
-import { handleLogRelaxActivity } from "@/db/tools";
-import { RootState } from "@/state/store";
-import { getGroundingTime } from "./GroundYourself";
+import { Image } from 'expo-image';
+import { Href, router } from 'expo-router';
+import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { TouchableOpacity, View } from 'react-native';
+import { useSelector } from 'react-redux';
+import { groundYourselfImages } from '@/assets/images/tools/ground_yourself/ground_yourself';
+import FadeInView from '@/components/FadeInView';
+import Text from '@/components/global/Text';
+import GroundYourselfSlideFrame, {
+    getGroundingTime
+} from '@/components/tools/ground_yourself/GroundYourselfSlideFrame';
+import TypewriterText from '@/components/TypewriterText';
+import { ToolCategories, ToolList } from '@/constants/models/home/activity_log';
+import { GroundYourselfSlideProps } from '@/constants/models/tools/ground_yourself';
+import { Colors } from '@/constants/styles/colorTheme';
+import { SCREEN_HEIGHT } from '@/constants/styles/values';
+import { handleLogRelaxActivity } from '@/db/tools';
+import { RootState } from '@/state/store';
 
 const Ground_Finish_Page = ({
   exerciseName,
   objKey,
+  exerciseLength,
 }: GroundYourselfSlideProps) => {
   const { t } = useTranslation(["tools", "common"]);
 
@@ -41,7 +43,11 @@ const Ground_Finish_Page = ({
   }, [groundYourselfToolState.currentSlide]);
 
   return (
-    <GroundYourselfSlideFrame exerciseName={exerciseName} slideNum={objKey}>
+    <GroundYourselfSlideFrame
+      exerciseName={exerciseName}
+      slideNum={objKey}
+      exerciseLenght={exerciseLength}
+    >
       <View>
         <TypewriterText
           text={t("tools.ground_yourself.finish.congratulations")}
@@ -107,7 +113,7 @@ const Ground_Finish_Page = ({
               onPress={() => {
                 handleLogRelaxActivity(
                   "ground_yourself",
-                  getGroundingTime(objKey),
+                  getGroundingTime(objKey, exerciseLength),
                 );
                 router.replace(ToolList.journal.URI);
               }}
@@ -129,7 +135,7 @@ const Ground_Finish_Page = ({
               onPress={() => {
                 handleLogRelaxActivity(
                   "ground_yourself",
-                  getGroundingTime(objKey),
+                  getGroundingTime(objKey, exerciseLength),
                 );
                 router.replace("tools" as Href);
               }}

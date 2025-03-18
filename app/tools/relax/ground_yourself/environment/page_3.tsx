@@ -1,33 +1,26 @@
-import { Image } from "expo-image";
-import React, { useEffect, useRef, useState } from "react";
-import { useTranslation } from "react-i18next";
+import { Image } from 'expo-image';
+import React, { useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Animated, ColorValue, Keyboard, NativeSyntheticEvent, View } from 'react-native';
+import PagerView from 'react-native-pager-view';
+import { Double } from 'react-native/Libraries/Types/CodegenTypes';
+import { useDispatch, useSelector } from 'react-redux';
+import { groundYourselfImages } from '@/assets/images/tools/ground_yourself/ground_yourself';
+import ArrowRightButton from '@/components/ArrowRightButton';
+import FadeInView from '@/components/FadeInView';
+import Text from '@/components/global/Text';
+import EnvironmentAdjectiveModal from '@/components/tools/ground_yourself/EnvironmentAdjectiveModal';
+import EnvironmentItemsListElement from '@/components/tools/ground_yourself/EnvironmentItemsListElement';
+import GroundYourselfSlideFrame from '@/components/tools/ground_yourself/GroundYourselfSlideFrame';
+import TypewriterText from '@/components/TypewriterText';
+import { GroundYourselfSlideProps } from '@/constants/models/tools/ground_yourself';
+import { Colors } from '@/constants/styles/colorTheme';
+import { SCREEN_HEIGHT } from '@/constants/styles/values';
 import {
-  Animated,
-  ColorValue,
-  Keyboard,
-  NativeSyntheticEvent,
-  View,
-} from "react-native";
-import PagerView from "react-native-pager-view";
-import { Double } from "react-native/Libraries/Types/CodegenTypes";
-import { useDispatch, useSelector } from "react-redux";
-import { groundYourselfImages } from "@/assets/images/tools/ground_yourself/ground_yourself";
-import ArrowRightButton from "@/components/ArrowRightButton";
-import FadeInView from "@/components/FadeInView";
-import Text from "@/components/global/Text";
-import EnvironmentAdjectiveModal from "@/components/tools/ground_yourself/EnvironmentAdjectiveModal";
-import EnvironmentItemsListElement from "@/components/tools/ground_yourself/EnvironmentItemsListElement";
-import GroundYourselfSlideFrame from "@/components/tools/ground_yourself/GroundYourselfSlideFrame";
-import TypewriterText from "@/components/TypewriterText";
-import { GroundYourselfSlideProps } from "@/constants/models/tools/ground_yourself";
-import { Colors } from "@/constants/styles/colorTheme";
-import { SCREEN_HEIGHT } from "@/constants/styles/values";
-import {
-  defaultEnvironmentItem,
-  setEnvironmentItemsArr,
-} from "@/state/features/tools/groundYourselfSlice";
-import { AppDispatch, RootState } from "@/state/store";
-import { FontAwesome } from "@expo/vector-icons";
+    defaultEnvironmentItem, setEnvironmentItemsArr
+} from '@/state/features/tools/groundYourselfSlice';
+import { AppDispatch, RootState } from '@/state/store';
+import { FontAwesome } from '@expo/vector-icons';
 
 const FIRST_SLIDE_TIME_MS = 2500;
 const MAX_NUM_OF_ITEMS = 4;
@@ -55,6 +48,7 @@ const Ground_Environment_Page_3 = ({
   exerciseName,
   objKey,
   onButtonPress,
+  exerciseLength,
 }: GroundYourselfSlideProps) => {
   const { t } = useTranslation(["tools", "common"]);
 
@@ -105,7 +99,11 @@ const Ground_Environment_Page_3 = ({
   }, [currentInstruction]);
 
   return (
-    <GroundYourselfSlideFrame exerciseName={exerciseName} slideNum={objKey}>
+    <GroundYourselfSlideFrame
+      exerciseName={exerciseName}
+      slideNum={objKey}
+      exerciseLenght={exerciseLength}
+    >
       <View key={objKey}>
         <PagerView
           className="h-full w-full"

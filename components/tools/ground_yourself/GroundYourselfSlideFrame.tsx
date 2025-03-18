@@ -1,21 +1,35 @@
-import React, { ReactNode } from "react";
-import { Text, View } from "react-native";
-import { getGroundingTime } from "@/app/tools/relax/ground_yourself/GroundYourself";
-import BackButton from "@/components/BackButton";
-import { Colors } from "@/constants/styles/colorTheme";
-import { SCREEN_HEIGHT } from "@/constants/styles/values";
-import { handleLogRelaxActivity } from "@/db/tools";
+import React, { ReactNode } from 'react';
+import { Text, View } from 'react-native';
+import BackButton from '@/components/BackButton';
+import { Colors } from '@/constants/styles/colorTheme';
+import { SCREEN_HEIGHT } from '@/constants/styles/values';
+import { handleLogRelaxActivity } from '@/db/tools';
 
 interface GroundYourselfSlideFrameProps {
   children: ReactNode;
   exerciseName: string;
   slideNum: number;
+  exerciseLenght: number;
 }
+
+const CONVENTIONAL_COMPLETE_EXERCISE_TIME_MIN = 15;
+
+export const getGroundingTime = (
+  numOfCompletedPages: number,
+  exerciseLength: number,
+) => {
+  const fractionOfPagesCompleted = numOfCompletedPages / exerciseLength;
+
+  return Math.floor(
+    CONVENTIONAL_COMPLETE_EXERCISE_TIME_MIN * fractionOfPagesCompleted,
+  );
+};
 
 const GroundYourselfSlideFrame: React.FC<GroundYourselfSlideFrameProps> = ({
   children,
   exerciseName,
   slideNum,
+  exerciseLenght,
 }) => {
   return (
     <React.Fragment>
@@ -28,7 +42,7 @@ const GroundYourselfSlideFrame: React.FC<GroundYourselfSlideFrameProps> = ({
           handleBackButtonPress={() => {
             handleLogRelaxActivity(
               "ground_yourself",
-              getGroundingTime(slideNum),
+              getGroundingTime(slideNum, exerciseLenght),
             );
           }}
         />

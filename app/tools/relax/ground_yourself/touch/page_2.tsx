@@ -1,16 +1,16 @@
-import React, { useEffect, useRef, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { Animated, Easing, View } from "react-native";
-import { useSelector } from "react-redux";
-import ArrowRightButton from "@/components/ArrowRightButton";
-import FadeInView from "@/components/FadeInView";
-import Text from "@/components/global/Text";
-import GroundYourselfSlideFrame from "@/components/tools/ground_yourself/GroundYourselfSlideFrame";
-import TypewriterText from "@/components/TypewriterText";
-import { GroundYourselfSlideProps } from "@/constants/models/tools/ground_yourself";
-import { Colors } from "@/constants/styles/colorTheme";
-import { SCREEN_HEIGHT, SCREEN_WIDTH } from "@/constants/styles/values";
-import { RootState } from "@/state/store";
+import React, { useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Animated, Easing, View } from 'react-native';
+import { useSelector } from 'react-redux';
+import ArrowRightButton from '@/components/ArrowRightButton';
+import FadeInView from '@/components/FadeInView';
+import Text from '@/components/global/Text';
+import GroundYourselfSlideFrame from '@/components/tools/ground_yourself/GroundYourselfSlideFrame';
+import TypewriterText from '@/components/TypewriterText';
+import { GroundYourselfSlideProps } from '@/constants/models/tools/ground_yourself';
+import { Colors } from '@/constants/styles/colorTheme';
+import { SCREEN_HEIGHT, SCREEN_WIDTH } from '@/constants/styles/values';
+import { RootState } from '@/state/store';
 
 const BREATHE_IN_TIME_MS = 5000;
 const HOLD_TIME_MS = 6000 - 500;
@@ -20,6 +20,7 @@ const Ground_Touch_Page_2 = ({
   exerciseName,
   objKey,
   onButtonPress,
+  exerciseLength,
 }: GroundYourselfSlideProps) => {
   const { t } = useTranslation(["tools", "common"]);
 
@@ -92,7 +93,11 @@ const Ground_Touch_Page_2 = ({
   }, [groundYourselfToolState.currentSlide]);
 
   return (
-    <GroundYourselfSlideFrame exerciseName={exerciseName} slideNum={objKey}>
+    <GroundYourselfSlideFrame
+      exerciseName={exerciseName}
+      slideNum={objKey}
+      exerciseLenght={exerciseLength}
+    >
       <View
         style={{
           paddingTop: SCREEN_HEIGHT > 750 ? SCREEN_HEIGHT * 0.05 : null,

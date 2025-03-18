@@ -1,21 +1,18 @@
-import React, { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { Modal, Pressable, Switch, Text, View } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
-import { Colors } from "@/constants/styles/colorTheme";
-import { setShowNotificationModal } from "@/state/features/menus/notificationModalSlice";
-import { AppDispatch, RootState } from "@/state/store";
+import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Modal, Pressable, Switch, Text, View } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import { Colors } from '@/constants/styles/colorTheme';
+import { setShowNotificationModal } from '@/state/features/menus/notificationModalSlice';
+import { AppDispatch, RootState } from '@/state/store';
 import {
-  cancelDailyNotification,
-  getDailyNotificationTime_12h,
-  getDailyNotificationTime_24h,
-  requestNotificationPermissions,
-  scheduleDailyNotification,
-} from "@/utils/notifications";
-import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
-import ModalButton from "../NavigationModalButton";
-import TimePicker_12h, { TimePicker_12hReturnObj } from "./TimePicker_12h";
-import TimePicker_24h, { TimePicker_24hReturnObj } from "./TimePicker_24h";
+    cancelDailyNotification, getDailyNotificationTime_12h, getDailyNotificationTime_24h,
+    requestNotificationPermissions, scheduleDailyNotification
+} from '@/utils/notifications';
+import { Feather, MaterialCommunityIcons } from '@expo/vector-icons';
+import ModalButton from '../NavigationModalButton';
+import TimePicker_12h, { TimePicker_12hReturnObj } from './TimePicker_12h';
+import TimePicker_24h, { TimePicker_24hReturnObj } from './TimePicker_24h';
 
 const NotificationsModal = () => {
   const { t, i18n } = useTranslation(["home", "common"]);

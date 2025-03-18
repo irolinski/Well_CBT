@@ -1,18 +1,18 @@
-import React, { useRef, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { Animated, Easing, NativeSyntheticEvent, View } from "react-native";
-import PagerView from "react-native-pager-view";
-import { Double } from "react-native/Libraries/Types/CodegenTypes";
-import ArrowRightButton from "@/components/ArrowRightButton";
-import FadeInView from "@/components/FadeInView";
-import Text from "@/components/global/Text";
-import GroundYourselfSlideFrame from "@/components/tools/ground_yourself/GroundYourselfSlideFrame";
-import TypewriterText from "@/components/TypewriterText";
-import { dayColors, dayNamesFromMonday } from "@/constants/models/dates";
-import { GroundYourselfSlideProps } from "@/constants/models/tools/ground_yourself";
-import { Colors } from "@/constants/styles/colorTheme";
-import { SCREEN_HEIGHT } from "@/constants/styles/values";
-import { Picker } from "@react-native-picker/picker";
+import React, { useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Animated, Easing, NativeSyntheticEvent, View } from 'react-native';
+import PagerView from 'react-native-pager-view';
+import { Double } from 'react-native/Libraries/Types/CodegenTypes';
+import ArrowRightButton from '@/components/ArrowRightButton';
+import FadeInView from '@/components/FadeInView';
+import Text from '@/components/global/Text';
+import GroundYourselfSlideFrame from '@/components/tools/ground_yourself/GroundYourselfSlideFrame';
+import TypewriterText from '@/components/TypewriterText';
+import { dayColors, dayNamesFromMonday } from '@/constants/models/dates';
+import { GroundYourselfSlideProps } from '@/constants/models/tools/ground_yourself';
+import { Colors } from '@/constants/styles/colorTheme';
+import { SCREEN_HEIGHT } from '@/constants/styles/values';
+import { Picker } from '@react-native-picker/picker';
 
 const getCurrentDayOfWeekNum = () => {
   let currentDayNum = new Date().getDay();
@@ -28,6 +28,7 @@ const Ground_Time_Day = ({
   exerciseName,
   objKey,
   onButtonPress,
+  exerciseLength,
 }: GroundYourselfSlideProps) => {
   const { t } = useTranslation(["tools", "common"]);
 
@@ -85,12 +86,14 @@ const Ground_Time_Day = ({
       setExerciseIsCorrect(false);
     }
     nextSlide();
-    console.log("current day of week:", currentDayOfWeekNum);
-    console.log("selected day:", selectedDayOfWeek);
   };
 
   return (
-    <GroundYourselfSlideFrame exerciseName={exerciseName} slideNum={objKey}>
+    <GroundYourselfSlideFrame
+      exerciseName={exerciseName}
+      slideNum={objKey}
+      exerciseLenght={exerciseLength}
+    >
       <View
         style={{
           paddingTop: SCREEN_HEIGHT > 750 ? SCREEN_HEIGHT * 0.05 : null,

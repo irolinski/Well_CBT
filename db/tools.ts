@@ -1,8 +1,8 @@
-import * as SQLite from "expo-sqlite";
-import { RelaxToolNames } from "@/constants/models/home/activity_log";
-import { cdaSliceTypes } from "@/state/features/tools/cdaSlice";
-import { journalSliceTypes } from "@/state/features/tools/journalSlice";
-import { dbName } from "./service";
+import * as SQLite from 'expo-sqlite';
+import { RelaxToolNames } from '@/constants/models/home/activity_log';
+import { cdaSliceTypes } from '@/state/features/tools/cdaSlice';
+import { journalSliceTypes } from '@/state/features/tools/journalSlice';
+import { dbName } from './service';
 
 export const handleSaveCDAEntry = async (cdaState: cdaSliceTypes) => {
   if (cdaState.save) {
@@ -141,7 +141,7 @@ export const handleLogRelaxActivity = async (
                   );
                 `);
   } catch (err) {
-    throw err;
+    console.error(err);
   }
 };
 

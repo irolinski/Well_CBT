@@ -1,19 +1,17 @@
-import React from "react";
-import { useTranslation } from "react-i18next";
-import { Keyboard, TextInput, TouchableOpacity, View } from "react-native";
-import { useDispatch } from "react-redux";
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { Keyboard, TextInput, TouchableOpacity, View } from 'react-native';
+import { useDispatch } from 'react-redux';
 import {
-  EnvironmentItemsListElementProps,
-  GroundEnvironmentItemAdjectiveType,
-} from "@/app/tools/relax/ground_yourself/environment/page_3";
-import Text from "@/components/global/Text";
-import { Colors } from "@/constants/styles/colorTheme";
+    EnvironmentItemsListElementProps, GroundEnvironmentItemAdjectiveType
+} from '@/app/tools/relax/ground_yourself/environment/page_3';
+import Text from '@/components/global/Text';
+import { Colors } from '@/constants/styles/colorTheme';
 import {
-  setEnvironmentAdjectiveModalIsOpen,
-  setEnvironmentItemsModalSelectedIndex,
-} from "@/state/features/tools/groundYourselfSlice";
-import { AppDispatch } from "@/state/store";
-import { Feather, FontAwesome } from "@expo/vector-icons";
+    setEnvironmentAdjectiveModalIsOpen, setEnvironmentItemsModalSelectedIndex
+} from '@/state/features/tools/groundYourselfSlice';
+import { AppDispatch } from '@/state/store';
+import { Feather, FontAwesome } from '@expo/vector-icons';
 
 const MAX_NAME_LENGTH = 20;
 
@@ -111,12 +109,7 @@ const EnvironmentItemsListElement = ({
           </TouchableOpacity>
         ) : null}
         {itemName && !isCurrentlyEdited ? (
-          <TouchableOpacity
-            className="h-10 w-10 items-center justify-center rounded-full"
-            onPress={() => {
-              console.log();
-            }}
-          >
+          <TouchableOpacity className="h-10 w-10 items-center justify-center rounded-full">
             <TouchableOpacity
               className="h-10 w-10 items-center justify-center rounded-full"
               style={{
