@@ -1,11 +1,10 @@
-import { Image } from "expo-image";
-import { ColorValue } from "react-native";
-import { Colors } from "@/constants/styles/colorTheme";
+import { Image } from 'expo-image';
 
 export type learnCategoriesTypes = {
   title: string;
   image: Image;
   description?: string;
+  disabled?: boolean;
 };
 
 export const learnCategories: learnCategoriesTypes[] = [
@@ -23,6 +22,7 @@ export const learnCategories: learnCategoriesTypes[] = [
   {
     title: "tutorials",
     image: require("@/assets/images/learn/tutorials.jpg"),
+    disabled: true,
   },
   {
     title: "psychology",

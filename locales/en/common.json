@@ -65,6 +65,7 @@
   },
   "languages": { "en": "English", "pl": "Polish" },
   "instructions": {
+    "coming_soon": "Coming soon",
     "tap_button_below": "Tap the button below to proceed.",
     "tap_here_to_type": "Tap here to type"
   },

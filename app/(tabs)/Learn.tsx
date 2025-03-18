@@ -1,19 +1,16 @@
-import React from "react";
-import { useTranslation } from "react-i18next";
-import { View } from "react-native";
-import learnArticlesLocales from "@/assets/text/learn_articles.json";
-import Text from "@/components/global/Text";
-import FrameMenu from "@/components/home/FrameMenu";
-import LearnArticleCard from "@/components/learn/ArticleCard";
-import LearnCategoryCard from "@/components/learn/LearnCategoryCard";
-import { learnArticles } from "@/constants/models/learn/articles";
-import {
-  learnCategories,
-  learnCategoriesTypes,
-} from "@/constants/models/learn/categories";
-import { ArticlesInCurrentLanguageType } from "@/constants/models/learn/learn";
-import { Colors } from "@/constants/styles/colorTheme";
-import { AvailableLanguage } from "@/hooks/i18n";
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { View } from 'react-native';
+import learnArticlesLocales from '@/assets/text/learn_articles.json';
+import Text from '@/components/global/Text';
+import FrameMenu from '@/components/home/FrameMenu';
+import LearnArticleCard from '@/components/learn/ArticleCard';
+import LearnCategoryCard from '@/components/learn/LearnCategoryCard';
+import { learnArticles } from '@/constants/models/learn/articles';
+import { learnCategories, learnCategoriesTypes } from '@/constants/models/learn/categories';
+import { ArticlesInCurrentLanguageType } from '@/constants/models/learn/learn';
+import { Colors } from '@/constants/styles/colorTheme';
+import { AvailableLanguage } from '@/hooks/i18n';
 
 const Learn = () => {
   const { t, i18n } = useTranslation("learn");
@@ -32,9 +29,6 @@ const Learn = () => {
     (Math.random() * (Object.keys(availableArticles).length - 1)) | 0;
 
   const featuredArticle = availableArticles[articleNumber];
-  const featuredcategoryData = learnCategories.find(
-    (c) => c.title === featuredArticle.category,
-  );
 
   return (
     <FrameMenu title={t("index.title")}>
@@ -69,6 +63,7 @@ const Learn = () => {
                 backgroundImage={category.image}
                 link={`/learn/categories/${category.title}`}
                 key={index}
+                disabled={category.disabled && category.disabled}
               />
             ),
           )}
