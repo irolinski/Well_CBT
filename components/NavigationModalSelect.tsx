@@ -1,13 +1,14 @@
-import { ReactNode } from "react";
-import { Pressable, Text, View } from "react-native";
-import { Colors } from "@/constants/styles/colorTheme";
-import { UnknownAction } from "@reduxjs/toolkit";
+import { Href } from 'expo-router';
+import { ReactNode } from 'react';
+import { Pressable, Text, View } from 'react-native';
+import { Colors } from '@/constants/styles/colorTheme';
+import { UnknownAction } from '@reduxjs/toolkit';
 
 export type NavigationModalObj = {
   name: string;
   icon: ReactNode;
   iconBright: ReactNode;
-  link: string;
+  link: Href;
 };
 
 type NavigationModalSelectTypes = NavigationModalObj & {
@@ -15,7 +16,7 @@ type NavigationModalSelectTypes = NavigationModalObj & {
     showModal: boolean;
     link: string;
   };
-  handleSelect: (link: string) => UnknownAction;
+  handleSelect: (link: Href) => UnknownAction;
 };
 
 const NavigationModalSelect = ({

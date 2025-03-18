@@ -1,16 +1,16 @@
-import React from "react";
-import { useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
-import { ToolList } from "@/constants/models/home/activity_log";
-import { Colors } from "@/constants/styles/colorTheme";
+import { Href } from 'expo-router';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import { ToolList } from '@/constants/models/home/activity_log';
+import { Colors } from '@/constants/styles/colorTheme';
 import {
-  setNewActivityModalSelectedLink,
-  setShowNewActivityModal,
-} from "@/state/features/menus/newActivityModalSlice";
-import { RootState } from "@/state/store";
-import { Entypo } from "@expo/vector-icons";
-import NavigationModal from "../NavigationModal";
-import { NavigationModalObj } from "../NavigationModalSelect";
+    setNewActivityModalSelectedLink, setShowNewActivityModal
+} from '@/state/features/menus/newActivityModalSlice';
+import { RootState } from '@/state/store';
+import { Entypo } from '@expo/vector-icons';
+import NavigationModal from '../NavigationModal';
+import { NavigationModalObj } from '../NavigationModalSelect';
 
 const NewActivityModal = () => {
   const { t } = useTranslation(["home", "tools"]);
@@ -28,7 +28,7 @@ const NewActivityModal = () => {
 
         icon: ToolList.cda.icon,
         iconBright: ToolList.cda.iconBright,
-        link: "tools/classic_cbt/cda",
+        link: ToolList.cda.URI as Href,
       },
     ],
     [
@@ -37,7 +37,15 @@ const NewActivityModal = () => {
 
         icon: ToolList.breathing.icon,
         iconBright: ToolList.breathing.iconBright,
-        link: "tools/relax/breathing",
+        link: ToolList.breathing.URI as Href,
+      },
+      {
+        name: t(`tools.${ToolList.ground_yourself.name}.title`, {
+          ns: "tools",
+        }),
+        icon: ToolList.ground_yourself.icon,
+        iconBright: ToolList.ground_yourself.iconBright,
+        link: ToolList.ground_yourself.URI as Href,
       },
     ],
   ];
