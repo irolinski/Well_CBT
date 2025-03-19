@@ -3,7 +3,7 @@ import { useFonts } from "expo-font";
 import { setNotificationHandler } from "expo-notifications";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
-import { useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Provider as StateProvider } from "react-redux";
 import {
@@ -11,13 +11,16 @@ import {
   updateAchievementProgress,
 } from "@/db/achievements/global";
 import { seedDB } from "@/db/seed";
-import { createActivityViewTable, dbName, setUpDB } from "@/db/service";
+import { createActivityViewTable, setUpDB } from "@/db/service";
 import { handleSetVisitStreakCount } from "@/db/user";
 import { store } from "@/state/store";
 
-// Prevent the splash screen from auto-hiding before asset loading is complete.
+// Prevent splash screen from hiding before everything is ready
 SplashScreen.preventAutoHideAsync();
+
 export default function RootLayout() {
+  const [isReady, setIsReady] = useState(false);
+
   const [fontsLoaded] = useFonts({
     Inter: require("../assets/fonts/Inter-Standard.ttf"),
     InterItalic: require("../assets/fonts/Inter-Italic.ttf"),
@@ -25,44 +28,51 @@ export default function RootLayout() {
     KodchasanMedium: require("../assets/fonts/Kodchasan-Medium.ttf"),
   });
 
-  useEffect(() => {
+  // Ensure fonts and database setup are completed
+  const initializeApp = useCallback(async () => {
     try {
-      Promise.all([
-        setUpDB(),
-        createActivityViewTable(),
-        handleSetVisitStreakCount(),
-        setUpAchievementsTable(),
-        updateAchievementProgress(),
-        // seedDB();
-      ]);
+      await setUpDB();
+      await createActivityViewTable();
+      await handleSetVisitStreakCount();
+      await setUpAchievementsTable();
+      await updateAchievementProgress();
+      // await seedDB(); // Uncomment if needed
+
+      if (!fontsLoaded) {
+        throw new Error("could not load fonts");
+      }
+
+      setIsReady(true);
     } catch (err) {
       console.error(err);
     } finally {
-      SplashScreen.hideAsync();
+      await SplashScreen.hideAsync();
     }
+  }, [fontsLoaded]);
+
+  useEffect(() => {
+    if (fontsLoaded) {
+      initializeApp();
+    }
+  }, [fontsLoaded]);
+
+  useEffect(() => {
+    setNotificationHandler({
+      handleNotification: async () => ({
+        shouldShowAlert: true,
+        shouldPlaySound: true,
+        shouldSetBadge: true,
+      }),
+    });
   }, []);
 
-  // asset prefetching on ios in React Native, as of 11/2024, is faulty
-  // and does not behave as expected
-  // info: https://github.com/facebook/react-native/issues/28557
-  // possible workaround: https://www.npmjs.com/package/react-native-expo-image-cache
-
-  if (!fontsLoaded) {
-    return null;
+  if (!isReady) {
+    return null; // Prevent rendering until everything is ready
   }
-
-  // handle notifications when the app is running
-  setNotificationHandler({
-    handleNotification: async () => ({
-      shouldShowAlert: true,
-      shouldPlaySound: true,
-      shouldSetBadge: true,
-    }),
-  });
 
   return (
     <StateProvider store={store}>
-      <GestureHandlerRootView>
+      <GestureHandlerRootView style={{ flex: 1 }}>
         <Stack>
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
           <Stack.Screen name="about" options={{ headerShown: false }} />

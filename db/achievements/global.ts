@@ -50,7 +50,7 @@ const handlePopulateAchievementProgressTable = async () => {
           await db.execAsync(
             `INSERT INTO achievementProgress(id, currentScore, requiredScore) VALUES (${achievement.id}, 0, ${achievement.score_required});`,
           );
-          console.log("The achievement list has been updated!");
+          // console.log("The achievement list has been updated!");
         }
       });
     }

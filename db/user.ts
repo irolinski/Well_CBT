@@ -94,10 +94,10 @@ export const handleSetVisitStreakCount = async (): Promise<void> => {
 
       // check whether the streak continues
       if (isSameDate(lastVisit, currentTime)) {
-        console.log("--- \n same day! \n ---");
+        // console.log("--- \n same day! \n ---");
       } else if (isSameDate(currentTime, dayAfterLastVisit)) {
         //if the streak happened, add it to db
-        console.log("--- \n streak! \n --- ");
+        // console.log("--- \n streak! \n --- ");
         const newStreak = user.currentVisitStreak + 1;
         await db.execAsync(
           `UPDATE userData SET currentVisitStreak = ${newStreak};`,
@@ -109,7 +109,7 @@ export const handleSetVisitStreakCount = async (): Promise<void> => {
           );
         }
       } else {
-        console.log("--- \n streak broken! \n --- ");
+        // console.log("--- \n streak broken! \n --- ");
         await db.execAsync(`UPDATE userData SET currentVisitStreak = ${1};`);
       }
 
