@@ -33,10 +33,11 @@ const resources = {
 };
 
 export const availableLanguagesArr = Object.keys(resources);
+
 export type AvailableLanguage = keyof typeof resources;
 
 // Initialize i18next
-i18n.use(initReactI18next).init({
+const i18nInitObj = {
   resources,
   lng: deviceLanguage!,
   supportedLngs: ["en", "pl"],
@@ -44,6 +45,14 @@ i18n.use(initReactI18next).init({
   ns: ["common", "home", "tools", "learn", "about"],
   fallbackLng: "en",
   interpolation: { escapeValue: false },
-});
+};
+
+i18n.use(initReactI18next).init(i18nInitObj);
+
+// Export selectedLanguage because fetching it from i18n object
+// doesn't update it to fallback if device lang is not available
+export const selectedLanguage = availableLanguagesArr.includes(i18n.language)
+  ? i18n.language
+  : i18nInitObj.fallbackLng;
 
 export default i18n;

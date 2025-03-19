@@ -1,6 +1,6 @@
 {
   "index": { "title": "Tools" },
-  "types": { "exercise": "Exercise", "journal": "journal", "relax": "Relax" },
+  "types": { "exercise": "Exercise", "journal": "Journal", "relax": "Relax" },
   "categories": {
     "cbt": "Classic CBT",
     "relax": "Relax",

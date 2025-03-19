@@ -1,25 +1,21 @@
-import { Image } from 'expo-image';
-import { LinearGradient } from 'expo-linear-gradient';
-import { useTranslation } from 'react-i18next';
-import { Dimensions, Pressable, View } from 'react-native';
-import quoteImages from '@/assets/images/home/quote_widget/images';
-import quotesListLocales from '@/assets/text/quotes.json';
-import { Colors } from '@/constants/styles/colorTheme';
-import { achievementHandlersObj } from '@/db/achievements/controllers';
-import { AvailableLanguage } from '@/hooks/i18n';
-import handleShare from '@/utils/handleShare';
-import { Feather } from '@expo/vector-icons';
-import Text from '../global/Text';
+import { Image } from "expo-image";
+import { LinearGradient } from "expo-linear-gradient";
+import { useTranslation } from "react-i18next";
+import { Dimensions, Pressable, View } from "react-native";
+import quoteImages from "@/assets/images/home/quote_widget/images";
+import quotesListLocales from "@/assets/text/quotes.json";
+import { Colors } from "@/constants/styles/colorTheme";
+import { achievementHandlersObj } from "@/db/achievements/controllers";
+import { AvailableLanguage, selectedLanguage } from "@/hooks/i18n";
+import handleShare from "@/utils/handleShare";
+import { Feather } from "@expo/vector-icons";
+import Text from "../global/Text";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
 
 const QuoteWidget = () => {
-  const { t, i18n } = useTranslation("home");
-
-  const selectedLanguage: AvailableLanguage =
-    i18n.language as AvailableLanguage;
-
-  const quotesList = quotesListLocales[selectedLanguage];
+  const { t } = useTranslation("home");
+  const quotesList = quotesListLocales[selectedLanguage as AvailableLanguage];
 
   const quoteNumber = (Math.random() * (quotesList.length - 1)) | 0;
   const imageNumber = (Math.random() * (quoteImages.length - 1)) | 0;

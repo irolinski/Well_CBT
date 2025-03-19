@@ -14,14 +14,12 @@ import { learnCategories } from "@/constants/models/learn/categories";
 import { ArticlesInCurrentLanguageType } from "@/constants/models/learn/learn";
 import { Colors } from "@/constants/styles/colorTheme";
 import { SCREEN_HEIGHT } from "@/constants/styles/values";
-import { AvailableLanguage } from "@/hooks/i18n";
+import { AvailableLanguage, selectedLanguage } from "@/hooks/i18n";
 
 const HEADER_HEIGHT = SCREEN_HEIGHT * 0.5;
 
 const index = () => {
-  const { t, i18n } = useTranslation(["learn", "common"]);
-  const selectedLanguage: AvailableLanguage =
-    i18n.language as AvailableLanguage;
+  const { t } = useTranslation(["learn", "common"]);
 
   const scrollOffsetY = useRef(new Animated.Value(0)).current;
 
@@ -36,7 +34,7 @@ const index = () => {
     .category;
 
   const articlesInCurrentLanguage = learnArticlesLocales[
-    selectedLanguage
+    selectedLanguage as AvailableLanguage
   ] as ArticlesInCurrentLanguageType;
 
   const availableArticles = learnArticles.filter((articleObj) =>
