@@ -19,6 +19,7 @@
   },
   "settings": {
     "title": "Settings",
+    "categories": { "preferences": "Preferences", "more": "More" },
     "language": {
       "title": "Language",
       "select_language": "Select Language:"
@@ -33,6 +34,10 @@
         "yes": "Yes, continue",
         "no": "No, take me back"
       }
+    },
+    "report_a_bug": {
+      "title": "Report a Bug",
+      "mail_body": "Bug Report \n\n\n**Bug Description**\n\nPlease provide a brief description of the bug and how it occurred.\n\n**Steps to Reproduce**\n\n(Please describe the steps to reproduce the bug.)\n\n**Screenshots/Logs (if applicable)**\n\nIf you have any screenshots or logs that can help, please include them.\n\n------\n\nPlease do not edit the below data!\n"
     }
   },
 

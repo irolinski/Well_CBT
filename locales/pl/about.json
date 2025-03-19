@@ -34,6 +34,10 @@
         "yes": "Tak, kontynuuj",
         "no": "Nie, wróć"
       }
+    },
+    "report_a_bug": {
+      "title": "Zgłoś błąd w aplikacji",
+      "mail_body": "Raport błędu\n\n\n**Opis błędu**\n\nPodaj krótki opis błędu i okoliczności, w których ten wystąpił.\n\n**Kroki do odtworzenia**\n\nOpisz kroki, które prowadzą do wystąpienia błędu.\n\n**Zrzuty ekranu/Logi (jeśli dotyczy)**\n\nJeśli masz jakiekolwiek zrzuty ekranu lub logi, które mogą pomóc, proszę dołącz je.\n\n------\n\nProszę nie edytuj danych poniżej!\n"
     }
   },
 

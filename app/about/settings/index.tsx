@@ -1,3 +1,4 @@
+import * as Device from "expo-device";
 import { Href, router } from "expo-router";
 import React from "react";
 import { useTranslation } from "react-i18next";
@@ -11,6 +12,8 @@ import { FontAwesome6, MaterialIcons } from "@expo/vector-icons";
 
 const index = () => {
   const { t } = useTranslation(["about", "common"]);
+
+  const reportBugMailLink = `mailto: help.worryfree@gmail.com?subject=Bug Report&body=${t("settings.report_a_bug.mail_body")}\n\n  Device: ${Device.modelName} \nOS Version: ${Device.osVersion}\n\n------`;
 
   const preferencesObj = {
     title: "Preferences",
@@ -34,7 +37,7 @@ const index = () => {
     title: "More",
     items: [
       {
-        title: "Report a Bug",
+        title: t("settings.report_a_bug.title"),
         icon: (
           <FontAwesome6
             name="arrows-spin"
@@ -42,7 +45,7 @@ const index = () => {
             color={Colors.blackPearl}
           />
         ),
-        link: "/about/settings/more/report_a_bug",
+        link: reportBugMailLink,
       },
     ],
   };
@@ -97,6 +100,10 @@ const index = () => {
                   </React.Fragment>
                 ))}
               </View>
+              {/* <TouchableOpacity
+                className="h-24 w-24 bg-slate-600"
+                onPress={handleMailTo}
+              ></TouchableOpacity> */}
             </View>
           ))}
         </View>
