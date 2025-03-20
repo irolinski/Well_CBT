@@ -1,22 +1,25 @@
-import React, { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { Modal, Pressable, Switch, Text, View } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
-import { Colors } from '@/constants/styles/colorTheme';
-import { setShowNotificationModal } from '@/state/features/menus/notificationModalSlice';
-import { AppDispatch, RootState } from '@/state/store';
+import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { Modal, Pressable, Switch, Text, View } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import { Colors } from "@/constants/styles/colorTheme";
+import { currentLocaleUses12hClock, selectedLanguage } from "@/hooks/i18n";
+import { setShowNotificationModal } from "@/state/features/menus/notificationModalSlice";
+import { AppDispatch, RootState } from "@/state/store";
 import {
-    cancelDailyNotification, getDailyNotificationTime_12h, getDailyNotificationTime_24h,
-    requestNotificationPermissions, scheduleDailyNotification
-} from '@/utils/notifications';
-import { Feather, MaterialCommunityIcons } from '@expo/vector-icons';
-import ModalButton from '../NavigationModalButton';
-import TimePicker_12h, { TimePicker_12hReturnObj } from './TimePicker_12h';
-import TimePicker_24h, { TimePicker_24hReturnObj } from './TimePicker_24h';
+  cancelDailyNotification,
+  getDailyNotificationTime_12h,
+  getDailyNotificationTime_24h,
+  requestNotificationPermissions,
+  scheduleDailyNotification,
+} from "@/utils/notifications";
+import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
+import ModalButton from "../NavigationModalButton";
+import TimePicker_12h, { TimePicker_12hReturnObj } from "./TimePicker_12h";
+import TimePicker_24h, { TimePicker_24hReturnObj } from "./TimePicker_24h";
 
 const NotificationsModal = () => {
-  const { t, i18n } = useTranslation(["home", "common"]);
-  const currentLanguage = i18n.language;
+  const { t } = useTranslation(["home", "common"]);
 
   const notificationModalState = useSelector(
     (state: RootState) => state.notificationModal,
@@ -33,7 +36,7 @@ const NotificationsModal = () => {
     let currentNotificationTime;
 
     // if lang is en => 12h system
-    if (currentLanguage === "en") {
+    if (currentLocaleUses12hClock()) {
       currentNotificationTime = await getDailyNotificationTime_12h();
       if (
         currentNotificationTime?.hour &&
@@ -42,12 +45,6 @@ const NotificationsModal = () => {
       ) {
         setEnableNotifications(true);
         setSelectedTime(currentNotificationTime);
-        console.log(
-          "12h " +
-            currentNotificationTime.hour +
-            " " +
-            currentNotificationTime.minute,
-        );
       } else {
         setEnableNotifications(false);
       }
@@ -58,12 +55,6 @@ const NotificationsModal = () => {
       if (currentNotificationTime?.hour && currentNotificationTime?.minute) {
         setEnableNotifications(true);
         setSelectedTime(currentNotificationTime);
-        console.log(
-          "24h " +
-            currentNotificationTime.hour +
-            " " +
-            currentNotificationTime.minute,
-        );
       } else {
         setEnableNotifications(false);
       }
@@ -73,7 +64,7 @@ const NotificationsModal = () => {
   const handleSavePreferences = async () => {
     if (selectedTime) {
       if (enableNotifications) {
-        if ("meridiem" in selectedTime && currentLanguage === "en") {
+        if ("meridiem" in selectedTime && currentLocaleUses12hClock()) {
           await scheduleDailyNotification(
             Number(selectedTime.hour),
             Number(selectedTime.minute),
@@ -178,7 +169,7 @@ const NotificationsModal = () => {
                 />
               </View>
               {/* TimePicker */}
-              {currentLanguage === "en" ? (
+              {currentLocaleUses12hClock() ? (
                 <TimePicker_12h
                   initialTime={
                     selectedTime && "meridiem" in selectedTime

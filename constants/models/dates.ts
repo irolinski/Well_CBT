@@ -59,3 +59,14 @@ export const dayColors = {
   saturday: "#B479FF",
   sunday: "#4391BC",
 };
+
+export const twelveHourRegions = [
+  "US",
+  "CA",
+  "AU",
+  "PH",
+  "NZ",
+  "IN",
+  "MY",
+  "PK",
+];

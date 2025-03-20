@@ -1,23 +1,24 @@
-import { Image } from 'expo-image';
-import React, { useRef } from 'react';
-import { useTranslation } from 'react-i18next';
-import { Animated, ScrollView, View } from 'react-native';
-import { ArticleTypesWithArticleBody } from '@/app/learn/categories/[category]/[articleId]';
-import { logoImages } from '@/assets/images/global/logo/logo';
-import learnArticlesLocales from '@/assets/text/learn_articles.json';
-import DividerLine from '@/components/DividerLine';
-import Text from '@/components/global/Text';
-import ArticleImage from '@/components/learn/ArticleCustomImage';
-import ArticleTextHeader from '@/components/learn/ArticleTextHeader';
-import RelatedArticleCard from '@/components/learn/RelatedArticleCard';
-import { learnArticles } from '@/constants/models/learn/articles';
+import { Image } from "expo-image";
+import React, { useRef } from "react";
+import { useTranslation } from "react-i18next";
+import { Animated, ScrollView, View } from "react-native";
+import { ArticleTypesWithArticleBody } from "@/app/learn/categories/[category]/[articleId]";
+import { logoImages } from "@/assets/images/global/logo/logo";
+import learnArticlesLocales from "@/assets/text/learn_articles.json";
+import DividerLine from "@/components/DividerLine";
+import Text from "@/components/global/Text";
+import ArticleImage from "@/components/learn/ArticleCustomImage";
+import ArticleTextHeader from "@/components/learn/ArticleTextHeader";
+import RelatedArticleCard from "@/components/learn/RelatedArticleCard";
+import { learnArticles } from "@/constants/models/learn/articles";
 import {
-    ArticlesInCurrentLanguageType, ArticleTypes, learnRelatedArticleCardTypes
-} from '@/constants/models/learn/learn';
-import { Colors } from '@/constants/styles/colorTheme';
-import { SCREEN_HEIGHT, SCREEN_WIDTH } from '@/constants/styles/values';
-import { AvailableLanguage } from '@/hooks/i18n';
-import ArticleImageScrollableHeader from './ArticleImageScrollableHeader';
+  ArticlesInCurrentLanguageType,
+  learnRelatedArticleCardTypes,
+} from "@/constants/models/learn/learn";
+import { Colors } from "@/constants/styles/colorTheme";
+import { SCREEN_HEIGHT, SCREEN_WIDTH } from "@/constants/styles/values";
+import { selectedLanguage } from "@/hooks/i18n";
+import ArticleImageScrollableHeader from "./ArticleImageScrollableHeader";
 
 const HEADER_HEIGHT = SCREEN_HEIGHT * 0.4;
 
@@ -32,12 +33,9 @@ const ArticlePage = ({
   relatedArticleIds,
   id,
 }: ArticleTypesWithArticleBody) => {
-  const { t, i18n } = useTranslation(["learn", "common"]);
+  const { t } = useTranslation(["learn", "common"]);
 
   const scrollOffsetY = useRef(new Animated.Value(0)).current;
-
-  const selectedLanguage: AvailableLanguage =
-    i18n.language as AvailableLanguage;
 
   const getRelatedArticles = (idArr: number[] | undefined) => {
     let relatedArticlesArr: learnRelatedArticleCardTypes[] = [];
@@ -64,7 +62,7 @@ const ArticlePage = ({
   };
 
   const articlesInCurrentLanguage = learnArticlesLocales[
-    selectedLanguage
+    selectedLanguage as keyof typeof learnArticlesLocales
   ] as ArticlesInCurrentLanguageType;
 
   const relatedArticles = getRelatedArticles(relatedArticleIds);

@@ -1,18 +1,19 @@
-import React, { useRef, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { Animated, Easing, NativeSyntheticEvent, View } from 'react-native';
-import PagerView from 'react-native-pager-view';
-import { Double } from 'react-native/Libraries/Types/CodegenTypes';
-import ArrowRightButton from '@/components/ArrowRightButton';
-import DatePicker from '@/components/DatePicker';
-import FadeInView from '@/components/FadeInView';
-import Text from '@/components/global/Text';
-import GroundYourselfSlideFrame from '@/components/tools/ground_yourself/GroundYourselfSlideFrame';
-import TypewriterText from '@/components/TypewriterText';
-import { GroundYourselfSlideProps } from '@/constants/models/tools/ground_yourself';
-import { Colors } from '@/constants/styles/colorTheme';
-import { SCREEN_HEIGHT } from '@/constants/styles/values';
-import { numToString_addZero } from '@/utils/dates';
+import React, { useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { Animated, Easing, NativeSyntheticEvent, View } from "react-native";
+import PagerView from "react-native-pager-view";
+import { Double } from "react-native/Libraries/Types/CodegenTypes";
+import ArrowRightButton from "@/components/ArrowRightButton";
+import DatePicker from "@/components/DatePicker";
+import FadeInView from "@/components/FadeInView";
+import Text from "@/components/global/Text";
+import GroundYourselfSlideFrame from "@/components/tools/ground_yourself/GroundYourselfSlideFrame";
+import TypewriterText from "@/components/TypewriterText";
+import { GroundYourselfSlideProps } from "@/constants/models/tools/ground_yourself";
+import { Colors } from "@/constants/styles/colorTheme";
+import { SCREEN_HEIGHT } from "@/constants/styles/values";
+import { selectedLanguage } from "@/hooks/i18n";
+import { numToString_addZero } from "@/utils/dates";
 
 const getCurrentDateObj = () => {
   const currentDate = new Date();
@@ -30,8 +31,7 @@ const Ground_Time_Day = ({
   onButtonPress,
   exerciseLength,
 }: GroundYourselfSlideProps) => {
-  const { t, i18n } = useTranslation(["tools", "common"]);
-  const currentLanguage = i18n.language;
+  const { t } = useTranslation(["tools", "common"]);
 
   const [currentInstruction, setCurrentInstruction] = useState<
     "instruction_1" | "instruction_2" | "date_input" | "result" | "finish"
@@ -191,7 +191,7 @@ const Ground_Time_Day = ({
                     </Text>
                     <DatePicker
                       onChange={(date) => setSelectedDate(date)}
-                      dateFormat={currentLanguage === "en" ? "YMD" : "DMY"}
+                      dateFormat={selectedLanguage === "en" ? "YMD" : "DMY"}
                     />
                     <FadeInView
                       inputVal={0}
@@ -278,7 +278,7 @@ const Ground_Time_Day = ({
                             {/* current date here */}
                             <DisplayedDate
                               dateFormat={
-                                currentLanguage === "en" ? "YMD" : "DMY"
+                                selectedLanguage === "en" ? "YMD" : "DMY"
                               }
                             />
                           </Animated.Text>

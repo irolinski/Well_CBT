@@ -1,6 +1,7 @@
 import { getLocales } from "expo-localization";
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
+import { twelveHourRegions } from "@/constants/models/dates";
 import enAbout from "@/locales/en/about.json";
 import enCommon from "@/locales/en/common.json";
 import enHome from "@/locales/en/home.json";
@@ -12,7 +13,11 @@ import plHome from "@/locales/pl/home.json";
 import plLearn from "@/locales/pl/learn.json";
 import plTools from "@/locales/pl/tools.json";
 
-const deviceLanguage = getLocales()[0].languageCode ?? "en";
+// Get full locale (e.g., "en-US" or "en-GB")
+const fullLocale = getLocales()[0]?.languageTag ?? "en-US";
+
+// Extract language and region separately
+const [deviceLanguage, deviceRegion] = fullLocale.split("-");
 
 // Define available translations
 const resources = {
@@ -39,20 +44,24 @@ export type AvailableLanguage = keyof typeof resources;
 // Initialize i18next
 const i18nInitObj = {
   resources,
-  lng: deviceLanguage!,
+  lng: deviceLanguage || "en",
   supportedLngs: ["en", "pl"],
   defaultNS: "common",
   ns: ["common", "home", "tools", "learn", "about"],
-  fallbackLng: "en",
+  fallbackLng: ["en"],
   interpolation: { escapeValue: false },
 };
 
 i18n.use(initReactI18next).init(i18nInitObj);
 
-// Export selectedLanguage because fetching it from i18n object
-// doesn't update it to fallback if device lang is not available
+// Function to check if 12-hour format should be used
+export const currentLocaleUses12hClock = () => {
+  return twelveHourRegions.includes(deviceRegion); // True = 12-hour, False = 24-hour
+};
+
+// Export selected language
 export const selectedLanguage = availableLanguagesArr.includes(i18n.language)
   ? i18n.language
-  : i18nInitObj.fallbackLng;
+  : i18nInitObj.fallbackLng[0];
 
 export default i18n;
