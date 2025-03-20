@@ -33,7 +33,9 @@
         "body": "Ta akcja jest nieodwracalna.\nStracisz cały zapisany postęp!",
         "yes": "Tak, kontynuuj",
         "no": "Nie, wróć"
-      }
+      },
+      "exercises": "Ćwiczenia",
+      "auto_save_exercises": "Automatycznie zaznacz opcję zapisywania w ćwiczeniach"
     },
     "report_a_bug": {
       "title": "Zgłoś błąd w aplikacji",

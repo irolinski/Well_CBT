@@ -61,7 +61,6 @@ const StorageSettingsPage = () => {
         const res: UserSettingsDataObj =
           (await getUserSettingsData()) as UserSettingsDataObj;
         if (res) {
-          console.log(res);
           setSettingsData(res);
         }
       } catch (error) {
@@ -94,10 +93,12 @@ const StorageSettingsPage = () => {
       <View className="m-4">
         {/* Auto-save exercises */}
         <View className="mb-10 mt-10">
-          <Text className="text-xl">Ćwiczenia</Text>
+          <Text className="text-xl">
+            {t(`settings.${SETTING_NAME}.exercises`)}
+          </Text>
           <View className="mx-8 my-2 flex-row items-center justify-center py-4">
             <Text className="mx-2 text-lg">
-              Automatycznie zaznacz opcję zapisywania w ćwiczeniach
+              {t(`settings.${SETTING_NAME}.auto_save_exercises`)}
             </Text>
             <Switch
               className="mx-2"

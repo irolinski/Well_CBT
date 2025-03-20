@@ -28,12 +28,15 @@
       "title": "Storage",
       "remove_all_data": "Remove all saved data",
       "warning_message": "Below button deletes all of the data saved on your device that  is related to this app, including all exercise data, achievements, user stats etc.",
+
       "remove_all_alert": {
         "header": "Are you sure you want to continue?",
         "body": "This action is irreversible. \nYou'll lose all of your saved progress! ",
         "yes": "Yes, continue",
         "no": "No, take me back"
-      }
+      },
+      "exercises": "Exercises",
+      "auto_save_exercises": "Auto-check save option in exercises"
     },
     "report_a_bug": {
       "title": "Report a Bug",
