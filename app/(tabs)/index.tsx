@@ -17,6 +17,7 @@ import { fetchRecentEntries } from "@/db/activity_log";
 import { setShowNewActivityModal } from "@/state/features/menus/newActivityModalSlice";
 import { AppDispatch } from "@/state/store";
 import { Entypo } from "@expo/vector-icons";
+import AppOnboardingModal from "../home/AppOnboardingModal";
 
 const MIN_RECENT_ACTIVITY_LENGTH = 2;
 
@@ -118,6 +119,7 @@ const Home = () => {
         )}
       </View>
       <NewActivityModal />
+      <AppOnboardingModal />
     </FrameMenu>
   );
 };
