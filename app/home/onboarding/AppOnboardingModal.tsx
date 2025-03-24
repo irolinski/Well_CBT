@@ -8,7 +8,6 @@ import {
 } from "react-native";
 import PagerView from "react-native-pager-view";
 import { Double } from "react-native/Libraries/Types/CodegenTypes";
-import Text from "@/components/global/Text";
 import { Colors } from "@/constants/styles/colorTheme";
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from "@/constants/styles/values";
 import Onborading_Slide_1 from "./slide_1";
@@ -109,7 +108,7 @@ const AppOnboardingModal = () => {
           }}
         >
           <Onborading_Slide_1
-            slideNum={currentSlide}
+            onboardingSlideNum={currentSlide}
             onFinish={() => {
               slideDownBackgroundAnim().start(() => {
                 nextSlide();
