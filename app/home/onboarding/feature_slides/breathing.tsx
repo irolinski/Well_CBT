@@ -6,7 +6,7 @@ import { Colors } from "@/constants/styles/colorTheme";
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from "@/constants/styles/values";
 
 const THIS_SLIDE_KEY = "2";
-const START_DELAY_MS = 2500;
+const START_DELAY_MS = 1000;
 
 const BREATHE_IN_TIME_MS = 5000;
 const HOLD_TIME_MS = 6000 - 500;
