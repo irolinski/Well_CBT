@@ -34,7 +34,7 @@ const DistortionPill = ({
       >
         <Text
           className="text-center text-[12px]"
-          style={{ color: checked ? Colors.whiteSmoke : Colors.offBlack }}
+          style={{ color: checked ? Colors.white : Colors.offBlack }}
         >
           {title}
         </Text>
