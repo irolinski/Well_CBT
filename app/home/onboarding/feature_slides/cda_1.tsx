@@ -10,11 +10,13 @@ const SlideInView = ({
   children,
   delay,
   from,
+  onFinish,
 }: {
   isActive: boolean;
   children: React.ReactNode;
   delay: number;
   from: "left" | "right";
+  onFinish?: () => void;
 }) => {
   const INITIAL_OFFSET_PX = 1000; // if it is less than this, there is a glitch during slide change
   const translateX = useRef(
@@ -35,7 +37,11 @@ const SlideInView = ({
 
   useEffect(() => {
     if (isActive) {
-      SlideInViewAnim().start();
+      SlideInViewAnim().start(() => {
+        if (onFinish) {
+          onFinish();
+        }
+      });
     }
   }, [translateX, delay, isActive]);
 
@@ -46,7 +52,13 @@ const SlideInView = ({
   );
 };
 
-const Onboarding_Feat_CDA_1 = ({ slideNum }: { slideNum: number | null }) => {
+const Onboarding_Feat_CDA_1 = ({
+  slideNum,
+  onFinish,
+}: {
+  slideNum: number | null;
+  onFinish: () => void;
+}) => {
   return (
     <View className="items-center" key={THIS_SLIDE_KEY}>
       <Text className="mt-4 text-3xl" style={{ color: Colors.offWhite }}>
@@ -139,6 +151,7 @@ const Onboarding_Feat_CDA_1 = ({ slideNum }: { slideNum: number | null }) => {
             isActive={slideNum === Number(THIS_SLIDE_KEY) - 1}
             delay={500}
             from="right"
+            onFinish={() => onFinish()}
           >
             <View className="w-full items-center">
               <DistortionPill

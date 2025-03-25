@@ -7,6 +7,8 @@ import { Colors } from "@/constants/styles/colorTheme";
 import { SCREEN_HEIGHT } from "@/constants/styles/values";
 import Onboarding_Feat_Breathing from "./feature_slides/breathing";
 import Onboarding_Feat_CDA_1 from "./feature_slides/cda_1";
+import Onboarding_Feat_CDA_2 from "./feature_slides/cda_2";
+import Onboarding_Feat_Journal from "./feature_slides/journal";
 
 const THIS_SLIDE_KEY = "2";
 
@@ -20,17 +22,19 @@ const Onboarding_Slide_2 = ({
   const [currentAnimation, setCurrentAnimation] = useState<
     "fade_in_header" | null
   >(null);
-  const [currentSlide, setCurrentSlide] = useState<Number | null>(null);
+  const [currentSlide, setCurrentSlide] = useState<number | null>(null);
   const refPagerView = useRef<PagerView>(null);
 
   const nextSlide = useCallback(() => {
-    typeof currentSlide === "number" &&
+    if (typeof currentSlide === "number") {
       refPagerView.current?.setPage(currentSlide + 1);
+    }
   }, [currentSlide]);
 
   useEffect(() => {
     if (onboardingSlideNum === Number(THIS_SLIDE_KEY) - 1) {
       setCurrentAnimation("fade_in_header");
+      // setCurrentSlide(0);
     }
   }, [onboardingSlideNum]);
 
@@ -39,6 +43,10 @@ const Onboarding_Slide_2 = ({
       setCurrentSlide(0);
     }
   }, [currentAnimation]);
+
+  useEffect(() => {
+    console.log(currentSlide);
+  }, [currentSlide]);
 
   return (
     <FadeInView
@@ -58,6 +66,7 @@ const Onboarding_Slide_2 = ({
       <PagerView
         className="absolute bottom-0 h-2/3 w-full items-center justify-center"
         ref={refPagerView}
+        initialPage={0}
         onPageSelected={(
           evt: NativeSyntheticEvent<
             Readonly<{
@@ -82,11 +91,20 @@ const Onboarding_Slide_2 = ({
         <Onboarding_Feat_Breathing
           slideNum={typeof currentSlide === "number" ? currentSlide : null}
           onFinish={() => {
-            nextSlide();
+            setTimeout(() => nextSlide(), 1500);
           }}
         />
         <Onboarding_Feat_CDA_1
           slideNum={typeof currentSlide === "number" ? currentSlide : null}
+          onFinish={() => {
+            setTimeout(() => nextSlide(), 1500);
+          }}
+        />
+        <Onboarding_Feat_CDA_2
+          slideNum={typeof currentSlide === "number" ? currentSlide : null}
+          onFinish={() => {
+            setTimeout(() => nextSlide(), 1500);
+          }}
         />
         {/* 
         <View className="items-center" key="2">
