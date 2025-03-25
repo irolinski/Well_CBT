@@ -5,7 +5,7 @@ import FadeInView from "@/components/FadeInView";
 import { Colors } from "@/constants/styles/colorTheme";
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from "@/constants/styles/values";
 
-const THIS_SLIDE_KEY = "1";
+const THIS_SLIDE_KEY = "2";
 const START_DELAY_MS = 2500;
 
 const BREATHE_IN_TIME_MS = 5000;
@@ -14,8 +14,10 @@ const BREATHE_OUT_TIME_MS = 7000;
 
 const Onboarding_Feat_Breathing = ({
   slideNum,
+  onFinish,
 }: {
   slideNum: number | null;
+  onFinish: () => void;
 }) => {
   const { t } = useTranslation(["tools", "common"]);
 
@@ -68,13 +70,13 @@ const Onboarding_Feat_Breathing = ({
     });
   };
 
-  useEffect(() => {
+  const onFadeIn = () => {
     if (slideNum === Number(THIS_SLIDE_KEY) - 1) {
       setTimeout(() => {
         animateinnerCircle(7000);
       }, START_DELAY_MS);
     }
-  }, [slideNum]);
+  };
 
   return (
     <View className="items-center" key={THIS_SLIDE_KEY}>
@@ -83,6 +85,7 @@ const Onboarding_Feat_Breathing = ({
         isActive={currentAnimation === "fade_out_breather"}
         inputVal={1}
         outputVal={0}
+        onFinish={() => onFinish()}
       >
         <Text className="text-3xl" style={{ color: Colors.offWhite }}>
           Take a breather
@@ -92,6 +95,7 @@ const Onboarding_Feat_Breathing = ({
         <FadeInView
           className="items-center"
           isActive={slideNum === Number(THIS_SLIDE_KEY) - 1}
+          onFinish={() => onFadeIn()}
         >
           {/* Breather */}
           <View className="my-8 flex-row justify-center">
