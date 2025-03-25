@@ -32,7 +32,8 @@ interface TypewriterTextProps {
   showOverflow?: boolean;
   isActive?: boolean;
   delaySeconds?: number;
-  onFinish?: () => any;
+  cursorDisappearDelay?: number; // New: Controls how long cursor stays after text finishes
+  onFinish?: () => void;
 }
 
 const TypewriterText = ({
@@ -47,25 +48,19 @@ const TypewriterText = ({
   letterSpacing = 1.5,
   lineHeight = 1.5,
   hideCursorOnFinish = true,
-  showOverflow = false, //true prevents visial glitches in some usecases
+  showOverflow = false,
   isActive = true,
   delaySeconds,
+  cursorDisappearDelay = 2000, // Default: cursor disappears after 2 seconds
   onFinish,
 }: TypewriterTextProps) => {
-  // state
   const [displayedText, setDisplayedText] = useState("");
   const [charIndex, setCharIndex] = useState(0);
   const [isWaiting, setIsWaiting] = useState(false);
-
-  // Cursor Animation
+  const [typingFinished, setTypingFinished] = useState(false);
   const cursorOpacity = useState(new Animated.Value(1))[0];
 
   const startCursorAnimation = () => {
-    cursorOpacity.setValue(1);
-    cursorAnimation();
-  };
-
-  const cursorAnimation = () => {
     Animated.loop(
       Animated.sequence([
         Animated.timing(cursorOpacity, {
@@ -79,58 +74,50 @@ const TypewriterText = ({
           useNativeDriver: true,
         }),
       ]),
-    ).start(onFinish && onFinish);
+    ).start();
   };
 
-  // Run cursor blinking
   useEffect(() => {
-    startCursorAnimation();
-  }, []);
-
-  // Hide/Leave cursor onFinish
-  useEffect(() => {
-    if (hideCursorOnFinish) {
-      if (displayedText.length === text.length - 1) {
-        setTimeout(() => {
-          cursorOpacity.stopAnimation();
-          cursorOpacity.setValue(0);
-        }, 1500);
-      }
+    if (!typingFinished) {
+      startCursorAnimation();
     }
-  }, [charIndex]);
+  }, [typingFinished]);
 
-  // Delay run if needed
+  useEffect(() => {
+    if (typingFinished && hideCursorOnFinish) {
+      setTimeout(() => {
+        cursorOpacity.setValue(0);
+      }, cursorDisappearDelay); // Cursor stays visible for the set delay
+    }
+  }, [typingFinished]);
+
   useEffect(() => {
     if (delaySeconds) {
       setIsWaiting(true);
-
       const delayTimeout = setTimeout(() => {
         setIsWaiting(false);
       }, delaySeconds * 1000);
-
-      return () => clearTimeout(delayTimeout); // Cleanup timeout
-    } else {
-      setIsWaiting(false);
+      return () => clearTimeout(delayTimeout);
     }
-  }, [isActive]);
+  }, [delaySeconds]);
 
-  // Run typing Animation
   useEffect(() => {
-    if (isActive && !isWaiting) {
-      let typingSpeed =
+    if (isActive && !isWaiting && charIndex < text.length) {
+      const typingSpeed =
         Math.floor(
           Math.random() * (speedValues[speed] - (speedValues[speed] - 100) + 1),
         ) +
-        (speedValues[speed] - 100); // make the timeOut time time a bit random for the sake of realism
+        (speedValues[speed] - 100);
 
-      const typingTimeOut = setTimeout(() => {
-        if (charIndex < text.length) {
-          setDisplayedText(text.slice(0, charIndex + 1));
-          setCharIndex(charIndex + 1);
-        }
+      const typingTimeout = setTimeout(() => {
+        setDisplayedText(text.slice(0, charIndex + 1));
+        setCharIndex(charIndex + 1);
       }, typingSpeed);
 
-      return () => clearTimeout(typingTimeOut);
+      return () => clearTimeout(typingTimeout);
+    } else if (charIndex === text.length && !typingFinished) {
+      setTypingFinished(true);
+      if (onFinish) onFinish();
     }
   }, [charIndex, isActive, isWaiting]);
 
@@ -147,9 +134,6 @@ const TypewriterText = ({
         style,
       ]}
     >
-      {/* Placeholder Text Component
-       - it's here to make space for the actual text so that the
-       View component doesn't grow when the animation runs */}
       <Text
         style={{
           fontFamily: fontFamily,
@@ -162,7 +146,6 @@ const TypewriterText = ({
         {text}
       </Text>
       <View className="absolute h-full w-full">
-        {/* Actual Text Component */}
         <Text
           style={{
             fontFamily: fontFamily,
@@ -173,17 +156,18 @@ const TypewriterText = ({
           }}
         >
           {displayedText}
-          {/* Cursor Animation */}
-          <Animated.View
-            style={{
-              width: size / 4,
-              height: size,
-              transform: [{ translateX: size / 2 }],
-              marginBottom: lineHeight * 2.25 * lineHeight - lineHeight,
-              opacity: cursorOpacity,
-              backgroundColor: cursorColor ? cursorColor : textColor,
-            }}
-          />
+          {!typingFinished || hideCursorOnFinish ? (
+            <Animated.View
+              style={{
+                width: size / 4,
+                height: size,
+                transform: [{ translateX: size / 2 }],
+                marginBottom: lineHeight * 2.25 * lineHeight - lineHeight,
+                opacity: cursorOpacity,
+                backgroundColor: cursorColor || textColor,
+              }}
+            />
+          ) : null}
         </Text>
       </View>
     </View>
