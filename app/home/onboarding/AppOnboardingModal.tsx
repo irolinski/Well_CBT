@@ -84,7 +84,7 @@ const AppOnboardingModal = () => {
   return (
     <Modal visible={true} className="flex-1">
       <View
-        className={`items-center justify-center px-4 ${SCREEN_HEIGHT > 850 ? "py-20" : "py-12"}`}
+        className={`items-center justify-center px-4 ${SCREEN_HEIGHT > 850 ? "pt-20" : "pt-12"}`}
         style={{
           top: 0,
           width: SCREEN_WIDTH,
@@ -95,7 +95,7 @@ const AppOnboardingModal = () => {
         {/* Logo and Title View */}
         <PagerView
           scrollEnabled={false}
-          className="z-10 h-full w-full justify-center border"
+          className="z-10 h-full w-full justify-center"
           initialPage={0}
           ref={refPagerView}
           onPageSelected={(

@@ -56,7 +56,7 @@ const Onboarding_Slide_2 = ({
         WorryFree will help you to:
       </Text>
       <PagerView
-        className="absolute bottom-0 h-2/3 w-full items-center justify-center border"
+        className="absolute bottom-0 h-2/3 w-full items-center justify-center"
         ref={refPagerView}
         onPageSelected={(
           evt: NativeSyntheticEvent<
