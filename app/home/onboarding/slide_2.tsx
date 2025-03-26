@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { NativeSyntheticEvent, Text, View } from "react-native";
+import { NativeSyntheticEvent, Text } from "react-native";
 import PagerView from "react-native-pager-view";
 import { Double } from "react-native/Libraries/Types/CodegenTypes";
 import FadeInView from "@/components/FadeInView";
@@ -17,7 +17,7 @@ const Onboarding_Slide_2 = ({
   onFinish,
 }: {
   onboardingSlideNum: number;
-  onFinish?: () => void;
+  onFinish: () => void;
 }) => {
   const [currentAnimation, setCurrentAnimation] = useState<
     "fade_in_header" | null
@@ -34,7 +34,6 @@ const Onboarding_Slide_2 = ({
   useEffect(() => {
     if (onboardingSlideNum === Number(THIS_SLIDE_KEY) - 1) {
       setCurrentAnimation("fade_in_header");
-      // setCurrentSlide(0);
     }
   }, [onboardingSlideNum]);
 
@@ -43,10 +42,6 @@ const Onboarding_Slide_2 = ({
       setCurrentSlide(0);
     }
   }, [currentAnimation]);
-
-  useEffect(() => {
-    console.log(currentSlide);
-  }, [currentSlide]);
 
   return (
     <FadeInView
@@ -106,23 +101,10 @@ const Onboarding_Slide_2 = ({
             setTimeout(() => nextSlide(), 1500);
           }}
         />
-        {/* 
-        <View className="items-center" key="2">
-          <Text className="text-3xl" style={{ color: Colors.offWhite }}>
-            Turn your negative thoughts...
-          </Text>
-        </View> */}
-        {/*
-        <View className="items-center" key="3">
-          <Text className="text-3xl" style={{ color: Colors.offWhite }}>
-            ...into more rational ones
-          </Text>
-        </View>
-        <View className="items-center" key="4">
-          <Text className="text-3xl" style={{ color: Colors.offWhite }}>
-            Keep a daily mood journal
-          </Text>
-        </View> */}
+        <Onboarding_Feat_Journal
+          slideNum={typeof currentSlide === "number" ? currentSlide : null}
+          onFinish={() => onFinish()}
+        />
       </PagerView>
     </FadeInView>
   );
