@@ -34,14 +34,9 @@ const Onboarding_Slide_2 = ({
   useEffect(() => {
     if (onboardingSlideNum === Number(THIS_SLIDE_KEY) - 1) {
       setCurrentAnimation("fade_in_header");
-    }
-  }, [onboardingSlideNum]);
-
-  useEffect(() => {
-    if (currentAnimation === "fade_in_header") {
       setCurrentSlide(0);
     }
-  }, [currentAnimation]);
+  }, [onboardingSlideNum]);
 
   return (
     <FadeInView
