@@ -21,6 +21,7 @@ const Onborading_Slide_1 = ({
   onboardingSlideNum: number;
   onFinish: () => void;
 }) => {
+  const [hasFinished, setHasFinished] = useState(false);
   const [currentAnimation, setCurrentAnimation] = useState<
     null | "show_logo_view" | "show_title_view" | "hide_logo_view"
   >(null);
@@ -66,14 +67,12 @@ const Onborading_Slide_1 = ({
     setTimeout(() => setCurrentAnimation("hide_logo_view"), 1000);
   };
 
-  const handleFinish = () => {
-    setTimeout(() => onFinish(), 500);
-  };
-
   useEffect(() => {
-    setTimeout(() => {
-      setCurrentAnimation("show_logo_view");
-    }, INITIAL_DELAY_MS);
+    if (onboardingSlideNum === Number(THIS_SLIDE_KEY) - 1) {
+      setTimeout(() => {
+        setCurrentAnimation("show_logo_view");
+      }, INITIAL_DELAY_MS);
+    }
   }, [onboardingSlideNum]);
 
   return (
@@ -84,7 +83,9 @@ const Onborading_Slide_1 = ({
       outputVal={0}
       isActive={currentAnimation === "hide_logo_view"}
       duration={2000}
-      onFinish={() => handleFinish()}
+      onFinish={() => {
+        onFinish();
+      }}
     >
       {/* Logo */}
       <FadeInView
