@@ -12,6 +12,7 @@ import { Colors } from "@/constants/styles/colorTheme";
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from "@/constants/styles/values";
 import Onborading_Slide_1 from "./slide_1";
 import Onborading_Slide_2 from "./slide_2";
+import Onboarding_Slide_3 from "./slide_3";
 
 const AppOnboardingModal = () => {
   const refPagerView = useRef<PagerView>(null);
@@ -116,7 +117,18 @@ const AppOnboardingModal = () => {
               });
             }}
           />
-          <Onborading_Slide_2 onboardingSlideNum={currentSlide} />
+          <Onborading_Slide_2
+            onboardingSlideNum={currentSlide}
+            onFinish={() => {
+              nextSlide();
+            }}
+          />
+          <Onboarding_Slide_3
+            onboardingSlideNum={currentSlide}
+            onFinish={() => {
+              nextSlide();
+            }}
+          />
         </PagerView>
 
         {/* Background */}
