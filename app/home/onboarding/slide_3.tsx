@@ -1,27 +1,27 @@
-import React, { useCallback, useRef, useState } from "react";
-import {
-  ColorValue,
-  Pressable,
-  ScrollView,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
-import PagerView from "react-native-pager-view";
+import React, { useState } from "react";
+import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import AdvanceButton from "@/components/AdvanceButton";
 import ChecklistElement from "@/components/ChecklistElement";
 import { Colors } from "@/constants/styles/colorTheme";
 import { SCREEN_HEIGHT } from "@/constants/styles/values";
-import { Feather } from "@expo/vector-icons";
 
 const THIS_SLIDE_KEY = "3";
 
 const goals_questionnaire_items: string[] = [
+  "I want to improve my mood",
   "I want to reduce my anxiety",
+  "I want to build healthy thinking habits",
+  "I want to practice mindfulness",
+  "I want to learn to challange my negative thoughts",
   "I want to start a mood journal",
-  "Nothing in particular - just browsing",
+  "I want to gain emotional awareness",
+  "I want to improve my self-esteem",
+  "I want to improve my sleep",
   "I want to practice CBT exercises",
   "I want to supplement my talk therapy",
+  "I want to overcome procrastination",
+  "I want to learn how to handle my phobias and/or fears",
+  "Nothing in particular - just browsing",
 ];
 
 const SkipButton = ({ onPress }: { onPress: () => void }) => {
