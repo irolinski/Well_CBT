@@ -28,7 +28,9 @@ const SkipButton = ({ onPress }: { onPress: () => void }) => {
   return (
     <TouchableOpacity
       className="h-12 w-24 flex-row items-center justify-center"
-      onPress={() => {}}
+      onPress={() => {
+        onPress();
+      }}
     >
       <Text style={{ color: Colors.offWhite, fontWeight: 600, fontSize: 18 }}>
         SKIP
@@ -38,7 +40,6 @@ const SkipButton = ({ onPress }: { onPress: () => void }) => {
 };
 
 const Onboarding_Slide_3 = ({
-  onboardingSlideNum,
   onFinish,
 }: {
   onboardingSlideNum: number;
@@ -69,7 +70,7 @@ const Onboarding_Slide_3 = ({
       >
         Choose one or many out of the options below.
       </Text>
-      <View className="h-1/2 w-full">
+      <View className="h-1/2 w-full px-2">
         <View
           className="mt-4 h-3/4 w-full items-center justify-center pr-4"
           style={{
@@ -79,7 +80,7 @@ const Onboarding_Slide_3 = ({
           }}
         >
           <ScrollView
-            className="my-4 w-full rounded-lg px-4"
+            className="mb-4 mt-2 w-full rounded-lg px-4 py-4"
             contentContainerStyle={{
               justifyContent: "space-between",
               flexWrap: "wrap",
