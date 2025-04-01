@@ -1,18 +1,33 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { Animated, Easing, Modal, NativeSyntheticEvent, View } from 'react-native';
-import PagerView from 'react-native-pager-view';
-import { Double } from 'react-native/Libraries/Types/CodegenTypes';
-import { Colors } from '@/constants/styles/colorTheme';
-import { SCREEN_HEIGHT, SCREEN_WIDTH } from '@/constants/styles/values';
-import Onboarding_LoadingSlide from './loading_slide';
-import Onboarding_SecuritySlide from './security_slide';
-import Onborading_Slide_1 from './slide_1';
-import Onborading_Slide_2 from './slide_2';
-import Onboarding_Slide_3 from './slide_3';
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import {
+  Animated,
+  Easing,
+  Modal,
+  NativeSyntheticEvent,
+  View,
+} from "react-native";
+import PagerView from "react-native-pager-view";
+import { Double } from "react-native/Libraries/Types/CodegenTypes";
+import { Colors } from "@/constants/styles/colorTheme";
+import { SCREEN_HEIGHT, SCREEN_WIDTH } from "@/constants/styles/values";
+import Onboarding_LastSlide from "./last_slide";
+import Onboarding_LoadingSlide from "./loading_slide";
+import Onboarding_PaymentSlide from "./payment_slide";
+import Onboarding_SecuritySlide from "./security_slide";
+import Onborading_Slide_1 from "./slide_1";
+import Onborading_Slide_2 from "./slide_2";
+import Onboarding_Slide_3 from "./slide_3";
 
-const AppOnboardingModal = () => {
+const AppOnboardingModal = ({
+  isActive,
+  onFinish,
+}: {
+  isActive: boolean;
+  onFinish: () => void;
+}) => {
   const refPagerView = useRef<PagerView>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
+
   const nextSlide = useCallback(() => {
     refPagerView.current?.setPage(currentSlide + 1);
   }, [currentSlide]);
@@ -79,7 +94,7 @@ const AppOnboardingModal = () => {
   }, [breathingViewScaleAnim]);
 
   return (
-    <Modal visible={true} className="flex-1">
+    <Modal visible={isActive} className="flex-1" animationType="slide">
       <View
         className={`items-center justify-center px-4 ${SCREEN_HEIGHT > 850 ? "pt-20" : "pt-12"}`}
         style={{
@@ -135,6 +150,18 @@ const AppOnboardingModal = () => {
             onboardingSlideNum={currentSlide}
             onFinish={() => {
               nextSlide();
+            }}
+          />
+          <Onboarding_PaymentSlide
+            onboardingSlideNum={currentSlide}
+            onFinish={() => {
+              nextSlide();
+            }}
+          />
+          <Onboarding_LastSlide
+            onboardingSlideNum={currentSlide}
+            onFinish={() => {
+              onFinish();
             }}
           />
         </PagerView>

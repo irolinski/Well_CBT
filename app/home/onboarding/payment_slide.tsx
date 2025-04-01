@@ -1,0 +1,48 @@
+import { useEffect, useState } from "react";
+import { View } from "react-native";
+import FadeInView from "@/components/FadeInView";
+import Text from "@/components/global/Text";
+import { Colors } from "@/constants/styles/colorTheme";
+
+const THIS_SLIDE_KEY = "6";
+const TIME_TO_FADE_OUT_MS = 2000;
+
+const Onboarding_PaymentSlide = ({
+  onboardingSlideNum,
+  onFinish,
+}: {
+  onboardingSlideNum: number;
+  onFinish: () => void;
+}) => {
+  const [fadeOutSlide, setFadeOutSlide] = useState(false);
+
+  useEffect(() => {
+    if (onboardingSlideNum === Number(THIS_SLIDE_KEY) - 1) {
+      setTimeout(() => setFadeOutSlide(true), TIME_TO_FADE_OUT_MS);
+    }
+  }, [onboardingSlideNum]);
+
+  return (
+    <FadeInView
+      className="relative z-10 h-full w-full items-center"
+      key={THIS_SLIDE_KEY}
+      inputVal={1}
+      outputVal={0}
+      isActive={fadeOutSlide}
+      onFinish={() => {
+        onFinish();
+      }}
+    >
+      <View className="mx-8 h-3/4 w-full items-center justify-center">
+        <Text
+          className="mx-8 text-center text-3xl"
+          style={{ color: Colors.offWhite }}
+        >
+          Okay! - we are all set up!
+        </Text>
+      </View>
+    </FadeInView>
+  );
+};
+
+export default Onboarding_PaymentSlide;

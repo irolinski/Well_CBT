@@ -9,6 +9,7 @@ import Onboarding_Feat_Breathing from "./feature_slides/breathing";
 import Onboarding_Feat_CDA_1 from "./feature_slides/cda_1";
 import Onboarding_Feat_CDA_2 from "./feature_slides/cda_2";
 import Onboarding_Feat_Journal from "./feature_slides/journal";
+import Onboarding_Feat_Last from "./feature_slides/last";
 
 const THIS_SLIDE_KEY = "2";
 
@@ -98,7 +99,13 @@ const Onboarding_Slide_2 = ({
         />
         <Onboarding_Feat_Journal
           slideNum={typeof currentSlide === "number" ? currentSlide : null}
-          onFinish={() => onFinish()}
+          onFinish={() => nextSlide()}
+        />
+        <Onboarding_Feat_Last
+          slideNum={typeof currentSlide === "number" ? currentSlide : null}
+          onFinish={() => {
+            onFinish();
+          }}
         />
       </PagerView>
     </FadeInView>
