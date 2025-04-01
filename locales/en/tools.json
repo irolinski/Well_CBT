@@ -34,7 +34,7 @@
     },
     "ground_yourself": {
       "title": "Ground Yourself",
-      "description": "In the following exercise, you'll practice <bold>grounding yourself</bold> using simple DBT techniques. \n\nYou'll see <bold>step-by-step instructions</bold> on the screen—just follow along to guide yourself through the process.",
+      "description": "In the following exercise, you'll practice <bold>grounding yourself</bold> using simple DBT techniques. \n\nYou'll see <bold>step-by-step instructions</bold> on the screen — just follow along to guide yourself through the process.",
       "common": {
         "now_deep_breath": "Ok, now, let's take a deep breath",
         "another_deep_breath": "Ok, now, let's do another deep breath.",
@@ -53,7 +53,7 @@
           "title": "Day",
           "instruction_1": "Hey, let's stop for a second!",
 
-          "instruction_2": "Do you remember what day is it today?",
+          "instruction_2": "Do you remember what day it is today?",
           "select_a_day": "Select a day:",
           "today_its": "Today it's...",
           "success": "Great!",
@@ -82,7 +82,7 @@
         },
         "page_4": {
           "instruction_1": "(while still noticing what's around you)",
-          "instruction_2": "Now, we'll head to the next exercise which will help ground you further"
+          "instruction_2": "Now, we'll head to the next exercise, which will help ground you further"
         }
       },
       "body": {
@@ -115,7 +115,7 @@
       "touch": {
         "title": "Touch",
         "page_1": {
-          "instruction_1": "With this exercise you will try to ground yourself using the sense of touch."
+          "instruction_1": "With this exercise, you will try to ground yourself using the sense of touch."
         },
         "page_2": {
           "instruction_2": "Now, following this breathing pace, place one of your hands firmly on one of your thighs.",
@@ -128,7 +128,7 @@
             "instruction_2": "(enter an adjective in the field below)"
           },
           "slide_3": {
-            "instruction_1": "Can you tell what color is it?",
+            "instruction_1": "Can you tell what color it is?",
             "instruction_2": "(pick using the color picker below)",
             "selected_color": "Selected Color:"
           },
@@ -144,13 +144,13 @@
       "finish": {
         "congratulations": "Congratulations!",
         "instruction_1": "You have completed all of our grounding exercises!",
-        "instruction_2": "We hope that we have helped you stand firm on the ground today.",
+        "instruction_2": "We hope that we have helped you stand firmly on the ground today.",
         "instruction_3": "Come back here anytime you need!"
       }
     },
     "cda": {
       "title": "Thoughts Challange",
-      "description": "Cognitive Distortion Analysis is an exercise designed to target negative thought patterns.\n\nYou’ll <bold>describe</bold> a situation, <bold>note</bold> an automatic thought, <bold>identify</bold> any cognitive distortions, and <bold>reformulate</bold> the thought more rationally.\n\nFor more details, go to a detailed by clicking the link below.",
+      "description": "Cognitive Distortion Analysis is an exercise designed to target negative thought patterns.\n\nYou’ll <bold>describe</bold> a situation, <bold>note</bold> an automatic thought, <bold>identify</bold> any cognitive distortions, and <bold>reformulate</bold> the thought more rationally.\n\nFor more details, go to a detailed overview by clicking the link below.",
       "exercise": {
         "page_1": {
           "header": "Write down a thought that's bothering you.",
@@ -167,7 +167,7 @@
           "header": "Now, let's try to make it rational!",
           "subheader_1": "Distorted thought:",
           "subheader_2": "Cognitive Distortion:",
-          "instruction_1": "Now, let's try to think of a more rational way to look atthis situation:"
+          "instruction_1": "Now, let's try to think of a more rational way to look at this situation:"
         },
         "summary": {
           "header": "Here are your results. Try to meditate on them for a second.",
@@ -231,7 +231,7 @@
     },
     "journal": {
       "title": "Mood Journal",
-      "description": "CBT Journaling helps track and manage emotions effectively. \n\nYou’ll start by rating your mood, then select the emotions you’re feeling from a list and think a bit about your feelings' context. \n\nThis process promotes self-awareness and emotional clarity.",
+      "description": "CBT Journaling helps track and manage emotions effectively. \n\nYou’ll start by rating your mood, then select the emotions you’re feeling from a list and think a bit about the context of your feelings. \n\nThis process promotes self-awareness and emotional clarity.",
       "exercise": {
         "page_1": {
           "header": "How would you rate your mood today?",
@@ -332,7 +332,7 @@
         "weak": "Weak",
         "significant": "Significant",
         "strong": "Strong",
-        "overwhealmingly_strong": "Overwhealming"
+        "overwhealmingly_strong": "Overwhelming"
       }
     },
     "phone_a_friend": {
@@ -375,7 +375,7 @@
           },
           "favorite_weather": {
             "name": "Ulubiona Pogoda lub Pory Roku",
-            "description": "Porozmawiaj o swojej ulubionej pogodzie i dlaczego ją lubisz."
+            "description": "Porozmawiaj o swojej ulubionej pogodzie i tym, dlaczego ją lubisz."
           },
           "would_you_rather": {
             "name": "Pytania 'Wolałbyś...?'",
@@ -471,7 +471,7 @@
           },
           "ways_to_relax": {
             "name": "Sposoby na Relaks",
-            "description": "Porozmawiaj o metodach na odprężenie po długim dniu."
+            "description": "Porozmawiaj o metodach na odprężenie się po długim dniu."
           },
           "nature_sounds": {
             "name": "Dźwięki Natury",
@@ -510,8 +510,8 @@
             "description": "Porozmawiaj o filmach lub serialach, które wywołały u ciebie uśmiech lub pozytywne uczucia."
           },
           "relaxing_video_games": {
-            "name": "Gry Wideo na Relaks",
-            "description": "Porozmawiaj o grach, które są zabawne lub uspokajające do grania."
+            "name": "Gry Komputerowe na Relaks",
+            "description": "Porozmawiaj o grach, które są zabawne lub uspokajające."
           },
           "sports_outdoor": {
             "name": "Sporty lub Aktywności na Świeżym Powietrzu",

@@ -73,7 +73,7 @@
       "5": {
         "title": "User of the Month",
         "description_before": "Visited Well 30 consecutive days in a row",
-        "description_after": "You’ve visited Well for 30 days in a row. Now that is an impressive consistency!"
+        "description_after": "You’ve visited Well for 30 days in a row. Now that is impressive consistency!"
       },
       "6": {
         "title": "Consistent Presence",
@@ -83,7 +83,7 @@
       "7": {
         "title": "New Year’s Resolution",
         "description_before": "Visited Well 365 days (not necessarily in a row)",
-        "description_after": "A year of commitment! You’ve visited Well for 365 days. Keep up the incredible work!"
+        "description_after": "A year of commitment! You’ve visited Well on 365 different days. Keep up the incredible work!"
       },
       "8": {
         "title": "Rationalist",
@@ -119,11 +119,11 @@
   },
   "stats": {
     "title": "Stats",
-    "visit_streak": "Visited most days-in-row",
+    "visit_streak": "Visited most days in a row",
     "placeholder_text": "Keep using Well to see your first activity statistics!",
     "stats_objects": {
       "highestVisitStreak": {
-        "caption": "Visited most days in-row"
+        "caption": "Visited most days in a row"
       },
       "cbtCount": {
         "caption": "Thoughts untangled"
