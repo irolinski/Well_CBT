@@ -63,10 +63,6 @@ const Home = () => {
       });
   }, []);
 
-  const showOnboarding = () => {
-    setOnboardingModalIsActive(true);
-  };
-
   const handleOnboardingFinished = () => {
     handleSetSeenOnboardingTrue();
     setOnboardingModalIsActive(false);

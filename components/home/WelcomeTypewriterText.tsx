@@ -33,7 +33,7 @@ const getWelcomeText = (userName?: string): string => {
   return welcomeText;
 };
 
-const WelcomeTypewriterText = () => {
+const WelcomeTypewriterText = ({ isActive }: { isActive: boolean }) => {
   const SCREEN_WIDTH = Dimensions.get("window").width;
 
   const [userData, setUserData] = useState<UserType>();
@@ -63,6 +63,7 @@ const WelcomeTypewriterText = () => {
       >
         <TypewriterText
           text={getWelcomeText(userName && userName)}
+          isActive={isActive}
           speed="fast"
           fontFamily="KodchasanMedium"
           textColor={Colors.darkGray}
