@@ -1,18 +1,14 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import {
-  Animated,
-  Easing,
-  Modal,
-  NativeSyntheticEvent,
-  View,
-} from "react-native";
-import PagerView from "react-native-pager-view";
-import { Double } from "react-native/Libraries/Types/CodegenTypes";
-import { Colors } from "@/constants/styles/colorTheme";
-import { SCREEN_HEIGHT, SCREEN_WIDTH } from "@/constants/styles/values";
-import Onborading_Slide_1 from "./slide_1";
-import Onborading_Slide_2 from "./slide_2";
-import Onboarding_Slide_3 from "./slide_3";
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { Animated, Easing, Modal, NativeSyntheticEvent, View } from 'react-native';
+import PagerView from 'react-native-pager-view';
+import { Double } from 'react-native/Libraries/Types/CodegenTypes';
+import { Colors } from '@/constants/styles/colorTheme';
+import { SCREEN_HEIGHT, SCREEN_WIDTH } from '@/constants/styles/values';
+import Onboarding_LoadingSlide from './loading_slide';
+import Onboarding_SecuritySlide from './security_slide';
+import Onborading_Slide_1 from './slide_1';
+import Onborading_Slide_2 from './slide_2';
+import Onboarding_Slide_3 from './slide_3';
 
 const AppOnboardingModal = () => {
   const refPagerView = useRef<PagerView>(null);
@@ -124,6 +120,18 @@ const AppOnboardingModal = () => {
             }}
           />
           <Onboarding_Slide_3
+            onboardingSlideNum={currentSlide}
+            onFinish={() => {
+              nextSlide();
+            }}
+          />
+          <Onboarding_SecuritySlide
+            onboardingSlideNum={currentSlide}
+            onFinish={() => {
+              nextSlide();
+            }}
+          />
+          <Onboarding_LoadingSlide
             onboardingSlideNum={currentSlide}
             onFinish={() => {
               nextSlide();
