@@ -14,6 +14,10 @@ import WelcomeTypewriterText from "@/components/home/WelcomeTypewriterText";
 import { EntryViewTableRow } from "@/constants/models/home/activity_log";
 import { Colors } from "@/constants/styles/colorTheme";
 import { fetchRecentEntries } from "@/db/activity_log";
+import {
+  handleGetSeenOnboarding,
+  handleSetSeenOnboardingTrue,
+} from "@/db/service";
 import { setShowNewActivityModal } from "@/state/features/menus/newActivityModalSlice";
 import { AppDispatch } from "@/state/store";
 import { Entypo } from "@expo/vector-icons";
@@ -21,16 +25,32 @@ import AppOnboardingModal from "../home/onboarding/AppOnboardingModal";
 
 const MIN_RECENT_ACTIVITY_LENGTH = 2;
 
+type SeenOnboardingDbObjType = { isTrue: 1 | 0 } | null;
+
 const Home = () => {
   const { t } = useTranslation(["home", "common"]);
   const dispatch = useDispatch<AppDispatch>();
+
   const [recentEntriesArr, setRecentEntriesArr] = useState<EntryViewTableRow[]>(
     [],
   );
+  const [onboardingModalIsActive, setOnboardingModalIsActive] =
+    useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  const handleOnboardingStart = async () => {
+    const res: SeenOnboardingDbObjType =
+      (await handleGetSeenOnboarding()) as SeenOnboardingDbObjType;
+    if (res && res.isTrue) {
+      setOnboardingModalIsActive(false);
+    } else {
+      setOnboardingModalIsActive(true);
+    }
+  };
 
   useEffect(() => {
     setIsLoading(true);
+    handleOnboardingStart();
     fetchRecentEntries()
       .then((res) => {
         setRecentEntriesArr(res as EntryViewTableRow[]);
@@ -43,11 +63,20 @@ const Home = () => {
       });
   }, []);
 
+  const showOnboarding = () => {
+    setOnboardingModalIsActive(true);
+  };
+
+  const handleOnboardingFinished = () => {
+    handleSetSeenOnboardingTrue();
+    setOnboardingModalIsActive(false);
+  };
+
   return (
-    <FrameMenu title={t("index.title")} className="items-center justify-center">
+    <FrameMenu title={t("index.title")}>
       <View>
         {/* Welcome */}
-        <WelcomeTypewriterText />
+        <WelcomeTypewriterText isActive={!onboardingModalIsActive} />
         {/* Quote Widget */}
         <View className="my-4 items-center justify-center">
           <QuoteWidget />
@@ -119,9 +148,13 @@ const Home = () => {
         )}
       </View>
       <NewActivityModal />
-      <AppOnboardingModal />
+      <AppOnboardingModal
+        isActive={onboardingModalIsActive}
+        onFinish={() => {
+          handleOnboardingFinished();
+        }}
+      />
     </FrameMenu>
   );
 };
-
 export default Home;

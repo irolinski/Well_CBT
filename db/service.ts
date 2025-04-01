@@ -23,6 +23,7 @@ export const setUpDB = async () => {
 
       INSERT INTO userSettings (exerciseAutoSaveIsActive, language) VALUES (1, "");
       
+      CREATE TABLE IF NOT EXISTS seenOnboarding (isTrue INT);
 
       CREATE TABLE IF NOT EXISTS journalEntries (
        id INTEGER PRIMARY KEY AUTOINCREMENT, moodValue INT NOT NULL, note VARCHAR(200), datetime NOT NULL
@@ -51,9 +52,9 @@ export const setUpDB = async () => {
         articleId INT NOT NULL
       );
 
-       CREATE TABLE IF NOT EXISTS achievementProgress (
-          id INT, currentScore INT, requiredScore INT, dateUnlocked VARCHAR (30) 
-        );
+      CREATE TABLE IF NOT EXISTS achievementProgress (
+        id INT, currentScore INT, requiredScore INT, dateUnlocked VARCHAR (30) 
+      );
       
     `);
   } catch (err) {
@@ -89,10 +90,32 @@ export const createActivityViewTable = async () => {
   `);
 };
 
+export const handleGetSeenOnboarding = async () => {
+  try {
+    const db = await SQLite.openDatabaseAsync(dbName);
+    const res = await db.getFirstAsync(`SELECT isTrue FROM seenOnboarding`);
+    return res;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const handleSetSeenOnboardingTrue = async () => {
+  try {
+    const db = await SQLite.openDatabaseAsync(dbName);
+    await db.execAsync(`INSERT INTO seenOnboarding (isTrue) VALUES (1)`);
+    console.log("onboarding was seen on this device, setting db");
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 export const deleteAllDBData = async () => {
-  const db = await SQLite.openDatabaseAsync(dbName);
-  await db.execAsync(`
+  try {
+    const db = await SQLite.openDatabaseAsync(dbName);
+    await db.execAsync(`
     DROP TABLE IF EXISTS userData;
+    DROP TABLE IF EXISTS seenOnboarding;
     DROP TABLE IF EXISTS journalEntries;
     DROP TABLE IF EXISTS journalEntryEmotions;
     DROP TABLE IF EXISTS cdaArchive;
@@ -101,5 +124,8 @@ export const deleteAllDBData = async () => {
     DROP TABLE IF EXISTS achievementProgress;
     DROP TABLE IF EXISTS phoneAFriend;
   `);
-  await setUpDB();
+    await setUpDB();
+  } catch (err) {
+    console.error(err);
+  }
 };
