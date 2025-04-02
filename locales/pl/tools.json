@@ -247,7 +247,7 @@
           "selected_current_of_total": "{{current}} z {{total}} wybranych"
         },
         "page_3": {
-          "header": "Jak silne odczuwasz wymienione emocje?",
+          "header": "Jak silnie odczuwasz wymienione emocje?",
           "instruction_1": "Użyj suwaków, aby ocenić intensywność wybranych emocji."
         },
         "page_4": {
@@ -398,13 +398,13 @@
         "alert_yes": "Tak, kontynuuj"
       },
       "modal": {
-        "instruction": "Wylosuj kartę, aby wylosować temat rozmowy.",
+        "instruction": "Wylosuj kartę z tematem rozmowy.",
         "tap_to_uncover": "Dotknij, aby odkryć",
         "message_boilerplate": "Hej, potrzebuję się odciąć od myśli. Chcesz porozmawiać o czymś miłym, jak np. ",
         "conversation_topics": {
           "dream_vacation": {
             "name": "Wymarzone Miejsca na Wakacje",
-            "description": "Porozmawiaj o miejscach, które chciałbyś odwiedzić i co czyni je ekscytującymi."
+            "description": "Porozmawiaj o miejscach, które chciałbyś odwiedzić i o tym co czyni je ekscytującymi."
           },
           "favorite_food": {
             "name": "Ulubione Jedzenie lub Przekąski",
@@ -432,7 +432,7 @@
           },
           "favorite_colors": {
             "name": "Ulubione Kolory i Dlaczego",
-            "description": "Porozmawiaj o swoich ulubionych kolorach i z czym ci się kojarzą."
+            "description": "Porozmawiaj o swoich ulubionych kolorach i tym z czym ci się kojarzą."
           },
           "fictional_worlds": {
             "name": "Fikcyjne Światy, Które Chciałbyś Odwiedzić",
@@ -484,7 +484,7 @@
           },
           "board_games": {
             "name": "Ulubione Gry Planszowe lub Karciane",
-            "description": "Porozmawiaj o grach, które lubisz grać z przyjaciółmi lub rodziną."
+            "description": "Porozmawiaj o grach, w które lubisz grać z przyjaciółmi lub rodziną."
           },
           "rainy_day": {
             "name": "Aktywności na Deszczowy Dzień",
