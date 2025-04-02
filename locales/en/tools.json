@@ -358,184 +358,184 @@
         "message_boilerplate": "Hey, I need to get my mind off things. Do you want to talk about something nice like ",
         "conversation_topics": {
           "dream_vacation": {
-            "name": "Wymarzone Miejsca na Wakacje",
-            "description": "Porozmawiaj o miejscach, które chciałbyś odwiedzić i co czyni je ekscytującymi."
+            "name": "Dream Vacation Spots",
+            "description": "Talk about fun places you'd like to visit and what makes them exciting."
           },
           "favorite_food": {
-            "name": "Ulubione Jedzenie lub Przekąski",
-            "description": "Porozmawiaj o ulubionych kuchniach lub przekąskach, którym nie możesz się oprzeć."
+            "name": "Favorite Types of Food or Snacks",
+            "description": "Discuss favorite cuisines or snacks you can't resist."
           },
           "funny_animals": {
-            "name": "Zabawne Historie o Zwierzętach",
-            "description": "Podziel się zabawnymi lub uroczymi historiami o zwierzętach lub domowych pupilach."
+            "name": "Funny Animal Stories",
+            "description": "Share amusing or cute stories about animals or pets."
           },
           "science_facts": {
-            "name": "Ciekawe Fakty Naukowe",
-            "description": "Wymieńcie się ciekawostkami o kosmosie, naturze lub technologii."
+            "name": "Interesting Science Facts",
+            "description": "Exchange cool and fun facts about space, nature, or technology."
           },
           "favorite_weather": {
-            "name": "Ulubiona Pogoda lub Pory Roku",
-            "description": "Porozmawiaj o swojej ulubionej pogodzie i tym, dlaczego ją lubisz."
+            "name": "Favorite Weather or Seasons",
+            "description": "Talk about the weather you enjoy most and why."
           },
           "would_you_rather": {
-            "name": "Pytania 'Wolałbyś...?'",
-            "description": "Wymyślaj i odpowiadaj na zabawne lub kreatywne pytania typu 'wolałbyś...'."
+            "name": "Would You Rather Questions",
+            "description": "Pose silly or creative 'would you rather' scenarios."
           },
           "dream_superpowers": {
-            "name": "Wymarzone Supermoce",
-            "description": "Wyobraź sobie posiadanie supermocy i jak byś ją wykorzystał."
+            "name": "Dream Superpowers",
+            "description": "Imagine having a superpower and how you'd use it."
           },
           "favorite_colors": {
-            "name": "Ulubione Kolory i Dlaczego",
-            "description": "Porozmawiaj o swoich ulubionych kolorach i z czym ci się kojarzą."
+            "name": "Favorite Colors and Why",
+            "description": "Discuss the colors you love and what they remind you of."
           },
           "fictional_worlds": {
-            "name": "Fikcyjne Światy, Które Chciałbyś Odwiedzić",
-            "description": "Porozmawiaj o swoich ulubionych światach z książek lub filmów."
+            "name": "Fictional Worlds You'd Visit",
+            "description": "Talk about your favorite fictional worlds from books or movies."
           },
           "favorite_tv_movies": {
-            "name": "Ulubione Filmy lub Seriale",
-            "description": "Porozmawiaj o filmach lub serialach, które ostatnio ci się podobały."
+            "name": "Favorite TV Shows or Movies",
+            "description": "Discuss shows or movies you've enjoyed recently."
           },
           "creative_hobbies": {
-            "name": "Kreatywne Hobby lub Rękodzieło",
-            "description": "Podziel się pomysłami na kreatywne projekty lub rzeczy, które warto wypróbować."
+            "name": "Creative Hobbies or Crafts",
+            "description": "Share simple ideas for creative projects or crafts to try."
           },
           "outdoor_activity": {
-            "name": "Ulubiona Aktywność na Świeżym Powietrzu",
-            "description": "Porozmawiaj o ulubionych aktywnościach, jak pikniki, spacery czy obserwowanie gwiazd."
+            "name": "Your Favorite Outdoor Activity",
+            "description": "Discuss fun outdoor activities like picnics, walks, or stargazing."
           },
           "mysteries": {
-            "name": "Tajemnice i Zagadki",
-            "description": "Podyskutuj o ciekawych zagadkach i tajemnicach, które cię intrygują."
+            "name": "Mysteries or Conundrums",
+            "description": "Explore fun mysteries or puzzles that spark curiosity."
           },
           "holiday_traditions": {
-            "name": "Nietypowe Świąteczne Tradycje",
-            "description": "Podziel się zabawnymi lub niezwykłymi tradycjami, które celebrujesz."
+            "name": "Unique Holiday Traditions",
+            "description": "Share fun or unusual traditions you enjoy celebrating."
           },
           "space_exploration": {
-            "name": "Eksploracja Kosmosu",
-            "description": "Porozmawiaj o cudach wszechświata lub ekscytujących misjach kosmicznych."
+            "name": "Space Exploration and the Universe",
+            "description": "Chat about the wonders of space or exciting space missions."
           },
           "cozy_drinks": {
-            "name": "Ulubione Ciepłe Napoje",
-            "description": "Porozmawiaj o ulubionych napojach, jak herbata, kawa czy gorąca czekolada."
+            "name": "Favorite Cozy Drinks",
+            "description": "Discuss comforting drinks like tea, coffee, or hot chocolate."
           },
           "dream_home": {
-            "name": "Dom Marzeń",
-            "description": "Opisz swój wymarzony dom i jakie miałby wyjątkowe elementy."
+            "name": "Dream Home Features",
+            "description": "Imagine a dream house—what cozy or fun features would it have?"
           },
           "favorite_plants": {
-            "name": "Ulubione Rośliny i Kwiaty",
-            "description": "Porozmawiaj o roślinach lub kwiatach, które uważasz za piękne lub ciekawe."
+            "name": "Favorite Flowers or Plants",
+            "description": "Talk about plants or flowers you find beautiful or interesting."
           },
           "comfort_foods": {
-            "name": "Najlepsze Jedzenie na Poprawę Nastroju",
-            "description": "Podziel się ulubionymi daniami lub przekąskami, które zawsze poprawiają ci humor."
+            "name": "Best Comfort Foods",
+            "description": "Share go-to meals or snacks that always make you feel cozy."
           },
           "night_sky": {
-            "name": "Gwieździste Niebo i Nocne Widoki",
-            "description": "Porozmawiaj o obserwacji gwiazd, konstelacjach lub pięknie nocnego nieba."
+            "name": "Starry Skies and Nighttime Wonders",
+            "description": "Discuss stargazing, constellations, or favorite things about the night sky."
           },
           "board_games": {
-            "name": "Ulubione Gry Planszowe lub Karciane",
-            "description": "Porozmawiaj o grach, które lubisz grać z przyjaciółmi lub rodziną."
+            "name": "Favorite Board or Card Games",
+            "description": "Talk about games you enjoy playing with friends or family."
           },
           "rainy_day": {
-            "name": "Aktywności na Deszczowy Dzień",
-            "description": "Podziel się pomysłami na spędzanie czasu w domu podczas deszczu."
+            "name": "Rainy Day Activities",
+            "description": "Share ideas for what to do on a calm, rainy day indoors."
           },
           "cute_animals": {
-            "name": "Urocze Zwierzęta",
-            "description": "Podyskutuj o słodkich zwierzakach, które widziałeś w internecie lub na żywo."
+            "name": "Cute Animal Videos or Photos",
+            "description": "Chat about adorable animals you've seen online or in person."
           },
           "favorite_scents": {
-            "name": "Ulubione Zapachy i Świece",
-            "description": "Porozmawiaj o zapachach, które sprawiają, że czujesz się szczęśliwy lub zrelaksowany."
+            "name": "Favorite Scents or Candles",
+            "description": "Discuss scents that make you feel happy or relaxed, like lavender or vanilla."
           },
           "beaches_lakes": {
-            "name": "Piękne Plaże i Jeziora",
-            "description": "Porozmawiaj o spokojnych miejscach nad wodą, które chciałbyś odwiedzić."
+            "name": "Beautiful Beaches or Lakes",
+            "description": "Talk about peaceful waterside places you'd like to visit."
           },
           "clouds_weather": {
-            "name": "Chmury i Zjawiska Pogodowe",
-            "description": "Porozmawiaj o ciekawych kształtach chmur, zachodach słońca czy innych zjawiskach pogodowych."
+            "name": "Favorite Types of Clouds or Weather Phenomena",
+            "description": "Discuss cloud shapes, sunsets, or weather patterns you enjoy observing."
           },
           "fictional_friends": {
-            "name": "Fikcyjne Postacie, z Którymi Chciałbyś się Przyjaźnić",
-            "description": "Wyobraź sobie spotkanie z postacią z fikcji i dlaczego chciałbyś ją poznać."
+            "name": "Fictional Characters You'd Befriend",
+            "description": "Imagine meeting fictional characters and why you'd enjoy their company."
           },
           "seasonal_decor": {
-            "name": "Sezonowe Dekoracje",
-            "description": "Podziel się pomysłami na dekorowanie przestrzeni zgodnie z porami roku."
+            "name": "Decorating for the Seasons",
+            "description": "Share ideas for decorating your space to match the seasons."
           },
           "ways_to_relax": {
-            "name": "Sposoby na Relaks",
-            "description": "Porozmawiaj o metodach na odprężenie się po długim dniu."
+            "name": "Simple Ways to Relax",
+            "description": "Talk about your favorite methods for unwinding after a long day."
           },
           "nature_sounds": {
-            "name": "Dźwięki Natury",
-            "description": "Porozmawiaj o dźwiękach przyrody, które uważasz za kojące, jak fale czy śpiew ptaków."
+            "name": "Sounds of nature",
+            "description": "Discuss nature sounds you find calming or soothing."
           },
           "ice_cream": {
-            "name": "Ulubione Smaki Lodów",
-            "description": "Podziel się smakami lodów, które najbardziej lubisz."
+            "name": "Favorite Ice Cream Flavors",
+            "description": "Share the ice cream flavors you enjoy the most."
           },
           "sunsets_sunrises": {
-            "name": "Zachody i Wschody Słońca",
-            "description": "Porozmawiaj o pięknych wschodach lub zachodach słońca, które widziałeś lub sobie wyobrażasz."
+            "name": "Beautiful Sunsets or Sunrises",
+            "description": "Chat about memorable sunrises or sunsets you've seen or imagined."
           },
           "fictional_creatures": {
-            "name": "Ulubione Fikcyjne Stworzenia",
-            "description": "Porozmawiaj o magicznych lub mitycznych istotach, które uważasz za fascynujące."
+            "name": "Favorite Fictional Creatures",
+            "description": "Talk about magical or mythical creatures you find fascinating or cute."
           },
           "seasonal_activities": {
-            "name": "Sezonowe Aktywności",
-            "description": "Podziel się pomysłami na zajęcia związane z porami roku, jak lepienie bałwana czy zbieranie liści."
+            "name": "Fun Seasonal Activities",
+            "description": "Discuss activities like pumpkin picking, sledding, or making sandcastles."
           },
           "cozy_things": {
-            "name": "Miłe i Przytulne Rzeczy",
-            "description": "Porozmawiaj o rzeczach, które sprawiają, że czujesz się komfortowo, jak ciepłe koce czy wełniane skarpety."
+            "name": "Favorite Soft or Cozy Things",
+            "description": "Share about blankets, socks, or anything that feels especially comforting."
           },
           "describe_surroundings": {
-            "name": "Opisz Swoje Otoczenie",
-            "description": "Porozmawiaj o przestrzeni, w której się znajdujesz, jak pokój lub pogoda na zewnątrz."
+            "name": "Describe Your Surroundings",
+            "description": "Talk about the space you're in, like your room or the weather outside."
           },
           "relaxing_music": {
-            "name": "Ulubiona Muzyka Relaksacyjna",
-            "description": "Podziel się utworami lub artystami, którzy pomagają ci się zrelaksować."
+            "name": "Favorite Relaxing Music",
+            "description": "Share songs or artists that help you feel calm and peaceful."
           },
           "movies_that_make_you_smile": {
-            "name": "Filmy lub Seriale, Które Sprawiają, że Się Uśmiechasz",
-            "description": "Porozmawiaj o filmach lub serialach, które wywołały u ciebie uśmiech lub pozytywne uczucia."
+            "name": "Movies or Shows That Made You Smile",
+            "description": "Discuss films or series that gave you a good laugh or warm feelings."
           },
           "relaxing_video_games": {
-            "name": "Gry Komputerowe na Relaks",
-            "description": "Porozmawiaj o grach, które są zabawne lub uspokajające."
+            "name": "Video Games for Relaxation",
+            "description": "Talk about games that are fun or soothing to play."
           },
           "sports_outdoor": {
-            "name": "Sporty lub Aktywności na Świeżym Powietrzu",
-            "description": "Porozmawiaj o sportach lub aktywnościach na świeżym powietrzu, które sprawiają ci radość."
+            "name": "Sports or Outdoor Activities You Enjoy",
+            "description": "Chat about sports or outdoor activities that make you happy."
           },
           "favorite_soundscapes": {
-            "name": "Ulubione Pejzaże Dźwiękowe",
-            "description": "Porozmawiaj o dźwiękach, które uwielbiasz, jak deszcz, fale lub śpiew ptaków."
+            "name": "Your Favorite Soundscapes",
+            "description": "Discuss sounds you love, like rain, waves, or birds chirping."
           },
           "inspirational_books": {
-            "name": "Książki lub Historie, Które Cię Inspirują",
-            "description": "Podziel się ulubioną książką lub opowieścią, która cię zainspirowała."
+            "name": "Books or Stories That Inspire You",
+            "description": "Share a favorite story or book that made you feel inspired or hopeful."
           },
           "happy_memories": {
-            "name": "Szczęśliwe Wspomnienia lub Małe Radości",
-            "description": "Porozmawiaj o drobnych rzeczach, które poprawiły twój dzień."
+            "name": "Comforting Emotions",
+            "description": "Talk about feelings like happiness or calmness and what brings them to you."
           },
           "sports_moments": {
-            "name": "Ulubione Chwile Sportowe",
-            "description": "Porozmawiaj o ekscytujących lub wzruszających chwilach sportowych, które widziałeś lub doświadczyłeś."
+            "name": "Favorite Sports Moments",
+            "description": "Chat about exciting or wholesome sports moments you've seen or experienced."
           },
           "dream_room": {
-            "name": "Urządzanie Pokoju Marzeń",
-            "description": "Wyobraź sobie, jak wyglądałby twój idealny pokój i co by się w nim znalazło."
+            "name": "Decorating Your Dream Room",
+            "description": "Imagine what your perfect room would look like and what you'd include."
           }
         }
       }
