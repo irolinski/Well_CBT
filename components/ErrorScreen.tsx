@@ -6,14 +6,12 @@ import { Entypo } from "@expo/vector-icons";
 import Text from "./global/Text";
 
 const ErrorScreen = ({
-  errorType,
   title,
   subheader,
   body,
   buttonTitle,
   onPress,
 }: {
-  errorType: "routing" | "rendering";
   title?: string;
   subheader?: string;
   body?: string;
@@ -29,7 +27,6 @@ const ErrorScreen = ({
       </Text>
       <Text className="w-3/5 text-center text-lg">
         {subheader ? subheader : t("errors.wrong_way.header_2")}
-        {"\n"}
       </Text>
       <Text className="w-4/5 text-center text-base">
         {body ? body : t("errors.wrong_way.body")}
@@ -55,5 +52,19 @@ const ErrorScreen = ({
     </View>
   );
 };
+
+export const RenderingErrorFallback = (props: {
+  error: Error;
+  resetError: Function;
+}) => (
+  <ErrorScreen
+    title={"Rendering Error"}
+    subheader="There has occured an error during the rendering of your app."
+    body={`${"\n\n"} ${props.error.message ? `Error message: ${props.error.name + "\n\n"}` : ""} Wait a few moments and then try again. ${"\n\n"}  If the error persits, contact our support.`}
+    buttonTitle="Try again"
+    // @ts-ignore
+    onPress={props.resetError}
+  />
+);
 
 export default ErrorScreen;

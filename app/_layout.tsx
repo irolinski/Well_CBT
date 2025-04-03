@@ -7,7 +7,7 @@ import { useCallback, useEffect, useState } from "react";
 import ErrorBoundary from "react-native-error-boundary";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Provider as StateProvider } from "react-redux";
-import ErrorScreen from "@/components/ErrorScreen";
+import { RenderingErrorFallback } from "@/components/ErrorScreen";
 import {
   setUpAchievementsTable,
   updateAchievementProgress,
@@ -19,19 +19,6 @@ import { store } from "@/state/store";
 
 // Prevent splash screen from hiding before everything is ready
 SplashScreen.preventAutoHideAsync();
-
-const RenderingErrorFallback = (props: {
-  error: Error;
-  resetError: Function;
-}) => (
-  <ErrorScreen
-    title={"Rendering Error"}
-    subheader="There has occured an error during the rendering of your app."
-    body={`Wait a few moments and then try again. ${"\n\n"}  If the error persits, contact our support.`}
-    buttonTitle="Try again"
-    onPress={props.resetError}
-  />
-);
 
 export default function RootLayout() {
   const [isReady, setIsReady] = useState(false);
