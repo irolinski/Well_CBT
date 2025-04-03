@@ -4,8 +4,10 @@ import { setNotificationHandler } from "expo-notifications";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useCallback, useEffect, useState } from "react";
+import ErrorBoundary from "react-native-error-boundary";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Provider as StateProvider } from "react-redux";
+import ErrorScreen from "@/components/ErrorScreen";
 import {
   setUpAchievementsTable,
   updateAchievementProgress,
@@ -17,6 +19,19 @@ import { store } from "@/state/store";
 
 // Prevent splash screen from hiding before everything is ready
 SplashScreen.preventAutoHideAsync();
+
+const RenderingErrorFallback = (props: {
+  error: Error;
+  resetError: Function;
+}) => (
+  <ErrorScreen
+    title={"Rendering Error"}
+    subheader="There has occured an error during the rendering of your app."
+    body={`Wait a few moments and then try again. ${"\n\n"}  If the error persits, contact our support.`}
+    buttonTitle="Try again"
+    onPress={props.resetError}
+  />
+);
 
 export default function RootLayout() {
   const [isReady, setIsReady] = useState(false);
@@ -71,17 +86,19 @@ export default function RootLayout() {
   }
 
   return (
-    <StateProvider store={store}>
-      <GestureHandlerRootView style={{ flex: 1 }}>
-        <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="about" options={{ headerShown: false }} />
-          <Stack.Screen name="tools" options={{ headerShown: false }} />
-          <Stack.Screen name="home" options={{ headerShown: false }} />
-          <Stack.Screen name="learn" options={{ headerShown: false }} />
-          <Stack.Screen name="+not-found" />
-        </Stack>
-      </GestureHandlerRootView>
-    </StateProvider>
+    <ErrorBoundary FallbackComponent={RenderingErrorFallback}>
+      <StateProvider store={store}>
+        <GestureHandlerRootView style={{ flex: 1 }}>
+          <Stack>
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen name="about" options={{ headerShown: false }} />
+            <Stack.Screen name="tools" options={{ headerShown: false }} />
+            <Stack.Screen name="home" options={{ headerShown: false }} />
+            <Stack.Screen name="learn" options={{ headerShown: false }} />
+            <Stack.Screen name="+not-found" />
+          </Stack>
+        </GestureHandlerRootView>
+      </StateProvider>
+    </ErrorBoundary>
   );
 }

@@ -55,6 +55,7 @@
     "react-i18next": "^15.4.0",
     "react-native": "0.76.3",
     "react-native-calendars": "^1.1286.0",
+    "react-native-error-boundary": "^1.2.7",
     "react-native-gesture-handler": "~2.20.2",
     "react-native-pager-view": "6.5.1",
     "react-native-reanimated": "~3.16.1",
