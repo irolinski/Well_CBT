@@ -62,6 +62,6 @@ export const currentLocaleUses12hClock = () => {
 // Export selected language
 export const selectedLanguage = availableLanguagesArr.includes(i18n.language)
   ? i18n.language
-  : i18nInitObj.fallbackLng[0];
+  : i18nInitObj.fallbackLng[0]; // ensure that fallback language is selected
 
 export default i18n;

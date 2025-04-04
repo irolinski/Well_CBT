@@ -3,6 +3,7 @@ import { Alert } from "react-native";
 import notificationContent from "@/assets/text/notifications_daily.json";
 import { TimePicker_12hReturnObj } from "@/components/home/TimePicker_12h";
 import { TimePicker_24hReturnObj } from "@/components/home/TimePicker_24h";
+import { AvailableLanguage, selectedLanguage } from "@/hooks/i18n";
 import { numToString_addZero } from "./dates";
 import { getTranslation } from "./locales";
 
@@ -68,6 +69,9 @@ export const scheduleDailyNotification = async (
   minute: number,
   meridiem?: "AM" | "PM",
 ) => {
+  const notificationMessages =
+    notificationContent[selectedLanguage as AvailableLanguage];
+
   try {
     let notificationTime: { hour: number; minute: number };
 
@@ -82,8 +86,8 @@ export const scheduleDailyNotification = async (
 
     await Notifications.scheduleNotificationAsync({
       content: {
-        title: notificationContent[0].title,
-        body: notificationContent[0].body,
+        title: notificationMessages[0].title,
+        body: notificationMessages[0].body,
         sound: true,
       },
       trigger: {

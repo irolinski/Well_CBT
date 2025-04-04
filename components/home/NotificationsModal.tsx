@@ -216,9 +216,7 @@ const NotificationsModal = () => {
               </View>
               <View className="items-center justify-center">
                 <Text className="text-center text-base">
-                  {
-                    "Notifications disabled. \n \n You can enable them in your device's settings to stay updated."
-                  }
+                  {t("notification_cancel", { ns: "common" })}
                 </Text>
               </View>
             </View>
