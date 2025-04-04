@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Dimensions, View } from "react-native";
+import { Alert, Dimensions, View } from "react-native";
 import {
   welcomeTexts_pt1,
   welcomeTexts_pt2,
@@ -34,6 +34,8 @@ const getWelcomeText = (userName?: string): string => {
 };
 
 const WelcomeTypewriterText = ({ isActive }: { isActive: boolean }) => {
+  const { t } = useTranslation("common");
+
   const SCREEN_WIDTH = Dimensions.get("window").width;
 
   const [userData, setUserData] = useState<UserType>();
@@ -48,6 +50,7 @@ const WelcomeTypewriterText = ({ isActive }: { isActive: boolean }) => {
       });
     } catch (err) {
       console.error(err);
+      Alert.alert(t("alerts.error_db_fetching"));
     } finally {
       setIsLoading(false);
     }

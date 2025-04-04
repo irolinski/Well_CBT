@@ -1,6 +1,19 @@
 {
   "alerts": {
-    "warning": "Warning"
+    "warning": "Warning",
+    "error_initialization": "Error: \n\nThere has occured an error while setting up the app database. \n\nTry again later, and if the error persists contact support.",
+    "error_fonts": "Error: \n\nThere has occured an error while loading fonts. \n\nTry again later, and if the error persists contact support.",
+    "error_db_saving": "Error: \n\nThere has occured an error while trying to save data. Ensure you have enough free space on your device. \n\nTry again later, and if the error persists contact support.",
+    "error_db_achievements": "Error: \n\nThere has occured an error while trying to update achievement progress. Ensure you have enough free space on your device. \n\nTry again later, and if the error persists contact support.",
+    "error_db_fetching": "Error: \n\nThere has occured an error while loading saved data from the database. \n\nTry again later, and if the error persists contact support.",
+    "error_db_processing": "Error: \n\nThere has occured an error while processing the data loaded from the database. \n\nTry again later, and if the error persists contact support.",
+    "error_db_erasing": "Error: \n\nThere has occured an error while erasing saved data from the database. \n\nTry again later, and if the error persists contact support.",
+    "error_permissions": "Error: \n\nThere has occured an error regarding the app's access to required permissions. Change your device settings and try again later.",
+    "entry_delete_success": "Selected entry has been successfuly removed from your storage.",
+    "entry_delete_failure": "Error: \n\nthere has been a problem deleting this entry. Try again later.",
+    "notification_success": "Daily notification scheduled for: \n\n",
+    "notification_failure": "Error: \n\nCould not set notification. Try again later.",
+    "notification_cancel": "Daily notifications have been turned off."
   },
   "buttons": {
     "see_all": "See all",
@@ -52,6 +65,7 @@
     "days_ago_one": "day ago",
     "days_ago_other": "days ago"
   },
+
   "nav_elements": {
     "step_count": "Step {{current}} <muted>of {{total}}</muted>"
   },

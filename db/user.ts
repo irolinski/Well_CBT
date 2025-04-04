@@ -1,5 +1,7 @@
 import * as SQLite from "expo-sqlite";
+import { Alert } from "react-native";
 import { isSameDate } from "@/utils/dates";
+import { getTranslation } from "@/utils/locales";
 import { TableRowCountObj, UserType } from "./models";
 import { dbName } from "./service";
 
@@ -28,6 +30,8 @@ export const handleGetNumOfAllEntries = async (): Promise<number> => {
     return numOfAllEntries;
   } catch (err) {
     console.error(err);
+    Alert.alert(getTranslation("alerts.error_db_fetching"));
+
     return 0;
   }
 };
@@ -48,6 +52,7 @@ export const handleGetUserData = async (): Promise<UserType | undefined> => {
     }
   } catch (err) {
     console.error("Error: Problem retrieving user data. " + err);
+    Alert.alert(getTranslation("alerts.error_db_fetching"));
   }
 };
 
@@ -125,6 +130,7 @@ export const handleSetVisitStreakCount = async (): Promise<void> => {
       "Error: Could not create and/or modify user table while checking for date streak. " +
         err,
     );
+    Alert.alert(getTranslation("alerts.error_db_saving"));
   }
 };
 
@@ -136,6 +142,7 @@ export const handleSetName = async (name: string) => {
     );
   } catch (err) {
     console.error("Error: Could not set name. " + err);
+    Alert.alert(getTranslation("alerts.error_db_saving"));
   }
 };
 
@@ -147,6 +154,8 @@ export const handleSetProfilePicId = async (faceId: number) => {
     );
   } catch (err) {
     console.error("Error: Could not set profile picture id. " + err);
+    console.error(err);
+    Alert.alert(getTranslation("alerts.error_db_saving"));
   }
 };
 

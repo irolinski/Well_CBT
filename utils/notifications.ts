@@ -4,6 +4,7 @@ import notificationContent from "@/assets/text/notifications_daily.json";
 import { TimePicker_12hReturnObj } from "@/components/home/TimePicker_12h";
 import { TimePicker_24hReturnObj } from "@/components/home/TimePicker_24h";
 import { numToString_addZero } from "./dates";
+import { getTranslation } from "./locales";
 
 //To have different notification body text everyday,
 //I'll have to re-schedule notification on app open
@@ -56,6 +57,8 @@ export const requestNotificationPermissions = async (): Promise<boolean> => {
     return true; // permissions granted
   } catch (error) {
     console.error("Error requesting notification permissions:", error);
+    Alert.alert(getTranslation("alerts.error_permissions"));
+
     return false;
   }
 };
@@ -95,19 +98,21 @@ export const scheduleDailyNotification = async (
     let displayedMinute: string = numToString_addZero(minute);
 
     Alert.alert(
-      `Daily notification scheduled for: \n \n ${displayedHour}:${displayedMinute} ${meridiem ? meridiem : ""}`,
+      `${getTranslation("alerts.notification_success")} ${displayedHour}:${displayedMinute} ${meridiem ? meridiem : ""}`,
     );
   } catch (err) {
     console.error(err);
+    Alert.alert(getTranslation("alerts.notification_failure"));
   }
 };
 
 export const cancelDailyNotification = async () => {
   try {
     await Notifications.cancelAllScheduledNotificationsAsync();
-    Alert.alert(`Daily notifications have been turned off.`);
+    Alert.alert(getTranslation("alerts.notification_cancel"));
   } catch (err) {
     console.error(err);
+    Alert.alert(getTranslation("alerts.notification_failure"));
   }
 };
 

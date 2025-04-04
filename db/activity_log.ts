@@ -1,4 +1,6 @@
 import * as SQLite from "expo-sqlite";
+import { Alert } from "react-native";
+import { getTranslation } from "@/utils/locales";
 import { dbName } from "./service";
 
 export const fetchRecentEntries = async () => {
@@ -9,7 +11,8 @@ export const fetchRecentEntries = async () => {
     );
     return res;
   } catch (err) {
-    console.error(err);
+    // console.error(err);
+    Alert.alert(getTranslation("alerts.error_db_fetching"));
   }
 };
 
@@ -21,7 +24,8 @@ export const fetchEntryData = async () => {
     );
     return res;
   } catch (err) {
-    console.error(err);
+    // console.error(err);
+    Alert.alert(getTranslation("alerts.error_db_fetching"));
   }
 };
 
@@ -33,7 +37,7 @@ export const fetchCDAEntry = async (id: number) => {
     );
     return res;
   } catch (err) {
-    console.error(err);
+    Alert.alert(getTranslation("alerts.error_db_fetching"));
   }
 };
 
@@ -49,6 +53,6 @@ export const fetchJournalEntry = async (id: number) => {
     );
     return res;
   } catch (err) {
-    console.error(err);
+    Alert.alert(getTranslation("alerts.error_db_fetching"));
   }
 };

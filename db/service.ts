@@ -1,4 +1,6 @@
 import * as SQLite from "expo-sqlite";
+import { Alert } from "react-native";
+import { getTranslation } from "@/utils/locales";
 
 export const dbName = "well-test-db-044";
 
@@ -58,7 +60,8 @@ export const setUpDB = async () => {
       
     `);
   } catch (err) {
-    console.error("Error: Problem with initializing database.");
+    console.error("Error: Problem with initializing database. \n\n", err);
+    Alert.alert(getTranslation("alerts.error_initialization"));
   }
 };
 
@@ -97,6 +100,7 @@ export const handleGetSeenOnboarding = async () => {
     return res;
   } catch (err) {
     console.error(err);
+    Alert.alert(getTranslation("alerts.error_db_saving"));
   }
 };
 
@@ -107,6 +111,7 @@ export const handleSetSeenOnboardingTrue = async () => {
     console.log("onboarding was seen on this device, setting db");
   } catch (err) {
     console.error(err);
+    Alert.alert(getTranslation("alerts.error_db_saving"));
   }
 };
 
@@ -127,5 +132,6 @@ export const deleteAllDBData = async () => {
     await setUpDB();
   } catch (err) {
     console.error(err);
+    Alert.alert(getTranslation("alerts.error_db_erasing"));
   }
 };

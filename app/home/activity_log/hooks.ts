@@ -1,3 +1,4 @@
+import { Alert } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import {
   allDataByMonthType,
@@ -12,6 +13,7 @@ import {
   setIsLoading,
 } from "@/state/features/menus/activityLogSlice";
 import { AppDispatch, RootState } from "@/state/store";
+import { getTranslation } from "@/utils/locales";
 
 const useActivityLogActions = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -64,6 +66,7 @@ const useActivityLogActions = () => {
       }
     } catch (err) {
       console.error(err);
+      Alert.alert(getTranslation("alerts.error_db_processing"));
     } finally {
       dispatch(setIsLoading(false));
     }
@@ -116,6 +119,7 @@ const useActivityLogActions = () => {
       }
     } catch (err) {
       console.error(err);
+      Alert.alert(getTranslation("alerts.error_db_processing"));
     }
   };
 
@@ -133,6 +137,7 @@ const useActivityLogActions = () => {
       }
     } catch (err) {
       console.error(err);
+      Alert.alert(getTranslation("alerts.error_db_processing"));
     }
   };
 
@@ -163,6 +168,7 @@ const useActivityLogActions = () => {
       }
     } catch (err) {
       console.error(err);
+      Alert.alert(getTranslation("alerts.error_db_processing"));
     } finally {
       dispatch(setIsLoading(false));
     }

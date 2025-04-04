@@ -1,4 +1,6 @@
 import * as SQLite from "expo-sqlite";
+import { Alert } from "react-native";
+import { getTranslation } from "@/utils/locales";
 import { StatsDataObjType, TableRowCountObj } from "./models";
 import { dbName } from "./service";
 
@@ -16,6 +18,8 @@ export const handleGetCDACount = async (): Promise<number> => {
     return cdaCount;
   } catch (err) {
     console.error(err);
+    Alert.alert(getTranslation("alerts.error_fetching"));
+
     return 0;
   }
 };
@@ -34,6 +38,7 @@ export const handleGetJournalCount = async (): Promise<number> => {
     return journalCount;
   } catch (err) {
     console.error(err);
+    Alert.alert(getTranslation("alerts.error_db_fetching"));
     return 0;
   }
 };
@@ -52,7 +57,7 @@ export const handleGetRelaxTime = async (): Promise<number> => {
     }
     return relaxTimeMin;
   } catch (err) {
-    console.error(err);
+    Alert.alert(getTranslation("alerts.error_db_fetching"));
     return 0;
   }
 };

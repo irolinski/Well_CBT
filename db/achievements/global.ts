@@ -1,4 +1,5 @@
 import * as SQLite from "expo-sqlite";
+import { Alert } from "react-native";
 import {
   AchievementProgressObj,
   allAchievementsModelsArr,
@@ -8,6 +9,7 @@ import {
   allAchievementsWithControllersArr,
   handleGetAchievementProgressData,
 } from "@/db/achievements/controllers";
+import { getTranslation } from "@/utils/locales";
 import { dbName } from "../service";
 
 // create a table for achievement progress
@@ -21,6 +23,7 @@ const handleCreateAchievementProgressTable = async () => {
       `);
   } catch (err) {
     console.error(err);
+    Alert.alert(getTranslation("alerts.error_db_achievements"));
   }
 };
 
@@ -56,6 +59,7 @@ const handlePopulateAchievementProgressTable = async () => {
     }
   } catch (err) {
     console.error(err);
+    Alert.alert(getTranslation("alerts.error_db_achievements"));
   }
 };
 
@@ -103,5 +107,6 @@ export const setUpAchievementsTable = async () => {
     ]);
   } catch (err) {
     console.error("Error: Error during handling achievement system. \n" + err);
+    Alert.alert(getTranslation("alerts.error_db_achievements"));
   }
 };

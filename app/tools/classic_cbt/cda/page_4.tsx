@@ -1,7 +1,7 @@
 import { router } from "expo-router";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Pressable, ScrollView, View } from "react-native";
+import { Alert, Pressable, ScrollView, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import AdvanceButton from "@/components/AdvanceButton";
 import DistortionPill from "@/components/DistortionPill";
@@ -44,6 +44,7 @@ const Page_4 = () => {
         }
       } catch (error) {
         console.error("Error fetching user settings:", error);
+        Alert.alert(t("alerts.error_db_fetching"));
       }
     };
 

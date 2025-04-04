@@ -1,8 +1,10 @@
-import * as SQLite from 'expo-sqlite';
-import { RelaxToolNames } from '@/constants/models/home/activity_log';
-import { cdaSliceTypes } from '@/state/features/tools/cdaSlice';
-import { journalSliceTypes } from '@/state/features/tools/journalSlice';
-import { dbName } from './service';
+import * as SQLite from "expo-sqlite";
+import { Alert } from "react-native";
+import { RelaxToolNames } from "@/constants/models/home/activity_log";
+import { cdaSliceTypes } from "@/state/features/tools/cdaSlice";
+import { journalSliceTypes } from "@/state/features/tools/journalSlice";
+import { getTranslation } from "@/utils/locales";
+import { dbName } from "./service";
 
 export const handleSaveCDAEntry = async (cdaState: cdaSliceTypes) => {
   if (cdaState.save) {
@@ -34,6 +36,7 @@ export const handleSaveCDAEntry = async (cdaState: cdaSliceTypes) => {
         `);
     } catch (err) {
       console.error(err);
+      Alert.alert(getTranslation("alerts.error_db_saving"));
     }
   }
 };
@@ -44,6 +47,7 @@ export const deleteCDAEntry = async (id: number) => {
     await db.execAsync(`DELETE FROM cdaArchive WHERE id="${id}"`);
   } catch (err) {
     console.error(err);
+    Alert.alert(getTranslation("alerts.error_db_erasing"));
   }
 };
 
@@ -91,7 +95,8 @@ export const handleSaveJournalEntry = async (
         await db.execAsync(query);
       }
     } catch (err) {
-      throw err;
+      console.error(err);
+      Alert.alert(getTranslation("alerts.error_db_saving"));
     }
   }
 };
@@ -103,6 +108,7 @@ export const deleteJournalEntry = async (id: number) => {
     await db.execAsync(`DELETE FROM journalEntryEmotions WHERE id="${id}"`);
   } catch (err) {
     console.error(err);
+    Alert.alert(getTranslation("alerts.error_db_erasing"));
   }
 };
 
@@ -176,6 +182,7 @@ export const setContact = async (name: string, phone: string) => {
     );
   } catch (err) {
     console.error(err);
+    Alert.alert(getTranslation("alerts.error_db_saving"));
   }
 };
 
@@ -199,5 +206,6 @@ export const setContactWithPicture = async (
     );
   } catch (err) {
     console.error(err);
+    Alert.alert(getTranslation("alerts.error_db_saving"));
   }
 };

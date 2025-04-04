@@ -1,23 +1,30 @@
-import * as Contacts from 'expo-contacts';
-import { Image } from 'expo-image';
-import { Href, router } from 'expo-router';
-import React, { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { Alert, Keyboard, Pressable, ScrollView, TextInput, View } from 'react-native';
-import { useSelector } from 'react-redux';
-import { logoImages } from '@/assets/images/global/logo/logo';
-import { phoneFacePlaceholder } from '@/assets/images/tools/phone/phoneFaces';
-import BackButton from '@/components/BackButton';
-import Text from '@/components/global/Text';
-import ToolHeader from '@/components/tools/ToolHeader';
-import { phoneAFriend_tool } from '@/constants/models/tools/tools';
-import { Colors } from '@/constants/styles/colorTheme';
-import { SCREEN_HEIGHT } from '@/constants/styles/values';
-import { setContact, setContactWithPicture } from '@/db/tools';
-import { RootState } from '@/state/store';
-import formatPhoneNumber from '@/utils/formatPhoneNumber';
-import { isValidName } from '@/utils/inputValidations';
-import { MaterialIcons } from '@expo/vector-icons';
+import * as Contacts from "expo-contacts";
+import { Image } from "expo-image";
+import { Href, router } from "expo-router";
+import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import {
+  Alert,
+  Keyboard,
+  Pressable,
+  ScrollView,
+  TextInput,
+  View,
+} from "react-native";
+import { useSelector } from "react-redux";
+import { logoImages } from "@/assets/images/global/logo/logo";
+import { phoneFacePlaceholder } from "@/assets/images/tools/phone/phoneFaces";
+import BackButton from "@/components/BackButton";
+import Text from "@/components/global/Text";
+import ToolHeader from "@/components/tools/ToolHeader";
+import { phoneAFriend_tool } from "@/constants/models/tools/tools";
+import { Colors } from "@/constants/styles/colorTheme";
+import { SCREEN_HEIGHT } from "@/constants/styles/values";
+import { setContact, setContactWithPicture } from "@/db/tools";
+import { RootState } from "@/state/store";
+import formatPhoneNumber from "@/utils/formatPhoneNumber";
+import { isValidName } from "@/utils/inputValidations";
+import { MaterialIcons } from "@expo/vector-icons";
 
 const TOOL_NAME = phoneAFriend_tool.name;
 
@@ -94,6 +101,7 @@ const Add = () => {
               router.replace("tools/distract/phone" as Href);
             } catch (err) {
               console.error(err);
+              Alert.alert(t("alerts.error_db_fetching"));
             }
           },
           style: "cancel",

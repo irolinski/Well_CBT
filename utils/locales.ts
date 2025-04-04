@@ -1,3 +1,7 @@
+import i18n from "@/hooks/i18n";
+
+export const getTranslation = (key: string) => i18n.t(key);
+
 export const isPolishFew = (count: number) => {
   if (
     count % 10 >= 2 &&

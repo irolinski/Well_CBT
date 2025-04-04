@@ -2,7 +2,7 @@ import { Image } from "expo-image";
 import { Href, router } from "expo-router";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Pressable, View } from "react-native";
+import { Alert, Pressable, View } from "react-native";
 import { useDispatch } from "react-redux";
 import AdvanceButton from "@/components/AdvanceButton";
 import Text from "@/components/global/Text";
@@ -57,6 +57,9 @@ const Home = () => {
       })
       .catch((err) => {
         console.error(err);
+        Alert.alert(
+          "There has occured an error while reading data from the app database. \n\nTry again later, and if the error persists contact support. ",
+        );
       })
       .finally(() => {
         setIsLoading(false);

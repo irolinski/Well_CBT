@@ -1,4 +1,5 @@
 import * as SQLite from "expo-sqlite";
+import { Alert } from "react-native";
 import {
   AchievementControllerType,
   AchievementProgressObj,
@@ -13,6 +14,7 @@ import {
 import { handleGetFinishedArticleIds } from "@/db/learn";
 import { dbName } from "@/db/service";
 import { handleGetNumOfAllEntries, handleGetUserData } from "@/db/user";
+import { getTranslation } from "@/utils/locales";
 
 export type AchievementIdType = keyof typeof allAchievementsWithControllersObj;
 
@@ -69,6 +71,7 @@ const handleAchievementController = async (
     }
   } catch (err) {
     console.error(err);
+    Alert.alert(getTranslation("alerts.error_db_achievements"));
   }
 };
 

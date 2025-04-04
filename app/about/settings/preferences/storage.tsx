@@ -65,6 +65,7 @@ const StorageSettingsPage = () => {
         }
       } catch (error) {
         console.error("Error fetching user settings:", error);
+        Alert.alert(t("alerts.error_db_fetching"));
       }
     };
 

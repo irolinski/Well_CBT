@@ -1,17 +1,14 @@
 import { router } from "expo-router";
 import { Alert } from "react-native";
+import { getTranslation } from "./locales";
 
 const deleteEntry = (deleteDbFunc: (id: number) => void, id: number) => {
   try {
     deleteDbFunc(id);
     router.navigate("/");
-    Alert.alert(
-      `Selected entry has been successfuly removed from your storage.`,
-    );
+    Alert.alert(getTranslation("alerts.entry_delete_success"));
   } catch (err) {
-    Alert.alert(
-      `Error: there has been a problem deleting this entry. Try again later. `,
-    );
+    Alert.alert(getTranslation("alerts.entry_delete_failure"));
   }
 };
 
