@@ -27,6 +27,41 @@
       "enable_notifications": "Włącz przypomnienia"
     }
   },
+  "onboarding": {
+    "will_help_you_to": "WorryFree pomoże Ci:",
+    "feature_slides": {
+      "breathing": "Złapać oddech",
+      "cda_1": "Zamienić przygnębiające myśli...",
+      "cda_2": "...na bardziej racjonalne",
+      "journal": "Prowadić dziennik samopoczucia",
+      "and_much_more": "...i wiele więcej!"
+    },
+    "privacy_text_1": "Twoja prywatność jest dla nas najważniejsza",
+    "privacy_text_2": "Dane są zapisywane wyłącznie na Twoim urządzeniu",
+    "loading_text": "Przygotowujemy wszystko...",
+    "loading_success_text": "Gotowe! Możemy zaczynać!",
+    "goodbye_text": "Mamy nadzieję, że WorryFree będzie dla Ciebie pomocne.",
+    "accomplish_questionnaire": {
+      "question": "Co chciał(a)byś osiągnąć z WorryFree?",
+      "instruction": "Wybierz jedną lub kilka opcji poniżej.",
+      "options": {
+        "mood": "Chcę poprawić swój nastrój",
+        "anxiety": "Chcę zmniejszyć poziom swojego lęku",
+        "thinking_habits": "Chcę nauczyć się myśleć zdrowo i pozytywnie",
+        "mindfulness": "Chcę praktykować uważność",
+        "challenging_thoughts": "Chcę nauczyć się kwestionować negatywne myśli",
+        "mood_journal": "Chcę zacząć prowadzić dziennik nastroju",
+        "emotional_awareness": "Chcę zwiększyć świadomość swoich emocji",
+        "self_esteem": "Chcę poprawić swoją samoocenę",
+        "sleep": "Chcę poprawić jakość swojego snu",
+        "cbt_exercises": "Chcę nauczyć się technik terapii poznawczo-behawioralnej",
+        "therapy_support": "Chcę korzstać z WorryFree jako narzędzia wspierającego 'tradycyjną' terapię",
+        "procrastination": "Chcę pokonać prokrastynację",
+        "phobias_fears": "Chcę nauczyć się radzić sobie z fobiami i/lub lękami",
+        "just_browsing": "Nic konkretnego — tylko przeglądam"
+      }
+    }
+  },
   "welcome_text": {
     "hi": "Cześć",
     "good_to_see_you": "Dobrze Cię widzieć",

@@ -228,6 +228,8 @@
         },
         "personalization_blame": {
           "name": "Personalizacja i obwinianie",
+          "name_short_1": "Personalization",
+          "name_short_2": "Blame",
           "description": "Obwinianie siebie za sytuacje poza Twoją kontrolą lub przerzucanie odpowiedzialności na innych."
         }
       }
