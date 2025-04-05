@@ -1,5 +1,6 @@
 import { Image } from "expo-image";
 import React, { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Animated, Easing, View } from "react-native";
 import { logoImages } from "@/assets/images/global/logo/logo";
 import FadeInView from "@/components/FadeInView";
@@ -21,7 +22,8 @@ const Onborading_Slide_1 = ({
   onboardingSlideNum: number;
   onFinish: () => void;
 }) => {
-  const [hasFinished, setHasFinished] = useState(false);
+  const { t } = useTranslation("common");
+
   const [currentAnimation, setCurrentAnimation] = useState<
     null | "show_logo_view" | "show_title_view" | "hide_logo_view"
   >(null);
@@ -149,7 +151,7 @@ const Onborading_Slide_1 = ({
               fontWeight: 500,
             }}
           >
-            WorryFree
+            {t("branding.name")}
           </Text>
         </FadeInView>
         <FadeInView
@@ -162,7 +164,7 @@ const Onborading_Slide_1 = ({
             className="mt-1 text-center"
             style={{ color: Colors.offWhite, fontSize: 20 }}
           >
-            Your Pocket CBT Aid
+            {t("branding.tagline")}
           </Text>
         </FadeInView>
       </View>

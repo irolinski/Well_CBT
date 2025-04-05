@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import { useTranslation } from "react-i18next";
 import { Animated, Text, View } from "react-native";
 import DistortionPill from "@/components/DistortionPill";
 import { Colors } from "@/constants/styles/colorTheme";
@@ -59,10 +60,12 @@ const Onboarding_Feat_CDA_1 = ({
   slideNum: number | null;
   onFinish: () => void;
 }) => {
+  const { t } = useTranslation(["home", "tools"]);
+
   return (
     <View className="items-center" key={slideKey}>
       <Text className="mt-4 text-3xl" style={{ color: Colors.offWhite }}>
-        Turn distorted thoughts...
+        {t("onboarding.feature_slides.cda_1")}
       </Text>
       <View className="mt-12 flex-row">
         {/* Left column */}
@@ -73,7 +76,12 @@ const Onboarding_Feat_CDA_1 = ({
             from="left"
           >
             <View className="items-start">
-              <DistortionPill title={"All-or-Nothing Thinking"} checked />
+              <DistortionPill
+                title={t(`tools.cda.distortion_list.all_or_nothing.name`, {
+                  ns: "tools",
+                })}
+                checked
+              />
             </View>
           </SlideInView>
           <SlideInView
@@ -83,7 +91,9 @@ const Onboarding_Feat_CDA_1 = ({
           >
             <View className="mt-2 items-end">
               <DistortionPill
-                title={"Mind reading"}
+                title={t(`tools.cda.distortion_list.mind_reading.name`, {
+                  ns: "tools",
+                })}
                 customColor={Colors.offWhite}
                 checked={false}
               />
@@ -97,7 +107,9 @@ const Onboarding_Feat_CDA_1 = ({
           >
             <View className="items-start">
               <DistortionPill
-                title={"'Should' Statements"}
+                title={t(`tools.cda.distortion_list.should_statements.name`, {
+                  ns: "tools",
+                })}
                 checked={false}
                 customColor={Colors.offWhite}
               />
@@ -110,7 +122,12 @@ const Onboarding_Feat_CDA_1 = ({
                 delay={600}
                 from="left"
               >
-                <DistortionPill title={"Labeling"} checked={true} />
+                <DistortionPill
+                  title={t(`tools.cda.distortion_list.labeling.name`, {
+                    ns: "tools",
+                  })}
+                  checked={true}
+                />
               </SlideInView>
             </View>
             <View className="w-1/2 items-end">
@@ -121,7 +138,10 @@ const Onboarding_Feat_CDA_1 = ({
                   from="right"
                 >
                   <DistortionPill
-                    title={"Blame"}
+                    title={t(
+                      `tools.cda.distortion_list.personalization_blame.name_short_1`,
+                      { ns: "tools" },
+                    )}
                     checked={false}
                     customColor={Colors.offWhite}
                   />
@@ -140,7 +160,9 @@ const Onboarding_Feat_CDA_1 = ({
               from="right"
             >
               <DistortionPill
-                title={"Mental filter"}
+                title={t(`tools.cda.distortion_list.mental_filter.name`, {
+                  ns: "tools",
+                })}
                 checked={false}
                 customColor={Colors.offWhite}
               />
@@ -155,7 +177,9 @@ const Onboarding_Feat_CDA_1 = ({
           >
             <View className="w-full items-center">
               <DistortionPill
-                title={"Fortune telling"}
+                title={t(`tools.cda.distortion_list.fortune_telling.name`, {
+                  ns: "tools",
+                })}
                 checked
                 customColor={"#D46A6A"}
               />

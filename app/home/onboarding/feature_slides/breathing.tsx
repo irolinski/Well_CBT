@@ -20,7 +20,7 @@ const Onboarding_Feat_Breathing = ({
   slideNum: number | null;
   onFinish: () => void;
 }) => {
-  const { t } = useTranslation(["tools", "common"]);
+  const { t } = useTranslation(["home", "tools"]);
 
   const innerCircleAnim = useRef(new Animated.Value(0.55)).current;
   const holdProgressBarAnim = useRef(
@@ -89,7 +89,7 @@ const Onboarding_Feat_Breathing = ({
         onFinish={() => onFinish()}
       >
         <Text className="text-3xl" style={{ color: Colors.offWhite }}>
-          Take a breather
+          {t("onboarding.feature_slides.breathing")}
         </Text>
         {/* Breather w/ Progress Bar */}
 
@@ -115,11 +115,17 @@ const Onboarding_Feat_Breathing = ({
                   style={{ color: Colors.offBlack, fontFamily: "Kodchasan" }}
                 >
                   {breatheState === "in" &&
-                    t("tools.breathing.exercise.commands.breathe_in")}
+                    t("tools.breathing.exercise.commands.breathe_in", {
+                      ns: "tools",
+                    })}
                   {breatheState === "out" &&
-                    t("tools.breathing.exercise.commands.breathe_out")}
+                    t("tools.breathing.exercise.commands.breathe_out", {
+                      ns: "tools",
+                    })}
                   {breatheState === "hold" &&
-                    t("tools.breathing.exercise.commands.hold")}{" "}
+                    t("tools.breathing.exercise.commands.hold", {
+                      ns: "tools",
+                    })}
                 </Text>
               </View>
               <Animated.View

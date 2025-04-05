@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { View } from "react-native";
 import FadeInView from "@/components/FadeInView";
 import Text from "@/components/global/Text";
@@ -15,6 +16,8 @@ const Onboarding_LastSlide = ({
   onboardingSlideNum: number;
   onFinish: () => void;
 }) => {
+  const { t } = useTranslation("home");
+
   const [fadeOutSlide, setFadeOutSlide] = useState(false);
 
   useEffect(() => {
@@ -37,7 +40,7 @@ const Onboarding_LastSlide = ({
           className="mx-8 text-center text-3xl"
           style={{ color: Colors.offWhite }}
         >
-          We hope you enjoy your experience with WorryFree.
+          {t("onboarding.goodbye_text")}
         </Text>
       </View>
     </FadeInView>

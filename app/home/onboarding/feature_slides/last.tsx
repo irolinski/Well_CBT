@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import FadeInView from "@/components/FadeInView";
 import Text from "@/components/global/Text";
 import { Colors } from "@/constants/styles/colorTheme";
@@ -14,6 +15,8 @@ const Onboarding_Feat_Last = ({
   slideNum: number | null;
   onFinish: () => void;
 }) => {
+  const { t } = useTranslation(["home", "common"]);
+
   const [fadeInText, setFadeInText] = useState(false);
 
   useEffect(() => {
@@ -36,7 +39,7 @@ const Onboarding_Feat_Last = ({
       }}
     >
       <Text className="mt-4 text-3xl" style={{ color: Colors.offWhite }}>
-        ...and much more!
+        {t("onboarding.feature_slides.and_much_more")}
       </Text>
     </FadeInView>
   );

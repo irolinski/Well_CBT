@@ -1,5 +1,6 @@
 import { Image } from "expo-image";
 import React, { useEffect, useRef } from "react";
+import { useTranslation } from "react-i18next";
 import { Animated, Easing, Text, View } from "react-native";
 import onboardingImages from "@/assets/images/home/onboarding/images";
 import FadeInView from "@/components/FadeInView";
@@ -14,6 +15,8 @@ const Onboarding_Feat_Journal = ({
   slideNum: number | null;
   onFinish: () => void;
 }) => {
+  const { t } = useTranslation(["home", "common"]);
+
   const animatedRotation = useRef(new Animated.Value(0)).current;
   const animatedX = useRef(new Animated.Value(0)).current;
   const animatedY = useRef(new Animated.Value(0)).current;
@@ -72,7 +75,7 @@ const Onboarding_Feat_Journal = ({
   return (
     <View className="items-center" key={slideKey}>
       <Text className="mt-4 text-3xl" style={{ color: Colors.offWhite }}>
-        Keep a daily mood journal
+        {t("onboarding.feature_slides.journal")}
       </Text>
       <FadeInView className="mt-20 flex-row">
         <View style={{ transform: [{ translateX: -70 }, { translateY: -10 }] }}>

@@ -15,6 +15,10 @@
     "notification_failure": "Error: \n\nCould not set notification. Try again later.",
     "notification_cancel": "Daily notifications have been turned off."
   },
+  "branding": {
+    "name": "WorryFree",
+    "tagline": "Your Pocket CBT Aid"
+  },
   "buttons": {
     "see_all": "See all",
     "redirect": "Redirect",
@@ -28,10 +32,12 @@
     "save_to_journal": "Save to journal",
     "save_preferences": "Save preferences",
     "save_changes": "Save changes",
+    "skip": "Skip",
     "start": "Start",
     "pause": "Pause",
     "go_back": "Go back",
-    "done": "Done"
+    "done": "Done",
+    "continue": "Continue"
   },
   "dates": {
     "months": {

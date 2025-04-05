@@ -21,7 +21,7 @@ const Onboarding_Slide_2 = ({
   onboardingSlideNum: number;
   onFinish: () => void;
 }) => {
-  const { t } = useTranslation(["home", "common"]);
+  const { t } = useTranslation("home");
 
   const [currentAnimation, setCurrentAnimation] = useState<
     "fade_in_header" | null
@@ -55,7 +55,7 @@ const Onboarding_Slide_2 = ({
         className="absolute w-64 text-center text-4xl"
         style={{ color: Colors.offWhite, top: SCREEN_HEIGHT * 0.15 }}
       >
-        WorryFree will help you to:
+        {t("onboarding.will_help_you_to")}
       </Text>
       <PagerView
         className="absolute bottom-0 h-2/3 w-full items-center justify-center"

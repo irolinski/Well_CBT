@@ -200,7 +200,7 @@
           "description": "Assuming you know what other people are thinking."
         },
         "discounting_positives": {
-          "name": "Discounting positives",
+          "name": "Discounting the positives",
           "description": "Dismissing the positive aspects about you or a situation as insignificant or unworthy."
         },
         "fortune_telling": {
@@ -208,7 +208,7 @@
           "description": "Predicting events will turn out badly without sufficient evidence."
         },
         "magnification_minimization": {
-          "name": "Magnification and minimization",
+          "name": "Magnification / minimization",
           "description": "Either exaggerating the importance of issues or trivializing their significance."
         },
         "labeling": {
@@ -224,7 +224,9 @@
           "description": "Placing rigid demands on yourself or others using terms like 'should,' 'ought to,' and 'must.'"
         },
         "personalization_blame": {
-          "name": "Personalization and blame",
+          "name": "Personalization / blame",
+          "name_short_1": "Personalization",
+          "name_short_2": "Blame",
           "description": "Holding yourself accountable for situations beyond your control or deflecting responsibility onto others."
         }
       }

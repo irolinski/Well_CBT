@@ -1,5 +1,6 @@
 import { Image } from "expo-image";
 import React, { useEffect, useRef } from "react";
+import { useTranslation } from "react-i18next";
 import { Animated, Easing, Text, View } from "react-native";
 import onboardingImages from "@/assets/images/home/onboarding/images";
 import { Colors } from "@/constants/styles/colorTheme";
@@ -16,6 +17,8 @@ const Onboarding_SecuritySlide = ({
   onboardingSlideNum: number;
   onFinish: () => void;
 }) => {
+  const { t } = useTranslation(["home", "common"]);
+
   const rotateSecurityKeyAnim = useRef(new Animated.Value(0)).current;
 
   const rotateSecurityKey = () => {
@@ -72,7 +75,7 @@ const Onboarding_SecuritySlide = ({
             marginBottom: 48,
           }}
         >
-          Your privacy is our priority
+          {t("onboarding.privacy_text_1")}
         </Text>
         <Text
           className="text-center text-2xl"
@@ -80,7 +83,7 @@ const Onboarding_SecuritySlide = ({
             color: Colors.offWhite,
           }}
         >
-          Your data is stored solely on your device
+          {t("onboarding.privacy_text_2")}
         </Text>
       </View>
       <View className="h-1/2 justify-center">

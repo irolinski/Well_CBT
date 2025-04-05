@@ -29,6 +29,42 @@
       "save": "Save preferences"
     }
   },
+  "onboarding": {
+    "will_help_you_to": "WorryFree will help you to:",
+    "feature_slides": {
+      "breathing": "Take a breather",
+      "cda_1": "Turn distorted thoughts...",
+      "cda_2": "...into more rational ones",
+      "cda_example_thought": "I'm judging myself too harshly...\nEverybody makes mistakes!",
+      "journal": "Keep a daily mood journal",
+      "and_much_more": "..and much more!"
+    },
+    "privacy_text_1": "Your privacy is our priority",
+    "privacy_text_2": "our data is stored solely on your device",
+    "loading_text": "Preparing everything...",
+    "loading_success_text": "Okay! - we are all set up!",
+    "goodbye_text": "We hope you enjoy your experience with WorryFree.",
+    "accomplish_questionnaire": {
+      "question": "What are you hoping to accomplish using WorryFree?",
+      "instruction": "Choose one or many out of the options below.",
+      "options": {
+        "mood": "I want to improve my mood",
+        "anxiety": "I want to reduce my anxiety",
+        "thinking_habits": "I want to build healthy thinking habits",
+        "mindfulness": "I want to practice mindfulness",
+        "challenging_thoughts": "I want to learn to challange my negative thoughts",
+        "mood_journal": "I want to start a mood journal",
+        "emotional_awareness": "I want to gain emotional awareness",
+        "self_esteem": "I want to improve my self-esteem",
+        "sleep": "I want to improve my sleep",
+        "cbt_exercises": "I want to practice CBT exercises",
+        "therapy_support": "I want to supplement my talk therapy",
+        "procrastination": "I want to overcome procrastination",
+        "phobias_fears": "I want to learn how to handle my phobias and/or fears",
+        "just_browsing": "Nothing in particular - just browsing"
+      }
+    }
+  },
   "welcome_text": {
     "hi": "Hi",
     "good_to_see_you": "Good to see you",

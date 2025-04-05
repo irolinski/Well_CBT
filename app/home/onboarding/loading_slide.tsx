@@ -1,5 +1,6 @@
 import { Image } from "expo-image";
 import React, { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Animated, Easing, Text, View } from "react-native";
 import onboardingImages from "@/assets/images/home/onboarding/images";
 import FadeInView from "@/components/FadeInView";
@@ -17,12 +18,13 @@ const Onboarding_LoadingSlide = ({
   onboardingSlideNum: number;
   onFinish: () => void;
 }) => {
+  const { t } = useTranslation(["home", "common"]);
+
   const [animationsFinished, setAnimationsFinished] = useState(false);
   const leaf_1_rotate_anim = useRef(new Animated.Value(0)).current;
   const loading_bar_anim = useRef(
     new Animated.Value(-SCREEN_WIDTH * 0.75),
   ).current;
-  // Leaf swaying animation (looping)
 
   const leavesSwayingAnimation = () => {
     return Animated.loop(
@@ -150,7 +152,7 @@ const Onboarding_LoadingSlide = ({
             color: Colors.offWhite,
           }}
         >
-          Preparing everything...
+          {t("onboarding.loading_text")}
         </Text>
         <View className="flex-row justify-center">
           <View

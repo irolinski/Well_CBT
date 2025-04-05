@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import AdvanceButton from "@/components/AdvanceButton";
 import ChecklistElement from "@/components/ChecklistElement";
@@ -6,23 +7,25 @@ import { Colors } from "@/constants/styles/colorTheme";
 import { SCREEN_HEIGHT } from "@/constants/styles/values";
 
 const goals_questionnaire_items: string[] = [
-  "I want to improve my mood",
-  "I want to reduce my anxiety",
-  "I want to build healthy thinking habits",
-  "I want to practice mindfulness",
-  "I want to learn to challange my negative thoughts",
-  "I want to start a mood journal",
-  "I want to gain emotional awareness",
-  "I want to improve my self-esteem",
-  "I want to improve my sleep",
-  "I want to practice CBT exercises",
-  "I want to supplement my talk therapy",
-  "I want to overcome procrastination",
-  "I want to learn how to handle my phobias and/or fears",
-  "Nothing in particular - just browsing",
+  "mood",
+  "anxiety",
+  "thinking_habits",
+  "mindfulness",
+  "challenging_thoughts",
+  "mood_journal",
+  "emotional_awareness",
+  "self_esteem",
+  "sleep",
+  "cbt_exercises",
+  "therapy_support",
+  "procrastination",
+  "phobias_fears",
+  "just_browsing",
 ];
 
 const SkipButton = ({ onPress }: { onPress: () => void }) => {
+  const { t } = useTranslation("common");
+
   return (
     <TouchableOpacity
       className="h-12 w-24 flex-row items-center justify-center"
@@ -31,7 +34,7 @@ const SkipButton = ({ onPress }: { onPress: () => void }) => {
       }}
     >
       <Text style={{ color: Colors.offWhite, fontWeight: 600, fontSize: 18 }}>
-        SKIP
+        {t("buttons.skip").toUpperCase()}
       </Text>
     </TouchableOpacity>
   );
@@ -46,6 +49,8 @@ const Onboarding_Slide_3 = ({
   onboardingSlideNum: number;
   onFinish: () => void;
 }) => {
+  const { t } = useTranslation(["home", "common"]);
+
   const [selectedGoals, setSelectedGoals] = useState<string[]>([]);
 
   return (
@@ -58,7 +63,7 @@ const Onboarding_Slide_3 = ({
           marginBottom: 24,
         }}
       >
-        What are you hoping to accomplish using WorryFree?
+        {t("onboarding.accomplish_questionnaire.question")}
       </Text>
       <Text
         className="my-4 text-base"
@@ -66,7 +71,7 @@ const Onboarding_Slide_3 = ({
           color: Colors.offWhite,
         }}
       >
-        Choose one or many out of the options below.
+        {t("onboarding.accomplish_questionnaire.instruction")}
       </Text>
       <View className="h-1/2 w-full px-2">
         <View
@@ -88,7 +93,9 @@ const Onboarding_Slide_3 = ({
             {goals_questionnaire_items.map((item: string, indexNum: number) => (
               <View className="my-4" key={indexNum}>
                 <ChecklistElement
-                  text={item}
+                  text={t(
+                    "onboarding.accomplish_questionnaire.options." + item,
+                  )}
                   checked={selectedGoals.includes(item)}
                   onPress={() => {
                     selectedGoals.includes(item)
@@ -105,7 +112,7 @@ const Onboarding_Slide_3 = ({
         <View className="bottom-2 mt-8 w-full flex-row justify-center">
           {selectedGoals.length > 0 ? (
             <AdvanceButton
-              title={"Continue"}
+              title={t("buttons.continue", { ns: "common" })}
               btnStyle={{ backgroundColor: "white", width: "40%" }}
               textStyle={{ color: Colors.blackPearl }}
               onPress={() => {
