@@ -5,8 +5,6 @@ import ChecklistElement from "@/components/ChecklistElement";
 import { Colors } from "@/constants/styles/colorTheme";
 import { SCREEN_HEIGHT } from "@/constants/styles/values";
 
-const THIS_SLIDE_KEY = "3";
-
 const goals_questionnaire_items: string[] = [
   "I want to improve my mood",
   "I want to reduce my anxiety",
@@ -40,18 +38,18 @@ const SkipButton = ({ onPress }: { onPress: () => void }) => {
 };
 
 const Onboarding_Slide_3 = ({
+  slideKey,
+  onboardingSlideNum,
   onFinish,
 }: {
+  slideKey: string;
   onboardingSlideNum: number;
   onFinish: () => void;
 }) => {
   const [selectedGoals, setSelectedGoals] = useState<string[]>([]);
 
   return (
-    <View
-      className="relative z-10 h-full w-full items-center"
-      key={THIS_SLIDE_KEY}
-    >
+    <View className="relative z-10 h-full w-full items-center" key={slideKey}>
       <Text
         className="w-72 text-center text-3xl"
         style={{

@@ -5,7 +5,6 @@ import FadeInView from "@/components/FadeInView";
 import { Colors } from "@/constants/styles/colorTheme";
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from "@/constants/styles/values";
 
-const THIS_SLIDE_KEY = "2";
 const START_DELAY_MS = 1000;
 
 const BREATHE_IN_TIME_MS = 5000;
@@ -13,9 +12,11 @@ const HOLD_TIME_MS = 6000 - 500;
 const BREATHE_OUT_TIME_MS = 7000;
 
 const Onboarding_Feat_Breathing = ({
+  slideKey,
   slideNum,
   onFinish,
 }: {
+  slideKey: string;
   slideNum: number | null;
   onFinish: () => void;
 }) => {
@@ -71,7 +72,7 @@ const Onboarding_Feat_Breathing = ({
   };
 
   const onFadeIn = () => {
-    if (slideNum === Number(THIS_SLIDE_KEY) - 1) {
+    if (slideNum === Number(slideKey) - 1) {
       setTimeout(() => {
         animateinnerCircle(7000);
       }, START_DELAY_MS);
@@ -79,7 +80,7 @@ const Onboarding_Feat_Breathing = ({
   };
 
   return (
-    <View className="items-center" key={THIS_SLIDE_KEY}>
+    <View className="items-center" key={slideKey}>
       <FadeInView
         className="items-center"
         isActive={currentAnimation === "fade_out_breather"}
@@ -94,7 +95,7 @@ const Onboarding_Feat_Breathing = ({
 
         <FadeInView
           className="items-center"
-          isActive={slideNum === Number(THIS_SLIDE_KEY) - 1}
+          isActive={slideNum === Number(slideKey) - 1}
           onFinish={() => onFadeIn()}
         >
           {/* Breather */}

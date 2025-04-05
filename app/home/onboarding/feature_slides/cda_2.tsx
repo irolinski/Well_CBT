@@ -4,17 +4,17 @@ import TypewriterText from "@/components/TypewriterText";
 import { Colors } from "@/constants/styles/colorTheme";
 import { SCREEN_WIDTH } from "@/constants/styles/values";
 
-const THIS_SLIDE_KEY = "4";
-
 const Onboarding_Feat_CDA_2 = ({
+  slideKey,
   slideNum,
   onFinish,
 }: {
+  slideKey: string;
   slideNum: number | null;
   onFinish: () => void;
 }) => {
   return (
-    <View className="items-center" key={THIS_SLIDE_KEY}>
+    <View className="items-center" key={slideKey}>
       <Text className="mt-4 text-3xl" style={{ color: Colors.offWhite }}>
         ...into more rational ones
       </Text>
@@ -28,7 +28,7 @@ const Onboarding_Feat_CDA_2 = ({
       >
         <TypewriterText
           text={"I'm judging myself too harshly...\nEverybody makes mistakes!"}
-          isActive={slideNum === Number(THIS_SLIDE_KEY) - 1}
+          isActive={slideNum === Number(slideKey) - 1}
           size={20}
           textColor={Colors.darkGray}
           cursorColor={Colors.mainGray}

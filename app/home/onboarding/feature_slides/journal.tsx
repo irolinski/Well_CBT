@@ -5,12 +5,12 @@ import onboardingImages from "@/assets/images/home/onboarding/images";
 import FadeInView from "@/components/FadeInView";
 import { Colors } from "@/constants/styles/colorTheme";
 
-const THIS_SLIDE_KEY = "5";
-
 const Onboarding_Feat_Journal = ({
+  slideKey,
   slideNum,
   onFinish,
 }: {
+  slideKey: string;
   slideNum: number | null;
   onFinish: () => void;
 }) => {
@@ -62,7 +62,7 @@ const Onboarding_Feat_Journal = ({
   };
 
   useEffect(() => {
-    if (slideNum === Number(THIS_SLIDE_KEY) - 1) {
+    if (slideNum === Number(slideKey) - 1) {
       loopedAnimation().start(() => {
         onFinish();
       });
@@ -70,7 +70,7 @@ const Onboarding_Feat_Journal = ({
   }, [slideNum]);
 
   return (
-    <View className="items-center" key={THIS_SLIDE_KEY}>
+    <View className="items-center" key={slideKey}>
       <Text className="mt-4 text-3xl" style={{ color: Colors.offWhite }}>
         Keep a daily mood journal
       </Text>

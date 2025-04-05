@@ -6,8 +6,6 @@ import FadeInView from "@/components/FadeInView";
 import Text from "@/components/global/Text";
 import { Colors } from "@/constants/styles/colorTheme";
 
-const THIS_SLIDE_KEY = "1";
-
 const INITIAL_DELAY_MS = 1000;
 const LOGO_WORRY_X_OFFSET_INIT = -500;
 const LOGO_WORRY_X_OFFSET_FINAL = -15;
@@ -15,9 +13,11 @@ const LOGO_FREE_X_OFFSET_INIT = 20;
 const LOGO_FREE_X_OFFSET_FINAL = 65;
 
 const Onborading_Slide_1 = ({
+  slideKey,
   onboardingSlideNum,
   onFinish,
 }: {
+  slideKey: string;
   onboardingSlideNum: number;
   onFinish: () => void;
 }) => {
@@ -68,7 +68,7 @@ const Onborading_Slide_1 = ({
   };
 
   useEffect(() => {
-    if (onboardingSlideNum === Number(THIS_SLIDE_KEY) - 1) {
+    if (onboardingSlideNum === Number(slideKey) - 1) {
       setTimeout(() => {
         setCurrentAnimation("show_logo_view");
       }, INITIAL_DELAY_MS);
@@ -78,7 +78,7 @@ const Onborading_Slide_1 = ({
   return (
     <FadeInView
       className="z-10 h-full w-full items-center justify-center"
-      key={THIS_SLIDE_KEY} //obligatory for outside PagerView
+      key={slideKey} //obligatory for outside PagerView
       inputVal={1}
       outputVal={0}
       isActive={currentAnimation === "hide_logo_view"}

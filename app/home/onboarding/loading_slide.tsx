@@ -1,18 +1,19 @@
-import { Image } from 'expo-image';
-import React, { useEffect, useRef, useState } from 'react';
-import { Animated, Easing, Text, View } from 'react-native';
-import onboardingImages from '@/assets/images/home/onboarding/images';
-import FadeInView from '@/components/FadeInView';
-import { Colors } from '@/constants/styles/colorTheme';
-import { SCREEN_WIDTH } from '@/constants/styles/values';
+import { Image } from "expo-image";
+import React, { useEffect, useRef, useState } from "react";
+import { Animated, Easing, Text, View } from "react-native";
+import onboardingImages from "@/assets/images/home/onboarding/images";
+import FadeInView from "@/components/FadeInView";
+import { Colors } from "@/constants/styles/colorTheme";
+import { SCREEN_WIDTH } from "@/constants/styles/values";
 
-const THIS_SLIDE_KEY = "5";
 const IMAGE_EL_SIZE_PX = 100;
 
 const Onboarding_LoadingSlide = ({
+  slideKey,
   onboardingSlideNum,
   onFinish,
 }: {
+  slideKey: string;
   onboardingSlideNum: number;
   onFinish: () => void;
 }) => {
@@ -57,7 +58,7 @@ const Onboarding_LoadingSlide = ({
   };
 
   useEffect(() => {
-    if (onboardingSlideNum === Number(THIS_SLIDE_KEY) - 1) {
+    if (onboardingSlideNum === Number(slideKey) - 1) {
       leavesSwayingAnimation().start();
       loadBarAnim().start(() => {
         setAnimationsFinished(true);
@@ -68,7 +69,7 @@ const Onboarding_LoadingSlide = ({
   return (
     <FadeInView
       className="relative z-10 h-full w-full items-center"
-      key={THIS_SLIDE_KEY}
+      key={slideKey}
       inputVal={1}
       outputVal={0}
       isActive={animationsFinished}

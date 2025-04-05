@@ -121,6 +121,7 @@ const AppOnboardingModal = ({
           }}
         >
           <Onborading_Slide_1
+            slideKey="1"
             onboardingSlideNum={currentSlide}
             onFinish={() => {
               slideDownBackgroundAnim().start(() => {
@@ -129,36 +130,42 @@ const AppOnboardingModal = ({
             }}
           />
           <Onborading_Slide_2
+            slideKey="2"
             onboardingSlideNum={currentSlide}
             onFinish={() => {
               nextSlide();
             }}
           />
           <Onboarding_Slide_3
+            slideKey="3"
             onboardingSlideNum={currentSlide}
             onFinish={() => {
               nextSlide();
             }}
           />
           <Onboarding_SecuritySlide
+            slideKey="4"
             onboardingSlideNum={currentSlide}
             onFinish={() => {
               nextSlide();
             }}
           />
           <Onboarding_LoadingSlide
+            slideKey="5"
             onboardingSlideNum={currentSlide}
             onFinish={() => {
               nextSlide();
             }}
           />
           <Onboarding_PaymentSlide
+            slideKey="6"
             onboardingSlideNum={currentSlide}
             onFinish={() => {
               nextSlide();
             }}
           />
           <Onboarding_LastSlide
+            slideKey="7"
             onboardingSlideNum={currentSlide}
             onFinish={() => {
               onFinish();

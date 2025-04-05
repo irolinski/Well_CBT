@@ -3,8 +3,6 @@ import { Animated, Text, View } from "react-native";
 import DistortionPill from "@/components/DistortionPill";
 import { Colors } from "@/constants/styles/colorTheme";
 
-const THIS_SLIDE_KEY = "3";
-
 const SlideInView = ({
   isActive,
   children,
@@ -53,14 +51,16 @@ const SlideInView = ({
 };
 
 const Onboarding_Feat_CDA_1 = ({
+  slideKey,
   slideNum,
   onFinish,
 }: {
+  slideKey: string;
   slideNum: number | null;
   onFinish: () => void;
 }) => {
   return (
-    <View className="items-center" key={THIS_SLIDE_KEY}>
+    <View className="items-center" key={slideKey}>
       <Text className="mt-4 text-3xl" style={{ color: Colors.offWhite }}>
         Turn distorted thoughts...
       </Text>
@@ -68,7 +68,7 @@ const Onboarding_Feat_CDA_1 = ({
         {/* Left column */}
         <View className="w-3/5">
           <SlideInView
-            isActive={slideNum === Number(THIS_SLIDE_KEY) - 1}
+            isActive={slideNum === Number(slideKey) - 1}
             delay={0}
             from="left"
           >
@@ -77,7 +77,7 @@ const Onboarding_Feat_CDA_1 = ({
             </View>
           </SlideInView>
           <SlideInView
-            isActive={slideNum === Number(THIS_SLIDE_KEY) - 1}
+            isActive={slideNum === Number(slideKey) - 1}
             delay={200}
             from="left"
           >
@@ -91,7 +91,7 @@ const Onboarding_Feat_CDA_1 = ({
           </SlideInView>
           <View className="h-16" />
           <SlideInView
-            isActive={slideNum === Number(THIS_SLIDE_KEY) - 1}
+            isActive={slideNum === Number(slideKey) - 1}
             delay={400}
             from="left"
           >
@@ -106,7 +106,7 @@ const Onboarding_Feat_CDA_1 = ({
           <View className="mt-4 flex-row">
             <View className="mt-6 w-1/2">
               <SlideInView
-                isActive={slideNum === Number(THIS_SLIDE_KEY) - 1}
+                isActive={slideNum === Number(slideKey) - 1}
                 delay={600}
                 from="left"
               >
@@ -116,7 +116,7 @@ const Onboarding_Feat_CDA_1 = ({
             <View className="w-1/2 items-end">
               <View className="w-3/4">
                 <SlideInView
-                  isActive={slideNum === Number(THIS_SLIDE_KEY) - 1}
+                  isActive={slideNum === Number(slideKey) - 1}
                   delay={800}
                   from="right"
                 >
@@ -135,7 +135,7 @@ const Onboarding_Feat_CDA_1 = ({
         <View className="w-2/5">
           <View className="items-end">
             <SlideInView
-              isActive={slideNum === Number(THIS_SLIDE_KEY) - 1}
+              isActive={slideNum === Number(slideKey) - 1}
               delay={100}
               from="right"
             >
@@ -148,7 +148,7 @@ const Onboarding_Feat_CDA_1 = ({
           </View>
           <View className="h-16 w-full" />
           <SlideInView
-            isActive={slideNum === Number(THIS_SLIDE_KEY) - 1}
+            isActive={slideNum === Number(slideKey) - 1}
             delay={500}
             from="right"
             onFinish={() => onFinish()}

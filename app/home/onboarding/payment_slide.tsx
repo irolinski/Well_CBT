@@ -4,20 +4,21 @@ import FadeInView from "@/components/FadeInView";
 import Text from "@/components/global/Text";
 import { Colors } from "@/constants/styles/colorTheme";
 
-const THIS_SLIDE_KEY = "6";
 const TIME_TO_FADE_OUT_MS = 2000;
 
 const Onboarding_PaymentSlide = ({
+  slideKey,
   onboardingSlideNum,
   onFinish,
 }: {
+  slideKey: string;
   onboardingSlideNum: number;
   onFinish: () => void;
 }) => {
   const [fadeOutSlide, setFadeOutSlide] = useState(false);
 
   useEffect(() => {
-    if (onboardingSlideNum === Number(THIS_SLIDE_KEY) - 1) {
+    if (onboardingSlideNum === Number(slideKey) - 1) {
       setTimeout(() => setFadeOutSlide(true), TIME_TO_FADE_OUT_MS);
     }
   }, [onboardingSlideNum]);
@@ -25,7 +26,7 @@ const Onboarding_PaymentSlide = ({
   return (
     <FadeInView
       className="relative z-10 h-full w-full items-center"
-      key={THIS_SLIDE_KEY}
+      key={slideKey}
       inputVal={1}
       outputVal={0}
       isActive={fadeOutSlide}

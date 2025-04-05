@@ -3,20 +3,21 @@ import FadeInView from "@/components/FadeInView";
 import Text from "@/components/global/Text";
 import { Colors } from "@/constants/styles/colorTheme";
 
-const THIS_SLIDE_KEY = "6";
 const DISPLAY_TEXT_TIME_MS = 2000;
 
 const Onboarding_Feat_Last = ({
+  slideKey,
   slideNum,
   onFinish,
 }: {
+  slideKey: string;
   slideNum: number | null;
   onFinish: () => void;
 }) => {
   const [fadeInText, setFadeInText] = useState(false);
 
   useEffect(() => {
-    if (slideNum === Number(THIS_SLIDE_KEY) - 1) {
+    if (slideNum === Number(slideKey) - 1) {
       setFadeInText(true);
     }
   }, [slideNum]);
@@ -24,7 +25,7 @@ const Onboarding_Feat_Last = ({
   return (
     <FadeInView
       className="h-1/2 items-center justify-center"
-      key={THIS_SLIDE_KEY}
+      key={slideKey}
       inputVal={0}
       outputVal={1}
       isActive={fadeInText}

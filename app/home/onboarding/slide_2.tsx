@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { NativeSyntheticEvent, Text } from "react-native";
 import PagerView from "react-native-pager-view";
 import { Double } from "react-native/Libraries/Types/CodegenTypes";
@@ -11,15 +12,17 @@ import Onboarding_Feat_CDA_2 from "./feature_slides/cda_2";
 import Onboarding_Feat_Journal from "./feature_slides/journal";
 import Onboarding_Feat_Last from "./feature_slides/last";
 
-const THIS_SLIDE_KEY = "2";
-
 const Onboarding_Slide_2 = ({
+  slideKey,
   onboardingSlideNum,
   onFinish,
 }: {
+  slideKey: string;
   onboardingSlideNum: number;
   onFinish: () => void;
 }) => {
+  const { t } = useTranslation(["home", "common"]);
+
   const [currentAnimation, setCurrentAnimation] = useState<
     "fade_in_header" | null
   >(null);
@@ -33,7 +36,7 @@ const Onboarding_Slide_2 = ({
   }, [currentSlide]);
 
   useEffect(() => {
-    if (onboardingSlideNum === Number(THIS_SLIDE_KEY) - 1) {
+    if (onboardingSlideNum === Number(slideKey) - 1) {
       setCurrentAnimation("fade_in_header");
       setCurrentSlide(0);
     }
@@ -42,7 +45,7 @@ const Onboarding_Slide_2 = ({
   return (
     <FadeInView
       className="relative z-10 h-full w-full items-center justify-start"
-      key={THIS_SLIDE_KEY}
+      key={slideKey}
       inputVal={0}
       outputVal={1}
       duration={1500}
@@ -80,28 +83,33 @@ const Onboarding_Slide_2 = ({
         {/* empty slide to prevent the animation on first page from running immediately */}
 
         <Onboarding_Feat_Breathing
+          slideKey="2"
           slideNum={typeof currentSlide === "number" ? currentSlide : null}
           onFinish={() => {
             setTimeout(() => nextSlide(), 1500);
           }}
         />
         <Onboarding_Feat_CDA_1
+          slideKey="3"
           slideNum={typeof currentSlide === "number" ? currentSlide : null}
           onFinish={() => {
             setTimeout(() => nextSlide(), 1500);
           }}
         />
         <Onboarding_Feat_CDA_2
+          slideKey="4"
           slideNum={typeof currentSlide === "number" ? currentSlide : null}
           onFinish={() => {
             setTimeout(() => nextSlide(), 1500);
           }}
         />
         <Onboarding_Feat_Journal
+          slideKey="5"
           slideNum={typeof currentSlide === "number" ? currentSlide : null}
           onFinish={() => nextSlide()}
         />
         <Onboarding_Feat_Last
+          slideKey="6"
           slideNum={typeof currentSlide === "number" ? currentSlide : null}
           onFinish={() => {
             onFinish();

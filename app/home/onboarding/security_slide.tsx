@@ -1,17 +1,18 @@
-import { Image } from 'expo-image';
-import React, { useEffect, useRef } from 'react';
-import { Animated, Easing, Text, View } from 'react-native';
-import onboardingImages from '@/assets/images/home/onboarding/images';
-import { Colors } from '@/constants/styles/colorTheme';
-import { SCREEN_HEIGHT } from '@/constants/styles/values';
+import { Image } from "expo-image";
+import React, { useEffect, useRef } from "react";
+import { Animated, Easing, Text, View } from "react-native";
+import onboardingImages from "@/assets/images/home/onboarding/images";
+import { Colors } from "@/constants/styles/colorTheme";
+import { SCREEN_HEIGHT } from "@/constants/styles/values";
 
-const THIS_SLIDE_KEY = "4";
 const TIME_AFTER_ANIMATION_MS = 1500;
 
 const Onboarding_SecuritySlide = ({
+  slideKey,
   onboardingSlideNum,
   onFinish,
 }: {
+  slideKey: string;
   onboardingSlideNum: number;
   onFinish: () => void;
 }) => {
@@ -53,7 +54,7 @@ const Onboarding_SecuritySlide = ({
   };
 
   useEffect(() => {
-    if (onboardingSlideNum === Number(THIS_SLIDE_KEY) - 1) {
+    if (onboardingSlideNum === Number(slideKey) - 1) {
       rotateSecurityKey().start(() =>
         setTimeout(() => onFinish(), TIME_AFTER_ANIMATION_MS),
       );
@@ -61,10 +62,7 @@ const Onboarding_SecuritySlide = ({
   }, [onboardingSlideNum]);
 
   return (
-    <View
-      className="relative z-10 h-full w-full items-center"
-      key={THIS_SLIDE_KEY}
-    >
+    <View className="relative z-10 h-full w-full items-center" key={slideKey}>
       <View className="w-72">
         <Text
           className="text-center text-4xl"
