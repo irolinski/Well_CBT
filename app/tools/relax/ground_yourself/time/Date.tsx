@@ -185,7 +185,7 @@ const Ground_Time_Day = ({
                   }}
                 >
                   <View key="1" className="h-full">
-                    <Text className="text-xl">
+                    <Text className="text">
                       {t("tools.ground_yourself.time.date.todays_date_is") +
                         ":"}
                     </Text>
@@ -222,7 +222,7 @@ const Ground_Time_Day = ({
                         isActive={currentSlide === 1}
                         delaySeconds={3}
                         className="mt-4"
-                        size={26}
+                        size={22}
                         speed="very_fast"
                         text={
                           t("tools.ground_yourself.time.date.todays_date_is") +

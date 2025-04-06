@@ -1,18 +1,18 @@
-import React, { useRef, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { Animated, Easing, NativeSyntheticEvent, View } from 'react-native';
-import PagerView from 'react-native-pager-view';
-import { Double } from 'react-native/Libraries/Types/CodegenTypes';
-import ArrowRightButton from '@/components/ArrowRightButton';
-import FadeInView from '@/components/FadeInView';
-import Text from '@/components/global/Text';
-import GroundYourselfSlideFrame from '@/components/tools/ground_yourself/GroundYourselfSlideFrame';
-import TypewriterText from '@/components/TypewriterText';
-import { dayColors, dayNamesFromMonday } from '@/constants/models/dates';
-import { GroundYourselfSlideProps } from '@/constants/models/tools/ground_yourself';
-import { Colors } from '@/constants/styles/colorTheme';
-import { SCREEN_HEIGHT } from '@/constants/styles/values';
-import { Picker } from '@react-native-picker/picker';
+import React, { useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { Animated, Easing, NativeSyntheticEvent, View } from "react-native";
+import PagerView from "react-native-pager-view";
+import { Double } from "react-native/Libraries/Types/CodegenTypes";
+import ArrowRightButton from "@/components/ArrowRightButton";
+import FadeInView from "@/components/FadeInView";
+import Text from "@/components/global/Text";
+import GroundYourselfSlideFrame from "@/components/tools/ground_yourself/GroundYourselfSlideFrame";
+import TypewriterText from "@/components/TypewriterText";
+import { dayColors, dayNamesFromMonday } from "@/constants/models/dates";
+import { GroundYourselfSlideProps } from "@/constants/models/tools/ground_yourself";
+import { Colors } from "@/constants/styles/colorTheme";
+import { SCREEN_HEIGHT } from "@/constants/styles/values";
+import { Picker } from "@react-native-picker/picker";
 
 const getCurrentDayOfWeekNum = () => {
   let currentDayNum = new Date().getDay();
@@ -218,7 +218,7 @@ const Ground_Time_Day = ({
                         isActive={currentSlide === 1}
                         delaySeconds={3}
                         className="mt-4"
-                        size={26}
+                        size={22}
                         speed="very_fast"
                         text={t("tools.ground_yourself.time.day.today_its")}
                         cursorColor={Colors.mainGray}
