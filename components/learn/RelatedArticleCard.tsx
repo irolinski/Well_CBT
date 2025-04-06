@@ -55,7 +55,7 @@ const RelatedArticleCard = ({
                 style={{
                   width: 70,
                   height: 45,
-                  backgroundColor: "#FF997C",
+                  backgroundColor: Colors.salmonOrange,
                 }}
               >
                 <Feather name="arrow-right" size={24} color={Colors.white} />

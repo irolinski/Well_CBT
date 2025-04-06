@@ -1,11 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { Calendar, LocaleConfig } from 'react-native-calendars';
-import { useDispatch, useSelector } from 'react-redux';
-import { dayNames, monthNames, monthNamesShort } from '@/constants/models/dates';
-import { Colors } from '@/constants/styles/colorTheme';
-import { setFilterPeriod } from '@/state/features/menus/activityLogSlice';
-import { AppDispatch, RootState } from '@/state/store';
+import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { Calendar, LocaleConfig } from "react-native-calendars";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  dayNames,
+  monthNames,
+  monthNamesShort,
+} from "@/constants/models/dates";
+import { Colors } from "@/constants/styles/colorTheme";
+import { setFilterPeriod } from "@/state/features/menus/activityLogSlice";
+import { AppDispatch, RootState } from "@/state/store";
 
 type CalendarCallbackEvent = {
   day: number;
@@ -173,7 +177,7 @@ const ActivityLogCalendar = () => {
         disableAllTouchEventsForDisabledDays={true}
         enableSwipeMonths={true}
         theme={{
-          dotColor: "#FF997C",
+          dotColor: Colors.salmonOrange,
           arrowColor: Colors.mainBlue,
           calendarBackground: "rgba(255, 255, 255, 0)",
         }}

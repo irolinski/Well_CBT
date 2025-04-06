@@ -94,10 +94,10 @@ const ActivityShowPage = () => {
                         renderThumbComponent={() => <View></View>}
                         minimumTrackTintColor={
                           fetchedEntryMain.moodValue < 4
-                            ? "#D46A6A"
+                            ? Colors.red
                             : fetchedEntryMain.moodValue < 6
-                              ? "#F38E4E"
-                              : "#AED581"
+                              ? Colors.salmonOrange
+                              : Colors.green
                         }
                         maximumTrackTintColor={Colors.whiteSmoke}
                         trackStyle={{
@@ -163,7 +163,7 @@ const ActivityShowPage = () => {
                                               )?.color || "transparent"
                                             }`,
                                           }
-                                        : { backgroundColor: "#FAF9F6" }
+                                        : { backgroundColor: Colors.offWhite }
                                     }
                                     key={i}
                                   ></View>

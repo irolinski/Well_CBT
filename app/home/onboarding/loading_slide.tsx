@@ -165,7 +165,7 @@ const Onboarding_LoadingSlide = ({
             <Animated.View
               className="absolute z-20 h-4 w-full"
               style={{
-                backgroundColor: "#757575",
+                backgroundColor: Colors.darkGray,
                 transform: [{ translateX: loading_bar_anim }],
               }}
             />

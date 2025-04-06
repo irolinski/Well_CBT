@@ -181,7 +181,7 @@ const Onboarding_Feat_CDA_1 = ({
                   ns: "tools",
                 })}
                 checked
-                customColor={"#D46A6A"}
+                customColor={Colors.red}
               />
             </View>
           </SlideInView>

@@ -1,20 +1,27 @@
-import { router } from 'expo-router';
-import React, { useEffect, useRef } from 'react';
-import { useTranslation } from 'react-i18next';
-import { Animated, Easing, View } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
-import AdvanceButton from '@/components/AdvanceButton';
-import Text from '@/components/global/Text';
-import ToolHeader from '@/components/tools/ToolHeader';
-import ToolNav from '@/components/tools/ToolNav';
-import { moodValueTitles } from '@/constants/models/tools/journal';
-import { journal_tool } from '@/constants/models/tools/tools';
-import { Colors } from '@/constants/styles/colorTheme';
-import { journalStyleConstants, SCREEN_HEIGHT, SCREEN_WIDTH } from '@/constants/styles/values';
-import { journalResetState, setMoodValue } from '@/state/features/tools/journalSlice';
-import { AppDispatch, RootState } from '@/state/store';
-import { MaterialIcons } from '@expo/vector-icons';
-import { Slider } from '@miblanchard/react-native-slider';
+import { router } from "expo-router";
+import React, { useEffect, useRef } from "react";
+import { useTranslation } from "react-i18next";
+import { Animated, Easing, View } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import AdvanceButton from "@/components/AdvanceButton";
+import Text from "@/components/global/Text";
+import ToolHeader from "@/components/tools/ToolHeader";
+import ToolNav from "@/components/tools/ToolNav";
+import { moodValueTitles } from "@/constants/models/tools/journal";
+import { journal_tool } from "@/constants/models/tools/tools";
+import { Colors } from "@/constants/styles/colorTheme";
+import {
+  journalStyleConstants,
+  SCREEN_HEIGHT,
+  SCREEN_WIDTH,
+} from "@/constants/styles/values";
+import {
+  journalResetState,
+  setMoodValue,
+} from "@/state/features/tools/journalSlice";
+import { AppDispatch, RootState } from "@/state/store";
+import { MaterialIcons } from "@expo/vector-icons";
+import { Slider } from "@miblanchard/react-native-slider";
 
 const TOOL_NAME = journal_tool.name;
 const CURRENT_PAGE = 1;
@@ -109,10 +116,10 @@ const Log_1 = () => {
               }}
               minimumTrackTintColor={
                 journalState.moodValue! < 4
-                  ? "#D46A6A"
+                  ? Colors.red
                   : journalState.moodValue! < 6
-                    ? "#F38E4E"
-                    : "#AED581"
+                    ? Colors.orange
+                    : Colors.green
               }
               maximumTrackTintColor={Colors.whiteSmoke}
               thumbTintColor={Colors.whiteSmoke}

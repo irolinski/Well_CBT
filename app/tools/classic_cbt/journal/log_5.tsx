@@ -97,10 +97,10 @@ const Log_5 = () => {
                       )}
                       minimumTrackTintColor={
                         journalState.moodValue! < 4
-                          ? "#D46A6A"
+                          ? Colors.red
                           : journalState.moodValue! < 6
-                            ? "#F38E4E"
-                            : "#AED581"
+                            ? Colors.orange
+                            : Colors.green
                       }
                       maximumTrackTintColor={Colors.whiteSmoke}
                       thumbTintColor={Colors.whiteSmoke}
@@ -150,7 +150,7 @@ const Log_5 = () => {
                                 style={
                                   i <= emotionObj.strength!
                                     ? { backgroundColor: `${emotionObj.color}` }
-                                    : { backgroundColor: "#FAF9F6" }
+                                    : { backgroundColor: Colors.offWhite }
                                 }
                                 key={i}
                               ></View>
@@ -193,7 +193,11 @@ const Log_5 = () => {
                   >
                     {journalState.save ? (
                       <View className="mx-auto">
-                        <Feather name="check" size={22} color="#F7F7F7" />
+                        <Feather
+                          name="check"
+                          size={22}
+                          color={Colors.whiteSmoke}
+                        />
                       </View>
                     ) : null}
                   </View>

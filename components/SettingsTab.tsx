@@ -1,6 +1,7 @@
 import { Href, router } from "expo-router";
 import React, { ReactElement } from "react";
 import { Pressable, Text, View } from "react-native";
+import { Colors } from "@/constants/styles/colorTheme";
 import { FontAwesome6 } from "@expo/vector-icons";
 
 const SettingsTab = ({
@@ -25,7 +26,7 @@ const SettingsTab = ({
         </View>
         <View className="w-1/5 justify-center">
           <View className="mx-auto">
-            <FontAwesome6 name="chevron-right" size={16} color="black" />
+            <FontAwesome6 name="chevron-right" size={16} color={Colors.black} />
           </View>
         </View>
       </View>

@@ -1,4 +1,5 @@
 import { ColorValue, DimensionValue, View, ViewStyle } from "react-native";
+import { Colors } from "@/constants/styles/colorTheme";
 
 interface DividerLineProps {
   width: DimensionValue;
@@ -22,7 +23,7 @@ const DividerLine = ({
       <View
         style={{
           borderWidth: weight ?? 1,
-          borderColor: color ?? "#DDDDDD",
+          borderColor: color ?? Colors.lightGrayAlt,
           width: width,
           height: 1,
         }}

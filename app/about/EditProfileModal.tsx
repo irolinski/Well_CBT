@@ -115,7 +115,7 @@ const EditProfileModal = () => {
           >
             <View className="items-center pb-6">
               <View>
-                <Feather name="chevron-down" size={24} color="black" />
+                <Feather name="chevron-down" size={24} color={Colors.black} />
               </View>
             </View>
           </Pressable>
@@ -166,8 +166,8 @@ const EditProfileModal = () => {
                       value={editProfileModalState.name}
                       style={{
                         color: editProfileModalState.nameInputIsActive
-                          ? "black"
-                          : "#616161",
+                          ? Colors.black
+                          : Colors.superDarkGray,
                         borderColor: Colors.lightGray,
                         backgroundColor: Colors.offWhite,
                         textAlignVertical: "center",

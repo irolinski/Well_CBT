@@ -62,7 +62,7 @@ const WelcomeTypewriterText = ({ isActive }: { isActive: boolean }) => {
     <View className="my-4">
       <View
         className="mx-4 mb-8 mt-2 justify-center"
-        style={{ borderColor: "#DDDDDD" }}
+        style={{ borderColor: Colors.lightGrayAlt }}
       >
         <TypewriterText
           text={getWelcomeText(userName && userName)}

@@ -1,17 +1,19 @@
-import { useTranslation } from 'react-i18next';
-import { Modal, Pressable, ScrollView, View } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
-import DividerLine from '@/components/DividerLine';
-import Text from '@/components/global/Text';
-import CategoryFilter from '@/components/home/CategoryFilter';
-import { Colors } from '@/constants/styles/colorTheme';
+import { useTranslation } from "react-i18next";
+import { Modal, Pressable, ScrollView, View } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import DividerLine from "@/components/DividerLine";
+import Text from "@/components/global/Text";
+import CategoryFilter from "@/components/home/CategoryFilter";
+import { Colors } from "@/constants/styles/colorTheme";
 import {
-    CLOSE_MODAL_OFFSET_TRESHOLD, SCREEN_HEIGHT, SCREEN_WIDTH
-} from '@/constants/styles/values';
-import { setShowActivityLogModal } from '@/state/features/menus/activityLogModalSlice';
-import { AppDispatch, RootState } from '@/state/store';
-import { Feather } from '@expo/vector-icons';
-import ActivityLogCalendar from './Calendar';
+  CLOSE_MODAL_OFFSET_TRESHOLD,
+  SCREEN_HEIGHT,
+  SCREEN_WIDTH,
+} from "@/constants/styles/values";
+import { setShowActivityLogModal } from "@/state/features/menus/activityLogModalSlice";
+import { AppDispatch, RootState } from "@/state/store";
+import { Feather } from "@expo/vector-icons";
+import ActivityLogCalendar from "./Calendar";
 
 const ActivityLogModal = () => {
   const { t } = useTranslation("home");
@@ -50,7 +52,7 @@ const ActivityLogModal = () => {
           >
             <View className="items-center pb-6">
               <View>
-                <Feather name="chevron-down" size={24} color="black" />
+                <Feather name="chevron-down" size={24} color={Colors.black} />
               </View>
             </View>
           </Pressable>

@@ -1,10 +1,10 @@
-import { Trans } from 'react-i18next';
-import { View } from 'react-native';
-import { Colors } from '@/constants/styles/colorTheme';
-import { SCREEN_HEIGHT } from '@/constants/styles/values';
-import BackButton from '../BackButton';
-import Text from '../global/Text';
-import ProgressBar from '../ProgressBar';
+import { Trans } from "react-i18next";
+import { View } from "react-native";
+import { Colors } from "@/constants/styles/colorTheme";
+import { SCREEN_HEIGHT } from "@/constants/styles/values";
+import BackButton from "../BackButton";
+import Text from "../global/Text";
+import ProgressBar from "../ProgressBar";
 
 const ToolNav = ({
   currentPage,
@@ -48,7 +48,7 @@ const ToolNav = ({
                 ns="common"
                 values={{ current: currentPage, total: numOfAllPages }}
                 components={{
-                  muted: <Text style={{ color: "#525252" }} />,
+                  muted: <Text style={{ color: Colors.mainGray }} />,
                 }}
               ></Trans>
             </Text>

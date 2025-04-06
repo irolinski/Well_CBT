@@ -348,7 +348,7 @@ const Breathe = () => {
           <Pressable onPress={() => router.back()} className="">
             <View>
               <View>
-                <Feather name="x" size={24} color="black" />
+                <Feather name="x" size={24} color={Colors.black} />
               </View>
             </View>
           </Pressable>
@@ -360,7 +360,7 @@ const Breathe = () => {
             }}
           >
             <View>
-              <Feather name="settings" size={24} color="black" />
+              <Feather name="settings" size={24} color={Colors.black} />
             </View>
           </Pressable>
         </View>
@@ -409,7 +409,7 @@ const Breathe = () => {
               alignSelf: "center",
               width: outerCircleSize,
               height: outerCircleSize,
-              borderColor: "black",
+              borderColor: Colors.black,
               backgroundColor: "transparent",
               top: 0.04 * SCREEN_HEIGHT,
             }}

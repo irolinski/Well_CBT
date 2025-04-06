@@ -1,8 +1,9 @@
-import { Image } from 'expo-image';
-import React, { ReactNode } from 'react';
-import { StyleSheet, TouchableOpacity, View } from 'react-native';
-import { SCREEN_HEIGHT } from '@/constants/styles/values';
-import { UnknownAction } from '@reduxjs/toolkit';
+import { Image } from "expo-image";
+import React, { ReactNode } from "react";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
+import { Colors } from "@/constants/styles/colorTheme";
+import { SCREEN_HEIGHT } from "@/constants/styles/values";
+import { UnknownAction } from "@reduxjs/toolkit";
 
 const ProfilePic = ({
   image,
@@ -36,7 +37,7 @@ const ProfilePic = ({
           style={{
             width: 44,
             height: 44,
-            backgroundColor: "#E0E0E0",
+            backgroundColor: Colors.lightGray,
           }}
           activeOpacity={handlePress ? 0.8 : 1}
           onPress={() => {

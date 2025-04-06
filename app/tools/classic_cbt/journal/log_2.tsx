@@ -1,20 +1,20 @@
-import { router } from 'expo-router';
-import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { ScrollView, View } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
-import AdvanceButton from '@/components/AdvanceButton';
-import DistortionPill from '@/components/DistortionPill';
-import Frame from '@/components/Frame';
-import Text from '@/components/global/Text';
-import ToolHeader from '@/components/tools/ToolHeader';
-import ToolNav from '@/components/tools/ToolNav';
-import { emotionObjType } from '@/constants/models/home/activity_log';
-import { emotionList } from '@/constants/models/tools/journal';
-import { journal_tool } from '@/constants/models/tools/tools';
-import { Colors } from '@/constants/styles/colorTheme';
-import { setEmotions } from '@/state/features/tools/journalSlice';
-import { AppDispatch, RootState } from '@/state/store';
+import { router } from "expo-router";
+import React from "react";
+import { useTranslation } from "react-i18next";
+import { ScrollView, View } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import AdvanceButton from "@/components/AdvanceButton";
+import DistortionPill from "@/components/DistortionPill";
+import Frame from "@/components/Frame";
+import Text from "@/components/global/Text";
+import ToolHeader from "@/components/tools/ToolHeader";
+import ToolNav from "@/components/tools/ToolNav";
+import { emotionObjType } from "@/constants/models/home/activity_log";
+import { emotionList } from "@/constants/models/tools/journal";
+import { journal_tool } from "@/constants/models/tools/tools";
+import { Colors } from "@/constants/styles/colorTheme";
+import { setEmotions } from "@/state/features/tools/journalSlice";
+import { AppDispatch, RootState } from "@/state/store";
 
 const TOOL_NAME = journal_tool.name;
 const CURRENT_PAGE = 2;
@@ -79,7 +79,7 @@ const Log_2 = () => {
                     color:
                       journalState.emotions.length < MAX_SELECTED_EMOTIONS
                         ? Colors.darkGray
-                        : "#D46A6A",
+                        : Colors.red,
                   }}
                 >
                   {t(

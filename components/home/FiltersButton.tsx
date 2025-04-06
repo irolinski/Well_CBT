@@ -31,7 +31,10 @@ const FiltersButton = () => {
     >
       <View className="mx-3.5 w-32 flex-row items-center justify-center">
         <View className="relative w-full flex-row items-center justify-start">
-          <Text style={{ color: "#1E1E1E" }} className="text-left text-base">
+          <Text
+            style={{ color: Colors.offBlack }}
+            className="text-left text-base"
+          >
             {t("activity_log.filters")}
           </Text>
         </View>
@@ -39,7 +42,7 @@ const FiltersButton = () => {
           {numOfFilters > 0 && (
             <View
               className="left-0 mx-1 h-6 w-6 items-center justify-center rounded-full"
-              style={{ backgroundColor: "#D46A6A" }}
+              style={{ backgroundColor: Colors.red }}
             >
               <Text
                 className="text-center text-sm"
@@ -50,7 +53,7 @@ const FiltersButton = () => {
             </View>
           )}
           <View className="ml-[5px]">
-            <AntDesign name="calendar" size={26} color="#73848D" />
+            <AntDesign name="calendar" size={26} color={Colors.superDarkGray} />
           </View>
         </View>
       </View>

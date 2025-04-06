@@ -1,3 +1,5 @@
+import { Colors } from "../styles/colorTheme";
+
 export const monthNames = [
   "january",
   "february",
@@ -51,13 +53,13 @@ export const dayNamesFromMonday = [
 export const dayNamesShort = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
 
 export const dayColors = {
-  monday: "#FF997C",
-  tuesday: "#008A63",
-  wednesday: "#E57353",
-  thursday: "#F5BB00",
-  friday: "#90D005",
-  saturday: "#B479FF",
-  sunday: "#4391BC",
+  monday: Colors.salmonOrange,
+  tuesday: Colors.darkTealGreen,
+  wednesday: Colors.carrotOrange,
+  thursday: Colors.gold,
+  friday: "#C3FE44",
+  saturday: Colors.purpleBright,
+  sunday: Colors.darkBlue,
 };
 
 export const twelveHourRegions = [

@@ -1,10 +1,14 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { View } from 'react-native';
-import { Colors } from '@/constants/styles/colorTheme';
-import { SCREEN_HEIGHT } from '@/constants/styles/values';
-import { Feather, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
+import { Tabs } from "expo-router";
+import React from "react";
+import { useTranslation } from "react-i18next";
+import { View } from "react-native";
+import { Colors } from "@/constants/styles/colorTheme";
+import { SCREEN_HEIGHT } from "@/constants/styles/values";
+import {
+  Feather,
+  MaterialCommunityIcons,
+  MaterialIcons,
+} from "@expo/vector-icons";
 
 const TABBAR_HEIGHT = SCREEN_HEIGHT / 9;
 const TABBAR_PADDING_Y = TABBAR_HEIGHT / 6;
@@ -56,11 +60,11 @@ const TabLayout = () => {
         name="learn"
         options={{
           title: t("tabbar.learn") ?? "Learn",
-          tabBarIcon: ({ focused }) => (
+          tabBarIcon: ({ color, focused }) => (
             <MaterialIcons
               name="lightbulb-outline"
               size={24}
-              color={focused ? "#FEBE10" : "gray"}
+              color={focused ? Colors.lightbulbYellow : color}
             />
           ),
         }}

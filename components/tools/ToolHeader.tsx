@@ -17,7 +17,7 @@ const ToolHeader = ({ bright, noIndent, ...props }: ToolHeaderProps) => {
       className={`text-left text-2xl ${props.className}`}
       style={{
         fontFamily: "KodchasanMedium",
-        color: bright ? Colors.whiteSmoke : "#1E1E1E",
+        color: bright ? Colors.whiteSmoke : Colors.offBlack,
         paddingRight: !noIndent ? marginSize : 0,
         ...props.style,
       }}

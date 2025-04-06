@@ -14,11 +14,11 @@ import { Feather, MaterialIcons } from "@expo/vector-icons";
 const MAX_NAME_LENGTH = 18;
 const adjectiveColors = [
   Colors.offBlack,
-  "#008A63",
-  "#E57353",
-  "#F5BB00",
-  "#B479FF",
-  "#4391BC",
+  Colors.darkTealGreen,
+  Colors.carrotOrange,
+  Colors.gold,
+  Colors.purpleBright,
+  Colors.darkBlue,
 ];
 
 type EnvironmentAdjectiveListElementType = {
@@ -114,7 +114,7 @@ const EnvironmentAdjectiveListElement = ({
           <TouchableOpacity
             className="h-10 w-10 items-center justify-center rounded-full"
             style={{
-              backgroundColor: "#FF997C",
+              backgroundColor: Colors.salmonOrange,
             }}
             onPress={() => {
               onPressColor(adjectiveColors[currentColorIndex + 1]);

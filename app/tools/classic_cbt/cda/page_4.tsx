@@ -112,7 +112,11 @@ const Page_4 = () => {
                   >
                     {cdaState.save ? (
                       <View className="mx-auto">
-                        <Feather name="check" size={22} color="#F7F7F7" />
+                        <Feather
+                          name="check"
+                          size={22}
+                          color={Colors.whiteSmoke}
+                        />
                       </View>
                     ) : null}
                   </View>

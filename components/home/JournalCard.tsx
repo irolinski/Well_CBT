@@ -33,7 +33,7 @@ const JournalCard = ({ toolName, link, datetime, value }: JournalCardProps) => {
       className="mb-4 rounded-xl"
       style={{
         height: 110,
-        backgroundColor: "#F5F5F5",
+        backgroundColor: Colors.whiteSmoke,
         shadowOffset: { width: 0, height: 4 },
         shadowOpacity: 0.1,
         shadowRadius: 3,
@@ -114,11 +114,11 @@ const JournalCard = ({ toolName, link, datetime, value }: JournalCardProps) => {
                             minimumTrackTintColor={
                               value <
                               journalStyleConstants.SLIDER_COLOR_2_TRESHOLD
-                                ? "#D46A6A"
+                                ? Colors.red
                                 : value <
                                     journalStyleConstants.SLIDER_COLOR_3_TRESHOLD
-                                  ? "#F38E4E"
-                                  : "#AED581"
+                                  ? Colors.orange
+                                  : Colors.green
                             }
                             maximumTrackTintColor={Colors.whiteSmoke}
                             trackStyle={{
@@ -161,7 +161,11 @@ const JournalCard = ({ toolName, link, datetime, value }: JournalCardProps) => {
                 }}
               >
                 {ToolList[toolName].requiresInput && (
-                  <Entypo name="chevron-right" size={20} color="#73848D" />
+                  <Entypo
+                    name="chevron-right"
+                    size={20}
+                    color={Colors.superDarkGray}
+                  />
                 )}
               </View>
             </View>

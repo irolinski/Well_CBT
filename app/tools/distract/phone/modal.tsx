@@ -1,20 +1,26 @@
-import { useRef, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
-    Animated, Modal, Pressable, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, View
-} from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
-import DividerLine from '@/components/DividerLine';
-import { Logo } from '@/components/global/Logo';
-import Text from '@/components/global/Text';
-import { phoneAFriend_tool } from '@/constants/models/tools/tools';
-import { Colors } from '@/constants/styles/colorTheme';
-import { SCREEN_HEIGHT, SCREEN_WIDTH } from '@/constants/styles/values';
-import { achievementHandlersObj } from '@/db/achievements/controllers';
-import { setShowModal } from '@/state/features/tools/phoneSlice';
-import { AppDispatch, RootState } from '@/state/store';
-import handleShare from '@/utils/handleShare';
-import { Feather, MaterialCommunityIcons } from '@expo/vector-icons';
+  Animated,
+  Modal,
+  Pressable,
+  StyleSheet,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  View,
+} from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import DividerLine from "@/components/DividerLine";
+import { Logo } from "@/components/global/Logo";
+import Text from "@/components/global/Text";
+import { phoneAFriend_tool } from "@/constants/models/tools/tools";
+import { Colors } from "@/constants/styles/colorTheme";
+import { SCREEN_HEIGHT, SCREEN_WIDTH } from "@/constants/styles/values";
+import { achievementHandlersObj } from "@/db/achievements/controllers";
+import { setShowModal } from "@/state/features/tools/phoneSlice";
+import { AppDispatch, RootState } from "@/state/store";
+import handleShare from "@/utils/handleShare";
+import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 
 const TOOL_NAME = phoneAFriend_tool.name;
 
@@ -68,9 +74,9 @@ const topicList = [
 
 const cardColors = [
   { front: "#801515", back: "#F59074" },
-  { front: "#D73C11", back: "#F28E4E" },
-  { front: "#F9A947", back: "#F2C122" },
-  { front: "#305C32", back: "#81C784" },
+  { front: "#D73C11", back: Colors.orange },
+  { front: Colors.orange, back: "#F2C122" },
+  { front: "#305C32", back: Colors.pastelGreen },
   { front: "#337AF7", back: "#94DAFF" },
 ];
 
@@ -212,7 +218,7 @@ const ConversationModal = () => {
             }}
           >
             <View className="flex-row justify-end">
-              <Feather name="x" size={24} color="black" />
+              <Feather name="x" size={24} color={Colors.black} />
             </View>
           </Pressable>
           <View className="flex-row justify-center">
@@ -297,7 +303,7 @@ const ConversationModal = () => {
                 <MaterialCommunityIcons
                   name="message-processing-outline"
                   size={24}
-                  color="black"
+                  color={Colors.black}
                 />
               </View>
             </TouchableOpacity>

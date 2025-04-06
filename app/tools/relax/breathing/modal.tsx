@@ -1,22 +1,29 @@
-import { Image } from 'expo-image';
-import { useTranslation } from 'react-i18next';
-import { Dimensions, Modal, Pressable, ScrollView, View } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
-import Text from '@/components/global/Text';
-import RadioButton from '@/components/RadioButton';
-import MethodInfo from '@/components/tools/breathe/MethodInfo';
-import { breathing_tool } from '@/constants/models/tools/tools';
-import { Colors } from '@/constants/styles/colorTheme';
+import { Image } from "expo-image";
+import { useTranslation } from "react-i18next";
+import { Dimensions, Modal, Pressable, ScrollView, View } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import Text from "@/components/global/Text";
+import RadioButton from "@/components/RadioButton";
+import MethodInfo from "@/components/tools/breathe/MethodInfo";
+import { breathing_tool } from "@/constants/models/tools/tools";
+import { Colors } from "@/constants/styles/colorTheme";
 import {
-    CLOSE_MODAL_OFFSET_TRESHOLD, SCREEN_HEIGHT, SCREEN_WIDTH
-} from '@/constants/styles/values';
+  CLOSE_MODAL_OFFSET_TRESHOLD,
+  SCREEN_HEIGHT,
+  SCREEN_WIDTH,
+} from "@/constants/styles/values";
 import {
-    mode_4_7_8, mode_box_4s, setMode, setNumOfSets, toggleCountdown, toggleModal
-} from '@/state/features/tools/breatheSettingsSlice';
-import { AppDispatch, RootState } from '@/state/store';
-import { isPolishFew } from '@/utils/locales';
-import { Feather } from '@expo/vector-icons';
-import { Slider } from '@miblanchard/react-native-slider';
+  mode_4_7_8,
+  mode_box_4s,
+  setMode,
+  setNumOfSets,
+  toggleCountdown,
+  toggleModal,
+} from "@/state/features/tools/breatheSettingsSlice";
+import { AppDispatch, RootState } from "@/state/store";
+import { isPolishFew } from "@/utils/locales";
+import { Feather } from "@expo/vector-icons";
+import { Slider } from "@miblanchard/react-native-slider";
 
 const TOOL_NAME = breathing_tool.name;
 
@@ -166,7 +173,11 @@ const BreatheModal = ({ ellapsedTime }: { ellapsedTime: number }) => {
                     >
                       {breatheSettings.showCountdown && (
                         <View className="mx-auto">
-                          <Feather name="check" size={22} color="#F7F7F7" />
+                          <Feather
+                            name="check"
+                            size={22}
+                            color={Colors.whiteSmoke}
+                          />
                         </View>
                       )}
                     </View>

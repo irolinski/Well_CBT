@@ -69,7 +69,7 @@ const ArticleImageScrollableHeader = ({
           style={{
             width: "100%",
             height: "100%",
-            backgroundColor: "black",
+            backgroundColor: Colors.black,
             position: "absolute",
             opacity: animateImageFilter,
           }}

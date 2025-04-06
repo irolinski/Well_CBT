@@ -1,21 +1,28 @@
-import { Href, router, useFocusEffect } from 'expo-router';
-import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { Alert, Linking, TouchableOpacity, View } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
-import BackButton from '@/components/BackButton';
-import Text from '@/components/global/Text';
-import ContactPic from '@/components/tools/phone/ContactPic';
-import ToolHeader from '@/components/tools/ToolHeader';
-import { phoneAFriend_tool } from '@/constants/models/tools/tools';
-import { Colors } from '@/constants/styles/colorTheme';
-import { SCREEN_HEIGHT } from '@/constants/styles/values';
-import { getPhoneData } from '@/db/tools';
-import { setShowModal, setSupportContact } from '@/state/features/tools/phoneSlice';
-import { AppDispatch, RootState } from '@/state/store';
-import formatPhoneNumber from '@/utils/formatPhoneNumber';
-import { AntDesign, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
-import ConversationModal from './modal';
+import { Href, router, useFocusEffect } from "expo-router";
+import React from "react";
+import { useTranslation } from "react-i18next";
+import { Alert, Linking, TouchableOpacity, View } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import BackButton from "@/components/BackButton";
+import Text from "@/components/global/Text";
+import ContactPic from "@/components/tools/phone/ContactPic";
+import ToolHeader from "@/components/tools/ToolHeader";
+import { phoneAFriend_tool } from "@/constants/models/tools/tools";
+import { Colors } from "@/constants/styles/colorTheme";
+import { SCREEN_HEIGHT } from "@/constants/styles/values";
+import { getPhoneData } from "@/db/tools";
+import {
+  setShowModal,
+  setSupportContact,
+} from "@/state/features/tools/phoneSlice";
+import { AppDispatch, RootState } from "@/state/store";
+import formatPhoneNumber from "@/utils/formatPhoneNumber";
+import {
+  AntDesign,
+  MaterialCommunityIcons,
+  MaterialIcons,
+} from "@expo/vector-icons";
+import ConversationModal from "./modal";
 
 const TOOL_NAME = phoneAFriend_tool.name;
 
@@ -77,7 +84,7 @@ const Phone = () => {
             <MaterialCommunityIcons
               name="account-edit"
               size={26}
-              color="black"
+              color={Colors.black}
             />
           </TouchableOpacity>
         )}
@@ -135,7 +142,7 @@ const Phone = () => {
               style={{
                 width: SCREEN_HEIGHT / 10,
                 height: SCREEN_HEIGHT / 10,
-                backgroundColor: "#81C784",
+                backgroundColor: Colors.pastelGreen,
                 opacity: !phoneState.supportContact ? 0.5 : 1,
               }}
               onPress={() => callContact(phoneState.supportContact!.phone)}

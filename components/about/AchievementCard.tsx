@@ -64,7 +64,7 @@ const AchievementCard = ({
           <View
             className="absolute right-1 h-6 w-6 items-center justify-center rounded-full"
             style={{
-              backgroundColor: isUnlocked ? "#FCCC15" : Colors.mainGray,
+              backgroundColor: isUnlocked ? Colors.gold : Colors.mainGray,
             }}
           >
             {isUnlocked ? (

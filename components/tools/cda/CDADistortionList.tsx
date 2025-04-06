@@ -44,7 +44,7 @@ const CDADistortionList = ({
               className="text-center"
               style={{
                 fontFamily: "InterItalic",
-                color: "#73848D",
+                color: Colors.superDarkGray,
                 paddingLeft: 20,
                 paddingRight: 20,
               }}

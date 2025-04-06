@@ -11,7 +11,7 @@ const ChecklistElement = ({
   checkColor = Colors.offWhite,
   checkboxBorderColor = Colors.mainGray,
   checkboxUncheckedBackgroundColor = "transparent",
-  checkboxCheckedBackgroundColor = "#FF997C",
+  checkboxCheckedBackgroundColor = Colors.salmonOrange,
 }: {
   text: string;
   checked: boolean;

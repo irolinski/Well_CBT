@@ -1,16 +1,17 @@
-import { Href, router } from 'expo-router';
-import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { ScrollView, View } from 'react-native';
-import { useSelector } from 'react-redux';
-import AdvanceButton from '@/components/AdvanceButton';
-import { LogoDark } from '@/components/global/Logo';
-import Text from '@/components/global/Text';
-import SecondaryButton from '@/components/SecondaryButton';
-import ToolNav from '@/components/tools/ToolNav';
-import { journal_tool } from '@/constants/models/tools/tools';
-import { SCREEN_HEIGHT } from '@/constants/styles/values';
-import { RootState } from '@/state/store';
+import { Href, router } from "expo-router";
+import React from "react";
+import { useTranslation } from "react-i18next";
+import { ScrollView, View } from "react-native";
+import { useSelector } from "react-redux";
+import AdvanceButton from "@/components/AdvanceButton";
+import { LogoDark } from "@/components/global/Logo";
+import Text from "@/components/global/Text";
+import SecondaryButton from "@/components/SecondaryButton";
+import ToolNav from "@/components/tools/ToolNav";
+import { journal_tool } from "@/constants/models/tools/tools";
+import { Colors } from "@/constants/styles/colorTheme";
+import { SCREEN_HEIGHT } from "@/constants/styles/values";
+import { RootState } from "@/state/store";
 
 const CURRENT_PAGE = 6;
 const TOOL_NAME = journal_tool.name;
@@ -37,7 +38,7 @@ const Log_finish = () => {
             <LogoDark sizePx={80} />
             <Text
               className="my-4 px-4 text-center text-2xl"
-              style={{ fontFamily: "KodchasanMedium", color: "#1E1E1E" }}
+              style={{ fontFamily: "KodchasanMedium", color: Colors.offBlack }}
             >
               {journalState.save ? (
                 <Text>

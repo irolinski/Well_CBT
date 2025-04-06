@@ -1,13 +1,18 @@
-import { ReactNode } from 'react';
-import { Colors } from '@/constants/styles/colorTheme';
-import { MaterialIcons } from '@expo/vector-icons';
-import { ToolList } from '../home/activity_log';
+import { ReactNode } from "react";
+import { Colors } from "@/constants/styles/colorTheme";
+import { MaterialIcons } from "@expo/vector-icons";
+import { ToolList } from "../home/activity_log";
 
 export enum ballSizeParameter {
   min = 0.175,
   max = 0.525,
 }
-export const ballColors = ["#FF997C", "#008A63", "#F9A947", Colors.darkBlue];
+export const ballColors = [
+  Colors.salmonOrange,
+  Colors.darkTealGreen,
+  Colors.orange,
+  Colors.darkBlue,
+];
 
 export type StatsObj = {
   name: string;

@@ -1,9 +1,10 @@
-import { TouchableOpacity, View } from 'react-native';
-import { useDispatch } from 'react-redux';
-import { SCREEN_HEIGHT } from '@/constants/styles/values';
-import { setShowNewActivityModal } from '@/state/features/menus/newActivityModalSlice';
-import { AppDispatch } from '@/state/store';
-import { Feather } from '@expo/vector-icons';
+import { TouchableOpacity, View } from "react-native";
+import { useDispatch } from "react-redux";
+import { Colors } from "@/constants/styles/colorTheme";
+import { SCREEN_HEIGHT } from "@/constants/styles/values";
+import { setShowNewActivityModal } from "@/state/features/menus/newActivityModalSlice";
+import { AppDispatch } from "@/state/store";
+import { Feather } from "@expo/vector-icons";
 
 const PlusButton = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -17,7 +18,7 @@ const PlusButton = () => {
           height: SCREEN_HEIGHT * 0.085,
           right: SCREEN_HEIGHT * 0.04,
           bottom: SCREEN_HEIGHT * 0.06,
-          backgroundColor: "#E57353",
+          backgroundColor: Colors.carrotOrange,
         }}
       >
         <Feather name="plus" size={36} color="white" />

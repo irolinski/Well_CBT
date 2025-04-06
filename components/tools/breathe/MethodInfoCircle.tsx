@@ -1,8 +1,8 @@
-import { useTranslation } from 'react-i18next';
-import { View } from 'react-native';
-import Text from '@/components/global/Text';
-import { breathing_tool } from '@/constants/models/tools/tools';
-import { Colors } from '@/constants/styles/colorTheme';
+import { useTranslation } from "react-i18next";
+import { View } from "react-native";
+import Text from "@/components/global/Text";
+import { breathing_tool } from "@/constants/models/tools/tools";
+import { Colors } from "@/constants/styles/colorTheme";
 
 const TOOL_NAME = breathing_tool.name;
 
@@ -18,12 +18,16 @@ const MethodInfoCircle = ({ step, time }: MethodInfoCircleProps) => {
     <View className="mx-2 items-center">
       <View
         className="h-20 w-20 items-center justify-center rounded-full border"
-        style={{ backgroundColor: "#E4E4E4", borderColor: Colors.mainGray }}
+        style={{
+          backgroundColor: Colors.lightGray,
+          borderColor: Colors.mainGray,
+        }}
       >
         <View
           className="h-16 w-16 items-center justify-center rounded-full"
           style={{
-            backgroundColor: step === "hold" ? Colors.mainGray : "#F4F4F4",
+            backgroundColor:
+              step === "hold" ? Colors.mainGray : Colors.offWhite,
           }}
         >
           {step === "in" && (

@@ -20,7 +20,7 @@ const NotificationsButton = () => {
         className="h-8 w-16 -translate-y-1 items-center justify-center rounded-xl border"
         style={{ borderColor: Colors.mainGray }}
       >
-        <MaterialCommunityIcons name="bell" size={22} color="#DEC773" />
+        <MaterialCommunityIcons name="bell" size={22} color={Colors.gold} />
       </View>
     </TouchableOpacity>
   );

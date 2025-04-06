@@ -123,7 +123,7 @@ const StorageSettingsPage = () => {
             <View className="mx-4 mb-10">
               <Text
                 className="mb-2 mt-4 text-center text-xl"
-                style={{ color: "#D15C5C" }}
+                style={{ color: Colors.red }}
               >
                 {t(`alerts.warning`, { ns: "common" })}!
               </Text>
@@ -136,7 +136,7 @@ const StorageSettingsPage = () => {
               onPress={() => {
                 handlePressDeleteAllData();
               }}
-              btnStyle={{ backgroundColor: "#D15C5C" }}
+              btnStyle={{ backgroundColor: Colors.red }}
               icon={
                 <MaterialIcons name="delete-forever" size={24} color="white" />
               }
