@@ -27,9 +27,9 @@ import {
   setEnvironmentItemsArr,
 } from "@/state/features/tools/groundYourselfSlice";
 import { AppDispatch, RootState } from "@/state/store";
-import { FontAwesome } from "@expo/vector-icons";
+import { Feather, FontAwesome } from "@expo/vector-icons";
 
-const FIRST_SLIDE_TIME_MS = 2500;
+const FIRST_SLIDE_TIME_MS = 3000;
 const MAX_NUM_OF_ITEMS = 4;
 
 export type GroundEnvironmentItemAdjectiveType = {
@@ -219,21 +219,9 @@ const Ground_Environment_Page_3 = ({
                         backgroundColor: Colors.mainBlue,
                       }}
                     >
-                      <Text
-                        className="w-full text-center text-lg"
-                        style={{
-                          color: Colors.white,
-                          transform: [
-                            { translateY: -1.25 },
-                            { translateX: 0.25 },
-                          ],
-                        }}
-                      >
-                        {"+"}
-                      </Text>
+                      <Feather name="plus" size={16} color={Colors.white} />
                     </View>
                     <Text>
-                      {" "}
                       {t("tools.ground_yourself.environment.page_3.add_item")}
                     </Text>
                   </View>

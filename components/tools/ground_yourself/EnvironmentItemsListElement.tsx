@@ -137,12 +137,7 @@ const EnvironmentItemsListElement = ({
               onPressAdd();
             }}
           >
-            <Text
-              className="h-full w-full rounded-full text-center text-3xl"
-              style={{ color: Colors.white }}
-            >
-              +
-            </Text>
+            <Feather name="plus" size={24} color={Colors.white} />
           </TouchableOpacity>
         ) : null}
       </View>
