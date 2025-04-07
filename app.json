@@ -32,6 +32,15 @@
     "plugins": [
       "expo-router",
       [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#8DBED8",
+          "image": "./assets/images/splash-icon.png",
+          "imageWidth": 250,
+          "resizemode": "cover"
+        }
+      ],
+      [
         "expo-contacts",
         {
           "contactsPermission": "Allow WorryFree to access your contacts."
