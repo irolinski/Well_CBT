@@ -65,36 +65,36 @@ export const allAchievementsModelsObj: AllAchievementsObjType = {
   4: {
     id: 4,
     title: "A Foot in The Door",
-    description_before: "Visited Well 7 consecutive days in a row",
+    description_before: "Visited WorryFree 7 consecutive days in a row",
     description_after:
-      "Your commitment is showing! You’ve visited Well for 7 days in a row. Way to go!",
+      "Your commitment is showing! You’ve visited WorryFree for 7 days in a row. Way to go!",
     image: achievementBadgeImages.image_04,
     score_required: 7,
   },
   5: {
     id: 5,
     title: "User of the Month",
-    description_before: "Visited Well 30 consecutive days in a row",
+    description_before: "Visited WorryFree 30 consecutive days in a row",
     description_after:
-      "You’ve visited Well for 30 days in a row. Now that is an impressive consistency!",
+      "You’ve visited WorryFree for 30 days in a row. Now that is an impressive consistency!",
     image: achievementBadgeImages.image_05,
     score_required: 30,
   },
   6: {
     id: 6,
     title: "Consistent Presence",
-    description_before: "Visited Well 180 days (not necessarily in a row)",
+    description_before: "Visited WorryFree 180 days (not necessarily in a row)",
     description_after:
-      "You have visited Well on 180 different days. Thank you for you commitment. We hope your work is paying off!",
+      "You have visited WorryFree on 180 different days. Thank you for you commitment. We hope your work is paying off!",
     image: achievementBadgeImages.image_06,
     score_required: 180,
   },
   7: {
     id: 7,
     title: "New Year’s Resolution",
-    description_before: "Visited Well 365 days (not necessarily in a row)",
+    description_before: "Visited WorryFree 365 days (not necessarily in a row)",
     description_after:
-      "A year of commitment! You’ve visited Well for 365 days. Keep up the incredible work!",
+      "A year of commitment! You’ve visited WorryFree for 365 days. Keep up the incredible work!",
     image: achievementBadgeImages.image_07,
     score_required: 365,
   },

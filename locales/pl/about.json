@@ -47,7 +47,7 @@
     "title": "Osiągnięcia",
     "all_achievements": "Wszystkie osiągnięcia",
     "recent_achievements_placeholder_title": "Osiągnięcia przed Tobą!",
-    "recent_achievements_placeholder_description": "Korzystaj z Well, aby odblokować nowe osiągnięcia!",
+    "recent_achievements_placeholder_description": "Korzystaj z WorryFree, aby odblokować nowe osiągnięcia!",
     "achievement_data": {
       "1": {
         "title": "Pierwsze kroki",
@@ -66,23 +66,23 @@
       },
       "4": {
         "title": "Pierwsze zaangażowanie",
-        "description_before": "Odwiedź Well przez 7 dni z rzędu",
-        "description_after": "Twoje zaangażowanie jest widoczne! Odwiedziłeś Well przez 7 dni z rzędu. Świetna robota!"
+        "description_before": "Odwiedź WorryFree przez 7 dni z rzędu",
+        "description_after": "Twoje zaangażowanie jest widoczne! Odwiedziłeś WorryFree przez 7 dni z rzędu. Świetna robota!"
       },
       "5": {
         "title": "Użytkownik miesiąca",
-        "description_before": "Odwiedź Well przez 30 dni z rzędu",
-        "description_after": "Odwiedzałeś Well przez 30 dni z rzędu. To naprawdę imponująca konsekwencja!"
+        "description_before": "Odwiedź WorryFree przez 30 dni z rzędu",
+        "description_after": "Odwiedzałeś WorryFree przez 30 dni z rzędu. To naprawdę imponująca konsekwencja!"
       },
       "6": {
         "title": "Stała obecność",
-        "description_before": "Odwiedź Well przez 180 dni (niekoniecznie z rzędu)",
-        "description_after": "Odwiedziłeś Well w 180 różnych dni. Dziękujemy za Twoje zaangażowanie. Mamy nadzieję, że Twoja praca przynosi efekty!"
+        "description_before": "Odwiedź WorryFree przez 180 dni (niekoniecznie z rzędu)",
+        "description_after": "Odwiedziłeś WorryFree w 180 różnych dni. Dziękujemy za Twoje zaangażowanie. Mamy nadzieję, że Twoja praca przynosi efekty!"
       },
       "7": {
         "title": "Postanowienie noworoczne",
-        "description_before": "Odwiedź Well w 365 dni (niekoniecznie z rzędu)",
-        "description_after": "Rok zaangażowania! Odwiedziłeś Well w 365 dni. Kontynuuj tę niesamowitą pracę!"
+        "description_before": "Odwiedź WorryFree w 365 dni (niekoniecznie z rzędu)",
+        "description_after": "Rok zaangażowania! Odwiedziłeś WorryFree w 365 dni. Kontynuuj tę niesamowitą pracę!"
       },
       "8": {
         "title": "Racjonalista",
@@ -119,7 +119,7 @@
   "stats": {
     "title": "Statystyki",
     "visit_streak": "Odwiedzono najwięcej dni z rzędu",
-    "placeholder_text": "Korzystaj z Well, aby zobaczyć swoje pierwsze statystyki aktywności!",
+    "placeholder_text": "Korzystaj z WorryFree, aby zobaczyć swoje pierwsze statystyki aktywności!",
     "stats_objects": {
       "highestVisitStreak": {
         "caption": "Odwiedzono najwięcej dni z rzędu"

@@ -34,7 +34,7 @@
       [
         "expo-contacts",
         {
-          "contactsPermission": "Allow Well to access your contacts."
+          "contactsPermission": "Allow WorryFree to access your contacts."
         }
       ],
       "expo-build-properties",
