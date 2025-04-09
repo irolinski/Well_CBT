@@ -15,12 +15,14 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.irolinski.cbtApp"
+      "bundleIdentifier": "com.irolinski.cbtApp",
+      "googleServicesFile": "./GoogleService-Info.plist"
     },
     "android": {
       "adaptiveIcon": {
         "backgroundColor": "#ffffff"
       },
+      "googleServicesFile": "./google-services.json",
       "permissions": [
         "android.permission.READ_CONTACTS",
         "android.permission.WRITE_CONTACTS"
@@ -50,7 +52,16 @@
       ],
       "expo-build-properties",
       "expo-asset",
-      "expo-localization"
+      "expo-localization",
+      "@react-native-firebase/app",
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "useFrameworks": "static"
+          }
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true

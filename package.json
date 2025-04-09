@@ -24,9 +24,12 @@
   "dependencies": {
     "@expo/vector-icons": "^14.0.2",
     "@miblanchard/react-native-slider": "^2.6.0",
+    "@react-native-firebase/analytics": "^21.13.0",
+    "@react-native-firebase/app": "^21.13.0",
     "@react-native-picker/picker": "2.9.0",
     "@react-navigation/native": "^7.0.0",
     "@reduxjs/toolkit": "^2.2.7",
+    "add": "^2.0.6",
     "expo": "^52.0.25",
     "expo-asset": "~11.0.1",
     "expo-blur": "~14.0.3",

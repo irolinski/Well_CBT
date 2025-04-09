@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "16757370143",
+    "project_id": "worryfree-mobileapp",
+    "storage_bucket": "worryfree-mobileapp.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:16757370143:android:2f1be189b62a3deac6542a",
+        "android_client_info": {
+          "package_name": "com.irolinski.cbtApp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBuWNQzx2eWr5NKuk3Zt4KM9m5Wj6z1vGs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
