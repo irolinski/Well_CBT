@@ -3,6 +3,7 @@
     "name": "WorryFree",
     "slug": "WorryFree",
     "displayName": "WorryFree",
+    "icon": "./assets/images/icon.png",
     "version": "1.0.0",
     "orientation": "portrait",
     "scheme": "myapp",
