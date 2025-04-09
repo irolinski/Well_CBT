@@ -1,7 +1,8 @@
 {
   "expo": {
-    "name": "cbtApp",
-    "slug": "cbtApp",
+    "name": "WorryFree",
+    "slug": "WorryFree",
+    "displayName": "WorryFree",
     "version": "1.0.0",
     "orientation": "portrait",
     "scheme": "myapp",
@@ -52,11 +53,6 @@
     ],
     "experiments": {
       "typedRoutes": true
-    },
-    "extra": {
-      "eas": {
-        "projectId": "4d01c68b-f4cc-4944-84cc-53f5b574c740"
-      }
     }
   }
 }
