@@ -1,24 +1,29 @@
-import { Image, ImageSource } from "expo-image";
-import { LinearGradient } from "expo-linear-gradient";
-import { Href, router } from "expo-router";
-import React from "react";
-import { Pressable, Text, View } from "react-native";
-import { Colors } from "@/constants/styles/colorTheme";
+import { Image, ImageSource } from 'expo-image';
+import { LinearGradient } from 'expo-linear-gradient';
+import { Href, router } from 'expo-router';
+import React from 'react';
+import { Pressable, Text, View } from 'react-native';
+import { Colors } from '@/constants/styles/colorTheme';
 
 const ToolCard = ({
   name,
   image,
   link,
+  onPress,
 }: {
   name: string;
   image?: ImageSource;
   link: Href;
+  onPress?: () => void;
 }) => {
   return (
     <Pressable
       className="mb-4"
       style={{ height: 90 }}
-      onPress={() => router.push(`${link}` as Href)}
+      onPress={() => {
+        onPress && onPress();
+        router.push(`${link}` as Href);
+      }}
     >
       <Image
         className="z-0 rounded-xl"

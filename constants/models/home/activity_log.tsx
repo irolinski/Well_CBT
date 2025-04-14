@@ -23,17 +23,28 @@ export type classicCBTToolNames = (typeof classicCBTToolNames)[number];
 const relaxToolNames = ["breathing", "ground_yourself"] as const;
 export type RelaxToolNames = (typeof relaxToolNames)[number];
 
+const distractToolNames = ["phone_a_friend"] as const;
+
+export const journalToolNameList = [
+  ...classicCBTToolNames,
+  ...relaxToolNames,
+] as const;
+
+export type ToolNamesInJournal = (typeof journalToolNameList)[number];
+
 export const allToolsNameList = [
   ...classicCBTToolNames,
   ...relaxToolNames,
+  ...distractToolNames,
 ] as const;
 export type ToolNames = (typeof allToolsNameList)[number];
 
 export type JournalCardProps = {
-  toolName: ToolNames;
+  toolName: ToolNamesInJournal;
   link: string;
   datetime: string;
   value?: number;
+  onPress?: () => void;
   // hasShowPage: boolean;
 };
 
@@ -49,7 +60,7 @@ export type emotionObjType = {
   strength?: number;
 };
 
-export const ToolList: Record<ToolNames, ToolType> = {
+export const ToolList: Record<ToolNamesInJournal, ToolType> = {
   cda: {
     name: "cda",
     category: "exercise",
@@ -163,7 +174,7 @@ export const ToolCategories: Record<
 };
 
 export type EntryViewTableRow = {
-  activityName: ToolNames;
+  activityName: ToolNamesInJournal;
   datetime: string;
   id: number;
   value?: number | undefined;

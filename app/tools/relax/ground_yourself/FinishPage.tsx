@@ -1,22 +1,27 @@
-import { Image } from 'expo-image';
-import { Href, router } from 'expo-router';
-import React, { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { TouchableOpacity, View } from 'react-native';
-import { useSelector } from 'react-redux';
-import { groundYourselfImages } from '@/assets/images/tools/ground_yourself/ground_yourself';
-import FadeInView from '@/components/FadeInView';
-import Text from '@/components/global/Text';
+import { Image } from "expo-image";
+import { Href, router } from "expo-router";
+import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { TouchableOpacity, View } from "react-native";
+import { useSelector } from "react-redux";
+import { groundYourselfImages } from "@/assets/images/tools/ground_yourself/ground_yourself";
+import FadeInView from "@/components/FadeInView";
+import Text from "@/components/global/Text";
 import GroundYourselfSlideFrame, {
-    getGroundingTime
-} from '@/components/tools/ground_yourself/GroundYourselfSlideFrame';
-import TypewriterText from '@/components/TypewriterText';
-import { ToolCategories, ToolList } from '@/constants/models/home/activity_log';
-import { GroundYourselfSlideProps } from '@/constants/models/tools/ground_yourself';
-import { Colors } from '@/constants/styles/colorTheme';
-import { SCREEN_HEIGHT } from '@/constants/styles/values';
-import { handleLogRelaxActivity } from '@/db/tools';
-import { RootState } from '@/state/store';
+  getGroundingTime,
+} from "@/components/tools/ground_yourself/GroundYourselfSlideFrame";
+import TypewriterText from "@/components/TypewriterText";
+import {
+  ToolCategories,
+  ToolList,
+  ToolNames,
+} from "@/constants/models/home/activity_log";
+import { GroundYourselfSlideProps } from "@/constants/models/tools/ground_yourself";
+import { Colors } from "@/constants/styles/colorTheme";
+import { SCREEN_HEIGHT } from "@/constants/styles/values";
+import { handleLogRelaxActivity } from "@/db/tools";
+import { logFinishToolEvent } from "@/services/firebase";
+import { RootState } from "@/state/store";
 
 const Ground_Finish_Page = ({
   exerciseName,
@@ -39,6 +44,7 @@ const Ground_Finish_Page = ({
   useEffect(() => {
     if (groundYourselfToolState.currentSlide === objKey) {
       setCurrentInstruction("instruction_1");
+      logFinishToolEvent(ToolList.ground_yourself.name as ToolNames);
     }
   }, [groundYourselfToolState.currentSlide]);
 

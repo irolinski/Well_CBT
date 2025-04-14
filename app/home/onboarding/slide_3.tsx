@@ -5,6 +5,7 @@ import AdvanceButton from "@/components/AdvanceButton";
 import ChecklistElement from "@/components/ChecklistElement";
 import { Colors } from "@/constants/styles/colorTheme";
 import { SCREEN_HEIGHT } from "@/constants/styles/values";
+import { logGoalsQuestionnaireAnswers } from "@/services/firebase";
 
 const goals_questionnaire_items: string[] = [
   "mood",
@@ -115,7 +116,8 @@ const Onboarding_Slide_3 = ({
               title={t("buttons.continue", { ns: "common" })}
               btnStyle={{ backgroundColor: "white", width: "40%" }}
               textStyle={{ color: Colors.blackPearl }}
-              onPress={() => {
+              onPress={async () => {
+                await logGoalsQuestionnaireAnswers(selectedGoals);
                 onFinish();
               }}
             />

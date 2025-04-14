@@ -11,12 +11,19 @@ import {
 import { Colors } from "@/constants/styles/colorTheme";
 import { journalStyleConstants } from "@/constants/styles/values";
 import { selectedLanguage } from "@/hooks/i18n";
+import { logOpenJournalEntryEvent } from "@/services/firebase";
 import { getOrdinalSuffix } from "@/utils/dates";
 import { Entypo } from "@expo/vector-icons";
 import { Slider } from "@miblanchard/react-native-slider";
 import Text from "../global/Text";
 
-const JournalCard = ({ toolName, link, datetime, value }: JournalCardProps) => {
+const JournalCard = ({
+  toolName,
+  link,
+  datetime,
+  value,
+  onPress,
+}: JournalCardProps) => {
   const { t } = useTranslation("tools");
 
   let cardTime = datetime.split(" ")[1];
@@ -40,10 +47,11 @@ const JournalCard = ({ toolName, link, datetime, value }: JournalCardProps) => {
       }}
     >
       <TouchableOpacity
-        onPress={() =>
+        onPress={() => {
+          logOpenJournalEntryEvent();
           ToolList[toolName].requiresInput &&
-          router.navigate(`${link}` as Href, { relativeToDirectory: true })
-        }
+            router.navigate(`${link}` as Href, { relativeToDirectory: true });
+        }}
         activeOpacity={ToolList[toolName].requiresInput ? 0.5 : 1}
       >
         <View className="h-full w-full flex-row justify-center py-4">
