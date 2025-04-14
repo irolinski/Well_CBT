@@ -52,10 +52,11 @@ const Page_finish = () => {
                 }}
               />
               <SecondaryButton
-                title={t("buttons.see_journal", { ns: "common" })}
+                title={t("buttons.go_to_journal", { ns: "common" })}
                 className="w-[45%]"
                 onPress={() => {
                   logFinishToolEvent(TOOL_NAME);
+                  router.replace("/home/activity_log");
                 }}
               />
             </View>

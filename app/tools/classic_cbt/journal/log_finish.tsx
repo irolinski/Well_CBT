@@ -70,10 +70,11 @@ const Log_finish = () => {
           <View className="absolute bottom-16 left-0 right-0">
             <View className="mb-4 flex-row justify-between">
               <SecondaryButton
-                title={t("buttons.see_journal", { ns: "common" })}
+                title={t("buttons.go_to_journal", { ns: "common" })}
                 className="w-[45%]"
                 onPress={() => {
                   logFinishToolEvent(TOOL_NAME);
+                  router.replace("/home/activity_log");
                 }}
               />
             </View>
@@ -82,7 +83,6 @@ const Log_finish = () => {
               title={t("buttons.return_to_tools", { ns: "common" })}
               onPress={() => {
                 logFinishToolEvent(TOOL_NAME);
-
                 router.replace("tools" as Href);
               }}
             />
