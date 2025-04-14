@@ -7,6 +7,7 @@ import quotesListLocales from "@/assets/text/quotes.json";
 import { Colors } from "@/constants/styles/colorTheme";
 import { achievementHandlersObj } from "@/db/achievements/controllers";
 import { AvailableLanguage, selectedLanguage } from "@/hooks/i18n";
+import { logShareQuoteEvent } from "@/services/firebase";
 import handleShare from "@/utils/handleShare";
 import { Feather } from "@expo/vector-icons";
 import Text from "../global/Text";
@@ -22,7 +23,7 @@ const QuoteWidget = () => {
 
   const handleOnPress = () => {
     achievementHandlersObj[12]();
-
+    logShareQuoteEvent();
     handleShare(
       `"${quotesList[quoteNumber].quoteText}" \n \n - ${quotesList[quoteNumber].quoteAuthor}`,
     );

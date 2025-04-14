@@ -11,6 +11,7 @@ import ToolNav from "@/components/tools/ToolNav";
 import { journal_tool } from "@/constants/models/tools/tools";
 import { Colors } from "@/constants/styles/colorTheme";
 import { SCREEN_HEIGHT } from "@/constants/styles/values";
+import { logFinishToolEvent } from "@/services/firebase";
 import { RootState } from "@/state/store";
 
 const CURRENT_PAGE = 6;
@@ -71,13 +72,17 @@ const Log_finish = () => {
               <SecondaryButton
                 title={t("buttons.see_journal", { ns: "common" })}
                 className="w-[45%]"
-                onPress={() => {}}
+                onPress={() => {
+                  logFinishToolEvent(TOOL_NAME);
+                }}
               />
             </View>
             <AdvanceButton
               className="mb-4 justify-center"
               title={t("buttons.return_to_tools", { ns: "common" })}
               onPress={() => {
+                logFinishToolEvent(TOOL_NAME);
+
                 router.replace("tools" as Href);
               }}
             />

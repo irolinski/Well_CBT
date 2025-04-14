@@ -1,5 +1,5 @@
 import { Image } from "expo-image";
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { Animated, ScrollView, View } from "react-native";
 import { ArticleTypesWithArticleBody } from "@/app/learn/categories/[category]/[articleId]";
@@ -18,6 +18,7 @@ import {
 import { Colors } from "@/constants/styles/colorTheme";
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from "@/constants/styles/values";
 import { selectedLanguage } from "@/hooks/i18n";
+import { logOpenArticleEvent } from "@/services/firebase";
 import ArticleImageScrollableHeader from "./ArticleImageScrollableHeader";
 
 const HEADER_HEIGHT = SCREEN_HEIGHT * 0.4;
@@ -72,6 +73,10 @@ const ArticlePage = ({
       useNativeDriver: false,
     },
   );
+
+  useEffect(() => {
+    logOpenArticleEvent(id);
+  }, []);
 
   return (
     <View>

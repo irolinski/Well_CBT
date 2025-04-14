@@ -1,21 +1,26 @@
-import { Href, router } from 'expo-router';
-import React, { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { Pressable, TouchableOpacity, View } from 'react-native';
-import { Directions, Gesture, GestureDetector } from 'react-native-gesture-handler';
+import { Href, router } from "expo-router";
+import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { Pressable, TouchableOpacity, View } from "react-native";
 import {
-    recentAchievementsPlaceholderImage
-} from '@/assets/images/about/achievements/achievements';
+  Directions,
+  Gesture,
+  GestureDetector,
+} from "react-native-gesture-handler";
+import { recentAchievementsPlaceholderImage } from "@/assets/images/about/achievements/achievements";
 import {
-    AchievementObj, AchievementProgressObj, allAchievementsModelsArr
-} from '@/constants/models/about/achievements';
-import { Colors } from '@/constants/styles/colorTheme';
-import { SCREEN_HEIGHT } from '@/constants/styles/values';
-import { handleGetAchievementProgressData } from '@/db/achievements/controllers';
-import { Feather } from '@expo/vector-icons';
-import AdvanceButton from '../AdvanceButton';
-import CarouselBadge from './CarouselBadge';
-import CarouselDetails from './CarouselDetails';
+  AchievementObj,
+  AchievementProgressObj,
+  allAchievementsModelsArr,
+} from "@/constants/models/about/achievements";
+import { Colors } from "@/constants/styles/colorTheme";
+import { SCREEN_HEIGHT } from "@/constants/styles/values";
+import { handleGetAchievementProgressData } from "@/db/achievements/controllers";
+import { logOpenAchievementsPageEvent } from "@/services/firebase";
+import { Feather } from "@expo/vector-icons";
+import AdvanceButton from "../AdvanceButton";
+import CarouselBadge from "./CarouselBadge";
+import CarouselDetails from "./CarouselDetails";
 
 const RecentAchievements = () => {
   const { t } = useTranslation(["about", "common"]);
@@ -244,6 +249,7 @@ const RecentAchievements = () => {
           <AdvanceButton
             title={t("buttons.see_all", { ns: "common" })}
             onPress={() => {
+              logOpenAchievementsPageEvent();
               router.push("/about/achievements" as Href);
             }}
             btnStyle={{
