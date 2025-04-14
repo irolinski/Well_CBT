@@ -1,6 +1,7 @@
+import { Href } from "expo-router";
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = { showModal: false, link: "" };
+const initialState = { showModal: false, link: "" as Href };
 
 const navigateSettingsModalSlice = createSlice({
   name: "navigateSettingsModal",

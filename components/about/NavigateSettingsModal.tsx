@@ -1,16 +1,17 @@
-import { Href, router } from 'expo-router';
-import { useTranslation } from 'react-i18next';
-import { Modal, Pressable, Text, View } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
-import { Colors } from '@/constants/styles/colorTheme';
-import { setShowEditProfileModal } from '@/state/features/menus/editProfileModalSlice';
+import { Href, router } from "expo-router";
+import { useTranslation } from "react-i18next";
+import { Modal, Pressable, Text, View } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import { Colors } from "@/constants/styles/colorTheme";
+import { setShowEditProfileModal } from "@/state/features/menus/editProfileModalSlice";
 import {
-    setNavigateSettingsModalSelectedLink, setShowNavigateSettingsModal
-} from '@/state/features/menus/navigateSettingsModalSlice';
-import { AppDispatch, RootState } from '@/state/store';
-import { Feather, MaterialCommunityIcons } from '@expo/vector-icons';
-import NavigationModalButton from '../NavigationModalButton';
-import NavigationModalSelect from '../NavigationModalSelect';
+  setNavigateSettingsModalSelectedLink,
+  setShowNavigateSettingsModal,
+} from "@/state/features/menus/navigateSettingsModalSlice";
+import { AppDispatch, RootState } from "@/state/store";
+import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
+import NavigationModalButton from "../NavigationModalButton";
+import NavigationModalSelect from "../NavigationModalSelect";
 
 const NavigateSettingsModal = () => {
   const { t } = useTranslation(["about", "common"]);
@@ -21,13 +22,13 @@ const NavigateSettingsModal = () => {
       icon: <Feather name="user" size={32} color={Colors.mainGray} />,
       iconBright: <Feather name="user" size={32} color={Colors.white} />,
       // fake link - used instead of an enum to prevent component redesign
-      link: "about/editProfile",
+      link: "about/editProfile" as Href,
     },
     settings: {
       name: t("settings.title"),
       icon: <Feather name="tool" size={32} color={Colors.mainGray} />,
       iconBright: <Feather name="tool" size={32} color={Colors.white} />,
-      link: "about/settings",
+      link: "about/settings" as Href,
       handleOpenModal: setShowNavigateSettingsModal,
     },
   };
@@ -37,7 +38,7 @@ const NavigateSettingsModal = () => {
   );
   const dispatch = useDispatch<AppDispatch>();
 
-  const handleNavigate = async (selectedLink: string) => {
+  const handleNavigate = async (selectedLink: Href) => {
     router.navigate(selectedLink as Href);
     setTimeout(() => {
       dispatch(setShowNavigateSettingsModal(false));
@@ -45,7 +46,6 @@ const NavigateSettingsModal = () => {
   };
 
   const handleOpenEditProfileModal = async () => {
-    dispatch(setShowNavigateSettingsModal(false));
     dispatch(setShowEditProfileModal(true));
   };
 
@@ -113,14 +113,14 @@ const NavigateSettingsModal = () => {
               <NavigationModalSelect
                 {...items.editProfile}
                 modalState={navigateSettingsModalState}
-                handleSelect={(link: string) =>
+                handleSelect={(link: Href) =>
                   dispatch(setNavigateSettingsModalSelectedLink(link))
                 }
               />
               <NavigationModalSelect
                 {...items.settings}
                 modalState={navigateSettingsModalState}
-                handleSelect={(link: string) =>
+                handleSelect={(link: Href) =>
                   dispatch(setNavigateSettingsModalSelectedLink(link))
                 }
               />

@@ -1,8 +1,8 @@
-import { Href } from 'expo-router';
-import { ReactNode } from 'react';
-import { Pressable, Text, View } from 'react-native';
-import { Colors } from '@/constants/styles/colorTheme';
-import { UnknownAction } from '@reduxjs/toolkit';
+import { Href } from "expo-router";
+import { ReactNode } from "react";
+import { Pressable, Text, View } from "react-native";
+import { Colors } from "@/constants/styles/colorTheme";
+import { UnknownAction } from "@reduxjs/toolkit";
 
 export type NavigationModalObj = {
   name: string;
@@ -14,7 +14,7 @@ export type NavigationModalObj = {
 type NavigationModalSelectTypes = NavigationModalObj & {
   modalState: {
     showModal: boolean;
-    link: string;
+    link: Href;
   };
   handleSelect: (link: Href) => UnknownAction;
 };

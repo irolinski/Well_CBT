@@ -1,14 +1,14 @@
-import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { View } from 'react-native';
-import AboutStats from '@/components/about/AboutStats';
-import AboutUser from '@/components/about/AboutUser';
-import NavigateSettingsModal from '@/components/about/NavigateSettingsModal';
-import RecentAchievements from '@/components/about/RecentAchievements';
-import Text from '@/components/global/Text';
-import FrameMenu from '@/components/home/FrameMenu';
-import { Colors } from '@/constants/styles/colorTheme';
-import EditProfileModal from '../about/EditProfileModal';
+import React from "react";
+import { useTranslation } from "react-i18next";
+import { View } from "react-native";
+import AboutStats from "@/components/about/AboutStats";
+import AboutUser from "@/components/about/AboutUser";
+import NavigateSettingsModal from "@/components/about/NavigateSettingsModal";
+import RecentAchievements from "@/components/about/RecentAchievements";
+import Text from "@/components/global/Text";
+import FrameMenu from "@/components/home/FrameMenu";
+import { Colors } from "@/constants/styles/colorTheme";
+import EditProfileModal from "../about/EditProfileModal";
 
 const About = () => {
   const { t } = useTranslation("about");
