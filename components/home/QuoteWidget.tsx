@@ -7,7 +7,7 @@ import quotesListLocales from "@/assets/text/quotes.json";
 import { Colors } from "@/constants/styles/colorTheme";
 import { achievementHandlersObj } from "@/db/achievements/controllers";
 import { AvailableLanguage, selectedLanguage } from "@/hooks/i18n";
-import { logShareQuoteEvent } from "@/services/firebase";
+import { logShareQuoteEvent } from "@/services/firebase/firebase";
 import handleShare from "@/utils/handleShare";
 import { Feather } from "@expo/vector-icons";
 import Text from "../global/Text";

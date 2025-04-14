@@ -5,7 +5,7 @@ import AdvanceButton from "@/components/AdvanceButton";
 import ChecklistElement from "@/components/ChecklistElement";
 import { Colors } from "@/constants/styles/colorTheme";
 import { SCREEN_HEIGHT } from "@/constants/styles/values";
-import { logGoalsQuestionnaireAnswers } from "@/services/firebase";
+import { logGoalsQuestionnaireAnswers } from "@/services/firebase/firebase";
 
 const goals_questionnaire_items: string[] = [
   "mood",

@@ -5,7 +5,7 @@ import Text from "@/components/global/Text";
 import FrameMenu from "@/components/home/FrameMenu";
 import { ToolNames } from "@/constants/models/home/activity_log";
 import { allToolCategoriesArr } from "@/constants/models/tools/tools";
-import { logStartToolEvent } from "@/services/firebase";
+import { logStartToolEvent } from "@/services/firebase/firebase";
 import ToolCard from "../../components/tools/ToolCard";
 
 const Tools = () => {

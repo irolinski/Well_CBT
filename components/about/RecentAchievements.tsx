@@ -16,7 +16,7 @@ import {
 import { Colors } from "@/constants/styles/colorTheme";
 import { SCREEN_HEIGHT } from "@/constants/styles/values";
 import { handleGetAchievementProgressData } from "@/db/achievements/controllers";
-import { logOpenAchievementsPageEvent } from "@/services/firebase";
+import { logOpenAchievementsPageEvent } from "@/services/firebase/firebase";
 import { Feather } from "@expo/vector-icons";
 import AdvanceButton from "../AdvanceButton";
 import CarouselBadge from "./CarouselBadge";

@@ -10,7 +10,7 @@ import ToolNav from "@/components/tools/ToolNav";
 import { cda_tool } from "@/constants/models/tools/tools";
 import { Colors } from "@/constants/styles/colorTheme";
 import { SCREEN_HEIGHT } from "@/constants/styles/values";
-import { logFinishToolEvent } from "@/services/firebase";
+import { logFinishToolEvent } from "@/services/firebase/firebase";
 
 const CURRENT_PAGE = 5;
 const TOOL_NAME = cda_tool.name;

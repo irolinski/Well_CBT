@@ -20,7 +20,7 @@ import { GroundYourselfSlideProps } from "@/constants/models/tools/ground_yourse
 import { Colors } from "@/constants/styles/colorTheme";
 import { SCREEN_HEIGHT } from "@/constants/styles/values";
 import { handleLogRelaxActivity } from "@/db/tools";
-import { logFinishToolEvent } from "@/services/firebase";
+import { logFinishToolEvent } from "@/services/firebase/firebase";
 import { RootState } from "@/state/store";
 
 const Ground_Finish_Page = ({

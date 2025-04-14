@@ -11,7 +11,7 @@ import ToolNav from "@/components/tools/ToolNav";
 import { journal_tool } from "@/constants/models/tools/tools";
 import { Colors } from "@/constants/styles/colorTheme";
 import { SCREEN_HEIGHT } from "@/constants/styles/values";
-import { logFinishToolEvent } from "@/services/firebase";
+import { logFinishToolEvent } from "@/services/firebase/firebase";
 import { RootState } from "@/state/store";
 
 const CURRENT_PAGE = 6;
