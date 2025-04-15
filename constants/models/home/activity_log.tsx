@@ -60,6 +60,7 @@ export type emotionObjType = {
   strength?: number;
 };
 
+// below obj should be deleted -- merged w/ tools.tsx contstants file during refactoring
 export const ToolList: Record<ToolNamesInJournal, ToolType> = {
   cda: {
     name: "cda",

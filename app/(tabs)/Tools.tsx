@@ -3,7 +3,6 @@ import { useTranslation } from "react-i18next";
 import { View } from "react-native";
 import Text from "@/components/global/Text";
 import FrameMenu from "@/components/home/FrameMenu";
-import { ToolNames } from "@/constants/models/home/activity_log";
 import { allToolCategoriesArr } from "@/constants/models/tools/tools";
 import { logStartToolEvent } from "@/services/firebase/firebase";
 import ToolCard from "../../components/tools/ToolCard";
@@ -22,6 +21,7 @@ const Tools = () => {
             {toolCategory.tools.map((tool, indexNum: number) => (
               <ToolCard
                 name={t(`tools.${tool.name}.title`)}
+                icon={tool.icon}
                 image={tool.card_bg}
                 link={tool.link}
                 key={indexNum}
