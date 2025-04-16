@@ -13,7 +13,7 @@ import ToolNav from "@/components/tools/ToolNav";
 import { journal_tool } from "@/constants/models/tools/tools";
 import { Colors } from "@/constants/styles/colorTheme";
 import { SCREEN_HEIGHT } from "@/constants/styles/values";
-import { logFinishToolEvent } from "@/services/firebase/firebase";
+import { analyticsLogFinishToolEvent } from "@/services/firebase/firebase";
 import { RootState } from "@/state/store";
 import { transform } from "@babel/core";
 
@@ -85,7 +85,7 @@ const Log_finish = () => {
                 title={t("buttons.go_to_journal", { ns: "common" })}
                 className="w-[45%]"
                 onPress={() => {
-                  logFinishToolEvent(TOOL_NAME);
+                  analyticsLogFinishToolEvent(TOOL_NAME);
                   router.replace("/home/activity_log");
                 }}
               />
@@ -94,7 +94,7 @@ const Log_finish = () => {
               className="mb-4 justify-center"
               title={t("buttons.return_to_tools", { ns: "common" })}
               onPress={() => {
-                logFinishToolEvent(TOOL_NAME);
+                analyticsLogFinishToolEvent(TOOL_NAME);
                 router.replace("tools" as Href);
               }}
             />

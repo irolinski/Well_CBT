@@ -20,7 +20,7 @@ import { GroundYourselfSlideProps } from "@/constants/models/tools/ground_yourse
 import { Colors } from "@/constants/styles/colorTheme";
 import { SCREEN_HEIGHT } from "@/constants/styles/values";
 import { handleLogRelaxActivity } from "@/db/tools";
-import { logFinishToolEvent } from "@/services/firebase/firebase";
+import { analyticsLogFinishToolEvent } from "@/services/firebase/firebase";
 import { RootState } from "@/state/store";
 
 const Ground_Finish_Page = ({
@@ -44,7 +44,7 @@ const Ground_Finish_Page = ({
   useEffect(() => {
     if (groundYourselfToolState.currentSlide === objKey) {
       setCurrentInstruction("instruction_1");
-      logFinishToolEvent(ToolList.ground_yourself.name as ToolNames);
+      analyticsLogFinishToolEvent(ToolList.ground_yourself.name as ToolNames);
     }
   }, [groundYourselfToolState.currentSlide]);
 

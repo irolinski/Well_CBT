@@ -1,7 +1,7 @@
 import { ToolNames } from "@/constants/models/home/activity_log";
 import { getAnalytics, logEvent } from "./handleExpoGo";
 
-export const logGoalsQuestionnaireAnswers = async (
+export const analyticsLogGoalsQuestionnaireAnswers = async (
   questionnaireState: string[],
 ) => {
   if (questionnaireState.length > 0) {
@@ -18,17 +18,17 @@ export const logGoalsQuestionnaireAnswers = async (
   }
 };
 
-export const logShareQuoteEvent = () => {
+export const analyticsLogShareQuoteEvent = () => {
   const analytics = getAnalytics();
   analytics && logEvent(analytics, "share_quote");
 };
 
-export const logOpenJournalEntryEvent = () => {
+export const analyticsLogOpenJournalEntryEvent = () => {
   const analytics = getAnalytics();
   analytics && logEvent(analytics, "browse_journal_entry");
 };
 
-export const logStartToolEvent = (toolName: ToolNames) => {
+export const analyticsLogStartToolEvent = (toolName: ToolNames) => {
   const analytics = getAnalytics();
   analytics &&
     logEvent(analytics, "start_tool", {
@@ -36,7 +36,7 @@ export const logStartToolEvent = (toolName: ToolNames) => {
     });
 };
 
-export const logFinishToolEvent = (toolName: ToolNames) => {
+export const analyticsLogFinishToolEvent = (toolName: ToolNames) => {
   const analytics = getAnalytics();
   analytics &&
     logEvent(analytics, "finish_tool", {
@@ -44,7 +44,7 @@ export const logFinishToolEvent = (toolName: ToolNames) => {
     });
 };
 
-export const logOpenArticleEvent = (articleId: number) => {
+export const analyticsLogOpenArticleEvent = (articleId: number) => {
   const analytics = getAnalytics();
   analytics &&
     logEvent(analytics, "open_article", {
@@ -52,7 +52,7 @@ export const logOpenArticleEvent = (articleId: number) => {
     });
 };
 
-export const logOpenAchievementsPageEvent = () => {
+export const analyticsLogOpenAchievementsPageEvent = () => {
   const analytics = getAnalytics();
   analytics && logEvent(analytics, "open_achivements_page");
 };

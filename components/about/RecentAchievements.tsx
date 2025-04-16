@@ -16,7 +16,7 @@ import {
 import { Colors } from "@/constants/styles/colorTheme";
 import { SCREEN_HEIGHT } from "@/constants/styles/values";
 import { handleGetAchievementProgressData } from "@/db/achievements/controllers";
-import { logOpenAchievementsPageEvent } from "@/services/firebase/firebase";
+import { analyticsLogOpenAchievementsPageEvent } from "@/services/firebase/firebase";
 import { Feather } from "@expo/vector-icons";
 import AdvanceButton from "../AdvanceButton";
 import CarouselBadge from "./CarouselBadge";
@@ -249,7 +249,7 @@ const RecentAchievements = () => {
           <AdvanceButton
             title={t("buttons.see_all", { ns: "common" })}
             onPress={() => {
-              logOpenAchievementsPageEvent();
+              analyticsLogOpenAchievementsPageEvent();
               router.push("/about/achievements" as Href);
             }}
             btnStyle={{

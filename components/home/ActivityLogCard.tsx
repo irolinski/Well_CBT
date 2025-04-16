@@ -11,7 +11,7 @@ import {
 import { Colors } from "@/constants/styles/colorTheme";
 import { journalStyleConstants } from "@/constants/styles/values";
 import { selectedLanguage } from "@/hooks/i18n";
-import { logOpenJournalEntryEvent } from "@/services/firebase/firebase";
+import { analyticsLogOpenJournalEntryEvent } from "@/services/firebase/firebase";
 import { getOrdinalSuffix } from "@/utils/dates";
 import { Entypo } from "@expo/vector-icons";
 import { Slider } from "@miblanchard/react-native-slider";
@@ -48,7 +48,7 @@ const ActivityLogCard = ({
     >
       <TouchableOpacity
         onPress={() => {
-          logOpenJournalEntryEvent();
+          analyticsLogOpenJournalEntryEvent();
           ToolList[toolName].requiresInput &&
             router.navigate(`${link}` as Href, { relativeToDirectory: true });
         }}

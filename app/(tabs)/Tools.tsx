@@ -4,7 +4,7 @@ import { View } from "react-native";
 import Text from "@/components/global/Text";
 import FrameMenu from "@/components/home/FrameMenu";
 import { allToolCategoriesArr } from "@/constants/models/tools/tools";
-import { logStartToolEvent } from "@/services/firebase/firebase";
+import { analyticsLogStartToolEvent } from "@/services/firebase/firebase";
 import ToolCard from "../../components/tools/ToolCard";
 
 const Tools = () => {
@@ -25,7 +25,7 @@ const Tools = () => {
                 image={tool.card_bg}
                 link={tool.link}
                 key={indexNum}
-                onPress={() => logStartToolEvent(tool.name)}
+                onPress={() => analyticsLogStartToolEvent(tool.name)}
               />
             ))}
           </View>

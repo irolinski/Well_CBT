@@ -18,7 +18,7 @@ import {
 import { Colors } from "@/constants/styles/colorTheme";
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from "@/constants/styles/values";
 import { selectedLanguage } from "@/hooks/i18n";
-import { logOpenArticleEvent } from "@/services/firebase/firebase";
+import { analyticsLogOpenArticleEvent } from "@/services/firebase/firebase";
 import ArticleImageScrollableHeader from "./ArticleImageScrollableHeader";
 
 const HEADER_HEIGHT = SCREEN_HEIGHT * 0.4;
@@ -75,7 +75,7 @@ const ArticlePage = ({
   );
 
   useEffect(() => {
-    logOpenArticleEvent(id);
+    analyticsLogOpenArticleEvent(id);
   }, []);
 
   return (

@@ -11,7 +11,7 @@ import ToolNav from "@/components/tools/ToolNav";
 import { cda_tool } from "@/constants/models/tools/tools";
 import { Colors } from "@/constants/styles/colorTheme";
 import { SCREEN_HEIGHT } from "@/constants/styles/values";
-import { logFinishToolEvent } from "@/services/firebase/firebase";
+import { analyticsLogFinishToolEvent } from "@/services/firebase/firebase";
 
 const CURRENT_PAGE = 5;
 const TOOL_NAME = cda_tool.name;
@@ -56,7 +56,7 @@ const Page_finish = () => {
                 title={t("buttons.again", { ns: "common" })}
                 className="w-[45%]"
                 onPress={() => {
-                  logFinishToolEvent(TOOL_NAME);
+                  analyticsLogFinishToolEvent(TOOL_NAME);
                   router.navigate("./" as Href);
                 }}
               />
@@ -64,7 +64,7 @@ const Page_finish = () => {
                 title={t("buttons.go_to_journal", { ns: "common" })}
                 className="w-[45%]"
                 onPress={() => {
-                  logFinishToolEvent(TOOL_NAME);
+                  analyticsLogFinishToolEvent(TOOL_NAME);
                   router.replace("/home/activity_log");
                 }}
               />
@@ -73,7 +73,7 @@ const Page_finish = () => {
               className="mb-4 justify-center"
               title={t("buttons.return_to_tools", { ns: "common" })}
               onPress={() => {
-                logFinishToolEvent(TOOL_NAME);
+                analyticsLogFinishToolEvent(TOOL_NAME);
                 router.replace("tools" as Href);
               }}
             />
