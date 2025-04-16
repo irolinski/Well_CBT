@@ -20,7 +20,7 @@ export const fetchEntryData = async () => {
   try {
     const db = await SQLite.openDatabaseAsync(dbName);
     const res = await db.getAllAsync(
-      "SELECT * FROM allActivities ORDER BY datetime DESC LIMIT 45",
+      "SELECT * FROM allActivities ORDER BY datetime DESC LIMIT 1000",
     );
     return res;
   } catch (err) {
