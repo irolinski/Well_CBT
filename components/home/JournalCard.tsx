@@ -152,6 +152,7 @@ const JournalCard = ({
                         style={{
                           fontFamily: "KodchasanMedium",
                           fontSize: 16.5,
+                          marginRight: 12,
                         }}
                         numberOfLines={2}
                       >

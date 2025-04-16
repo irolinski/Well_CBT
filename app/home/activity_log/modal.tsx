@@ -41,7 +41,6 @@ const ActivityLogModal = () => {
           style={{
             top: 0,
             width: SCREEN_WIDTH,
-            height: SCREEN_HEIGHT, //remove if more height needed
             backgroundColor: Colors.offWhite,
           }}
         >

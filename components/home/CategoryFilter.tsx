@@ -3,6 +3,7 @@ import { Pressable, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import {
   allToolsNameList,
+  journalToolNameList,
   ToolNames,
 } from "@/constants/models/home/activity_log";
 import { Colors } from "@/constants/styles/colorTheme";
@@ -31,7 +32,7 @@ const CategoryFilter = () => {
 
   return (
     <View className="my-4 w-full flex-row flex-wrap justify-between overflow-hidden">
-      {allToolsNameList.map((categoryName: ToolNames, index: number) => (
+      {journalToolNameList.map((categoryName: ToolNames, index: number) => (
         <Pressable
           className="mx-2 my-4"
           style={{ width: "40%" }}
@@ -40,7 +41,7 @@ const CategoryFilter = () => {
           }}
           key={index}
         >
-          <View className="h-12 flex-row items-center" style={{ width: "80%" }}>
+          <View className="mr-8 h-16 flex-row items-center">
             <RadioButton
               isActive={activityLogState.filterCategories.includes(
                 categoryName,
