@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { TouchableOpacity, View } from "react-native";
 import { monthNames, monthNamesShort } from "@/constants/models/dates";
 import {
-  JournalCardProps,
+  ActivityLogCardProps,
   ToolCategories,
   ToolList,
 } from "@/constants/models/home/activity_log";
@@ -17,13 +17,13 @@ import { Entypo } from "@expo/vector-icons";
 import { Slider } from "@miblanchard/react-native-slider";
 import Text from "../global/Text";
 
-const JournalCard = ({
+const ActivityLogCard = ({
   toolName,
   link,
   datetime,
   value,
   onPress,
-}: JournalCardProps) => {
+}: ActivityLogCardProps) => {
   const { t } = useTranslation("tools");
 
   let cardTime = datetime.split(" ")[1];
@@ -185,4 +185,4 @@ const JournalCard = ({
   );
 };
 
-export default JournalCard;
+export default ActivityLogCard;

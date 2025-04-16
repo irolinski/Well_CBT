@@ -25,12 +25,12 @@ export type RelaxToolNames = (typeof relaxToolNames)[number];
 
 const distractToolNames = ["phone_a_friend"] as const;
 
-export const journalToolNameList = [
+export const activityLogToolNameList = [
   ...classicCBTToolNames,
   ...relaxToolNames,
 ] as const;
 
-export type ToolNamesInJournal = (typeof journalToolNameList)[number];
+export type ToolNamesInJournal = (typeof activityLogToolNameList)[number];
 
 export const allToolsNameList = [
   ...classicCBTToolNames,
@@ -39,7 +39,7 @@ export const allToolsNameList = [
 ] as const;
 export type ToolNames = (typeof allToolsNameList)[number];
 
-export type JournalCardProps = {
+export type ActivityLogCardProps = {
   toolName: ToolNamesInJournal;
   link: string;
   datetime: string;

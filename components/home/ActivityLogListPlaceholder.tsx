@@ -1,10 +1,10 @@
-import { Image } from 'expo-image';
-import { useTranslation } from 'react-i18next';
-import { Text, View } from 'react-native';
-import { logoImages } from '@/assets/images/global/logo/logo';
-import { Colors } from '@/constants/styles/colorTheme';
+import { Image } from "expo-image";
+import { useTranslation } from "react-i18next";
+import { Text, View } from "react-native";
+import { logoImages } from "@/assets/images/global/logo/logo";
+import { Colors } from "@/constants/styles/colorTheme";
 
-const EntryLogListPlaceholder = () => {
+const ActivityLogListPlaceholder = () => {
   const { t } = useTranslation("home");
 
   return (
@@ -42,4 +42,4 @@ const EntryLogListPlaceholder = () => {
     </View>
   );
 };
-export default EntryLogListPlaceholder;
+export default ActivityLogListPlaceholder;

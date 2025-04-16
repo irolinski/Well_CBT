@@ -1,11 +1,11 @@
-import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { Text, View } from 'react-native';
-import { useSelector } from 'react-redux';
-import { Colors } from '@/constants/styles/colorTheme';
-import { RootState } from '@/state/store';
+import React from "react";
+import { useTranslation } from "react-i18next";
+import { Text, View } from "react-native";
+import { useSelector } from "react-redux";
+import { Colors } from "@/constants/styles/colorTheme";
+import { RootState } from "@/state/store";
 
-const EntryLogDisplayInfo = () => {
+const ActivityLogDisplayInfo = () => {
   const { t } = useTranslation(["home", "common"]);
   const activityLogState = useSelector((state: RootState) => state.activityLog);
 
@@ -62,4 +62,4 @@ const EntryLogDisplayInfo = () => {
     </View>
   );
 };
-export default EntryLogDisplayInfo;
+export default ActivityLogDisplayInfo;

@@ -6,8 +6,8 @@ import { Alert, Pressable, View } from "react-native";
 import { useDispatch } from "react-redux";
 import AdvanceButton from "@/components/AdvanceButton";
 import Text from "@/components/global/Text";
+import ActivityLogCard from "@/components/home/ActivityLogCard";
 import FrameMenu from "@/components/home/FrameMenu";
-import JournalCard from "@/components/home/JournalCard";
 import NewActivityModal from "@/components/home/NewActivityModal";
 import QuoteWidget from "@/components/home/QuoteWidget";
 import WelcomeTypewriterText from "@/components/home/WelcomeTypewriterText";
@@ -98,7 +98,7 @@ const Home = () => {
               {recentEntriesArr.length >= MIN_RECENT_ACTIVITY_LENGTH ? (
                 recentEntriesArr.map(
                   (item: EntryViewTableRow, index: number) => (
-                    <JournalCard
+                    <ActivityLogCard
                       toolName={item.activityName}
                       datetime={item.datetime}
                       value={item.value && item.value}

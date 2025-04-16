@@ -1,9 +1,9 @@
-import React, { ReactNode } from 'react';
-import { Text, View } from 'react-native';
-import BackButton from '@/components/BackButton';
-import { Colors } from '@/constants/styles/colorTheme';
-import { SCREEN_HEIGHT } from '@/constants/styles/values';
-import { handleLogRelaxActivity } from '@/db/tools';
+import React, { ReactNode } from "react";
+import { Text, View } from "react-native";
+import BackButton from "@/components/BackButton";
+import { Colors } from "@/constants/styles/colorTheme";
+import { SCREEN_HEIGHT } from "@/constants/styles/values";
+import { handleLogRelaxActivity } from "@/db/tools";
 
 interface GroundYourselfSlideFrameProps {
   children: ReactNode;

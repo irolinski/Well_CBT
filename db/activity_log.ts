@@ -11,7 +11,6 @@ export const fetchRecentEntries = async () => {
     );
     return res;
   } catch (err) {
-    // console.error(err);
     Alert.alert(getTranslation("alerts.error_db_fetching"));
   }
 };
@@ -24,7 +23,6 @@ export const fetchEntryData = async () => {
     );
     return res;
   } catch (err) {
-    // console.error(err);
     Alert.alert(getTranslation("alerts.error_db_fetching"));
   }
 };

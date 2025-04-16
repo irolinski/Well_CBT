@@ -2,8 +2,8 @@ import { useTranslation } from "react-i18next";
 import { Pressable, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  activityLogToolNameList,
   allToolsNameList,
-  journalToolNameList,
   ToolNames,
 } from "@/constants/models/home/activity_log";
 import { Colors } from "@/constants/styles/colorTheme";
@@ -32,7 +32,7 @@ const CategoryFilter = () => {
 
   return (
     <View className="my-4 w-full flex-row flex-wrap justify-between overflow-hidden">
-      {journalToolNameList.map((categoryName: ToolNames, index: number) => (
+      {activityLogToolNameList.map((categoryName: ToolNames, index: number) => (
         <Pressable
           className="mx-2 my-4"
           style={{ width: "40%" }}
