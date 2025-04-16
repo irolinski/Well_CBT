@@ -1,14 +1,14 @@
+import { Image } from "expo-image";
 import React from "react";
 import { ScrollView, StyleProp, View, ViewStyle } from "react-native";
+import { logoImages } from "@/assets/images/global/logo/logo";
 import { Colors } from "@/constants/styles/colorTheme";
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from "@/constants/styles/values";
-import { Logo } from "../global/Logo";
 import ToolHeader from "../tools/ToolHeader";
 
 const TOP_FRAME_HEIGHT = SCREEN_HEIGHT / 6.5;
 const SCROLL_VIEW_HEIGHT = SCREEN_HEIGHT - TOP_FRAME_HEIGHT;
 
-const LOGO_SIZE = 52;
 const LOGO_VIEW_WIDTH = SCREEN_WIDTH * 0.85;
 const LOGO_VIEW_OFFSET_BOTTOM = SCREEN_HEIGHT * 0.03;
 
@@ -39,7 +39,11 @@ const FrameMenu = ({
           <ToolHeader className="text-3xl" bright={true}>
             {title}
           </ToolHeader>
-          <Logo sizePx={LOGO_SIZE} />
+          <Image
+            source={logoImages.logo}
+            contentFit="contain"
+            style={{ width: 90, height: 55 }}
+          />
         </View>
       </View>
       <ScrollView

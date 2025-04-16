@@ -1,3 +1,4 @@
+import { Image } from "expo-image";
 import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
@@ -10,8 +11,8 @@ import {
   View,
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
+import { logoImages } from "@/assets/images/global/logo/logo";
 import DividerLine from "@/components/DividerLine";
-import { Logo } from "@/components/global/Logo";
 import Text from "@/components/global/Text";
 import { phoneAFriend_tool } from "@/constants/models/tools/tools";
 import { Colors } from "@/constants/styles/colorTheme";
@@ -237,7 +238,11 @@ const ConversationModal = () => {
                 <View className="items-center">
                   <Animated.View style={[cardStyle.front, cardStyle.all]}>
                     <View className="absolute right-7 top-4 opacity-20">
-                      <Logo sizePx={64} />
+                      <Image
+                        source={logoImages.logo}
+                        style={{ width: 80, height: 50 }}
+                        contentFit="contain"
+                      />
                     </View>
                     <View className="h-full">
                       <View
@@ -272,7 +277,11 @@ const ConversationModal = () => {
                     style={[cardStyle.back, cardStyle.all]}
                   >
                     <View className="absolute right-7 top-4 opacity-20">
-                      <Logo sizePx={64} />
+                      <Image
+                        source={logoImages.logo}
+                        style={{ width: 80, height: 50 }}
+                        contentFit="contain"
+                      />
                     </View>
                     <View className="mb-6">
                       <Text className="px-4 text-xl" style={{ color: "white" }}>
