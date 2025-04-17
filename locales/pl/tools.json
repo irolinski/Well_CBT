@@ -6,7 +6,7 @@
     "relax": "Relaks"
   },
   "categories": {
-    "cbt": "Klasyczne CBT",
+    "cbt": "Ćwiczenia myślowe",
     "relax": "Relaks",
     "distraction": "Odwróć uwagę"
   },
@@ -236,7 +236,7 @@
     },
     "journal": {
       "title": "Dziennik nastroju",
-      "description": "Na następnym ekranie zaczniesz komponować wpis do dziennika nastroju. \n\nZaczniesz od oceny swojego nastroju, następnie wybierzesz emocje, które odczuwasz, z listy i zastanowisz się nad kontekstem swoich uczuć. \n\n Prowadzenie dziennika nastroju pomaga skutecznie śledzić i zarządzać emocjami.",
+      "description": "Na kolejnym ekranie zaczniesz komponować wpis do dziennika nastroju. \n\nZaczniesz od oceny swojego nastroju, następnie wybierzesz emocje, które odczuwasz, z listy i zastanowisz się nad kontekstem swoich uczuć. \n\nProwadzenie dziennika nastroju pomaga skutecznie śledzić i zarządzać emocjami.",
       "exercise": {
         "page_1": {
           "header": "Jak się dziś czujesz?",

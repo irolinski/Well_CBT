@@ -2,7 +2,7 @@
   "index": { "title": "Tools" },
   "types": { "exercise": "Exercise", "journal": "Journal", "relax": "Relax" },
   "categories": {
-    "cbt": "Classic CBT",
+    "cbt": "Thought Exercises",
     "relax": "Relax",
     "distraction": "Distract Yourself"
   },
