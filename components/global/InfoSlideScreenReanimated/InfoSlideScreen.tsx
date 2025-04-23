@@ -1,20 +1,34 @@
-import { ReactNode } from 'react';
-import { FlatList, StyleSheet, useWindowDimensions, View, ViewToken } from 'react-native';
+import React, { ReactNode } from "react";
+import {
+  FlatList,
+  ScrollView,
+  StyleSheet,
+  useWindowDimensions,
+  View,
+  ViewToken,
+} from "react-native";
 import Animated, {
-    Extrapolation, interpolate, SharedValue, useAnimatedRef, useAnimatedScrollHandler,
-    useAnimatedStyle, useSharedValue
-} from 'react-native-reanimated';
-import Text from '@/components/global/Text';
-import { Colors } from '@/constants/styles/colorTheme';
-import { SCREEN_HEIGHT, SCREEN_WIDTH } from '@/constants/styles/values';
-import { InfoSlideScreenButton } from './InfoSlideScreenButton';
-import { InfoSlideScreenPagination } from './InfoSlideScreenPagination';
+  Extrapolation,
+  interpolate,
+  SharedValue,
+  useAnimatedRef,
+  useAnimatedScrollHandler,
+  useAnimatedStyle,
+  useSharedValue,
+} from "react-native-reanimated";
+import Text from "@/components/global/Text";
+import { Colors } from "@/constants/styles/colorTheme";
+import { SCREEN_HEIGHT, SCREEN_WIDTH } from "@/constants/styles/values";
+import { InfoSlideScreenButton } from "./InfoSlideScreenButton";
+import { InfoSlideScreenPagination } from "./InfoSlideScreenPagination";
 
 export type InfoSlideScreenData = {
   id: number;
-  imagePart: ReactNode;
+  visualItems: ReactNode;
+  visualPart?: ReactNode;
   title?: string;
   text?: string;
+  orientation?: "text_bottom" | "text_top";
 };
 
 const RenderItem = ({
@@ -26,7 +40,15 @@ const RenderItem = ({
   index: number;
   x: SharedValue<number>;
 }) => {
-  const imagePartAnimatedStyle = useAnimatedStyle(() => {
+  //set default orientation
+  let orientation = "text_bottom";
+  if (item.orientation) {
+    orientation = item.orientation;
+  } else if (!item.text && !item.title) {
+    orientation = "text_top";
+  }
+
+  const visualItemsAnimatedStyle = useAnimatedStyle(() => {
     const opacityAnimation = interpolate(
       x.value,
       [
@@ -81,40 +103,81 @@ const RenderItem = ({
 
     return {
       opacity: opacityAnimation,
+      width: SCREEN_WIDTH * 0.95,
       transform: [{ translateY: translateYAnimation }],
     };
   });
 
   return (
-    <View
-      style={[
-        styles.itemContainer,
-        {
-          width: SCREEN_WIDTH,
-          justifyContent: item.text && item.title ? "center" : "flex-start",
-        },
-      ]}
-    >
-      <Animated.View
-        style={[
-          imagePartAnimatedStyle,
-          {
-            height:
-              item.text && item.title
-                ? SCREEN_WIDTH * 0.8
-                : SCREEN_HEIGHT * 0.8,
-          },
-        ]}
-      >
-        {item.imagePart}
-      </Animated.View>
-      {item.title && item.text && (
-        <Animated.View style={textAnimatedStyle}>
-          <Text style={styles.itemTitle}>{item.title}</Text>
-          <Text style={styles.itemText}>{item.text}</Text>
-        </Animated.View>
+    <React.Fragment>
+      {orientation === "text_bottom" ? (
+        <ScrollView
+          contentContainerStyle={[
+            styles.itemContainer,
+            {
+              width: SCREEN_WIDTH,
+              justifyContent: item.text && item.title ? "center" : "flex-start",
+            },
+          ]}
+        >
+          <Animated.View
+            style={[
+              visualItemsAnimatedStyle,
+              {
+                height:
+                  item.text && item.title
+                    ? SCREEN_WIDTH * 0.8
+                    : SCREEN_HEIGHT * 0.8,
+              },
+            ]}
+          >
+            {item.visualItems}
+          </Animated.View>
+          {item.title && item.text ? (
+            <Animated.View style={textAnimatedStyle}>
+              <Text style={styles.itemTitle}>{item.title}</Text>
+              <Text style={styles.itemText}>{item.text}</Text>
+            </Animated.View>
+          ) : (
+            item.visualPart
+          )}
+        </ScrollView>
+      ) : (
+        <ScrollView
+          contentContainerStyle={[
+            styles.itemContainer,
+            {
+              width: SCREEN_WIDTH,
+              marginTop: SCREEN_HEIGHT * 0.2,
+              marginBottom: SCREEN_HEIGHT * 0.05,
+              justifyContent: "space-between",
+            },
+          ]}
+        >
+          {item.title && item.text ? (
+            <Animated.View style={[textAnimatedStyle, { marginBottom: 24 }]}>
+              <Text style={styles.itemTitle}>{item.title}</Text>
+              <Text style={styles.itemText}>{item.text}</Text>
+            </Animated.View>
+          ) : (
+            item.visualPart
+          )}
+          <Animated.View
+            style={[
+              visualItemsAnimatedStyle,
+              {
+                height:
+                  item.text && item.title
+                    ? SCREEN_WIDTH * 0.8
+                    : SCREEN_HEIGHT * 0.8,
+              },
+            ]}
+          >
+            {item.visualItems}
+          </Animated.View>
+        </ScrollView>
       )}
-    </View>
+    </React.Fragment>
   );
 };
 
@@ -184,22 +247,23 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.mainBlue,
   },
   itemContainer: {
-    flex: 1,
+    // flex: 1 -- this prevent ScrollView from working
     backgroundColor: Colors.mainBlue,
     alignItems: "center",
-    // justifyContent: "space-around",
   },
   itemTitle: {
     color: Colors.offWhite,
-    fontSize: 26,
-    fontFamily: "Kodchasan",
-
-    fontWeight: 700,
+    fontSize: 24,
+    fontFamily: "KodchasanBold",
+    fontWeight: "bold",
     textAlign: "center",
-    marginBottom: 10,
+    marginBottom: 32,
+    width: "95%",
   },
   itemText: {
     color: Colors.white,
+    fontSize: 16,
+    fontFamily: "Inter",
     textAlign: "center",
     lineHeight: 20,
     marginHorizontal: 30,
