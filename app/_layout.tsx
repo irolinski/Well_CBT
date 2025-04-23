@@ -30,6 +30,7 @@ export default function RootLayout() {
     InterItalic: require("../assets/fonts/Inter-Italic.ttf"),
     KodchasanRegular: require("../assets/fonts/Kodchasan-Regular.ttf"),
     KodchasanMedium: require("../assets/fonts/Kodchasan-Medium.ttf"),
+    KodchasanBold: require("../assets/fonts/Kodchasan-Bold.ttf"),
   });
 
   // Ensure fonts and database setup are completed
