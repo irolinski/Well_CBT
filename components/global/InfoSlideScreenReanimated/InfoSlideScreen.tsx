@@ -112,6 +112,7 @@ const RenderItem = ({
     <React.Fragment>
       {orientation === "text_bottom" ? (
         <ScrollView
+          style={{ flex: 1 }}
           contentContainerStyle={[
             styles.itemContainer,
             {
@@ -144,35 +145,25 @@ const RenderItem = ({
         </ScrollView>
       ) : (
         <ScrollView
+          style={{ flex: 1 }}
           contentContainerStyle={[
             styles.itemContainer,
             {
               width: SCREEN_WIDTH,
-              marginTop: SCREEN_HEIGHT * 0.2,
-              marginBottom: SCREEN_HEIGHT * 0.05,
-              justifyContent: "space-between",
+              paddingTop: SCREEN_HEIGHT * 0.15,
+              alignItems: "center",
             },
           ]}
         >
           {item.title && item.text ? (
-            <Animated.View style={[textAnimatedStyle, { marginBottom: 24 }]}>
+            <Animated.View style={[textAnimatedStyle]}>
               <Text style={styles.itemTitle}>{item.title}</Text>
               <Text style={styles.itemText}>{item.text}</Text>
             </Animated.View>
           ) : (
             item.visualPart
           )}
-          <Animated.View
-            style={[
-              visualItemsAnimatedStyle,
-              {
-                height:
-                  item.text && item.title
-                    ? SCREEN_WIDTH * 0.8
-                    : SCREEN_HEIGHT * 0.8,
-              },
-            ]}
-          >
+          <Animated.View style={[visualItemsAnimatedStyle]}>
             {item.visualItems}
           </Animated.View>
         </ScrollView>
@@ -247,8 +238,8 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.mainBlue,
   },
   itemContainer: {
-    // flex: 1 -- this prevent ScrollView from working
-    backgroundColor: Colors.mainBlue,
+    flexGrow: 1,
+    justifyContent: "flex-start",
     alignItems: "center",
   },
   itemTitle: {
