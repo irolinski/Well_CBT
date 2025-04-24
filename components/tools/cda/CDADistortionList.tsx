@@ -20,6 +20,8 @@ const CDADistortionList = ({
   handleSetShowDistortionTooltip,
   tooltipY,
   handleShowTooltip,
+  instructionColor,
+  disableSelect = false,
 }: DistortionListProps) => {
   const { t } = useTranslation("tools");
   const dispatch = useDispatch<AppDispatch>();
@@ -30,7 +32,7 @@ const CDADistortionList = ({
       <Text
         className="w-full pb-6"
         style={{
-          color: Colors.mainGray,
+          color: instructionColor ? instructionColor : Colors.mainGray,
           fontSize: 14,
         }}
       >
@@ -72,10 +74,16 @@ const CDADistortionList = ({
         >
           <DistortionPill
             title={t(`tools.${TOOL_NAME}.distortion_list.${distortion}.name`)}
-            checked={Boolean(distortion === cdaState.distortion)}
+            checked={
+              !disableSelect && Boolean(distortion === cdaState.distortion)
+            }
             highlighted={showDistortionTooltip === index}
             onPress={() => {
-              dispatch(setDistortion(distortion));
+              if (disableSelect) {
+                return;
+              } else {
+                dispatch(setDistortion(distortion));
+              }
             }}
             onLongPress={() => handleShowTooltip(tooltipY, index)}
           />

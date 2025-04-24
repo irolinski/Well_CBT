@@ -5,6 +5,9 @@ export type DistortionListProps = {
   handleSetShowDistortionTooltip: (index: number | null) => void;
   tooltipY: number;
   handleShowTooltip: (y: number, index: number) => void;
+  handleSetTooltipY?: () => void;
+  instructionColor?: ColorValue;
+  disableSelect?: boolean;
 };
 
 export type DistortionPillTypes = {
