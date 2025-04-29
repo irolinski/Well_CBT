@@ -1,26 +1,16 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode } from 'react';
 import {
-  FlatList,
-  ScrollView,
-  StyleSheet,
-  useWindowDimensions,
-  View,
-  ViewToken,
-} from "react-native";
+    FlatList, ScrollView, StyleSheet, useWindowDimensions, View, ViewToken
+} from 'react-native';
 import Animated, {
-  Extrapolation,
-  interpolate,
-  SharedValue,
-  useAnimatedRef,
-  useAnimatedScrollHandler,
-  useAnimatedStyle,
-  useSharedValue,
-} from "react-native-reanimated";
-import Text from "@/components/global/Text";
-import { Colors } from "@/constants/styles/colorTheme";
-import { SCREEN_HEIGHT, SCREEN_WIDTH } from "@/constants/styles/values";
-import { InfoSlideScreenButton } from "./InfoSlideScreenButton";
-import { InfoSlideScreenPagination } from "./InfoSlideScreenPagination";
+    Extrapolation, interpolate, SharedValue, useAnimatedRef, useAnimatedScrollHandler,
+    useAnimatedStyle, useSharedValue
+} from 'react-native-reanimated';
+import Text from '@/components/global/Text';
+import { Colors } from '@/constants/styles/colorTheme';
+import { SCREEN_HEIGHT, SCREEN_WIDTH } from '@/constants/styles/values';
+import { InfoSlideScreenButton } from './InfoSlideScreenButton';
+import { InfoSlideScreenPagination } from './InfoSlideScreenPagination';
 
 export type InfoSlideScreenData = {
   id: number;

@@ -1,52 +1,9 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import Animated, {
-    Extrapolation, interpolate, SharedValue, useAnimatedStyle
+    Extrapolation, interpolate, SharedValue, useAnimatedStyle, withTiming
 } from 'react-native-reanimated';
 import { Colors } from '@/constants/styles/colorTheme';
-
-type InfoSlideScreenPaginationCompProps = {
-  index: number;
-  x: SharedValue<number>;
-  screenWidth: number;
-};
-
-const InfoSlideScreenPaginationComp = ({
-  index,
-  x,
-  screenWidth,
-}: InfoSlideScreenPaginationCompProps) => {
-  const animatedDotStyle = useAnimatedStyle(() => {
-    const widthAnimation = interpolate(
-      x.value,
-      [
-        (index - 1) * screenWidth,
-        index * screenWidth,
-        (index + 1) * screenWidth,
-      ],
-      [10, 20, 10],
-      Extrapolation.CLAMP,
-    );
-
-    const opacityAnimation = interpolate(
-      x.value,
-      [
-        (index - 1) * screenWidth,
-        index * screenWidth,
-        (index + 1) * screenWidth,
-      ],
-      [0.5, 1, 0.5],
-      Extrapolation.CLAMP,
-    );
-
-    return {
-      width: widthAnimation,
-      opacity: opacityAnimation,
-    };
-  });
-
-  return <Animated.View style={[styles.dots, animatedDotStyle]} />;
-};
 
 type InfoSlideScreenPaginationProps = {
   data: any;
@@ -59,32 +16,55 @@ export function InfoSlideScreenPagination({
   screenWidth,
   x,
 }: InfoSlideScreenPaginationProps) {
+  const totalSlides = data.length;
+  const animatedTrackStyle = useAnimatedStyle(() => {
+    const isLastSlide = x.value >= (totalSlides - 1) * screenWidth;
+    const targetWidth = isLastSlide ? screenWidth * 0.5 : screenWidth * 0.65;
+
+    return {
+      width: withTiming(targetWidth, { duration: 150 }), // smooth animation
+    };
+  });
+
+  const animatedProgressStyle = useAnimatedStyle(() => {
+    const progressWidth = interpolate(
+      x.value,
+      [0, (totalSlides - 1) * screenWidth],
+      [0, 1], // We’ll multiply this by track width in layout
+      Extrapolation.CLAMP,
+    );
+
+    return {
+      transform: [{ scaleX: progressWidth }],
+    };
+  });
+
   return (
     <View style={styles.container}>
-      {data.map((item: any, index: number) => (
-        <InfoSlideScreenPaginationComp
-          key={item.id}
-          index={index}
-          x={x}
-          screenWidth={screenWidth}
-        />
-      ))}
+      <Animated.View style={[styles.track, animatedTrackStyle]}>
+        <Animated.View style={[styles.progress, animatedProgressStyle]} />
+      </Animated.View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    height: 40,
+    flex: 1,
     flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "space-between",
   },
-  dots: {
-    width: 10,
-    height: 10,
-    borderRadius: 5,
+  track: {
+    height: 6,
+    backgroundColor: Colors.lightGray,
+    borderRadius: 3,
+    overflow: "hidden",
+  },
+  progress: {
+    height: "100%",
     backgroundColor: Colors.darkGray,
-    marginHorizontal: 10,
+    borderRadius: 3,
+    width: "100%", // Needed for scaleX to work
+    transformOrigin: "left",
   },
 });
