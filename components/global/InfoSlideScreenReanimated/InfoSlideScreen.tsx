@@ -95,6 +95,7 @@ const RenderItem = ({
       opacity: opacityAnimation,
       width: SCREEN_WIDTH * 0.95,
       transform: [{ translateY: translateYAnimation }],
+      alignItems: "center",
     };
   });
 
@@ -140,7 +141,7 @@ const RenderItem = ({
             styles.itemContainer,
             {
               width: SCREEN_WIDTH,
-              paddingTop: SCREEN_HEIGHT * 0.15,
+              paddingTop: SCREEN_HEIGHT * 0.175,
               alignItems: "center",
             },
           ]}
@@ -231,6 +232,7 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     justifyContent: "flex-start",
     alignItems: "center",
+    paddingBottom: 0.025 * SCREEN_HEIGHT,
   },
   itemTitle: {
     color: Colors.offWhite,
