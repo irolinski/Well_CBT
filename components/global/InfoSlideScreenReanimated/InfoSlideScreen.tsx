@@ -1,23 +1,34 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode } from "react";
+import { useTranslation } from "react-i18next";
 import {
-    FlatList, ScrollView, StyleSheet, useWindowDimensions, View, ViewToken
-} from 'react-native';
+  FlatList,
+  ScrollView,
+  StyleSheet,
+  View,
+  ViewToken,
+} from "react-native";
 import Animated, {
-    Extrapolation, interpolate, SharedValue, useAnimatedRef, useAnimatedScrollHandler,
-    useAnimatedStyle, useSharedValue
-} from 'react-native-reanimated';
-import Text from '@/components/global/Text';
-import { Colors } from '@/constants/styles/colorTheme';
-import { SCREEN_HEIGHT, SCREEN_WIDTH } from '@/constants/styles/values';
-import { InfoSlideScreenButton } from './InfoSlideScreenButton';
-import { InfoSlideScreenPagination } from './InfoSlideScreenPagination';
+  Extrapolation,
+  interpolate,
+  SharedValue,
+  useAnimatedRef,
+  useAnimatedScrollHandler,
+  useAnimatedStyle,
+  useSharedValue,
+} from "react-native-reanimated";
+import Text from "@/components/global/Text";
+import { Colors } from "@/constants/styles/colorTheme";
+import { SCREEN_HEIGHT, SCREEN_WIDTH } from "@/constants/styles/values";
+import { TransComponentType } from "@/hooks/i18n";
+import { InfoSlideScreenButton } from "./InfoSlideScreenButton";
+import { InfoSlideScreenPagination } from "./InfoSlideScreenPagination";
 
 export type InfoSlideScreenData = {
   id: number;
-  visualItems: ReactNode;
-  visualPart?: ReactNode;
-  title?: string;
-  text?: string;
+  visualItems: ReactNode & { type: typeof View };
+  title?: TransComponentType | (ReactNode & { type: typeof Text });
+  text?: TransComponentType | (ReactNode & { type: typeof Text });
+  ns?: string;
   orientation?: "text_bottom" | "text_top";
 };
 
@@ -105,7 +116,7 @@ const RenderItem = ({
         <ScrollView
           style={{ flex: 1 }}
           contentContainerStyle={[
-            styles.itemContainer,
+            InfoSlideScreenStyles.itemContainer,
             {
               width: SCREEN_WIDTH,
               justifyContent: item.text && item.title ? "center" : "flex-start",
@@ -127,18 +138,16 @@ const RenderItem = ({
           </Animated.View>
           {item.title && item.text ? (
             <Animated.View style={textAnimatedStyle}>
-              <Text style={styles.itemTitle}>{item.title}</Text>
-              <Text style={styles.itemText}>{item.text}</Text>
+              <Text style={InfoSlideScreenStyles.itemTitle}>{item.title}</Text>
+              <Text style={InfoSlideScreenStyles.itemText}>{item.text}</Text>
             </Animated.View>
-          ) : (
-            item.visualPart
-          )}
+          ) : null}
         </ScrollView>
       ) : (
         <ScrollView
           style={{ flex: 1 }}
           contentContainerStyle={[
-            styles.itemContainer,
+            InfoSlideScreenStyles.itemContainer,
             {
               width: SCREEN_WIDTH,
               paddingTop: SCREEN_HEIGHT * 0.175,
@@ -148,12 +157,10 @@ const RenderItem = ({
         >
           {item.title && item.text ? (
             <Animated.View style={[textAnimatedStyle]}>
-              <Text style={styles.itemTitle}>{item.title}</Text>
-              <Text style={styles.itemText}>{item.text}</Text>
+              <Text style={InfoSlideScreenStyles.itemTitle}>{item.title}</Text>
+              <Text style={InfoSlideScreenStyles.itemText}>{item.text}</Text>
             </Animated.View>
-          ) : (
-            item.visualPart
-          )}
+          ) : null}
           <Animated.View style={[visualItemsAnimatedStyle]}>
             {item.visualItems}
           </Animated.View>
@@ -168,9 +175,9 @@ const InfoSlideScreen = ({
 }: {
   slideData: InfoSlideScreenData[];
 }) => {
-  const { width: SCREEN_WIDTH } = useWindowDimensions();
-  const flatListRef = useAnimatedRef<FlatList>();
+  const { t } = useTranslation("common");
 
+  const flatListRef = useAnimatedRef<FlatList>();
   const flatListIndex = useSharedValue(0);
   const x = useSharedValue(0);
 
@@ -189,7 +196,7 @@ const InfoSlideScreen = ({
   });
 
   return (
-    <View style={styles.container}>
+    <View style={InfoSlideScreenStyles.container}>
       <Animated.FlatList
         ref={flatListRef}
         data={slideData}
@@ -206,7 +213,7 @@ const InfoSlideScreen = ({
         onViewableItemsChanged={onViewableItemsChanged}
       />
 
-      <View style={styles.footerContainer}>
+      <View style={InfoSlideScreenStyles.footerContainer}>
         <InfoSlideScreenPagination
           data={slideData}
           screenWidth={SCREEN_WIDTH}
@@ -217,13 +224,14 @@ const InfoSlideScreen = ({
           flatListRef={flatListRef}
           flatListIndex={flatListIndex}
           dataLength={slideData.length}
+          text={t("buttons.finish_tutorial")}
         />
       </View>
     </View>
   );
 };
 
-const styles = StyleSheet.create({
+export const InfoSlideScreenStyles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.mainBlue,

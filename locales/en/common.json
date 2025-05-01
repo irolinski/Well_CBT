@@ -25,6 +25,7 @@
     "lets_begin": "Let's begin",
     "next": "Next",
     "finish": "Finish",
+    "finish_tutorial": "Finish tutorial",
     "again": "Do one more?",
     "see_journal": "See Journal",
     "go_to_journal": "Go to Journal",
@@ -86,6 +87,8 @@
   },
   "languages": { "en": "English", "pl": "Polish" },
   "instructions": {
+    "remember": "Remember",
+    "hint": "Hint",
     "coming_soon": "Coming soon",
     "tap_button_below": "Tap the button below to proceed.",
     "tap_here_to_type": "Tap here to type"

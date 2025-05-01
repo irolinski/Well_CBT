@@ -1,6 +1,7 @@
 import { getLocales } from "expo-localization";
 import i18n from "i18next";
-import { initReactI18next } from "react-i18next";
+import { ReactNode } from "react";
+import { initReactI18next, Trans } from "react-i18next";
 import { twelveHourRegions } from "@/constants/models/dates";
 import enAbout from "@/locales/en/about.json";
 import enCommon from "@/locales/en/common.json";
@@ -40,6 +41,9 @@ const resources = {
 export const availableLanguagesArr = Object.keys(resources);
 
 export type AvailableLanguage = keyof typeof resources;
+export type TransComponentType = ReactNode & {
+  type: typeof Trans; // Restricting the type to `Trans` component
+};
 
 // Initialize i18next
 const i18nInitObj = {

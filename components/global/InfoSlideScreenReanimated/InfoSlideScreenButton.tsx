@@ -1,10 +1,16 @@
-import React, { RefObject } from 'react';
-import { FlatList, Pressable, StyleSheet } from 'react-native';
+import React, { RefObject } from "react";
+import { useTranslation } from "react-i18next";
+import { FlatList, Pressable, StyleSheet } from "react-native";
 import Animated, {
-    SharedValue, useAnimatedStyle, useSharedValue, withDelay, withSpring, withTiming
-} from 'react-native-reanimated';
-import { Colors } from '@/constants/styles/colorTheme';
-import { Feather } from '@expo/vector-icons';
+  SharedValue,
+  useAnimatedStyle,
+  useSharedValue,
+  withDelay,
+  withSpring,
+  withTiming,
+} from "react-native-reanimated";
+import { Colors } from "@/constants/styles/colorTheme";
+import { Feather } from "@expo/vector-icons";
 
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 
@@ -12,12 +18,14 @@ type InfoInfoSlideScreenButtonProps = {
   flatListRef: RefObject<FlatList>;
   flatListIndex: SharedValue<number>;
   dataLength: number;
+  text: string;
 };
 
 export function InfoSlideScreenButton({
   dataLength,
   flatListIndex,
   flatListRef,
+  text,
 }: InfoInfoSlideScreenButtonProps) {
   const buttonOpacity = useSharedValue(1);
 
@@ -68,8 +76,10 @@ export function InfoSlideScreenButton({
       onPress={handleNextScreen}
       style={[styles.container, InfoSlideScreenButtonAnimationStyle]}
     >
-      <Animated.Text style={[styles.text, textAnimationStyle]}>
-        Finish tutorial
+      <Animated.Text
+        style={[styles.text, textAnimationStyle, { textAlign: "center" }]}
+      >
+        {text}
       </Animated.Text>
 
       <Animated.View style={[styles.arrow, arrowAnimationStyle]}>

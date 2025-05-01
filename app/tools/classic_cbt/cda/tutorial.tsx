@@ -1,19 +1,25 @@
-import { Image } from 'expo-image';
-import React, { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
-import { tutorialImages } from '@/assets/images/tools/tutorials/tutorials';
-import DistortionPill from '@/components/DistortionPill';
+import { Image } from "expo-image";
+import React, { useState } from "react";
+import { Trans, useTranslation } from "react-i18next";
+import { StyleSheet, View } from "react-native";
+import { tutorialImages } from "@/assets/images/tools/tutorials/tutorials";
+import DistortionPill from "@/components/DistortionPill";
 import InfoSlideScreen, {
-    InfoSlideScreenData
-} from '@/components/global/InfoSlideScreenReanimated/InfoSlideScreen';
-import Text from '@/components/global/Text';
-import CBTDiagramSubtitledImage from '@/components/tools/CBTDiagramSubtitledImage';
-import CDADistortionList from '@/components/tools/cda/CDADistortionList';
-import CDATextBox from '@/components/tools/cda/CDATextBox';
-import { Colors } from '@/constants/styles/colorTheme';
-import { SCREEN_HEIGHT } from '@/constants/styles/values';
+  InfoSlideScreenData,
+} from "@/components/global/InfoSlideScreenReanimated/InfoSlideScreen";
+import Text from "@/components/global/Text";
+import CBTDiagramSubtitledImage from "@/components/tools/CBTDiagramSubtitledImage";
+import CDADistortionList from "@/components/tools/cda/CDADistortionList";
+import CDATextBox from "@/components/tools/cda/CDATextBox";
+import { Colors } from "@/constants/styles/colorTheme";
+import { SCREEN_HEIGHT } from "@/constants/styles/values";
 
 const CDA_Tutorial = () => {
+  const { t } = useTranslation(["tools", "common"]);
+  const transComponentsObj = {
+    bold: <Text style={{ fontWeight: "bold", color: Colors.white }} />,
+    italic: <Text style={{ fontStyle: "italic", color: Colors.white }} />,
+  };
   // tooltip state
   const [showDistortionTooltip, setshowDistortionTooltip] = useState<
     number | null
@@ -52,8 +58,14 @@ const CDA_Tutorial = () => {
           />
         </View>
       ),
-      title: "Welcome",
-      text: "Since it's your first time using this tool, we’d love to give you a quick 2-3 minute tutorial. \n\nWe’ll show you how to effectively work with this tool and also explain the concepts of cognitive distortions and automatic thoughts.",
+      title: <Trans i18nKey="tools.cda.tutorial.page_1.title" ns="tools" />,
+      text: (
+        <Trans
+          i18nKey="tools.cda.tutorial.page_1.instruction_1"
+          ns="tools"
+          components={transComponentsObj}
+        />
+      ),
     },
     {
       id: 2,
@@ -74,13 +86,22 @@ const CDA_Tutorial = () => {
               },
             ]}
           >
-            The Cognitive Model
+            <Trans
+              i18nKey="tools.cda.tutorial.page_2.image_1_title"
+              ns="tools"
+            />
           </Text>
           <CBTDiagramSubtitledImage />
         </View>
       ),
-      title: "How your thoughts shape your feelings",
-      text: "The key message of Cognitive-Behavioral Therapy is that the way we think (our cognition) shapes the way we feel \n\n...and that, in turn, influences our behaviour. ",
+      title: <Trans i18nKey="tools.cda.tutorial.page_2.title" ns="tools" />,
+      text: (
+        <Trans
+          i18nKey="tools.cda.tutorial.page_2.instruction_1"
+          ns="tools"
+          components={transComponentsObj}
+        />
+      ),
     },
     {
       id: 3,
@@ -101,9 +122,14 @@ const CDA_Tutorial = () => {
           />
         </View>
       ),
-      title: "Change the way you feel",
-      //bold the els
-      text: "The good news is, by changing how we think, we can change how we feel. \n\n”Ok, but how can I do that?” you may ask...\n\nThis tool aims to help you do this by:\n\n- Identifying an automatic thought...\n- Finding in it a cognitive distortion\n- Replacing the distorted thought with a rational, undistorted one.",
+      title: <Trans i18nKey="tools.cda.tutorial.page_3.title" ns="tools" />,
+      text: (
+        <Trans
+          i18nKey="tools.cda.tutorial.page_3.instruction_1"
+          ns="tools"
+          components={transComponentsObj}
+        />
+      ),
     },
     {
       id: 4,
@@ -124,8 +150,14 @@ const CDA_Tutorial = () => {
           />
         </View>
       ),
-      title: "Automatic Thoughts",
-      text: "Automatic thoughts are the quick, often subtle thoughts that pop into our minds throughout the day. \n\nWe may not always be aware of them right away, but with a little guidance, they’re easy to spot.\n\nOn the following page you’ll see some tips on how to notice your automatic thoughts and also some common examples.\n",
+      title: <Trans i18nKey="tools.cda.tutorial.page_4.title" ns="tools" />,
+      text: (
+        <Trans
+          i18nKey="tools.cda.tutorial.page_4.instruction_1"
+          ns="tools"
+          components={transComponentsObj}
+        />
+      ),
     },
     {
       id: 5,
@@ -140,65 +172,37 @@ const CDA_Tutorial = () => {
               paddingBottom: 48,
             }}
           >
-            <View className="w-full flex-row justify-end">
-              <DistortionPill
-                title="“This person is probably mad at me.”"
-                checked={false}
-                customColor={Colors.white}
-              />
-            </View>
-            <View className="w-full flex-row justify-start">
-              <DistortionPill
-                title="“I’m such a loser”"
-                checked={false}
-                customColor={Colors.white}
-              />
-            </View>
-            <View
-              className="w-full flex-row justify-end"
-              style={{ paddingBottom: 15 }}
-            >
-              <DistortionPill
-                title="“No one really cares about me.”"
-                checked={false}
-                customColor={Colors.white}
-              />
-            </View>
-            <View
-              className="w-full flex-row justify-start"
-              style={{ paddingBottom: 30 }}
-            >
-              <DistortionPill
-                title="“This is going to be a terrible day.”"
-                checked={false}
-                customColor={Colors.white}
-              />
-            </View>
-            <View
-              className="w-full flex-row justify-start"
-              style={{ paddingBottom: 15 }}
-            >
-              <DistortionPill
-                title="“I don’t deserve this promotion”"
-                checked={false}
-                customColor={Colors.white}
-              />
-            </View>
-            <View
-              className="w-full flex-row justify-end"
-              style={{ paddingBottom: 50 }}
-            >
-              <DistortionPill
-                title="“I’ll never get this right!”"
-                checked={false}
-                customColor={Colors.white}
-              />
-            </View>
+            {[
+              "example_1",
+              "example_2",
+              "example_3",
+              "example_4",
+              "example_5",
+              "example_6",
+            ].map((key, i) => (
+              <View
+                key={key}
+                className={`w-full flex-row justify-${i % 2 === 0 ? "end" : "start"}`}
+                style={{ paddingBottom: i === 5 ? 50 : 15 }}
+              >
+                <DistortionPill
+                  title={t(`tools.cda.tutorial.page_5.${key}`)}
+                  checked={false}
+                  customColor={Colors.white}
+                />
+              </View>
+            ))}
           </View>
         </React.Fragment>
       ),
-      title: "How to identify an automatic thought?",
-      text: "Knowing that our thoughts shape our feelings, “What may I be thinking to make me feel this way” tends to be a helpful question.\n\nSome examples of automatic thoughts are:",
+      title: <Trans i18nKey="tools.cda.tutorial.page_5.title" ns="tools" />,
+      text: (
+        <Trans
+          i18nKey="tools.cda.tutorial.page_5.instruction_1"
+          ns="tools"
+          components={transComponentsObj}
+        />
+      ),
     },
     {
       id: 6,
@@ -219,8 +223,14 @@ const CDA_Tutorial = () => {
           />
         </View>
       ),
-      title: "Cognitive Distortions",
-      text: "After identifying a problematic thought, a helpful next step is to analyze it—ask yourself whether it’s true or untrue, rational or irrational. \n\nCognitive distortions are the common patterns our automatic thoughts often follow when they’re inaccurate or unhelpful.\n\nOn the following slide, you’ll see a list of them.",
+      title: <Trans i18nKey="tools.cda.tutorial.page_6.title" ns="tools" />,
+      text: (
+        <Trans
+          i18nKey="tools.cda.tutorial.page_6.instruction_1"
+          ns="tools"
+          components={transComponentsObj}
+        />
+      ),
     },
     {
       id: 7,
@@ -236,7 +246,7 @@ const CDA_Tutorial = () => {
           }}
         >
           <Text style={styles.slideTextHeader}>
-            Types of Cognitive Distortions
+            <Trans i18nKey="tools.cda.tutorial.page_7.title" ns="tools" />
           </Text>
           <CDADistortionList
             showDistortionTooltip={showDistortionTooltip}
@@ -247,8 +257,10 @@ const CDA_Tutorial = () => {
             disableSelect
           />
           <Text style={styles.slideTextBodyInstruction}>
-            On following slides, you’ll see an example of a situation worked out
-            with help of this tool.
+            <Trans
+              i18nKey="tools.cda.tutorial.page_7.instruction_1"
+              ns="tools"
+            />
           </Text>
         </View>
       ),
@@ -271,8 +283,14 @@ const CDA_Tutorial = () => {
           />
         </View>
       ),
-      title: "Cognitive Distortion Check-In: Real Life Example",
-      text: "Cathy works in finance and often chats with her officemate Andy. \n\nOne Monday, she greets him in the kitchen, but he avoids eye contact and harshly says... \n\n“I don’t have time for this right now, Cathy.”\n\n His voice sounded very angry to her. Surprised and confused, Cathy returns to her desk, her mind racing. \n\nUsually, she’d spiral, but this time she decides to try to analyze her thoughts and to look at this awkward situation rationally.",
+      title: <Trans i18nKey="tools.cda.tutorial.page_8.title" ns="tools" />,
+      text: (
+        <Trans
+          i18nKey="tools.cda.tutorial.page_8.instruction_1"
+          ns="tools"
+          components={transComponentsObj}
+        />
+      ),
     },
     {
       id: 9,
@@ -280,36 +298,47 @@ const CDA_Tutorial = () => {
         <View style={{ paddingBottom: 24 }}>
           <View>
             <Text style={[styles.slideTextBodyLead, { paddingBottom: 8 }]}>
-              First, she wrote down the context of the situation:
+              <Trans
+                i18nKey="tools.cda.tutorial.page_9.instruction_1"
+                ns="tools"
+                components={transComponentsObj}
+              />
             </Text>
-            <CDATextBox textContent="Andy told me that “he doesn’t have time for this” when I greeted him at work" />
+            <CDATextBox
+              textContent={t("tools.cda.tutorial.page_9.textbox_1")}
+            />
             <Text
-              style={[styles.slideTextBodyInstruction, { paddingBottom: 8 }]}
+              style={[
+                styles.slideTextBodyInstruction,
+                { paddingBottom: 8, textAlign: "center", fontWeight: 800 },
+              ]}
             >
-              Hint:
-              <Text
-                style={[
-                  styles.slideTextBodyInstruction,
-                  { textDecoration: "italic" },
-                ]}
-              >
-                It’s important to try to describe the situation as objectively
-                as it is possible
-              </Text>
+              {t("instructions.hint", { ns: "common" })}:
+            </Text>
+
+            <Text
+              style={[
+                styles.slideTextBodyInstruction,
+                { paddingBottom: 8, textAlign: "center", marginTop: 0 },
+              ]}
+            >
+              <Trans
+                i18nKey="tools.cda.tutorial.page_9.hint_1"
+                ns="tools"
+                components={transComponentsObj}
+              />
             </Text>
           </View>
           <View>
             <Text style={[styles.slideTextBodyLead, { paddingBottom: 8 }]}>
-              Then, she filled-in the first (out of the many running through her
-              head) automatic thought that she noticed - this one seemed the
-              loudest:
+              <Trans
+                i18nKey="tools.cda.tutorial.page_9.instruction_2"
+                ns="tools"
+                components={transComponentsObj}
+              />
             </Text>
             <CDATextBox
-              textContent={
-                "Andy most probably hates me." +
-                "\n" +
-                "Just like the rest of the people in my office."
-              }
+              textContent={t("tools.cda.tutorial.page_9.textbox_2")}
             />
           </View>
         </View>
@@ -321,54 +350,62 @@ const CDA_Tutorial = () => {
         <View>
           <View>
             <Text style={styles.slideTextBodyLead}>
-              Then, looking at the thought and at the list of cognitive
-              distortions, she tried to pick which one could apply to this
-              thought:{" "}
+              <Trans
+                i18nKey="tools.cda.tutorial.page_10.instruction_1"
+                ns="tools"
+                components={transComponentsObj}
+              />
             </Text>
-            <CDATextBox textContent="Andy most probably hates me. Just like the rest of the people in my office." />
+            <Text style={[styles.slideTextBodyInstruction, { marginTop: 24 }]}>
+              <Trans
+                i18nKey="tools.cda.tutorial.page_10.textbox_1_title"
+                ns="tools"
+                components={transComponentsObj}
+              />
+            </Text>
+            <CDATextBox
+              textContent={t("tools.cda.tutorial.page_10.textbox_1")}
+            />
           </View>
           <View>
             <Text
               style={[
                 styles.slideTextBodyLead,
-                {
-                  marginBottom: SCREEN_HEIGHT * 0.035,
-                },
+                { marginBottom: SCREEN_HEIGHT * 0.035 },
               ]}
             >
-              While the thought seemed believable at first, when it was still in
-              her head, after she wrote it down, it became easier to subject it
-              to a sober look. {"\n\n"} She identified the distortion as...
+              <Trans
+                i18nKey="tools.cda.tutorial.page_10.instruction_2"
+                ns="tools"
+                components={transComponentsObj}
+              />
             </Text>
             <View className="items-center">
-              <View className="w-36">
-                <DistortionPill title={"Mind reading"} checked />
+              <View style={{ width: 144 }}>
+                <DistortionPill
+                  title={t("tools.cda.tutorial.page_10.distortion")}
+                  checked
+                />
               </View>
             </View>
             <Text
               style={[
                 styles.slideTextBodyLead,
-                { fontSize: 16, textDecoration: "italic" },
+                { marginTop: SCREEN_HEIGHT * 0.035 },
               ]}
             >
-              “Yes...{" "}
-              <Text
+              <Trans
                 style={[
                   styles.slideTextBodyLead,
-                  { fontWeight: 800, fontSize: 16, textDecoration: "italic" },
+                  {
+                    fontSize: 16,
+                    fontStyle: "italic",
+                  },
                 ]}
-              >
-                mind reading
-              </Text>
-              <Text
-                style={[
-                  styles.slideTextBodyLead,
-                  { fontSize: 16, textDecoration: "italic" },
-                ]}
-              >
-                ... I may, in fact, be doing it"
-              </Text>
-              , she thought...
+                i18nKey="tools.cda.tutorial.page_10.instruction_3"
+                ns="tools"
+                components={transComponentsObj}
+              />
             </Text>
           </View>
         </View>
@@ -379,40 +416,29 @@ const CDA_Tutorial = () => {
       visualItems: (
         <View>
           <View>
-            <Text
-              style={[
-                styles.slideTextBodyLead,
-                { fontSize: 16, textDecoration: "italic" },
-              ]}
-            >
-              <Text
-                style={[
-                  styles.slideTextBodyLead,
-                  { fontSize: 16, textDecoration: "italic" },
-                ]}
-              >
-                "...and just look how miserable it made me... in such a short
-                amount of time!"
-              </Text>
+            <Text style={[styles.slideTextBodyLead, { fontSize: 16 }]}>
+              <Trans
+                i18nKey="tools.cda.tutorial.page_11.instruction_1"
+                ns="tools"
+                components={transComponentsObj}
+              />
             </Text>
-            <Text
-              style={[
-                styles.slideTextBodyLead,
-                { fontSize: 16, textDecoration: "italic" },
-              ]}
-            >
-              Now was the time to correct this thought to make it more rational.{" "}
+
+            <Text style={[styles.slideTextBodyLead]}>
+              <Trans
+                i18nKey="tools.cda.tutorial.page_11.instruction_2"
+                ns="tools"
+                components={transComponentsObj}
+              />
             </Text>
           </View>
           <View>
             <CDATextBox
               customStyle={{ height: 180 }}
-              textContent={
-                "Even though Andy wasn’t nice to me (as he usually is) it’s a stretch to suggest that this may actually mean anything about me. \n\nAnd even if that reaction was related to me, that doesn’t make the “everyone hates me” scenario any more likely."
-              }
+              textContent={t("tools.cda.tutorial.page_11.textbox_1")}
             />
             <Text style={[styles.slideTextBodyLead, { fontSize: 16 }]}>
-              She immediately realised how much more probable this is.
+              {t("tools.cda.tutorial.page_11.instruction_3")}
             </Text>
           </View>
         </View>
@@ -436,8 +462,42 @@ const CDA_Tutorial = () => {
           />
         </View>
       ),
-      title: "Overview",
-      text: "Cathy’s situation eventually resolved after a few hours — but this time, she was surprised at how well she kept her cool.\n\nCognitive Therapy exercises help improve well-being by challenging irrational beliefs and replacing them with more balanced, rational ones.\n\nRemember:\nTo create a lasting change, regular practice and consistency are essential.",
+      title: <Trans i18nKey="tools.cda.tutorial.page_12.title" ns="tools" />,
+      text: (
+        <View>
+          <Text
+            style={[styles.slideTextBodyLead, { fontSize: 16, marginTop: 0 }]}
+          >
+            <Trans
+              i18nKey="tools.cda.tutorial.page_12.instruction_1"
+              ns="tools"
+              components={transComponentsObj}
+            />
+          </Text>
+          <View style={{ paddingTop: 24 }}>
+            <Text
+              style={{
+                color: Colors.white,
+                fontSize: 14,
+                fontWeight: 800,
+                textAlign: "center",
+              }}
+            >
+              {" "}
+              {t("instructions.remember", { ns: "common" })}:
+            </Text>
+            <Text
+              style={{ color: Colors.white, fontSize: 14, textAlign: "center" }}
+            >
+              <Trans
+                i18nKey="tools.cda.tutorial.page_12.hint_1"
+                ns="tools"
+                components={transComponentsObj}
+              />
+            </Text>
+          </View>
+        </View>
+      ),
     },
   ];
 
