@@ -185,6 +185,79 @@
           "message_2": "Regularnie analizuj swoje bolesne myśli, aby zmniejszyć ich wpływ na Twoje samopoczucie."
         }
       },
+      "tutorial": {
+        "page_1": {
+          "title": "Witaj",
+          "instruction_1": "Ponieważ to Twój pierwszy raz z tym narzędziem, przygotowaliśmy dla Ciebie krótki, 2–3-minutowy tutorial.\n\nPokażemy Ci, jak skutecznie korzystać z tego narzędzia, a także wyjaśnimy, czym są <bold>zniekształcenia poznawcze</bold> i <bold>myśli automatyczne</bold>."
+        },
+        "page_2": {
+          "title": "Jak myśli kształtują nasze emocje",
+          "instruction_1": "Główne przesłanie Terapii Poznawczo-Behawioralnej mówi, że <bold>to, jak myślimy (nasze procesy poznawcze), wpływa na to, jak się czujemy</bold>...\n\n...a to z kolei ma wpływ na nasze zachowanie (behawior).",
+          "image_1_title": "Model Poznawczy",
+          "image_1_subtitles": {
+            "situation": "Sytuacja",
+            "thought": "Myśli",
+            "feeling": "Emocje",
+            "action": "Zachowanie"
+          }
+        },
+        "page_3": {
+          "title": "Zmień swoje samopoczucie",
+          "instruction_1": "A więc, dobra wiadomość jest taka, że zmieniając to, jak myślimy, możemy wpłynąć na to, jak się czujemy.\n\nZapytasz: <italic>“No dobrze, ale jak właściwie mam to zrobić?”</italic>\n\nTo narzędzie pomoże ci w tym zadaniu poprzez:\n\n- <bold>Rozpoznanie automatycznych myśli</bold>\n- <bold>Wyłonienie z nich zniekształceń poznawczyc</bold>\n- <bold>Zastąpienie zniekształconej myśli racjonalną i bardziej obiektywną</bold>"
+        },
+        "page_4": {
+          "title": "Automatyczne myśli",
+          "instruction_1": "Automatyczne myśli to <bold>nagłe, często subtelne myśli, które pojawiają się w naszych głowach</bold> o róznych porach dnia i nocy.\n\nNie zawsze od razu je dostrzegamy, ale przy odrobinie pomocy, zauważysz je bez problemu.\n\nNa kolejnej stronie znajdziesz kilka wskazówek, jak zauważać swoje automatyczne myśli oraz kilka ich przykładów."
+        },
+        "page_5": {
+          "title": "Jak rozpoznać automatyczną myśl?",
+          "instruction_1": "<bold><italic>“Co takiego może siedzieć w mojej głowie, że czuję się w ten sposób?”</italic></bold> to pytanie, które często może okazać się tutaj pomocne. \n\nOto kilka przykładów częstych automatycznych myśli:",
+          "example_1": "“Ta osoba na pewno się na mnie gniewa.”",
+          "example_2": "“Ale ze mnie przegryw.”",
+          "example_3": "“Nikomu na mnie nie zależy.”",
+          "example_4": "“To będzie okropny dzień.”",
+          "example_5": "“Nie zasługuję na ten awans w pracy.”",
+          "example_6": "“Nigdy mi się to nie uda!”"
+        },
+        "page_6": {
+          "title": "Zniekształcenia Poznawcze",
+          "instruction_1": "Kiedy już rozpoznasz problematyczną myśl, warto zrobić kolejny krok i ją <bold>przeanalizować</bold> — zadać sobie pytanie, <bold>czy jest prawdziwa czy nie</bold>, czy jest racjonalna czy irracjonalna.\n\n<bold>Zniekształcenia poznawcze</bold> to typowe schematy, według których podążają nasze <bold>automatyczne myśli</bold>, gdy są nieprecyzyjne lub gdy nam nie służą.\n\nNa kolejnym slajdzie znajdziesz ich <bold>listę</bold>."
+        },
+        "page_7": {
+          "title": "Rodzaje Zniekształceń Poznawczych",
+          "instruction_1": "Na kolejnych slajdach zobaczysz przykład sytuacji przeanalizowanej przy pomocy tego narzędzia."
+        },
+        "page_8": {
+          "title": "Analiza Zniekształceń Poznawczych: przykład z życia wzięty",
+          "instruction_1": "Kasia pracuje w dziale finansowym i często rozmawia ze swoim współpracownikiem, Andrzejem.\n\nPewnego dnia wita go rano w biurowej kuchni, ale Andrzej unika kontaktu wzrokowego i szorstko odpowiada...\n\n<bold>“Nie mam na to teraz czasu, Kasia.”</bold>\n\nTon jego głosu zabrzmiał dla niej bardzo ostro. Zaskoczona i zdezorientowana, Kasia wraca do swojego biurka, a w jej głowie kłębią się myśli.\n\nZazwyczaj w takich sytuacjach jej lęk zdaje się sam się nakręcać... Tym razem jednak Kasia postanawia przeanalizować własne myśli i spojrzeć na tę niezręczną sytuację chłodnym okiem."
+        },
+        "page_9": {
+          "instruction_1": "Najpierw, Kasia <bold>opisała kontekst sytuacji</bold>:",
+          "textbox_1": "Andrzej powiedział mi: ”nie mam na to czasu”, kiedy przywitałam się z nim w pracy.",
+          "hint_1": "<italic>Postaraj się opisać sytuację tak obiektywnie, jak to możliwe.</italic>",
+          "instruction_2": "Następnie, zanotowała <bold>pierwszą z automatycznych myśli</bold>, które pojawiały się w jej głowie — ta wydała jej się ”najgłośniejsza”:",
+          "textbox_2": "Andrzej pewnie mnie nienawidzi.\nTak samo, jak reszta ludzi w moim biurze."
+        },
+        "page_10": {
+          "instruction_1": "Następnie, patrząc na zapisaną myśl i listę zniekształceń poznawczych, spróbowała określić, <bold>które z nich może tu pasować</bold>:",
+          "textbox_1_title": "Zniekształcona myśl:",
+          "textbox_1": "Andrzej pewnie mnie nienawidzi. Tak samo, jak reszta ludzi w moim biurze.",
+          "instruction_2": "Na początku ta myśl wydawała się Kasi wiarygodna. Jednak <bold>po jej zapisaniu znacznie łatwiej było spojrzeć na nią krytycznie</bold>. Zniekształcenie w niej rozpoznała jako...",
+          "distortion": "Czytanie w myślach",
+          "instruction_3": "<italic>”Tak... <bold>czytanie w myślach</bold>... chyba faktycznie to właśnie robię”</italic>, powiedziała do siebie."
+        },
+        "page_11": {
+          "instruction_1": "<italic>”...i kto by pomyślał, że tak mocno mogło mnie to przygnębić… w tak krótkim czasie!”</italic>",
+          "instruction_2": "Teraz przyszedł czas, by zniekształconą myśl <bold>skorygować</bold> - tak by była <bold>zgodna z rzeczywistością</bold>.",
+          "textbox_1": "Nawet jeśli Andrzej nie był dla mnie dzisiaj tak serdeczny jak bywa zazwyczaj, sugerowanie, że świadczy to cokolwiek o mnie albo o tej relacji, to spora nadinterpretacja.\n\nNawet jeśli ta reakcja miała coś wspólnego ze mną, to wcale nie oznacza, że scenariusz pt. „wszyscy mnie nienawidzą” staje się przez to jakkolwiek prawdopodobny.",
+          "instruction_3": "Od razu zdała sobie sprawę, że taka interpretacja jest o wiele bardziej prawdopodobna."
+        },
+        "page_12": {
+          "title": "Podsumowanie",
+          "instruction_1": "Sytuacja Kasi ostatecznie wyjaśniła się po kilku godzinach — tym razem była jednak zaskoczona, jak dobrze udało jej się zachować spokój.\n\nĆwiczenia z nurtu <bold>terapii poznawczo-behawioralnej</bold> pomagają nam poczuć się lepiej, ucząc, jak <bold>kwestionować nieracjonalne myśli</bold> i <bold>zastępować je bardziej wyważonym, obiektywnym spojrzeniem</bold>.",
+          "hint_1": "<italic>Regularne wykonywanie ćwiczenia jest kluczowe, by przynosiło ono trwałe efekty..</italic>"
+        }
+      },
       "distortion_list": {
         "all_or_nothing": {
           "name": "Myślenie zero-jedynkowe",

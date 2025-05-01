@@ -25,6 +25,7 @@
     "lets_begin": "Rozpocznij",
     "next": "Kolejna strona",
     "finish": "Zakończ",
+    "finish_tutorial": "Zakończ samouczek",
     "again": "Powtórz",
     "see_journal": "Zobacz Dziennik",
     "go_to_journal": "Idź do Dziennika",
@@ -85,6 +86,8 @@
   },
   "languages": { "en": "Angielski", "pl": "Polski" },
   "instructions": {
+    "remember": "Zapamiętaj",
+    "hint": "Wskazówka",
     "coming_soon": "Dostępne wkrótce",
     "tap_button_below": "Naciśnij przycisk poniżej, żeby przejść dalej",
     "tap_here_to_type": "Wpisz tutaj"

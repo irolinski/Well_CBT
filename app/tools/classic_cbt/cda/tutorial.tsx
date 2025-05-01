@@ -434,7 +434,7 @@ const CDA_Tutorial = () => {
           </View>
           <View>
             <CDATextBox
-              customStyle={{ height: 180 }}
+              customStyle={{ height: 200 }}
               textContent={t("tools.cda.tutorial.page_11.textbox_1")}
             />
             <Text style={[styles.slideTextBodyLead, { fontSize: 16 }]}>
