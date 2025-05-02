@@ -32,6 +32,11 @@ export type InfoSlideScreenData = {
   orientation?: "text_bottom" | "text_top";
 };
 
+type InfoSlideScreenType = {
+  slideData: InfoSlideScreenData[];
+  onSlideshowFinish?: () => void;
+};
+
 const RenderItem = ({
   item,
   index,
@@ -172,9 +177,8 @@ const RenderItem = ({
 
 const InfoSlideScreen = ({
   slideData,
-}: {
-  slideData: InfoSlideScreenData[];
-}) => {
+  onSlideshowFinish,
+}: InfoSlideScreenType) => {
   const { t } = useTranslation("common");
 
   const flatListRef = useAnimatedRef<FlatList>();
@@ -221,6 +225,9 @@ const InfoSlideScreen = ({
         />
 
         <InfoSlideScreenButton
+          onFinish={() => {
+            onSlideshowFinish && onSlideshowFinish();
+          }}
           flatListRef={flatListRef}
           flatListIndex={flatListIndex}
           dataLength={slideData.length}

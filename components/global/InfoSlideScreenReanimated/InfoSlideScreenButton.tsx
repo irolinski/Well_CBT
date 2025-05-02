@@ -1,11 +1,9 @@
 import React, { RefObject } from "react";
-import { useTranslation } from "react-i18next";
 import { FlatList, Pressable, StyleSheet } from "react-native";
 import Animated, {
   SharedValue,
   useAnimatedStyle,
   useSharedValue,
-  withDelay,
   withSpring,
   withTiming,
 } from "react-native-reanimated";
@@ -19,6 +17,7 @@ type InfoInfoSlideScreenButtonProps = {
   flatListIndex: SharedValue<number>;
   dataLength: number;
   text: string;
+  onFinish?: () => void;
 };
 
 export function InfoSlideScreenButton({
@@ -26,11 +25,14 @@ export function InfoSlideScreenButton({
   flatListIndex,
   flatListRef,
   text,
+  onFinish,
 }: InfoInfoSlideScreenButtonProps) {
+  // const isLastScreen = flatListIndex.value === dataLength - 1;
   const buttonOpacity = useSharedValue(1);
 
   const InfoSlideScreenButtonAnimationStyle = useAnimatedStyle(() => {
     const isLastScreen = flatListIndex.value === dataLength - 1;
+
     return {
       width: isLastScreen ? withSpring(140) : withSpring(60),
       height: 60,
@@ -40,6 +42,7 @@ export function InfoSlideScreenButton({
 
   const arrowAnimationStyle = useAnimatedStyle(() => {
     const isLastScreen = flatListIndex.value === dataLength - 1;
+
     return {
       opacity: isLastScreen ? withTiming(0) : withTiming(1),
       transform: [
@@ -50,6 +53,7 @@ export function InfoSlideScreenButton({
 
   const textAnimationStyle = useAnimatedStyle(() => {
     const isLastScreen = flatListIndex.value === dataLength - 1;
+
     return {
       opacity: isLastScreen ? withTiming(1) : withTiming(0),
       transform: [
@@ -60,8 +64,11 @@ export function InfoSlideScreenButton({
 
   const handleNextScreen = () => {
     const isLastScreen = flatListIndex.value === dataLength - 1;
+
     if (!isLastScreen) {
       flatListRef.current?.scrollToIndex({ index: flatListIndex.value + 1 });
+    } else {
+      onFinish && onFinish();
     }
   };
 

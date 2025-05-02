@@ -57,6 +57,9 @@ export const setUpDB = async () => {
       CREATE TABLE IF NOT EXISTS achievementProgress (
         id INT, currentScore INT, requiredScore INT, dateUnlocked VARCHAR (30) 
       );
+
+      CREATE TABLE IF NOT EXISTS seenTutorials (toolName VARCHAR(50) NOT NULL);
+
       
     `);
   } catch (err) {

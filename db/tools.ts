@@ -1,6 +1,9 @@
 import * as SQLite from "expo-sqlite";
 import { Alert } from "react-native";
-import { RelaxToolNames } from "@/constants/models/home/activity_log";
+import {
+  RelaxToolNames,
+  ToolNames,
+} from "@/constants/models/home/activity_log";
 import { cdaSliceTypes } from "@/state/features/tools/cdaSlice";
 import { journalSliceTypes } from "@/state/features/tools/journalSlice";
 import { getTranslation } from "@/utils/locales";
@@ -208,4 +211,41 @@ export const setContactWithPicture = async (
     console.error(err);
     Alert.alert(getTranslation("alerts.error_db_saving"));
   }
+};
+
+//tutorials
+
+export const handleSetSeenTutorial = async (toolName: ToolNames) => {
+  try {
+    const db = await SQLite.openDatabaseAsync(dbName);
+    await db.execAsync(
+      `
+      CREATE TABLE IF NOT EXISTS seenTutorials (toolName VARCHAR(50) NOT NULL);
+      INSERT INTO seenTutorials (toolName) VALUES ('${toolName}');
+      `,
+    );
+  } catch (err) {
+    console.error(err);
+    Alert.alert(getTranslation("alerts.error_db_saving"));
+  }
+};
+
+const handleGetSeenTutorial = async (toolName: ToolNames) => {
+  try {
+    const db = await SQLite.openDatabaseAsync(dbName);
+    const res = await db.getFirstAsync(
+      `SELECT 1 FROM seenTutorials WHERE toolName = '${toolName}'`,
+    );
+    return res;
+  } catch (err) {
+    console.error(err);
+    Alert.alert(getTranslation("alerts.error_db_saving"));
+  }
+};
+
+export const handleCheckTutorialWasSeen = async (
+  toolName: ToolNames,
+): Promise<boolean> => {
+  const res = await handleGetSeenTutorial(toolName);
+  return !!res;
 };

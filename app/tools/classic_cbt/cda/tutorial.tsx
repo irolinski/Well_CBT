@@ -13,8 +13,9 @@ import CDADistortionList from "@/components/tools/cda/CDADistortionList";
 import CDATextBox from "@/components/tools/cda/CDATextBox";
 import { Colors } from "@/constants/styles/colorTheme";
 import { SCREEN_HEIGHT } from "@/constants/styles/values";
+import { handleSetSeenTutorial } from "@/db/tools";
 
-const CDA_Tutorial = () => {
+const CDA_Tutorial = ({ closeModalFunc }: { closeModalFunc: () => void }) => {
   const { t } = useTranslation(["tools", "common"]);
   const transComponentsObj = {
     bold: <Text style={{ fontWeight: "bold", color: Colors.white }} />,
@@ -483,7 +484,6 @@ const CDA_Tutorial = () => {
                 textAlign: "center",
               }}
             >
-              {" "}
               {t("instructions.remember", { ns: "common" })}:
             </Text>
             <Text
@@ -503,7 +503,12 @@ const CDA_Tutorial = () => {
 
   return (
     <React.Fragment>
-      <InfoSlideScreen slideData={CDATutorialSlideData} />
+      <InfoSlideScreen
+        onSlideshowFinish={() => {
+          closeModalFunc();
+        }}
+        slideData={CDATutorialSlideData}
+      />
     </React.Fragment>
   );
 };

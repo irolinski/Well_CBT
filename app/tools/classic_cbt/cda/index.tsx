@@ -1,18 +1,32 @@
-import { Href, router } from 'expo-router';
-import React from 'react';
-import { Trans, useTranslation } from 'react-i18next';
-import { Dimensions, ImageBackground, Text, View } from 'react-native';
-import { toolBackgrounds } from '@/assets/images/tools/backgrounds/backgrounds';
-import AdvanceButton from '@/components/AdvanceButton';
-import BackButton from '@/components/BackButton';
-import { cda_tool } from '@/constants/models/tools/tools';
-import { Colors } from '@/constants/styles/colorTheme';
-import { SCREEN_HEIGHT } from '@/constants/styles/values';
+import { Href, router } from "expo-router";
+import React, { useEffect, useState } from "react";
+import { Trans, useTranslation } from "react-i18next";
+import { ImageBackground, Modal, Text, View } from "react-native";
+import { toolBackgrounds } from "@/assets/images/tools/backgrounds/backgrounds";
+import AdvanceButton from "@/components/AdvanceButton";
+import BackButton from "@/components/BackButton";
+import { cda_tool } from "@/constants/models/tools/tools";
+import { Colors } from "@/constants/styles/colorTheme";
+import { SCREEN_HEIGHT } from "@/constants/styles/values";
+import { handleCheckTutorialWasSeen, handleSetSeenTutorial } from "@/db/tools";
+import CDA_Tutorial from "./tutorial";
 
 const TOOL_NAME = cda_tool.name;
 
 const Cda = () => {
   const { t } = useTranslation(["tools", "common"]);
+  const [tutorialWasSeen, setTutorialWasSeen] = useState<boolean>(false);
+  const [tutorialModalIsOpen, setTutorialModalIsOpen] =
+    useState<boolean>(false);
+
+  useEffect(() => {
+    const handleTutorialWasSeenState = async () => {
+      const res = await handleCheckTutorialWasSeen("cda");
+      setTutorialWasSeen(res);
+    };
+
+    handleTutorialWasSeenState();
+  }, []);
 
   return (
     <React.Fragment>
@@ -51,18 +65,51 @@ const Cda = () => {
                 </Text>
               </View>
             </View>
-            <View className="my-16 w-full">
-              <AdvanceButton
-                className="w-full"
-                title={t("buttons.lets_begin", { ns: "common" })}
-                onPress={() =>
-                  router.replace("tools/classic_cbt/cda/page_1" as Href)
-                }
-              />
+            <View className="my-16 w-full items-center">
+              <View className="w-full">
+                <AdvanceButton
+                  className="w-full"
+                  title={t("buttons.lets_begin", { ns: "common" })}
+                  onPress={() =>
+                    !tutorialWasSeen
+                      ? setTutorialModalIsOpen(true)
+                      : router.replace("tools/classic_cbt/cda/page_1" as Href)
+                  }
+                />
+              </View>
+              {tutorialWasSeen && (
+                <View className="my-4 w-3/5">
+                  <AdvanceButton
+                    title={t("buttons.show_tutorial", { ns: "common" })}
+                    btnStyle={{
+                      backgroundColor: "transparent",
+                      borderWidth: 2,
+                      borderColor: Colors.offWhite,
+                      borderRadius: 5,
+                    }}
+                    onPress={() => setTutorialModalIsOpen(true)}
+                  />
+                </View>
+              )}
             </View>
           </View>
         </View>
       </ImageBackground>
+      <Modal
+        className="flex-1"
+        animationType="slide"
+        visible={tutorialModalIsOpen}
+      >
+        <CDA_Tutorial
+          closeModalFunc={() => {
+            setTutorialModalIsOpen(false);
+            if (!tutorialWasSeen) {
+              handleSetSeenTutorial("cda");
+              router.replace("tools/classic_cbt/cda/page_1" as Href);
+            }
+          }}
+        />
+      </Modal>
     </React.Fragment>
   );
 };
