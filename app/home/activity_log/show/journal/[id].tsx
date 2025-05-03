@@ -154,7 +154,7 @@ const ActivityShowPage = () => {
                                   <View
                                     className="mx-1 h-4 w-4 rounded-full"
                                     style={
-                                      i <= emotionObj.strength!
+                                      i <= emotionObj.strength! - 1
                                         ? {
                                             backgroundColor: `${
                                               emotionList.find(

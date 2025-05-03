@@ -46,7 +46,6 @@ const Log_5 = () => {
         const res: UserSettingsDataObj =
           (await getUserSettingsData()) as UserSettingsDataObj;
         if (res) {
-          console.log(res);
           setSettingsData(res);
         }
       } catch (error) {
@@ -148,12 +147,12 @@ const Log_5 = () => {
                               <View
                                 className="mx-1 h-4 w-4 rounded-full"
                                 style={
-                                  i <= emotionObj.strength!
+                                  i <= emotionObj.strength! - 1
                                     ? { backgroundColor: `${emotionObj.color}` }
                                     : { backgroundColor: Colors.offWhite }
                                 }
                                 key={i}
-                              ></View>
+                              />
                             );
                           },
                         )}
