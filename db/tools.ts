@@ -54,7 +54,7 @@ export const deleteCDAEntry = async (id: number) => {
   }
 };
 
-export const handleSaveJournalEntry = async (
+export const handleSaveMoodJournalEntry = async (
   journalState: journalSliceTypes,
 ) => {
   if (journalState.save) {
@@ -104,7 +104,7 @@ export const handleSaveJournalEntry = async (
   }
 };
 
-export const deleteJournalEntry = async (id: number) => {
+export const deleteMoodJournalEntry = async (id: number) => {
   try {
     const db = await SQLite.openDatabaseAsync(dbName);
     await db.execAsync(`DELETE FROM journalEntries WHERE id="${id}"`);
@@ -212,8 +212,6 @@ export const setContactWithPicture = async (
     Alert.alert(getTranslation("alerts.error_db_saving"));
   }
 };
-
-//tutorials
 
 export const handleSetSeenTutorial = async (toolName: ToolNames) => {
   try {

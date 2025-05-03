@@ -19,7 +19,7 @@ import { emotionList, moodValueTitles } from "@/constants/models/tools/journal";
 import { journal_tool } from "@/constants/models/tools/tools";
 import { Colors } from "@/constants/styles/colorTheme";
 import { fetchJournalEntry } from "@/db/activity_log";
-import { deleteJournalEntry } from "@/db/tools";
+import { deleteMoodJournalEntry } from "@/db/tools";
 import {
   convertIsoToEuropeanDate,
   formatDateStringForWrapping,
@@ -68,7 +68,9 @@ const ActivityShowPage = () => {
     return (
       <ScrollView>
         <ActivityShowNav
-          handlePressDelete={() => handleDeleteEntry(deleteJournalEntry, id)}
+          handlePressDelete={() =>
+            handleDeleteEntry(deleteMoodJournalEntry, id)
+          }
         />
         <View className={`mx-6 my-10 flex-1 justify-center`}>
           <View className="mb-12 pb-10">

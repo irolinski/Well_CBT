@@ -15,7 +15,7 @@ import { journal_tool } from "@/constants/models/tools/tools";
 import { Colors } from "@/constants/styles/colorTheme";
 import { journalStyleConstants } from "@/constants/styles/values";
 import { getUserSettingsData, UserSettingsDataObj } from "@/db/settings";
-import { handleSaveJournalEntry } from "@/db/tools";
+import { handleSaveMoodJournalEntry } from "@/db/tools";
 import {
   journalResetState,
   setSave,
@@ -36,7 +36,7 @@ const Log_5 = () => {
   const [settingsData, setSettingsData] = useState<UserSettingsDataObj>();
 
   const handleSave = async () => {
-    handleSaveJournalEntry(journalState);
+    handleSaveMoodJournalEntry(journalState);
     dispatch(journalResetState());
   };
 
