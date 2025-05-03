@@ -2,8 +2,8 @@
   "index": {
     "title": "Strona główna",
     "quote_of_the_day": "Cytat na dziś",
-    "recent_activity": "Twoje aktywności:",
-    "recent_activity_placeholder": "Gdy już dodasz swoje pierwsze wpisy, znajdziesz je tutaj."
+    "recent_activity": "Twoja aktywność:",
+    "recent_activity_placeholder": "Gdy już dodasz swoje pierwsze wpisy, pojawią się one tutaj ."
   },
   "activity_log": {
     "title": "Dziennik",
@@ -34,17 +34,17 @@
       "cda_1": "Zamienić przygnębiające myśli...",
       "cda_2": "...na bardziej racjonalne",
       "cda_example_thought": "Każdy popełnia błędy! \nChyba oceniam się zbyt surowo...",
-      "journal": "Prowadzić dziennik samopoczucia",
+      "journal": "Prowadzić dziennik nastroju",
       "and_much_more": "...i wiele więcej!"
     },
-    "privacy_text_1": "Twoja prywatność jest dla nas najważniejsza",
+    "privacy_text_1": "Twoja prywatność to dla nas priorytet",
     "privacy_text_2": "Twoje wpisy są przechowywane wyłącznie na Twoim urządzeniu",
-    "loading_text": "Przygotowujemy wszystko...",
-    "loading_success_text": "Gotowe! Możemy zaczynać!",
-    "goodbye_text": "Mamy nadzieję, że WorryFree będzie dla Ciebie pomocne.",
+    "loading_text": "Przygotowywanie...",
+    "loading_success_text": "Gotowe! Możemy zaczynać.",
+    "goodbye_text": "Mamy nadzieję, że WorryFree przyniesie Ci realne wsparcie.",
     "accomplish_questionnaire": {
-      "question": "Co chciał(a)byś osiągnąć z WorryFree?",
-      "instruction": "Wybierz jedną lub kilka opcji poniżej.",
+      "question": "Co chciał(a)byś osiągnąć, korzystając z WorryFree?",
+      "instruction": "Wybierz jedną lub więcej opcji poniżej.",
       "options": {
         "mood": "Chcę poprawić swój nastrój",
         "anxiety": "Chcę zmniejszyć poziom swojego lęku",
@@ -56,10 +56,10 @@
         "self_esteem": "Chcę poprawić swoją samoocenę",
         "sleep": "Chcę poprawić jakość swojego snu",
         "cbt_exercises": "Chcę nauczyć się technik terapii poznawczo-behawioralnej",
-        "therapy_support": "Chcę korzstać z WorryFree jako narzędzia wspierającego 'tradycyjną' terapię",
+        "therapy_support": "Chcę korzystać z WorryFree jako narzędzia wspierającego 'tradycyjną' terapię",
         "procrastination": "Chcę pokonać prokrastynację",
         "phobias_fears": "Chcę nauczyć się radzić sobie z fobiami i/lub lękami",
-        "just_browsing": "Nic konkretnego — tylko przeglądam"
+        "just_browsing": "Nic konkretnego / na razie nie wiem"
       }
     }
   },
@@ -73,7 +73,7 @@
     "how_are_you_today": "Jak się dzisiaj masz?",
     "glad_youre_here": "Cieszymy się, że tu jesteś!",
     "hows_everything_going": "Jak się masz?",
-    "what_brings_you_here": "Co Cię dzisiaj sprowadza?",
+    "what_brings_you_here": "Co Cię tu dzisiaj sprowadza?",
     "how_may_we_help": "Jak możemy Ci pomóc?",
     "hows_it_going": "Jak leci?",
     "hope_youre_feeling_well": "Mamy nadzieję, że dobrze się czujesz!",
