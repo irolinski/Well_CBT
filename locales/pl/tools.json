@@ -616,6 +616,46 @@
           "cozy_things": {
             "name": "Miłe i Przytulne Rzeczy",
             "description": "Porozmawiaj o rzeczach, które sprawiają, że czujesz się komfortowo, jak ciepłe koce czy wełniane skarpety."
+          },
+          "describe_surroundings": {
+            "name": "Opisz swoje otoczenie",
+            "description": "Opowiedz o przestrzeni, w której znajdujesz się w tej chwili."
+          },
+          "relaxing_music": {
+            "name": "Ulubiona relaksująca muzyka",
+            "description": "Podziel się piosenkami lub wykonawcami, którzy pomagają Ci się uspokoić i zrelaksować."
+          },
+          "movies_that_make_you_smile": {
+            "name": "Filmy lub seriale, wywołujące uśmiech na twarzy",
+            "description": "Opowiedz o filmach lub serialach, które Cię rozbawiły albo dały Ci ciepłe uczucia."
+          },
+          "relaxing_video_games": {
+            "name": "Gry komputerowe na odstresowanie",
+            "description": "Opowiedz o grach, w które granie odpręża lub wywołuje ciepłe emocje.."
+          },
+          "sports_outdoor": {
+            "name": "Sporty lub aktywności na świeżym powietrzu, które lubisz",
+            "description": "Porozmawiaj o sportach lub zajęciach na zewnątrz, które sprawiają Ci radość."
+          },
+          "favorite_soundscapes": {
+            "name": "Twoje ulubione pejzaże dźwiękowe",
+            "description": "Opowiedz o dźwiękach, które lubisz – jak np. deszcz, fale czy śpiew ptaków."
+          },
+          "inspirational_books": {
+            "name": "Książki lub historie, które Cię inspirują",
+            "description": "Podziel się ulubioną historią lub książką, która dała Ci nadzieję albo natchnienie."
+          },
+          "happy_memories": {
+            "name": "Dobre emocje",
+            "description": "Opowiedz o uczuciach takich jak radość czy spokój oraz o tym, co je w Tobie wywołuje."
+          },
+          "sports_moments": {
+            "name": "Ulubione sportowe momenty",
+            "description": "Porozmawiaj o ekscytujących lub wzruszających momentach sportowych, których byłeś świadkiem lub uczestnikiem."
+          },
+          "dream_room": {
+            "name": "Wymarzony pokój",
+            "description": "Wyobraź sobie swój idealny pokój i opowiedz, co by się w nim znalazło."
           }
         }
       }
