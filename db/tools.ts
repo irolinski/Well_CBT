@@ -9,6 +9,10 @@ import { journalSliceTypes } from "@/state/features/tools/journalSlice";
 import { getTranslation } from "@/utils/locales";
 import { dbName } from "./service";
 
+//--
+// tools/cda
+//--
+
 export const handleSaveCDAEntry = async (cdaState: cdaSliceTypes) => {
   if (cdaState.save) {
     try {
@@ -53,6 +57,10 @@ export const deleteCDAEntry = async (id: number) => {
     Alert.alert(getTranslation("alerts.error_db_erasing"));
   }
 };
+
+//--
+//tools/classic_cbt/journal
+//--
 
 export const handleSaveMoodJournalEntry = async (
   journalState: journalSliceTypes,
@@ -115,6 +123,10 @@ export const deleteMoodJournalEntry = async (id: number) => {
   }
 };
 
+//--
+// tools/relax
+//--
+
 export const handleLogRelaxActivity = async (
   activityName: RelaxToolNames,
   relaxTime: number,
@@ -153,6 +165,10 @@ export const handleLogRelaxActivity = async (
     console.error(err);
   }
 };
+
+// ---
+// tools/phone_a_friend
+// ---
 
 export const getPhoneData = async () => {
   const db = await SQLite.openDatabaseAsync(dbName);
@@ -212,6 +228,10 @@ export const setContactWithPicture = async (
     Alert.alert(getTranslation("alerts.error_db_saving"));
   }
 };
+
+// ---
+// tool tutorials
+// ---
 
 export const handleSetSeenTutorial = async (toolName: ToolNames) => {
   try {
