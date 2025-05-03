@@ -7,7 +7,7 @@ import AdvanceButton from "@/components/AdvanceButton";
 import BackButton from "@/components/BackButton";
 import { cda_tool } from "@/constants/models/tools/tools";
 import { Colors } from "@/constants/styles/colorTheme";
-import { SCREEN_HEIGHT } from "@/constants/styles/values";
+import { SCREEN_HEIGHT, SCREEN_WIDTH } from "@/constants/styles/values";
 import { handleCheckTutorialWasSeen, handleSetSeenTutorial } from "@/db/tools";
 import CDA_Tutorial from "./tutorial";
 
@@ -29,7 +29,7 @@ const Cda = () => {
   }, []);
 
   return (
-    <React.Fragment>
+    <View>
       <ImageBackground source={toolBackgrounds.thought_challange}>
         <View
           className="absolute left-6 z-10"
@@ -38,34 +38,31 @@ const Cda = () => {
           <BackButton color={Colors.whiteSmoke} />
         </View>
         <View className="h-full justify-center px-6">
-          <View className="items-center justify-center">
-            <View className="absolute left-8 top-8"></View>
-            <View>
-              <View className="my-4 mr-[15%] justify-center">
-                <Text
-                  className="my-4 text-left text-2xl font-bold"
-                  style={{
-                    fontFamily: "KodchasanMedium",
-                    color: Colors.whiteSmoke,
+          <View className="justify-around">
+            <View
+              className="my-4 justify-center"
+              style={{ marginRight: SCREEN_WIDTH * 0.1 }}
+            >
+              <Text
+                className="my-4 text-left text-2xl font-bold"
+                style={{
+                  fontFamily: "KodchasanMedium",
+                  color: Colors.whiteSmoke,
+                }}
+              >
+                {t(`tools.${TOOL_NAME}.title`)}
+              </Text>
+              <Text className="my-2 text-sm" style={{ color: Colors.offWhite }}>
+                <Trans
+                  i18nKey="tools.cda.description"
+                  ns="tools"
+                  components={{
+                    bold: <Text style={{ fontWeight: "bold" }} />,
                   }}
-                >
-                  {t(`tools.${TOOL_NAME}.title`)}
-                </Text>
-                <Text
-                  className="my-2 text-sm"
-                  style={{ color: Colors.offWhite }}
-                >
-                  <Trans
-                    i18nKey="tools.cda.description"
-                    ns="tools"
-                    components={{
-                      bold: <Text style={{ fontWeight: "bold" }} />,
-                    }}
-                  />
-                </Text>
-              </View>
+                />
+              </Text>
             </View>
-            <View className="my-16 w-full items-center">
+            <View className="mt-16 w-full items-center">
               <View className="w-full">
                 <AdvanceButton
                   className="w-full"
@@ -78,7 +75,7 @@ const Cda = () => {
                 />
               </View>
               {tutorialWasSeen && (
-                <View className="my-4 w-3/5">
+                <View className="mt-6 w-3/5">
                   <AdvanceButton
                     title={t("buttons.show_tutorial", { ns: "common" })}
                     btnStyle={{
@@ -110,7 +107,7 @@ const Cda = () => {
           }}
         />
       </Modal>
-    </React.Fragment>
+    </View>
   );
 };
 
