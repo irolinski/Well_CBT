@@ -1,8 +1,8 @@
-import { ColorValue, View } from "react-native";
-import { Colors } from "@/constants/styles/colorTheme";
-import { SCREEN_HEIGHT } from "@/constants/styles/values";
-import BackButton from "../BackButton";
-import ToolHeader from "../tools/ToolHeader";
+import { ColorValue, SafeAreaView, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { Colors } from '@/constants/styles/colorTheme';
+import BackButton from '../BackButton';
+import ToolHeader from '../tools/ToolHeader';
 
 type menuNavTypes = {
   name: string;
@@ -17,12 +17,17 @@ const MenuNav = ({
   backgroundColor,
   handleBackButtonPress,
 }: menuNavTypes) => {
+  const insets = useSafeAreaInsets();
+  const TOP_FRAME_HEIGHT = 50 + insets.top;
+
   return (
-    <View
-      className={`z-10 w-full ${SCREEN_HEIGHT > 750 ? "pb-4 pt-16" : "pb-4 pt-8"}`} // border-b?
+    <SafeAreaView
+      className="z-10 w-full justify-center"
       style={{
+        height: TOP_FRAME_HEIGHT,
         borderColor: Colors.lightGray,
         backgroundColor: backgroundColor ?? Colors.mainBlue,
+        // paddingBottom: TOP_FRAME_HEIGHT * 0.15,
       }}
     >
       <View className="z-10 w-full flex-row items-center justify-between">
@@ -40,7 +45,7 @@ const MenuNav = ({
           </ToolHeader>
         </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 export default MenuNav;
