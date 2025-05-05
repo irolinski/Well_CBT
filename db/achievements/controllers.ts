@@ -12,8 +12,8 @@ import {
   handleGetRelaxTime,
 } from "@/db/about";
 import { handleGetFinishedArticleIds } from "@/db/learn";
-import { dbName } from "@/db/service";
 import { handleGetNumOfAllEntries, handleGetUserData } from "@/db/user";
+import { dbPromise } from "@/services/db";
 import { getTranslation } from "@/utils/locales";
 
 export type AchievementIdType = keyof typeof allAchievementsWithControllersObj;
@@ -21,7 +21,7 @@ export type AchievementIdType = keyof typeof allAchievementsWithControllersObj;
 export const handleGetAchievementProgressData = async (): Promise<
   AchievementProgressObj[] | undefined
 > => {
-  const db = await SQLite.openDatabaseAsync(dbName);
+  const db = await dbPromise;
   const res = await db.getAllAsync(`SELECT * FROM achievementProgress;`);
   const achievementProgressData: AchievementProgressObj[] =
     res as AchievementProgressObj[];
@@ -61,7 +61,7 @@ const handleAchievementController = async (
   controller: AchievementControllerType,
 ) => {
   try {
-    const db = await SQLite.openDatabaseAsync(dbName);
+    const db = await dbPromise;
 
     const { currentScore, requiredScore } =
       await getAchievementProgress(achievementId);

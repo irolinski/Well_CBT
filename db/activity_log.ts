@@ -1,11 +1,10 @@
-import * as SQLite from "expo-sqlite";
 import { Alert } from "react-native";
+import { dbPromise } from "@/services/db";
 import { getTranslation } from "@/utils/locales";
-import { dbName } from "./service";
 
 export const fetchRecentEntries = async () => {
   try {
-    const db = await SQLite.openDatabaseAsync(dbName);
+    const db = await dbPromise;
     const res = await db.getAllAsync(
       "SELECT * FROM allActivities ORDER BY datetime DESC LIMIT 3",
     );
@@ -17,7 +16,7 @@ export const fetchRecentEntries = async () => {
 
 export const fetchEntryData = async () => {
   try {
-    const db = await SQLite.openDatabaseAsync(dbName);
+    const db = await dbPromise;
     const res = await db.getAllAsync(
       "SELECT * FROM allActivities ORDER BY datetime DESC LIMIT 1000",
     );
@@ -29,7 +28,7 @@ export const fetchEntryData = async () => {
 
 export const fetchCDAEntry = async (id: number) => {
   try {
-    const db = await SQLite.openDatabaseAsync(dbName);
+    const db = await dbPromise;
     const res = await db.getAllAsync(
       `SELECT * FROM cdaArchive WHERE id="${id}"`,
     );
@@ -41,7 +40,7 @@ export const fetchCDAEntry = async (id: number) => {
 
 export const fetchJournalEntry = async (id: number) => {
   try {
-    const db = await SQLite.openDatabaseAsync(dbName);
+    const db = await dbPromise;
     const res: any = {};
     res.main = await db.getAllAsync(
       `SELECT * FROM journalEntries WHERE id="${id}"`,

@@ -1,12 +1,11 @@
-import * as SQLite from "expo-sqlite";
 import { Alert } from "react-native";
+import { dbPromise } from "@/services/db";
 import { getTranslation } from "@/utils/locales";
 import { StatsDataObjType, TableRowCountObj } from "./models";
-import { dbName } from "./service";
 
 export const handleGetCDACount = async (): Promise<number> => {
   try {
-    const db = await SQLite.openDatabaseAsync(dbName);
+    const db = await dbPromise;
     const res: TableRowCountObj = (await db.getFirstAsync(
       `SELECT COUNT(1) AS rowCount FROM cdaArchive;`,
     )) as TableRowCountObj;
@@ -26,7 +25,7 @@ export const handleGetCDACount = async (): Promise<number> => {
 
 export const handleGetJournalCount = async (): Promise<number> => {
   try {
-    const db = await SQLite.openDatabaseAsync(dbName);
+    const db = await dbPromise;
     const res: TableRowCountObj = (await db.getFirstAsync(
       `SELECT COUNT(1) AS rowCount FROM journalEntries;`,
     )) as TableRowCountObj;
@@ -46,7 +45,7 @@ export const handleGetJournalCount = async (): Promise<number> => {
 export const handleGetRelaxTime = async (): Promise<number> => {
   type SumOfSecondsRelaxedObj = { sumOfSecondsRelaxed: number };
   try {
-    const db = await SQLite.openDatabaseAsync(dbName);
+    const db = await dbPromise;
     const res: SumOfSecondsRelaxedObj = (await db.getFirstAsync(
       `SELECT SUM(secondsRelaxed) AS sumOfSecondsRelaxed FROM relaxActivities;`,
     )) as SumOfSecondsRelaxedObj;
@@ -65,7 +64,7 @@ export const handleGetRelaxTime = async (): Promise<number> => {
 const handleGetHighestVisitStreak = async (): Promise<number> => {
   type HighestVisitStreakObj = { highestVisitStreak: number };
   try {
-    const db = await SQLite.openDatabaseAsync(dbName);
+    const db = await dbPromise;
     const res: HighestVisitStreakObj = (await db.getFirstAsync(
       `SELECT highestVisitStreak FROM userData LIMIT 1;`,
     )) as HighestVisitStreakObj;

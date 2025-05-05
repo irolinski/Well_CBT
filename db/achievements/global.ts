@@ -1,4 +1,3 @@
-import * as SQLite from "expo-sqlite";
 import { Alert } from "react-native";
 import {
   AchievementProgressObj,
@@ -9,13 +8,13 @@ import {
   allAchievementsWithControllersArr,
   handleGetAchievementProgressData,
 } from "@/db/achievements/controllers";
+import { dbPromise } from "@/services/db";
 import { getTranslation } from "@/utils/locales";
-import { dbName } from "../service";
 
 // create a table for achievement progress
 const handleCreateAchievementProgressTable = async () => {
   try {
-    const db = await SQLite.openDatabaseAsync(dbName);
+    const db = await dbPromise;
     await db.execAsync(`
         CREATE TABLE IF NOT EXISTS achievementProgress (
           id INT, currentScore INT, requiredScore INT, dateUnlocked VARCHAR (30) 
@@ -30,7 +29,7 @@ const handleCreateAchievementProgressTable = async () => {
 // a function that adds achievement ids to the database programatically
 const handlePopulateAchievementProgressTable = async () => {
   try {
-    const db = await SQLite.openDatabaseAsync(dbName);
+    const db = await dbPromise;
     const achievementProgressList = await handleGetAchievementProgressData();
     // console.log(achievementProgressList);
 

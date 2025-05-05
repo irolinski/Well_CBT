@@ -1,14 +1,14 @@
 import * as SQLite from "expo-sqlite";
-import { dbName } from "./service";
+import { dbPromise } from "@/services/db";
 
 export const handleGetFinishedArticleIds = async () => {
-  const db = await SQLite.openDatabaseAsync(dbName);
+  const db = await dbPromise;
   const res = await db.getAllAsync("SELECT * FROM learnFinishedArticles");
   return res;
 };
 
 export const handleAddFinishedArticle = async (id: number) => {
-  const db = await SQLite.openDatabaseAsync(dbName);
+  const db = await dbPromise;
   const finishedArticlesArr = await handleGetFinishedArticleIds();
   if (!finishedArticlesArr.includes(id))
     db.execAsync(

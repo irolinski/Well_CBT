@@ -1,7 +1,6 @@
-import * as SQLite from "expo-sqlite";
 import { Alert } from "react-native";
+import { dbPromise } from "@/services/db";
 import { getTranslation } from "@/utils/locales";
-import { dbName } from "./service";
 
 export type UserSettingsDataObj = {
   exerciseAutoSaveIsActive: number;
@@ -10,7 +9,7 @@ export type UserSettingsDataObj = {
 
 export const getUserSettingsData = async () => {
   try {
-    const db = await SQLite.openDatabaseAsync(dbName);
+    const db = await dbPromise;
     const res: UserSettingsDataObj | undefined | null = await db.getFirstAsync(
       "SELECT * FROM userSettings",
     );
@@ -25,7 +24,7 @@ export const getUserSettingsData = async () => {
 export const handleSetExerciseAutoSaveIsActive = async (value: boolean) => {
   const newValue: number = Number(value);
   try {
-    const db = await SQLite.openDatabaseAsync(dbName);
+    const db = await dbPromise;
     await db.execAsync(
       `UPDATE userSettings SET exerciseAutoSaveIsActive = ${newValue}; `,
     );

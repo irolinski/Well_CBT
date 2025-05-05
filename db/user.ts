@@ -1,9 +1,8 @@
-import * as SQLite from "expo-sqlite";
 import { Alert } from "react-native";
+import { dbPromise } from "@/services/db";
 import { isSameDate } from "@/utils/dates";
 import { getTranslation } from "@/utils/locales";
 import { TableRowCountObj, UserType } from "./models";
-import { dbName } from "./service";
 
 const isUserType = (res: any): res is UserType => {
   return (
@@ -17,7 +16,7 @@ const isUserType = (res: any): res is UserType => {
 
 export const handleGetNumOfAllEntries = async (): Promise<number> => {
   try {
-    const db = await SQLite.openDatabaseAsync(dbName);
+    const db = await dbPromise;
     const res: TableRowCountObj = (await db.getFirstAsync(`
     SELECT COUNT(1) AS rowCount FROM allActivities;
     `)) as TableRowCountObj;
@@ -38,7 +37,7 @@ export const handleGetNumOfAllEntries = async (): Promise<number> => {
 
 export const handleGetUserData = async (): Promise<UserType | undefined> => {
   try {
-    const db = await SQLite.openDatabaseAsync(dbName);
+    const db = await dbPromise;
     const res: unknown | UserType = await db.getFirstAsync(
       `SELECT * FROM userData;`,
     );
@@ -58,7 +57,7 @@ export const handleGetUserData = async (): Promise<UserType | undefined> => {
 
 const countOneDay = async (): Promise<void> => {
   try {
-    const db = await SQLite.openDatabaseAsync(dbName);
+    const db = await dbPromise;
     const userData = await handleGetUserData();
     if (userData) {
       let { numOfAllVisits } = userData;
@@ -72,7 +71,7 @@ const countOneDay = async (): Promise<void> => {
 
 export const handleSetVisitStreakCount = async (): Promise<void> => {
   try {
-    const db = await SQLite.openDatabaseAsync(dbName);
+    const db = await dbPromise;
 
     const res: UserType | undefined = await handleGetUserData();
     let user: UserType;
@@ -136,7 +135,7 @@ export const handleSetVisitStreakCount = async (): Promise<void> => {
 
 export const handleSetName = async (name: string) => {
   try {
-    const db = await SQLite.openDatabaseAsync(dbName);
+    const db = await dbPromise;
     const res: void = await db.execAsync(
       `UPDATE userData SET name = "${name}";`,
     );
@@ -148,7 +147,7 @@ export const handleSetName = async (name: string) => {
 
 export const handleSetProfilePicId = async (faceId: number) => {
   try {
-    const db = await SQLite.openDatabaseAsync(dbName);
+    const db = await dbPromise;
     const res: void = await db.execAsync(
       `UPDATE userData SET profilePicId = ${faceId}`,
     );

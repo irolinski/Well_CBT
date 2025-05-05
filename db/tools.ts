@@ -1,13 +1,12 @@
-import * as SQLite from "expo-sqlite";
 import { Alert } from "react-native";
 import {
   RelaxToolNames,
   ToolNames,
 } from "@/constants/models/home/activity_log";
+import { dbPromise } from "@/services/db";
 import { cdaSliceTypes } from "@/state/features/tools/cdaSlice";
 import { journalSliceTypes } from "@/state/features/tools/journalSlice";
 import { getTranslation } from "@/utils/locales";
-import { dbName } from "./service";
 
 //--
 // tools/cda
@@ -16,7 +15,7 @@ import { dbName } from "./service";
 export const handleSaveCDAEntry = async (cdaState: cdaSliceTypes) => {
   if (cdaState.save) {
     try {
-      const db = await SQLite.openDatabaseAsync(dbName);
+      const db = await dbPromise;
 
       // First, create the table
       await db.execAsync(`
@@ -50,7 +49,7 @@ export const handleSaveCDAEntry = async (cdaState: cdaSliceTypes) => {
 
 export const deleteCDAEntry = async (id: number) => {
   try {
-    const db = await SQLite.openDatabaseAsync(dbName);
+    const db = await dbPromise;
     await db.execAsync(`DELETE FROM cdaArchive WHERE id="${id}"`);
   } catch (err) {
     console.error(err);
@@ -67,7 +66,7 @@ export const handleSaveMoodJournalEntry = async (
 ) => {
   if (journalState.save) {
     try {
-      const db = await SQLite.openDatabaseAsync(dbName);
+      const db = await dbPromise;
 
       // First, create the tables in separate calls
       await db.execAsync(`
@@ -114,7 +113,7 @@ export const handleSaveMoodJournalEntry = async (
 
 export const deleteMoodJournalEntry = async (id: number) => {
   try {
-    const db = await SQLite.openDatabaseAsync(dbName);
+    const db = await dbPromise;
     await db.execAsync(`DELETE FROM journalEntries WHERE id="${id}"`);
     await db.execAsync(`DELETE FROM journalEntryEmotions WHERE id="${id}"`);
   } catch (err) {
@@ -132,7 +131,7 @@ export const handleLogRelaxActivity = async (
   relaxTime: number,
 ) => {
   try {
-    const db = await SQLite.openDatabaseAsync(dbName);
+    const db = await dbPromise;
 
     // First, create the tables in separate calls
     await db.execAsync(`
@@ -171,7 +170,7 @@ export const handleLogRelaxActivity = async (
 // ---
 
 export const getPhoneData = async () => {
-  const db = await SQLite.openDatabaseAsync(dbName);
+  const db = await dbPromise;
   try {
     db.execAsync(`CREATE TABLE IF NOT EXISTS phoneAFriend (
           name VARCHAR(100),
@@ -187,7 +186,7 @@ export const getPhoneData = async () => {
 };
 
 export const setContact = async (name: string, phone: string) => {
-  const db = await SQLite.openDatabaseAsync(dbName);
+  const db = await dbPromise;
   try {
     await db.execAsync(`
       DROP TABLE IF EXISTS phoneAFriend;
@@ -210,7 +209,7 @@ export const setContactWithPicture = async (
   phone: string,
   pictureURI: string,
 ) => {
-  const db = await SQLite.openDatabaseAsync(dbName);
+  const db = await dbPromise;
   try {
     await db.execAsync(`
       DROP TABLE IF EXISTS phoneAFriend;
@@ -235,7 +234,7 @@ export const setContactWithPicture = async (
 
 export const handleSetSeenTutorial = async (toolName: ToolNames) => {
   try {
-    const db = await SQLite.openDatabaseAsync(dbName);
+    const db = await dbPromise;
     await db.execAsync(
       `
       CREATE TABLE IF NOT EXISTS seenTutorials (toolName VARCHAR(50) NOT NULL);
@@ -250,7 +249,7 @@ export const handleSetSeenTutorial = async (toolName: ToolNames) => {
 
 const handleGetSeenTutorial = async (toolName: ToolNames) => {
   try {
-    const db = await SQLite.openDatabaseAsync(dbName);
+    const db = await dbPromise;
     const res = await db.getFirstAsync(
       `SELECT 1 FROM seenTutorials WHERE toolName = '${toolName}'`,
     );
