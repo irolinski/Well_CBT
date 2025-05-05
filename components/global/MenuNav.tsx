@@ -1,8 +1,8 @@
-import { ColorValue, SafeAreaView, View } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Colors } from '@/constants/styles/colorTheme';
-import BackButton from '../BackButton';
-import ToolHeader from '../tools/ToolHeader';
+import { ColorValue, SafeAreaView, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { Colors } from "@/constants/styles/colorTheme";
+import BackButton from "../BackButton";
+import ToolHeader from "../tools/ToolHeader";
 
 type menuNavTypes = {
   name: string;
@@ -27,7 +27,6 @@ const MenuNav = ({
         height: TOP_FRAME_HEIGHT,
         borderColor: Colors.lightGray,
         backgroundColor: backgroundColor ?? Colors.mainBlue,
-        // paddingBottom: TOP_FRAME_HEIGHT * 0.15,
       }}
     >
       <View className="z-10 w-full flex-row items-center justify-between">
