@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { Modal, Pressable, ScrollView, View } from "react-native";
+import { Modal, Platform, Pressable, ScrollView, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import DividerLine from "@/components/DividerLine";
 import Text from "@/components/global/Text";
@@ -12,7 +12,7 @@ import {
 } from "@/constants/styles/values";
 import { setShowActivityLogModal } from "@/state/features/menus/activityLogModalSlice";
 import { AppDispatch, RootState } from "@/state/store";
-import { Feather } from "@expo/vector-icons";
+import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 import ActivityLogCalendar from "./Calendar";
 
 const ActivityLogModal = () => {
@@ -32,8 +32,10 @@ const ActivityLogModal = () => {
     >
       <ScrollView
         onScroll={(evt) => {
-          evt.nativeEvent.contentOffset.y < CLOSE_MODAL_OFFSET_TRESHOLD &&
-            dispatch(setShowActivityLogModal(false));
+          if (Platform.OS === "ios") {
+            evt.nativeEvent.contentOffset.y < CLOSE_MODAL_OFFSET_TRESHOLD &&
+              dispatch(setShowActivityLogModal(false));
+          }
         }}
       >
         <View
@@ -49,11 +51,27 @@ const ActivityLogModal = () => {
               dispatch(setShowActivityLogModal(false));
             }}
           >
-            <View className="items-center pb-6">
-              <View>
-                <Feather name="chevron-down" size={24} color={Colors.black} />
+            {Platform.OS === "ios" ? (
+              <View className="items-center pb-6">
+                <View>
+                  <Feather
+                    name="chevron-down"
+                    size={24}
+                    color={Colors.blackPearl}
+                  />
+                </View>
               </View>
-            </View>
+            ) : (
+              <View className="items-start px-8 pb-6">
+                <View>
+                  <MaterialCommunityIcons
+                    name="window-close"
+                    size={24}
+                    color={Colors.blackPearl}
+                  />
+                </View>
+              </View>
+            )}
           </Pressable>
           <View className="items-center">
             <Text className="text-xl" style={{ color: Colors.mainGray }}>

@@ -1,6 +1,6 @@
 import { Image } from "expo-image";
 import { useTranslation } from "react-i18next";
-import { Dimensions, Modal, Pressable, ScrollView, View } from "react-native";
+import { Modal, Platform, Pressable, ScrollView, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import Text from "@/components/global/Text";
 import RadioButton from "@/components/RadioButton";
@@ -22,7 +22,7 @@ import {
 } from "@/state/features/tools/breatheSettingsSlice";
 import { AppDispatch, RootState } from "@/state/store";
 import { isPolishFew } from "@/utils/locales";
-import { Feather } from "@expo/vector-icons";
+import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 import { Slider } from "@miblanchard/react-native-slider";
 
 const TOOL_NAME = breathing_tool.name;
@@ -44,8 +44,10 @@ const BreatheModal = ({ ellapsedTime }: { ellapsedTime: number }) => {
     >
       <ScrollView
         onScroll={(evt) => {
-          evt.nativeEvent.contentOffset.y < CLOSE_MODAL_OFFSET_TRESHOLD &&
-            dispatch(toggleModal(false));
+          if (Platform.OS === "ios") {
+            evt.nativeEvent.contentOffset.y < CLOSE_MODAL_OFFSET_TRESHOLD &&
+              dispatch(toggleModal(false));
+          }
         }}
       >
         <View
@@ -61,11 +63,27 @@ const BreatheModal = ({ ellapsedTime }: { ellapsedTime: number }) => {
               dispatch(toggleModal(false));
             }}
           >
-            <View className="items-center pb-6">
-              <View>
-                <Feather name="chevron-down" size={24} color="black" />
+            {Platform.OS === "ios" ? (
+              <View className="items-center pb-6">
+                <View>
+                  <Feather
+                    name="chevron-down"
+                    size={24}
+                    color={Colors.blackPearl}
+                  />
+                </View>
               </View>
-            </View>
+            ) : (
+              <View className="items-start px-8 pb-6">
+                <View>
+                  <MaterialCommunityIcons
+                    name="window-close"
+                    size={24}
+                    color={Colors.blackPearl}
+                  />
+                </View>
+              </View>
+            )}
           </Pressable>
           <View className="items-center">
             <Text className="text-xl" style={{ color: Colors.mainGray }}>
@@ -89,7 +107,7 @@ const BreatheModal = ({ ellapsedTime }: { ellapsedTime: number }) => {
                   <View className="flex-row items-center">
                     <View className="-translate-y-2">
                       <RadioButton
-                        checkedColor={Colors.mainGray} //colors.mainBlue
+                        checkedColor={Colors.mainGray}
                         isActive={breatheSettings.mode.name === "box"}
                       />
                     </View>

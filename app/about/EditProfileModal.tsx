@@ -5,6 +5,7 @@ import {
   Alert,
   Keyboard,
   Modal,
+  Platform,
   Pressable,
   ScrollView,
   TextInput,
@@ -94,8 +95,10 @@ const EditProfileModal = () => {
     >
       <ScrollView
         onScroll={(evt) => {
-          evt.nativeEvent.contentOffset.y < CLOSE_MODAL_OFFSET_TRESHOLD &&
-            dispatch(setShowEditProfileModal(false));
+          if (Platform.OS === "ios") {
+            evt.nativeEvent.contentOffset.y < CLOSE_MODAL_OFFSET_TRESHOLD &&
+              dispatch(setShowEditProfileModal(false));
+          }
         }}
         indicatorStyle="black"
         persistentScrollbar={true} // works only on android
@@ -113,11 +116,27 @@ const EditProfileModal = () => {
               dispatch(setShowEditProfileModal(false));
             }}
           >
-            <View className="items-center pb-6">
-              <View>
-                <Feather name="chevron-down" size={24} color={Colors.black} />
+            {Platform.OS === "ios" ? (
+              <View className="items-center pb-6">
+                <View>
+                  <Feather
+                    name="chevron-down"
+                    size={24}
+                    color={Colors.blackPearl}
+                  />
+                </View>
               </View>
-            </View>
+            ) : (
+              <View className="items-start px-8 pb-6">
+                <View>
+                  <MaterialCommunityIcons
+                    name="window-close"
+                    size={24}
+                    color={Colors.blackPearl}
+                  />
+                </View>
+              </View>
+            )}
           </Pressable>
           <View className="items-center">
             <Text className="text-xl" style={{ color: Colors.mainGray }}>
