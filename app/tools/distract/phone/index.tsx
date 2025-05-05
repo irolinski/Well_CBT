@@ -1,7 +1,14 @@
 import { Href, router, useFocusEffect } from "expo-router";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { Alert, Linking, TouchableOpacity, View } from "react-native";
+import {
+  Alert,
+  Linking,
+  SafeAreaView,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useDispatch, useSelector } from "react-redux";
 import BackButton from "@/components/BackButton";
 import Text from "@/components/global/Text";
@@ -9,7 +16,7 @@ import ContactPic from "@/components/tools/phone/ContactPic";
 import ToolHeader from "@/components/tools/ToolHeader";
 import { phoneAFriend_tool } from "@/constants/models/tools/tools";
 import { Colors } from "@/constants/styles/colorTheme";
-import { SCREEN_HEIGHT } from "@/constants/styles/values";
+import { SCREEN_HEIGHT, SCREEN_WIDTH } from "@/constants/styles/values";
 import { getPhoneData } from "@/db/tools";
 import {
   setShowModal,
@@ -72,9 +79,15 @@ const Phone = () => {
   };
 
   return (
-    <React.Fragment>
+    <SafeAreaView className="items-center">
       <View
-        className={`z-10 mx-6 ${SCREEN_HEIGHT > 750 ? "top-20" : "top-12"} flex-row justify-between`}
+        className="z-10 flex-row justify-between px-6"
+        style={{
+          width: SCREEN_WIDTH,
+          paddingTop: 30,
+          top: 0,
+          left: 0,
+        }}
       >
         <BackButton />
         {phoneState.supportContact && (
@@ -90,9 +103,15 @@ const Phone = () => {
         )}
       </View>
       <View
-        className={`mx-6 ${SCREEN_HEIGHT > 750 ? "top-24" : "top-16"}`}
         style={{
-          height: SCREEN_HEIGHT - SCREEN_HEIGHT / 5,
+          height: SCREEN_HEIGHT,
+          width: SCREEN_WIDTH,
+          paddingLeft: 24,
+          paddingRight: 24,
+          paddingTop: SCREEN_HEIGHT * 0.025,
+          justifyContent: "flex-start",
+          top: 0,
+          left: 0,
         }}
       >
         <View className="mb-8">
@@ -226,7 +245,7 @@ const Phone = () => {
         </View>
       </View>
       <ConversationModal />
-    </React.Fragment>
+    </SafeAreaView>
   );
 };
 
