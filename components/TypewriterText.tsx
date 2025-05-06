@@ -1,13 +1,8 @@
-import { useEffect, useState } from "react";
-import {
-  Animated,
-  ColorValue,
-  StyleProp,
-  Text,
-  View,
-  ViewStyle,
-} from "react-native";
-import { Colors } from "@/constants/styles/colorTheme";
+import { useEffect, useRef, useState } from 'react';
+import { Animated, ColorValue, StyleProp, Text, View, ViewStyle } from 'react-native';
+import { Colors } from '@/constants/styles/colorTheme';
+
+const CURSOR_BLINK_VALUE = 200;
 
 const speedValues = {
   slow: 150,
@@ -61,21 +56,24 @@ const TypewriterText = ({
   const cursorOpacity = useState(new Animated.Value(1))[0];
 
   const startCursorAnimation = () => {
-    Animated.loop(
+    cursorBlinkAnimation.current = Animated.loop(
       Animated.sequence([
         Animated.timing(cursorOpacity, {
           toValue: 0,
-          duration: 200,
+          duration: CURSOR_BLINK_VALUE,
           useNativeDriver: true,
         }),
         Animated.timing(cursorOpacity, {
           toValue: 1,
-          duration: 200,
+          duration: CURSOR_BLINK_VALUE,
           useNativeDriver: true,
         }),
       ]),
-    ).start();
+    );
+    cursorBlinkAnimation.current.start();
   };
+
+  const cursorBlinkAnimation = useRef<Animated.CompositeAnimation | null>(null);
 
   useEffect(() => {
     if (!typingFinished) {
@@ -85,9 +83,19 @@ const TypewriterText = ({
 
   useEffect(() => {
     if (typingFinished && hideCursorOnFinish) {
-      setTimeout(() => {
-        cursorOpacity.setValue(0);
-      }, cursorDisappearDelay); // Cursor stays visible for the set delay
+      const fadeOut = () => {
+        if (cursorBlinkAnimation.current) {
+          cursorBlinkAnimation.current.stop();
+        }
+        Animated.timing(cursorOpacity, {
+          toValue: 0,
+          duration: CURSOR_BLINK_VALUE,
+          useNativeDriver: true,
+        }).start();
+      };
+
+      const timeout = setTimeout(fadeOut, cursorDisappearDelay);
+      return () => clearTimeout(timeout); // Clean up if unmounts
     }
   }, [typingFinished]);
 
