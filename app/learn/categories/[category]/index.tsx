@@ -1,20 +1,20 @@
-import { Image } from "expo-image";
-import { useLocalSearchParams } from "expo-router";
-import React, { useRef } from "react";
-import { useTranslation } from "react-i18next";
-import { Animated, ScrollView, View } from "react-native";
-import { logoImages } from "@/assets/images/global/logo/logo";
-import learnArticlesLocales from "@/assets/text/learn_articles.json";
-import ErrorScreen from "@/components/ErrorScreen";
-import Text from "@/components/global/Text";
-import LearnArticleCard from "@/components/learn/ArticleCard";
-import CategoryScrollableHeader from "@/components/learn/CategoryScrollableHeader";
-import { learnArticles } from "@/constants/models/learn/articles";
-import { learnCategories } from "@/constants/models/learn/categories";
-import { ArticlesInCurrentLanguageType } from "@/constants/models/learn/learn";
-import { Colors } from "@/constants/styles/colorTheme";
-import { SCREEN_HEIGHT } from "@/constants/styles/values";
-import { AvailableLanguage, selectedLanguage } from "@/hooks/i18n";
+import { Image } from 'expo-image';
+import { useLocalSearchParams } from 'expo-router';
+import React, { useRef } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Animated, Platform, ScrollView, View } from 'react-native';
+import { logoImages } from '@/assets/images/global/logo/logo';
+import learnArticlesLocales from '@/assets/text/learn_articles.json';
+import ErrorScreen from '@/components/ErrorScreen';
+import Text from '@/components/global/Text';
+import LearnArticleCard from '@/components/learn/ArticleCard';
+import CategoryScrollableHeader from '@/components/learn/CategoryScrollableHeader';
+import { learnArticles } from '@/constants/models/learn/articles';
+import { learnCategories } from '@/constants/models/learn/categories';
+import { ArticlesInCurrentLanguageType } from '@/constants/models/learn/learn';
+import { Colors } from '@/constants/styles/colorTheme';
+import { SCREEN_HEIGHT } from '@/constants/styles/values';
+import { AvailableLanguage, selectedLanguage } from '@/hooks/i18n';
 
 const HEADER_HEIGHT = SCREEN_HEIGHT * 0.5;
 
@@ -61,6 +61,10 @@ const index = () => {
             paddingTop: HEADER_HEIGHT,
           }}
           onScroll={handleScroll}
+          contentContainerStyle={{
+            // Android doesn't compensate automatically for the paddingTop automatically
+            paddingBottom: Platform.OS === "android" ? HEADER_HEIGHT : null,
+          }}
         >
           <View className="ml-8 mt-4">
             <Text className="text-2xl">{t("articles.title")}</Text>

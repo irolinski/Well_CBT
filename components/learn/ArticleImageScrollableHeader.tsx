@@ -1,9 +1,9 @@
-import { Image } from "expo-image";
-import { Animated, View } from "react-native";
-import BackButton from "@/components/BackButton";
-import { Colors } from "@/constants/styles/colorTheme";
-import { SCREEN_HEIGHT } from "@/constants/styles/values";
-import { handleAddFinishedArticle } from "@/db/learn";
+import { Image } from 'expo-image';
+import { Animated, Platform, View } from 'react-native';
+import BackButton from '@/components/BackButton';
+import { Colors } from '@/constants/styles/colorTheme';
+import { SCREEN_HEIGHT } from '@/constants/styles/values';
+import { handleAddFinishedArticle } from '@/db/learn';
 
 type ArticleImageScrollableHeaderTypes = {
   value: any;
@@ -38,7 +38,7 @@ const ArticleImageScrollableHeader = ({
   return (
     <View>
       <Animated.View
-        className={`absolute z-10 mx-6 ${SCREEN_HEIGHT > 750 ? "top-20" : "top-12"} left-4 flex-row justify-start`}
+        className={`absolute z-10 mx-6 ${SCREEN_HEIGHT > 750 && Platform.OS !== "android" ? "top-20" : "top-12"} left-4 flex-row justify-start`}
         style={{
           opacity: hideNav,
         }}
