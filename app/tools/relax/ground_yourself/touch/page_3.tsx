@@ -38,7 +38,6 @@ const Ground_Touch_Page_3 = ({
     color: Colors.mainBlue,
     feel: "",
   });
-  // const touchData = groundYourselfToolState.touchData;
 
   const refPagerView = useRef<PagerView>(null);
 
@@ -93,6 +92,13 @@ const Ground_Touch_Page_3 = ({
       }, 1000);
     }
   }, [groundYourselfToolState.currentSlide]);
+
+  const onSelectColor = ({ hex }: { hex: string }) => {
+    setTouchData((prevData) => ({
+      ...prevData,
+      color: hex,
+    }));
+  };
 
   return (
     <GroundYourselfSlideFrame
@@ -246,12 +252,7 @@ const Ground_Touch_Page_3 = ({
               <ColorPicker
                 style={{ width: "60%" }}
                 value={touchData.color ?? Colors.mainBlue}
-                onComplete={({ hex }) => {
-                  setTouchData((prevData) => ({
-                    ...prevData,
-                    color: hex,
-                  }));
-                }}
+                onChange={onSelectColor}
               >
                 <Panel3 />
               </ColorPicker>
