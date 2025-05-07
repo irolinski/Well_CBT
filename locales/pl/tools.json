@@ -276,7 +276,7 @@
           "description": "Zakładanie, że wiesz, co myślą inni ludzie."
         },
         "discounting_positives": {
-          "name": "Pomniejszanie pozytywów",
+          "name": "Umniejszanie pozytywów",
           "description": "Odrzucanie pozytywnych aspektów siebie lub sytuacji jako nieistotnych lub niezasługujących na uwagę."
         },
         "fortune_telling": {
@@ -284,7 +284,7 @@
           "description": "Zakładanie, że wydarzenia potoczą się źle, bez wystarczających dowodów."
         },
         "magnification_minimization": {
-          "name": "Wyolbrzymianie i umniejszanie",
+          "name": "Wyolbrzymianie / umniejszanie",
           "description": "Przesadzanie z wagą problemów lub umniejszanie ich znaczenia."
         },
         "labeling": {
@@ -292,7 +292,7 @@
           "description": "Nadawanie sobie lub innym negatywnych etykiet (np. 'nieudacznik', 'słabeusz')."
         },
         "reasoning_from_emotions": {
-          "name": "Emocjonalne rozumowanie",
+          "name": "Wnioskowanie z emocji",
           "description": "Zakładanie, że Twoje uczucia zawsze odzwierciedlają rzeczywistość. Przykład: 'Czuję się zawstydzony, więc to znaczy, że musiałem zrobić coś zawstydzającego.'"
         },
         "should_statements": {
