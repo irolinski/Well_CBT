@@ -1,17 +1,15 @@
-import { Href, router } from "expo-router";
-import { ReactNode } from "react";
-import { useTranslation } from "react-i18next";
-import { Modal, Pressable, Text, View } from "react-native";
-import { useDispatch } from "react-redux";
-import { Colors } from "@/constants/styles/colorTheme";
-import { AppDispatch } from "@/state/store";
-import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
-import { UnknownAction } from "@reduxjs/toolkit";
-import DividerLine from "./DividerLine";
-import NavigationModalButton from "./NavigationModalButton";
-import NavigationModalSelect, {
-  NavigationModalObj,
-} from "./NavigationModalSelect";
+import { Href, router } from 'expo-router';
+import { ReactNode } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Modal, Pressable, Text, View } from 'react-native';
+import { useDispatch } from 'react-redux';
+import { Colors } from '@/constants/styles/colorTheme';
+import { AppDispatch } from '@/state/store';
+import { Feather, MaterialCommunityIcons } from '@expo/vector-icons';
+import { UnknownAction } from '@reduxjs/toolkit';
+import DividerLine from './DividerLine';
+import NavigationModalButton from './NavigationModalButton';
+import NavigationModalSelect, { NavigationModalObj } from './NavigationModalSelect';
 
 type NavigationModalTypes = {
   title: string;
@@ -79,8 +77,8 @@ const NavigationModal = ({
               className="mx-1 flex-row items-center justify-center border-b pb-3"
               style={{ borderColor: Colors.mainGray, borderBottomWidth: 0.4 }}
             >
-              <View className="mx-1.5">{icon}</View>
-              <View className="mx-1.5">
+              <View className="w-1/5 items-center">{icon}</View>
+              <View className="w-4/5">
                 <Text className="text-lg">{title}</Text>
               </View>
             </View>
