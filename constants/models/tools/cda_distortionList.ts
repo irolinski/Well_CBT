@@ -1,10 +1,11 @@
-import { ColorValue } from "react-native";
+import { ColorValue } from 'react-native';
 
 export type DistortionListProps = {
   showDistortionTooltip: number | null;
   handleSetShowDistortionTooltip: (index: number | null) => void;
+  tooltipX: number;
   tooltipY: number;
-  handleShowTooltip: (y: number, index: number) => void;
+  handleShowTooltip: (x: number, y: number, index: number) => void;
   handleSetTooltipY?: () => void;
   instructionColor?: ColorValue;
   disableSelect?: boolean;

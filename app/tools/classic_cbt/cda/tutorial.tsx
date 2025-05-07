@@ -1,19 +1,19 @@
-import { Image } from "expo-image";
-import React, { useState } from "react";
-import { Trans, useTranslation } from "react-i18next";
-import { StyleSheet, View } from "react-native";
-import { tutorialImages } from "@/assets/images/tools/tutorials/tutorials";
-import DistortionPill from "@/components/DistortionPill";
+import { Image } from 'expo-image';
+import React, { useState } from 'react';
+import { Trans, useTranslation } from 'react-i18next';
+import { StyleSheet, View } from 'react-native';
+import { tutorialImages } from '@/assets/images/tools/tutorials/tutorials';
+import DistortionPill from '@/components/DistortionPill';
 import InfoSlideScreen, {
-  InfoSlideScreenData,
-} from "@/components/global/InfoSlideScreenReanimated/InfoSlideScreen";
-import Text from "@/components/global/Text";
-import CBTDiagramSubtitledImage from "@/components/tools/CBTDiagramSubtitledImage";
-import CDADistortionList from "@/components/tools/cda/CDADistortionList";
-import CDATextBox from "@/components/tools/cda/CDATextBox";
-import { Colors } from "@/constants/styles/colorTheme";
-import { SCREEN_HEIGHT } from "@/constants/styles/values";
-import { handleSetSeenTutorial } from "@/db/tools";
+    InfoSlideScreenData
+} from '@/components/global/InfoSlideScreenReanimated/InfoSlideScreen';
+import Text from '@/components/global/Text';
+import CBTDiagramSubtitledImage from '@/components/tools/CBTDiagramSubtitledImage';
+import CDADistortionList from '@/components/tools/cda/CDADistortionList';
+import CDATextBox from '@/components/tools/cda/CDATextBox';
+import { Colors } from '@/constants/styles/colorTheme';
+import { SCREEN_HEIGHT } from '@/constants/styles/values';
+import { handleSetSeenTutorial } from '@/db/tools';
 
 const CDA_Tutorial = ({ closeModalFunc }: { closeModalFunc: () => void }) => {
   const { t } = useTranslation(["tools", "common"]);
@@ -21,22 +21,29 @@ const CDA_Tutorial = ({ closeModalFunc }: { closeModalFunc: () => void }) => {
     bold: <Text style={{ fontWeight: "bold", color: Colors.white }} />,
     italic: <Text style={{ fontStyle: "italic", color: Colors.white }} />,
   };
+
   // tooltip state
   const [showDistortionTooltip, setshowDistortionTooltip] = useState<
     number | null
   >(null);
+
+  const [tooltipX, setTooltipX] = useState(0);
   const [tooltipY, setTooltipY] = useState(0);
   const handleSetShowDistortionTooltip = (index: number | null) => {
     setshowDistortionTooltip(index);
   };
+
+  const handleSetTooltipX = (x: number) => {
+    if (showDistortionTooltip === null) setTooltipX(x);
+  };
   const handleSetTooltipY = (y: number) => {
     if (showDistortionTooltip === null) setTooltipY(y);
   };
-  const handleShowTooltip = (y: number, index: number) => {
+
+  const handleShowTooltip = (x: number, y: number, index: number) => {
+    handleSetTooltipX(x);
     handleSetTooltipY(y);
-    requestAnimationFrame(() => {
-      setshowDistortionTooltip(index);
-    });
+    setshowDistortionTooltip(index);
   };
 
   const CDATutorialSlideData: InfoSlideScreenData[] = [
@@ -238,6 +245,7 @@ const CDA_Tutorial = ({ closeModalFunc }: { closeModalFunc: () => void }) => {
       visualItems: (
         <View
           onTouchStart={(evt) => {
+            handleSetTooltipX(evt.nativeEvent.pageX);
             handleSetTooltipY(evt.nativeEvent.pageY);
           }}
           style={{
@@ -252,6 +260,7 @@ const CDA_Tutorial = ({ closeModalFunc }: { closeModalFunc: () => void }) => {
           <CDADistortionList
             showDistortionTooltip={showDistortionTooltip}
             handleSetShowDistortionTooltip={handleSetShowDistortionTooltip}
+            tooltipX={tooltipX}
             tooltipY={tooltipY}
             handleShowTooltip={handleShowTooltip}
             instructionColor={Colors.white}

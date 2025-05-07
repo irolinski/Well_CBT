@@ -26,15 +26,21 @@ const Page_2 = () => {
   const [showDistortionTooltip, setshowDistortionTooltip] = useState<
     number | null
   >(null);
+  const [tooltipX, setTooltipX] = useState(0);
   const [tooltipY, setTooltipY] = useState(0);
   const handleSetShowDistortionTooltip = (index: number | null) => {
     setshowDistortionTooltip(index);
   };
+
+  const handleSetTooltipX = (x: number) => {
+    if (showDistortionTooltip === null) setTooltipX(x);
+  };
   const handleSetTooltipY = (y: number) => {
     if (showDistortionTooltip === null) setTooltipY(y);
   };
-  const handleShowTooltip = (y: number, index: number) => {
-    setTooltipY(y);
+  const handleShowTooltip = (x: number, y: number, index: number) => {
+    handleSetTooltipX(x);
+    handleSetTooltipY(y);
     setshowDistortionTooltip(index);
   };
 
@@ -42,6 +48,7 @@ const Page_2 = () => {
     <React.Fragment>
       <ScrollView
         onTouchStart={(evt) => {
+          handleSetTooltipX(evt.nativeEvent.pageX);
           handleSetTooltipY(evt.nativeEvent.pageY);
         }}
       >
@@ -72,6 +79,7 @@ const Page_2 = () => {
                   handleSetShowDistortionTooltip={
                     handleSetShowDistortionTooltip
                   }
+                  tooltipX={tooltipX}
                   tooltipY={tooltipY}
                   handleShowTooltip={handleShowTooltip}
                 />
