@@ -1,7 +1,7 @@
 // service.ts
-import { Alert } from "react-native";
-import { dbPromise } from "@/services/db";
-import { getTranslation } from "@/utils/locales";
+import { Alert } from 'react-native';
+import { dbPromise } from '@/services/db';
+import { getTranslation } from '@/utils/locales';
 
 export const setUpDB = async () => {
   try {
@@ -73,7 +73,10 @@ export const setUpDB = async () => {
     `);
   } catch (err) {
     console.error("Error: Problem with initializing database.\n\n", err);
-    Alert.alert(getTranslation("alerts.error_initialization"));
+    Alert.alert(
+      getTranslation("alerts.error"),
+      getTranslation("alerts.error_initialization"),
+    );
   }
 };
 
@@ -115,7 +118,10 @@ export const handleGetSeenOnboarding = async () => {
     return await db.getFirstAsync(`SELECT isTrue FROM seenOnboarding`);
   } catch (err) {
     console.error(err);
-    Alert.alert(getTranslation("alerts.error_db_saving"));
+    Alert.alert(
+      getTranslation("alerts.error"),
+      getTranslation("alerts.error_db_saving"),
+    );
   }
 };
 
@@ -126,7 +132,10 @@ export const handleSetSeenOnboardingTrue = async () => {
     console.log("onboarding was seen on this device, setting db");
   } catch (err) {
     console.error(err);
-    Alert.alert(getTranslation("alerts.error_db_saving"));
+    Alert.alert(
+      getTranslation("alerts.error"),
+      getTranslation("alerts.error_db_saving"),
+    );
   }
 };
 
@@ -147,6 +156,9 @@ export const deleteAllDBData = async () => {
     await setUpDB();
   } catch (err) {
     console.error(err);
-    Alert.alert(getTranslation("alerts.error_db_erasing"));
+    Alert.alert(
+      getTranslation("alerts.error"),
+      getTranslation("alerts.error_db_erasing"),
+    );
   }
 };

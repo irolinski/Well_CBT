@@ -1,20 +1,14 @@
-import * as SQLite from "expo-sqlite";
-import { Alert } from "react-native";
+import * as SQLite from 'expo-sqlite';
+import { Alert } from 'react-native';
 import {
-  AchievementControllerType,
-  AchievementProgressObj,
-  allAchievementsModelsObj,
-  AllAchievementsObjType,
-} from "@/constants/models/about/achievements";
-import {
-  handleGetCDACount,
-  handleGetJournalCount,
-  handleGetRelaxTime,
-} from "@/db/about";
-import { handleGetFinishedArticleIds } from "@/db/learn";
-import { handleGetNumOfAllEntries, handleGetUserData } from "@/db/user";
-import { dbPromise } from "@/services/db";
-import { getTranslation } from "@/utils/locales";
+    AchievementControllerType, AchievementProgressObj, allAchievementsModelsObj,
+    AllAchievementsObjType
+} from '@/constants/models/about/achievements';
+import { handleGetCDACount, handleGetJournalCount, handleGetRelaxTime } from '@/db/about';
+import { handleGetFinishedArticleIds } from '@/db/learn';
+import { handleGetNumOfAllEntries, handleGetUserData } from '@/db/user';
+import { dbPromise } from '@/services/db';
+import { getTranslation } from '@/utils/locales';
 
 export type AchievementIdType = keyof typeof allAchievementsWithControllersObj;
 
@@ -71,7 +65,10 @@ const handleAchievementController = async (
     }
   } catch (err) {
     console.error(err);
-    Alert.alert(getTranslation("alerts.error_db_achievements"));
+    Alert.alert(
+      getTranslation("alerts.error"),
+      getTranslation("alerts.error_db_achievements"),
+    );
   }
 };
 

@@ -466,7 +466,7 @@
         "search_placeholder": "Start typing to see contacts...",
         "alert_header": "Do you want to set this person as your emotional support contact?",
         "alert_body": "You'll be able to change it anytime, later",
-        "alert_no": "No, I want to make a different choice",
+        "alert_no": "No",
         "alert_yes": "Yes, continue"
       },
       "modal": {

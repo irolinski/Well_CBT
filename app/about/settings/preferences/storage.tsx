@@ -1,21 +1,19 @@
-import { reloadAppAsync } from "expo";
-import { router } from "expo-router";
-import React, { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { Alert, ScrollView, Switch, View } from "react-native";
-import AdvanceButton from "@/components/AdvanceButton";
-import DividerLine from "@/components/DividerLine";
-import MenuNav from "@/components/global/MenuNav";
-import Text from "@/components/global/Text";
-import { Colors } from "@/constants/styles/colorTheme";
-import { SCREEN_WIDTH } from "@/constants/styles/values";
-import { deleteAllDBData } from "@/db/service";
+import { reloadAppAsync } from 'expo';
+import { router } from 'expo-router';
+import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Alert, ScrollView, Switch, View } from 'react-native';
+import AdvanceButton from '@/components/AdvanceButton';
+import DividerLine from '@/components/DividerLine';
+import MenuNav from '@/components/global/MenuNav';
+import Text from '@/components/global/Text';
+import { Colors } from '@/constants/styles/colorTheme';
+import { SCREEN_WIDTH } from '@/constants/styles/values';
+import { deleteAllDBData } from '@/db/service';
 import {
-  getUserSettingsData,
-  handleSetExerciseAutoSaveIsActive,
-  UserSettingsDataObj,
-} from "@/db/settings";
-import { MaterialIcons } from "@expo/vector-icons";
+    getUserSettingsData, handleSetExerciseAutoSaveIsActive, UserSettingsDataObj
+} from '@/db/settings';
+import { MaterialIcons } from '@expo/vector-icons';
 
 const SETTING_NAME = "storage";
 
@@ -65,7 +63,7 @@ const StorageSettingsPage = () => {
         }
       } catch (error) {
         console.error("Error fetching user settings:", error);
-        Alert.alert(t("alerts.error_db_fetching"));
+        Alert.alert(t("alerts.error"), t("alerts.error_db_fetching"));
       }
     };
 

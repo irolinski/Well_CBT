@@ -1,35 +1,23 @@
-import { Href, router, useFocusEffect } from "expo-router";
-import React from "react";
-import { useTranslation } from "react-i18next";
-import {
-  Alert,
-  Linking,
-  SafeAreaView,
-  TouchableOpacity,
-  View,
-} from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { useDispatch, useSelector } from "react-redux";
-import BackButton from "@/components/BackButton";
-import Text from "@/components/global/Text";
-import ContactPic from "@/components/tools/phone/ContactPic";
-import ToolHeader from "@/components/tools/ToolHeader";
-import { phoneAFriend_tool } from "@/constants/models/tools/tools";
-import { Colors } from "@/constants/styles/colorTheme";
-import { SCREEN_HEIGHT, SCREEN_WIDTH } from "@/constants/styles/values";
-import { getPhoneData } from "@/db/tools";
-import {
-  setShowModal,
-  setSupportContact,
-} from "@/state/features/tools/phoneSlice";
-import { AppDispatch, RootState } from "@/state/store";
-import formatPhoneNumber from "@/utils/formatPhoneNumber";
-import {
-  AntDesign,
-  MaterialCommunityIcons,
-  MaterialIcons,
-} from "@expo/vector-icons";
-import ConversationModal from "./modal";
+import { Href, router, useFocusEffect } from 'expo-router';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { Alert, Linking, SafeAreaView, TouchableOpacity, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useDispatch, useSelector } from 'react-redux';
+import BackButton from '@/components/BackButton';
+import Text from '@/components/global/Text';
+import ContactPic from '@/components/tools/phone/ContactPic';
+import ToolHeader from '@/components/tools/ToolHeader';
+import { phoneAFriend_tool } from '@/constants/models/tools/tools';
+import { Colors } from '@/constants/styles/colorTheme';
+import { SCREEN_HEIGHT, SCREEN_WIDTH } from '@/constants/styles/values';
+import { getPhoneData } from '@/db/tools';
+import { setShowModal, setSupportContact } from '@/state/features/tools/phoneSlice';
+import { AppDispatch, RootState } from '@/state/store';
+import formatPhoneNumber from '@/utils/formatPhoneNumber';
+import { getTranslation } from '@/utils/locales';
+import { AntDesign, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
+import ConversationModal from './modal';
 
 const TOOL_NAME = phoneAFriend_tool.name;
 
@@ -60,7 +48,10 @@ const Phone = () => {
     if (supported) {
       Linking.openURL(url);
     } else {
-      Alert.alert("Error", "Calling not supported on this device");
+      Alert.alert(
+        getTranslation("alets.error"),
+        getTranslation("alerts.error_calling_not_supported"),
+      );
     }
   };
 
@@ -74,7 +65,10 @@ const Phone = () => {
     if (supported) {
       Linking.openURL(url); // Open the SMS app with the pre-filled phone number
     } else {
-      Alert.alert("Error", "SMS not supported on this device");
+      Alert.alert(
+        getTranslation("alets.error"),
+        getTranslation("alerts.error_sms_not_supported"),
+      );
     }
   };
 

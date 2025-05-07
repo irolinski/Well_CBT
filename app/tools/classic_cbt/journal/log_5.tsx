@@ -1,28 +1,25 @@
-import { router } from "expo-router";
-import React, { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { Alert, Pressable, ScrollView, View } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
-import AdvanceButton from "@/components/AdvanceButton";
-import DistortionPill from "@/components/DistortionPill";
-import Frame from "@/components/Frame";
-import Text from "@/components/global/Text";
-import CDATextBox from "@/components/tools/cda/CDATextBox";
-import ToolHeader from "@/components/tools/ToolHeader";
-import ToolNav from "@/components/tools/ToolNav";
-import { moodValueTitles } from "@/constants/models/tools/journal";
-import { journal_tool } from "@/constants/models/tools/tools";
-import { Colors } from "@/constants/styles/colorTheme";
-import { journalStyleConstants } from "@/constants/styles/values";
-import { getUserSettingsData, UserSettingsDataObj } from "@/db/settings";
-import { handleSaveMoodJournalEntry } from "@/db/tools";
-import {
-  journalResetState,
-  setSave,
-} from "@/state/features/tools/journalSlice";
-import { AppDispatch, RootState } from "@/state/store";
-import Feather from "@expo/vector-icons/Feather";
-import { Slider } from "@miblanchard/react-native-slider";
+import { router } from 'expo-router';
+import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Alert, Pressable, ScrollView, View } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import AdvanceButton from '@/components/AdvanceButton';
+import DistortionPill from '@/components/DistortionPill';
+import Frame from '@/components/Frame';
+import Text from '@/components/global/Text';
+import CDATextBox from '@/components/tools/cda/CDATextBox';
+import ToolHeader from '@/components/tools/ToolHeader';
+import ToolNav from '@/components/tools/ToolNav';
+import { moodValueTitles } from '@/constants/models/tools/journal';
+import { journal_tool } from '@/constants/models/tools/tools';
+import { Colors } from '@/constants/styles/colorTheme';
+import { journalStyleConstants } from '@/constants/styles/values';
+import { getUserSettingsData, UserSettingsDataObj } from '@/db/settings';
+import { handleSaveMoodJournalEntry } from '@/db/tools';
+import { journalResetState, setSave } from '@/state/features/tools/journalSlice';
+import { AppDispatch, RootState } from '@/state/store';
+import Feather from '@expo/vector-icons/Feather';
+import { Slider } from '@miblanchard/react-native-slider';
 
 const TOOL_NAME = journal_tool.name;
 const CURRENT_PAGE = 5;
@@ -50,7 +47,7 @@ const Log_5 = () => {
         }
       } catch (error) {
         console.error("Error fetching user settings:", error);
-        Alert.alert(t("alerts.error_db_fetching"));
+        Alert.alert(t("alerts.error"), t("alerts.error_db_fetching"));
       }
     };
 

@@ -1,8 +1,8 @@
-import { Alert } from "react-native";
-import { dbPromise } from "@/services/db";
-import { isSameDate } from "@/utils/dates";
-import { getTranslation } from "@/utils/locales";
-import { TableRowCountObj, UserType } from "./models";
+import { Alert } from 'react-native';
+import { dbPromise } from '@/services/db';
+import { isSameDate } from '@/utils/dates';
+import { getTranslation } from '@/utils/locales';
+import { TableRowCountObj, UserType } from './models';
 
 const isUserType = (res: any): res is UserType => {
   return (
@@ -129,7 +129,10 @@ export const handleSetVisitStreakCount = async (): Promise<void> => {
       "Error: Could not create and/or modify user table while checking for date streak. " +
         err,
     );
-    Alert.alert(getTranslation("alerts.error_db_saving"));
+    Alert.alert(
+      getTranslation("alerts.error"),
+      getTranslation("alerts.error_db_saving"),
+    );
   }
 };
 
@@ -141,7 +144,10 @@ export const handleSetName = async (name: string) => {
     );
   } catch (err) {
     console.error("Error: Could not set name. " + err);
-    Alert.alert(getTranslation("alerts.error_db_saving"));
+    Alert.alert(
+      getTranslation("alerts.error"),
+      getTranslation("alerts.error_db_saving"),
+    );
   }
 };
 
@@ -154,7 +160,10 @@ export const handleSetProfilePicId = async (faceId: number) => {
   } catch (err) {
     console.error("Error: Could not set profile picture id. " + err);
     console.error(err);
-    Alert.alert(getTranslation("alerts.error_db_saving"));
+    Alert.alert(
+      getTranslation("alerts.error"),
+      getTranslation("alerts.error_db_saving"),
+    );
   }
 };
 

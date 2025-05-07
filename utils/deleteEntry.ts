@@ -1,14 +1,20 @@
-import { router } from "expo-router";
-import { Alert } from "react-native";
-import { getTranslation } from "./locales";
+import { router } from 'expo-router';
+import { Alert } from 'react-native';
+import { getTranslation } from './locales';
 
 const deleteEntry = (deleteDbFunc: (id: number) => void, id: number) => {
   try {
     deleteDbFunc(id);
     router.navigate("/");
-    Alert.alert(getTranslation("alerts.entry_delete_success"));
+    Alert.alert(
+      getTranslation("alerts.success"),
+      getTranslation("alerts.entry_delete_success"),
+    );
   } catch (err) {
-    Alert.alert(getTranslation("alerts.entry_delete_failure"));
+    Alert.alert(
+      getTranslation("alerts.failure"),
+      getTranslation("alerts.entry_delete_failure"),
+    );
   }
 };
 
@@ -17,14 +23,14 @@ export const handleDeleteEntry = (
   id: number,
 ) => {
   Alert.alert(
-    "Are you sure you want to delete this entry?",
-    "\nThis decision will be permanent.",
+    getTranslation("alerts.entry_delete_title"),
+    "\n" + getTranslation("alerts.body_decision_permanent"),
     [
       {
-        text: "No, I want to make a different choice",
+        text: getTranslation("alerts.answer_no"),
       },
       {
-        text: "Yes, continue",
+        text: getTranslation("alerts.answer_yes"),
         onPress: () => {
           deleteEntry(deleteDbFunc, id);
         },

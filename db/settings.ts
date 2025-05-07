@@ -1,6 +1,6 @@
-import { Alert } from "react-native";
-import { dbPromise } from "@/services/db";
-import { getTranslation } from "@/utils/locales";
+import { Alert } from 'react-native';
+import { dbPromise } from '@/services/db';
+import { getTranslation } from '@/utils/locales';
 
 export type UserSettingsDataObj = {
   exerciseAutoSaveIsActive: number;
@@ -30,6 +30,9 @@ export const handleSetExerciseAutoSaveIsActive = async (value: boolean) => {
     );
   } catch (err) {
     console.error(err);
-    Alert.alert(getTranslation("alerts.error_db_saving"));
+    Alert.alert(
+      getTranslation("alerts.error"),
+      getTranslation("alerts.error_db_saving"),
+    );
   }
 };

@@ -1,11 +1,11 @@
-import * as Notifications from "expo-notifications";
-import { Alert } from "react-native";
-import notificationContent from "@/assets/text/notifications_daily.json";
-import { TimePicker_12hReturnObj } from "@/components/home/TimePicker_12h";
-import { TimePicker_24hReturnObj } from "@/components/home/TimePicker_24h";
-import { AvailableLanguage, selectedLanguage } from "@/hooks/i18n";
-import { numToString_addZero } from "./dates";
-import { getTranslation } from "./locales";
+import * as Notifications from 'expo-notifications';
+import { Alert } from 'react-native';
+import notificationContent from '@/assets/text/notifications_daily.json';
+import { TimePicker_12hReturnObj } from '@/components/home/TimePicker_12h';
+import { TimePicker_24hReturnObj } from '@/components/home/TimePicker_24h';
+import { AvailableLanguage, selectedLanguage } from '@/hooks/i18n';
+import { numToString_addZero } from './dates';
+import { getTranslation } from './locales';
 
 //To have different notification body text everyday,
 //I'll have to re-schedule notification on app open
@@ -58,7 +58,10 @@ export const requestNotificationPermissions = async (): Promise<boolean> => {
     return true; // permissions granted
   } catch (error) {
     console.error("Error requesting notification permissions:", error);
-    Alert.alert(getTranslation("alerts.error_permissions"));
+    Alert.alert(
+      getTranslation("alerts.error"),
+      getTranslation("alerts.error_permissions"),
+    );
 
     return false;
   }
@@ -102,21 +105,31 @@ export const scheduleDailyNotification = async (
     let displayedMinute: string = numToString_addZero(minute);
 
     Alert.alert(
-      `${getTranslation("alerts.notification_success")} ${displayedHour}:${displayedMinute} ${meridiem ? meridiem : ""}`,
+      getTranslation("alerts.success"),
+      `${getTranslation("alerts.notification_success")} \n ${displayedHour}:${displayedMinute} ${meridiem ? meridiem : ""}`,
     );
   } catch (err) {
     console.error(err);
-    Alert.alert(getTranslation("alerts.notification_failure"));
+    Alert.alert(
+      getTranslation("alerts.failure"),
+      getTranslation("alerts.notification_failure"),
+    );
   }
 };
 
 export const cancelDailyNotification = async () => {
   try {
     await Notifications.cancelAllScheduledNotificationsAsync();
-    Alert.alert(getTranslation("alerts.notification_cancel"));
+    Alert.alert(
+      getTranslation("alerts.success"),
+      getTranslation("alerts.notification_cancel"),
+    );
   } catch (err) {
     console.error(err);
-    Alert.alert(getTranslation("alerts.notification_failure"));
+    Alert.alert(
+      getTranslation("alerts.failure"),
+      getTranslation("alerts.notification_failure"),
+    );
   }
 };
 

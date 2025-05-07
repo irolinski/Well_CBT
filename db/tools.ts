@@ -1,12 +1,9 @@
-import { Alert } from "react-native";
-import {
-  RelaxToolNames,
-  ToolNames,
-} from "@/constants/models/home/activity_log";
-import { dbPromise } from "@/services/db";
-import { cdaSliceTypes } from "@/state/features/tools/cdaSlice";
-import { journalSliceTypes } from "@/state/features/tools/journalSlice";
-import { getTranslation } from "@/utils/locales";
+import { Alert } from 'react-native';
+import { RelaxToolNames, ToolNames } from '@/constants/models/home/activity_log';
+import { dbPromise } from '@/services/db';
+import { cdaSliceTypes } from '@/state/features/tools/cdaSlice';
+import { journalSliceTypes } from '@/state/features/tools/journalSlice';
+import { getTranslation } from '@/utils/locales';
 
 //--
 // tools/cda
@@ -42,7 +39,10 @@ export const handleSaveCDAEntry = async (cdaState: cdaSliceTypes) => {
         `);
     } catch (err) {
       console.error(err);
-      Alert.alert(getTranslation("alerts.error_db_saving"));
+      Alert.alert(
+        getTranslation("alerts.error"),
+        getTranslation("alerts.error_db_saving"),
+      );
     }
   }
 };
@@ -53,7 +53,10 @@ export const deleteCDAEntry = async (id: number) => {
     await db.execAsync(`DELETE FROM cdaArchive WHERE id="${id}"`);
   } catch (err) {
     console.error(err);
-    Alert.alert(getTranslation("alerts.error_db_erasing"));
+    Alert.alert(
+      getTranslation("alerts.error"),
+      getTranslation("alerts.error_db_erasing"),
+    );
   }
 };
 
@@ -106,7 +109,10 @@ export const handleSaveMoodJournalEntry = async (
       }
     } catch (err) {
       console.error(err);
-      Alert.alert(getTranslation("alerts.error_db_saving"));
+      Alert.alert(
+        getTranslation("alerts.error"),
+        getTranslation("alerts.error_db_saving"),
+      );
     }
   }
 };
@@ -118,7 +124,10 @@ export const deleteMoodJournalEntry = async (id: number) => {
     await db.execAsync(`DELETE FROM journalEntryEmotions WHERE id="${id}"`);
   } catch (err) {
     console.error(err);
-    Alert.alert(getTranslation("alerts.error_db_erasing"));
+    Alert.alert(
+      getTranslation("alerts.error"),
+      getTranslation("alerts.error_db_erasing"),
+    );
   }
 };
 
@@ -200,7 +209,10 @@ export const setContact = async (name: string, phone: string) => {
     );
   } catch (err) {
     console.error(err);
-    Alert.alert(getTranslation("alerts.error_db_saving"));
+    Alert.alert(
+      getTranslation("alerts.error"),
+      getTranslation("alerts.error_db_saving"),
+    );
   }
 };
 
@@ -224,7 +236,10 @@ export const setContactWithPicture = async (
     );
   } catch (err) {
     console.error(err);
-    Alert.alert(getTranslation("alerts.error_db_saving"));
+    Alert.alert(
+      getTranslation("alerts.error"),
+      getTranslation("alerts.error_db_saving"),
+    );
   }
 };
 
@@ -243,7 +258,10 @@ export const handleSetSeenTutorial = async (toolName: ToolNames) => {
     );
   } catch (err) {
     console.error(err);
-    Alert.alert(getTranslation("alerts.error_db_saving"));
+    Alert.alert(
+      getTranslation("alerts.error"),
+      getTranslation("alerts.error_db_saving"),
+    );
   }
 };
 
@@ -256,7 +274,10 @@ const handleGetSeenTutorial = async (toolName: ToolNames) => {
     return res;
   } catch (err) {
     console.error(err);
-    Alert.alert(getTranslation("alerts.error_db_saving"));
+    Alert.alert(
+      getTranslation("alerts.error"),
+      getTranslation("alerts.error_db_saving"),
+    );
   }
 };
 

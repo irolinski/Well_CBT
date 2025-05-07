@@ -1,23 +1,20 @@
-import "@/hooks/i18n";
-import { useFonts } from "expo-font";
-import { setNotificationHandler } from "expo-notifications";
-import { Stack } from "expo-router";
-import * as SplashScreen from "expo-splash-screen";
-import { useCallback, useEffect, useState } from "react";
-import { Alert } from "react-native";
-import ErrorBoundary from "react-native-error-boundary";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { Provider as StateProvider } from "react-redux";
-import { RenderingErrorFallback } from "@/components/ErrorScreen";
-import {
-  setUpAchievementsTable,
-  updateAchievementProgress,
-} from "@/db/achievements/global";
-import { seedDB } from "@/db/seed";
-import { createActivityViewTable, setUpDB } from "@/db/service";
-import { handleSetVisitStreakCount } from "@/db/user";
-import { store } from "@/state/store";
-import { getTranslation } from "@/utils/locales";
+import '@/hooks/i18n';
+import { useFonts } from 'expo-font';
+import { setNotificationHandler } from 'expo-notifications';
+import { Stack } from 'expo-router';
+import * as SplashScreen from 'expo-splash-screen';
+import { useCallback, useEffect, useState } from 'react';
+import { Alert } from 'react-native';
+import ErrorBoundary from 'react-native-error-boundary';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { Provider as StateProvider } from 'react-redux';
+import { RenderingErrorFallback } from '@/components/ErrorScreen';
+import { setUpAchievementsTable, updateAchievementProgress } from '@/db/achievements/global';
+import { seedDB } from '@/db/seed';
+import { createActivityViewTable, setUpDB } from '@/db/service';
+import { handleSetVisitStreakCount } from '@/db/user';
+import { store } from '@/state/store';
+import { getTranslation } from '@/utils/locales';
 
 // Prevent splash screen from hiding before everything is ready
 SplashScreen.preventAutoHideAsync();
@@ -43,14 +40,20 @@ export default function RootLayout() {
       await updateAchievementProgress();
       // await seedDB(); // Uncomment if needed
       if (!fontsLoaded) {
-        Alert.alert(getTranslation("alerts.error_fonts"));
+        Alert.alert(
+          getTranslation("alerts.error"),
+          getTranslation("alerts.error_fonts"),
+        );
         throw new Error("could not load fonts");
       }
 
       setIsReady(true);
     } catch (err) {
       console.error(err);
-      Alert.alert(getTranslation("alerts.error_initialization"));
+      Alert.alert(
+        getTranslation("alerts.error"),
+        getTranslation("alerts.error_initialization"),
+      );
     } finally {
       await SplashScreen.hideAsync();
     }
