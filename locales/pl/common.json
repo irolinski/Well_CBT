@@ -13,7 +13,7 @@
     "error_db_erasing": "Wystąpił błąd podczas usuwania zapisanych danych z bazy danych. \n\nSpróbuj ponownie później, a jeśli problem będzie się powtarzał, skontaktuj się z pomocą techniczną.",
     "error_permissions": "Wystąpił błąd związany z dostępem aplikacji do wymaganych uprawnień. Zmień ustawienia urządzenia i spróbuj ponownie później.",
     "error_calling_not_supported": "To urządzenie nie obsługuje połączeń.",
-    "error_sms_not_supported": "To urządzenie nie obsługuje wiadomości tekstowych",
+    "error_sms_not_supported": "To urządzenie nie obsługuje wiadomości tekstowych.",
     "entry_delete_title": "Czy na pewno chcesz usunąć ten wpis?",
     "entry_delete_success": "Wybrany wpis został pomyślnie usunięty z pamięci.",
     "entry_delete_failure": "Wystąpił problem podczas usuwania tego wpisu. Spróbuj ponownie później.",
