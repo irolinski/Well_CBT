@@ -1,17 +1,16 @@
-import { Href, router } from "expo-router";
-import { useTranslation } from "react-i18next";
-import { Modal, Pressable, Text, View } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
-import { Colors } from "@/constants/styles/colorTheme";
-import { setShowEditProfileModal } from "@/state/features/menus/editProfileModalSlice";
+import { Href, router } from 'expo-router';
+import { useTranslation } from 'react-i18next';
+import { Modal, Pressable, Text, View } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import { Colors } from '@/constants/styles/colorTheme';
+import { setShowEditProfileModal } from '@/state/features/menus/editProfileModalSlice';
 import {
-  setNavigateSettingsModalSelectedLink,
-  setShowNavigateSettingsModal,
-} from "@/state/features/menus/navigateSettingsModalSlice";
-import { AppDispatch, RootState } from "@/state/store";
-import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
-import NavigationModalButton from "../NavigationModalButton";
-import NavigationModalSelect from "../NavigationModalSelect";
+    setNavigateSettingsModalSelectedLink, setShowNavigateSettingsModal
+} from '@/state/features/menus/navigateSettingsModalSlice';
+import { AppDispatch, RootState } from '@/state/store';
+import { Feather, MaterialCommunityIcons } from '@expo/vector-icons';
+import NavigationModalButton from '../NavigationModalButton';
+import NavigationModalSelect from '../NavigationModalSelect';
 
 const NavigateSettingsModal = () => {
   const { t } = useTranslation(["about", "common"]);
@@ -91,17 +90,25 @@ const NavigateSettingsModal = () => {
                 </View>
               </Pressable>
             </View>
-            <View
-              className="mx-1 flex-row items-center justify-center border-b pb-3"
-              style={{ borderColor: Colors.mainGray, borderBottomWidth: 0.4 }}
-            >
-              <View className="mx-1.5">
-                {<Feather name="settings" size={24} color={Colors.mainGray} />}
-              </View>
-              <View className="mx-1.5">
-                <Text className="text-lg">
-                  {t("index.modals.navigate_settings.title")}
-                </Text>
+            <View className="w-full items-end justify-center">
+              <View
+                className="mx-1 w-4/5 flex-row border-b pb-3"
+                style={{ borderColor: Colors.mainGray, borderBottomWidth: 0.4 }}
+              >
+                <View className="w-1/5">
+                  {
+                    <Feather
+                      name="settings"
+                      size={24}
+                      color={Colors.mainGray}
+                    />
+                  }
+                </View>
+                <View className="w-4/5">
+                  <Text className="text-lg">
+                    {t("index.modals.navigate_settings.title")}
+                  </Text>
+                </View>
               </View>
             </View>
           </View>

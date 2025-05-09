@@ -112,7 +112,7 @@ const TimePicker_12h = ({
             color: disabled ? Colors.mainGray : "",
             borderColor: Colors.lightGray,
             backgroundColor: Colors.offWhite,
-            textAlignVertical: "top",
+            textAlignVertical: "center",
           }}
           value={hourInput}
           onChangeText={(val) => {
@@ -143,7 +143,7 @@ const TimePicker_12h = ({
             color: disabled ? Colors.mainGray : "",
             borderColor: Colors.lightGray,
             backgroundColor: Colors.offWhite,
-            textAlignVertical: "top",
+            textAlignVertical: "center",
           }}
           value={minuteInput}
           onChangeText={(val) => {

@@ -1,8 +1,8 @@
-import { Href } from "expo-router";
-import { ReactNode } from "react";
-import { Pressable, Text, View } from "react-native";
-import { Colors } from "@/constants/styles/colorTheme";
-import { UnknownAction } from "@reduxjs/toolkit";
+import { Href } from 'expo-router';
+import { ReactNode } from 'react';
+import { Pressable, Text, View } from 'react-native';
+import { Colors } from '@/constants/styles/colorTheme';
+import { UnknownAction } from '@reduxjs/toolkit';
 
 export type NavigationModalObj = {
   name: string;
@@ -31,7 +31,7 @@ const NavigationModalSelect = ({
     <Pressable
       className="mt-2.5 flex-row items-center justify-center rounded-xl border-2"
       style={{
-        width: 0.7 * 320,
+        width: 0.8 * 320,
         height: 47,
         borderColor: Colors.mainGray,
         backgroundColor:
