@@ -1,11 +1,11 @@
-import * as Notifications from 'expo-notifications';
-import { Alert } from 'react-native';
-import notificationContent from '@/assets/text/notifications_daily.json';
-import { TimePicker_12hReturnObj } from '@/components/home/TimePicker_12h';
-import { TimePicker_24hReturnObj } from '@/components/home/TimePicker_24h';
-import { AvailableLanguage, selectedLanguage } from '@/hooks/i18n';
-import { numToString_addZero } from './dates';
-import { getTranslation } from './locales';
+import * as Notifications from "expo-notifications";
+import { Alert, Platform } from "react-native";
+import notificationContent from "@/assets/text/notifications_daily.json";
+import { TimePicker_12hReturnObj } from "@/components/home/TimePicker_12h";
+import { TimePicker_24hReturnObj } from "@/components/home/TimePicker_24h";
+import { AvailableLanguage, selectedLanguage } from "@/hooks/i18n";
+import { numToString_addZero } from "./dates";
+import { getTranslation } from "./locales";
 
 //To have different notification body text everyday,
 //I'll have to re-schedule notification on app open
@@ -141,8 +141,18 @@ export const getDailyNotificationTime_24h = async (): Promise<
       (await Notifications.getAllScheduledNotificationsAsync()) as any; // asserting any to prevent compiler err - bugs in trigger obj typing
 
     if (scheduledNotifications[0]) {
-      const { hour, minute } =
-        scheduledNotifications[0].trigger?.dateComponents!;
+      let hour, minute;
+
+      if (Platform.OS === "ios") {
+        hour = scheduledNotifications[0].trigger?.dateComponents!.hour;
+        minute = scheduledNotifications[0].trigger?.dateComponents!.minute;
+      }
+
+      if (Platform.OS === "android") {
+        hour = scheduledNotifications[0].trigger?.hour;
+        minute = scheduledNotifications[0].trigger?.minute;
+      }
+
       // add zeroes to one-digit hours and turn
       let displayedHour: string = numToString_addZero(hour);
       let displayedMinute: string = numToString_addZero(minute);
@@ -166,9 +176,18 @@ export const getDailyNotificationTime_12h = async (): Promise<
       (await Notifications.getAllScheduledNotificationsAsync()) as any; // asserting any to prevent compiler err - bugs in trigger obj typing
 
     if (scheduledNotifications[0]) {
-      const { hour, minute } =
-        scheduledNotifications[0].trigger?.dateComponents!;
-      // console.log("24h time: " + hour + " " + minute);
+      let hour, minute;
+
+      if (Platform.OS === "ios") {
+        hour = scheduledNotifications[0].trigger?.dateComponents!.hour;
+        minute = scheduledNotifications[0].trigger?.dateComponents!.minute;
+      }
+
+      if (Platform.OS === "android") {
+        hour = scheduledNotifications[0].trigger?.hour;
+        minute = scheduledNotifications[0].trigger?.minute;
+      }
+
       const convertedTime = convertTo12hFormat(hour, minute);
 
       // add zeroes to one-digit hours and turn

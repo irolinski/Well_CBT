@@ -78,7 +78,7 @@ const TimePicker_24h = ({
             color: disabled ? Colors.mainGray : "",
             borderColor: Colors.lightGray,
             backgroundColor: Colors.offWhite,
-            textAlignVertical: "top",
+            textAlignVertical: "center",
           }}
           value={hourInput}
           onChangeText={handleHourInputChange}
@@ -105,7 +105,7 @@ const TimePicker_24h = ({
             color: disabled ? Colors.mainGray : "",
             borderColor: Colors.lightGray,
             backgroundColor: Colors.offWhite,
-            textAlignVertical: "top",
+            textAlignVertical: "center",
           }}
           value={minuteInput}
           onChangeText={handleMinuteInputChange}
