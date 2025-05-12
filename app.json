@@ -2,7 +2,6 @@
   "expo": {
     "name": "WorryFree",
     "slug": "WorryFree",
-    "displayName": "WorryFree",
     "icon": "./assets/images/app-icon.png",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -61,10 +60,19 @@
             "useFrameworks": "static"
           }
         }
-      ]
+      ],
+      "expo-sqlite"
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "86ca8438-dc82-4e22-899d-d7fec9a79fe7"
+      }
     }
   }
 }
