@@ -15,9 +15,13 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.irolinski.cbtApp",
-      "googleServicesFile": "./GoogleService-Info.plist"
+      "googleServicesFile": "./GoogleService-Info.plist",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
+      "versionCode": 7,
       "adaptiveIcon": {
         "backgroundColor": "#ffffff"
       },
