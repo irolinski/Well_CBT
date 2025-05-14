@@ -1,7 +1,6 @@
-// service.ts
-import { Alert } from 'react-native';
-import { dbPromise } from '@/services/db';
-import { getTranslation } from '@/utils/locales';
+import { Alert } from "react-native";
+import { dbPromise } from "@/services/db";
+import { getTranslation } from "@/utils/locales";
 
 export const setUpDB = async () => {
   try {
@@ -129,7 +128,6 @@ export const handleSetSeenOnboardingTrue = async () => {
   try {
     const db = await dbPromise;
     await db.execAsync(`INSERT INTO seenOnboarding (isTrue) VALUES (1)`);
-    console.log("onboarding was seen on this device, setting db");
   } catch (err) {
     console.error(err);
     Alert.alert(
