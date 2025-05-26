@@ -17,6 +17,7 @@
       "bundleIdentifier": "com.irolinski.cbtApp",
       "googleServicesFile": "./GoogleService-Info.plist",
       "infoPlist": {
+        "UIRequiresFullScreen": true,
         "ITSAppUsesNonExemptEncryption": false
       }
     },
