@@ -1,16 +1,17 @@
-import { Href, router } from 'expo-router';
-import { useTranslation } from 'react-i18next';
-import { Modal, Pressable, Text, View } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
-import { Colors } from '@/constants/styles/colorTheme';
-import { setShowEditProfileModal } from '@/state/features/menus/editProfileModalSlice';
+import { Href, router } from "expo-router";
+import { useTranslation } from "react-i18next";
+import { Modal, Pressable, Text, View } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import { Colors } from "@/constants/styles/colorTheme";
+import { setShowEditProfileModal } from "@/state/features/menus/editProfileModalSlice";
 import {
-    setNavigateSettingsModalSelectedLink, setShowNavigateSettingsModal
-} from '@/state/features/menus/navigateSettingsModalSlice';
-import { AppDispatch, RootState } from '@/state/store';
-import { Feather, MaterialCommunityIcons } from '@expo/vector-icons';
-import NavigationModalButton from '../NavigationModalButton';
-import NavigationModalSelect from '../NavigationModalSelect';
+  setNavigateSettingsModalSelectedLink,
+  setShowNavigateSettingsModal,
+} from "@/state/features/menus/navigateSettingsModalSlice";
+import { AppDispatch, RootState } from "@/state/store";
+import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
+import NavigationModalButton from "../NavigationModalButton";
+import NavigationModalSelect from "../NavigationModalSelect";
 
 const NavigateSettingsModal = () => {
   const { t } = useTranslation(["about", "common"]);
@@ -45,6 +46,7 @@ const NavigateSettingsModal = () => {
   };
 
   const handleOpenEditProfileModal = async () => {
+    dispatch(setShowNavigateSettingsModal(false));
     dispatch(setShowEditProfileModal(true));
   };
 
