@@ -218,6 +218,7 @@ const EditProfileModal = () => {
                 }}
                 style={{ borderColor: Colors.mainGray, borderRadius: 20 }}
                 className="border px-4"
+                nestedScrollEnabled={true}
               >
                 {allFaces.map(
                   (faceObj: { id: number; image: Image }, indexNum: number) => (
