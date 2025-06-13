@@ -20,10 +20,6 @@
   "settings": {
     "title": "Settings",
     "categories": { "preferences": "Preferences", "more": "More" },
-    "language": {
-      "title": "Language",
-      "select_language": "Select Language:"
-    },
     "storage": {
       "title": "Storage",
       "remove_all_data": "Remove all saved data",

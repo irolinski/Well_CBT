@@ -1,14 +1,14 @@
-import * as Device from "expo-device";
-import { Href, router } from "expo-router";
-import React from "react";
-import { useTranslation } from "react-i18next";
-import { TouchableOpacity, View } from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
-import DividerLine from "@/components/DividerLine";
-import MenuNav from "@/components/global/MenuNav";
-import Text from "@/components/global/Text";
-import { Colors } from "@/constants/styles/colorTheme";
-import { FontAwesome6, MaterialIcons } from "@expo/vector-icons";
+import * as Device from 'expo-device';
+import { Href, router } from 'expo-router';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { TouchableOpacity, View } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
+import DividerLine from '@/components/DividerLine';
+import MenuNav from '@/components/global/MenuNav';
+import Text from '@/components/global/Text';
+import { Colors } from '@/constants/styles/colorTheme';
+import { FontAwesome6, MaterialIcons } from '@expo/vector-icons';
 
 const index = () => {
   const { t } = useTranslation(["about", "common"]);
@@ -16,15 +16,8 @@ const index = () => {
   const reportBugMailLink = `mailto: help.worryfree@gmail.com?subject=Bug Report&body=${t("settings.report_a_bug.mail_body")}\n\n  Device: ${Device.modelName} \nOS Version: ${Device.osVersion}\n\n------`;
 
   const preferencesObj = {
-    title: "Preferences",
+    title: t(`settings.categories.preferences`),
     items: [
-      {
-        title: t(`settings.language.title`),
-        icon: (
-          <MaterialIcons name="language" size={40} color={Colors.offBlack} />
-        ),
-        link: "/about/settings/preferences/language",
-      },
       {
         title: t(`settings.storage.title`),
         icon: <MaterialIcons name="save" size={40} color={Colors.offBlack} />,
@@ -34,7 +27,7 @@ const index = () => {
   };
 
   const moreObj = {
-    title: "More",
+    title: t(`settings.categories.more`),
     items: [
       {
         title: t("settings.report_a_bug.title"),
@@ -100,10 +93,6 @@ const index = () => {
                   </React.Fragment>
                 ))}
               </View>
-              {/* <TouchableOpacity
-                className="h-24 w-24 bg-slate-600"
-                onPress={handleMailTo}
-              ></TouchableOpacity> */}
             </View>
           ))}
         </View>

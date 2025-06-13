@@ -19,11 +19,7 @@
   },
   "settings": {
     "title": "Ustawienia",
-
-    "language": {
-      "title": "Ustawienia języka",
-      "select_language": "Wybierz język:"
-    },
+    "categories": { "preferences": "Preferencje", "more": "Więcej" },
     "storage": {
       "title": "Zapisane dane",
       "remove_all_data": "Usuń wszystkie zapisane dane",
