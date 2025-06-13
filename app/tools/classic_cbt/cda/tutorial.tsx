@@ -444,7 +444,7 @@ const CDA_Tutorial = ({ closeModalFunc }: { closeModalFunc: () => void }) => {
           </View>
           <View>
             <CDATextBox
-              customStyle={{ height: 200 }}
+              customStyle={{ height: 230 }}
               textContent={t("tools.cda.tutorial.page_11.textbox_1")}
             />
             <Text style={[styles.slideTextBodyLead, { fontSize: 16 }]}>

@@ -203,11 +203,11 @@
         },
         "page_3": {
           "title": "Zmień swoje samopoczucie",
-          "instruction_1": "A więc, dobra wiadomość jest taka, że zmieniając to, jak myślimy, możemy wpłynąć na to, jak się czujemy.\n\nZapytasz: <italic>“No dobrze, ale jak właściwie mam to zrobić?”</italic>\n\nTo narzędzie pomoże ci w tym zadaniu poprzez:\n\n- <bold>Rozpoznanie automatycznych myśli</bold>\n- <bold>Wyłonienie z nich zniekształceń poznawczyc</bold>\n- <bold>Zastąpienie zniekształconej myśli racjonalną i bardziej obiektywną</bold>"
+          "instruction_1": "Dobra wiadomość jest taka, że zmieniając sposób, w jaki myślimy, możemy realnie wpłynąć na to, jak się czujemy.\n\nMożesz zapytać: <italic>“No dobrze, ale jak właściwie mam to zrobić?”</italic>\n\nTo narzędzie zostało stworzone po to, by Ci w tym pomóc. Przeprowadzi Cię przez:\n\n- <bold>Rozpoznanie automatycznych myśli</bold>\n- <bold>Odnalezienie w nich zniekształceń poznawczych</bold>\n- <bold>Zastąpienie zniekształconej myśli racjonalną i bardziej wspierającą</bold>"
         },
         "page_4": {
           "title": "Automatyczne myśli",
-          "instruction_1": "Automatyczne myśli to <bold>nagłe, często subtelne myśli, które pojawiają się w naszych głowach</bold> o róznych porach dnia i nocy.\n\nNie zawsze od razu je dostrzegamy, ale przy odrobinie pomocy, zauważysz je bez problemu.\n\nNa kolejnej stronie znajdziesz kilka wskazówek, jak zauważać swoje automatyczne myśli oraz kilka ich przykładów."
+          "instruction_1": "Automatyczne myśli to <bold>szybkie, często bardzo ciche myśli, które pojawiają się w naszej głowie</bold> w różnych momentach dnia i nocy.\n\nNie zawsze łatwo je wychwycić, ale z czasem — i z odrobiną wsparcia — nauczysz się je rozpoznawać.\n\nNa kolejnej stronie znajdziesz kilka wskazówek, jak zauważać swoje automatyczne myśli oraz kilka przykładów, które mogą Ci w tym pomóc."
         },
         "page_5": {
           "title": "Jak rozpoznać automatyczną myśl?",
@@ -241,7 +241,7 @@
         "page_10": {
           "instruction_1": "Następnie, patrząc na zapisaną myśl i listę zniekształceń poznawczych, spróbowała określić, <bold>które z nich może tu pasować</bold>:",
           "textbox_1_title": "Zniekształcona myśl:",
-          "textbox_1": "Andrzej pewnie mnie nienawidzi. Tak samo, jak reszta ludzi w moim biurze.",
+          "textbox_1": "Andrzej pewnie mnie nienawidzi.\nTak samo, jak reszta ludzi w moim biurze.",
           "instruction_2": "Na początku ta myśl wydawała się Kasi wiarygodna. Jednak <bold>po jej zapisaniu znacznie łatwiej było spojrzeć na nią krytycznie</bold>. Zniekształcenie w niej rozpoznała jako...",
           "distortion": "Czytanie w myślach",
           "instruction_3": "<italic>”Tak... <bold>czytanie w myślach</bold>... chyba faktycznie to właśnie robię”</italic>, powiedziała do siebie."
@@ -410,7 +410,7 @@
         "despair": "Rozpacz",
         "gloom": "Przygnębienie",
         "unhappiness": "Nieszczęście",
-        "grief": "Żal",
+        "grief": "Rozpacz",
         "sorrow": "Smutek",
         "disappointment": "Rozczarowanie",
         "displeasure": "Niezadowolenie",
