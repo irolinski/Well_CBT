@@ -1,21 +1,37 @@
-import * as Device from 'expo-device';
-import { Href, router } from 'expo-router';
-import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { TouchableOpacity, View } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
-import DividerLine from '@/components/DividerLine';
-import MenuNav from '@/components/global/MenuNav';
-import Text from '@/components/global/Text';
-import { Colors } from '@/constants/styles/colorTheme';
-import { FontAwesome6, MaterialIcons } from '@expo/vector-icons';
+import * as Device from "expo-device";
+import { Href, router } from "expo-router";
+import React, { ReactNode } from "react";
+import { useTranslation } from "react-i18next";
+import { Linking, TouchableOpacity, View } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
+import DividerLine from "@/components/DividerLine";
+import MenuNav from "@/components/global/MenuNav";
+import Text from "@/components/global/Text";
+import { Colors } from "@/constants/styles/colorTheme";
+import { FontAwesome6, MaterialIcons } from "@expo/vector-icons";
+
+type SettingsItem = {
+  title: string;
+  icon: ReactNode;
+  link?: string;
+  url?: string;
+};
+type SettingsCategory = { title: string; items: SettingsItem[] };
+
+const reportBugQueryParams = new URLSearchParams({
+  brand: Device.brand || "",
+  modelName: Device.modelName || "",
+  manufacturer: Device.manufacturer || "",
+  osName: Device.osName || "",
+  osVersion: Device.osVersion || "",
+});
+
+const reportBugLink = `https://worryfree.app/report-bug?${reportBugQueryParams.toString()}`;
 
 const index = () => {
   const { t } = useTranslation(["about", "common"]);
 
-  const reportBugMailLink = `mailto: help.worryfree@gmail.com?subject=Bug Report&body=${t("settings.report_a_bug.mail_body")}\n\n  Device: ${Device.modelName} \nOS Version: ${Device.osVersion}\n\n------`;
-
-  const preferencesObj = {
+  const preferencesObj: SettingsCategory = {
     title: t(`settings.categories.preferences`),
     items: [
       {
@@ -26,7 +42,7 @@ const index = () => {
     ],
   };
 
-  const moreObj = {
+  const moreObj: SettingsCategory = {
     title: t(`settings.categories.more`),
     items: [
       {
@@ -38,7 +54,7 @@ const index = () => {
             color={Colors.blackPearl}
           />
         ),
-        link: reportBugMailLink,
+        url: reportBugLink,
       },
     ],
   };
@@ -79,7 +95,11 @@ const index = () => {
                     <TouchableOpacity
                       className="mr-4 flex-row py-6"
                       key={indexNum}
-                      onPress={() => router.push(`${item.link}` as Href)}
+                      onPress={() => {
+                        item.link
+                          ? router.push(`${item.link}` as Href)
+                          : item.url && Linking.openURL(item.url);
+                      }}
                     >
                       <View className="w-full flex-row">
                         <View className="ml-3 w-1/5">{item.icon}</View>
