@@ -3,7 +3,7 @@
     "name": "WorryFree",
     "slug": "WorryFree",
     "icon": "./assets/images/app-icon.png",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "scheme": "myapp",
     "newArchEnabled": true,
@@ -22,7 +22,7 @@
       }
     },
     "android": {
-      "versionCode": 7,
+      "versionCode": 101,
       "adaptiveIcon": {
         "backgroundColor": "#ffffff"
       },

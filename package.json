@@ -1,7 +1,7 @@
 {
   "name": "WorryFree",
   "main": "expo-router/entry",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "scripts": {
     "dev": "npx expo start --clear",
     "prod": "npx expo start --no-dev --minify",
