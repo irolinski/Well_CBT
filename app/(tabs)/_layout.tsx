@@ -1,17 +1,14 @@
-import { Tabs } from "expo-router";
-import React from "react";
-import { useTranslation } from "react-i18next";
-import { View } from "react-native";
-import { Colors } from "@/constants/styles/colorTheme";
-import { SCREEN_HEIGHT } from "@/constants/styles/values";
-import {
-  Feather,
-  MaterialCommunityIcons,
-  MaterialIcons,
-} from "@expo/vector-icons";
+import { Tabs } from 'expo-router';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { Platform, View } from 'react-native';
+import { Colors } from '@/constants/styles/colorTheme';
+import { SCREEN_HEIGHT } from '@/constants/styles/values';
+import { Feather, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 
-const TABBAR_HEIGHT = SCREEN_HEIGHT / 9;
-const TABBAR_PADDING_Y = TABBAR_HEIGHT / 6;
+const TABBAR_HEIGHT_IOS = SCREEN_HEIGHT / 9;
+const TABBAR_HEIGHT_ANDROID = SCREEN_HEIGHT / 12;
+const TABBAR_PADDING_Y = TABBAR_HEIGHT_ANDROID / 6;
 
 const TabLayout = () => {
   const { t } = useTranslation("common");
@@ -24,7 +21,8 @@ const TabLayout = () => {
         tabBarStyle: {
           paddingBottom: TABBAR_PADDING_Y + 5,
           paddingTop: TABBAR_PADDING_Y,
-          height: TABBAR_HEIGHT,
+          height:
+            Platform.OS === "ios" ? TABBAR_HEIGHT_IOS : TABBAR_HEIGHT_ANDROID,
         },
       }}
     >
