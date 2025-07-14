@@ -2,7 +2,7 @@
   "expo": {
     "name": "WorryFree",
     "slug": "WorryFree",
-    "icon": "./assets/images/app-icon.png",
+    "icon": "./assets/icons/app-icon.png",
     "version": "1.0.1",
     "orientation": "portrait",
     "scheme": "myapp",
@@ -10,7 +10,7 @@
     "userInterfaceStyle": "automatic",
     "splash": {
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#8DBED8"
     },
     "ios": {
       "supportsTablet": false,
@@ -24,7 +24,10 @@
     "android": {
       "versionCode": 101,
       "adaptiveIcon": {
-        "backgroundColor": "#ffffff"
+        "icon": "./assets/icons/app-icon.png",
+        "backgroundColor": "#8DBED8",
+        "backgroundImage": "./assets/icons/adaptive_icon_bg.png",
+        "foregroundImage": "./assets/icons/adaptive_icon_fg.png"
       },
       "googleServicesFile": "./google-services.json",
       "permissions": [
@@ -43,7 +46,7 @@
         "expo-splash-screen",
         {
           "backgroundColor": "#8DBED8",
-          "image": "./assets/images/splash-icon.png",
+          "image": "./assets/icons/splash-icon.png",
           "imageWidth": 250,
           "resizemode": "cover"
         }
