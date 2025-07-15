@@ -58,6 +58,7 @@ const Onboarding_Slide_2 = ({
         {t("onboarding.will_help_you_to")}
       </Text>
       <PagerView
+        scrollEnabled={false}
         className="absolute bottom-0 h-2/3 w-full items-center justify-center"
         ref={refPagerView}
         initialPage={0}

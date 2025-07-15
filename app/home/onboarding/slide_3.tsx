@@ -4,7 +4,7 @@ import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import AdvanceButton from "@/components/AdvanceButton";
 import ChecklistElement from "@/components/ChecklistElement";
 import { Colors } from "@/constants/styles/colorTheme";
-import { SCREEN_HEIGHT } from "@/constants/styles/values";
+import { WINDOW_HEIGHT } from "@/constants/styles/values";
 import { analyticsLogGoalsQuestionnaireAnswers } from "@/services/firebase/firebase";
 
 const goals_questionnaire_items: string[] = [
@@ -57,11 +57,11 @@ const Onboarding_Slide_3 = ({
   return (
     <View className="relative z-10 h-full w-full items-center" key={slideKey}>
       <Text
-        className="w-72 text-center text-3xl"
+        className="w-72 text-center text-[26px]"
         style={{
           color: Colors.offWhite,
-          marginTop: SCREEN_HEIGHT * 0.125,
-          marginBottom: 24,
+          marginTop: WINDOW_HEIGHT * 0.125,
+          marginBottom: WINDOW_HEIGHT * 0.02,
         }}
       >
         {t("onboarding.accomplish_questionnaire.question")}
@@ -76,9 +76,9 @@ const Onboarding_Slide_3 = ({
       </Text>
       <View className="h-1/2 w-full px-2">
         <View
-          className="mt-4 h-3/4 w-full items-center justify-center pr-4"
+          className="mt-4 w-full items-center justify-center pr-4"
           style={{
-            height: SCREEN_HEIGHT * 0.35,
+            height: WINDOW_HEIGHT * 0.35,
             borderRadius: 12,
             backgroundColor: Colors.whiteSmoke,
           }}
@@ -110,7 +110,7 @@ const Onboarding_Slide_3 = ({
             ))}
           </ScrollView>
         </View>
-        <View className="bottom-2 mt-8 w-full flex-row justify-center">
+        <View className="bottom-1 my-8 w-full flex-row justify-center">
           {selectedGoals.length > 0 ? (
             <AdvanceButton
               title={t("buttons.continue", { ns: "common" })}
