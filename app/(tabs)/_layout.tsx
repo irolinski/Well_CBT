@@ -8,7 +8,7 @@ import { Feather, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-ico
 
 const TABBAR_HEIGHT_IOS = SCREEN_HEIGHT / 9;
 const TABBAR_HEIGHT_ANDROID = SCREEN_HEIGHT / 12;
-const TABBAR_PADDING_Y = TABBAR_HEIGHT_ANDROID / 6;
+// const TABBAR_PADDING_Y = TABBAR_HEIGHT_ANDROID / 6;
 
 const TabLayout = () => {
   const { t } = useTranslation("common");
@@ -19,8 +19,8 @@ const TabLayout = () => {
         tabBarActiveTintColor: Colors.offBlack,
         headerShown: false,
         tabBarStyle: {
-          paddingBottom: TABBAR_PADDING_Y + 5,
-          paddingTop: TABBAR_PADDING_Y,
+          paddingBottom: 5,
+          paddingTop: 5,
           height:
             Platform.OS === "ios" ? TABBAR_HEIGHT_IOS : TABBAR_HEIGHT_ANDROID,
         },

@@ -1,10 +1,10 @@
-import { Trans } from "react-i18next";
-import { View } from "react-native";
-import { Colors } from "@/constants/styles/colorTheme";
-import { SCREEN_HEIGHT } from "@/constants/styles/values";
-import BackButton from "../BackButton";
-import Text from "../global/Text";
-import ProgressBar from "../ProgressBar";
+import { Trans } from 'react-i18next';
+import { View } from 'react-native';
+import { Colors } from '@/constants/styles/colorTheme';
+import { REFERENCE_SMALL_DEVICE_HEIGHT, SCREEN_HEIGHT } from '@/constants/styles/values';
+import BackButton from '../BackButton';
+import Text from '../global/Text';
+import ProgressBar from '../ProgressBar';
 
 const ToolNav = ({
   currentPage,
@@ -20,7 +20,7 @@ const ToolNav = ({
   return (
     <View className="z-10">
       <View
-        className={`absolute z-10 box-border w-full border-b pb-7 ${SCREEN_HEIGHT > 750 ? "top-20" : "top-12"}`}
+        className={`absolute z-10 box-border w-full border-b ${SCREEN_HEIGHT > 750 ? "top-20 pb-7" : SCREEN_HEIGHT >= REFERENCE_SMALL_DEVICE_HEIGHT ? "top-12 pb-7" : "top-9 pb-4"}`}
         style={{
           borderColor: Colors.lightGray,
         }}

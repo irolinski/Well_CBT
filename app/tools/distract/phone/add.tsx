@@ -3,7 +3,9 @@ import { Image } from 'expo-image';
 import { Href, router } from 'expo-router';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, Keyboard, Pressable, ScrollView, TextInput, View } from 'react-native';
+import {
+    Alert, Keyboard, Pressable, SafeAreaView, ScrollView, TextInput, View
+} from 'react-native';
 import { useSelector } from 'react-redux';
 import { logoImages } from '@/assets/images/global/logo/logo';
 import { phoneFacePlaceholder } from '@/assets/images/tools/phone/phoneFaces';
@@ -12,7 +14,7 @@ import Text from '@/components/global/Text';
 import ToolHeader from '@/components/tools/ToolHeader';
 import { phoneAFriend_tool } from '@/constants/models/tools/tools';
 import { Colors } from '@/constants/styles/colorTheme';
-import { SCREEN_HEIGHT } from '@/constants/styles/values';
+import { REFERENCE_SMALL_DEVICE_HEIGHT, SCREEN_HEIGHT } from '@/constants/styles/values';
 import { setContact, setContactWithPicture } from '@/db/tools';
 import { RootState } from '@/state/store';
 import formatPhoneNumber from '@/utils/formatPhoneNumber';
@@ -105,14 +107,17 @@ const Add = () => {
   };
 
   return (
-    <React.Fragment>
+    <SafeAreaView>
       <View
-        className={`z-10 mx-6 ${SCREEN_HEIGHT > 750 ? "top-20" : "top-12"} flex-row justify-start`}
+        className={`z-10 mx-6 flex-row justify-start`}
+        style={{
+          paddingTop: SCREEN_HEIGHT >= REFERENCE_SMALL_DEVICE_HEIGHT ? 30 : 12,
+        }}
       >
         <BackButton />
       </View>
       <View
-        className={`mx-6 ${SCREEN_HEIGHT > 750 ? "top-24" : "top-16"}`}
+        className={`mx-6 ${SCREEN_HEIGHT > 750 ? "top-16" : "top-8"}`}
         style={{
           height: SCREEN_HEIGHT - SCREEN_HEIGHT / 5,
         }}
@@ -269,7 +274,7 @@ const Add = () => {
           </View>
         </View>
       </View>
-    </React.Fragment>
+    </SafeAreaView>
   );
 };
 

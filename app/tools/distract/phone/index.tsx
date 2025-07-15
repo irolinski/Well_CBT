@@ -1,35 +1,24 @@
-import { Href, router, useFocusEffect } from "expo-router";
-import React from "react";
-import { useTranslation } from "react-i18next";
+import { Href, router, useFocusEffect } from 'expo-router';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { Alert, Linking, SafeAreaView, TouchableOpacity, View } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import BackButton from '@/components/BackButton';
+import Text from '@/components/global/Text';
+import ContactPic from '@/components/tools/phone/ContactPic';
+import ToolHeader from '@/components/tools/ToolHeader';
+import { phoneAFriend_tool } from '@/constants/models/tools/tools';
+import { Colors } from '@/constants/styles/colorTheme';
 import {
-  Alert,
-  Linking,
-  SafeAreaView,
-  TouchableOpacity,
-  View,
-} from "react-native";
-import { useDispatch, useSelector } from "react-redux";
-import BackButton from "@/components/BackButton";
-import Text from "@/components/global/Text";
-import ContactPic from "@/components/tools/phone/ContactPic";
-import ToolHeader from "@/components/tools/ToolHeader";
-import { phoneAFriend_tool } from "@/constants/models/tools/tools";
-import { Colors } from "@/constants/styles/colorTheme";
-import { SCREEN_HEIGHT, SCREEN_WIDTH } from "@/constants/styles/values";
-import { getPhoneData } from "@/db/tools";
-import {
-  setShowModal,
-  setSupportContact,
-} from "@/state/features/tools/phoneSlice";
-import { AppDispatch, RootState } from "@/state/store";
-import formatPhoneNumber from "@/utils/formatPhoneNumber";
-import { getTranslation } from "@/utils/locales";
-import {
-  AntDesign,
-  MaterialCommunityIcons,
-  MaterialIcons,
-} from "@expo/vector-icons";
-import ConversationModal from "./modal";
+    REFERENCE_SMALL_DEVICE_HEIGHT, SCREEN_HEIGHT, SCREEN_WIDTH
+} from '@/constants/styles/values';
+import { getPhoneData } from '@/db/tools';
+import { setShowModal, setSupportContact } from '@/state/features/tools/phoneSlice';
+import { AppDispatch, RootState } from '@/state/store';
+import formatPhoneNumber from '@/utils/formatPhoneNumber';
+import { getTranslation } from '@/utils/locales';
+import { AntDesign, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
+import ConversationModal from './modal';
 
 const TOOL_NAME = phoneAFriend_tool.name;
 
@@ -90,7 +79,7 @@ const Phone = () => {
         className="z-10 flex-row justify-between px-6"
         style={{
           width: SCREEN_WIDTH,
-          paddingTop: 30,
+          paddingTop: SCREEN_HEIGHT >= REFERENCE_SMALL_DEVICE_HEIGHT ? 30 : 12,
           top: 0,
           left: 0,
         }}
@@ -114,13 +103,18 @@ const Phone = () => {
           width: SCREEN_WIDTH,
           paddingLeft: 24,
           paddingRight: 24,
-          paddingTop: SCREEN_HEIGHT * 0.025,
+          paddingTop:
+            SCREEN_HEIGHT >= REFERENCE_SMALL_DEVICE_HEIGHT
+              ? SCREEN_HEIGHT * 0.025
+              : 5,
           justifyContent: "flex-start",
           top: 0,
           left: 0,
         }}
       >
-        <View className="mb-8">
+        <View
+          className={`${SCREEN_HEIGHT >= REFERENCE_SMALL_DEVICE_HEIGHT ? "mb-8" : "mb-2"}`}
+        >
           <ToolHeader>{t(`tools.${TOOL_NAME}.title`)}</ToolHeader>
         </View>
         <View

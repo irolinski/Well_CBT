@@ -1,9 +1,12 @@
-import React, { ReactNode } from "react";
-import { Text, View } from "react-native";
-import BackButton from "@/components/BackButton";
-import { Colors } from "@/constants/styles/colorTheme";
-import { SCREEN_HEIGHT } from "@/constants/styles/values";
-import { handleLogRelaxActivity } from "@/db/tools";
+import { deviceName } from 'expo-device';
+import React, { ReactNode, useEffect } from 'react';
+import { Text, View } from 'react-native';
+import BackButton from '@/components/BackButton';
+import { Colors } from '@/constants/styles/colorTheme';
+import {
+    REFERENCE_SMALL_DEVICE_HEIGHT, SCREEN_HEIGHT, WINDOW_HEIGHT
+} from '@/constants/styles/values';
+import { handleLogRelaxActivity } from '@/db/tools';
 
 interface GroundYourselfSlideFrameProps {
   children: ReactNode;
@@ -34,8 +37,13 @@ const GroundYourselfSlideFrame: React.FC<GroundYourselfSlideFrameProps> = ({
   return (
     <React.Fragment>
       <View
-        className="top-0 z-10 mb-6 h-16 w-full flex-row items-center justify-between px-6 py-3"
-        style={{ top: SCREEN_HEIGHT * 0.055 }}
+        className={`z-10 w-full flex-row items-center justify-between px-6 ${SCREEN_HEIGHT >= REFERENCE_SMALL_DEVICE_HEIGHT ? "mb-6 h-16 py-3" : "mt-3 h-10"}`}
+        style={{
+          top:
+            SCREEN_HEIGHT >= REFERENCE_SMALL_DEVICE_HEIGHT
+              ? WINDOW_HEIGHT * 0.055
+              : 0,
+        }}
       >
         <BackButton
           color={Colors.offBlack}
@@ -50,8 +58,11 @@ const GroundYourselfSlideFrame: React.FC<GroundYourselfSlideFrameProps> = ({
       </View>
       <View
         style={{
-          height: SCREEN_HEIGHT,
-          paddingTop: SCREEN_HEIGHT * 0.025,
+          height: WINDOW_HEIGHT,
+          paddingTop:
+            SCREEN_HEIGHT >= REFERENCE_SMALL_DEVICE_HEIGHT
+              ? WINDOW_HEIGHT * 0.025
+              : 0,
         }}
       >
         <View className="relative mx-4 mb-10 items-center pb-4">

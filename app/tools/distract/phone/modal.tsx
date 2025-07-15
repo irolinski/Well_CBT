@@ -1,27 +1,23 @@
-import { Image } from "expo-image";
-import { useRef, useState } from "react";
-import { useTranslation } from "react-i18next";
+import { Image } from 'expo-image';
+import { useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
-  Animated,
-  Modal,
-  Pressable,
-  StyleSheet,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
-  View,
-} from "react-native";
-import { useDispatch, useSelector } from "react-redux";
-import { logoImages } from "@/assets/images/global/logo/logo";
-import DividerLine from "@/components/DividerLine";
-import Text from "@/components/global/Text";
-import { phoneAFriend_tool } from "@/constants/models/tools/tools";
-import { Colors } from "@/constants/styles/colorTheme";
-import { SCREEN_HEIGHT, SCREEN_WIDTH } from "@/constants/styles/values";
-import { achievementHandlersObj } from "@/db/achievements/controllers";
-import { setShowModal } from "@/state/features/tools/phoneSlice";
-import { AppDispatch, RootState } from "@/state/store";
-import handleShare from "@/utils/handleShare";
-import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
+    Animated, Modal, Pressable, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, View
+} from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import { logoImages } from '@/assets/images/global/logo/logo';
+import DividerLine from '@/components/DividerLine';
+import Text from '@/components/global/Text';
+import { phoneAFriend_tool } from '@/constants/models/tools/tools';
+import { Colors } from '@/constants/styles/colorTheme';
+import {
+    REFERENCE_SMALL_DEVICE_HEIGHT, SCREEN_HEIGHT, SCREEN_WIDTH, WINDOW_HEIGHT
+} from '@/constants/styles/values';
+import { achievementHandlersObj } from '@/db/achievements/controllers';
+import { setShowModal } from '@/state/features/tools/phoneSlice';
+import { AppDispatch, RootState } from '@/state/store';
+import handleShare from '@/utils/handleShare';
+import { Feather, MaterialCommunityIcons } from '@expo/vector-icons';
 
 const TOOL_NAME = phoneAFriend_tool.name;
 
@@ -223,7 +219,9 @@ const ConversationModal = () => {
             </View>
           </Pressable>
           <View className="flex-row justify-center">
-            <Text className="text-center text-xl">
+            <Text
+              className={`text-center ${SCREEN_HEIGHT >= REFERENCE_SMALL_DEVICE_HEIGHT ? "text-xl" : "text-lg"}`}
+            >
               {t(`tools.${TOOL_NAME}.modal.instruction`)}
             </Text>
           </View>
@@ -298,9 +296,11 @@ const ConversationModal = () => {
               </TouchableWithoutFeedback>
             </Animated.View>
           </View>
-          <View className="mt-8 flex-row justify-center">
+          <View
+            className={`${WINDOW_HEIGHT >= REFERENCE_SMALL_DEVICE_HEIGHT ? "mt-8 h-14" : "mt-6 h-12"} flex-row justify-center`}
+          >
             <TouchableOpacity
-              className="mx-2 h-14 w-24 items-center justify-center rounded-xl border"
+              className="mx-2 h-full w-24 items-center justify-center rounded-xl border"
               style={{
                 backgroundColor: Colors.offWhite,
                 opacity: isRefreshing ? 0.5 : 1,
@@ -317,7 +317,7 @@ const ConversationModal = () => {
               </View>
             </TouchableOpacity>
             <TouchableOpacity
-              className="mx-2 h-14 w-40 items-center justify-center rounded-xl"
+              className="mx-2 h-full w-40 items-center justify-center rounded-xl"
               style={{
                 backgroundColor: Colors.darkBlue,
                 opacity: isRefreshing ? 0.5 : 1,
