@@ -8,7 +8,6 @@ import { Feather, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-ico
 
 const TABBAR_HEIGHT_IOS = SCREEN_HEIGHT / 9;
 const TABBAR_HEIGHT_ANDROID = SCREEN_HEIGHT / 12;
-// const TABBAR_PADDING_Y = TABBAR_HEIGHT_ANDROID / 6;
 
 const TabLayout = () => {
   const { t } = useTranslation("common");

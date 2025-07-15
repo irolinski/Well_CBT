@@ -1,13 +1,13 @@
-import { Href, router } from 'expo-router';
-import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { ImageBackground, Text, View } from 'react-native';
-import { toolBackgrounds } from '@/assets/images/tools/backgrounds/backgrounds';
-import AdvanceButton from '@/components/AdvanceButton';
-import BackButton from '@/components/BackButton';
-import { journal_tool } from '@/constants/models/tools/tools';
-import { Colors } from '@/constants/styles/colorTheme';
-import { SCREEN_HEIGHT } from '@/constants/styles/values';
+import { Href, router } from "expo-router";
+import React from "react";
+import { useTranslation } from "react-i18next";
+import { ImageBackground, Text, View } from "react-native";
+import { toolBackgrounds } from "@/assets/images/tools/backgrounds/backgrounds";
+import AdvanceButton from "@/components/AdvanceButton";
+import BackButton from "@/components/BackButton";
+import { journal_tool } from "@/constants/models/tools/tools";
+import { Colors } from "@/constants/styles/colorTheme";
+import { SCREEN_HEIGHT } from "@/constants/styles/values";
 
 const TOOL_NAME = journal_tool.name;
 
@@ -29,7 +29,7 @@ const Journal_Index = () => {
             <View>
               <View className="my-4 mr-[15%] justify-center">
                 <Text
-                  className="my-4 text-left text-2xl font-bold"
+                  className="my-4 text-left text-2xl"
                   style={{
                     fontFamily: "KodchasanMedium",
                     color: Colors.whiteSmoke,

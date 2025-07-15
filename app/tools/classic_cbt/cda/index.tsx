@@ -1,15 +1,15 @@
-import { Href, router } from 'expo-router';
-import React, { useEffect, useState } from 'react';
-import { Trans, useTranslation } from 'react-i18next';
-import { ImageBackground, Modal, Text, View } from 'react-native';
-import { toolBackgrounds } from '@/assets/images/tools/backgrounds/backgrounds';
-import AdvanceButton from '@/components/AdvanceButton';
-import BackButton from '@/components/BackButton';
-import { cda_tool } from '@/constants/models/tools/tools';
-import { Colors } from '@/constants/styles/colorTheme';
-import { SCREEN_HEIGHT, SCREEN_WIDTH } from '@/constants/styles/values';
-import { handleCheckTutorialWasSeen, handleSetSeenTutorial } from '@/db/tools';
-import CDA_Tutorial from './tutorial';
+import { Href, router } from "expo-router";
+import React, { useEffect, useState } from "react";
+import { Trans, useTranslation } from "react-i18next";
+import { ImageBackground, Modal, Text, View } from "react-native";
+import { toolBackgrounds } from "@/assets/images/tools/backgrounds/backgrounds";
+import AdvanceButton from "@/components/AdvanceButton";
+import BackButton from "@/components/BackButton";
+import { cda_tool } from "@/constants/models/tools/tools";
+import { Colors } from "@/constants/styles/colorTheme";
+import { SCREEN_HEIGHT, SCREEN_WIDTH } from "@/constants/styles/values";
+import { handleCheckTutorialWasSeen, handleSetSeenTutorial } from "@/db/tools";
+import CDA_Tutorial from "./tutorial";
 
 const TOOL_NAME = cda_tool.name;
 
@@ -44,7 +44,7 @@ const Cda = () => {
               style={{ marginRight: SCREEN_WIDTH * 0.1 }}
             >
               <Text
-                className="my-4 text-left text-2xl font-bold"
+                className="my-4 text-left text-2xl"
                 style={{
                   fontFamily: "KodchasanMedium",
                   color: Colors.whiteSmoke,
