@@ -7,6 +7,7 @@ import CategoryFilter from "@/components/home/CategoryFilter";
 import { Colors } from "@/constants/styles/colorTheme";
 import {
   CLOSE_MODAL_OFFSET_TRESHOLD,
+  REFERENCE_SMALL_DEVICE_HEIGHT,
   SCREEN_HEIGHT,
   SCREEN_WIDTH,
 } from "@/constants/styles/values";
@@ -41,6 +42,13 @@ const ActivityLogModal = () => {
         <View
           className={`px-4 ${SCREEN_HEIGHT > 850 ? "py-20" : "py-12"}`}
           style={{
+            paddingTop:
+              Platform.OS === "ios" &&
+              SCREEN_HEIGHT > REFERENCE_SMALL_DEVICE_HEIGHT
+                ? 80
+                : 48,
+            paddingBottom: 48,
+            paddingHorizontal: 16,
             top: 0,
             width: SCREEN_WIDTH,
             backgroundColor: Colors.offWhite,

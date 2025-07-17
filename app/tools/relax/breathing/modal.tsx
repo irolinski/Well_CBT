@@ -1,22 +1,30 @@
-import { Image } from 'expo-image';
-import { useTranslation } from 'react-i18next';
-import { Modal, Platform, Pressable, ScrollView, View } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
-import Text from '@/components/global/Text';
-import RadioButton from '@/components/RadioButton';
-import MethodInfo from '@/components/tools/breathe/MethodInfo';
-import { breathing_tool } from '@/constants/models/tools/tools';
-import { Colors } from '@/constants/styles/colorTheme';
+import { Image } from "expo-image";
+import { useTranslation } from "react-i18next";
+import { Modal, Platform, Pressable, ScrollView, View } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import Text from "@/components/global/Text";
+import RadioButton from "@/components/RadioButton";
+import MethodInfo from "@/components/tools/breathe/MethodInfo";
+import { breathing_tool } from "@/constants/models/tools/tools";
+import { Colors } from "@/constants/styles/colorTheme";
 import {
-    CLOSE_MODAL_OFFSET_TRESHOLD, REFERENCE_SMALL_DEVICE_HEIGHT, SCREEN_HEIGHT, SCREEN_WIDTH
-} from '@/constants/styles/values';
+  CLOSE_MODAL_OFFSET_TRESHOLD,
+  REFERENCE_SMALL_DEVICE_HEIGHT,
+  SCREEN_HEIGHT,
+  SCREEN_WIDTH,
+} from "@/constants/styles/values";
 import {
-    mode_4_7_8, mode_box_4s, setMode, setNumOfSets, toggleCountdown, toggleModal
-} from '@/state/features/tools/breatheSettingsSlice';
-import { AppDispatch, RootState } from '@/state/store';
-import { isPolishFew } from '@/utils/locales';
-import { Feather, MaterialCommunityIcons } from '@expo/vector-icons';
-import { Slider } from '@miblanchard/react-native-slider';
+  mode_4_7_8,
+  mode_box_4s,
+  setMode,
+  setNumOfSets,
+  toggleCountdown,
+  toggleModal,
+} from "@/state/features/tools/breatheSettingsSlice";
+import { AppDispatch, RootState } from "@/state/store";
+import { isPolishFew } from "@/utils/locales";
+import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
+import { Slider } from "@miblanchard/react-native-slider";
 
 const TOOL_NAME = breathing_tool.name;
 
@@ -44,14 +52,21 @@ const BreatheModal = ({ ellapsedTime }: { ellapsedTime: number }) => {
         }}
       >
         <View
-          className={`px-4 ${SCREEN_HEIGHT > 850 ? "py-20" : SCREEN_HEIGHT >= REFERENCE_SMALL_DEVICE_HEIGHT ? "py-12" : "py-4"}`}
           style={{
+            paddingTop:
+              Platform.OS === "ios" &&
+              SCREEN_HEIGHT > REFERENCE_SMALL_DEVICE_HEIGHT
+                ? 80
+                : 48,
+            paddingBottom: 48,
+            paddingHorizontal: 16,
             top: 0,
             width: SCREEN_WIDTH,
             backgroundColor: Colors.offWhite,
           }}
         >
           <Pressable
+            className="top-0"
             onPress={() => {
               dispatch(toggleModal(false));
             }}

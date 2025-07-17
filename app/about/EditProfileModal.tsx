@@ -1,25 +1,44 @@
-import { Image } from 'expo-image';
-import { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { Image } from "expo-image";
+import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
-    Alert, Keyboard, Modal, Platform, Pressable, ScrollView, TextInput, TouchableOpacity, View
-} from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
-import { allFaces } from '@/assets/images/global/faces/faces';
-import DividerLine from '@/components/DividerLine';
-import Text from '@/components/global/Text';
-import NavigationModalButton from '@/components/NavigationModalButton';
-import { Colors } from '@/constants/styles/colorTheme';
+  Alert,
+  Keyboard,
+  Modal,
+  Platform,
+  Pressable,
+  ScrollView,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import { allFaces } from "@/assets/images/global/faces/faces";
+import DividerLine from "@/components/DividerLine";
+import Text from "@/components/global/Text";
+import NavigationModalButton from "@/components/NavigationModalButton";
+import { Colors } from "@/constants/styles/colorTheme";
 import {
-    CLOSE_MODAL_OFFSET_TRESHOLD, SCREEN_HEIGHT, SCREEN_WIDTH
-} from '@/constants/styles/values';
-import { fetchUserData, handleSetName, handleSetProfilePicId, UserType } from '@/db/user';
+  CLOSE_MODAL_OFFSET_TRESHOLD,
+  REFERENCE_SMALL_DEVICE_HEIGHT,
+  SCREEN_HEIGHT,
+  SCREEN_WIDTH,
+} from "@/constants/styles/values";
 import {
-    setName, setNameInputIsActive, setProfilePicId, setShowEditProfileModal
-} from '@/state/features/menus/editProfileModalSlice';
-import { AppDispatch, RootState } from '@/state/store';
-import { isValidName } from '@/utils/inputValidations';
-import { Feather, MaterialCommunityIcons } from '@expo/vector-icons';
+  fetchUserData,
+  handleSetName,
+  handleSetProfilePicId,
+  UserType,
+} from "@/db/user";
+import {
+  setName,
+  setNameInputIsActive,
+  setProfilePicId,
+  setShowEditProfileModal,
+} from "@/state/features/menus/editProfileModalSlice";
+import { AppDispatch, RootState } from "@/state/store";
+import { isValidName } from "@/utils/inputValidations";
+import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 
 const MAX_NAME_LENGTH = 13;
 
@@ -86,8 +105,14 @@ const EditProfileModal = () => {
         persistentScrollbar={true} // works only on android
       >
         <View
-          className={`px-4 ${SCREEN_HEIGHT > 850 ? "pb-12 pt-20" : "py-12"}`}
           style={{
+            paddingTop:
+              Platform.OS === "ios" &&
+              SCREEN_HEIGHT > REFERENCE_SMALL_DEVICE_HEIGHT
+                ? 80
+                : 48,
+            paddingBottom: 48,
+            paddingHorizontal: 16,
             top: 0,
             width: SCREEN_WIDTH,
             backgroundColor: Colors.offWhite,
