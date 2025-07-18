@@ -25,4 +25,5 @@ export const Colors = {
   darkTealGreen: "#008A63",
   purplePastel: "#B39AD4",
   purpleBright: "#B479FF",
+  transparentBlack: "rgba(0, 0, 0, 0.5)",
 };

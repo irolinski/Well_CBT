@@ -83,7 +83,7 @@ const NavigationModal = () => {
     >
       <View
         className="h-full items-center justify-center"
-        style={{ backgroundColor: "rgba(184, 184, 184, 0.5)" }} //b8b8b8
+        style={{ backgroundColor: Colors.transparentBlack }}
       >
         {/* Modal body */}
         <View

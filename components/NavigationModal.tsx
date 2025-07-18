@@ -1,15 +1,17 @@
-import { Href, router } from 'expo-router';
-import { ReactNode } from 'react';
-import { useTranslation } from 'react-i18next';
-import { Modal, Pressable, Text, View } from 'react-native';
-import { useDispatch } from 'react-redux';
-import { Colors } from '@/constants/styles/colorTheme';
-import { AppDispatch } from '@/state/store';
-import { Feather, MaterialCommunityIcons } from '@expo/vector-icons';
-import { UnknownAction } from '@reduxjs/toolkit';
-import DividerLine from './DividerLine';
-import NavigationModalButton from './NavigationModalButton';
-import NavigationModalSelect, { NavigationModalObj } from './NavigationModalSelect';
+import { Href, router } from "expo-router";
+import { ReactNode } from "react";
+import { useTranslation } from "react-i18next";
+import { Modal, Pressable, Text, View } from "react-native";
+import { useDispatch } from "react-redux";
+import { Colors } from "@/constants/styles/colorTheme";
+import { AppDispatch } from "@/state/store";
+import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
+import { UnknownAction } from "@reduxjs/toolkit";
+import DividerLine from "./DividerLine";
+import NavigationModalButton from "./NavigationModalButton";
+import NavigationModalSelect, {
+  NavigationModalObj,
+} from "./NavigationModalSelect";
 
 type NavigationModalTypes = {
   title: string;
@@ -50,7 +52,7 @@ const NavigationModal = ({
     >
       <View
         className="h-full items-center justify-center"
-        style={{ backgroundColor: "rgba(184, 184, 184, 0.5)" }} //b8b8b8
+        style={{ backgroundColor: Colors.transparentBlack }}
       >
         {/* Modal body */}
         <View
