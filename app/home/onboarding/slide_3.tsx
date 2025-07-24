@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import { useTranslation } from "react-i18next";
-import { ScrollView, Text, TouchableOpacity, View } from "react-native";
-import AdvanceButton from "@/components/AdvanceButton";
-import ChecklistElement from "@/components/ChecklistElement";
-import { Colors } from "@/constants/styles/colorTheme";
-import { WINDOW_HEIGHT } from "@/constants/styles/values";
-import { analyticsLogGoalsQuestionnaireAnswers } from "@/services/firebase/firebase";
+import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import AdvanceButton from '@/components/AdvanceButton';
+import ChecklistElement from '@/components/ChecklistElement';
+import { Colors } from '@/constants/styles/colorTheme';
+import { WINDOW_HEIGHT } from '@/constants/styles/values';
+import { analyticsLogGoalsQuestionnaireAnswers } from '@/services/firebase/firebase';
 
 const goals_questionnaire_items: string[] = [
   "mood",
@@ -29,13 +29,13 @@ const SkipButton = ({ onPress }: { onPress: () => void }) => {
 
   return (
     <TouchableOpacity
-      className="h-12 w-24 flex-row items-center justify-center"
+      className="h-12 flex-row items-center justify-center"
       onPress={() => {
         onPress();
       }}
     >
-      <Text style={{ color: Colors.offWhite, fontWeight: 600, fontSize: 18 }}>
-        {t("buttons.skip").toUpperCase()}
+      <Text style={{ color: Colors.offWhite, fontWeight: 600, fontSize: 16 }}>
+        {t("buttons.skip_questionnaire").toUpperCase()}
       </Text>
     </TouchableOpacity>
   );

@@ -1,22 +1,23 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
-  Animated,
-  Easing,
-  Modal,
-  NativeSyntheticEvent,
-  View,
-} from "react-native";
-import PagerView from "react-native-pager-view";
-import { Double } from "react-native/Libraries/Types/CodegenTypes";
-import { Colors } from "@/constants/styles/colorTheme";
-import { SCREEN_HEIGHT, SCREEN_WIDTH } from "@/constants/styles/values";
-import Onboarding_LastSlide from "./last_slide";
-import Onboarding_LoadingSlide from "./loading_slide";
-import Onboarding_PaymentSlide from "./payment_slide";
-import Onboarding_SecuritySlide from "./security_slide";
-import Onborading_Slide_1 from "./slide_1";
-import Onborading_Slide_2 from "./slide_2";
-import Onboarding_Slide_3 from "./slide_3";
+    Animated, Easing, Modal, NativeSyntheticEvent, Platform, TouchableOpacity, View
+} from 'react-native';
+import PagerView from 'react-native-pager-view';
+import { Double } from 'react-native/Libraries/Types/CodegenTypes';
+import FadeInView from '@/components/FadeInView';
+import Text from '@/components/global/Text';
+import { Colors } from '@/constants/styles/colorTheme';
+import {
+    REFERENCE_SMALL_DEVICE_HEIGHT, SCREEN_HEIGHT, SCREEN_WIDTH
+} from '@/constants/styles/values';
+import Onboarding_LastSlide from './last_slide';
+import Onboarding_LoadingSlide from './loading_slide';
+import Onboarding_PaymentSlide from './payment_slide';
+import Onboarding_SecuritySlide from './security_slide';
+import Onborading_Slide_1 from './slide_1';
+import Onborading_Slide_2 from './slide_2';
+import Onboarding_Slide_3 from './slide_3';
 
 const AppOnboardingModal = ({
   isActive,
@@ -25,12 +26,20 @@ const AppOnboardingModal = ({
   isActive: boolean;
   onFinish: () => void;
 }) => {
+  const { t } = useTranslation("common");
+
   const refPagerView = useRef<PagerView>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [skipButtonIsActive, setSkipButtonIsActive] = useState<boolean>(false);
 
   const nextSlide = useCallback(() => {
     refPagerView.current?.setPage(currentSlide + 1);
   }, [currentSlide]);
+
+  const skipOnboarding = () => {
+    refPagerView.current?.setPage(4);
+    setSkipButtonIsActive(false);
+  };
 
   const breathingViewTopOffsetAnim = useRef(new Animated.Value(0)).current;
   const breathingViewScaleAnim = useRef(new Animated.Value(1)).current;
@@ -96,7 +105,7 @@ const AppOnboardingModal = ({
   return (
     <Modal visible={isActive} className="flex-1" animationType="slide">
       <View
-        className={`items-center justify-center px-4 ${SCREEN_HEIGHT > 850 ? "pt-20" : "pt-12"}`}
+        className={`items-center justify-center px-4 ${SCREEN_HEIGHT > REFERENCE_SMALL_DEVICE_HEIGHT ? "pt-20" : "pt-12"}`}
         style={{
           top: 0,
           width: SCREEN_WIDTH,
@@ -104,7 +113,33 @@ const AppOnboardingModal = ({
           backgroundColor: Colors.offWhite,
         }}
       >
-        {/* Logo and Title View */}
+        <FadeInView
+          className={`absolute ${SCREEN_HEIGHT > REFERENCE_SMALL_DEVICE_HEIGHT && Platform.OS === "ios" ? "top-[7.5vh]" : "top-[5vh]"} z-20 h-8 w-full flex-row justify-end`}
+          inputVal={0}
+          outputVal={1}
+          duration={1500}
+          isActive={skipButtonIsActive}
+        >
+          <TouchableOpacity
+            disabled={!skipButtonIsActive}
+            activeOpacity={0.4}
+            className={`h-12 w-24 flex-row items-center justify-center ${!skipButtonIsActive ? "opacity-0" : ""}`}
+            onPress={() => {
+              skipOnboarding();
+            }}
+          >
+            <Text
+              style={{
+                color: Colors.darkGray,
+                fontWeight: 400,
+                fontSize: 18,
+              }}
+            >
+              {t("buttons.skip").toUpperCase()}
+            </Text>
+          </TouchableOpacity>
+        </FadeInView>
+
         <PagerView
           scrollEnabled={false}
           className="z-10 h-full w-full justify-center"
@@ -126,6 +161,7 @@ const AppOnboardingModal = ({
             onFinish={() => {
               slideDownBackgroundAnim().start(() => {
                 nextSlide();
+                setSkipButtonIsActive(true);
               });
             }}
           />
@@ -134,6 +170,7 @@ const AppOnboardingModal = ({
             onboardingSlideNum={currentSlide}
             onFinish={() => {
               nextSlide();
+              setSkipButtonIsActive(false);
             }}
           />
           <Onboarding_Slide_3
@@ -178,7 +215,7 @@ const AppOnboardingModal = ({
           className="absolute h-full"
           style={{
             width: "200%",
-            height: "150%",
+            height: "135%",
             transform: [{ translateY: breathingViewTopOffsetAnim }],
           }}
         >
