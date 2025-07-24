@@ -1,4 +1,4 @@
-<h1 align="center">Well &nbsp;&nbsp;<img width="50px" src="https://github.com/user-attachments/assets/56328749-dc38-4143-976a-8e695b6ca0ee"/></h1>
+<h1 align="center">WorryFree &nbsp;&nbsp;<img width="50px" src="https://github.com/user-attachments/assets/56328749-dc38-4143-976a-8e695b6ca0ee"/></h1>
 
 <h3 align="center">An Evidence-Based Mobile Self-Help Aid <br/> <br/>
  <img height="175px" src="https://github.com/user-attachments/assets/73cb834c-c322-472a-96b8-1960bd3ff2db" />
@@ -6,9 +6,9 @@
 
 ## Description
 <p>
-  <b>Well</b> is a mobile app that offers evidence-based, easy-to-use <b>cognitive-behavioral psychotherapeutic interventions</b>.<br/><br/>
+  <b>WorryFree</b> is a mobile app that offers evidence-based, easy-to-use <b>cognitive-behavioral psychotherapeutic interventions</b>.<br/><br/>
   Our mission is to promote <b>mental well-being</b> for all by <b>making science-based self-help tools more accessible</b> in today’s fast-paced world.<br/><br/>
-<b>Well</b> is also, to us, a <b>passion project</b>. It is currently in its early stages, with a commitment to continuous development.
+<b>WorryFree</b> is also, to us, a <b>passion project</b>. It is currently in its early stages, with a commitment to continuous development.
 </p>
 
 
