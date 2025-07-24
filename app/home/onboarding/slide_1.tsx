@@ -79,7 +79,7 @@ const Onborading_Slide_1 = ({
 
   return (
     <FadeInView
-      className="z-10 h-full w-full items-center justify-center"
+      className="z-10 h-[80vh] w-full items-center justify-center"
       key={slideKey} //obligatory for outside PagerView
       inputVal={1}
       outputVal={0}
@@ -94,7 +94,7 @@ const Onborading_Slide_1 = ({
         className="flex-row justify-center"
         style={{
           height: 85,
-          transform: [{ translateX: 15 }],
+          // transform: [{ translateX: 15 }], -- this make look the logo look centered over the text but it looks bad
         }}
         duration={1000}
         inputVal={0}
