@@ -2,7 +2,7 @@ import { Image } from "expo-image";
 import React, { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { Animated, Easing, Text, View } from "react-native";
-import onboardingImages from "@/assets/images/home/onboarding/images";
+import onboardingImages from "@/assets/images/home/onboarding";
 import { Colors } from "@/constants/styles/colorTheme";
 import { SCREEN_HEIGHT } from "@/constants/styles/values";
 

@@ -1,11 +1,11 @@
-import { Image } from 'expo-image';
-import React from 'react';
-import { ScrollView, View } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { logoImages } from '@/assets/images/global/logo/logo';
-import { Colors } from '@/constants/styles/colorTheme';
-import { SCREEN_HEIGHT, SCREEN_WIDTH } from '@/constants/styles/values';
-import ToolHeader from '../tools/ToolHeader';
+import { Image } from "expo-image";
+import React from "react";
+import { ScrollView, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { logoImages } from "@/assets/images/global/logo";
+import { Colors } from "@/constants/styles/colorTheme";
+import { SCREEN_HEIGHT, SCREEN_WIDTH } from "@/constants/styles/values";
+import ToolHeader from "../tools/ToolHeader";
 
 const LOGO_VIEW_WIDTH = SCREEN_WIDTH * 0.85;
 const LOGO_VIEW_OFFSET_BOTTOM = SCREEN_HEIGHT * 0.03;

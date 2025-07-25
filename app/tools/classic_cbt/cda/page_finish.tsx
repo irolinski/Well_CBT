@@ -3,7 +3,7 @@ import { Href, router } from "expo-router";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { ScrollView, View } from "react-native";
-import { logoImages } from "@/assets/images/global/logo/logo";
+import { logoImages } from "@/assets/images/global/logo";
 import AdvanceButton from "@/components/AdvanceButton";
 import Text from "@/components/global/Text";
 import SecondaryButton from "@/components/SecondaryButton";

@@ -1,23 +1,32 @@
-import { Image } from 'expo-image';
-import { useRef, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { Image } from "expo-image";
+import { useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
-    Animated, Modal, Pressable, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, View
-} from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
-import { logoImages } from '@/assets/images/global/logo/logo';
-import DividerLine from '@/components/DividerLine';
-import Text from '@/components/global/Text';
-import { phoneAFriend_tool } from '@/constants/models/tools/tools';
-import { Colors } from '@/constants/styles/colorTheme';
+  Animated,
+  Modal,
+  Pressable,
+  StyleSheet,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  View,
+} from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import { logoImages } from "@/assets/images/global/logo";
+import DividerLine from "@/components/DividerLine";
+import Text from "@/components/global/Text";
+import { phoneAFriend_tool } from "@/constants/models/tools/tools";
+import { Colors } from "@/constants/styles/colorTheme";
 import {
-    REFERENCE_SMALL_DEVICE_HEIGHT, SCREEN_HEIGHT, SCREEN_WIDTH, WINDOW_HEIGHT
-} from '@/constants/styles/values';
-import { achievementHandlersObj } from '@/db/achievements/controllers';
-import { setShowModal } from '@/state/features/tools/phoneSlice';
-import { AppDispatch, RootState } from '@/state/store';
-import handleShare from '@/utils/handleShare';
-import { Feather, MaterialCommunityIcons } from '@expo/vector-icons';
+  REFERENCE_SMALL_DEVICE_HEIGHT,
+  SCREEN_HEIGHT,
+  SCREEN_WIDTH,
+  WINDOW_HEIGHT,
+} from "@/constants/styles/values";
+import { achievementHandlersObj } from "@/db/achievements/controllers";
+import { setShowModal } from "@/state/features/tools/phoneSlice";
+import { AppDispatch, RootState } from "@/state/store";
+import handleShare from "@/utils/handleShare";
+import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 
 const TOOL_NAME = phoneAFriend_tool.name;
 

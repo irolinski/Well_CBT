@@ -13,7 +13,7 @@ import {
   View,
 } from "react-native";
 import { useSelector } from "react-redux";
-import { logoImages } from "@/assets/images/global/logo/logo";
+import { logoImages } from "@/assets/images/global/logo";
 import { phoneFacePlaceholder } from "@/assets/images/tools/phone";
 import BackButton from "@/components/BackButton";
 import Text from "@/components/global/Text";

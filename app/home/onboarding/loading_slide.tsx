@@ -2,7 +2,7 @@ import { Image } from "expo-image";
 import React, { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Animated, Easing, Text, View } from "react-native";
-import onboardingImages from "@/assets/images/home/onboarding/images";
+import onboardingImages from "@/assets/images/home/onboarding";
 import FadeInView from "@/components/FadeInView";
 import { Colors } from "@/constants/styles/colorTheme";
 import { SCREEN_WIDTH } from "@/constants/styles/values";

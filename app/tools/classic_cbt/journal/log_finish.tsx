@@ -4,7 +4,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { ScrollView, View } from "react-native";
 import { useSelector } from "react-redux";
-import { logoImages } from "@/assets/images/global/logo/logo";
+import { logoImages } from "@/assets/images/global/logo";
 import AdvanceButton from "@/components/AdvanceButton";
 // import { LogoDark } from "@/components/global/Logo";
 import Text from "@/components/global/Text";

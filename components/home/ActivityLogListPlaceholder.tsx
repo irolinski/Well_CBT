@@ -1,8 +1,8 @@
-import { Image } from 'expo-image';
-import { useTranslation } from 'react-i18next';
-import { Text, View } from 'react-native';
-import { logoImages } from '@/assets/images/global/logo/logo';
-import { Colors } from '@/constants/styles/colorTheme';
+import { Image } from "expo-image";
+import { useTranslation } from "react-i18next";
+import { Text, View } from "react-native";
+import { logoImages } from "@/assets/images/global/logo";
+import { Colors } from "@/constants/styles/colorTheme";
 
 const ActivityLogListPlaceholder = () => {
   const { t } = useTranslation("home");

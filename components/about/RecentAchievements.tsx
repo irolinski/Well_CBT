@@ -7,7 +7,7 @@ import {
   Gesture,
   GestureDetector,
 } from "react-native-gesture-handler";
-import { recentAchievementsPlaceholderImage } from "@/assets/images/about/achievements/achievements";
+import { recentAchievementsPlaceholderImage } from "@/assets/images/about/achievements";
 import {
   AchievementObj,
   AchievementProgressObj,

@@ -13,7 +13,7 @@ import {
   View,
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { allFaces } from "@/assets/images/global/faces/faces";
+import { allFaces } from "@/assets/images/global/faces";
 import DividerLine from "@/components/DividerLine";
 import Text from "@/components/global/Text";
 import NavigationModalButton from "@/components/NavigationModalButton";

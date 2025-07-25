@@ -3,7 +3,7 @@ import { useLocalSearchParams } from "expo-router";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { ScrollView, View } from "react-native";
-import { logoImages } from "@/assets/images/global/logo/logo";
+import { logoImages } from "@/assets/images/global/logo";
 import DistortionPill from "@/components/DistortionPill";
 import ErrorScreen from "@/components/ErrorScreen";
 import Text from "@/components/global/Text";
