@@ -1,16 +1,19 @@
-import { Image } from 'expo-image';
-import React, { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { Alert, View } from 'react-native';
+import { Image } from "expo-image";
+import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { Alert, View } from "react-native";
 import {
-    ballColors, ballSizeParameter, statObjectsList, StatsObj
-} from '@/constants/models/about/about';
-import { Colors } from '@/constants/styles/colorTheme';
-import { fetchStatsData } from '@/db/about';
-import { StatsDataObjType } from '@/db/models';
-import { interpolateNumbers } from '@/utils/algorithms';
-import Text from '../global/Text';
-import StatRow from './StatRow';
+  ballColors,
+  ballSizeParameter,
+  statObjectsList,
+  StatsObj,
+} from "@/constants/models/about";
+import { Colors } from "@/constants/styles/colorTheme";
+import { fetchStatsData } from "@/db/about";
+import { StatsDataObjType } from "@/db/models";
+import { interpolateNumbers } from "@/utils/algorithms";
+import Text from "../global/Text";
+import StatRow from "./StatRow";
 
 const MIN_STATS_LENGHT = 1;
 

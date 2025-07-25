@@ -14,7 +14,7 @@ import Text from "@/components/global/Text";
 import ToolHeader from "@/components/tools/ToolHeader";
 import ToolNav from "@/components/tools/ToolNav";
 import ToolTextInput from "@/components/tools/ToolTextInput";
-import { cda_tool } from "@/constants/models/tools/tools";
+import { cda_tool } from "@/constants/models/tools";
 import { setOldThought, setSituation } from "@/state/features/tools/cdaSlice";
 import { AppDispatch, RootState } from "@/state/store";
 

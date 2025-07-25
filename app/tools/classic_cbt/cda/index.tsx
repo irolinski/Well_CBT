@@ -5,7 +5,7 @@ import { ImageBackground, Modal, Text, View } from "react-native";
 import { toolBackgrounds } from "@/assets/images/tools/backgrounds";
 import AdvanceButton from "@/components/global/AdvanceButton";
 import BackButton from "@/components/global/BackButton";
-import { cda_tool } from "@/constants/models/tools/tools";
+import { cda_tool } from "@/constants/models/tools";
 import { Colors } from "@/constants/styles/colorTheme";
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from "@/constants/styles/values";
 import { handleCheckTutorialWasSeen, handleSetSeenTutorial } from "@/db/tools";

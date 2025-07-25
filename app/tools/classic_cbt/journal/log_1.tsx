@@ -7,8 +7,8 @@ import AdvanceButton from "@/components/global/AdvanceButton";
 import Text from "@/components/global/Text";
 import ToolHeader from "@/components/tools/ToolHeader";
 import ToolNav from "@/components/tools/ToolNav";
+import { journal_tool } from "@/constants/models/tools";
 import { moodValueTitles } from "@/constants/models/tools/journal";
-import { journal_tool } from "@/constants/models/tools/tools";
 import { Colors } from "@/constants/styles/colorTheme";
 import {
   journalStyleConstants,

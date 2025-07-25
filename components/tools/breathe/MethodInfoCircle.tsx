@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { View } from "react-native";
 import Text from "@/components/global/Text";
-import { breathing_tool } from "@/constants/models/tools/tools";
+import { breathing_tool } from "@/constants/models/tools";
 import { Colors } from "@/constants/styles/colorTheme";
 
 const TOOL_NAME = breathing_tool.name;

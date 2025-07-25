@@ -15,8 +15,8 @@ import {
   emotionObjType,
   JournalEntryMainType,
 } from "@/constants/models/home/activity_log";
+import { journal_tool } from "@/constants/models/tools";
 import { emotionList, moodValueTitles } from "@/constants/models/tools/journal";
-import { journal_tool } from "@/constants/models/tools/tools";
 import { Colors } from "@/constants/styles/colorTheme";
 import { fetchJournalEntry } from "@/db/activity_log";
 import { deleteMoodJournalEntry } from "@/db/tools";

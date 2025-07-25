@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { View } from "react-native";
 import Text from "@/components/global/Text";
 import FrameMenu from "@/components/home/FrameMenu";
-import { allToolCategoriesArr } from "@/constants/models/tools/tools";
+import { allToolCategoriesArr } from "@/constants/models/tools";
 import { analyticsLogStartToolEvent } from "@/services/firebase/firebase";
 import ToolCard from "../../components/tools/ToolCard";
 

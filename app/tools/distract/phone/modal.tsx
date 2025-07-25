@@ -14,7 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logoImages } from "@/assets/images/global/logo";
 import DividerLine from "@/components/global/DividerLine";
 import Text from "@/components/global/Text";
-import { phoneAFriend_tool } from "@/constants/models/tools/tools";
+import { phoneAFriend_tool } from "@/constants/models/tools";
 import { Colors } from "@/constants/styles/colorTheme";
 import {
   REFERENCE_SMALL_DEVICE_HEIGHT,

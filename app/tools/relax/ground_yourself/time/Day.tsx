@@ -8,7 +8,7 @@ import FadeInView from "@/components/global/FadeInView";
 import Text from "@/components/global/Text";
 import TypewriterText from "@/components/global/TypewriterText";
 import GroundYourselfSlideFrame from "@/components/tools/ground_yourself/GroundYourselfSlideFrame";
-import { dayColors, dayNamesFromMonday } from "@/constants/models/dates";
+import { dayColors, dayNamesFromMonday } from "@/constants/models/global/dates";
 import { GroundYourselfSlideProps } from "@/constants/models/tools/ground_yourself";
 import { Colors } from "@/constants/styles/colorTheme";
 import { SCREEN_HEIGHT } from "@/constants/styles/values";

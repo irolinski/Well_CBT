@@ -3,11 +3,11 @@ import { useTranslation } from "react-i18next";
 import { Modal, StyleSheet, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import DividerLine from "@/components/global/DividerLine";
+import { cda_tool } from "@/constants/models/tools";
 import {
   cognitiveDistortions,
   DistortionListProps,
 } from "@/constants/models/tools/cda_distortionList";
-import { cda_tool } from "@/constants/models/tools/tools";
 import { Colors } from "@/constants/styles/colorTheme";
 import { SCREEN_WIDTH } from "@/constants/styles/values";
 import { setDistortion } from "@/state/features/tools/cdaSlice";

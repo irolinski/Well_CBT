@@ -6,7 +6,7 @@ import {
   dayNames,
   monthNames,
   monthNamesShort,
-} from "@/constants/models/dates";
+} from "@/constants/models/global/dates";
 import { Colors } from "@/constants/styles/colorTheme";
 import { setFilterPeriod } from "@/state/features/menus/activityLogSlice";
 import { AppDispatch, RootState } from "@/state/store";

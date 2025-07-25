@@ -2,7 +2,7 @@ import { getLocales } from "expo-localization";
 import i18n from "i18next";
 import { ReactNode } from "react";
 import { initReactI18next, Trans } from "react-i18next";
-import { twelveHourRegions } from "@/constants/models/dates";
+import { twelveHourRegions } from "@/constants/models/global/dates";
 import enAbout from "@/locales/en/about.json";
 import enCommon from "@/locales/en/common.json";
 import enHome from "@/locales/en/home.json";

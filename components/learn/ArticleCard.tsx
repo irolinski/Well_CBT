@@ -4,7 +4,7 @@ import { Href, router } from "expo-router";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { Pressable, Text, TouchableOpacity, View } from "react-native";
-import { learnArticleCardTypes } from "@/constants/models/learn/learn";
+import { learnArticleCardTypes } from "@/constants/models/learn";
 import { Colors } from "@/constants/styles/colorTheme";
 import { SCREEN_WIDTH } from "@/constants/styles/values";
 import { Feather } from "@expo/vector-icons";

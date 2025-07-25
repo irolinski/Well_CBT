@@ -16,7 +16,7 @@ import CDATextBox from "@/components/tools/cda/CDATextBox";
 import ToolHeader from "@/components/tools/ToolHeader";
 import ToolNav from "@/components/tools/ToolNav";
 import ToolTextInput from "@/components/tools/ToolTextInput";
-import { cda_tool } from "@/constants/models/tools/tools";
+import { cda_tool } from "@/constants/models/tools";
 import { Colors } from "@/constants/styles/colorTheme";
 import { setNewThought } from "@/state/features/tools/cdaSlice";
 import { AppDispatch, RootState } from "@/state/store";

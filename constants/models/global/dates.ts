@@ -1,4 +1,4 @@
-import { Colors } from "../styles/colorTheme";
+import { Colors } from "../../styles/colorTheme";
 
 export const monthNames = [
   "january",

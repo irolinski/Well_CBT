@@ -18,7 +18,7 @@ import { phoneFacePlaceholder } from "@/assets/images/tools/phone";
 import BackButton from "@/components/global/BackButton";
 import Text from "@/components/global/Text";
 import ToolHeader from "@/components/tools/ToolHeader";
-import { phoneAFriend_tool } from "@/constants/models/tools/tools";
+import { phoneAFriend_tool } from "@/constants/models/tools";
 import { Colors } from "@/constants/styles/colorTheme";
 import {
   REFERENCE_SMALL_DEVICE_HEIGHT,

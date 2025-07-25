@@ -8,7 +8,7 @@ import AdvanceButton from "@/components/global/AdvanceButton";
 import SecondaryButton from "@/components/global/SecondaryButton";
 import Text from "@/components/global/Text";
 import ToolNav from "@/components/tools/ToolNav";
-import { cda_tool } from "@/constants/models/tools/tools";
+import { cda_tool } from "@/constants/models/tools";
 import { Colors } from "@/constants/styles/colorTheme";
 import { SCREEN_HEIGHT } from "@/constants/styles/values";
 import { analyticsLogFinishToolEvent } from "@/services/firebase/firebase";

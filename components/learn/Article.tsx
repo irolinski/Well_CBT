@@ -10,11 +10,11 @@ import Text from "@/components/global/Text";
 import ArticleImage from "@/components/learn/ArticleCustomImage";
 import ArticleTextHeader from "@/components/learn/ArticleTextHeader";
 import RelatedArticleCard from "@/components/learn/RelatedArticleCard";
-import { learnArticles } from "@/constants/models/learn/articles";
 import {
   ArticlesInCurrentLanguageType,
   learnRelatedArticleCardTypes,
-} from "@/constants/models/learn/learn";
+} from "@/constants/models/learn";
+import { learnArticles } from "@/constants/models/learn/articles";
 import { Colors } from "@/constants/styles/colorTheme";
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from "@/constants/styles/values";
 import { selectedLanguage } from "@/hooks/i18n";

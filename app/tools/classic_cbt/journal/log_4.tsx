@@ -9,7 +9,7 @@ import Text from "@/components/global/Text";
 import ToolHeader from "@/components/tools/ToolHeader";
 import ToolNav from "@/components/tools/ToolNav";
 import ToolTextInput from "@/components/tools/ToolTextInput";
-import { journal_tool } from "@/constants/models/tools/tools";
+import { journal_tool } from "@/constants/models/tools";
 import { SCREEN_HEIGHT } from "@/constants/styles/values";
 import { setNote } from "@/state/features/tools/journalSlice";
 import { AppDispatch, RootState } from "@/state/store";

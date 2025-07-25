@@ -10,7 +10,7 @@ import Text from "@/components/global/Text";
 import CDATextBox from "@/components/tools/cda/CDATextBox";
 import ToolHeader from "@/components/tools/ToolHeader";
 import ToolNav from "@/components/tools/ToolNav";
-import { cda_tool } from "@/constants/models/tools/tools";
+import { cda_tool } from "@/constants/models/tools";
 import { Colors } from "@/constants/styles/colorTheme";
 import { getUserSettingsData, UserSettingsDataObj } from "@/db/settings";
 import { handleSaveCDAEntry } from "@/db/tools";

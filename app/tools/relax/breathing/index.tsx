@@ -5,7 +5,7 @@ import { ImageBackground, Text, View } from "react-native";
 import { toolBackgrounds } from "@/assets/images/tools/backgrounds";
 import AdvanceButton from "@/components/global/AdvanceButton";
 import BackButton from "@/components/global/BackButton";
-import { breathing_tool } from "@/constants/models/tools/tools";
+import { breathing_tool } from "@/constants/models/tools";
 import { Colors } from "@/constants/styles/colorTheme";
 import { SCREEN_HEIGHT } from "@/constants/styles/values";
 

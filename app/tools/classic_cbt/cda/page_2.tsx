@@ -10,7 +10,7 @@ import CDADistortionList from "@/components/tools/cda/CDADistortionList";
 import CDATextBox from "@/components/tools/cda/CDATextBox";
 import ToolHeader from "@/components/tools/ToolHeader";
 import ToolNav from "@/components/tools/ToolNav";
-import { cda_tool } from "@/constants/models/tools/tools";
+import { cda_tool } from "@/constants/models/tools";
 import { RootState } from "@/state/store";
 
 const CURRENT_PAGE = 2;

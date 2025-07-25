@@ -2,7 +2,7 @@ import { Href, router } from "expo-router";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { TouchableOpacity, View } from "react-native";
-import { monthNames, monthNamesShort } from "@/constants/models/dates";
+import { monthNames, monthNamesShort } from "@/constants/models/global/dates";
 import {
   ActivityLogCardProps,
   ToolCategories,

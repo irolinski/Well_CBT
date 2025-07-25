@@ -7,7 +7,7 @@ import { Animated, Easing, Pressable, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import AdvanceButton from "@/components/global/AdvanceButton";
 import Text from "@/components/global/Text";
-import { breathing_tool } from "@/constants/models/tools/tools";
+import { breathing_tool } from "@/constants/models/tools";
 import { Colors } from "@/constants/styles/colorTheme";
 import {
   REFERENCE_SMALL_DEVICE_HEIGHT,

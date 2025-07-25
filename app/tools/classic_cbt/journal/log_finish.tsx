@@ -10,7 +10,7 @@ import SecondaryButton from "@/components/global/SecondaryButton";
 // import { LogoDark } from "@/components/global/Logo";
 import Text from "@/components/global/Text";
 import ToolNav from "@/components/tools/ToolNav";
-import { journal_tool } from "@/constants/models/tools/tools";
+import { journal_tool } from "@/constants/models/tools";
 import { Colors } from "@/constants/styles/colorTheme";
 import { SCREEN_HEIGHT } from "@/constants/styles/values";
 import { analyticsLogFinishToolEvent } from "@/services/firebase/firebase";

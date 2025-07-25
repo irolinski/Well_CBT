@@ -1,6 +1,6 @@
-import { useTranslation } from 'react-i18next';
-import { monthNamesShort } from '@/constants/models/dates';
-import { uncapitalizeString } from './algorithms';
+import { useTranslation } from "react-i18next";
+import { monthNamesShort } from "@/constants/models/global/dates";
+import { uncapitalizeString } from "./algorithms";
 
 export const getOrdinalSuffix = (number: number) => {
   const lastDigit = Number(number.toString().slice(-1));
