@@ -1,0 +1,16 @@
+import logo from "@/assets/images/global/logo/logo.webp";
+import logo_braid_divider from "@/assets/images/global/logo/logo_braid.webp";
+import logo_dark from "@/assets/images/global/logo/logo_dark.webp";
+import logo_split_free from "@/assets/images/global/logo/logo_split_free.webp";
+import logo_split_worry from "@/assets/images/global/logo/logo_split_worry.webp";
+import logo_braid_vertical from "@/assets/images/global/logo/triple_logo_braid_vertical.webp";
+
+export const logoImages = {
+  logo_split_worry: logo_split_worry,
+  logo_split_free: logo_split_free,
+  logo_standard: logo,
+  logo_dark: logo_dark,
+  logo_braid_vertical: logo_braid_vertical,
+  logo_braid_divider: logo_braid_divider,
+  logo,
+};

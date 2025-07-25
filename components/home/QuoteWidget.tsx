@@ -2,7 +2,7 @@ import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
 import { useTranslation } from "react-i18next";
 import { Dimensions, Pressable, View } from "react-native";
-import quoteImages from "@/assets/images/home/quote_widget/images";
+import quoteImages from "@/assets/images/home/quote_widget/index";
 import quotesListLocales from "@/assets/text/quotes.json";
 import { Colors } from "@/constants/styles/colorTheme";
 import { achievementHandlersObj } from "@/db/achievements/controllers";

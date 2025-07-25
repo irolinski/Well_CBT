@@ -1,24 +1,25 @@
-import { Image } from 'expo-image';
-import React, { useEffect, useRef } from 'react';
-import { useTranslation } from 'react-i18next';
-import { Animated, Platform, ScrollView, View } from 'react-native';
-import { ArticleTypesWithArticleBody } from '@/app/learn/categories/[category]/[articleId]';
-import { logoImages } from '@/assets/images/global/logo/logo';
-import learnArticlesLocales from '@/assets/text/learn_articles.json';
-import DividerLine from '@/components/DividerLine';
-import Text from '@/components/global/Text';
-import ArticleImage from '@/components/learn/ArticleCustomImage';
-import ArticleTextHeader from '@/components/learn/ArticleTextHeader';
-import RelatedArticleCard from '@/components/learn/RelatedArticleCard';
-import { learnArticles } from '@/constants/models/learn/articles';
+import { Image } from "expo-image";
+import React, { useEffect, useRef } from "react";
+import { useTranslation } from "react-i18next";
+import { Animated, Platform, ScrollView, View } from "react-native";
+import { ArticleTypesWithArticleBody } from "@/app/learn/categories/[category]/[articleId]";
+import { logoImages } from "@/assets/images/global/logo";
+import learnArticlesLocales from "@/assets/text/learn_articles.json";
+import DividerLine from "@/components/global/DividerLine";
+import Text from "@/components/global/Text";
+import ArticleImage from "@/components/learn/ArticleCustomImage";
+import ArticleTextHeader from "@/components/learn/ArticleTextHeader";
+import RelatedArticleCard from "@/components/learn/RelatedArticleCard";
 import {
-    ArticlesInCurrentLanguageType, learnRelatedArticleCardTypes
-} from '@/constants/models/learn/learn';
-import { Colors } from '@/constants/styles/colorTheme';
-import { SCREEN_HEIGHT, SCREEN_WIDTH } from '@/constants/styles/values';
-import { selectedLanguage } from '@/hooks/i18n';
-import { analyticsLogOpenArticleEvent } from '@/services/firebase/firebase';
-import ArticleImageScrollableHeader from './ArticleImageScrollableHeader';
+  ArticlesInCurrentLanguageType,
+  learnRelatedArticleCardTypes,
+} from "@/constants/models/learn";
+import { learnArticles } from "@/constants/models/learn/articles";
+import { Colors } from "@/constants/styles/colorTheme";
+import { SCREEN_HEIGHT, SCREEN_WIDTH } from "@/constants/styles/values";
+import { selectedLanguage } from "@/hooks/i18n";
+import { analyticsLogOpenArticleEvent } from "@/services/firebase/firebase";
+import ArticleImageScrollableHeader from "./ArticleImageScrollableHeader";
 
 const HEADER_HEIGHT = SCREEN_HEIGHT * 0.4;
 

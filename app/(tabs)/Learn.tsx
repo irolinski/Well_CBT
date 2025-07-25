@@ -6,12 +6,12 @@ import Text from "@/components/global/Text";
 import FrameMenu from "@/components/home/FrameMenu";
 import LearnArticleCard from "@/components/learn/ArticleCard";
 import LearnCategoryCard from "@/components/learn/LearnCategoryCard";
+import { ArticlesInCurrentLanguageType } from "@/constants/models/learn";
 import { learnArticles } from "@/constants/models/learn/articles";
 import {
   learnCategories,
   learnCategoriesTypes,
 } from "@/constants/models/learn/categories";
-import { ArticlesInCurrentLanguageType } from "@/constants/models/learn/learn";
 import { Colors } from "@/constants/styles/colorTheme";
 import { AvailableLanguage, selectedLanguage } from "@/hooks/i18n";
 

@@ -1,17 +1,17 @@
-import { Image } from 'expo-image';
-import { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { Alert, Dimensions, View } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
-import { allFaces } from '@/assets/images/global/faces/faces';
-import ProfilePic from '@/components/about/ProfilePic';
-import { Colors } from '@/constants/styles/colorTheme';
-import { fetchUserData, UserType } from '@/db/user';
-import { setShowNavigateSettingsModal } from '@/state/features/menus/navigateSettingsModalSlice';
-import { AppDispatch, RootState } from '@/state/store';
-import { getLastVisitString } from '@/utils/dates';
-import { Feather } from '@expo/vector-icons';
-import Text from '../global/Text';
+import { Image } from "expo-image";
+import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { Alert, Dimensions, View } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import { allFaces } from "@/assets/images/global/faces";
+import ProfilePic from "@/components/about/ProfilePic";
+import { Colors } from "@/constants/styles/colorTheme";
+import { fetchUserData, UserType } from "@/db/user";
+import { setShowNavigateSettingsModal } from "@/state/features/menus/navigateSettingsModalSlice";
+import { AppDispatch, RootState } from "@/state/store";
+import { getLastVisitString } from "@/utils/dates";
+import { Feather } from "@expo/vector-icons";
+import Text from "../global/Text";
 
 const AboutUser = () => {
   const { t } = useTranslation(["about", "common"]);

@@ -1,29 +1,34 @@
-import React, { useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
-import { Alert, SectionList, View } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
-import DividerLine from '@/components/DividerLine';
-import MenuNav from '@/components/global/MenuNav';
-import ActivityLogCard from '@/components/home/ActivityLogCard';
-import ActivityLogDisplayInfo from '@/components/home/ActivityLogDisplayInfo';
-import ActivityLogListPlaceholder from '@/components/home/ActivityLogListPlaceholder';
-import FiltersButton from '@/components/home/FiltersButton';
-import NewActivityModal from '@/components/home/NewActivityModal';
-import NotificationButton from '@/components/home/NotificationsButton';
-import NotificationsModal from '@/components/home/NotificationsModal';
-import PlusButton from '@/components/home/PlusButton';
-import LoadingIndicator from '@/components/LoadingIndicator';
-import ToolHeader from '@/components/tools/ToolHeader';
-import { EntryListSection, EntryViewTableRow } from '@/constants/models/home/activity_log';
-import { Colors } from '@/constants/styles/colorTheme';
-import { SCREEN_HEIGHT, SCREEN_WIDTH } from '@/constants/styles/values';
-import { fetchEntryData } from '@/db/activity_log';
+import React, { useEffect } from "react";
+import { useTranslation } from "react-i18next";
+import { Alert, SectionList, View } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import DividerLine from "@/components/global/DividerLine";
+import LoadingIndicator from "@/components/global/LoadingIndicator";
+import MenuNav from "@/components/global/MenuNav";
+import ActivityLogCard from "@/components/home/ActivityLogCard";
+import ActivityLogDisplayInfo from "@/components/home/ActivityLogDisplayInfo";
+import ActivityLogListPlaceholder from "@/components/home/ActivityLogListPlaceholder";
+import FiltersButton from "@/components/home/FiltersButton";
+import NewActivityModal from "@/components/home/NewActivityModal";
+import NotificationButton from "@/components/home/NotificationsButton";
+import NotificationsModal from "@/components/home/NotificationsModal";
+import PlusButton from "@/components/home/PlusButton";
+import ToolHeader from "@/components/tools/ToolHeader";
 import {
-    activityLogResetState, setIsLoading, setRawData
-} from '@/state/features/menus/activityLogSlice';
-import { AppDispatch, RootState } from '@/state/store';
-import useActivityLogActions from './hooks';
-import ActivityLogModal from './modal';
+  EntryListSection,
+  EntryViewTableRow,
+} from "@/constants/models/home/activity_log";
+import { Colors } from "@/constants/styles/colorTheme";
+import { SCREEN_HEIGHT, SCREEN_WIDTH } from "@/constants/styles/values";
+import { fetchEntryData } from "@/db/activity_log";
+import {
+  activityLogResetState,
+  setIsLoading,
+  setRawData,
+} from "@/state/features/menus/activityLogSlice";
+import { AppDispatch, RootState } from "@/state/store";
+import useActivityLogActions from "./hooks";
+import ActivityLogModal from "./modal";
 
 const ActivityLog = () => {
   const { t } = useTranslation(["home", "common"]);

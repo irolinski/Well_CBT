@@ -1,22 +1,25 @@
-import { useLocalSearchParams } from 'expo-router';
-import { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { Image, ScrollView, View } from 'react-native';
-import { logoImages } from '@/assets/images/global/logo/logo';
-import DistortionPill from '@/components/DistortionPill';
-import ErrorScreen from '@/components/ErrorScreen';
-import Text from '@/components/global/Text';
-import ActivityShowNav from '@/components/home/ActivityShowNav';
-import ShowPageHeaderDate from '@/components/home/ShowPageHeaderDate';
-import CDATextBox from '@/components/tools/cda/CDATextBox';
-import ToolHeader from '@/components/tools/ToolHeader';
-import { cdaEntryType } from '@/constants/models/tools/cda';
-import { cda_tool } from '@/constants/models/tools/tools';
-import { Colors } from '@/constants/styles/colorTheme';
-import { fetchCDAEntry } from '@/db/activity_log';
-import { deleteCDAEntry } from '@/db/tools';
-import { convertIsoToEuropeanDate, formatDateStringForWrapping } from '@/utils/dates';
-import { handleDeleteEntry } from '@/utils/deleteEntry';
+import { useLocalSearchParams } from "expo-router";
+import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { Image, ScrollView, View } from "react-native";
+import { logoImages } from "@/assets/images/global/logo";
+import DistortionPill from "@/components/global/DistortionPill";
+import ErrorScreen from "@/components/global/ErrorScreen";
+import Text from "@/components/global/Text";
+import ActivityShowNav from "@/components/home/ActivityShowNav";
+import ShowPageHeaderDate from "@/components/home/ShowPageHeaderDate";
+import CDATextBox from "@/components/tools/cda/CDATextBox";
+import ToolHeader from "@/components/tools/ToolHeader";
+import { cda_tool } from "@/constants/models/tools";
+import { cdaEntryType } from "@/constants/models/tools/cda";
+import { Colors } from "@/constants/styles/colorTheme";
+import { fetchCDAEntry } from "@/db/activity_log";
+import { deleteCDAEntry } from "@/db/tools";
+import {
+  convertIsoToEuropeanDate,
+  formatDateStringForWrapping,
+} from "@/utils/dates";
+import { handleDeleteEntry } from "@/utils/deleteEntry";
 
 const TOOL_NAME = cda_tool.name;
 

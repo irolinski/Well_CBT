@@ -3,7 +3,7 @@ import { Href, router } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { Pressable, View } from "react-native";
 import Text from "@/components/global/Text";
-import { learnArticleCardTypes } from "@/constants/models/learn/learn";
+import { learnArticleCardTypes } from "@/constants/models/learn";
 import { Colors } from "@/constants/styles/colorTheme";
 import { Feather } from "@expo/vector-icons";
 

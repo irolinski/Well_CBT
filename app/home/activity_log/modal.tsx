@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { Modal, Platform, Pressable, ScrollView, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import DividerLine from "@/components/DividerLine";
+import DividerLine from "@/components/global/DividerLine";
 import Text from "@/components/global/Text";
 import CategoryFilter from "@/components/home/CategoryFilter";
 import { Colors } from "@/constants/styles/colorTheme";

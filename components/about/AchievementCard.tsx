@@ -1,7 +1,7 @@
 import { Image } from "expo-image";
 import React from "react";
 import { DimensionValue, View } from "react-native";
-import { achievementLockedImage } from "@/assets/images/about/achievements/achievements";
+import { achievementLockedImage } from "@/assets/images/about/achievements";
 import { Colors } from "@/constants/styles/colorTheme";
 import { interpolateNumbers } from "@/utils/algorithms";
 import { Feather } from "@expo/vector-icons";

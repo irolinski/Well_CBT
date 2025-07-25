@@ -5,9 +5,9 @@ import {
   REFERENCE_SMALL_DEVICE_HEIGHT,
   SCREEN_HEIGHT,
 } from "@/constants/styles/values";
-import BackButton from "../BackButton";
+import BackButton from "../global/BackButton";
+import ProgressBar from "../global/ProgressBar";
 import Text from "../global/Text";
-import ProgressBar from "../ProgressBar";
 
 const ToolNav = ({
   currentPage,

@@ -1,19 +1,20 @@
-import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { Modal, StyleSheet, View } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
-import DividerLine from '@/components/DividerLine';
+import React from "react";
+import { useTranslation } from "react-i18next";
+import { Modal, StyleSheet, View } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import DividerLine from "@/components/global/DividerLine";
+import { cda_tool } from "@/constants/models/tools";
 import {
-    cognitiveDistortions, DistortionListProps
-} from '@/constants/models/tools/cda_distortionList';
-import { cda_tool } from '@/constants/models/tools/tools';
-import { Colors } from '@/constants/styles/colorTheme';
-import { SCREEN_WIDTH } from '@/constants/styles/values';
-import { setDistortion } from '@/state/features/tools/cdaSlice';
-import { AppDispatch, RootState } from '@/state/store';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import DistortionPill from '../../DistortionPill';
-import Text from '../../global/Text';
+  cognitiveDistortions,
+  DistortionListProps,
+} from "@/constants/models/tools/cda_distortionList";
+import { Colors } from "@/constants/styles/colorTheme";
+import { SCREEN_WIDTH } from "@/constants/styles/values";
+import { setDistortion } from "@/state/features/tools/cdaSlice";
+import { AppDispatch, RootState } from "@/state/store";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import DistortionPill from "../../global/DistortionPill";
+import Text from "../../global/Text";
 
 const TOOL_NAME = cda_tool.name;
 

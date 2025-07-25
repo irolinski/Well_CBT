@@ -1,6 +1,6 @@
 import { Image } from "expo-image";
 import * as SQLite from "expo-sqlite";
-import { achievementBadgeImages } from "@/assets/images/about/achievements/achievements";
+import { achievementBadgeImages } from "@/assets/images/about/achievements";
 
 export type AchievementProgressObj = {
   id: AchievementIdType;

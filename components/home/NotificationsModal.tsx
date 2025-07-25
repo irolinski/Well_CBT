@@ -14,7 +14,7 @@ import {
   scheduleDailyNotification,
 } from "@/utils/notifications";
 import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
-import ModalButton from "../NavigationModalButton";
+import ModalButton from "../global/NavigationModalButton";
 import TimePicker_12h, { TimePicker_12hReturnObj } from "./TimePicker_12h";
 import TimePicker_24h, { TimePicker_24hReturnObj } from "./TimePicker_24h";
 

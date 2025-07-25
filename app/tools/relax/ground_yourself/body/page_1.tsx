@@ -1,15 +1,15 @@
-import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { Animated, View } from 'react-native';
-import { useSelector } from 'react-redux';
-import ArrowRightButton from '@/components/ArrowRightButton';
-import Text from '@/components/global/Text';
-import GroundYourselfSlideFrame from '@/components/tools/ground_yourself/GroundYourselfSlideFrame';
-import TypewriterText from '@/components/TypewriterText';
-import { GroundYourselfSlideProps } from '@/constants/models/tools/ground_yourself';
-import { Colors } from '@/constants/styles/colorTheme';
-import { SCREEN_HEIGHT } from '@/constants/styles/values';
-import { RootState } from '@/state/store';
+import React from "react";
+import { useTranslation } from "react-i18next";
+import { Animated, View } from "react-native";
+import { useSelector } from "react-redux";
+import ArrowRightButton from "@/components/global/ArrowRightButton";
+import Text from "@/components/global/Text";
+import TypewriterText from "@/components/global/TypewriterText";
+import GroundYourselfSlideFrame from "@/components/tools/ground_yourself/GroundYourselfSlideFrame";
+import { GroundYourselfSlideProps } from "@/constants/models/tools/ground_yourself";
+import { Colors } from "@/constants/styles/colorTheme";
+import { SCREEN_HEIGHT } from "@/constants/styles/values";
+import { RootState } from "@/state/store";
 
 const Ground_Body_Page_1 = ({
   exerciseName,

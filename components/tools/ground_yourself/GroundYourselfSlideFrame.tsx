@@ -1,12 +1,14 @@
-import { deviceName } from 'expo-device';
-import React, { ReactNode, useEffect } from 'react';
-import { Text, View } from 'react-native';
-import BackButton from '@/components/BackButton';
-import { Colors } from '@/constants/styles/colorTheme';
+import { deviceName } from "expo-device";
+import React, { ReactNode, useEffect } from "react";
+import { Text, View } from "react-native";
+import BackButton from "@/components/global/BackButton";
+import { Colors } from "@/constants/styles/colorTheme";
 import {
-    REFERENCE_SMALL_DEVICE_HEIGHT, SCREEN_HEIGHT, WINDOW_HEIGHT
-} from '@/constants/styles/values';
-import { handleLogRelaxActivity } from '@/db/tools';
+  REFERENCE_SMALL_DEVICE_HEIGHT,
+  SCREEN_HEIGHT,
+  WINDOW_HEIGHT,
+} from "@/constants/styles/values";
+import { handleLogRelaxActivity } from "@/db/tools";
 
 interface GroundYourselfSlideFrameProps {
   children: ReactNode;

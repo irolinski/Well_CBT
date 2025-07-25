@@ -3,9 +3,9 @@ import { useLocalSearchParams } from "expo-router";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { ScrollView, View } from "react-native";
-import { logoImages } from "@/assets/images/global/logo/logo";
-import DistortionPill from "@/components/DistortionPill";
-import ErrorScreen from "@/components/ErrorScreen";
+import { logoImages } from "@/assets/images/global/logo";
+import DistortionPill from "@/components/global/DistortionPill";
+import ErrorScreen from "@/components/global/ErrorScreen";
 import Text from "@/components/global/Text";
 import ActivityShowNav from "@/components/home/ActivityShowNav";
 import ShowPageHeaderDate from "@/components/home/ShowPageHeaderDate";
@@ -15,8 +15,8 @@ import {
   emotionObjType,
   JournalEntryMainType,
 } from "@/constants/models/home/activity_log";
+import { journal_tool } from "@/constants/models/tools";
 import { emotionList, moodValueTitles } from "@/constants/models/tools/journal";
-import { journal_tool } from "@/constants/models/tools/tools";
 import { Colors } from "@/constants/styles/colorTheme";
 import { fetchJournalEntry } from "@/db/activity_log";
 import { deleteMoodJournalEntry } from "@/db/tools";

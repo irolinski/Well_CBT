@@ -8,7 +8,7 @@ import { Alert } from "react-native";
 import ErrorBoundary from "react-native-error-boundary";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Provider as StateProvider } from "react-redux";
-import { RenderingErrorFallback } from "@/components/ErrorScreen";
+import { RenderingErrorFallback } from "@/components/global/ErrorScreen";
 import {
   setUpAchievementsTable,
   updateAchievementProgress,

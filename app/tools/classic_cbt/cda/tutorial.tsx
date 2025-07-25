@@ -1,19 +1,19 @@
-import { Image } from 'expo-image';
-import React, { useState } from 'react';
-import { Trans, useTranslation } from 'react-i18next';
-import { StyleSheet, View } from 'react-native';
-import { tutorialImages } from '@/assets/images/tools/tutorials/tutorials';
-import DistortionPill from '@/components/DistortionPill';
+import { Image } from "expo-image";
+import React, { useState } from "react";
+import { Trans, useTranslation } from "react-i18next";
+import { StyleSheet, View } from "react-native";
+import { tutorialImages } from "@/assets/images/tools/cda/tutorial";
+import DistortionPill from "@/components/global/DistortionPill";
 import InfoSlideScreen, {
-    InfoSlideScreenData
-} from '@/components/global/InfoSlideScreenReanimated/InfoSlideScreen';
-import Text from '@/components/global/Text';
-import CBTDiagramSubtitledImage from '@/components/tools/CBTDiagramSubtitledImage';
-import CDADistortionList from '@/components/tools/cda/CDADistortionList';
-import CDATextBox from '@/components/tools/cda/CDATextBox';
-import { Colors } from '@/constants/styles/colorTheme';
-import { SCREEN_HEIGHT } from '@/constants/styles/values';
-import { handleSetSeenTutorial } from '@/db/tools';
+  InfoSlideScreenData,
+} from "@/components/global/InfoSlideScreenReanimated/InfoSlideScreen";
+import Text from "@/components/global/Text";
+import CBTDiagramSubtitledImage from "@/components/tools/CBTDiagramSubtitledImage";
+import CDADistortionList from "@/components/tools/cda/CDADistortionList";
+import CDATextBox from "@/components/tools/cda/CDATextBox";
+import { Colors } from "@/constants/styles/colorTheme";
+import { SCREEN_HEIGHT } from "@/constants/styles/values";
+import { handleSetSeenTutorial } from "@/db/tools";
 
 const CDA_Tutorial = ({ closeModalFunc }: { closeModalFunc: () => void }) => {
   const { t } = useTranslation(["tools", "common"]);

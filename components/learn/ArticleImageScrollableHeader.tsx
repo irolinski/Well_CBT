@@ -1,9 +1,9 @@
-import { Image } from 'expo-image';
-import { Animated, Platform, View } from 'react-native';
-import BackButton from '@/components/BackButton';
-import { Colors } from '@/constants/styles/colorTheme';
-import { SCREEN_HEIGHT } from '@/constants/styles/values';
-import { handleAddFinishedArticle } from '@/db/learn';
+import { Image } from "expo-image";
+import { Animated, Platform, View } from "react-native";
+import BackButton from "@/components/global/BackButton";
+import { Colors } from "@/constants/styles/colorTheme";
+import { SCREEN_HEIGHT } from "@/constants/styles/values";
+import { handleAddFinishedArticle } from "@/db/learn";
 
 type ArticleImageScrollableHeaderTypes = {
   value: any;

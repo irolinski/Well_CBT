@@ -2,10 +2,10 @@ import { Image } from "expo-image";
 import { useTranslation } from "react-i18next";
 import { Modal, Platform, Pressable, ScrollView, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
+import RadioButton from "@/components/global/RadioButton";
 import Text from "@/components/global/Text";
-import RadioButton from "@/components/RadioButton";
 import MethodInfo from "@/components/tools/breathe/MethodInfo";
-import { breathing_tool } from "@/constants/models/tools/tools";
+import { breathing_tool } from "@/constants/models/tools";
 import { Colors } from "@/constants/styles/colorTheme";
 import {
   CLOSE_MODAL_OFFSET_TRESHOLD,

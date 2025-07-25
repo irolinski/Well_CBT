@@ -6,7 +6,7 @@ import {
   FontAwesome6,
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
-import { monthNames } from "../dates";
+import { monthNames } from "../global/dates";
 
 type ToolType = {
   name: string;

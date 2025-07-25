@@ -3,14 +3,14 @@ import { ReactElement } from "react";
 import { Trans, useTranslation } from "react-i18next";
 import { View } from "react-native";
 import learnArticlesLocales from "@/assets/text/learn_articles.json";
-import ErrorScreen from "@/components/ErrorScreen";
+import ErrorScreen from "@/components/global/ErrorScreen";
 import Text from "@/components/global/Text";
 import ArticlePage from "@/components/learn/Article";
-import { learnArticles } from "@/constants/models/learn/articles";
 import {
   ArticlesInCurrentLanguageType,
   ArticleTypes,
-} from "@/constants/models/learn/learn";
+} from "@/constants/models/learn";
+import { learnArticles } from "@/constants/models/learn/articles";
 import { AvailableLanguage, selectedLanguage } from "@/hooks/i18n";
 
 export type ArticleTypesWithArticleBody = ArticleTypes & { body: ReactElement };

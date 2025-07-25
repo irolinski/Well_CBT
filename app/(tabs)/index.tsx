@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Alert, Pressable, View } from "react-native";
 import { useDispatch } from "react-redux";
-import AdvanceButton from "@/components/AdvanceButton";
+import AdvanceButton from "@/components/global/AdvanceButton";
 import Text from "@/components/global/Text";
 import ActivityLogCard from "@/components/home/ActivityLogCard";
 import FrameMenu from "@/components/home/FrameMenu";

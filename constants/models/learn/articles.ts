@@ -1,4 +1,4 @@
-import { ArticleTypes } from "./learn";
+import { ArticleTypes } from "./";
 
 //article details to be found in locale/--language--/learn.json files
 

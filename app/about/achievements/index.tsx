@@ -2,7 +2,7 @@ import { Image } from "expo-image";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { ScrollView, View } from "react-native";
-import { logoImages } from "@/assets/images/global/logo/logo";
+import { logoImages } from "@/assets/images/global/logo";
 import AchievementCard from "@/components/about/AchievementCard";
 import MenuNav from "@/components/global/MenuNav";
 import Text from "@/components/global/Text";
