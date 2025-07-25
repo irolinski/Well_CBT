@@ -2,7 +2,7 @@
   "expo": {
     "name": "WorryFree",
     "slug": "WorryFree",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "orientation": "portrait",
     "scheme": "myapp",
     "newArchEnabled": true,
@@ -21,9 +21,8 @@
       }
     },
     "android": {
-      "versionCode": 101,
+      "versionCode": 102,
       "adaptiveIcon": {
-        "icon": "./assets/icons/app-icon.png",
         "backgroundColor": "#8DBED8",
         "backgroundImage": "./assets/icons/adaptive_icon_bg.png",
         "foregroundImage": "./assets/icons/adaptive_icon_fg.png"
