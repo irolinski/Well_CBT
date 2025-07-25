@@ -2,7 +2,6 @@
   "expo": {
     "name": "WorryFree",
     "slug": "WorryFree",
-    "icon": "./assets/icons/app-icon.png",
     "version": "1.0.1",
     "orientation": "portrait",
     "scheme": "myapp",
@@ -69,7 +68,9 @@
           }
         }
       ],
-      "expo-sqlite"
+      "expo-sqlite",
+      "expo-font",
+      "expo-web-browser"
     ],
     "experiments": {
       "typedRoutes": true
