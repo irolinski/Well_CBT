@@ -14,9 +14,9 @@ import {
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { allFaces } from "@/assets/images/global/faces";
-import DividerLine from "@/components/DividerLine";
+import DividerLine from "@/components/global/DividerLine";
+import NavigationModalButton from "@/components/global/NavigationModalButton";
 import Text from "@/components/global/Text";
-import NavigationModalButton from "@/components/NavigationModalButton";
 import { Colors } from "@/constants/styles/colorTheme";
 import {
   CLOSE_MODAL_OFFSET_TRESHOLD,

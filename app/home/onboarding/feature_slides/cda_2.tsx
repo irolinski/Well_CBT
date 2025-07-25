@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { Text, View } from "react-native";
-import TypewriterText from "@/components/TypewriterText";
+import TypewriterText from "@/components/global/TypewriterText";
 import { Colors } from "@/constants/styles/colorTheme";
 import { SCREEN_WIDTH } from "@/constants/styles/values";
 

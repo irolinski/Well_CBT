@@ -8,8 +8,8 @@ import {
   View,
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import AdvanceButton from "@/components/AdvanceButton";
-import Frame from "@/components/Frame";
+import AdvanceButton from "@/components/global/AdvanceButton";
+import Frame from "@/components/global/Frame";
 import Text from "@/components/global/Text";
 import ToolHeader from "@/components/tools/ToolHeader";
 import ToolNav from "@/components/tools/ToolNav";

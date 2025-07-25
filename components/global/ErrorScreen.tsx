@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Pressable, View } from "react-native";
 import { Colors } from "@/constants/styles/colorTheme";
 import { Entypo } from "@expo/vector-icons";
-import Text from "./global/Text";
+import Text from "./Text";
 
 const ErrorScreen = ({
   title,

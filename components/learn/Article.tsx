@@ -5,7 +5,7 @@ import { Animated, Platform, ScrollView, View } from "react-native";
 import { ArticleTypesWithArticleBody } from "@/app/learn/categories/[category]/[articleId]";
 import { logoImages } from "@/assets/images/global/logo";
 import learnArticlesLocales from "@/assets/text/learn_articles.json";
-import DividerLine from "@/components/DividerLine";
+import DividerLine from "@/components/global/DividerLine";
 import Text from "@/components/global/Text";
 import ArticleImage from "@/components/learn/ArticleCustomImage";
 import ArticleTextHeader from "@/components/learn/ArticleTextHeader";

@@ -5,12 +5,12 @@ import { useTranslation } from "react-i18next";
 import { TouchableOpacity, View } from "react-native";
 import { useSelector } from "react-redux";
 import { groundYourselfImages } from "@/assets/images/tools/ground_yourself";
-import FadeInView from "@/components/FadeInView";
+import FadeInView from "@/components/global/FadeInView";
 import Text from "@/components/global/Text";
+import TypewriterText from "@/components/global/TypewriterText";
 import GroundYourselfSlideFrame, {
   getGroundingTime,
 } from "@/components/tools/ground_yourself/GroundYourselfSlideFrame";
-import TypewriterText from "@/components/TypewriterText";
 import {
   ToolCategories,
   ToolList,

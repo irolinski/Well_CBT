@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
-import AdvanceButton from '@/components/AdvanceButton';
-import ChecklistElement from '@/components/ChecklistElement';
-import { Colors } from '@/constants/styles/colorTheme';
-import { WINDOW_HEIGHT } from '@/constants/styles/values';
-import { analyticsLogGoalsQuestionnaireAnswers } from '@/services/firebase/firebase';
+import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
+import { ScrollView, Text, TouchableOpacity, View } from "react-native";
+import AdvanceButton from "@/components/global/AdvanceButton";
+import ChecklistElement from "@/components/global/ChecklistElement";
+import { Colors } from "@/constants/styles/colorTheme";
+import { WINDOW_HEIGHT } from "@/constants/styles/values";
+import { analyticsLogGoalsQuestionnaireAnswers } from "@/services/firebase/firebase";
 
 const goals_questionnaire_items: string[] = [
   "mood",

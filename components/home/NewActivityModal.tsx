@@ -1,16 +1,17 @@
-import { Href } from 'expo-router';
-import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
-import { ToolList } from '@/constants/models/home/activity_log';
-import { Colors } from '@/constants/styles/colorTheme';
+import { Href } from "expo-router";
+import React from "react";
+import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
+import { ToolList } from "@/constants/models/home/activity_log";
+import { Colors } from "@/constants/styles/colorTheme";
 import {
-    setNewActivityModalSelectedLink, setShowNewActivityModal
-} from '@/state/features/menus/newActivityModalSlice';
-import { RootState } from '@/state/store';
-import { Entypo } from '@expo/vector-icons';
-import NavigationModal from '../NavigationModal';
-import { NavigationModalObj } from '../NavigationModalSelect';
+  setNewActivityModalSelectedLink,
+  setShowNewActivityModal,
+} from "@/state/features/menus/newActivityModalSlice";
+import { RootState } from "@/state/store";
+import { Entypo } from "@expo/vector-icons";
+import NavigationModal from "../global/NavigationModal";
+import { NavigationModalObj } from "../global/NavigationModalSelect";
 
 const NewActivityModal = () => {
   const { t } = useTranslation(["home", "tools"]);

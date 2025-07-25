@@ -18,7 +18,7 @@ import { SCREEN_HEIGHT } from "@/constants/styles/values";
 import { handleGetAchievementProgressData } from "@/db/achievements/controllers";
 import { analyticsLogOpenAchievementsPageEvent } from "@/services/firebase/firebase";
 import { Feather } from "@expo/vector-icons";
-import AdvanceButton from "../AdvanceButton";
+import AdvanceButton from "../global/AdvanceButton";
 import CarouselBadge from "./CarouselBadge";
 import CarouselDetails from "./CarouselDetails";
 

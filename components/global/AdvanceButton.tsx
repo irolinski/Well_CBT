@@ -1,7 +1,7 @@
 import React, { ReactNode } from "react";
 import { TouchableOpacity, View } from "react-native";
 import { Colors } from "@/constants/styles/colorTheme";
-import Text from "./global/Text";
+import Text from "./Text";
 
 interface AdvanceButtonProps {
   onPress: () => void;

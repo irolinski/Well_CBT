@@ -15,7 +15,7 @@ import {
 import { useSelector } from "react-redux";
 import { logoImages } from "@/assets/images/global/logo";
 import { phoneFacePlaceholder } from "@/assets/images/tools/phone";
-import BackButton from "@/components/BackButton";
+import BackButton from "@/components/global/BackButton";
 import Text from "@/components/global/Text";
 import ToolHeader from "@/components/tools/ToolHeader";
 import { phoneAFriend_tool } from "@/constants/models/tools/tools";

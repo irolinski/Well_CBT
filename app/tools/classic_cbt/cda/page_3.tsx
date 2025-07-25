@@ -8,9 +8,9 @@ import {
   View,
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import AdvanceButton from "@/components/AdvanceButton";
-import DistortionPill from "@/components/DistortionPill";
-import Frame from "@/components/Frame";
+import AdvanceButton from "@/components/global/AdvanceButton";
+import DistortionPill from "@/components/global/DistortionPill";
+import Frame from "@/components/global/Frame";
 import Text from "@/components/global/Text";
 import CDATextBox from "@/components/tools/cda/CDATextBox";
 import ToolHeader from "@/components/tools/ToolHeader";

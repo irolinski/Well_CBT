@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { NativeSyntheticEvent, Text } from "react-native";
 import PagerView from "react-native-pager-view";
 import { Double } from "react-native/Libraries/Types/CodegenTypes";
-import FadeInView from "@/components/FadeInView";
+import FadeInView from "@/components/global/FadeInView";
 import { Colors } from "@/constants/styles/colorTheme";
 import { SCREEN_HEIGHT } from "@/constants/styles/values";
 import Onboarding_Feat_Breathing from "./feature_slides/breathing";

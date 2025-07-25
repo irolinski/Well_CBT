@@ -6,7 +6,7 @@ import { SCREEN_HEIGHT } from "@/constants/styles/values";
 import { activityLogResetState } from "@/state/features/menus/activityLogSlice";
 import { AppDispatch } from "@/state/store";
 import { Ionicons } from "@expo/vector-icons";
-import BackButton from "../BackButton";
+import BackButton from "../global/BackButton";
 
 type ActivityShowNavTypes = {
   handlePressDelete: () => void;

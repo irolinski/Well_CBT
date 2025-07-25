@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Trans, useTranslation } from "react-i18next";
 import { StyleSheet, View } from "react-native";
 import { tutorialImages } from "@/assets/images/tools/cda/tutorial";
-import DistortionPill from "@/components/DistortionPill";
+import DistortionPill from "@/components/global/DistortionPill";
 import InfoSlideScreen, {
   InfoSlideScreenData,
 } from "@/components/global/InfoSlideScreenReanimated/InfoSlideScreen";

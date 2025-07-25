@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { GroundEnvironmentItemAdjectiveType } from "@/app/tools/relax/ground_yourself/environment/page_3";
-import NavigationModalButton from "@/components/NavigationModalButton";
+import NavigationModalButton from "@/components/global/NavigationModalButton";
 import { Colors } from "@/constants/styles/colorTheme";
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from "@/constants/styles/values";
 import {

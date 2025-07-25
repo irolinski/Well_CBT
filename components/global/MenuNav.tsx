@@ -1,8 +1,8 @@
 import { ColorValue, SafeAreaView, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Colors } from "@/constants/styles/colorTheme";
-import BackButton from "../BackButton";
 import ToolHeader from "../tools/ToolHeader";
+import BackButton from "./BackButton";
 
 type menuNavTypes = {
   name: string;

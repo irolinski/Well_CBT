@@ -1,7 +1,7 @@
 import React from "react";
 import { ActivityIndicator } from "react-native";
 import { Colors } from "@/constants/styles/colorTheme";
-import Text from "./global/Text";
+import Text from "./Text";
 
 const LoadingIndicator = () => {
   return (

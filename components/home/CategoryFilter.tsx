@@ -9,8 +9,8 @@ import {
 import { Colors } from "@/constants/styles/colorTheme";
 import { setFilterCategories } from "@/state/features/menus/activityLogSlice";
 import { AppDispatch, RootState } from "@/state/store";
+import RadioButton from "../global/RadioButton";
 import Text from "../global/Text";
-import RadioButton from "../RadioButton";
 
 const CategoryFilter = () => {
   const { t } = useTranslation("tools");

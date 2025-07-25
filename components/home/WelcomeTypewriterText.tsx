@@ -1,12 +1,15 @@
-import { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { Alert, Dimensions, View } from 'react-native';
-import { welcomeTexts_pt1, welcomeTexts_pt2 } from '@/constants/models/home/welcomeTexts';
-import { Colors } from '@/constants/styles/colorTheme';
-import { UserType } from '@/db/models';
-import { fetchUserData } from '@/db/user';
-import DividerLine from '../DividerLine';
-import TypewriterText from '../TypewriterText';
+import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { Alert, Dimensions, View } from "react-native";
+import {
+  welcomeTexts_pt1,
+  welcomeTexts_pt2,
+} from "@/constants/models/home/welcomeTexts";
+import { Colors } from "@/constants/styles/colorTheme";
+import { UserType } from "@/db/models";
+import { fetchUserData } from "@/db/user";
+import DividerLine from "../global/DividerLine";
+import TypewriterText from "../global/TypewriterText";
 
 const getWelcomeText = (userName?: string): string => {
   const { t } = useTranslation("home");

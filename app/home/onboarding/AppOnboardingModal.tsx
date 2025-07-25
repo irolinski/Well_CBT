@@ -1,23 +1,31 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
-    Animated, Easing, Modal, NativeSyntheticEvent, Platform, TouchableOpacity, View
-} from 'react-native';
-import PagerView from 'react-native-pager-view';
-import { Double } from 'react-native/Libraries/Types/CodegenTypes';
-import FadeInView from '@/components/FadeInView';
-import Text from '@/components/global/Text';
-import { Colors } from '@/constants/styles/colorTheme';
+  Animated,
+  Easing,
+  Modal,
+  NativeSyntheticEvent,
+  Platform,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import PagerView from "react-native-pager-view";
+import { Double } from "react-native/Libraries/Types/CodegenTypes";
+import FadeInView from "@/components/global/FadeInView";
+import Text from "@/components/global/Text";
+import { Colors } from "@/constants/styles/colorTheme";
 import {
-    REFERENCE_SMALL_DEVICE_HEIGHT, SCREEN_HEIGHT, SCREEN_WIDTH
-} from '@/constants/styles/values';
-import Onboarding_LastSlide from './last_slide';
-import Onboarding_LoadingSlide from './loading_slide';
-import Onboarding_PaymentSlide from './payment_slide';
-import Onboarding_SecuritySlide from './security_slide';
-import Onborading_Slide_1 from './slide_1';
-import Onborading_Slide_2 from './slide_2';
-import Onboarding_Slide_3 from './slide_3';
+  REFERENCE_SMALL_DEVICE_HEIGHT,
+  SCREEN_HEIGHT,
+  SCREEN_WIDTH,
+} from "@/constants/styles/values";
+import Onboarding_LastSlide from "./last_slide";
+import Onboarding_LoadingSlide from "./loading_slide";
+import Onboarding_PaymentSlide from "./payment_slide";
+import Onboarding_SecuritySlide from "./security_slide";
+import Onborading_Slide_1 from "./slide_1";
+import Onborading_Slide_2 from "./slide_2";
+import Onboarding_Slide_3 from "./slide_3";
 
 const AppOnboardingModal = ({
   isActive,

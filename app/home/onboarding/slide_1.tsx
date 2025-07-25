@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Animated, Easing, View } from "react-native";
 import { logoImages } from "@/assets/images/global/logo";
-import FadeInView from "@/components/FadeInView";
+import FadeInView from "@/components/global/FadeInView";
 import Text from "@/components/global/Text";
 import { Colors } from "@/constants/styles/colorTheme";
 

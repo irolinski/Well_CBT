@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { Animated, Platform, ScrollView, View } from "react-native";
 import { logoImages } from "@/assets/images/global/logo";
 import learnArticlesLocales from "@/assets/text/learn_articles.json";
-import ErrorScreen from "@/components/ErrorScreen";
+import ErrorScreen from "@/components/global/ErrorScreen";
 import Text from "@/components/global/Text";
 import LearnArticleCard from "@/components/learn/ArticleCard";
 import CategoryScrollableHeader from "@/components/learn/CategoryScrollableHeader";

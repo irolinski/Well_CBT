@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { View } from "react-native";
 import Text from "@/components/global/Text";
-import DividerLine from "../DividerLine";
+import DividerLine from "../global/DividerLine";
 
 type ArticleTextHeaderTypes = {
   title: string;

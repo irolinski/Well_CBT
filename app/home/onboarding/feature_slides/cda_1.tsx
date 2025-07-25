@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { Animated, Text, View } from "react-native";
-import DistortionPill from "@/components/DistortionPill";
+import DistortionPill from "@/components/global/DistortionPill";
 import { Colors } from "@/constants/styles/colorTheme";
 
 const SlideInView = ({

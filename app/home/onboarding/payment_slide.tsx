@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { View } from "react-native";
-import FadeInView from "@/components/FadeInView";
+import FadeInView from "@/components/global/FadeInView";
 import Text from "@/components/global/Text";
 import { Colors } from "@/constants/styles/colorTheme";
 

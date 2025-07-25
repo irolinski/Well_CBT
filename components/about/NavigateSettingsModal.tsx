@@ -10,8 +10,8 @@ import {
 } from "@/state/features/menus/navigateSettingsModalSlice";
 import { AppDispatch, RootState } from "@/state/store";
 import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
-import NavigationModalButton from "../NavigationModalButton";
-import NavigationModalSelect from "../NavigationModalSelect";
+import NavigationModalButton from "../global/NavigationModalButton";
+import NavigationModalSelect from "../global/NavigationModalSelect";
 
 const NavigateSettingsModal = () => {
   const { t } = useTranslation(["about", "common"]);

@@ -4,7 +4,7 @@ import React, { ReactNode } from "react";
 import { useTranslation } from "react-i18next";
 import { Linking, TouchableOpacity, View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
-import DividerLine from "@/components/DividerLine";
+import DividerLine from "@/components/global/DividerLine";
 import MenuNav from "@/components/global/MenuNav";
 import Text from "@/components/global/Text";
 import { Colors } from "@/constants/styles/colorTheme";

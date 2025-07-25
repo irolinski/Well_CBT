@@ -1,7 +1,7 @@
 import { ColorValue, Pressable, View } from "react-native";
 import { Colors } from "@/constants/styles/colorTheme";
 import { Feather } from "@expo/vector-icons";
-import Text from "./global/Text";
+import Text from "./Text";
 
 const ChecklistElement = ({
   text,

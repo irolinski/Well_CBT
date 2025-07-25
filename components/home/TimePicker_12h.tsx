@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Text, TextInput, TouchableOpacity, View } from "react-native";
 import { Colors } from "@/constants/styles/colorTheme";
-import DividerLine from "../DividerLine";
+import DividerLine from "../global/DividerLine";
 
 export type TimePicker_12hReturnObj = {
   hour: string;
