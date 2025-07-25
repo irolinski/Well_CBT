@@ -11,7 +11,7 @@ import {
 import PagerView from "react-native-pager-view";
 import { Double } from "react-native/Libraries/Types/CodegenTypes";
 import { useDispatch, useSelector } from "react-redux";
-import { groundYourselfImages } from "@/assets/images/tools/ground_yourself/ground_yourself";
+import { groundYourselfImages } from "@/assets/images/tools/ground_yourself";
 import ArrowRightButton from "@/components/ArrowRightButton";
 import FadeInView from "@/components/FadeInView";
 import Text from "@/components/global/Text";

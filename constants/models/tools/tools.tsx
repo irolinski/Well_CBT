@@ -1,7 +1,7 @@
 import { ImageSource } from "expo-image";
 import { Href } from "expo-router";
 import { ReactNode } from "react";
-import { toolCardImages } from "@/assets/images/tools/cards/cards";
+import { toolCardImages } from "@/assets/images/tools/cards";
 import { Colors } from "@/constants/styles/colorTheme";
 import { AntDesign, Feather, FontAwesome6 } from "@expo/vector-icons";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";

@@ -2,7 +2,7 @@ import { Image } from "expo-image";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { StyleSheet, Text, View } from "react-native";
-import { tutorialImages } from "@/assets/images/tools/tutorials/tutorials";
+import { tutorialImages } from "@/assets/images/tools/cda/tutorial";
 import { Colors } from "@/constants/styles/colorTheme";
 import { SCREEN_WIDTH } from "@/constants/styles/values";
 
