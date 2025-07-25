@@ -41,7 +41,7 @@ const SkipButton = ({ onPress }: { onPress: () => void }) => {
   );
 };
 
-const Onboarding_Slide_3 = ({
+const Onboarding_GoalsQuestionnaireSlide = ({
   slideKey,
   onboardingSlideNum,
   onFinish,
@@ -134,4 +134,4 @@ const Onboarding_Slide_3 = ({
   );
 };
 
-export default Onboarding_Slide_3;
+export default Onboarding_GoalsQuestionnaireSlide;

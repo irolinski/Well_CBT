@@ -19,13 +19,13 @@ import {
   SCREEN_HEIGHT,
   SCREEN_WIDTH,
 } from "@/constants/styles/values";
-import Onboarding_LastSlide from "./last_slide";
-import Onboarding_LoadingSlide from "./loading_slide";
-import Onboarding_PaymentSlide from "./payment_slide";
-import Onboarding_SecuritySlide from "./security_slide";
-import Onborading_Slide_1 from "./slide_1";
-import Onborading_Slide_2 from "./slide_2";
-import Onboarding_Slide_3 from "./slide_3";
+import Onboarding_FeaturesSlide from "./slides/features_slide";
+import Onboarding_Slide_3 from "./slides/goalsQuestionnaire_slide";
+import Onboarding_LastSlide from "./slides/last_slide";
+import Onboarding_LoadingSlide from "./slides/loading_slide";
+import Onboarding_LogoAnimSlide from "./slides/logoAnim_slide";
+import Onboarding_PaymentSlide from "./slides/payment_slide";
+import Onboarding_SecuritySlide from "./slides/security_slide";
 
 const AppOnboardingModal = ({
   isActive,
@@ -163,7 +163,7 @@ const AppOnboardingModal = ({
             setCurrentSlide(evt.nativeEvent.position);
           }}
         >
-          <Onborading_Slide_1
+          <Onboarding_LogoAnimSlide
             slideKey="1"
             onboardingSlideNum={currentSlide}
             onFinish={() => {
@@ -173,7 +173,7 @@ const AppOnboardingModal = ({
               });
             }}
           />
-          <Onborading_Slide_2
+          <Onboarding_FeaturesSlide
             slideKey="2"
             onboardingSlideNum={currentSlide}
             onFinish={() => {

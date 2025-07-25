@@ -13,7 +13,7 @@ const LOGO_WORRY_X_OFFSET_FINAL = -15;
 const LOGO_FREE_X_OFFSET_INIT = 20;
 const LOGO_FREE_X_OFFSET_FINAL = 65;
 
-const Onborading_Slide_1 = ({
+const Onboarding_LogoAnimSlide = ({
   slideKey,
   onboardingSlideNum,
   onFinish,
@@ -172,4 +172,4 @@ const Onborading_Slide_1 = ({
   );
 };
 
-export default Onborading_Slide_1;
+export default Onboarding_LogoAnimSlide;

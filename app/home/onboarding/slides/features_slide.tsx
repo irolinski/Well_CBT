@@ -12,7 +12,7 @@ import Onboarding_Feat_CDA_2 from "./feature_slides/cda_2";
 import Onboarding_Feat_Journal from "./feature_slides/journal";
 import Onboarding_Feat_Last from "./feature_slides/last";
 
-const Onboarding_Slide_2 = ({
+const Onboarding_FeaturesSlide = ({
   slideKey,
   onboardingSlideNum,
   onFinish,
@@ -121,4 +121,4 @@ const Onboarding_Slide_2 = ({
   );
 };
 
-export default Onboarding_Slide_2;
+export default Onboarding_FeaturesSlide;
