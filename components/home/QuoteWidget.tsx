@@ -31,7 +31,7 @@ const QuoteWidget = () => {
 
   return (
     <View
-      className="w-full flex-1 rounded-xl border"
+      className="my-4 w-full flex-1 rounded-xl border"
       style={{ height: 240, borderColor: Colors.lightGray }}
     >
       <Image

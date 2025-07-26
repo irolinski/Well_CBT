@@ -77,9 +77,7 @@ const Home = () => {
         {/* Welcome */}
         <WelcomeTypewriterText isActive={!onboardingModalIsActive} />
         {/* Quote Widget */}
-        <View className="my-4 items-center justify-center">
-          <QuoteWidget />
-        </View>
+        <QuoteWidget />
         {/* Recent */}
         {!isLoading && (
           <View>
