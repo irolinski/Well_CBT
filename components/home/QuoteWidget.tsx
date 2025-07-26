@@ -1,5 +1,6 @@
 import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
+import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Dimensions, Pressable, View } from "react-native";
 import quoteImages from "@/assets/images/home/quote_widget/index";
@@ -18,8 +19,27 @@ const QuoteWidget = () => {
   const { t } = useTranslation("home");
   const quotesList = quotesListLocales[selectedLanguage as AvailableLanguage];
 
-  const quoteNumber = (Math.random() * (quotesList.length - 1)) | 0;
-  const imageNumber = (Math.random() * (quoteImages.length - 1)) | 0;
+  const [currentDay, setCurrentDay] = useState(new Date().getDay());
+
+  useEffect(() => {
+    const interval = setInterval(
+      () => {
+        const dayNow = new Date().getDay();
+        setCurrentDay((prev) => (prev !== dayNow ? dayNow : prev));
+      },
+      1000 * 60 * 15,
+    ); // check every 15 minutes
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const quoteNumber = useMemo((): number => {
+    return (Math.random() * (quotesList.length - 1)) | 0;
+  }, [currentDay]);
+
+  const imageNumber = useMemo((): number => {
+    return (Math.random() * (quoteImages.length - 1)) | 0;
+  }, [currentDay]);
 
   const handleOnPress = () => {
     achievementHandlersObj[12]();
