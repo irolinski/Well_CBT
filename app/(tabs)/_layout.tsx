@@ -1,10 +1,14 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { Platform, View } from 'react-native';
-import { Colors } from '@/constants/styles/colorTheme';
-import { SCREEN_HEIGHT } from '@/constants/styles/values';
-import { Feather, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
+import { Tabs } from "expo-router";
+import React from "react";
+import { useTranslation } from "react-i18next";
+import { Platform, View } from "react-native";
+import { Colors } from "@/constants/styles/colorTheme";
+import { SCREEN_HEIGHT } from "@/constants/styles/values";
+import {
+  Feather,
+  MaterialCommunityIcons,
+  MaterialIcons,
+} from "@expo/vector-icons";
 
 const TABBAR_HEIGHT_IOS = SCREEN_HEIGHT / 9;
 const TABBAR_HEIGHT_ANDROID = SCREEN_HEIGHT / 12;
@@ -39,7 +43,7 @@ const TabLayout = () => {
         }}
       />
       <Tabs.Screen
-        name="tools"
+        name="tools_tab"
         options={{
           title: t("tabbar.tools") ?? "Tools",
           tabBarIcon: ({ color }) => (
@@ -54,7 +58,7 @@ const TabLayout = () => {
         }}
       />
       <Tabs.Screen
-        name="learn"
+        name="learn_tab"
         options={{
           title: t("tabbar.learn") ?? "Learn",
           tabBarIcon: ({ color, focused }) => (
@@ -67,7 +71,7 @@ const TabLayout = () => {
         }}
       />
       <Tabs.Screen
-        name="about"
+        name="about_tab"
         options={{
           title: t("tabbar.about_me") ?? "About Me",
           tabBarIcon: ({ color }) => (
