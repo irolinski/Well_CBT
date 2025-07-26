@@ -72,6 +72,8 @@ export default function RootLayout() {
         shouldShowAlert: true,
         shouldPlaySound: true,
         shouldSetBadge: true,
+        shouldShowBanner: true,
+        shouldShowList: false,
       }),
     });
   }, []);
