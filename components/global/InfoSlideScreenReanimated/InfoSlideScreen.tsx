@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import {
   FlatList,
@@ -185,12 +185,22 @@ const InfoSlideScreen = ({
   const flatListIndex = useSharedValue(0);
   const x = useSharedValue(0);
 
+  // const onViewableItemsChanged = ({
+  //   viewableItems,
+  // }: {
+  //   viewableItems: Array<ViewToken>;
+  // }) => {
+  //   flatListIndex.value = viewableItems[0].index ?? 0;
+  // };
+
   const onViewableItemsChanged = ({
     viewableItems,
   }: {
     viewableItems: Array<ViewToken>;
   }) => {
-    flatListIndex.value = viewableItems[0].index ?? 0;
+    if (viewableItems?.[0]?.index != null) {
+      flatListIndex.value = viewableItems[0].index!;
+    }
   };
 
   const onScroll = useAnimatedScrollHandler({
@@ -215,6 +225,12 @@ const InfoSlideScreen = ({
         bounces={false}
         pagingEnabled
         onViewableItemsChanged={onViewableItemsChanged}
+        // the below parameter is required for it to work
+        getItemLayout={(data, index) => ({
+          length: SCREEN_WIDTH,
+          offset: SCREEN_WIDTH * index,
+          index,
+        })}
       />
 
       <View style={InfoSlideScreenStyles.footerContainer}>

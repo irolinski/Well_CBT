@@ -1,6 +1,7 @@
-import React, { RefObject } from "react";
+import React from "react";
 import { FlatList, Pressable, StyleSheet } from "react-native";
 import Animated, {
+  AnimatedRef,
   SharedValue,
   useAnimatedStyle,
   useSharedValue,
@@ -13,7 +14,7 @@ import { Feather } from "@expo/vector-icons";
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 
 type InfoInfoSlideScreenButtonProps = {
-  flatListRef: RefObject<FlatList>;
+  flatListRef: AnimatedRef<FlatList>;
   flatListIndex: SharedValue<number>;
   dataLength: number;
   text: string;
@@ -27,7 +28,6 @@ export function InfoSlideScreenButton({
   text,
   onFinish,
 }: InfoInfoSlideScreenButtonProps) {
-  // const isLastScreen = flatListIndex.value === dataLength - 1;
   const buttonOpacity = useSharedValue(1);
 
   const InfoSlideScreenButtonAnimationStyle = useAnimatedStyle(() => {

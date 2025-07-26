@@ -13,7 +13,6 @@ import CDADistortionList from "@/components/tools/cda/CDADistortionList";
 import CDATextBox from "@/components/tools/cda/CDATextBox";
 import { Colors } from "@/constants/styles/colorTheme";
 import { SCREEN_HEIGHT } from "@/constants/styles/values";
-import { handleSetSeenTutorial } from "@/db/tools";
 
 const CDA_Tutorial = ({ closeModalFunc }: { closeModalFunc: () => void }) => {
   const { t } = useTranslation(["tools", "common"]);
