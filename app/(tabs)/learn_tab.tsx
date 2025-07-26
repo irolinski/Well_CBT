@@ -1,6 +1,4 @@
-//og
-
-import React from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { View } from "react-native";
 import learnArticlesLocales from "@/assets/text/learn_articles.json";
@@ -18,18 +16,33 @@ import { Colors } from "@/constants/styles/colorTheme";
 import { AvailableLanguage, selectedLanguage } from "@/hooks/i18n";
 
 const Learn = () => {
-  const { t, i18n } = useTranslation("learn");
+  const { t } = useTranslation("learn");
 
   const articlesInCurrentLanguage = learnArticlesLocales[
     selectedLanguage as AvailableLanguage
   ] as ArticlesInCurrentLanguageType;
 
+  const [currentDay, setCurrentDay] = useState(new Date().getDay());
+
+  useEffect(() => {
+    const interval = setInterval(
+      () => {
+        const dayNow = new Date().getDay();
+        setCurrentDay((prev) => (prev !== dayNow ? dayNow : prev));
+      },
+      1000 * 60 * 15,
+    ); // check every 15 minutes
+
+    return () => clearInterval(interval);
+  }, []);
+
   const availableArticles = learnArticles.filter((articleObj) =>
     Object.keys(articlesInCurrentLanguage).includes(String(articleObj.id)),
   );
 
-  const articleNumber =
-    (Math.random() * (Object.keys(availableArticles).length - 1)) | 0;
+  const articleNumber = useMemo((): number => {
+    return (Math.random() * (Object.keys(availableArticles).length - 1)) | 0;
+  }, [currentDay]);
 
   const featuredArticle = availableArticles[articleNumber];
 
