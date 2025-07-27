@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Alert, View } from "react-native";
+import { UserType } from "@/constants/models/global/models";
 import {
   welcomeTexts_pt1,
   welcomeTexts_pt2,
 } from "@/constants/models/home/welcomeTexts";
 import { Colors } from "@/constants/styles/colorTheme";
 import { SCREEN_WIDTH } from "@/constants/styles/values";
-import { UserType } from "@/db/models";
 import { fetchUserData } from "@/db/user";
 import DividerLine from "../global/DividerLine";
 import TypewriterText from "../global/TypewriterText";

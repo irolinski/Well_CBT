@@ -2,7 +2,7 @@ import { Alert } from "react-native";
 import { dbPromise } from "@/services/db";
 import { isSameDate } from "@/utils/dates";
 import { getTranslation } from "@/utils/locales";
-import { TableRowCountObj, UserType } from "./models";
+import { TableRowCountObj, UserType } from "../constants/models/global/models";
 
 const isUserType = (res: any): res is UserType => {
   return (

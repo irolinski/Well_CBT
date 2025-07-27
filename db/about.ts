@@ -1,7 +1,10 @@
 import { Alert } from "react-native";
 import { dbPromise } from "@/services/db";
 import { getTranslation } from "@/utils/locales";
-import { StatsDataObjType, TableRowCountObj } from "./models";
+import {
+  StatsDataObjType,
+  TableRowCountObj,
+} from "../constants/models/global/models";
 
 export const handleGetCDACount = async (): Promise<number> => {
   try {

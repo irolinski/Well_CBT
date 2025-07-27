@@ -8,9 +8,9 @@ import {
   statObjectsList,
   StatsObj,
 } from "@/constants/models/about";
+import { StatsDataObjType } from "@/constants/models/global/models";
 import { Colors } from "@/constants/styles/colorTheme";
 import { fetchStatsData } from "@/db/about";
-import { StatsDataObjType } from "@/db/models";
 import { interpolateNumbers } from "@/utils/algorithms";
 import Text from "../global/Text";
 import StatRow from "./StatRow";
