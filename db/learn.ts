@@ -1,4 +1,3 @@
-import * as SQLite from "expo-sqlite";
 import { dbPromise } from "@/services/db";
 
 export const handleGetFinishedArticleIds = async () => {

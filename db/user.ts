@@ -1,8 +1,8 @@
-import { Alert } from 'react-native';
-import { dbPromise } from '@/services/db';
-import { isSameDate } from '@/utils/dates';
-import { getTranslation } from '@/utils/locales';
-import { TableRowCountObj, UserType } from './models';
+import { Alert } from "react-native";
+import { dbPromise } from "@/services/db";
+import { isSameDate } from "@/utils/dates";
+import { getTranslation } from "@/utils/locales";
+import { TableRowCountObj, UserType } from "./models";
 
 const isUserType = (res: any): res is UserType => {
   return (
@@ -55,21 +55,21 @@ export const handleGetUserData = async (): Promise<UserType | undefined> => {
   }
 };
 
-const countOneDay = async (): Promise<void> => {
-  try {
-    const db = await dbPromise;
-    const userData = await handleGetUserData();
-    if (userData) {
-      let { numOfAllVisits } = userData;
-      numOfAllVisits++;
-      db.execAsync(`UPDATE userData SET numOfAllDays = ${numOfAllVisits}`);
-    }
-  } catch (err) {
-    console.error(err);
-  }
-};
-
 export const handleSetVisitStreakCount = async (): Promise<void> => {
+  const countOneDay = async (): Promise<void> => {
+    try {
+      const db = await dbPromise;
+      const userData = await handleGetUserData();
+      if (userData) {
+        let { numOfAllVisits } = userData;
+        numOfAllVisits++;
+        db.execAsync(`UPDATE userData SET numOfAllDays = ${numOfAllVisits}`);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   try {
     const db = await dbPromise;
 
@@ -87,40 +87,42 @@ export const handleSetVisitStreakCount = async (): Promise<void> => {
       dayAfterLastVisit.setDate(lastVisit.getDate() + 1);
 
       const currentTime = new Date();
-      await db.execAsync(
-        `UPDATE userData SET lastVisit = DATETIME('now', 'localtime');`,
-      );
-
-      // console.log("last visit: " + lastVisit);
-      // console.log("day after last viist: " + dayAfterLastVisit);
-      // console.log("current time: " + currentTime);
-      // console.log("current streak: " + user.currentVisitStreak);
-
-      // check whether the streak continues
-      if (isSameDate(lastVisit, currentTime)) {
-        // console.log("--- \n same day! \n ---");
-      } else if (isSameDate(currentTime, dayAfterLastVisit)) {
-        //if the streak happened, add it to db
-        // console.log("--- \n streak! \n --- ");
-        const newStreak = user.currentVisitStreak + 1;
+      await db.withTransactionAsync(async () => {
         await db.execAsync(
-          `UPDATE userData SET currentVisitStreak = ${newStreak};`,
+          `UPDATE userData SET lastVisit = DATETIME('now', 'localtime');`,
         );
-        // if streak is the biggest so far, add it to db
-        if (newStreak > user.highestVisitStreak) {
-          await db.execAsync(
-            `UPDATE userData SET highestVisitStreak = ${newStreak};`,
-          );
-        }
-      } else {
-        // console.log("--- \n streak broken! \n --- ");
-        await db.execAsync(`UPDATE userData SET currentVisitStreak = ${1};`);
-      }
 
-      // add 1 to daycount if today's a different day than it was during lastVisit
-      if (!isSameDate(lastVisit, currentTime)) {
-        countOneDay();
-      }
+        // console.log("last visit: " + lastVisit);
+        // console.log("day after last viist: " + dayAfterLastVisit);
+        // console.log("current time: " + currentTime);
+        // console.log("current streak: " + user.currentVisitStreak);
+
+        // check whether the streak continues
+        if (isSameDate(lastVisit, currentTime)) {
+          // console.log("--- \n same day! \n ---");
+        } else if (isSameDate(currentTime, dayAfterLastVisit)) {
+          //if the streak happened, add it to db
+          // console.log("--- \n streak! \n --- ");
+          const newStreak = user.currentVisitStreak + 1;
+          await db.execAsync(
+            `UPDATE userData SET currentVisitStreak = ${newStreak};`,
+          );
+          // if streak is the biggest so far, add it to db
+          if (newStreak > user.highestVisitStreak) {
+            await db.execAsync(
+              `UPDATE userData SET highestVisitStreak = ${newStreak};`,
+            );
+          }
+        } else {
+          // console.log("--- \n streak broken! \n --- ");
+          await db.execAsync(`UPDATE userData SET currentVisitStreak = ${1};`);
+        }
+
+        // add 1 to daycount if today's a different day than it was during lastVisit
+        if (!isSameDate(lastVisit, currentTime)) {
+          countOneDay();
+        }
+      });
     } else {
       throw Error;
     }

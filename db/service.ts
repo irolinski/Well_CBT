@@ -5,7 +5,8 @@ import { getTranslation } from "@/utils/locales";
 export const setUpDB = async () => {
   try {
     const db = await dbPromise;
-    await db.execAsync(`
+    await db.withTransactionAsync(async () => {
+      await db.execAsync(`
       CREATE TABLE IF NOT EXISTS userData (
         name VARCHAR(100),
         lastVisit VARCHAR(30) NOT NULL,
@@ -16,8 +17,16 @@ export const setUpDB = async () => {
         customProfilePic VARCHAR(500)
       );
 
-      INSERT OR IGNORE INTO userData (name, lastVisit, currentVisitStreak, highestVisitStreak, numOfAllVisits, profilePicId)
-      SELECT "", DATETIME('now', 'localtime'), 1, 1, 1, 0
+      INSERT OR IGNORE INTO userData (
+      name,
+      lastVisit,
+      currentVisitStreak,
+      highestVisitStreak,
+      numOfAllVisits,
+      profilePicId
+      )
+      SELECT "",
+      DATETIME('now', 'localtime'), 1, 1, 1, 0
       WHERE NOT EXISTS (SELECT 1 FROM userData LIMIT 1);
 
       CREATE TABLE IF NOT EXISTS userSettings (
@@ -30,12 +39,14 @@ export const setUpDB = async () => {
       WHERE NOT EXISTS (SELECT 1 FROM userSettings LIMIT 1);
 
       CREATE TABLE IF NOT EXISTS seenOnboarding (isTrue INT);
+
       CREATE TABLE IF NOT EXISTS journalEntries (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         moodValue INT NOT NULL,
         note VARCHAR(200),
         datetime NOT NULL
       );
+
       CREATE TABLE IF NOT EXISTS cdaArchive ( 
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         situation VARCHAR(100) NOT NULL,
@@ -44,32 +55,41 @@ export const setUpDB = async () => {
         newThought VARCHAR(100) NOT NULL,
         datetime NOT NULL
       );
+
       CREATE TABLE IF NOT EXISTS journalEntryEmotions (
         id INT NOT NULL,
         name VARCHAR(100) NOT NULL,
         strength INT NOT NULL
       );
+
       CREATE TABLE IF NOT EXISTS relaxActivities (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         activityName VARCHAR(100),
         secondsRelaxed INT,
         datetime NOT NULL
       );
+
       CREATE TABLE IF NOT EXISTS phoneAFriend (
         name VARCHAR(100),
         phone VARCHAR(100)
       );
+
       CREATE TABLE IF NOT EXISTS learnFinishedArticles (
         articleId INT NOT NULL
       );
+
       CREATE TABLE IF NOT EXISTS achievementProgress (
         id INT,
         currentScore INT,
         requiredScore INT,
         dateUnlocked VARCHAR(30)
       );
-      CREATE TABLE IF NOT EXISTS seenTutorials (toolName VARCHAR(50) NOT NULL);
+
+      CREATE TABLE IF NOT EXISTS seenTutorials (
+        toolName VARCHAR(50) NOT NULL
+      );
     `);
+    });
   } catch (err) {
     console.error("Error: Problem with initializing database.\n\n", err);
     Alert.alert(

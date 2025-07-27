@@ -1,12 +1,15 @@
-import { Alert } from 'react-native';
+import { Alert } from "react-native";
 import {
-    AchievementProgressObj, allAchievementsModelsArr
-} from '@/constants/models/about/achievements';
+  AchievementProgressObj,
+  allAchievementsModelsArr,
+} from "@/constants/models/about/achievements";
 import {
-    AchievementIdType, allAchievementsWithControllersArr, handleGetAchievementProgressData
-} from '@/db/achievements/controllers';
-import { dbPromise } from '@/services/db';
-import { getTranslation } from '@/utils/locales';
+  AchievementIdType,
+  allAchievementsWithControllersArr,
+  handleGetAchievementProgressData,
+} from "@/db/achievements/controllers";
+import { dbPromise } from "@/services/db";
+import { getTranslation } from "@/utils/locales";
 
 // create a table for achievement progress
 const handleCreateAchievementProgressTable = async () => {
@@ -14,7 +17,10 @@ const handleCreateAchievementProgressTable = async () => {
     const db = await dbPromise;
     await db.execAsync(`
         CREATE TABLE IF NOT EXISTS achievementProgress (
-          id INT, currentScore INT, requiredScore INT, dateUnlocked VARCHAR (30) 
+          id INT,
+          currentScore INT,
+          requiredScore INT,
+          dateUnlocked VARCHAR (30) 
         );
       `);
   } catch (err) {
