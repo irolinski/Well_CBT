@@ -1,11 +1,10 @@
 import React from "react";
-import { Keyboard, TextStyle, TouchableOpacity, View } from "react-native";
+import { Keyboard, TextStyle, View } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
 import ArrowRightButton from "@/components/global/ArrowRightButton";
 import DividerLine from "@/components/global/DividerLine";
 import { Colors } from "@/constants/styles/colorTheme";
 import { SCREEN_WIDTH } from "@/constants/styles/values";
-import { Feather } from "@expo/vector-icons";
 
 const MAX_TEXT_INPUT_LENGTH = 15;
 

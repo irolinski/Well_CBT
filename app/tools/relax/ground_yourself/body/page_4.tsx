@@ -118,7 +118,7 @@ const Ground_Body_Page_4 = ({
             isActive={groundYourselfToolState.currentSlide === objKey}
           />
           <TypewriterText
-            text={t("tools.ground_yourself.touch.page_4.instruction_2")}
+            text={t("tools.ground_yourself.body.page_4.instruction_2")}
             textColor={Colors.mainGray}
             size={12}
             speed="fast"

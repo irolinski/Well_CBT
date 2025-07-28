@@ -17,7 +17,10 @@ import { SCREEN_HEIGHT, WINDOW_HEIGHT } from "@/constants/styles/values";
 import { RootState } from "@/state/store";
 import { isValidName } from "@/utils/inputValidations";
 
-const FIRST_SLIDE_TIME_MS = 2500;
+const FIRST_SLIDE_TIME_MS = 3500;
+const TOES_1_SLIDE_TIME_MS = 1000;
+const BACK_1_SLIDE_TIME_MS = 1500;
+const TOES_ANIM_SLIDE_TIME_MS = 1500;
 
 const Ground_Body_Page_3 = ({
   exerciseName,
@@ -32,6 +35,7 @@ const Ground_Body_Page_3 = ({
   );
   const [currentInstruction, setCurrentInstruction] = useState<
     | "toes_1"
+    | "toes_anim"
     | "toes_2"
     | "toes_3"
     | "fingers"
@@ -71,7 +75,7 @@ const Ground_Body_Page_3 = ({
   }, [currentInstruction]);
 
   useEffect(() => {
-    if (currentInstruction === "toes_2") {
+    if (currentInstruction === "toes_anim") {
       Animated.sequence([
         Animated.timing(rotation, {
           toValue: 1,
@@ -109,7 +113,11 @@ const Ground_Body_Page_3 = ({
           easing: Easing.elastic(1.5),
           useNativeDriver: true,
         }),
-      ]).start();
+      ]).start(() => {
+        setTimeout(() => {
+          setCurrentInstruction("toes_2");
+        }, TOES_ANIM_SLIDE_TIME_MS);
+      });
     }
   }, [currentInstruction]);
 
@@ -156,7 +164,7 @@ const Ground_Body_Page_3 = ({
           isActive={groundYourselfToolState.currentSlide === objKey}
         />
         <PagerView
-          scrollEnabled={true}
+          scrollEnabled={false}
           className="h-full w-full"
           initialPage={0}
           ref={refPagerView}
@@ -206,11 +214,14 @@ const Ground_Body_Page_3 = ({
                   delaySeconds={1}
                   isActive={currentInstruction === "toes_1"}
                   showOverflow={true}
-                  onFinish={() => setCurrentInstruction("toes_2")}
+                  onFinish={() =>
+                    setTimeout(() => {
+                      setCurrentInstruction("toes_anim");
+                    }, TOES_1_SLIDE_TIME_MS)
+                  }
                 />
               </View>
             </FadeInView>
-
             <FadeInView
               className="w-full"
               inputVal={0}
@@ -226,7 +237,7 @@ const Ground_Body_Page_3 = ({
                   size={20}
                   cursorColor={Colors.mainGray}
                   speed="fast"
-                  delaySeconds={2}
+                  delaySeconds={4}
                   isActive={currentInstruction === "toes_2"}
                   onFinish={() => setCurrentInstruction("toes_3")}
                   showOverflow={true}
@@ -337,7 +348,11 @@ const Ground_Body_Page_3 = ({
                   size={20}
                   speed="fast"
                   showOverflow={true}
-                  onFinish={() => setCurrentInstruction("back_2")}
+                  onFinish={() =>
+                    setTimeout(() => {
+                      setCurrentInstruction("back_2");
+                    }, BACK_1_SLIDE_TIME_MS)
+                  }
                   isActive={currentInstruction === "back_1"}
                 />
               </FadeInView>

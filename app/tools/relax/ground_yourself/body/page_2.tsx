@@ -9,7 +9,11 @@ import TypewriterText from "@/components/global/TypewriterText";
 import GroundYourselfSlideFrame from "@/components/tools/ground_yourself/GroundYourselfSlideFrame";
 import { GroundYourselfSlideProps } from "@/constants/models/tools/ground_yourself";
 import { Colors } from "@/constants/styles/colorTheme";
-import { SCREEN_HEIGHT, SCREEN_WIDTH } from "@/constants/styles/values";
+import {
+  REFERENCE_SMALL_DEVICE_HEIGHT,
+  SCREEN_HEIGHT,
+  SCREEN_WIDTH,
+} from "@/constants/styles/values";
 import { RootState } from "@/state/store";
 
 const BREATHE_IN_TIME_MS = 5000;
@@ -34,8 +38,9 @@ const Ground_Body_Page_2 = ({
   const instruction2PositionAnim = useRef(new Animated.Value(0)).current;
 
   const [breatheState, setBreatheState] = useState<"in" | "out" | "hold">("in");
-  const [instruction2IsActive, setInstruction2IsActive] = useState(false);
-
+  const [currentInstruction, setCurrentInstruction] = useState<
+    "instruction_1" | "instruction_2" | undefined
+  >(undefined);
   const expandInnerCircleAnim = (duration: number) => {
     return Animated.timing(innerCircleAnim, {
       toValue: 0.95,
@@ -77,7 +82,7 @@ const Ground_Body_Page_2 = ({
       setBreatheState("hold");
       fillHoldProgressBarAnim(HOLD_TIME_MS).start(() => {
         shrinkInnerCircleAnim(BREATHE_OUT_TIME_MS).start(() => {
-          setInstruction2IsActive(true);
+          setCurrentInstruction("instruction_1");
         });
         setBreatheState("out");
       });
@@ -100,14 +105,17 @@ const Ground_Body_Page_2 = ({
     >
       <View
         style={{
-          paddingTop: SCREEN_HEIGHT > 750 ? SCREEN_HEIGHT * 0.05 : null,
+          paddingTop:
+            SCREEN_HEIGHT > REFERENCE_SMALL_DEVICE_HEIGHT
+              ? SCREEN_HEIGHT * 0.05
+              : null,
         }}
       >
         <FadeInView
           inputVal={1}
           outputVal={0}
           duration={1000}
-          isActive={instruction2IsActive}
+          isActive={currentInstruction === "instruction_1"}
           onFinish={() => liftInstruction2PositionAnim(1000).start()}
         >
           <TypewriterText
@@ -134,7 +142,10 @@ const Ground_Body_Page_2 = ({
                 <View className="absolute h-full w-full flex-row items-center justify-center">
                   <Text
                     className="z-10 text-2xl"
-                    style={{ color: Colors.offWhite, fontFamily: "Kodchasan" }}
+                    style={{
+                      color: Colors.offWhite,
+                      fontFamily: "KodchasanRegular",
+                    }}
                   >
                     {breatheState === "in" &&
                       t("tools.breathing.exercise.commands.breathe_in")}
@@ -173,7 +184,7 @@ const Ground_Body_Page_2 = ({
           </FadeInView>
         </FadeInView>
         <FadeInView
-          isActive={instruction2IsActive}
+          isActive={currentInstruction === "instruction_1"}
           inputVal={0}
           duration={2500}
           style={{ transform: [{ translateY: instruction2PositionAnim }] }}
@@ -185,17 +196,21 @@ const Ground_Body_Page_2 = ({
             cursorColor={Colors.mainGray}
             speed="fast"
             delaySeconds={1.5}
-            isActive={instruction2IsActive}
+            isActive={currentInstruction === "instruction_1"}
+            onFinish={() => setCurrentInstruction("instruction_2")}
           />
-          <FadeInView isActive={instruction2IsActive} className="my-4">
+          <FadeInView
+            isActive={currentInstruction === "instruction_2"}
+            className="my-4"
+          >
             <TypewriterText
               text={t("tools.ground_yourself.body.page_2.instruction_2")}
               textColor={Colors.darkGray}
               cursorColor={Colors.mainGray}
               size={15}
               speed="very_fast"
-              delaySeconds={6}
-              isActive={instruction2IsActive}
+              delaySeconds={4}
+              isActive={currentInstruction === "instruction_2"}
             />
             <View
               className="w-full flex-row justify-center"
