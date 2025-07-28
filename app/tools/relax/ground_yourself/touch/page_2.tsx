@@ -15,6 +15,7 @@ import { RootState } from "@/state/store";
 const BREATHE_IN_TIME_MS = 5000;
 const HOLD_TIME_MS = 6000 - 500;
 const BREATHE_OUT_TIME_MS = 7000;
+const INSTRUCTION_3_DELAY_MS = 1000;
 
 const Ground_Touch_Page_2 = ({
   exerciseName,
@@ -34,7 +35,9 @@ const Ground_Touch_Page_2 = ({
   const instruction2PositionAnim = useRef(new Animated.Value(0)).current;
 
   const [breatheState, setBreatheState] = useState<"in" | "out" | "hold">("in");
-  const [instruction2IsActive, setInstruction2IsActive] = useState(false);
+  const [currentInstruction, setCurrentInstruction] = useState<
+    "instruction_2" | "instruction_3" | undefined
+  >(undefined);
 
   const expandInnerCircleAnim = (duration: number) => {
     return Animated.timing(innerCircleAnim, {
@@ -77,7 +80,7 @@ const Ground_Touch_Page_2 = ({
       setBreatheState("hold");
       fillHoldProgressBarAnim(HOLD_TIME_MS).start(() => {
         shrinkInnerCircleAnim(BREATHE_OUT_TIME_MS).start(() => {
-          setInstruction2IsActive(true);
+          setCurrentInstruction("instruction_2");
         });
         setBreatheState("out");
       });
@@ -107,7 +110,7 @@ const Ground_Touch_Page_2 = ({
           inputVal={1}
           outputVal={0}
           duration={1000}
-          isActive={instruction2IsActive}
+          isActive={currentInstruction === "instruction_2"}
           onFinish={() => liftInstruction2PositionAnim(1000).start()}
         >
           <TypewriterText
@@ -134,7 +137,10 @@ const Ground_Touch_Page_2 = ({
                 <View className="absolute h-full w-full flex-row items-center justify-center">
                   <Text
                     className="z-10 text-2xl"
-                    style={{ color: Colors.offWhite, fontFamily: "Kodchasan" }}
+                    style={{
+                      color: Colors.offWhite,
+                      fontFamily: "KodchasanRegular",
+                    }}
                   >
                     {breatheState === "in" &&
                       t("tools.breathing.exercise.commands.breathe_in")}
@@ -173,7 +179,7 @@ const Ground_Touch_Page_2 = ({
           </FadeInView>
         </FadeInView>
         <FadeInView
-          isActive={instruction2IsActive}
+          isActive={currentInstruction === "instruction_2"}
           inputVal={0}
           duration={2500}
           style={{ transform: [{ translateY: instruction2PositionAnim }] }}
@@ -186,11 +192,16 @@ const Ground_Touch_Page_2 = ({
                 cursorColor={Colors.mainGray}
                 speed="fast"
                 delaySeconds={1.5}
-                isActive={instruction2IsActive}
+                isActive={currentInstruction === "instruction_2"}
+                onFinish={() =>
+                  setTimeout(() => {
+                    setCurrentInstruction("instruction_3");
+                  }, INSTRUCTION_3_DELAY_MS)
+                }
               />
             </View>
           </View>
-          <FadeInView isActive={instruction2IsActive}>
+          <FadeInView isActive={currentInstruction === "instruction_3"}>
             <TypewriterText
               text={t("tools.ground_yourself.touch.page_2.instruction_3")}
               textColor={Colors.darkGray}
@@ -198,7 +209,7 @@ const Ground_Touch_Page_2 = ({
               size={14}
               speed="very_fast"
               delaySeconds={6}
-              isActive={instruction2IsActive}
+              isActive={currentInstruction === "instruction_3"}
             />
             <View
               className="w-full flex-row justify-center"

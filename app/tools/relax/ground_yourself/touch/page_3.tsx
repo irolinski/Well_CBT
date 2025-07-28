@@ -120,6 +120,7 @@ const Ground_Touch_Page_3 = ({
           isActive={groundYourselfToolState.currentSlide === objKey}
         />
         <PagerView
+          scrollEnabled={false}
           className="h-full w-full"
           initialPage={0}
           ref={refPagerView}

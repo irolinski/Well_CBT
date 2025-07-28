@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Animated, View } from "react-native";
 import { useSelector } from "react-redux";
@@ -24,6 +24,9 @@ const Ground_Touch_Page_1 = ({
   const groundYourselfToolState = useSelector(
     (state: RootState) => state.ground_yourself,
   );
+  const [currentInstruction, setCurrentInstruction] = useState<
+    "instruction_1" | "instruction_2"
+  >("instruction_1");
   // Animated value for rotation
   const waveAnimRef = useRef(new Animated.Value(0)).current;
 
@@ -101,6 +104,7 @@ const Ground_Touch_Page_1 = ({
           size={20}
           cursorColor={Colors.mainGray}
           isActive={groundYourselfToolState.currentSlide === objKey}
+          onFinish={() => setCurrentInstruction("instruction_2")}
           letterSpacing={1.25}
           lineHeight={1.25}
           speed="fastest"
@@ -110,7 +114,7 @@ const Ground_Touch_Page_1 = ({
           <TypewriterText
             text={t("instructions.tap_button_below", { ns: "common" })}
             speed="fast"
-            isActive={groundYourselfToolState.currentSlide === objKey}
+            isActive={currentInstruction === "instruction_2"}
             delaySeconds={1.5}
             size={18}
             textColor={Colors.mainGray}
