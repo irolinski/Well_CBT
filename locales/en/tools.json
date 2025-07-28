@@ -36,9 +36,9 @@
       "title": "Ground Yourself",
       "description": "In the following exercise, you'll practice <bold>grounding yourself</bold> using simple DBT techniques. \n\nYou'll see <bold>step-by-step instructions</bold> on the screen — just follow along to guide yourself through the process.",
       "common": {
-        "now_deep_breath": "Ok, now, let's take a deep breath",
+        "now_deep_breath": "Ok, now, let's take a deep breath.",
         "another_deep_breath": "Ok, now, let's do another deep breath.",
-        "head_to_next_exercise": "Now, let's head to the next exercise which will help ground you further"
+        "head_to_next_exercise": "Now, let's head to the next exercise which will help ground you further."
       },
       "time": {
         "date": {
@@ -82,7 +82,7 @@
         },
         "page_4": {
           "instruction_1": "(while still focusing on what's around you)",
-          "instruction_2": "Now, let's head to the next exercise, which will help ground you further"
+          "instruction_2": "Now, let's head to the next exercise, which will help ground you further."
         }
       },
       "body": {
