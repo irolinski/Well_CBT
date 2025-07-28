@@ -85,7 +85,7 @@ const Ground_Finish_Page = ({
             isActive={currentInstruction === "instruction_2"}
           />
           <FadeInView
-            className={`h-1/3 w-full flex-row justify-center ${SCREEN_HEIGHT >= REFERENCE_SMALL_DEVICE_HEIGHT ? "my-4" : ""}`}
+            className={`h-1/3 w-full flex-row justify-center ${SCREEN_HEIGHT >= REFERENCE_SMALL_DEVICE_HEIGHT ? "mt-10" : ""}`}
             inputVal={0}
             outputVal={1}
             duration={3000}
@@ -112,7 +112,12 @@ const Ground_Finish_Page = ({
           {/* Button row */}
           <FadeInView
             className="w-full flex-row justify-around"
-            style={{ marginTop: SCREEN_HEIGHT * 0.025 }}
+            style={{
+              marginTop:
+                SCREEN_HEIGHT < REFERENCE_SMALL_DEVICE_HEIGHT
+                  ? 20
+                  : SCREEN_HEIGHT * 0.05,
+            }}
             isActive={currentInstruction === "buttons"}
             inputVal={0}
             outputVal={1}

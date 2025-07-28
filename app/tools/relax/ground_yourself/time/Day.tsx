@@ -149,6 +149,7 @@ const Ground_Time_Day = ({
                 isActive={currentInstruction === "day_of_week_input"}
               >
                 <PagerView
+                  scrollEnabled={false}
                   className="mt-10 w-full"
                   style={{ height: 400 }}
                   initialPage={0}

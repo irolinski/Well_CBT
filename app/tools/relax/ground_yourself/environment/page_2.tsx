@@ -136,7 +136,10 @@ const Ground_Environment_Page_2 = ({
                 <View className="absolute h-full w-full flex-row items-center justify-center">
                   <Text
                     className="z-10 text-2xl"
-                    style={{ color: Colors.offWhite, fontFamily: "Kodchasan" }}
+                    style={{
+                      color: Colors.offWhite,
+                      fontFamily: "KodchasanRegular",
+                    }}
                   >
                     {breatheState === "in" &&
                       t("tools.breathing.exercise.commands.breathe_in")}

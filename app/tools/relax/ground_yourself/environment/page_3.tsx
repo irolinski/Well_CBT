@@ -113,6 +113,7 @@ const Ground_Environment_Page_3 = ({
     >
       <View key={objKey}>
         <PagerView
+          scrollEnabled={false}
           className="h-full w-full"
           initialPage={0}
           ref={refPagerView}
@@ -125,7 +126,6 @@ const Ground_Environment_Page_3 = ({
           ) => {
             setCurrentSlide(evt.nativeEvent.position);
           }}
-          scrollEnabled={false}
         >
           {/* blank slide */}
           <View className="h-full w-full items-center justify-start" key="1">
