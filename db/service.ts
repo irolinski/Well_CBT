@@ -1,6 +1,6 @@
-import { Alert } from "react-native";
-import { dbPromise } from "@/services/db";
-import { getTranslation } from "@/utils/locales";
+import { Alert } from 'react-native';
+import { dbPromise } from '@/services/db';
+import { getTranslation } from '@/utils/locales';
 
 export const setUpDB = async () => {
   try {
@@ -163,6 +163,7 @@ export const deleteAllDBData = async () => {
     await db.execAsync(`
       DROP TABLE IF EXISTS userData;
       DROP TABLE IF EXISTS seenOnboarding;
+      DROP TABLE IF EXISTS seenTutorials;
       DROP TABLE IF EXISTS journalEntries;
       DROP TABLE IF EXISTS journalEntryEmotions;
       DROP TABLE IF EXISTS cdaArchive;
