@@ -1,4 +1,4 @@
-import { dbPromise } from "@/services/db";
+import { dbPromise } from '@/services/db';
 
 export const handleGetFinishedArticleIds = async () => {
   const db = await dbPromise;
@@ -10,7 +10,7 @@ export const handleAddFinishedArticle = async (id: number) => {
   const db = await dbPromise;
   const finishedArticlesArr = await handleGetFinishedArticleIds();
   if (!finishedArticlesArr.includes(id))
-    db.execAsync(
-      `INSERT INTO learnFinishedArticles (articleId) VALUES (${id})`,
-    );
+    db.runAsync(`INSERT INTO learnFinishedArticles (articleId) VALUES (?)`, [
+      id,
+    ]);
 };

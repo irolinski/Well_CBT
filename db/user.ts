@@ -1,8 +1,8 @@
-import { Alert } from "react-native";
-import { dbPromise } from "@/services/db";
-import { isSameDate } from "@/utils/dates";
-import { getTranslation } from "@/utils/locales";
-import { TableRowCountObj, UserType } from "../constants/models/global/models";
+import { Alert } from 'react-native';
+import { dbPromise } from '@/services/db';
+import { isSameDate } from '@/utils/dates';
+import { getTranslation } from '@/utils/locales';
+import { TableRowCountObj, UserType } from '../constants/models/global/models';
 
 const isUserType = (res: any): res is UserType => {
   return (
@@ -63,7 +63,7 @@ export const handleSetVisitStreakCount = async (): Promise<void> => {
       if (userData) {
         let { numOfAllVisits } = userData;
         numOfAllVisits++;
-        db.execAsync(`UPDATE userData SET numOfAllDays = ${numOfAllVisits}`);
+        db.runAsync(`UPDATE userData SET numOfAllDays = ?`, [numOfAllVisits]);
       }
     } catch (err) {
       console.error(err);
@@ -104,18 +104,18 @@ export const handleSetVisitStreakCount = async (): Promise<void> => {
           //if the streak happened, add it to db
           // console.log("--- \n streak! \n --- ");
           const newStreak = user.currentVisitStreak + 1;
-          await db.execAsync(
-            `UPDATE userData SET currentVisitStreak = ${newStreak};`,
-          );
+          await db.runAsync(`UPDATE userData SET currentVisitStreak = ?`, [
+            newStreak,
+          ]);
           // if streak is the biggest so far, add it to db
           if (newStreak > user.highestVisitStreak) {
-            await db.execAsync(
-              `UPDATE userData SET highestVisitStreak = ${newStreak};`,
-            );
+            await db.runAsync(`UPDATE userData SET highestVisitStreak = ?`, [
+              newStreak,
+            ]);
           }
         } else {
           // console.log("--- \n streak broken! \n --- ");
-          await db.execAsync(`UPDATE userData SET currentVisitStreak = ${1};`);
+          await db.runAsync(`UPDATE userData SET currentVisitStreak = ?`[1]);
         }
 
         // add 1 to daycount if today's a different day than it was during lastVisit
@@ -141,9 +141,7 @@ export const handleSetVisitStreakCount = async (): Promise<void> => {
 export const handleSetName = async (name: string) => {
   try {
     const db = await dbPromise;
-    const res: void = await db.execAsync(
-      `UPDATE userData SET name = "${name}";`,
-    );
+    await db.runAsync(`UPDATE userData SET name = ?`, [name]);
   } catch (err) {
     console.error("Error: Could not set name. " + err);
     Alert.alert(
@@ -156,9 +154,7 @@ export const handleSetName = async (name: string) => {
 export const handleSetProfilePicId = async (faceId: number) => {
   try {
     const db = await dbPromise;
-    const res: void = await db.execAsync(
-      `UPDATE userData SET profilePicId = ${faceId}`,
-    );
+    await db.runAsync(`UPDATE userData SET profilePicId = ?`, [faceId]);
   } catch (err) {
     console.error("Error: Could not set profile picture id. " + err);
     console.error(err);

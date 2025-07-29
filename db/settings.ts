@@ -25,9 +25,9 @@ export const handleSetExerciseAutoSaveIsActive = async (value: boolean) => {
   const newValue: number = Number(value);
   try {
     const db = await dbPromise;
-    await db.execAsync(
-      `UPDATE userSettings SET exerciseAutoSaveIsActive = ${newValue}; `,
-    );
+    await db.runAsync(`UPDATE userSettings SET exerciseAutoSaveIsActive = ?`, [
+      newValue,
+    ]);
   } catch (err) {
     console.error(err);
     Alert.alert(

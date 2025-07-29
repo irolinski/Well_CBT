@@ -1,15 +1,12 @@
-import { Alert } from "react-native";
+import { Alert } from 'react-native';
 import {
-  AchievementProgressObj,
-  allAchievementsModelsArr,
-} from "@/constants/models/about/achievements";
+    AchievementProgressObj, allAchievementsModelsArr
+} from '@/constants/models/about/achievements';
 import {
-  AchievementIdType,
-  allAchievementsWithControllersArr,
-  handleGetAchievementProgressData,
-} from "@/db/achievements/controllers";
-import { dbPromise } from "@/services/db";
-import { getTranslation } from "@/utils/locales";
+    AchievementIdType, allAchievementsWithControllersArr, handleGetAchievementProgressData
+} from '@/db/achievements/controllers';
+import { dbPromise } from '@/services/db';
+import { getTranslation } from '@/utils/locales';
 
 // create a table for achievement progress
 const handleCreateAchievementProgressTable = async () => {
@@ -55,8 +52,9 @@ const handlePopulateAchievementProgressTable = async () => {
           return;
           //if it doesnt' - add a row  to progress list
         } else {
-          await db.execAsync(
-            `INSERT INTO achievementProgress(id, currentScore, requiredScore) VALUES (${achievement.id}, 0, ${achievement.score_required});`,
+          await db.runAsync(
+            `INSERT INTO achievementProgress(id, currentScore, requiredScore) VALUES (?, ?, ?);`,
+            [achievement.id, 0, achievement.score_required!],
           );
           // console.log("The achievement list has been updated!");
         }
