@@ -1,30 +1,23 @@
-import { Image } from "expo-image";
-import { Href, router } from "expo-router";
-import React, { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { TouchableOpacity, View } from "react-native";
-import { useSelector } from "react-redux";
-import { groundYourselfImages } from "@/assets/images/tools/ground_yourself";
-import FadeInView from "@/components/global/FadeInView";
-import Text from "@/components/global/Text";
-import TypewriterText from "@/components/global/TypewriterText";
+import { Image } from 'expo-image';
+import { Href, router } from 'expo-router';
+import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { TouchableOpacity, View } from 'react-native';
+import { useSelector } from 'react-redux';
+import { groundYourselfImages } from '@/assets/images/tools/ground_yourself';
+import FadeInView from '@/components/global/FadeInView';
+import Text from '@/components/global/Text';
+import TypewriterText from '@/components/global/TypewriterText';
 import GroundYourselfSlideFrame, {
-  getGroundingTime,
-} from "@/components/tools/ground_yourself/GroundYourselfSlideFrame";
-import {
-  ToolCategories,
-  ToolList,
-  ToolNames,
-} from "@/constants/models/home/activity_log";
-import { GroundYourselfSlideProps } from "@/constants/models/tools/ground_yourself";
-import { Colors } from "@/constants/styles/colorTheme";
-import {
-  REFERENCE_SMALL_DEVICE_HEIGHT,
-  SCREEN_HEIGHT,
-} from "@/constants/styles/values";
-import { handleLogRelaxActivity } from "@/db/tools";
-import { analyticsLogFinishToolEvent } from "@/services/firebase/firebase";
-import { RootState } from "@/state/store";
+    getGroundingTime
+} from '@/components/tools/ground_yourself/GroundYourselfSlideFrame';
+import { ToolCategories, ToolList, ToolNames } from '@/constants/models/home/activity_log';
+import { GroundYourselfSlideProps } from '@/constants/models/tools/ground_yourself';
+import { Colors } from '@/constants/styles/colorTheme';
+import { REFERENCE_SMALL_DEVICE_HEIGHT, SCREEN_HEIGHT } from '@/constants/styles/values';
+import { handleLogRelaxActivity } from '@/db/tools';
+import { analyticsLogFinishToolEvent } from '@/services/firebase/firebase';
+import { RootState } from '@/state/store';
 
 const Ground_Finish_Page = ({
   exerciseName,
@@ -151,7 +144,7 @@ const Ground_Finish_Page = ({
                   "ground_yourself",
                   getGroundingTime(objKey, exerciseLength),
                 );
-                router.replace("tools" as Href);
+                router.replace("/tools_tab" as Href);
               }}
             >
               <View className="items-center justify-center">

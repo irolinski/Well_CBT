@@ -1,17 +1,17 @@
-import { Image } from "expo-image";
-import { Href, router } from "expo-router";
-import React from "react";
-import { useTranslation } from "react-i18next";
-import { ScrollView, View } from "react-native";
-import { logoImages } from "@/assets/images/global/logo";
-import AdvanceButton from "@/components/global/AdvanceButton";
-import SecondaryButton from "@/components/global/SecondaryButton";
-import Text from "@/components/global/Text";
-import ToolNav from "@/components/tools/ToolNav";
-import { cda_tool } from "@/constants/models/tools";
-import { Colors } from "@/constants/styles/colorTheme";
-import { SCREEN_HEIGHT } from "@/constants/styles/values";
-import { analyticsLogFinishToolEvent } from "@/services/firebase/firebase";
+import { Image } from 'expo-image';
+import { Href, router } from 'expo-router';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { ScrollView, View } from 'react-native';
+import { logoImages } from '@/assets/images/global/logo';
+import AdvanceButton from '@/components/global/AdvanceButton';
+import SecondaryButton from '@/components/global/SecondaryButton';
+import Text from '@/components/global/Text';
+import ToolNav from '@/components/tools/ToolNav';
+import { cda_tool } from '@/constants/models/tools';
+import { Colors } from '@/constants/styles/colorTheme';
+import { SCREEN_HEIGHT } from '@/constants/styles/values';
+import { analyticsLogFinishToolEvent } from '@/services/firebase/firebase';
 
 const CURRENT_PAGE = 5;
 const TOOL_NAME = cda_tool.name;
@@ -74,7 +74,7 @@ const Page_finish = () => {
               title={t("buttons.return_to_tools", { ns: "common" })}
               onPress={() => {
                 analyticsLogFinishToolEvent(TOOL_NAME);
-                router.replace("tools" as Href);
+                router.replace("/tools_tab" as Href);
               }}
             />
           </View>
