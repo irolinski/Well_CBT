@@ -11,7 +11,7 @@ const CDATextBox = ({
 }) => {
   return (
     <View
-      className="mt-4 h-28 rounded-lg border bg-gray-200"
+      className="mt-4 h-32 rounded-lg border bg-gray-200"
       style={[customStyle, { borderColor: Colors.darkBlue }]}
     >
       <Text className="p-4 text-left text-sm">{textContent}</Text>
