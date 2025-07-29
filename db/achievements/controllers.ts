@@ -1,14 +1,20 @@
-import * as SQLite from 'expo-sqlite';
-import { Alert } from 'react-native';
+import * as SQLite from "expo-sqlite";
+import { Alert } from "react-native";
 import {
-    AchievementControllerType, AchievementProgressObj, allAchievementsModelsObj,
-    AllAchievementsObjType
-} from '@/constants/models/about/achievements';
-import { handleGetCDACount, handleGetJournalCount, handleGetRelaxTime } from '@/db/about';
-import { handleGetFinishedArticleIds } from '@/db/learn';
-import { handleGetNumOfAllEntries, handleGetUserData } from '@/db/user';
-import { dbPromise } from '@/services/db';
-import { getTranslation } from '@/utils/locales';
+  AchievementControllerType,
+  AchievementProgressObj,
+  allAchievementsModelsObj,
+  AllAchievementsObjType,
+} from "@/constants/models/about/achievements";
+import {
+  handleGetCDACount,
+  handleGetJournalCount,
+  handleGetRelaxTime,
+} from "@/db/about";
+import { handleGetFinishedArticleIds } from "@/db/learn";
+import { handleGetNumOfAllEntries, handleGetUserData } from "@/db/user";
+import { dbPromise } from "@/services/db";
+import { getTranslation } from "@/utils/locales";
 
 export type AchievementIdType = keyof typeof allAchievementsWithControllersObj;
 
@@ -44,8 +50,9 @@ const handleSetAchievementUnlockedDatetime = async (
     await getAchievementProgress(achievementId);
 
   if (currentScore === requiredScore) {
-    db.execAsync(
-      `UPDATE achievementProgress SET dateUnlocked = DATETIME('now', 'localtime') WHERE id="${achievementId}"`,
+    db.runAsync(
+      `UPDATE achievementProgress SET dateUnlocked = DATETIME('now', 'localtime') WHERE id=?`,
+      [achievementId],
     );
   }
 };
@@ -75,40 +82,49 @@ const handleAchievementController = async (
 //moved unlock achievement date handler func to individual components - test whether it works
 
 const achievementController_1: AchievementControllerType = async (db) => {
+  const achievementId = allAchievementsModelsObj[1].id;
+  const maxScore = allAchievementsModelsObj[1].score_required!;
   try {
     const numOfAllEntries = await handleGetNumOfAllEntries();
     if (numOfAllEntries >= 1) {
-      db.execAsync(
-        `UPDATE achievementProgress SET currentScore = 1 WHERE id="${1}"`,
-      );
+      db.runAsync(`UPDATE achievementProgress SET currentScore=? WHERE id=?`, [
+        maxScore,
+        achievementId,
+      ]);
     }
-    await handleSetAchievementUnlockedDatetime(db, 1);
+    await handleSetAchievementUnlockedDatetime(db, achievementId);
   } catch (err) {
     console.error(err);
   }
 };
 
 const achievementController_2: AchievementControllerType = async (db) => {
+  const achievementId = allAchievementsModelsObj[2].id;
+  const maxScore = allAchievementsModelsObj[2].score_required!;
   try {
     const userData = await handleGetUserData();
 
     if (userData?.name && userData.name.length >= 1) {
-      db.execAsync(
-        `UPDATE achievementProgress SET currentScore = 1 WHERE id="${2}"`,
-      );
+      db.runAsync(`UPDATE achievementProgress SET currentScore=? WHERE id=?`, [
+        maxScore,
+        achievementId,
+      ]);
     }
-    await handleSetAchievementUnlockedDatetime(db, 2);
+    await handleSetAchievementUnlockedDatetime(db, achievementId);
   } catch (err) {
     console.error(err);
   }
 };
 
 const achievementController_3: AchievementControllerType = async (db) => {
+  const achievementId = allAchievementsModelsObj[3].id!;
+  const maxScore = allAchievementsModelsObj[3].score_required!;
   try {
-    db.execAsync(
-      `UPDATE achievementProgress SET currentScore = 1 WHERE id="${3}"`,
-    );
-    await handleSetAchievementUnlockedDatetime(db, 3);
+    db.runAsync(`UPDATE achievementProgress SET currentScore=? WHERE id=?`, [
+      maxScore,
+      achievementId,
+    ]);
+    await handleSetAchievementUnlockedDatetime(db, achievementId);
   } catch (err) {
     console.error(err);
   }
@@ -121,24 +137,26 @@ const achievementController_4_5: AchievementControllerType = async (
 ) => {
   try {
     const userData = await handleGetUserData();
-    if (userData) {
+    if (userData && achievementId) {
       const visitStreak = userData?.currentVisitStreak;
 
       if (visitStreak > currentScore) {
-        db.execAsync(
-          `UPDATE achievementProgress SET currentScore = ${Number(visitStreak)} WHERE id="${achievementId}"`,
+        db.runAsync(
+          `UPDATE achievementProgress SET currentScore=? WHERE id=?`,
+          [Number(visitStreak), achievementId],
         );
       }
-      if (achievementId) {
-        await handleSetAchievementUnlockedDatetime(db, achievementId);
-      }
+
+      await handleSetAchievementUnlockedDatetime(db, achievementId);
     } else {
       console.error(
         `Error: Couldn't update progress of achievement of id: ${achievementId}.`,
       );
+
       if (!userData) {
         console.error("Inavlid user data!");
       }
+
       if (!currentScore) {
         console.error("Invalid currentScore!");
       }
@@ -155,17 +173,16 @@ const achievementController_6_7: AchievementControllerType = async (
 ) => {
   try {
     const userData = await handleGetUserData();
-    if (userData) {
+    if (userData && achievementId) {
       const { numOfAllVisits } = userData;
       if (numOfAllVisits > currentScore) {
-        db.execAsync(
-          `UPDATE achievementProgress SET currentScore = ${numOfAllVisits} WHERE id="${achievementId}"`,
+        db.runAsync(
+          `UPDATE achievementProgress SET currentScore=? WHERE id=?`,
+          [numOfAllVisits, achievementId],
         );
       }
 
-      if (achievementId) {
-        await handleSetAchievementUnlockedDatetime(db, achievementId);
-      }
+      await handleSetAchievementUnlockedDatetime(db, achievementId);
     }
   } catch (err) {
     console.error(err);
@@ -176,6 +193,7 @@ const achievementController_8: AchievementControllerType = async (
   db,
   currentScore = 0,
 ) => {
+  const achievementId = allAchievementsModelsObj[8].id;
   try {
     const cdaCount = await handleGetCDACount();
     const journalCount = await handleGetJournalCount();
@@ -183,10 +201,11 @@ const achievementController_8: AchievementControllerType = async (
     const numOfCBTEntries = cdaCount + journalCount;
 
     if (numOfCBTEntries > currentScore) {
-      db.execAsync(
-        `UPDATE achievementProgress SET currentScore = ${numOfCBTEntries} WHERE id="${8}"`,
-      );
-      await handleSetAchievementUnlockedDatetime(db, 8);
+      db.runAsync(`UPDATE achievementProgress SET currentScore=? WHERE id=?`, [
+        numOfCBTEntries,
+        achievementId,
+      ]);
+      await handleSetAchievementUnlockedDatetime(db, achievementId);
     }
   } catch (err) {
     console.error(err);
@@ -197,14 +216,16 @@ const achievementController_9: AchievementControllerType = async (
   db,
   currrentScore = 0,
 ) => {
+  const achievementId = allAchievementsModelsObj[9].id;
   try {
     const finishedArticles = await handleGetFinishedArticleIds();
     const updatedScore = finishedArticles.length;
     if (updatedScore > currrentScore) {
-      db.execAsync(
-        `UPDATE achievementProgress SET currentScore = ${updatedScore} WHERE id="${9}"`,
-      );
-      await handleSetAchievementUnlockedDatetime(db, 9);
+      db.runAsync(`UPDATE achievementProgress SET currentScore=? WHERE id=?`, [
+        updatedScore,
+        achievementId,
+      ]);
+      await handleSetAchievementUnlockedDatetime(db, achievementId);
     }
   } catch (err) {
     console.error(err);
@@ -229,8 +250,9 @@ const achievementController_10_11: AchievementControllerType = async (
           }
         }
 
-        db.execAsync(
-          `UPDATE achievementProgress SET currentScore = ${updatedScore} WHERE id="${achievementId}"`,
+        db.runAsync(
+          `UPDATE achievementProgress SET currentScore=? WHERE id=?`,
+          [updatedScore, achievementId],
         );
         await handleSetAchievementUnlockedDatetime(db, achievementId);
       }
@@ -244,12 +266,14 @@ const achievementController_12: AchievementControllerType = async (
   db,
   currentScore = 0,
 ) => {
+  const achievementId = allAchievementsModelsObj[12].id;
   try {
     const updatedScore = currentScore + 1;
-    db.execAsync(
-      `UPDATE achievementProgress SET currentScore = ${updatedScore} WHERE id="${12}"`,
-    );
-    await handleSetAchievementUnlockedDatetime(db, 12);
+    db.runAsync(`UPDATE achievementProgress SET currentScore = ? WHERE id=?`, [
+      updatedScore,
+      achievementId,
+    ]);
+    await handleSetAchievementUnlockedDatetime(db, achievementId);
   } catch (err) {
     console.error(err);
   }
@@ -259,13 +283,15 @@ const achievementController_13: AchievementControllerType = async (
   db,
   currentScore = 0,
 ) => {
+  const achievementId = allAchievementsModelsObj[13].id;
   try {
     const journalCount = await handleGetJournalCount();
 
     if (journalCount > currentScore) {
-      db.execAsync(
-        `UPDATE achievementProgress SET currentScore = ${journalCount} WHERE id="${13}"`,
-      );
+      db.runAsync(`UPDATE achievementProgress SET currentScore=? WHERE id=?`, [
+        journalCount,
+        achievementId,
+      ]);
       await handleSetAchievementUnlockedDatetime(db, 13);
     }
   } catch (err) {
