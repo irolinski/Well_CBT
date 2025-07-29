@@ -21,8 +21,8 @@
     "notification_failure": "Could not set notification. Try again later.",
     "notification_cancel": "Daily notifications have been turned off.",
     "body_decision_permanent": "This decision will be permanent.",
-    "alert_no": "No",
-    "alert_yes": "Yes, continue"
+    "answer_no": "No",
+    "answer_yes": "Yes, continue"
   },
   "branding": {
     "name": "WorryFree",
