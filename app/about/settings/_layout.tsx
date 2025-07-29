@@ -5,7 +5,6 @@ const AboutLayout = () => {
   return (
     <Stack>
       <Stack.Screen name="index" options={{ headerShown: false }} />
-      <Stack.Screen name="more" options={{ headerShown: false }} />
       <Stack.Screen name="preferences" options={{ headerShown: false }} />
     </Stack>
   );
