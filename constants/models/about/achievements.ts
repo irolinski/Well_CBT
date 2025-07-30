@@ -1,6 +1,7 @@
 import { Image } from "expo-image";
 import * as SQLite from "expo-sqlite";
 import { achievementBadgeImages } from "@/assets/images/about/achievements";
+import { AchievementIdType } from "@/db/achievements/global";
 
 export type AchievementProgressObj = {
   id: AchievementIdType;
@@ -30,8 +31,6 @@ export type AchievementControllerType = (
   currentScore?: number,
   achievementId?: AchievementIdType,
 ) => void;
-
-export type AchievementIdType = keyof typeof allAchievementsModelsObj;
 
 export const allAchievementsModelsObj: AllAchievementsObjType = {
   1: {

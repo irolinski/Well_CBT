@@ -4,7 +4,6 @@ import {
   AchievementControllerType,
   AchievementProgressObj,
   allAchievementsModelsObj,
-  AllAchievementsObjType,
 } from "@/constants/models/about/achievements";
 import {
   handleGetCDACount,
@@ -15,8 +14,7 @@ import { handleGetFinishedArticleIds } from "@/db/learn";
 import { handleGetNumOfAllEntries, handleGetUserData } from "@/db/user";
 import { dbPromise } from "@/services/db";
 import { getTranslation } from "@/utils/locales";
-
-export type AchievementIdType = keyof typeof allAchievementsWithControllersObj;
+import { AchievementIdType } from "./global";
 
 export const handleGetAchievementProgressData = async (): Promise<
   AchievementProgressObj[] | undefined
@@ -340,63 +338,3 @@ export const achievementHandlersObj = {
     handleAchievementController(13, achievementController_13);
   },
 };
-
-//the handlers below are all handled automatically on every app load
-export const allAchievementsWithControllersObj: AllAchievementsObjType = {
-  1: {
-    ...allAchievementsModelsObj[1],
-    handlerFunction: () => achievementHandlersObj[1](),
-  },
-  2: {
-    ...allAchievementsModelsObj[2],
-    handlerFunction: () => achievementHandlersObj[2](),
-  },
-  3: {
-    ...allAchievementsModelsObj[3],
-    // handled inside distract/phone/modal component
-  },
-  4: {
-    ...allAchievementsModelsObj[4],
-    handlerFunction: () => achievementHandlersObj[4](),
-  },
-  5: {
-    ...allAchievementsModelsObj[5],
-    handlerFunction: () => achievementHandlersObj[5](),
-  },
-  6: {
-    ...allAchievementsModelsObj[6],
-    handlerFunction: () => achievementHandlersObj[6](),
-  },
-  7: {
-    ...allAchievementsModelsObj[7],
-    handlerFunction: () => achievementHandlersObj[7](),
-  },
-  8: {
-    ...allAchievementsModelsObj[8],
-    handlerFunction: () => achievementHandlersObj[8](),
-  },
-  9: {
-    ...allAchievementsModelsObj[9],
-    handlerFunction: () => achievementHandlersObj[9](),
-  },
-  10: {
-    ...allAchievementsModelsObj[10],
-    handlerFunction: () => achievementHandlersObj[10](),
-  },
-  11: {
-    ...allAchievementsModelsObj[11],
-    handlerFunction: () => achievementHandlersObj[11](),
-  },
-  12: {
-    ...allAchievementsModelsObj[12],
-    // handled inside quote component
-  },
-  13: {
-    ...allAchievementsModelsObj[2],
-    handlerFunction: () => achievementHandlersObj[13](),
-  },
-};
-
-export const allAchievementsWithControllersArr = Object.values(
-  allAchievementsWithControllersObj,
-);
