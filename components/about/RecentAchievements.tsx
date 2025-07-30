@@ -1,5 +1,5 @@
-import { Href, router } from "expo-router";
-import React, { useEffect, useState } from "react";
+import { Href, router, useFocusEffect } from "expo-router";
+import React, { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Pressable, TouchableOpacity, View } from "react-native";
 import {
@@ -16,6 +16,7 @@ import {
 import { Colors } from "@/constants/styles/colorTheme";
 import { SCREEN_HEIGHT } from "@/constants/styles/values";
 import { handleGetAchievementProgressData } from "@/db/achievements/controllers";
+import { updateAchievementProgress } from "@/db/achievements/global";
 import { analyticsLogOpenAchievementsPageEvent } from "@/services/firebase/firebase";
 import { Feather } from "@expo/vector-icons";
 import AdvanceButton from "../global/AdvanceButton";
@@ -69,9 +70,14 @@ const RecentAchievements = () => {
     }
   };
 
-  useEffect(() => {
-    getRecentAchievementProgressData();
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      console.log("running func about screen");
+      updateAchievementProgress().then(() =>
+        getRecentAchievementProgressData(),
+      );
+    }, []),
+  );
 
   const nextPosition = () => {
     if (recentAchievementsDataState) {

@@ -1,5 +1,6 @@
 import { Image } from "expo-image";
-import React, { useEffect, useState } from "react";
+import { useFocusEffect } from "expo-router";
+import React, { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { ScrollView, View } from "react-native";
 import { logoImages } from "@/assets/images/global/logo";
@@ -13,6 +14,7 @@ import {
 } from "@/constants/models/about/achievements";
 import { Colors } from "@/constants/styles/colorTheme";
 import { handleGetAchievementProgressData } from "@/db/achievements/controllers";
+import { updateAchievementProgress } from "@/db/achievements/global";
 
 const AchievementsPage = () => {
   const { t } = useTranslation("about");
@@ -44,9 +46,13 @@ const AchievementsPage = () => {
     }
   };
 
-  useEffect(() => {
-    getAchievementProgressData();
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      console.log("running func");
+      updateAchievementProgress();
+      getAchievementProgressData();
+    }, []),
+  );
 
   return (
     <React.Fragment>
