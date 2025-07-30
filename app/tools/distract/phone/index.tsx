@@ -1,5 +1,5 @@
-import { Href, router, useFocusEffect } from "expo-router";
-import React from "react";
+import { Href, router } from "expo-router";
+import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import {
   Alert,
@@ -50,9 +50,9 @@ const Phone = () => {
     }
   };
 
-  useFocusEffect(() => {
+  useEffect(() => {
     handleGetPhoneData();
-  });
+  }, [phoneState]);
 
   const callContact = async (phoneNum: string) => {
     const num = encodeURIComponent(
