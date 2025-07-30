@@ -106,7 +106,7 @@ export const formatDateStringForWrapping = (date: string) => {
   return date.replace(/-/g, "-\u200B");
 };
 
-export const isSameDate = (date1: Date, date2: Date) => {
+export const isSameDate = (date1: Date, date2: Date): boolean => {
   return (
     date1.getDate() === date2.getDate() &&
     date1.getMonth() === date2.getMonth() &&

@@ -1,8 +1,8 @@
-import { Alert } from 'react-native';
-import { dbPromise } from '@/services/db';
-import { isSameDate } from '@/utils/dates';
-import { getTranslation } from '@/utils/locales';
-import { TableRowCountObj, UserType } from '../constants/models/global/models';
+import { Alert } from "react-native";
+import { dbPromise } from "@/services/db";
+import { isSameDate } from "@/utils/dates";
+import { getTranslation } from "@/utils/locales";
+import { TableRowCountObj, UserType } from "../constants/models/global/models";
 
 const isUserType = (res: any): res is UserType => {
   return (
@@ -63,7 +63,9 @@ export const handleSetVisitStreakCount = async (): Promise<void> => {
       if (userData) {
         let { numOfAllVisits } = userData;
         numOfAllVisits++;
-        db.runAsync(`UPDATE userData SET numOfAllDays = ?`, [numOfAllVisits]);
+        await db.runAsync(`UPDATE userData SET numOfAllVisits = ?`, [
+          numOfAllVisits,
+        ]);
       }
     } catch (err) {
       console.error(err);
@@ -88,21 +90,15 @@ export const handleSetVisitStreakCount = async (): Promise<void> => {
 
       const currentTime = new Date();
       await db.withTransactionAsync(async () => {
-        await db.execAsync(
-          `UPDATE userData SET lastVisit = DATETIME('now', 'localtime');`,
+        await db.runAsync(
+          `UPDATE userData SET lastVisit=DATETIME('now', 'localtime');`,
         );
-
-        // console.log("last visit: " + lastVisit);
-        // console.log("day after last viist: " + dayAfterLastVisit);
-        // console.log("current time: " + currentTime);
-        // console.log("current streak: " + user.currentVisitStreak);
 
         // check whether the streak continues
         if (isSameDate(lastVisit, currentTime)) {
-          // console.log("--- \n same day! \n ---");
+          //same day!
         } else if (isSameDate(currentTime, dayAfterLastVisit)) {
-          //if the streak happened, add it to db
-          // console.log("--- \n streak! \n --- ");
+          //streak happened - add it to db
           const newStreak = user.currentVisitStreak + 1;
           await db.runAsync(`UPDATE userData SET currentVisitStreak = ?`, [
             newStreak,
@@ -114,13 +110,12 @@ export const handleSetVisitStreakCount = async (): Promise<void> => {
             ]);
           }
         } else {
-          // console.log("--- \n streak broken! \n --- ");
-          await db.runAsync(`UPDATE userData SET currentVisitStreak = ?`[1]);
+          //  streak broken!
+          await db.runAsync(`UPDATE userData SET currentVisitStreak = ?`, [1]);
         }
-
         // add 1 to daycount if today's a different day than it was during lastVisit
         if (!isSameDate(lastVisit, currentTime)) {
-          countOneDay();
+          await countOneDay();
         }
       });
     } else {
