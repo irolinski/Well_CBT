@@ -144,6 +144,7 @@ const Onboarding_Feat_CDA_1 = ({
                     )}
                     checked={false}
                     customColor={Colors.offWhite}
+                    customStyle={{ width: 150 }}
                   />
                 </SlideInView>
               </View>

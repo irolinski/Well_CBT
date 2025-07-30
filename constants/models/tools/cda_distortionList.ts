@@ -1,4 +1,4 @@
-import { ColorValue } from 'react-native';
+import { ColorValue, ViewStyle } from "react-native";
 
 export type DistortionListProps = {
   showDistortionTooltip: number | null;
@@ -18,6 +18,7 @@ export type DistortionPillTypes = {
   onLongPress?: () => void;
   highlighted?: boolean;
   customColor?: ColorValue | undefined;
+  customStyle?: ViewStyle;
 };
 
 export const cognitiveDistortions = [

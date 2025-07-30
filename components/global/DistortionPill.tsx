@@ -1,7 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
-import { Animated, Pressable, Text, View } from 'react-native';
-import { DistortionPillTypes } from '@/constants/models/tools/cda_distortionList';
-import { Colors } from '@/constants/styles/colorTheme';
+import { useEffect, useRef, useState } from "react";
+import { Animated, Pressable, Text, View } from "react-native";
+import { DistortionPillTypes } from "@/constants/models/tools/cda_distortionList";
+import { Colors } from "@/constants/styles/colorTheme";
 
 const DistortionPill = ({
   title,
@@ -10,6 +10,7 @@ const DistortionPill = ({
   checked,
   highlighted,
   customColor = Colors.darkBlue,
+  customStyle,
 }: DistortionPillTypes) => {
   function forceUpdateOnHighlight() {
     const [value, setValue] = useState(false);
@@ -36,7 +37,12 @@ const DistortionPill = ({
   }, [highlighted]);
 
   return (
-    <Pressable onPress={onPress} onLongPress={onLongPress} delayLongPress={500}>
+    <Pressable
+      onPress={onPress}
+      onLongPress={onLongPress}
+      delayLongPress={500}
+      style={customStyle}
+    >
       <Animated.View className="z-40" style={{ opacity }}>
         <View
           className={`mx-1 my-1 w-auto rounded-full border-2 p-2`}
