@@ -1,6 +1,6 @@
-import { Alert } from 'react-native';
-import { dbPromise } from '@/services/db';
-import { getTranslation } from '@/utils/locales';
+import { Alert } from "react-native";
+import { dbPromise } from "@/services/db";
+import { getTranslation } from "@/utils/locales";
 
 export const setUpDB = async () => {
   try {
@@ -88,6 +88,20 @@ export const setUpDB = async () => {
       CREATE TABLE IF NOT EXISTS seenTutorials (
         toolName VARCHAR(50) NOT NULL
       );
+
+      CREATE TABLE IF NOT EXISTS quoteWidget (
+        quoteIndex INT NOT NULL,
+        imageIndex INT NOT NULL
+      );
+
+      INSERT OR IGNORE INTO quoteWidget (
+      quoteIndex,
+      imageIndex
+      ) SELECT 1, 1  
+      WHERE NOT EXISTS (
+        SELECT 1 FROM userData LIMIT 1
+      );
+      
     `);
     });
   } catch (err) {

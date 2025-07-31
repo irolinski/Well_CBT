@@ -4,7 +4,7 @@ import { isSameDate } from "@/utils/dates";
 import { getTranslation } from "@/utils/locales";
 import { TableRowCountObj, UserType } from "../constants/models/global/models";
 
-const isUserType = (res: any): res is UserType => {
+export const isUserType = (res: any): res is UserType => {
   return (
     res &&
     (typeof res.name === "string" || res.name === undefined) &&

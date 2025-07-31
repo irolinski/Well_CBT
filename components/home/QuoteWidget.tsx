@@ -1,14 +1,21 @@
 import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Dimensions, Pressable, View } from "react-native";
 import quoteImages from "@/assets/images/home/quote_widget/index";
 import quotesListLocales from "@/assets/text/quotes.json";
+import { QuoteWidgetData } from "@/constants/models/home";
 import { Colors } from "@/constants/styles/colorTheme";
 import { achievementHandlersObj } from "@/db/achievements/controllers";
+import {
+  handleGetQuoteWidgetData,
+  handleUpdateQuoteWidgetData,
+} from "@/db/home";
+import { handleGetUserData, isUserType, UserType } from "@/db/user";
 import { AvailableLanguage, selectedLanguage } from "@/hooks/i18n";
 import { analyticsLogShareQuoteEvent } from "@/services/firebase/firebase";
+import { isSameDate } from "@/utils/dates";
 import handleShare from "@/utils/handleShare";
 import { Feather } from "@expo/vector-icons";
 import Text from "../global/Text";
@@ -19,33 +26,66 @@ const QuoteWidget = () => {
   const { t } = useTranslation("home");
   const quotesList = quotesListLocales[selectedLanguage as AvailableLanguage];
 
-  const [currentDay, setCurrentDay] = useState(new Date().getDay());
+  const [quoteWidgetData, setQuoteWidgetData] = useState<QuoteWidgetData>({
+    quoteIndex: 1,
+    imageIndex: 1,
+  });
+
+  const useQuoteWidget = async (): Promise<void> => {
+    try {
+      const res: UserType | undefined = await handleGetUserData();
+      let user: UserType;
+
+      if (isUserType(res)) {
+        user = res;
+        let lastVisit = new Date();
+        if (user.lastVisit) {
+          lastVisit = new Date(user.lastVisit);
+        }
+
+        const dayAfterLastVisit: Date = new Date(lastVisit);
+        dayAfterLastVisit.setDate(lastVisit.getDate() + 1);
+
+        const currentTime = new Date();
+
+        if (!isSameDate(lastVisit, currentTime)) {
+          const randomNum_1 = (Math.random() * (quotesList.length - 1)) | 0;
+          const randomNum_2 = (Math.random() * (quotesList.length - 1)) | 0;
+          setQuoteWidgetData({
+            quoteIndex: randomNum_1,
+            imageIndex: randomNum_2,
+          });
+          await handleUpdateQuoteWidgetData(randomNum_1, randomNum_2);
+        } else {
+          const res: undefined | QuoteWidgetData =
+            (await handleGetQuoteWidgetData()) as QuoteWidgetData;
+          if (res && res.quoteIndex && res.imageIndex) {
+            setQuoteWidgetData({
+              quoteIndex: res.quoteIndex,
+              imageIndex: res.imageIndex,
+            });
+          }
+        }
+      } else {
+        throw Error;
+      }
+    } catch (err) {
+      console.error(
+        "Error: Could not create and/or modify user table while checking for date streak. " +
+          err,
+      );
+    }
+  };
 
   useEffect(() => {
-    const interval = setInterval(
-      () => {
-        const dayNow = new Date().getDay();
-        setCurrentDay((prev) => (prev !== dayNow ? dayNow : prev));
-      },
-      1000 * 60 * 15,
-    ); // check every 15 minutes
-
-    return () => clearInterval(interval);
+    useQuoteWidget();
   }, []);
-
-  const quoteNumber = useMemo((): number => {
-    return (Math.random() * (quotesList.length - 1)) | 0;
-  }, [currentDay]);
-
-  const imageNumber = useMemo((): number => {
-    return (Math.random() * (quoteImages.length - 1)) | 0;
-  }, [currentDay]);
 
   const handleOnPress = () => {
     achievementHandlersObj[12]();
     analyticsLogShareQuoteEvent();
     handleShare(
-      `"${quotesList[quoteNumber].quoteText}" \n \n - ${quotesList[quoteNumber].quoteAuthor}`,
+      `"${quotesList[quoteWidgetData.quoteIndex].quoteText}" \n \n - ${quotesList[quoteWidgetData.quoteIndex].quoteAuthor}`,
     );
   };
 
@@ -55,7 +95,7 @@ const QuoteWidget = () => {
       style={{ height: 240, borderColor: Colors.lightGray }}
     >
       <Image
-        source={quoteImages[imageNumber]}
+        source={quoteImages[quoteWidgetData.imageIndex]}
         className="z-0 rounded-xl"
         contentFit="cover"
         style={{ width: "100%", height: "100%" }}
@@ -93,7 +133,7 @@ const QuoteWidget = () => {
             className="text-sm"
             style={{ color: "white", fontStyle: "italic" }}
           >
-            {quotesList[quoteNumber].quoteText}
+            {quotesList[quoteWidgetData.quoteIndex].quoteText}
           </Text>
         </View>
         <View className="ml-4 mr-8 mt-4">
@@ -101,7 +141,7 @@ const QuoteWidget = () => {
             className="text-sm"
             style={{ color: "white", fontStyle: "italic" }}
           >
-            {`- ${quotesList[quoteNumber].quoteAuthor}`}
+            {`- ${quotesList[quoteWidgetData.quoteIndex].quoteAuthor}`}
           </Text>
         </View>
       </View>
