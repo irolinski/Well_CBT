@@ -72,7 +72,6 @@ const RecentAchievements = () => {
 
   useFocusEffect(
     useCallback(() => {
-      console.log("running func about screen");
       updateAchievementProgress().then(() =>
         getRecentAchievementProgressData(),
       );

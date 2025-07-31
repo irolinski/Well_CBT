@@ -1,8 +1,8 @@
-import React from 'react';
-import { View } from 'react-native';
-import { useSelector } from 'react-redux';
-import { RootState } from '@/state/store';
-import MethodInfoCircle from './MethodInfoCircle';
+import React from "react";
+import { View } from "react-native";
+import { useSelector } from "react-redux";
+import { RootState } from "@/state/store";
+import MethodInfoCircle from "./MethodInfoCircle";
 
 const MethodInfo = () => {
   const breatheSettings = useSelector(
@@ -24,14 +24,6 @@ const MethodInfo = () => {
           <MethodInfoCircle step={"hold"} time={4} />
           <MethodInfoCircle step={"out"} time={4} />
           <MethodInfoCircle step={"hold"} time={4} />
-        </React.Fragment>
-      )}
-      {breatheSettings.mode.name === "box_deep" && (
-        <React.Fragment>
-          <MethodInfoCircle step={"in"} time={5} />
-          <MethodInfoCircle step={"hold"} time={5} />
-          <MethodInfoCircle step={"out"} time={5} />
-          <MethodInfoCircle step={"hold"} time={5} />
         </React.Fragment>
       )}
     </View>

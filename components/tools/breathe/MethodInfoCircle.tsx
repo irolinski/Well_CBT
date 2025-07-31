@@ -15,9 +15,9 @@ const MethodInfoCircle = ({ step, time }: MethodInfoCircleProps) => {
   const { t } = useTranslation("tools");
 
   return (
-    <View className="mx-2 items-center">
+    <View className="mx-1 items-center">
       <View
-        className="h-20 w-20 items-center justify-center rounded-full border"
+        className="h-[20vw] w-[20vw] items-center justify-center rounded-full border"
         style={{
           backgroundColor: Colors.lightGray,
           borderColor: Colors.mainGray,
