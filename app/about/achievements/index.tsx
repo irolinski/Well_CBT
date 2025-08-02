@@ -48,7 +48,6 @@ const AchievementsPage = () => {
 
   useFocusEffect(
     useCallback(() => {
-      console.log("running func");
       updateAchievementProgress();
       getAchievementProgressData();
     }, []),

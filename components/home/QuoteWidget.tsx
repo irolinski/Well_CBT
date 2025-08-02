@@ -1,22 +1,25 @@
-import { Image } from 'expo-image';
-import { LinearGradient } from 'expo-linear-gradient';
-import { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { Dimensions, Pressable, View } from 'react-native';
-import quoteImages from '@/assets/images/home/quote_widget/index';
-import quotesListLocales from '@/assets/text/quotes.json';
-import { QuoteWidgetData } from '@/constants/models/home';
-import { Colors } from '@/constants/styles/colorTheme';
-import { achievementHandlersObj } from '@/db/achievements/controllers';
-import { handleGetQuoteWidgetData, handleUpdateQuoteWidgetData } from '@/db/home';
-import { handleGetUserData, isUserType, UserType } from '@/db/user';
-import { AvailableLanguage, selectedLanguage } from '@/hooks/i18n';
-import { analyticsLogShareQuoteEvent } from '@/services/firebase/firebase';
-import { useGlobalState } from '@/state/context/global';
-import { isSameDate } from '@/utils/dates';
-import handleShare from '@/utils/handleShare';
-import { Feather } from '@expo/vector-icons';
-import Text from '../global/Text';
+import { Image } from "expo-image";
+import { LinearGradient } from "expo-linear-gradient";
+import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { Dimensions, Pressable, View } from "react-native";
+import quoteImages from "@/assets/images/home/quote_widget/index";
+import quotesListLocales from "@/assets/text/quotes.json";
+import { QuoteWidgetData } from "@/constants/models/home";
+import { Colors } from "@/constants/styles/colorTheme";
+import { achievementHandlersObj } from "@/db/achievements/controllers";
+import {
+  handleGetQuoteWidgetData,
+  handleUpdateQuoteWidgetData,
+} from "@/db/home";
+import { handleGetUserData, isUserType, UserType } from "@/db/user";
+import { AvailableLanguage, selectedLanguage } from "@/hooks/i18n";
+import { analyticsLogShareQuoteEvent } from "@/services/firebase/firebase";
+import { useGlobalState } from "@/state/context/global";
+import { isSameDate } from "@/utils/dates";
+import handleShare from "@/utils/handleShare";
+import { Feather } from "@expo/vector-icons";
+import Text from "../global/Text";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
 
@@ -36,11 +39,7 @@ const QuoteWidget = () => {
 
       const currentTime = new Date();
 
-      console.log("last visit: ", globalState.lastVisit);
-      console.log("current time: ", currentTime);
-
       if (!isSameDate(globalState.lastVisit, currentTime)) {
-        console.log("different day!");
         const randomNum_1 = (Math.random() * (quotesList.length - 1)) | 0;
         const randomNum_2 = (Math.random() * (quotesList.length - 1)) | 0;
         setQuoteWidgetData({
@@ -48,9 +47,7 @@ const QuoteWidget = () => {
           imageIndex: randomNum_2,
         });
         await handleUpdateQuoteWidgetData(randomNum_1, randomNum_2);
-        console.log("updated");
       } else {
-        console.log("same day");
         const res: undefined | QuoteWidgetData =
           (await handleGetQuoteWidgetData()) as QuoteWidgetData;
         if (res && res.quoteIndex && res.imageIndex) {
