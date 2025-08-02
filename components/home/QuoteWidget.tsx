@@ -1,30 +1,29 @@
-import { Image } from "expo-image";
-import { LinearGradient } from "expo-linear-gradient";
-import { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { Dimensions, Pressable, View } from "react-native";
-import quoteImages from "@/assets/images/home/quote_widget/index";
-import quotesListLocales from "@/assets/text/quotes.json";
-import { QuoteWidgetData } from "@/constants/models/home";
-import { Colors } from "@/constants/styles/colorTheme";
-import { achievementHandlersObj } from "@/db/achievements/controllers";
-import {
-  handleGetQuoteWidgetData,
-  handleUpdateQuoteWidgetData,
-} from "@/db/home";
-import { handleGetUserData, isUserType, UserType } from "@/db/user";
-import { AvailableLanguage, selectedLanguage } from "@/hooks/i18n";
-import { analyticsLogShareQuoteEvent } from "@/services/firebase/firebase";
-import { isSameDate } from "@/utils/dates";
-import handleShare from "@/utils/handleShare";
-import { Feather } from "@expo/vector-icons";
-import Text from "../global/Text";
+import { Image } from 'expo-image';
+import { LinearGradient } from 'expo-linear-gradient';
+import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Dimensions, Pressable, View } from 'react-native';
+import quoteImages from '@/assets/images/home/quote_widget/index';
+import quotesListLocales from '@/assets/text/quotes.json';
+import { QuoteWidgetData } from '@/constants/models/home';
+import { Colors } from '@/constants/styles/colorTheme';
+import { achievementHandlersObj } from '@/db/achievements/controllers';
+import { handleGetQuoteWidgetData, handleUpdateQuoteWidgetData } from '@/db/home';
+import { handleGetUserData, isUserType, UserType } from '@/db/user';
+import { AvailableLanguage, selectedLanguage } from '@/hooks/i18n';
+import { analyticsLogShareQuoteEvent } from '@/services/firebase/firebase';
+import { useGlobalState } from '@/state/context/global';
+import { isSameDate } from '@/utils/dates';
+import handleShare from '@/utils/handleShare';
+import { Feather } from '@expo/vector-icons';
+import Text from '../global/Text';
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
 
 const QuoteWidget = () => {
   const { t } = useTranslation("home");
   const quotesList = quotesListLocales[selectedLanguage as AvailableLanguage];
+  const { globalState } = useGlobalState();
 
   const [quoteWidgetData, setQuoteWidgetData] = useState<QuoteWidgetData>({
     quoteIndex: 1,
@@ -34,40 +33,32 @@ const QuoteWidget = () => {
   const useQuoteWidget = async (): Promise<void> => {
     try {
       const res: UserType | undefined = await handleGetUserData();
-      let user: UserType;
 
-      if (isUserType(res)) {
-        user = res;
-        let lastVisit = new Date();
-        if (user.lastVisit) {
-          lastVisit = new Date(user.lastVisit);
-        }
+      const currentTime = new Date();
 
-        const dayAfterLastVisit: Date = new Date(lastVisit);
-        dayAfterLastVisit.setDate(lastVisit.getDate() + 1);
+      console.log("last visit: ", globalState.lastVisit);
+      console.log("current time: ", currentTime);
 
-        const currentTime = new Date();
-
-        if (!isSameDate(lastVisit, currentTime)) {
-          const randomNum_1 = (Math.random() * (quotesList.length - 1)) | 0;
-          const randomNum_2 = (Math.random() * (quotesList.length - 1)) | 0;
-          setQuoteWidgetData({
-            quoteIndex: randomNum_1,
-            imageIndex: randomNum_2,
-          });
-          await handleUpdateQuoteWidgetData(randomNum_1, randomNum_2);
-        } else {
-          const res: undefined | QuoteWidgetData =
-            (await handleGetQuoteWidgetData()) as QuoteWidgetData;
-          if (res && res.quoteIndex && res.imageIndex) {
-            setQuoteWidgetData({
-              quoteIndex: res.quoteIndex,
-              imageIndex: res.imageIndex,
-            });
-          }
-        }
+      if (!isSameDate(globalState.lastVisit, currentTime)) {
+        console.log("different day!");
+        const randomNum_1 = (Math.random() * (quotesList.length - 1)) | 0;
+        const randomNum_2 = (Math.random() * (quotesList.length - 1)) | 0;
+        setQuoteWidgetData({
+          quoteIndex: randomNum_1,
+          imageIndex: randomNum_2,
+        });
+        await handleUpdateQuoteWidgetData(randomNum_1, randomNum_2);
+        console.log("updated");
       } else {
-        throw Error;
+        console.log("same day");
+        const res: undefined | QuoteWidgetData =
+          (await handleGetQuoteWidgetData()) as QuoteWidgetData;
+        if (res && res.quoteIndex && res.imageIndex) {
+          setQuoteWidgetData({
+            quoteIndex: res.quoteIndex,
+            imageIndex: res.imageIndex,
+          });
+        }
       }
     } catch (err) {
       console.error(

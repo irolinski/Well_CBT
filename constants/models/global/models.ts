@@ -1,3 +1,7 @@
+export type GlobalState = {
+  lastVisit: Date;
+};
+
 export type TableRowCountObj = {
   rowCount: number;
 };

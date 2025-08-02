@@ -1,8 +1,8 @@
-import { Alert } from "react-native";
-import { dbPromise } from "@/services/db";
-import { isSameDate } from "@/utils/dates";
-import { getTranslation } from "@/utils/locales";
-import { TableRowCountObj, UserType } from "../constants/models/global/models";
+import { Alert } from 'react-native';
+import { dbPromise } from '@/services/db';
+import { isSameDate } from '@/utils/dates';
+import { getTranslation } from '@/utils/locales';
+import { TableRowCountObj, UserType } from '../constants/models/global/models';
 
 export const isUserType = (res: any): res is UserType => {
   return (
@@ -52,6 +52,23 @@ export const handleGetUserData = async (): Promise<UserType | undefined> => {
   } catch (err) {
     console.error("Error: Problem retrieving user data. " + err);
     Alert.alert(getTranslation("alerts.error_db_fetching"));
+  }
+};
+
+export const handleGetLastVisit = async (): Promise<Date | undefined> => {
+  try {
+    const db = await dbPromise;
+    const userData = await handleGetUserData();
+
+    if (userData) {
+      let lastVisitString = userData.lastVisit;
+      if (typeof lastVisitString === "string") {
+        let lastVisit = new Date(lastVisitString);
+        return lastVisit;
+      }
+    }
+  } catch (err) {
+    console.error(err);
   }
 };
 
