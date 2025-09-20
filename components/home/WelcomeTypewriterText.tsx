@@ -10,7 +10,8 @@ import { Colors } from "@/constants/styles/colorTheme";
 import { SCREEN_WIDTH } from "@/constants/styles/values";
 import { fetchUserData } from "@/db/user";
 import DividerLine from "../global/DividerLine";
-import TypewriterText from "../global/TypewriterText";
+import { Typewriter } from "typewriter4react-native";
+
 
 const WelcomeTypewriterText = ({ isActive }: { isActive: boolean }) => {
   const { t } = useTranslation(["common", "home"]);
@@ -65,15 +66,11 @@ const WelcomeTypewriterText = ({ isActive }: { isActive: boolean }) => {
         style={{ borderColor: Colors.lightGrayAlt }}
       >
         {welcomeText && (
-          <TypewriterText
-            style={{ minHeight: 40 }}
+          <Typewriter
+            textStyle={{ minHeight: 40, fontFamily: "KodchasanMedium", color: `${Colors.darkGray}`, letterSpacing: 2, lineHeight: 1.5 }}
             text={welcomeText}
             isActive={isActive && !isLoading && welcomeText.length > 0}
             speed="fast"
-            fontFamily="KodchasanMedium"
-            textColor={Colors.darkGray}
-            letterSpacing={2}
-            lineHeight={1.5}
             hideCursorOnFinish={true}
           />
         )}

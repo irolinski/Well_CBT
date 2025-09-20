@@ -1,9 +1,9 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { Text, View } from "react-native";
-import TypewriterText from "@/components/global/TypewriterText";
 import { Colors } from "@/constants/styles/colorTheme";
 import { SCREEN_WIDTH } from "@/constants/styles/values";
+import { Typewriter } from "typewriter4react-native";
 
 const Onboarding_Feat_CDA_2 = ({
   slideKey,
@@ -29,12 +29,11 @@ const Onboarding_Feat_CDA_2 = ({
           backgroundColor: Colors.offWhite,
         }}
       >
-        <TypewriterText
+        <Typewriter
+          textStyle={{fontSize: 20, color: `${Colors.darkGray}`}}
+          cursorStyle={{color: `${Colors.mainGray}`}}
           text={t("onboarding.feature_slides.cda_example_thought")}
           isActive={slideNum === Number(slideKey) - 1}
-          size={20}
-          textColor={Colors.darkGray}
-          cursorColor={Colors.mainGray}
           onFinish={() => onFinish()}
         />
       </View>
