@@ -67,7 +67,8 @@ const WelcomeTypewriterText = ({ isActive }: { isActive: boolean }) => {
       >
         {welcomeText && (
           <Typewriter
-            textStyle={{ minHeight: 40, fontFamily: "KodchasanMedium", color: `${Colors.darkGray}`, letterSpacing: 2, lineHeight: 1.5 }}
+            reserveSpace
+            textStyle={{ minHeight: 40, fontFamily: "KodchasanMedium", color: `${Colors.darkGray}`, letterSpacing: 2, lineHeight: 36 }}
             text={welcomeText}
             isActive={isActive && !isLoading && welcomeText.length > 0}
             speed="fast"
