@@ -31,7 +31,7 @@ const Onboarding_Feat_CDA_2 = ({
       >
         <Typewriter
           reserveSpace
-          textStyle={{fontSize: 20, color: `${Colors.darkGray}`, lineHeight: 30}}
+          textStyle={{fontSize: 20, color: `${Colors.darkGray}`, lineHeight: 30, letterSpacing: 1.5}}
           cursorStyle={{color: `${Colors.mainGray}`}}
           text={t("onboarding.feature_slides.cda_example_thought")}
           isActive={slideNum === Number(slideKey) - 1}
