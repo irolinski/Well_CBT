@@ -7,7 +7,6 @@ import { useSelector } from 'react-redux';
 import { groundYourselfImages } from '@/assets/images/tools/ground_yourself';
 import FadeInView from '@/components/global/FadeInView';
 import Text from '@/components/global/Text';
-import TypewriterText from '@/components/global/TypewriterText';
 import GroundYourselfSlideFrame, {
     getGroundingTime
 } from '@/components/tools/ground_yourself/GroundYourselfSlideFrame';
@@ -18,6 +17,7 @@ import { REFERENCE_SMALL_DEVICE_HEIGHT, SCREEN_HEIGHT } from '@/constants/styles
 import { handleLogRelaxActivity } from '@/db/tools';
 import { analyticsLogFinishToolEvent } from '@/services/firebase/firebase';
 import { RootState } from '@/state/store';
+import { Typewriter } from 'typewriter4react-native';
 
 const Ground_Finish_Page = ({
   exerciseName,
@@ -51,26 +51,25 @@ const Ground_Finish_Page = ({
       exerciseLenght={exerciseLength}
     >
       <View>
-        <TypewriterText
+        <Typewriter
+          textStyle={{fontSize: 24, lineHeight: 36, letterSpacing: 1.5}}
           text={t("tools.ground_yourself.finish.congratulations")}
-          size={24}
           isActive={currentInstruction === "instruction_1"}
-        ></TypewriterText>
+        ></Typewriter>
         <View className="mt-6">
-          <TypewriterText
-            size={20}
+          <Typewriter
+            textStyle={{fontSize: 20, lineHeight: 30, letterSpacing: 1.5}}
             text={t("tools.ground_yourself.finish.instruction_1")}
-            delaySeconds={2.5}
+            startDelay={2500}
             onFinish={() => {
               setCurrentInstruction("instruction_2");
             }}
             isActive={currentInstruction === "instruction_1"}
           />
 
-          <TypewriterText
-            className="mt-4"
-            textColor={Colors.mainGray}
-            size={18}
+          <Typewriter
+            containerStyle={{marginTop: 16}}
+            textStyle={{color: Colors.mainGray, fontSize: 18, lineHeight: 27, letterSpacing: 1.5}}
             text={t("tools.ground_yourself.finish.instruction_2")}
             onFinish={() => {
               setCurrentInstruction("image");
@@ -92,9 +91,8 @@ const Ground_Finish_Page = ({
               source={groundYourselfImages.relax_on_logo}
             />
           </FadeInView>
-          <TypewriterText
-            textColor={Colors.mainGray}
-            size={18}
+          <Typewriter
+            textStyle={{color: Colors.mainGray, fontSize: 18, lineHeight: 27, letterSpacing: 1.5}}
             text={t("tools.ground_yourself.finish.instruction_3")}
             onFinish={() => {
               setCurrentInstruction("buttons");
