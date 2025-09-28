@@ -4,13 +4,13 @@ import { Animated, Easing, View } from "react-native";
 import { useSelector } from "react-redux";
 import ArrowRightButton from "@/components/global/ArrowRightButton";
 import FadeInView from "@/components/global/FadeInView";
-import TypewriterText from "@/components/global/TypewriterText";
 import GroundYourselfBreather from "@/components/tools/ground_yourself/Breather";
 import GroundYourselfSlideFrame from "@/components/tools/ground_yourself/GroundYourselfSlideFrame";
 import { GroundYourselfSlideProps } from "@/constants/models/tools/ground_yourself";
 import { Colors } from "@/constants/styles/colorTheme";
 import { SCREEN_HEIGHT } from "@/constants/styles/values";
 import { RootState } from "@/state/store";
+import { Typewriter } from "typewriter4react-native";
 
 const Ground_Body_Page_4 = ({
   exerciseName,
@@ -55,21 +55,19 @@ const Ground_Body_Page_4 = ({
           isActive={instruction2IsActive}
           onFinish={() => liftInstruction2PositionAnim(1000).start()}
         >
-          <TypewriterText
+          <Typewriter
+            textStyle={{fontSize: 20, lineHeight: 30, letterSpacing: 1.5}}
+            cursorStyle={{color: Colors.mainGray}}
             text={t("tools.ground_yourself.common.another_deep_breath")}
-            size={20}
-            cursorColor={Colors.mainGray}
             speed="very_fast"
             isActive={groundYourselfToolState.currentSlide === objKey}
           />
-          <TypewriterText
+          <Typewriter
+            textStyle={{color: Colors.mainGray, fontSize: 12, lineHeight: 18, overflow: "visible", letterSpacing: 1.5}}
             text={t("tools.ground_yourself.body.page_4.instruction_2")}
-            textColor={Colors.mainGray}
-            size={12}
             speed="fast"
             isActive={groundYourselfToolState.currentSlide === objKey}
-            delaySeconds={1}
-            showOverflow={true}
+            startDelay={1000}
           />
           <GroundYourselfBreather
             isActive={groundYourselfToolState.currentSlide === objKey}
@@ -84,18 +82,20 @@ const Ground_Body_Page_4 = ({
         >
           <View className="mb-8">
             <View>
-              <TypewriterText
+              <Typewriter
+                textStyle={{fontSize: 20, lineHeight: 30, letterSpacing: 1.5}}
+                cursorStyle={{color: Colors.mainGray}}
                 text={t("tools.ground_yourself.common.head_to_next_exercise")}
-                size={20}
-                cursorColor={Colors.mainGray}
                 speed="fast"
-                delaySeconds={1.5}
+                startDelay={1500}
                 isActive={instruction2IsActive}
               />
             </View>
           </View>
           <FadeInView isActive={instruction2IsActive}>
-            <TypewriterText
+            <Typewriter
+              textStyle={{color: Colors.darkGray, fontSize: 14, lineHeight: 21, letterSpacing: 1.5}}
+              cursorStyle={{color: Colors.mainGray}}
               text={
                 "(" +
                 t("instructions.tap_button_below", {
@@ -103,11 +103,8 @@ const Ground_Body_Page_4 = ({
                 }).toLowerCase() +
                 ")"
               }
-              textColor={Colors.darkGray}
-              cursorColor={Colors.mainGray}
-              size={14}
               speed="very_fast"
-              delaySeconds={6}
+              startDelay={6000}
               isActive={instruction2IsActive}
             />
             <View

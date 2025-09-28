@@ -60,6 +60,7 @@
     "react-native-web": "^0.20.0",
     "react-redux": "^9.2.0",
     "reanimated-color-picker": "^3.0.6",
+    "typewriter4react-native": "^0.5.3",
     "universal-tooltip": "^1.1.0"
   },
   "devDependencies": {

@@ -7,13 +7,13 @@ import ArrowRightButton from "@/components/global/ArrowRightButton";
 import DatePicker from "@/components/global/DatePicker";
 import FadeInView from "@/components/global/FadeInView";
 import Text from "@/components/global/Text";
-import TypewriterText from "@/components/global/TypewriterText";
 import GroundYourselfSlideFrame from "@/components/tools/ground_yourself/GroundYourselfSlideFrame";
 import { GroundYourselfSlideProps } from "@/constants/models/tools/ground_yourself";
 import { Colors } from "@/constants/styles/colorTheme";
 import { SCREEN_HEIGHT } from "@/constants/styles/values";
 import { selectedLanguage } from "@/hooks/i18n";
 import { numToString_addZero } from "@/utils/dates";
+import { Typewriter } from "typewriter4react-native";
 
 const getCurrentDateObj = () => {
   const currentDate = new Date();
@@ -134,11 +134,12 @@ const Ground_Time_Day = ({
             duration={750}
             isActive={currentInstruction === "date_input"}
           >
-            <TypewriterText
+            <Typewriter
+              textStyle={{fontSize: 24, lineHeight: 36}}
+              cursorStyle={{color: Colors.mainGray}}
               text={t("tools.ground_yourself.time.date.instruction_1")}
               speed="medium"
               isActive={currentInstruction === "instruction_1"}
-              cursorColor={Colors.mainGray}
               onFinish={() => {
                 setCurrentInstruction("instruction_2");
               }}
@@ -153,11 +154,12 @@ const Ground_Time_Day = ({
             <Animated.View
               style={{ transform: [{ translateY: instruction2PositionAnim }] }}
             >
-              <TypewriterText
+              <Typewriter
+                textStyle={{fontSize: 24, lineHeight: 36}}
+                cursorStyle={{color: Colors.mainGray}}
                 text={t("tools.ground_yourself.time.date.instruction_2")}
                 isActive={currentInstruction === "instruction_2"}
-                cursorColor={Colors.mainGray}
-                delaySeconds={3}
+                startDelay={3000}
                 onFinish={() => {
                   setCurrentInstruction("date_input");
                   liftInstruction2PositionAnim(1000).start();
@@ -210,26 +212,27 @@ const Ground_Time_Day = ({
                   </View>
                   <View key="2" className="w-full items-start justify-start">
                     <View className="w-full">
-                      <TypewriterText
+                      <Typewriter
+                        textStyle={{fontSize: 24, lineHeight: 36}}
+                        cursorStyle={{color: Colors.mainGray}}
                         isActive={currentSlide === 1}
                         text={
                           exerciseIsCorrect
                             ? t("tools.ground_yourself.time.date.success")
                             : t("tools.ground_yourself.time.date.failure")
                         }
-                        cursorColor={Colors.mainGray}
                       />
-                      <TypewriterText
+                      <Typewriter
+                        containerStyle={{marginTop: 16}}
+                        textStyle={{fontSize: 22, lineHeight: 33}}
+                        cursorStyle={{color: Colors.mainGray}}
                         isActive={currentSlide === 1}
-                        delaySeconds={3}
-                        className="mt-4"
-                        size={22}
+                        startDelay={3000}
                         speed="very_fast"
                         text={
                           t("tools.ground_yourself.time.date.todays_date_is") +
                           "..."
                         }
-                        cursorColor={Colors.mainGray}
                         onFinish={() => {
                           setCurrentInstruction("result");
                           setTimeout(() => {
