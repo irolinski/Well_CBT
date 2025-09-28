@@ -83,7 +83,6 @@ const Ground_Environment_Page_2 = ({
             speed="fast"
             startDelay={1500}
             isActive={currentInstruction === "instruction_2"}
-            onFinish={() => setCurrentInstruction("instruction_3")}
           />
           <FadeInView
             isActive={currentInstruction === "instruction_2"}
@@ -98,6 +97,7 @@ const Ground_Environment_Page_2 = ({
               speed="very_fast"
               startDelay={6000}
               isActive={currentInstruction === "instruction_2"}
+              onFinish={() => setCurrentInstruction("instruction_3")}
             />
             <Typewriter
               containerStyle={{marginTop: 32}}
