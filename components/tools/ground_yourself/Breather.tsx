@@ -4,6 +4,12 @@ import { Animated, Easing, Text, View } from "react-native";
 import FadeInView from "@/components/global/FadeInView";
 import { Colors } from "@/constants/styles/colorTheme";
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from "@/constants/styles/values";
+import { useAudioPlayer } from 'expo-audio';
+
+//placeholder sounds
+const longSound = require('@/assets/audio/aud-12-inch-crystal-bowl-pure-tone-39250.mp3');
+const shortSound = require('@/assets/audio/uplifting-logo-piano-152057.mp3');
+const shortSound2 = require('@/assets/audio/zen-tone-mid-high-202557.mp3');
 
 const BREATHE_IN_TIME_MS = 5000;
 const HOLD_TIME_MS = 6000 - 500;
@@ -22,6 +28,24 @@ export const GroundYourselfBreather = ({
   const holdProgressBarAnim = useRef(
     new Animated.Value(-SCREEN_WIDTH * 0.75),
   ).current;
+    
+  //audio player setup with placeholders
+  const longSoundPlayer = useAudioPlayer(longSound);
+  const shortSoundPlayer = useAudioPlayer(shortSound);
+  const shortSound2Player = useAudioPlayer(shortSound2);
+
+  function playLongSound() {
+    longSoundPlayer.seekTo(0);
+    longSoundPlayer.play();
+  }
+  function playShortSound() {
+    shortSoundPlayer.seekTo(0);
+    shortSoundPlayer.play();
+  }
+  function playShortSound2() {
+    shortSound2Player.seekTo(0);
+    shortSound2Player.play();
+  }
 
   const [breatheState, setBreatheState] = useState<"in" | "out" | "hold">("in");
 
@@ -55,17 +79,20 @@ export const GroundYourselfBreather = ({
   const animateinnerCircle = (duration: number) => {
     expandInnerCircleAnim(BREATHE_IN_TIME_MS).start(() => {
       setBreatheState("hold");
+      playLongSound();
       fillHoldProgressBarAnim(HOLD_TIME_MS).start(() => {
         shrinkInnerCircleAnim(BREATHE_OUT_TIME_MS).start(() => {
           onFinish();
         });
         setBreatheState("out");
+        playShortSound();
       });
     });
   };
 
   useEffect(() => {
     if (isActive) {
+      playShortSound2();
       setTimeout(() => {
         animateinnerCircle(7000);
       }, 2000);
