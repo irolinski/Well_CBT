@@ -5,24 +5,26 @@ import { SCREEN_HEIGHT } from '@/constants/styles/values';
 import { isValidExerciseInput } from '@/utils/inputValidations';
 import Text from '../global/Text';
 
-const MAX_INPUT_LENGTH = 200;
-const NUM_OF_LINES = 5;
+const MAX_INPUT_LENGTH = 350;
+const MAX_INPUT_LENGTH_LARGE = 500;
+const NUM_OF_LINES = 30;
 
 const ToolTextInput = ({
   value,
   handleChangeText,
   keyboardMargin,
+  length="normal"
 }: {
   value: string;
   handleChangeText: (evt: string) => void;
   keyboardMargin: boolean;
+  length?: "normal" | "large";
 }) => {
   const [spaceForKeyboard, setSpaceForKeyboard] = useState<boolean>(false);
-
   return (
     <View style={{ marginBottom: spaceForKeyboard ? SCREEN_HEIGHT / 5 : 8 }}>
       <TextInput
-        className="my-2 h-28 rounded-md border p-4"
+        className={`my-2 rounded-md border p-4`}
         style={{
           borderColor: Colors.lightGray,
           backgroundColor: Colors.offWhite,
@@ -37,7 +39,7 @@ const ToolTextInput = ({
         editable
         multiline={true}
         numberOfLines={NUM_OF_LINES}
-        maxLength={MAX_INPUT_LENGTH}
+        maxLength={length === "normal" ? MAX_INPUT_LENGTH : MAX_INPUT_LENGTH_LARGE}
         returnKeyType="done"
         onKeyPress={(evt) =>
           evt.nativeEvent.key == "Enter" && Keyboard.dismiss()
@@ -55,7 +57,7 @@ const ToolTextInput = ({
         }}
       ></TextInput>
       <Text className="text-right">
-        {value.length}/{MAX_INPUT_LENGTH}
+        {value.length}/{length === "normal" ? MAX_INPUT_LENGTH : MAX_INPUT_LENGTH_LARGE}
       </Text>
     </View>
   );
