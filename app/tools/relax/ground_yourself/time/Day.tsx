@@ -6,13 +6,13 @@ import { Double } from "react-native/Libraries/Types/CodegenTypes";
 import ArrowRightButton from "@/components/global/ArrowRightButton";
 import FadeInView from "@/components/global/FadeInView";
 import Text from "@/components/global/Text";
+import TypewriterText from "@/components/global/TypewriterText";
 import GroundYourselfSlideFrame from "@/components/tools/ground_yourself/GroundYourselfSlideFrame";
 import { dayColors, dayNamesFromMonday } from "@/constants/models/global/dates";
 import { GroundYourselfSlideProps } from "@/constants/models/tools/ground_yourself";
 import { Colors } from "@/constants/styles/colorTheme";
 import { SCREEN_HEIGHT } from "@/constants/styles/values";
 import { Picker } from "@react-native-picker/picker";
-import { Typewriter } from "typewriter4react-native";
 
 const getCurrentDayOfWeekNum = () => {
   let currentDayNum = new Date().getDay();
@@ -113,12 +113,11 @@ const Ground_Time_Day = ({
             duration={750}
             isActive={currentInstruction === "day_of_week_input"}
           >
-            <Typewriter
-              textStyle={{fontSize: 24, lineHeight: 36}}
-              cursorStyle={{color: Colors.mainGray}}
+            <TypewriterText
               text={t("tools.ground_yourself.time.day.instruction_1")}
               speed="medium"
               isActive={currentInstruction === "instruction_1"}
+              cursorColor={Colors.mainGray}
               onFinish={() => {
                 setCurrentInstruction("instruction_2");
               }}
@@ -133,12 +132,11 @@ const Ground_Time_Day = ({
             <Animated.View
               style={{ transform: [{ translateY: instruction2PositionAnim }] }}
             >
-              <Typewriter
-                textStyle={{fontSize: 24, lineHeight: 36}}
-                cursorStyle={{color: Colors.mainGray}}
+              <TypewriterText
                 text={t("tools.ground_yourself.time.day.instruction_2")}
                 isActive={currentInstruction === "instruction_2"}
-                startDelay={3000}
+                cursorColor={Colors.mainGray}
+                delaySeconds={3}
                 onFinish={() => {
                   setCurrentInstruction("day_of_week_input");
                   liftInstruction2PositionAnim(1000).start();
@@ -208,24 +206,23 @@ const Ground_Time_Day = ({
                   </View>
                   <View key="2" className="w-full items-start justify-start">
                     <View className="w-full">
-                      <Typewriter
-                        textStyle={{fontSize: 24, lineHeight: 36}}
-                        cursorStyle={{color: Colors.mainGray}}
+                      <TypewriterText
                         isActive={currentSlide === 1}
                         text={
                           exerciseIsCorrect
                             ? t("tools.ground_yourself.time.day.success")
                             : t("tools.ground_yourself.time.day.failure")
                         }
+                        cursorColor={Colors.mainGray}
                       />
-                      <Typewriter
-                        containerStyle={{marginTop: 16}}
-                        textStyle={{fontSize: 22, lineHeight: 33}}
-                        cursorStyle={{color: Colors.mainGray}}
+                      <TypewriterText
                         isActive={currentSlide === 1}
-                        startDelay={3000}
+                        delaySeconds={3}
+                        className="mt-4"
+                        size={22}
                         speed="very_fast"
                         text={t("tools.ground_yourself.time.day.today_its")}
+                        cursorColor={Colors.mainGray}
                         onFinish={() => {
                           setCurrentInstruction("result");
                           setTimeout(() => {

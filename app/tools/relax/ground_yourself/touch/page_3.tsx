@@ -13,6 +13,7 @@ import { useSelector } from "react-redux";
 import ColorPicker, { Panel3 } from "reanimated-color-picker";
 import { groundYourselfImages } from "@/assets/images/tools/ground_yourself";
 import Text from "@/components/global/Text";
+import TypewriterText from "@/components/global/TypewriterText";
 import GroundYourselfSlideFrame from "@/components/tools/ground_yourself/GroundYourselfSlideFrame";
 import OneWordTextInput from "@/components/tools/ground_yourself/OneWordTextInput";
 import { GroundYourselfSlideProps } from "@/constants/models/tools/ground_yourself";
@@ -21,7 +22,6 @@ import { SCREEN_HEIGHT } from "@/constants/styles/values";
 import { RootState } from "@/state/store";
 import { isValidName } from "@/utils/inputValidations";
 import { AntDesign } from "@expo/vector-icons";
-import { Typewriter } from "typewriter4react-native";
 
 const Ground_Touch_Page_3 = ({
   exerciseName,
@@ -112,10 +112,10 @@ const Ground_Touch_Page_3 = ({
       exerciseLenght={exerciseLength}
     >
       <View key={objKey} style={{ paddingTop: SCREEN_HEIGHT * 0.05 }}>
-        <Typewriter
-          textStyle={{fontSize: 20, lineHeight: 30}}
-          cursorStyle={{color: Colors.mainGray}}
+        <TypewriterText
           text={t("tools.ground_yourself.touch.page_3.instruction_1")}
+          size={20}
+          cursorColor={Colors.mainGray}
           speed="fast"
           isActive={groundYourselfToolState.currentSlide === objKey}
         />
@@ -175,22 +175,26 @@ const Ground_Touch_Page_3 = ({
             className="items-center"
             key="2"
           >
-            <Typewriter
-              textStyle={{color: Colors.darkGray, fontSize: 20, lineHeight: 30, letterSpacing: 1.5, overflow: "visible"}}
-              cursorStyle={{color: Colors.mainGray}}
+            <TypewriterText
               text={t(
                 "tools.ground_yourself.touch.page_3.slide_2.instruction_1",
               )}
+              textColor={Colors.darkGray}
+              size={20}
+              cursorColor={Colors.mainGray}
               speed="fast"
               isActive={activeInput === "texture"}
+              showOverflow={true}
             />
-            <Typewriter
-            textStyle={{color: Colors.mainGray, fontSize: 12, lineHeight: 18, letterSpacing: 1.5, overflow: "visible"}}
+            <TypewriterText
               text={t(
                 "tools.ground_yourself.touch.page_3.slide_2.instruction_2",
               )}
+              textColor={Colors.mainGray}
+              size={12}
               speed="fast"
               isActive={activeInput === "texture"}
+              showOverflow={true}
               onFinish={() => {
                 setActiveInput("texture");
               }}
@@ -229,21 +233,25 @@ const Ground_Touch_Page_3 = ({
             className="items-center"
             key="3"
           >
-            <Typewriter
-              textStyle={{color: Colors.darkGray, fontSize: 20, lineHeight: 30, letterSpacing: 1.5, overflow: "visible"}}
-              cursorStyle={{color: Colors.mainGray}}
+            <TypewriterText
               text={t(
                 "tools.ground_yourself.touch.page_3.slide_3.instruction_1",
               )}
+              textColor={Colors.darkGray}
+              cursorColor={Colors.mainGray}
+              size={20}
               speed="fast"
+              showOverflow={true}
               isActive={activeInput === "color"}
             />
-            <Typewriter
-              textStyle={{color: Colors.mainGray, fontSize: 12, lineHeight: 18, letterSpacing: 1.5, overflow: "visible"}}
+            <TypewriterText
               text={t(
                 "tools.ground_yourself.touch.page_3.slide_3.instruction_2",
               )}
+              textColor={Colors.mainGray}
+              size={12}
               speed="fast"
+              showOverflow={true}
               isActive={activeInput === "color"}
             />
             <View className="mt-8 w-full flex-row items-center justify-between">
@@ -298,21 +306,25 @@ const Ground_Touch_Page_3 = ({
             className="items-center"
             key="4"
           >
-            <Typewriter
-              textStyle={{color: Colors.darkGray, fontSize: 20, lineHeight: 30, letterSpacing: 1.5, overflow: "visible"}}
-              cursorStyle={{color: Colors.mainGray}}
+            <TypewriterText
               text={t(
                 "tools.ground_yourself.touch.page_3.slide_4.instruction_1",
               )}
+              textColor={Colors.darkGray}
+              cursorColor={Colors.mainGray}
+              size={20}
               speed="fast"
+              showOverflow={true}
               isActive={activeInput === "feel"}
             />
-            <Typewriter
-              textStyle={{color: Colors.mainGray, fontSize: 12, lineHeight: 18, letterSpacing: 1.5, overflow: "visible"}}
+            <TypewriterText
               text={t(
                 "tools.ground_yourself.touch.page_3.slide_4.instruction_2",
               )}
+              textColor={Colors.mainGray}
+              size={12}
               speed="fast"
+              showOverflow={true}
               isActive={activeInput === "feel"}
             />
             <OneWordTextInput
