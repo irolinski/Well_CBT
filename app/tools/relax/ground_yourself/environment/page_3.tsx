@@ -15,6 +15,7 @@ import { groundYourselfImages } from "@/assets/images/tools/ground_yourself";
 import ArrowRightButton from "@/components/global/ArrowRightButton";
 import FadeInView from "@/components/global/FadeInView";
 import Text from "@/components/global/Text";
+import TypewriterText from "@/components/global/TypewriterText";
 import EnvironmentAdjectiveModal from "@/components/tools/ground_yourself/EnvironmentAdjectiveModal";
 import EnvironmentItemsListElement from "@/components/tools/ground_yourself/EnvironmentItemsListElement";
 import GroundYourselfSlideFrame from "@/components/tools/ground_yourself/GroundYourselfSlideFrame";
@@ -27,7 +28,6 @@ import {
 } from "@/state/features/tools/groundYourselfSlice";
 import { AppDispatch, RootState } from "@/state/store";
 import { Feather, FontAwesome } from "@expo/vector-icons";
-import { Typewriter } from "typewriter4react-native";
 
 const FIRST_SLIDE_TIME_MS = 3000;
 const MAX_NUM_OF_ITEMS = 4;
@@ -130,11 +130,11 @@ const Ground_Environment_Page_3 = ({
           {/* blank slide */}
           <View className="h-full w-full items-center justify-start" key="1">
             <View className="w-full">
-              <Typewriter
-                containerStyle={{marginTop: 16}}
-                textStyle={{fontSize: 22, lineHeight: 33, letterSpacing: 1.5}}
-                cursorStyle={{color: Colors.mainGray}}
+              <TypewriterText
                 text={t("tools.ground_yourself.environment.page_3.header")}
+                className="mt-4"
+                size={22}
+                cursorColor={Colors.mainGray}
                 speed="fast"
                 isActive={groundYourselfToolState.currentSlide === objKey}
               />
@@ -185,14 +185,14 @@ const Ground_Environment_Page_3 = ({
                 duration={500}
                 isActive={currentInstruction === "item_list"}
               >
-                <Typewriter
-                  textStyle={{fontSize: 22, lineHeight: 33, letterSpacing: 1.5}}
-                  cursorStyle={{color: Colors.mainGray}}
+                <TypewriterText
                   text={t(
                     "tools.ground_yourself.environment.page_3.instruction_1",
                   )}
+                  size={22}
+                  cursorColor={Colors.mainGray}
                   speed="fast"
-                  startDelay={2500}
+                  delaySeconds={2.5}
                   isActive={currentInstruction === "instruction_1"}
                   onFinish={() => setCurrentInstruction("instruction_2")}
                 />

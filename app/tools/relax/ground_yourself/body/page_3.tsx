@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import { groundYourselfImages } from "@/assets/images/tools/ground_yourself";
 import ArrowRightButton from "@/components/global/ArrowRightButton";
 import FadeInView from "@/components/global/FadeInView";
+import TypewriterText from "@/components/global/TypewriterText";
 import GroundYourselfSlideFrame from "@/components/tools/ground_yourself/GroundYourselfSlideFrame";
 import OneWordTextInput from "@/components/tools/ground_yourself/OneWordTextInput";
 import { GroundYourselfSlideProps } from "@/constants/models/tools/ground_yourself";
@@ -15,7 +16,6 @@ import { Colors } from "@/constants/styles/colorTheme";
 import { SCREEN_HEIGHT, WINDOW_HEIGHT } from "@/constants/styles/values";
 import { RootState } from "@/state/store";
 import { isValidName } from "@/utils/inputValidations";
-import { Typewriter } from "typewriter4react-native";
 
 const FIRST_SLIDE_TIME_MS = 3500;
 const TOES_1_SLIDE_TIME_MS = 1000;
@@ -156,10 +156,10 @@ const Ground_Body_Page_3 = ({
       exerciseLenght={exerciseLength}
     >
       <View key={objKey} style={{ paddingTop: WINDOW_HEIGHT * 0.05 }}>
-        <Typewriter
-          textStyle={{fontSize: 20, lineHeight: 30, letterSpacing: 1.5}}
-          cursorStyle={{color: Colors.mainGray}}
+        <TypewriterText
           text={t("tools.ground_yourself.body.page_3.instruction_1")}
+          size={20}
+          cursorColor={Colors.mainGray}
           speed="fast"
           isActive={groundYourselfToolState.currentSlide === objKey}
         />
@@ -205,13 +205,15 @@ const Ground_Body_Page_3 = ({
               outputVal={0}
             >
               <View className="w-full">
-                <Typewriter
-                  textStyle={{color: Colors.darkGray, fontSize: 20, lineHeight: 30, overflow: "visible", letterSpacing: 1.5}}
-                  cursorStyle={{color: Colors.mainGray}}
+                <TypewriterText
                   text={t("tools.ground_yourself.body.page_3.toes_1")}
+                  textColor={Colors.darkGray}
+                  size={20}
+                  cursorColor={Colors.mainGray}
                   speed="fast"
-                  startDelay={1000}
+                  delaySeconds={1}
                   isActive={currentInstruction === "toes_1"}
+                  showOverflow={true}
                   onFinish={() =>
                     setTimeout(() => {
                       setCurrentInstruction("toes_anim");
@@ -228,24 +230,28 @@ const Ground_Body_Page_3 = ({
               style={{ transform: [{ translateY: lift_toes_2 }] }}
             >
               <View className="w-full">
-                <Typewriter
-                  containerStyle={{marginTop: 32}}
-                  textStyle={{color: Colors.darkGray, fontSize: 20, lineHeight: 30, overflow: "visible", letterSpacing: 1.5}}
-                  cursorStyle={{color: Colors.mainGray}}
+                <TypewriterText
+                  className="mt-8"
                   text={t("tools.ground_yourself.body.page_3.toes_2")}
+                  textColor={Colors.darkGray}
+                  size={20}
+                  cursorColor={Colors.mainGray}
                   speed="fast"
-                  startDelay={4000}
+                  delaySeconds={4}
                   isActive={currentInstruction === "toes_2"}
                   onFinish={() => setCurrentInstruction("toes_3")}
+                  showOverflow={true}
                 />
                 <FadeInView isActive={currentInstruction === "toes_3"}>
-                  <Typewriter
-                    containerStyle={{marginTop: 16}}
-                    textStyle={{color: Colors.mainGray, fontSize: 13, lineHeight: 19.5, overflow: "visible", letterSpacing: 1.5}}
+                  <TypewriterText
+                    className="mt-4"
                     text={t("tools.ground_yourself.body.page_3.toes_3")}
+                    textColor={Colors.mainGray}
+                    size={13}
                     speed="very_fast"
-                    startDelay={3000}
+                    delaySeconds={3}
                     isActive={currentInstruction === "toes_3"}
+                    showOverflow={true}
                   />
                 </FadeInView>
               </View>
@@ -284,18 +290,22 @@ const Ground_Body_Page_3 = ({
             className="items-center"
             key="3"
           >
-            <Typewriter
-              textStyle={{color: Colors.darkGray, fontSize: 20, lineHeight: 30, overflow: "visible", letterSpacing: 1.5}}
-              cursorStyle={{color: Colors.mainGray}}
+            <TypewriterText
               text={t("tools.ground_yourself.body.page_3.fingers_1")}
+              textColor={Colors.darkGray}
+              cursorColor={Colors.mainGray}
+              size={20}
               speed="fast"
+              showOverflow={true}
               isActive={currentInstruction === "fingers"}
             />
-            <Typewriter
-              containerStyle={{marginBottom: 24, marginTop: 8}}
-              textStyle={{color: Colors.mainGray, fontSize: 14, lineHeight: 21, overflow: "visible", letterSpacing: 1.5}}
+            <TypewriterText
+              className="mb-6 mt-2"
               text={t("tools.ground_yourself.body.page_3.fingers_2")}
+              textColor={Colors.mainGray}
+              size={14}
               speed="fast"
+              showOverflow={true}
               isActive={currentInstruction === "fingers"}
             />
             <Image
@@ -331,11 +341,13 @@ const Ground_Body_Page_3 = ({
                 outputVal={0}
                 isActive={currentInstruction === "back_2"}
               >
-                <Typewriter
-                  textStyle={{color: Colors.darkGray, fontSize: 20, lineHeight: 30, overflow: "visible", letterSpacing: 1.5}}
-                  cursorStyle={{color: Colors.mainGray}}
+                <TypewriterText
                   text={t("tools.ground_yourself.body.page_3.back_1")}
+                  textColor={Colors.darkGray}
+                  cursorColor={Colors.mainGray}
+                  size={20}
                   speed="fast"
+                  showOverflow={true}
                   onFinish={() =>
                     setTimeout(() => {
                       setCurrentInstruction("back_2");
@@ -353,20 +365,24 @@ const Ground_Body_Page_3 = ({
                 isActive={currentInstruction === "back_2"}
               >
                 <View className="mt-12 w-full items-center">
-                  <Typewriter
-                    textStyle={{color: Colors.darkGray, fontSize: 20, lineHeight: 30, overflow: "visible", letterSpacing: 1.5}}
-                    cursorStyle={{color: Colors.mainGray}}
+                  <TypewriterText
                     text={t("tools.ground_yourself.body.page_3.back_2")}
-                    startDelay={1500}
+                    textColor={Colors.darkGray}
+                    cursorColor={Colors.mainGray}
+                    size={20}
+                    delaySeconds={1.5}
                     speed="fast"
+                    showOverflow={true}
                     isActive={currentInstruction === "back_2"}
                   />
-                  <Typewriter
-                    containerStyle={{marginTop: 16}}
-                    textStyle={{color: Colors.mainGray, fontSize: 14, lineHeight: 21, overflow: "visible", letterSpacing: 1.5}}
+                  <TypewriterText
+                    className="mt-4"
                     text={t("tools.ground_yourself.body.page_3.back_3")}
-                    startDelay={2000}
+                    textColor={Colors.mainGray}
+                    size={14}
+                    delaySeconds={2}
                     speed="fast"
+                    showOverflow={true}
                     isActive={currentInstruction === "back_2"}
                     onFinish={() => setCurrentInstruction("back_3")}
                   />
@@ -403,18 +419,22 @@ const Ground_Body_Page_3 = ({
             className="items-center"
             key="5"
           >
-            <Typewriter
-              textStyle={{color: Colors.darkGray, fontSize: 20, lineHeight: 30, overflow: "visible", letterSpacing: 1.5}}
-              cursorStyle={{color: Colors.mainGray}}
+            <TypewriterText
               text={t("tools.ground_yourself.body.page_3.feel_1")}
+              textColor={Colors.darkGray}
+              cursorColor={Colors.mainGray}
+              size={20}
               speed="fast"
+              showOverflow={true}
               isActive={currentInstruction === "feel"}
             />
-            <Typewriter
-              containerStyle={{marginTop: 16}}
-              textStyle={{color: Colors.mainGray, fontSize: 12, lineHeight: 18, overflow: "visible", letterSpacing: 1.5}}
+            <TypewriterText
+              className="mt-4"
               text={t("tools.ground_yourself.body.page_3.feel_2")}
+              textColor={Colors.mainGray}
+              size={12}
               speed="fast"
+              showOverflow={true}
               isActive={currentInstruction === "feel"}
             />
             <OneWordTextInput
