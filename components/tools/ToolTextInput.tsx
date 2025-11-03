@@ -24,7 +24,7 @@ const ToolTextInput = ({
   return (
     <View style={{ marginBottom: spaceForKeyboard ? SCREEN_HEIGHT / 5 : 8 }}>
       <TextInput
-        className={`my-2 rounded-md border p-4`}
+        className={`my-2 h-28 rounded-md border p-4`}
         style={{
           borderColor: Colors.lightGray,
           backgroundColor: Colors.offWhite,
