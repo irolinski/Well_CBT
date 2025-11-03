@@ -19,6 +19,37 @@ import { toggleModal } from "@/state/features/tools/breatheSettingsSlice";
 import { AppDispatch, RootState } from "@/state/store";
 import { Feather } from "@expo/vector-icons";
 import BreatheModal from "./modal";
+import { useAudioPlayer } from "expo-audio";
+
+//placeholder sounds
+const breatheOutSound = require('@/assets/audio/aud-12-inch-crystal-bowl-pure-tone-39250.mp3');
+const holdSound = require('@/assets/audio/uplifting-logo-piano-152057.mp3');
+const shortSound2 = require('@/assets/audio/zen-tone-mid-high-202557.mp3');
+
+//audio player setup with placeholders
+const breatheOutPlayer = useAudioPlayer(breatheOutSound);
+const holdPlayer = useAudioPlayer(holdSound);
+const breatheInPlayer = useAudioPlayer(shortSound2);
+
+function playBreatheOutSound() {
+    breatheOutPlayer.seekTo(0);
+    breatheOutPlayer.play();
+}
+function playHoldSound() {
+    holdPlayer.seekTo(0);
+    holdPlayer.play();
+}
+function playBreatheInSound() {
+    breatheInPlayer.seekTo(0);
+    breatheInPlayer.play();
+}
+
+function stopPlayback() {
+breatheOutPlayer.pause();
+holdPlayer.pause();
+breatheInPlayer.pause();
+router.back()
+}
 
 const TOOL_NAME = breathing_tool.name;
 
@@ -256,6 +287,7 @@ const Breathe = () => {
           counterVal === breatheSettings.mode.breatheInTime
         ) {
           animateOuterCircle(breatheSettings.mode.breatheInTime * 1000);
+          playBreatheInSound();
         }
 
         if (!breatheSettings.mode.doubleHold) {
@@ -280,6 +312,7 @@ const Breathe = () => {
               //CHECK NEXT LINE AGAIN BECAUSE IT LOOKS LIKE IT SHOULD BE repsDone === repsToDo - 0.5
               if (repsDone !== repsToDo - 0.5) {
                 setCounterVal(breatheSettings.mode.holdTime);
+                playHoldSound();
                 handleHold();
               }
               // if double hold mode is off (i.e. "4-7-8" mode)
@@ -287,6 +320,7 @@ const Breathe = () => {
               // if the last breath was a breath in, show "hold"
               if (breatheInOut) {
                 setCounterVal(breatheSettings.mode.holdTime);
+                playHoldSound();
                 handleHold();
                 // if the last breath was a breath out, add a rep and show "breathe-in"
               } else if (!breatheInOut) {
@@ -294,6 +328,7 @@ const Breathe = () => {
                 if (repsDone < repsToDo - 1) {
                   setBreathInOut(true);
                   setCounterVal(breatheSettings.mode.breatheInTime);
+                  playBreatheInSound();
                   //Trigger breathe-in animation only after the the state changes are handled
                   animateOuterCircle(breatheSettings.mode.breatheInTime * 1000);
                 }
@@ -305,11 +340,13 @@ const Breathe = () => {
             // if last breath was taken in, set the next one to be out
             if (breatheInOut) {
               setCounterVal(breatheSettings.mode.breatheOutTime);
+              playBreatheOutSound();
               setBreathInOut(false);
 
               // if last breath was out, set the next one to be in
             } else if (!breatheInOut) {
               setCounterVal(breatheSettings.mode.breatheInTime);
+              playBreatheInSound();
               setBreathInOut(true);
             }
           }
@@ -349,7 +386,7 @@ const Breathe = () => {
           className={`absolute flex-row justify-between px-8 ${SCREEN_HEIGHT > 850 ? "top-20" : SCREEN_HEIGHT >= REFERENCE_SMALL_DEVICE_HEIGHT ? "top-12" : "top-4"}`}
           style={{ width: SCREEN_WIDTH, backgroundColor: "transparent" }}
         >
-          <Pressable onPress={() => router.back()} className="">
+          <Pressable onPress={() => stopPlayback()} className="">
             <View>
               <View>
                 <Feather name="x" size={24} color={Colors.black} />
