@@ -31,25 +31,6 @@ const breatheOutPlayer = useAudioPlayer(breatheOutSound);
 const holdPlayer = useAudioPlayer(holdSound);
 const breatheInPlayer = useAudioPlayer(shortSound2);
 
-function playBreatheOutSound() {
-    breatheOutPlayer.seekTo(0);
-    breatheOutPlayer.play();
-}
-function playHoldSound() {
-    holdPlayer.seekTo(0);
-    holdPlayer.play();
-}
-function playBreatheInSound() {
-    breatheInPlayer.seekTo(0);
-    breatheInPlayer.play();
-}
-
-function stopPlayback() {
-breatheOutPlayer.pause();
-holdPlayer.pause();
-breatheInPlayer.pause();
-router.back()
-}
 
 const TOOL_NAME = breathing_tool.name;
 
@@ -60,6 +41,9 @@ const Breathe = () => {
   const breatheSettings = useSelector(
     (state: RootState) => state.breatheSettings,
   );
+
+  //AUDIO STATE
+  const [isAudioActive, setIsAudioActive] = useState(true);
 
   //UI STATE
 
@@ -79,6 +63,41 @@ const Breathe = () => {
   const [pause, setPause] = useState(false);
   const repsToDo = 5 * breatheSettings.numOfSets;
   const [repsDone, setRepsDone] = useState(0);
+
+  //AUDIO PLAYER
+function playBreatheOutSound() {
+  breatheOutPlayer.seekTo(0);
+  breatheOutPlayer.play();
+}
+
+function playHoldSound() {
+  holdPlayer.seekTo(0);
+  holdPlayer.play();
+}
+
+function playBreatheInSound() {
+    breatheInPlayer.seekTo(0);
+    breatheInPlayer.play();
+}
+
+function mutePlayback() {
+  breatheOutPlayer.muted = true;
+  holdPlayer.muted = true;
+  breatheInPlayer.muted = true;
+}
+
+function unmutePlayback() {
+  breatheOutPlayer.muted = false;
+  holdPlayer.muted = false;
+  breatheInPlayer.muted = false;
+}
+
+function stopPlaybackAndGoBack() {
+  breatheOutPlayer.pause();
+  holdPlayer.pause();
+  breatheInPlayer.pause();
+  router.back();
+}
 
   // DB
   //the VV below VV state is to prevent accidental multiple db requests
@@ -250,6 +269,15 @@ const Breathe = () => {
     }
   };
 
+  // STOP AUDIO PLAYBACK
+  useEffect(() => {
+    if (!isAudioActive) {
+      mutePlayback();
+    } else if (isAudioActive) {
+      unmutePlayback();
+    }
+  })
+
   // PRE-TIMER COUNTDOWN EFFECT
   useEffect(() => {
     if (countdownActive && countdownVal > 0) {
@@ -287,6 +315,7 @@ const Breathe = () => {
           counterVal === breatheSettings.mode.breatheInTime
         ) {
           animateOuterCircle(breatheSettings.mode.breatheInTime * 1000);
+          playBreatheInSound();
         }
 
         if (!breatheSettings.mode.doubleHold) {
@@ -311,6 +340,7 @@ const Breathe = () => {
               //CHECK NEXT LINE AGAIN BECAUSE IT LOOKS LIKE IT SHOULD BE repsDone === repsToDo - 0.5
               if (repsDone !== repsToDo - 0.5) {
                 setCounterVal(breatheSettings.mode.holdTime);
+                playHoldSound();
                 handleHold();
               }
               // if double hold mode is off (i.e. "4-7-8" mode)
@@ -318,6 +348,7 @@ const Breathe = () => {
               // if the last breath was a breath in, show "hold"
               if (breatheInOut) {
                 setCounterVal(breatheSettings.mode.holdTime);
+                playHoldSound();
                 handleHold();
                 // if the last breath was a breath out, add a rep and show "breathe-in"
               } else if (!breatheInOut) {
@@ -325,6 +356,7 @@ const Breathe = () => {
                 if (repsDone < repsToDo - 1) {
                   setBreathInOut(true);
                   setCounterVal(breatheSettings.mode.breatheInTime);
+                  playBreatheInSound();
                   //Trigger breathe-in animation only after the the state changes are handled
                   animateOuterCircle(breatheSettings.mode.breatheInTime * 1000);
                 }
@@ -336,11 +368,13 @@ const Breathe = () => {
             // if last breath was taken in, set the next one to be out
             if (breatheInOut) {
               setCounterVal(breatheSettings.mode.breatheOutTime);
+              playBreatheOutSound();
               setBreathInOut(false);
 
               // if last breath was out, set the next one to be in
             } else if (!breatheInOut) {
               setCounterVal(breatheSettings.mode.breatheInTime);
+              playBreatheInSound();
               setBreathInOut(true);
             }
           }
@@ -380,13 +414,24 @@ const Breathe = () => {
           className={`absolute flex-row justify-between px-8 ${SCREEN_HEIGHT > 850 ? "top-20" : SCREEN_HEIGHT >= REFERENCE_SMALL_DEVICE_HEIGHT ? "top-12" : "top-4"}`}
           style={{ width: SCREEN_WIDTH, backgroundColor: "transparent" }}
         >
-          <Pressable onPress={() => stopPlayback()} className="">
+          <Pressable onPress={() => stopPlaybackAndGoBack()} className="">
             <View>
               <View>
                 <Feather name="x" size={24} color={Colors.black} />
               </View>
             </View>
           </Pressable>
+
+          <Pressable
+            onPress={() => {
+              isAudioActive ? setIsAudioActive(false) : setIsAudioActive(true)
+            }}
+          >
+            <View>
+              <Feather name={isAudioActive ? "volume-2" : "volume-x"} size={24} color={Colors.black} />
+            </View>
+          </Pressable>
+
           <Pressable
             onPress={() => {
               // show modal
