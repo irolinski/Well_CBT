@@ -60,7 +60,8 @@
     "react-native-web": "^0.20.0",
     "react-redux": "^9.2.0",
     "reanimated-color-picker": "^3.0.6",
-    "universal-tooltip": "^1.1.0"
+    "universal-tooltip": "^1.1.0",
+    "expo-audio": "~0.4.9"
   },
   "devDependencies": {
     "@babel/core": "^7.26.0",
