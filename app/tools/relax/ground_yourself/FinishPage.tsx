@@ -34,6 +34,7 @@ const Ground_Finish_Page = ({
     | "instruction_2"
     | "image"
     | "instruction_3"
+    | "instruction_4"
     | "buttons"
     | null
   >(null);
@@ -55,6 +56,9 @@ const Ground_Finish_Page = ({
           textStyle={{fontSize: 24, lineHeight: 36, letterSpacing: 1.5}}
           text={t("tools.ground_yourself.finish.congratulations")}
           isActive={currentInstruction === "instruction_1"}
+          onFinish={() => {
+            setCurrentInstruction("instruction_2");
+          }}
         ></Typewriter>
         <View className="mt-6">
           <Typewriter
@@ -62,9 +66,9 @@ const Ground_Finish_Page = ({
             text={t("tools.ground_yourself.finish.instruction_1")}
             startDelay={2500}
             onFinish={() => {
-              setCurrentInstruction("instruction_2");
+              setCurrentInstruction("instruction_3");
             }}
-            isActive={currentInstruction === "instruction_1"}
+            isActive={currentInstruction === "instruction_2"}
           />
 
           <Typewriter
@@ -74,7 +78,7 @@ const Ground_Finish_Page = ({
             onFinish={() => {
               setCurrentInstruction("image");
             }}
-            isActive={currentInstruction === "instruction_2"}
+            isActive={currentInstruction === "instruction_3"}
           />
           <FadeInView
             className={`h-1/3 w-full flex-row justify-center ${SCREEN_HEIGHT >= REFERENCE_SMALL_DEVICE_HEIGHT ? "mt-10" : ""}`}
@@ -83,7 +87,7 @@ const Ground_Finish_Page = ({
             duration={3000}
             isActive={currentInstruction === "image"}
             onFinish={() => {
-              setCurrentInstruction("instruction_3");
+              setCurrentInstruction("instruction_4");
             }}
           >
             <Image
@@ -97,7 +101,7 @@ const Ground_Finish_Page = ({
             onFinish={() => {
               setCurrentInstruction("buttons");
             }}
-            isActive={currentInstruction === "instruction_3"}
+            isActive={currentInstruction === "instruction_4"}
           />
 
           {/* Button row */}

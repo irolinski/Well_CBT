@@ -42,6 +42,7 @@ const Ground_Body_Page_3 = ({
     | "back_1"
     | "back_2"
     | "back_3"
+    | "back_4"
     | "feel"
     | null
   >(null);
@@ -357,18 +358,18 @@ const Ground_Body_Page_3 = ({
                     textStyle={{color: Colors.darkGray, fontSize: 20, lineHeight: 30, overflow: "visible", letterSpacing: 1.5}}
                     cursorStyle={{color: Colors.mainGray}}
                     text={t("tools.ground_yourself.body.page_3.back_2")}
-                    startDelay={1500}
                     speed="fast"
                     isActive={currentInstruction === "back_2"}
+                    onFinish={() => setCurrentInstruction("back_3")}
                   />
                   <Typewriter
                     containerStyle={{marginTop: 16}}
                     textStyle={{color: Colors.mainGray, fontSize: 14, lineHeight: 21, overflow: "visible", letterSpacing: 1.5}}
                     text={t("tools.ground_yourself.body.page_3.back_3")}
-                    startDelay={2000}
+                    startDelay={500}
                     speed="fast"
-                    isActive={currentInstruction === "back_2"}
-                    onFinish={() => setCurrentInstruction("back_3")}
+                    isActive={currentInstruction === "back_3"}
+                    onFinish={() => setCurrentInstruction("back_4")}
                   />
                 </View>
                 <View className="flex-row justify-center">
@@ -387,7 +388,7 @@ const Ground_Body_Page_3 = ({
                 className="flex-row items-center justify-center"
                 inputVal={0}
                 outputVal={1}
-                isActive={currentInstruction === "back_3"}
+                isActive={currentInstruction === "back_4"}
               >
                 <ArrowRightButton
                   onPress={() => {

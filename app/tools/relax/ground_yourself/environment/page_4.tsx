@@ -26,6 +26,8 @@ const Ground_Environment_Page_4 = ({
   const instruction2PositionAnim = useRef(new Animated.Value(0)).current;
 
   const [instruction2IsActive, setInstruction2IsActive] = useState(false);
+  const [instruction3IsActive, setInstruction3IsActive] = useState(false);
+  const [instruction4IsActive, setInstruction4IsActive] = useState(false);
 
   const liftInstruction2PositionAnim = (duration: number) => {
     return Animated.timing(instruction2PositionAnim, {
@@ -60,17 +62,18 @@ const Ground_Environment_Page_4 = ({
             text={t("tools.ground_yourself.common.another_deep_breath")}
             speed="very_fast"
             isActive={groundYourselfToolState.currentSlide === objKey}
+            onFinish={() => setInstruction2IsActive(true)}
           />
           <Typewriter
             textStyle={{color: Colors.mainGray, fontSize: 12, lineHeight: 18, overflow: 'visible', letterSpacing: 1.5}}
             text={t("tools.ground_yourself.environment.page_4.instruction_1")}
             speed="fast"
-            isActive={groundYourselfToolState.currentSlide === objKey}
-            startDelay={1000}
+            isActive={instruction2IsActive}
+            startDelay={500}
           />
           <GroundYourselfBreather
             isActive={groundYourselfToolState.currentSlide === objKey}
-            onFinish={() => setInstruction2IsActive(true)}
+            onFinish={() => setInstruction3IsActive(true)}
           />
         </FadeInView>
         <FadeInView
@@ -89,11 +92,12 @@ const Ground_Environment_Page_4 = ({
                 )}
                 speed="fast"
                 startDelay={1500}
-                isActive={instruction2IsActive}
+                isActive={instruction3IsActive}
+                onFinish={() => setInstruction4IsActive(true)}
               />
             </View>
           </View>
-          <FadeInView isActive={instruction2IsActive}>
+          <FadeInView isActive={instruction3IsActive}>
             <Typewriter
               textStyle={{color: Colors.darkGray, fontSize: 14, lineHeight: 21, letterSpacing: 1.5}}
               cursorStyle={{color: Colors.mainGray}}
@@ -105,8 +109,8 @@ const Ground_Environment_Page_4 = ({
                 ")"
               }
               speed="very_fast"
-              startDelay={6}
-              isActive={instruction2IsActive}
+              startDelay={4500}
+              isActive={instruction4IsActive}
             />
             <View
               className="w-full flex-row justify-center"

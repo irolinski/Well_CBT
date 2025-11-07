@@ -27,6 +27,7 @@ const Ground_Body_Page_4 = ({
   const instruction2PositionAnim = useRef(new Animated.Value(0)).current;
 
   const [instruction2IsActive, setInstruction2IsActive] = useState(false);
+  const [instruction3IsActive, setInstruction3IsActive] = useState(false);
 
   const liftInstruction2PositionAnim = (duration: number) => {
     return Animated.timing(instruction2PositionAnim, {
@@ -89,6 +90,7 @@ const Ground_Body_Page_4 = ({
                 speed="fast"
                 startDelay={1500}
                 isActive={instruction2IsActive}
+                onFinish={() => setInstruction3IsActive(true)}
               />
             </View>
           </View>
@@ -104,8 +106,8 @@ const Ground_Body_Page_4 = ({
                 ")"
               }
               speed="very_fast"
-              startDelay={6000}
-              isActive={instruction2IsActive}
+              startDelay={4500}
+              isActive={instruction3IsActive}
             />
             <View
               className="w-full flex-row justify-center"
