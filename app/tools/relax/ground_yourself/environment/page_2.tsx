@@ -27,7 +27,8 @@ const Ground_Environment_Page_2 = ({
   const instruction2PositionAnim = useRef(new Animated.Value(0)).current;
 
   const [currentInstruction, setCurrentInstruction] = useState<
-    "instruction_1" | "instruction_2" | "instruction_3" | "instruction_4" | null
+    "instruction_1" | "instruction_2" | "instruction_3" | "instruction_4" |
+    "instruction_5" | null
   >("instruction_1");
 
   const liftInstruction2PositionAnim = (duration: number) => {
@@ -97,7 +98,7 @@ const Ground_Environment_Page_2 = ({
               speed="very_fast"
               startDelay={2000}
               isActive={currentInstruction === "instruction_3"}
-              onFinish={() => setCurrentInstruction("instruction_3")}
+              onFinish={() => setCurrentInstruction("instruction_4")}
             />
             <Typewriter
               textStyle={{color: Colors.darkGray, fontSize: 15, lineHeight: 22.5, letterSpacing: 1.5}}
@@ -106,13 +107,13 @@ const Ground_Environment_Page_2 = ({
                 "tools.ground_yourself.environment.page_2.instruction_2_1",
               )}
               speed="very_fast"
-              startDelay={4000}
-              isActive={currentInstruction === "instruction_3"}
-              onFinish={() => setCurrentInstruction("instruction_4")}
+              startDelay={2000}
+              isActive={currentInstruction === "instruction_4"}
+              onFinish={() => setCurrentInstruction("instruction_5")}
             />
 
             <FadeInView
-              isActive={currentInstruction === "instruction_4"}
+              isActive={currentInstruction === "instruction_5"}
               className="w-full flex-row justify-center"
               style={{ top: SCREEN_HEIGHT * 0.05 }}
             >

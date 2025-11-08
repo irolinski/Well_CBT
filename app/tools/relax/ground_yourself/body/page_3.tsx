@@ -39,6 +39,7 @@ const Ground_Body_Page_3 = ({
     | "toes_2"
     | "toes_3"
     | "fingers"
+    | "fingers_2"
     | "back_1"
     | "back_2"
     | "back_3"
@@ -291,13 +292,14 @@ const Ground_Body_Page_3 = ({
               text={t("tools.ground_yourself.body.page_3.fingers_1")}
               speed="fast"
               isActive={currentInstruction === "fingers"}
+              onFinish={() => setCurrentInstruction("fingers_2")}
             />
             <Typewriter
               containerStyle={{marginBottom: 24, marginTop: 8}}
               textStyle={{color: Colors.mainGray, fontSize: 14, lineHeight: 21, overflow: "visible", letterSpacing: 1.5}}
               text={t("tools.ground_yourself.body.page_3.fingers_2")}
               speed="fast"
-              isActive={currentInstruction === "fingers"}
+              isActive={currentInstruction === "fingers_2"}
             />
             <Image
               contentFit="fill"

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Animated, View } from "react-native";
 import { useSelector } from "react-redux";
@@ -22,6 +22,8 @@ const Ground_Environment_Page_1 = ({
   const groundYourselfToolState = useSelector(
     (state: RootState) => state.ground_yourself,
   );
+
+  const [instruction2isActive, setInstruction2isActive] = useState(false);
 
   return (
     <GroundYourselfSlideFrame
@@ -54,6 +56,7 @@ const Ground_Environment_Page_1 = ({
             text={t("tools.ground_yourself.environment.page_1.instruction_1")}
             isActive={groundYourselfToolState.currentSlide === objKey}
             speed="fastest"
+            onFinish={() => setInstruction2isActive(true)}
           />
         </View>
 
@@ -66,8 +69,8 @@ const Ground_Environment_Page_1 = ({
             textStyle={{fontSize: 18, color: Colors.mainGray, lineHeight: 27, letterSpacing: 1.5}}
             text={t("instructions.tap_button_below", { ns: "common" })}
             speed="fast"
-            isActive={groundYourselfToolState.currentSlide === objKey}
-            startDelay={1500}
+            isActive={instruction2isActive === true}
+            startDelay={500}
             hideCursorOnFinish={false}
           />
         </View>
