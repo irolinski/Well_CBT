@@ -90,22 +90,22 @@ const Ground_Environment_Page_2 = ({
             isActive={currentInstruction === "instruction_2"}
             className="my-4"
           >
-            <Typewriter
-              containerStyle={{marginTop: 32}}
+              <Typewriter
               textStyle={{color: Colors.darkGray, fontSize: 15, lineHeight: 22.5, letterSpacing: 1.5}}
               cursorStyle={{color: Colors.mainGray}}
-              text={t("tools.ground_yourself.environment.page_2.instruction_3")}
+              text={t(
+                "tools.ground_yourself.environment.page_2.instruction_2_1",
+              )}
               speed="very_fast"
               startDelay={2000}
               isActive={currentInstruction === "instruction_3"}
               onFinish={() => setCurrentInstruction("instruction_4")}
             />
             <Typewriter
+              containerStyle={{marginTop: 32}}
               textStyle={{color: Colors.darkGray, fontSize: 15, lineHeight: 22.5, letterSpacing: 1.5}}
               cursorStyle={{color: Colors.mainGray}}
-              text={t(
-                "tools.ground_yourself.environment.page_2.instruction_2_1",
-              )}
+              text={t("tools.ground_yourself.environment.page_2.instruction_3")}
               speed="very_fast"
               startDelay={2000}
               isActive={currentInstruction === "instruction_4"}
