@@ -115,7 +115,6 @@ const Ground_Touch_Page_1 = ({
             speed="fast"
             isActive={currentInstruction === "instruction_2"}
             startDelay={1500}
-            hideCursorOnFinish={false}
           />
         </View>
         <View className="flex-row justify-center">

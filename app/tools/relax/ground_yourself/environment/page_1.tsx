@@ -71,7 +71,6 @@ const Ground_Environment_Page_1 = ({
             speed="fast"
             isActive={instruction2isActive === true}
             startDelay={500}
-            hideCursorOnFinish={false}
           />
         </View>
         <View className="flex-row justify-center">

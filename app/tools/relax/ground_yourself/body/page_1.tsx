@@ -22,9 +22,8 @@ const Ground_Body_Page_1 = ({
   const groundYourselfToolState = useSelector(
     (state: RootState) => state.ground_yourself,
   );
-  const [currentInstruction, setCurrentInstruction] = useState<
-    "instruction_1" | "instruction_2"
-  >("instruction_1");
+
+  const [instruction2isActive, setInstruction2isActive] = useState(false);
 
   return (
     <GroundYourselfSlideFrame
@@ -58,7 +57,7 @@ const Ground_Body_Page_1 = ({
             text={t("tools.ground_yourself.body.page_1.instruction_1")}
             isActive={groundYourselfToolState.currentSlide === objKey}
             onFinish={() => {
-              setCurrentInstruction("instruction_2");
+              setInstruction2isActive(true);
             }}
             speed="fastest"
           />
@@ -73,8 +72,7 @@ const Ground_Body_Page_1 = ({
             textStyle={{fontSize: 18, lineHeight: 27, color: `${Colors.mainGray}`, letterSpacing: 1.5}}
             text={t("instructions.tap_button_below", { ns: "common" })}
             speed="fast"
-            isActive={currentInstruction === "instruction_2"}
-            hideCursorOnFinish={false}
+            isActive={instruction2isActive === true}
           />
         </View>
         <View className="flex-row justify-center">
