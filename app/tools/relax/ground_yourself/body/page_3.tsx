@@ -45,6 +45,7 @@ const Ground_Body_Page_3 = ({
     | "back_3"
     | "back_4"
     | "feel"
+    | "feel_2"
     | null
   >(null);
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -412,18 +413,19 @@ const Ground_Body_Page_3 = ({
               text={t("tools.ground_yourself.body.page_3.feel_1")}
               speed="fast"
               isActive={currentInstruction === "feel"}
+              onFinish={() => setCurrentInstruction("feel_2")}
             />
             <Typewriter
               containerStyle={{marginTop: 16}}
               textStyle={{color: Colors.mainGray, fontSize: 12, lineHeight: 18, overflow: "visible", letterSpacing: 1.5}}
               text={t("tools.ground_yourself.body.page_3.feel_2")}
               speed="fast"
-              isActive={currentInstruction === "feel"}
+              isActive={currentInstruction === "feel_2"}
             />
             <OneWordTextInput
               value={feelInput ?? ""}
-              editable={currentInstruction === "feel"}
-              autoFocus={currentInstruction === "feel"}
+              editable={currentInstruction === "feel" || currentInstruction === "feel_2"}
+              autoFocus={currentInstruction === "feel" || currentInstruction === "feel_2" }
               onChangeText={(value) => {
                 if (isValidName(value)) {
                   setFeelInput(value);
