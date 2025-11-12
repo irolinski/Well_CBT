@@ -81,6 +81,7 @@ const Page_3 = () => {
                       dispatch(setNewThought(evt))
                     }
                     keyboardMargin={true}
+                    length="large"
                   />
                 </View>
               </View>
