@@ -99,7 +99,7 @@ const Ground_Touch_Page_2 = ({
               cursorStyle={{color: Colors.mainGray}}
               text={t("tools.ground_yourself.touch.page_2.instruction_3")}
               speed="very_fast"
-              startDelay={6000}
+              startDelay={250}
               isActive={currentInstruction === "instruction_3"}
             />
             <View
