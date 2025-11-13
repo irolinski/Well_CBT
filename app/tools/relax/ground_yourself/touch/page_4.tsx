@@ -24,10 +24,12 @@ const Ground_Touch_Page_4 = ({
     (state: RootState) => state.ground_yourself,
   );
 
-  const instruction2PositionAnim = useRef(new Animated.Value(0)).current;
+  const [currentInstruction, setCurrentInstruction] = useState<
+    "instruction_1" | "instruction_2" | "instruction_3" | "instruction_4" |
+    "instruction_5" | null
+  >("instruction_1");
 
-  const [instruction2IsActive, setInstruction2IsActive] = useState(false);
-  const [instruction3IsActive, setInstruction3IsActive] = useState(false);
+  const instruction2PositionAnim = useRef(new Animated.Value(0)).current;
 
   const liftInstruction2PositionAnim = (duration: number) => {
     return Animated.timing(instruction2PositionAnim, {
@@ -53,7 +55,7 @@ const Ground_Touch_Page_4 = ({
           inputVal={1}
           outputVal={0}
           duration={1000}
-          isActive={instruction2IsActive}
+          isActive={currentInstruction === "instruction_4"}
           onFinish={() => liftInstruction2PositionAnim(1000).start()}
         >
           <Typewriter
@@ -62,22 +64,24 @@ const Ground_Touch_Page_4 = ({
             text={t("tools.ground_yourself.common.another_deep_breath")}
             speed="very_fast"
             isActive={groundYourselfToolState.currentSlide === objKey}
+            onFinish={() => setCurrentInstruction("instruction_2")}
           />
           <Typewriter
             textStyle={{color: Colors.mainGray, fontSize: 12, lineHeight: 18, letterSpacing: 1.5}}
             containerStyle={{overflow: 'visible'}}
             text={t("tools.ground_yourself.touch.page_4.instruction_2")}
             speed="fast"
-            isActive={groundYourselfToolState.currentSlide === objKey}
-            startDelay={1000}
+            isActive={currentInstruction === "instruction_2"}
+            startDelay={250}
+            onFinish={() => setCurrentInstruction("instruction_3")}
           />
           <GroundYourselfBreather
-            isActive={groundYourselfToolState.currentSlide === objKey}
-            onFinish={() => setInstruction2IsActive(true)}
+            isActive={currentInstruction === "instruction_3"}
+            onFinish={() => setCurrentInstruction("instruction_4")}
           />
         </FadeInView>
         <FadeInView
-          isActive={instruction2IsActive}
+          isActive={currentInstruction === "instruction_4"}
           inputVal={0}
           duration={2500}
           style={{ transform: [{ translateY: instruction2PositionAnim }] }}
@@ -90,12 +94,12 @@ const Ground_Touch_Page_4 = ({
                 text={t("tools.ground_yourself.common.head_to_next_exercise")}
                 speed="fast"
                 startDelay={1500}
-                isActive={instruction2IsActive}
-                onFinish={() => setInstruction3IsActive(true)}
+                isActive={currentInstruction === "instruction_4"}
+                onFinish={() => setCurrentInstruction("instruction_5")}
               />
             </View>
           </View>
-          <FadeInView isActive={instruction2IsActive}>
+          <FadeInView isActive={currentInstruction === "instruction_4"}>
             <Typewriter
               textStyle={{color: Colors.darkGray, fontSize: 14, lineHeight: 21, letterSpacing: 1.5}}
               cursorStyle={{color: Colors.mainGray}}
@@ -108,7 +112,7 @@ const Ground_Touch_Page_4 = ({
               }
               speed="very_fast"
               startDelay={4500}
-              isActive={instruction3IsActive}
+              isActive={currentInstruction === "instruction_5"}
             />
             <View
               className="w-full flex-row justify-center"
