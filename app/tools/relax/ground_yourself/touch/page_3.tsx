@@ -43,6 +43,7 @@ const Ground_Touch_Page_3 = ({
     color: Colors.mainBlue,
     feel: "",
   });
+  const [instruction2isActive, setInstruction2IsActive] = useState(false);
 
   const refPagerView = useRef<PagerView>(null);
 
@@ -183,6 +184,9 @@ const Ground_Touch_Page_3 = ({
               )}
               speed="fast"
               isActive={activeInput === "texture"}
+              onFinish={() => {
+                setInstruction2IsActive(true);
+              }}
             />
             <Typewriter
             textStyle={{color: Colors.mainGray, fontSize: 12, lineHeight: 18, letterSpacing: 1.5, overflow: "visible"}}
@@ -190,7 +194,7 @@ const Ground_Touch_Page_3 = ({
                 "tools.ground_yourself.touch.page_3.slide_2.instruction_2",
               )}
               speed="fast"
-              isActive={activeInput === "texture"}
+              isActive={instruction2isActive === true}
               onFinish={() => {
                 setActiveInput("texture");
               }}
