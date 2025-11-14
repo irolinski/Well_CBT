@@ -106,7 +106,7 @@ const Ground_Body_Page_4 = ({
                 ")"
               }
               speed="very_fast"
-              startDelay={4500}
+              startDelay={250}
               isActive={instruction3IsActive}
             />
             <View

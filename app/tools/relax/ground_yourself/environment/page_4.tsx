@@ -109,7 +109,7 @@ const Ground_Environment_Page_4 = ({
                 ")"
               }
               speed="very_fast"
-              startDelay={4500}
+              startDelay={250}
               isActive={currentInstruction === "instruction_4"}
             />
             <View
