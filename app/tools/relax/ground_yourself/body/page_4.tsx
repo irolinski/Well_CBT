@@ -26,8 +26,10 @@ const Ground_Body_Page_4 = ({
 
   const instruction2PositionAnim = useRef(new Animated.Value(0)).current;
 
+  const [instruction1IsActive, setInstruction1IsActive] = useState(false);
   const [instruction2IsActive, setInstruction2IsActive] = useState(false);
   const [instruction3IsActive, setInstruction3IsActive] = useState(false);
+  const [isBreatherActive, setIsBreatherActive] = useState(false);
 
   const liftInstruction2PositionAnim = (duration: number) => {
     return Animated.timing(instruction2PositionAnim, {
@@ -62,16 +64,17 @@ const Ground_Body_Page_4 = ({
             text={t("tools.ground_yourself.common.another_deep_breath")}
             speed="very_fast"
             isActive={groundYourselfToolState.currentSlide === objKey}
+            onFinish={() => setInstruction1IsActive(true)}
           />
           <Typewriter
             textStyle={{color: Colors.mainGray, fontSize: 12, lineHeight: 18, overflow: "visible", letterSpacing: 1.5}}
             text={t("tools.ground_yourself.body.page_4.instruction_2")}
             speed="fast"
-            isActive={groundYourselfToolState.currentSlide === objKey}
-            startDelay={1000}
+            isActive={instruction1IsActive}
+            onFinish={() => setIsBreatherActive(true)}
           />
           <GroundYourselfBreather
-            isActive={groundYourselfToolState.currentSlide === objKey}
+            isActive={isBreatherActive}
             onFinish={() => setInstruction2IsActive(true)}
           />
         </FadeInView>

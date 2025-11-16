@@ -30,6 +30,8 @@ const Ground_Body_Page_2 = ({
     "instruction_1" | "instruction_2" | undefined
   >(undefined);
 
+   const [isBreatherActive, setIsBreatherActive] = useState(false);
+
   const instruction2PositionAnim = useRef(new Animated.Value(0)).current;
 
   const liftInstruction2PositionAnim = (duration: number) => {
@@ -68,9 +70,10 @@ const Ground_Body_Page_2 = ({
             text={t("tools.ground_yourself.common.now_deep_breath")}
             speed="very_fast"
             isActive={groundYourselfToolState.currentSlide === objKey}
+            onFinish={() => setIsBreatherActive(true)}
           />
           <GroundYourselfBreather
-            isActive={groundYourselfToolState.currentSlide === objKey}
+            isActive={isBreatherActive}
             onFinish={() => setCurrentInstruction("instruction_1")}
           />
         </FadeInView>
