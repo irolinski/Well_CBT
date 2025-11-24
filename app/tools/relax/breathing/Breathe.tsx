@@ -20,17 +20,56 @@ import { AppDispatch, RootState } from "@/state/store";
 import { Feather } from "@expo/vector-icons";
 import BreatheModal from "./modal";
 import { useAudioPlayer } from "expo-audio";
+import { selectedLanguage } from "@/hooks/i18n";
 
-//placeholder sounds
-const breatheOutSound = require('@/assets/audio/aud-12-inch-crystal-bowl-pure-tone-39250.mp3');
-const holdSound = require('@/assets/audio/uplifting-logo-piano-152057.mp3');
-const shortSound2 = require('@/assets/audio/zen-tone-mid-high-202557.mp3');
+//sound imports
+const breatheOutSound = require('@/assets/audio/en_out.mp3');
+const breatheOutSoundPL = require('@/assets/audio/pl_out.mp3');
+const holdSound = require('@/assets/audio/en_hold.mp3');
+const holdInSoundPL = require('@/assets/audio/pl_hold_in.mp3');
+const holdOutSoundPL = require('@/assets/audio/pl_hold_out.mp3');
+const breatheInSound = require('@/assets/audio/en_in.mp3');
+const breatheInSoundPL = require('@/assets/audio/pl_in.mp3');
 
-//audio player setup with placeholders
+//audio player setup
 const breatheOutPlayer = useAudioPlayer(breatheOutSound);
+const breatheOutPlayerPL = useAudioPlayer(breatheOutSoundPL);
 const holdPlayer = useAudioPlayer(holdSound);
-const breatheInPlayer = useAudioPlayer(shortSound2);
+const holdInPlayerPL = useAudioPlayer(holdInSoundPL);
+const holdOutPlayerPL = useAudioPlayer(holdOutSoundPL);
+const breatheInPlayer = useAudioPlayer(breatheInSound);
+const breatheInPlayerPL = useAudioPlayer(breatheInSoundPL);
 
+function playBreatheOutSound() {
+  if (selectedLanguage === "pl") {
+    breatheOutPlayerPL.seekTo(0);
+    breatheOutPlayerPL.play();
+  } else {
+    breatheOutPlayer.seekTo(0);
+    breatheOutPlayer.play();
+  }
+}
+
+function playBreatheInSound() {
+  if (selectedLanguage === "pl") {
+    breatheInPlayerPL.seekTo(0);
+    breatheInPlayerPL.play();
+  } else {
+    breatheInPlayer.seekTo(0);
+    breatheInPlayer.play();
+  }
+}
+
+function stopPlayback() {
+breatheOutPlayer.pause();
+breatheOutPlayerPL.pause();
+holdPlayer.pause();
+holdInPlayerPL.pause();
+holdOutPlayerPL.pause();
+breatheInPlayer.pause();
+breatheInPlayerPL.pause();
+router.back()
+}
 
 const TOOL_NAME = breathing_tool.name;
 
@@ -41,9 +80,6 @@ const Breathe = () => {
   const breatheSettings = useSelector(
     (state: RootState) => state.breatheSettings,
   );
-
-  //AUDIO STATE
-  const [isAudioActive, setIsAudioActive] = useState(true);
 
   //UI STATE
 
@@ -64,39 +100,18 @@ const Breathe = () => {
   const repsToDo = 5 * breatheSettings.numOfSets;
   const [repsDone, setRepsDone] = useState(0);
 
-  //AUDIO PLAYER
-function playBreatheOutSound() {
-  breatheOutPlayer.seekTo(0);
-  breatheOutPlayer.play();
-}
-
-function playHoldSound() {
-  holdPlayer.seekTo(0);
-  holdPlayer.play();
-}
-
-function playBreatheInSound() {
-    breatheInPlayer.seekTo(0);
-    breatheInPlayer.play();
-}
-
-function mutePlayback() {
-  breatheOutPlayer.muted = true;
-  holdPlayer.muted = true;
-  breatheInPlayer.muted = true;
-}
-
-function unmutePlayback() {
-  breatheOutPlayer.muted = false;
-  holdPlayer.muted = false;
-  breatheInPlayer.muted = false;
-}
-
-function stopPlaybackAndGoBack() {
-  breatheOutPlayer.pause();
-  holdPlayer.pause();
-  breatheInPlayer.pause();
-  router.back();
+  //HOLD SOUND
+  function playHoldSound() {
+  if (selectedLanguage === "pl" && breatheInOut) {
+    holdInPlayerPL.seekTo(0);
+    holdInPlayerPL.play();
+  } else if (selectedLanguage === "pl" && !breatheInOut) {
+    holdOutPlayerPL.seekTo(0);
+    holdOutPlayerPL.play();
+  } else {
+    holdPlayer.seekTo(0);
+    holdPlayer.play();
+  }
 }
 
   // DB
@@ -269,15 +284,6 @@ function stopPlaybackAndGoBack() {
     }
   };
 
-  // STOP AUDIO PLAYBACK
-  useEffect(() => {
-    if (!isAudioActive) {
-      mutePlayback();
-    } else if (isAudioActive) {
-      unmutePlayback();
-    }
-  })
-
   // PRE-TIMER COUNTDOWN EFFECT
   useEffect(() => {
     if (countdownActive && countdownVal > 0) {
@@ -414,24 +420,13 @@ function stopPlaybackAndGoBack() {
           className={`absolute flex-row justify-between px-8 ${SCREEN_HEIGHT > 850 ? "top-20" : SCREEN_HEIGHT >= REFERENCE_SMALL_DEVICE_HEIGHT ? "top-12" : "top-4"}`}
           style={{ width: SCREEN_WIDTH, backgroundColor: "transparent" }}
         >
-          <Pressable onPress={() => stopPlaybackAndGoBack()} className="">
+          <Pressable onPress={() => stopPlayback()} className="">
             <View>
               <View>
                 <Feather name="x" size={24} color={Colors.black} />
               </View>
             </View>
           </Pressable>
-
-          <Pressable
-            onPress={() => {
-              isAudioActive ? setIsAudioActive(false) : setIsAudioActive(true)
-            }}
-          >
-            <View>
-              <Feather name={isAudioActive ? "volume-2" : "volume-x"} size={24} color={Colors.black} />
-            </View>
-          </Pressable>
-
           <Pressable
             onPress={() => {
               // show modal
