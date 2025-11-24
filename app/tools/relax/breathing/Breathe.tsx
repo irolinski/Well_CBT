@@ -31,46 +31,6 @@ const holdOutSoundPL = require('@/assets/audio/pl_hold_out.mp3');
 const breatheInSound = require('@/assets/audio/en_in.mp3');
 const breatheInSoundPL = require('@/assets/audio/pl_in.mp3');
 
-//audio player setup
-const breatheOutPlayer = useAudioPlayer(breatheOutSound);
-const breatheOutPlayerPL = useAudioPlayer(breatheOutSoundPL);
-const holdPlayer = useAudioPlayer(holdSound);
-const holdInPlayerPL = useAudioPlayer(holdInSoundPL);
-const holdOutPlayerPL = useAudioPlayer(holdOutSoundPL);
-const breatheInPlayer = useAudioPlayer(breatheInSound);
-const breatheInPlayerPL = useAudioPlayer(breatheInSoundPL);
-
-function playBreatheOutSound() {
-  if (selectedLanguage === "pl") {
-    breatheOutPlayerPL.seekTo(0);
-    breatheOutPlayerPL.play();
-  } else {
-    breatheOutPlayer.seekTo(0);
-    breatheOutPlayer.play();
-  }
-}
-
-function playBreatheInSound() {
-  if (selectedLanguage === "pl") {
-    breatheInPlayerPL.seekTo(0);
-    breatheInPlayerPL.play();
-  } else {
-    breatheInPlayer.seekTo(0);
-    breatheInPlayer.play();
-  }
-}
-
-function stopPlayback() {
-breatheOutPlayer.pause();
-breatheOutPlayerPL.pause();
-holdPlayer.pause();
-holdInPlayerPL.pause();
-holdOutPlayerPL.pause();
-breatheInPlayer.pause();
-breatheInPlayerPL.pause();
-router.back()
-}
-
 const TOOL_NAME = breathing_tool.name;
 
 const Breathe = () => {
@@ -80,6 +40,10 @@ const Breathe = () => {
   const breatheSettings = useSelector(
     (state: RootState) => state.breatheSettings,
   );
+
+  //AUDIO STATE
+  const [isAudioActive, setIsAudioActive] = useState(true);
+
 
   //UI STATE
 
@@ -100,19 +64,78 @@ const Breathe = () => {
   const repsToDo = 5 * breatheSettings.numOfSets;
   const [repsDone, setRepsDone] = useState(0);
 
-  //HOLD SOUND
-  function playHoldSound() {
-  if (selectedLanguage === "pl" && breatheInOut) {
-    holdInPlayerPL.seekTo(0);
-    holdInPlayerPL.play();
-  } else if (selectedLanguage === "pl" && !breatheInOut) {
-    holdOutPlayerPL.seekTo(0);
-    holdOutPlayerPL.play();
-  } else {
-    holdPlayer.seekTo(0);
-    holdPlayer.play();
+  //AUDIO PLAYER SETUP
+  const breatheOutPlayer = useAudioPlayer(breatheOutSound);
+  const breatheOutPlayerPL = useAudioPlayer(breatheOutSoundPL);
+  const holdPlayer = useAudioPlayer(holdSound);
+  const holdInPlayerPL = useAudioPlayer(holdInSoundPL);
+  const holdOutPlayerPL = useAudioPlayer(holdOutSoundPL);
+  const breatheInPlayer = useAudioPlayer(breatheInSound);
+  const breatheInPlayerPL = useAudioPlayer(breatheInSoundPL);
+
+  function playBreatheOutSound() {
+    if (selectedLanguage === "pl") {
+      breatheOutPlayerPL.seekTo(0);
+      breatheOutPlayerPL.play();
+    } else {
+      breatheOutPlayer.seekTo(0);
+      breatheOutPlayer.play();
+    }
   }
-}
+
+  function playBreatheInSound() {
+    if (selectedLanguage === "pl") {
+      breatheInPlayerPL.seekTo(0);
+      breatheInPlayerPL.play();
+    } else {
+      breatheInPlayer.seekTo(0);
+      breatheInPlayer.play();
+    }
+  }
+
+  function mutePlayback() {
+    breatheOutPlayer.muted = true;
+    breatheOutPlayerPL.muted = true;
+    holdPlayer.muted = true;
+    holdInPlayerPL.muted = true;
+    holdOutPlayerPL.muted = true;
+    breatheInPlayer.muted = true;
+    breatheInPlayerPL.muted = true;
+  }
+
+  function unmutePlayback() {
+    breatheOutPlayer.muted = false;
+    breatheOutPlayerPL.muted = false;
+    holdPlayer.muted = false;
+    holdInPlayerPL.muted = false;
+    holdOutPlayerPL.muted = false;
+    breatheInPlayer.muted = false;
+    breatheInPlayerPL.muted = false;
+  }
+
+  function stopPlaybackAndGoBack() {
+    breatheOutPlayer.pause();
+    breatheOutPlayerPL.pause();
+    holdPlayer.pause();
+    holdInPlayerPL.pause();
+    holdOutPlayerPL.pause();
+    breatheInPlayer.pause();
+    breatheInPlayerPL.pause();
+    router.back()
+  }
+
+  function playHoldSound() {
+    if (selectedLanguage === "pl" && breatheInOut) {
+      holdInPlayerPL.seekTo(0);
+      holdInPlayerPL.play();
+    } else if (selectedLanguage === "pl" && !breatheInOut) {
+      holdOutPlayerPL.seekTo(0);
+      holdOutPlayerPL.play();
+    } else {
+      holdPlayer.seekTo(0);
+      holdPlayer.play();
+    }
+  }
 
   // DB
   //the VV below VV state is to prevent accidental multiple db requests
@@ -284,6 +307,15 @@ const Breathe = () => {
     }
   };
 
+    // STOP AUDIO PLAYBACK
+  useEffect(() => {
+    if (!isAudioActive) {
+      mutePlayback();
+    } else if (isAudioActive) {
+      unmutePlayback();
+    }
+  })
+
   // PRE-TIMER COUNTDOWN EFFECT
   useEffect(() => {
     if (countdownActive && countdownVal > 0) {
@@ -420,13 +452,24 @@ const Breathe = () => {
           className={`absolute flex-row justify-between px-8 ${SCREEN_HEIGHT > 850 ? "top-20" : SCREEN_HEIGHT >= REFERENCE_SMALL_DEVICE_HEIGHT ? "top-12" : "top-4"}`}
           style={{ width: SCREEN_WIDTH, backgroundColor: "transparent" }}
         >
-          <Pressable onPress={() => stopPlayback()} className="">
+          <Pressable onPress={() => stopPlaybackAndGoBack()} className="">
             <View>
               <View>
                 <Feather name="x" size={24} color={Colors.black} />
               </View>
             </View>
           </Pressable>
+
+          <Pressable
+            onPress={() => {
+              isAudioActive ? setIsAudioActive(false) : setIsAudioActive(true)
+            }}
+          >
+            <View>
+              <Feather name={isAudioActive ? "volume-2" : "volume-x"} size={24} color={Colors.black} />
+            </View>
+          </Pressable>
+
           <Pressable
             onPress={() => {
               // show modal
