@@ -42,7 +42,7 @@ const Breathe = () => {
   );
 
   //AUDIO STATE
-  const [isAudioActive, setIsAudioActive] = useState(true);
+  const [audioIsActive, setAudioIsActive] = useState(true);
 
 
   //UI STATE
@@ -309,9 +309,9 @@ const Breathe = () => {
 
     // STOP AUDIO PLAYBACK
   useEffect(() => {
-    if (!isAudioActive) {
+    if (!audioIsActive) {
       mutePlayback();
-    } else if (isAudioActive) {
+    } else if (audioIsActive) {
       unmutePlayback();
     }
   })
@@ -462,11 +462,11 @@ const Breathe = () => {
 
           <Pressable
             onPress={() => {
-              isAudioActive ? setIsAudioActive(false) : setIsAudioActive(true)
+              audioIsActive ? setAudioIsActive(false) : setAudioIsActive(true)
             }}
           >
             <View>
-              <Feather name={isAudioActive ? "volume-2" : "volume-x"} size={24} color={Colors.black} />
+              <Feather name={audioIsActive ? "volume-2" : "volume-x"} size={24} color={Colors.black} />
             </View>
           </Pressable>
 
