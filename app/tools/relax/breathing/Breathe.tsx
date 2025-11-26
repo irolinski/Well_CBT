@@ -60,6 +60,16 @@ const Breathe = () => {
   //array of keys for use in loops
   const audioPlayerKeys = Object.keys(audioPlayer) as Array<keyof typeof audioPlayer>;
 
+  function playGetReadySound() {
+    if (selectedLanguage === "pl") {
+      audioPlayer.getReadyPlayerPL.seekTo(0);
+      audioPlayer.getReadyPlayerPL.play();
+    } else {
+      audioPlayer.getReadyPlayer.seekTo(0);
+      audioPlayer.getReadyPlayer.play();
+    }
+  }
+
   function playBreatheOutSound() {
     if (selectedLanguage === "pl") {
       audioPlayer.breatheOutPlayerPL.seekTo(0);
@@ -253,6 +263,7 @@ const Breathe = () => {
       resetExercise();
     }
     setCountdownVal(3); // Reset countdown to 3
+    playGetReadySound();
     setCountdownActive(true); // Start countdown (it will auto-run exercise when it finishes)
   };
 
