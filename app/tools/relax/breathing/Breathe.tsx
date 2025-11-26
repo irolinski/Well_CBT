@@ -19,18 +19,8 @@ import { toggleModal } from "@/state/features/tools/breatheSettingsSlice";
 import { AppDispatch, RootState } from "@/state/store";
 import { Feather } from "@expo/vector-icons";
 import BreatheModal from "./modal";
-import { useAudioPlayer } from "expo-audio";
-
-//placeholder sounds
-const breatheOutSound = require('@/assets/audio/aud-12-inch-crystal-bowl-pure-tone-39250.mp3');
-const holdSound = require('@/assets/audio/uplifting-logo-piano-152057.mp3');
-const shortSound2 = require('@/assets/audio/zen-tone-mid-high-202557.mp3');
-
-//audio player setup with placeholders
-const breatheOutPlayer = useAudioPlayer(breatheOutSound);
-const holdPlayer = useAudioPlayer(holdSound);
-const breatheInPlayer = useAudioPlayer(shortSound2);
-
+import { selectedLanguage } from "@/hooks/i18n";
+import audioPlayer from "@/utils/assets/audio/Breathe";
 
 const TOOL_NAME = breathing_tool.name;
 
@@ -43,7 +33,8 @@ const Breathe = () => {
   );
 
   //AUDIO STATE
-  const [isAudioActive, setIsAudioActive] = useState(true);
+  const [audioIsActive, setAudioIsActive] = useState(true);
+
 
   //UI STATE
 
@@ -64,40 +55,72 @@ const Breathe = () => {
   const repsToDo = 5 * breatheSettings.numOfSets;
   const [repsDone, setRepsDone] = useState(0);
 
-  //AUDIO PLAYER
-function playBreatheOutSound() {
-  breatheOutPlayer.seekTo(0);
-  breatheOutPlayer.play();
-}
+  //AUDIO PLAYER FUNCTIONS
 
-function playHoldSound() {
-  holdPlayer.seekTo(0);
-  holdPlayer.play();
-}
+  //array of keys for use in loops
+  const audioPlayerKeys = Object.keys(audioPlayer) as Array<keyof typeof audioPlayer>;
 
-function playBreatheInSound() {
-    breatheInPlayer.seekTo(0);
-    breatheInPlayer.play();
-}
+  function playGetReadySound() {
+    if (selectedLanguage === "pl") {
+      audioPlayer.getReadyPlayerPL.seekTo(0);
+      audioPlayer.getReadyPlayerPL.play();
+    } else {
+      audioPlayer.getReadyPlayer.seekTo(0);
+      audioPlayer.getReadyPlayer.play();
+    }
+  }
 
-function mutePlayback() {
-  breatheOutPlayer.muted = true;
-  holdPlayer.muted = true;
-  breatheInPlayer.muted = true;
-}
+  function playBreatheOutSound() {
+    if (selectedLanguage === "pl") {
+      audioPlayer.breatheOutPlayerPL.seekTo(0);
+      audioPlayer.breatheOutPlayerPL.play();
+    } else {
+      audioPlayer.breatheOutPlayer.seekTo(0);
+      audioPlayer.breatheOutPlayer.play();
+    }
+  }
 
-function unmutePlayback() {
-  breatheOutPlayer.muted = false;
-  holdPlayer.muted = false;
-  breatheInPlayer.muted = false;
-}
+  function playBreatheInSound() {
+    if (selectedLanguage === "pl") {
+      audioPlayer.breatheInPlayerPL.seekTo(0);
+      audioPlayer.breatheInPlayerPL.play();
+    } else {
+      audioPlayer.breatheInPlayer.seekTo(0);
+      audioPlayer.breatheInPlayer.play();
+    }
+  }
 
-function stopPlaybackAndGoBack() {
-  breatheOutPlayer.pause();
-  holdPlayer.pause();
-  breatheInPlayer.pause();
-  router.back();
-}
+  function mutePlayback() {
+    for (const key of audioPlayerKeys) {
+      audioPlayer[key].muted = true;
+    }
+  }
+
+  function unmutePlayback() {
+    for (const key of audioPlayerKeys) {
+      audioPlayer[key].muted = false;
+    }
+  }
+
+  function stopPlaybackAndGoBack() {
+    for (const key of audioPlayerKeys) {
+      audioPlayer[key].pause();
+    }
+    router.back()
+  }
+
+  function playHoldSound() {
+    if (selectedLanguage === "pl" && breatheInOut) {
+      audioPlayer.holdInPlayerPL.seekTo(0);
+      audioPlayer.holdInPlayerPL.play();
+    } else if (selectedLanguage === "pl" && !breatheInOut) {
+      audioPlayer.holdOutPlayerPL.seekTo(0);
+      audioPlayer.holdOutPlayerPL.play();
+    } else {
+      audioPlayer.holdPlayer.seekTo(0);
+      audioPlayer.holdPlayer.play();
+    }
+  }
 
   // DB
   //the VV below VV state is to prevent accidental multiple db requests
@@ -240,6 +263,7 @@ function stopPlaybackAndGoBack() {
       resetExercise();
     }
     setCountdownVal(3); // Reset countdown to 3
+    playGetReadySound();
     setCountdownActive(true); // Start countdown (it will auto-run exercise when it finishes)
   };
 
@@ -269,11 +293,11 @@ function stopPlaybackAndGoBack() {
     }
   };
 
-  // STOP AUDIO PLAYBACK
+    // STOP AUDIO PLAYBACK
   useEffect(() => {
-    if (!isAudioActive) {
+    if (!audioIsActive) {
       mutePlayback();
-    } else if (isAudioActive) {
+    } else if (audioIsActive) {
       unmutePlayback();
     }
   })
@@ -424,11 +448,11 @@ function stopPlaybackAndGoBack() {
 
           <Pressable
             onPress={() => {
-              isAudioActive ? setIsAudioActive(false) : setIsAudioActive(true)
+              audioIsActive ? setAudioIsActive(false) : setAudioIsActive(true)
             }}
           >
             <View>
-              <Feather name={isAudioActive ? "volume-2" : "volume-x"} size={24} color={Colors.black} />
+              <Feather name={audioIsActive ? "volume-2" : "volume-x"} size={24} color={Colors.black} />
             </View>
           </Pressable>
 
