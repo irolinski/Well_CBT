@@ -19,17 +19,8 @@ import { toggleModal } from "@/state/features/tools/breatheSettingsSlice";
 import { AppDispatch, RootState } from "@/state/store";
 import { Feather } from "@expo/vector-icons";
 import BreatheModal from "./modal";
-import { useAudioPlayer } from "expo-audio";
 import { selectedLanguage } from "@/hooks/i18n";
-
-//sound imports
-const breatheOutSound = require('@/assets/audio/en_out.mp3');
-const breatheOutSoundPL = require('@/assets/audio/pl_out.mp3');
-const holdSound = require('@/assets/audio/en_hold.mp3');
-const holdInSoundPL = require('@/assets/audio/pl_hold_in.mp3');
-const holdOutSoundPL = require('@/assets/audio/pl_hold_out.mp3');
-const breatheInSound = require('@/assets/audio/en_in.mp3');
-const breatheInSoundPL = require('@/assets/audio/pl_in.mp3');
+import audioPlayer from "@/utils/assets/audio/Breathe";
 
 const TOOL_NAME = breathing_tool.name;
 
@@ -64,76 +55,60 @@ const Breathe = () => {
   const repsToDo = 5 * breatheSettings.numOfSets;
   const [repsDone, setRepsDone] = useState(0);
 
-  //AUDIO PLAYER SETUP
-  const breatheOutPlayer = useAudioPlayer(breatheOutSound);
-  const breatheOutPlayerPL = useAudioPlayer(breatheOutSoundPL);
-  const holdPlayer = useAudioPlayer(holdSound);
-  const holdInPlayerPL = useAudioPlayer(holdInSoundPL);
-  const holdOutPlayerPL = useAudioPlayer(holdOutSoundPL);
-  const breatheInPlayer = useAudioPlayer(breatheInSound);
-  const breatheInPlayerPL = useAudioPlayer(breatheInSoundPL);
+  //AUDIO PLAYER FUNCTIONS
+
+  //array of keys for use in loops
+  const audioPlayerKeys = Object.keys(audioPlayer) as Array<keyof typeof audioPlayer>;
 
   function playBreatheOutSound() {
     if (selectedLanguage === "pl") {
-      breatheOutPlayerPL.seekTo(0);
-      breatheOutPlayerPL.play();
+      audioPlayer.breatheOutPlayerPL.seekTo(0);
+      audioPlayer.breatheOutPlayerPL.play();
     } else {
-      breatheOutPlayer.seekTo(0);
-      breatheOutPlayer.play();
+      audioPlayer.breatheOutPlayer.seekTo(0);
+      audioPlayer.breatheOutPlayer.play();
     }
   }
 
   function playBreatheInSound() {
     if (selectedLanguage === "pl") {
-      breatheInPlayerPL.seekTo(0);
-      breatheInPlayerPL.play();
+      audioPlayer.breatheInPlayerPL.seekTo(0);
+      audioPlayer.breatheInPlayerPL.play();
     } else {
-      breatheInPlayer.seekTo(0);
-      breatheInPlayer.play();
+      audioPlayer.breatheInPlayer.seekTo(0);
+      audioPlayer.breatheInPlayer.play();
     }
   }
 
   function mutePlayback() {
-    breatheOutPlayer.muted = true;
-    breatheOutPlayerPL.muted = true;
-    holdPlayer.muted = true;
-    holdInPlayerPL.muted = true;
-    holdOutPlayerPL.muted = true;
-    breatheInPlayer.muted = true;
-    breatheInPlayerPL.muted = true;
+    for (const key of audioPlayerKeys) {
+      audioPlayer[key].muted = true;
+    }
   }
 
   function unmutePlayback() {
-    breatheOutPlayer.muted = false;
-    breatheOutPlayerPL.muted = false;
-    holdPlayer.muted = false;
-    holdInPlayerPL.muted = false;
-    holdOutPlayerPL.muted = false;
-    breatheInPlayer.muted = false;
-    breatheInPlayerPL.muted = false;
+    for (const key of audioPlayerKeys) {
+      audioPlayer[key].muted = false;
+    }
   }
 
   function stopPlaybackAndGoBack() {
-    breatheOutPlayer.pause();
-    breatheOutPlayerPL.pause();
-    holdPlayer.pause();
-    holdInPlayerPL.pause();
-    holdOutPlayerPL.pause();
-    breatheInPlayer.pause();
-    breatheInPlayerPL.pause();
+    for (const key of audioPlayerKeys) {
+      audioPlayer[key].pause();
+    }
     router.back()
   }
 
   function playHoldSound() {
     if (selectedLanguage === "pl" && breatheInOut) {
-      holdInPlayerPL.seekTo(0);
-      holdInPlayerPL.play();
+      audioPlayer.holdInPlayerPL.seekTo(0);
+      audioPlayer.holdInPlayerPL.play();
     } else if (selectedLanguage === "pl" && !breatheInOut) {
-      holdOutPlayerPL.seekTo(0);
-      holdOutPlayerPL.play();
+      audioPlayer.holdOutPlayerPL.seekTo(0);
+      audioPlayer.holdOutPlayerPL.play();
     } else {
-      holdPlayer.seekTo(0);
-      holdPlayer.play();
+      audioPlayer.holdPlayer.seekTo(0);
+      audioPlayer.holdPlayer.play();
     }
   }
 
