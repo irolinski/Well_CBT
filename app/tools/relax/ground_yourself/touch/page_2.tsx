@@ -4,13 +4,13 @@ import { Animated, Easing, View } from "react-native";
 import { useSelector } from "react-redux";
 import ArrowRightButton from "@/components/global/ArrowRightButton";
 import FadeInView from "@/components/global/FadeInView";
-import TypewriterText from "@/components/global/TypewriterText";
 import GroundYourselfBreather from "@/components/tools/ground_yourself/Breather";
 import GroundYourselfSlideFrame from "@/components/tools/ground_yourself/GroundYourselfSlideFrame";
 import { GroundYourselfSlideProps } from "@/constants/models/tools/ground_yourself";
 import { Colors } from "@/constants/styles/colorTheme";
 import { SCREEN_HEIGHT } from "@/constants/styles/values";
 import { RootState } from "@/state/store";
+import { Typewriter } from "typewriter4react-native";
 
 const INSTRUCTION_3_DELAY_MS = 1000;
 
@@ -28,7 +28,7 @@ const Ground_Touch_Page_2 = ({
 
   const instruction2PositionAnim = useRef(new Animated.Value(0)).current;
   const [currentInstruction, setCurrentInstruction] = useState<
-    "instruction_2" | "instruction_3" | undefined
+    "instruction_2" | "breather" | "instruction_3" | undefined
   >(undefined);
 
   const liftInstruction2PositionAnim = (duration: number) => {
@@ -58,15 +58,16 @@ const Ground_Touch_Page_2 = ({
           isActive={currentInstruction === "instruction_2"}
           onFinish={() => liftInstruction2PositionAnim(1000).start()}
         >
-          <TypewriterText
+          <Typewriter
+            textStyle={{fontSize: 20, lineHeight: 30, letterSpacing: 1.5}}
+            cursorStyle={{color: Colors.mainGray}}
             text={t("tools.ground_yourself.common.now_deep_breath")}
-            size={20}
-            cursorColor={Colors.mainGray}
             speed="very_fast"
             isActive={groundYourselfToolState.currentSlide === objKey}
+            onFinish={() => setCurrentInstruction("breather")}
           />
           <GroundYourselfBreather
-            isActive={groundYourselfToolState.currentSlide === objKey}
+            isActive={currentInstruction === "breather"}
             onFinish={() => setCurrentInstruction("instruction_2")}
           />
         </FadeInView>
@@ -78,12 +79,12 @@ const Ground_Touch_Page_2 = ({
         >
           <View className="mb-8">
             <View>
-              <TypewriterText
+              <Typewriter
+                textStyle={{fontSize: 20, lineHeight: 30, letterSpacing: 1.5}}
+                cursorStyle={{color: Colors.mainGray}}
                 text={t("tools.ground_yourself.touch.page_2.instruction_2")}
-                size={20}
-                cursorColor={Colors.mainGray}
                 speed="fast"
-                delaySeconds={1.5}
+                startDelay={1500}
                 isActive={currentInstruction === "instruction_2"}
                 onFinish={() =>
                   setTimeout(() => {
@@ -94,13 +95,12 @@ const Ground_Touch_Page_2 = ({
             </View>
           </View>
           <FadeInView isActive={currentInstruction === "instruction_3"}>
-            <TypewriterText
+            <Typewriter
+              textStyle={{color: Colors.darkGray, fontSize: 14, lineHeight: 21, letterSpacing: 1.5}}
+              cursorStyle={{color: Colors.mainGray}}
               text={t("tools.ground_yourself.touch.page_2.instruction_3")}
-              textColor={Colors.darkGray}
-              cursorColor={Colors.mainGray}
-              size={14}
               speed="very_fast"
-              delaySeconds={6}
+              startDelay={250}
               isActive={currentInstruction === "instruction_3"}
             />
             <View

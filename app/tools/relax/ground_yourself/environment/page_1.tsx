@@ -1,15 +1,15 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Animated, View } from "react-native";
 import { useSelector } from "react-redux";
 import ArrowRightButton from "@/components/global/ArrowRightButton";
 import Text from "@/components/global/Text";
-import TypewriterText from "@/components/global/TypewriterText";
 import GroundYourselfSlideFrame from "@/components/tools/ground_yourself/GroundYourselfSlideFrame";
 import { GroundYourselfSlideProps } from "@/constants/models/tools/ground_yourself";
 import { Colors } from "@/constants/styles/colorTheme";
 import { SCREEN_HEIGHT } from "@/constants/styles/values";
 import { RootState } from "@/state/store";
+import { Typewriter } from "typewriter4react-native";
 
 const Ground_Environment_Page_1 = ({
   exerciseName,
@@ -22,6 +22,8 @@ const Ground_Environment_Page_1 = ({
   const groundYourselfToolState = useSelector(
     (state: RootState) => state.ground_yourself,
   );
+
+  const [instruction2isActive, setInstruction2isActive] = useState(false);
 
   return (
     <GroundYourselfSlideFrame
@@ -48,14 +50,13 @@ const Ground_Environment_Page_1 = ({
             marginTop: SCREEN_HEIGHT * 0.05,
           }}
         >
-          <TypewriterText
+          <Typewriter
+            textStyle={{fontSize: 20, letterSpacing: 1.25, lineHeight: 25}}
+            cursorStyle={{color: Colors.mainGray}}
             text={t("tools.ground_yourself.environment.page_1.instruction_1")}
-            size={20}
-            cursorColor={Colors.mainGray}
             isActive={groundYourselfToolState.currentSlide === objKey}
-            letterSpacing={1.25}
-            lineHeight={1.25}
             speed="fastest"
+            onFinish={() => setInstruction2isActive(true)}
           />
         </View>
 
@@ -64,14 +65,12 @@ const Ground_Environment_Page_1 = ({
             marginTop: SCREEN_HEIGHT * 0.05,
           }}
         >
-          <TypewriterText
+          <Typewriter
+            textStyle={{fontSize: 18, color: Colors.mainGray, lineHeight: 27, letterSpacing: 1.5}}
             text={t("instructions.tap_button_below", { ns: "common" })}
             speed="fast"
-            isActive={groundYourselfToolState.currentSlide === objKey}
-            delaySeconds={1.5}
-            size={18}
-            textColor={Colors.mainGray}
-            hideCursorOnFinish={false}
+            isActive={instruction2isActive === true}
+            startDelay={500}
           />
         </View>
         <View className="flex-row justify-center">
