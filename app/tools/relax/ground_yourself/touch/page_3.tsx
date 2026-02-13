@@ -290,7 +290,7 @@ const Ground_Touch_Page_3 = ({
               style={{ marginTop: SCREEN_HEIGHT * 0.075 }}
             >
               <AntDesign
-                name="checkcircleo"
+                name="check-circle"
                 size={48}
                 color={Colors.darkGray}
               />
