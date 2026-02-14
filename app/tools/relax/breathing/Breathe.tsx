@@ -36,7 +36,6 @@ const Breathe = () => {
   const [audioIsActive, setAudioIsActive] = useState(true);
 
   //UI STATE
-
   const outerCircleSize = SCREEN_WIDTH / 1.25;
 
   // COUNTDOWN STATE
@@ -124,7 +123,7 @@ const Breathe = () => {
   }
 
   // DB
-  //the VV below VV state is to prevent accidental multiple db requests
+  //the below state is to prevent accidental multiple db requests
   const [hasLoggedTimeToDb, setHasLoggedTimeToDb] = useState(false);
   let ellapsedTime =
     5 *
@@ -481,11 +480,6 @@ const Breathe = () => {
             bottom: SCREEN_HEIGHT * 0.05,
           }}
         >
-          {/* Reps counter - for development purposes only */}
-          {/* <Text>
-            Reps done: {Math.floor(repsDone)}/{repsToDo} 
-          </Text> */}
-
           {/* Outer circle */}
           {showHold && (
             <View className="absolute -translate-y-8 items-center justify-center">
@@ -505,7 +499,6 @@ const Breathe = () => {
               width: outerCircleSize,
               height: outerCircleSize,
               borderRadius: outerCircleSize,
-              // transform: [{ scale: innerCircleAnim }],
               backgroundColor: Colors.lightGray,
               opacity: 0.7,
               borderColor: Colors.mainGray,
