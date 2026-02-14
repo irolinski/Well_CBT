@@ -35,7 +35,6 @@ const Breathe = () => {
   //AUDIO STATE
   const [audioIsActive, setAudioIsActive] = useState(true);
 
-
   //UI STATE
 
   const outerCircleSize = SCREEN_WIDTH / 1.25;
@@ -58,7 +57,9 @@ const Breathe = () => {
   //AUDIO PLAYER FUNCTIONS
 
   //array of keys for use in loops
-  const audioPlayerKeys = Object.keys(audioPlayer) as Array<keyof typeof audioPlayer>;
+  const audioPlayerKeys = Object.keys(audioPlayer) as Array<
+    keyof typeof audioPlayer
+  >;
 
   function playGetReadySound() {
     if (selectedLanguage === "pl") {
@@ -106,7 +107,7 @@ const Breathe = () => {
     for (const key of audioPlayerKeys) {
       audioPlayer[key].pause();
     }
-    router.back()
+    router.back();
   }
 
   function playHoldSound() {
@@ -293,14 +294,14 @@ const Breathe = () => {
     }
   };
 
-    // STOP AUDIO PLAYBACK
+  // STOP AUDIO PLAYBACK
   useEffect(() => {
     if (!audioIsActive) {
       mutePlayback();
     } else if (audioIsActive) {
       unmutePlayback();
     }
-  })
+  });
 
   // PRE-TIMER COUNTDOWN EFFECT
   useEffect(() => {
@@ -448,11 +449,15 @@ const Breathe = () => {
 
           <Pressable
             onPress={() => {
-              audioIsActive ? setAudioIsActive(false) : setAudioIsActive(true)
+              audioIsActive ? setAudioIsActive(false) : setAudioIsActive(true);
             }}
           >
             <View>
-              <Feather name={audioIsActive ? "volume-2" : "volume-x"} size={24} color={Colors.black} />
+              <Feather
+                name={audioIsActive ? "volume-2" : "volume-x"}
+                size={24}
+                color={Colors.black}
+              />
             </View>
           </Pressable>
 
@@ -483,12 +488,14 @@ const Breathe = () => {
 
           {/* Outer circle */}
           {showHold && (
-            <Text
-              className="absolute -translate-y-8 text-center text-4xl"
-              style={{ width: SCREEN_WIDTH }}
-            >
-              {counterVal}
-            </Text>
+            <View className="absolute -translate-y-8 items-center justify-center">
+              <Text
+                className="text-center text-4xl"
+                style={{ width: SCREEN_WIDTH }}
+              >
+                {counterVal}
+              </Text>
+            </View>
           )}
           <View
             className="absolute justify-center overflow-hidden border"
