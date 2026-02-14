@@ -87,7 +87,7 @@ export const GroundYourselfBreather = ({
           >
             <View className="absolute h-full w-full flex-row items-center justify-center">
               <Text
-                className="z-10 text-2xl"
+                className="z-10 text-[22px]"
                 style={{
                   color: Colors.offWhite,
                   fontFamily: "KodchasanRegular",
