@@ -114,8 +114,8 @@ const Ground_Touch_Page_3 = ({
     >
       <View key={objKey} style={{ paddingTop: SCREEN_HEIGHT * 0.05 }}>
         <Typewriter
-          textStyle={{fontSize: 20, lineHeight: 30}}
-          cursorStyle={{color: Colors.mainGray}}
+          textStyle={{ fontSize: 20, lineHeight: 30 }}
+          cursorStyle={{ color: Colors.mainGray }}
           text={t("tools.ground_yourself.touch.page_3.instruction_1")}
           speed="fast"
           isActive={groundYourselfToolState.currentSlide === objKey}
@@ -177,8 +177,14 @@ const Ground_Touch_Page_3 = ({
             key="2"
           >
             <Typewriter
-              textStyle={{color: Colors.darkGray, fontSize: 20, lineHeight: 30, letterSpacing: 1.5, overflow: "visible"}}
-              cursorStyle={{color: Colors.mainGray}}
+              textStyle={{
+                color: Colors.darkGray,
+                fontSize: 20,
+                lineHeight: 30,
+                letterSpacing: 1.5,
+                overflow: "visible",
+              }}
+              cursorStyle={{ color: Colors.mainGray }}
               text={t(
                 "tools.ground_yourself.touch.page_3.slide_2.instruction_1",
               )}
@@ -189,7 +195,13 @@ const Ground_Touch_Page_3 = ({
               }}
             />
             <Typewriter
-            textStyle={{color: Colors.mainGray, fontSize: 12, lineHeight: 18, letterSpacing: 1.5, overflow: "visible"}}
+              textStyle={{
+                color: Colors.mainGray,
+                fontSize: 12,
+                lineHeight: 18,
+                letterSpacing: 1.5,
+                overflow: "visible",
+              }}
               text={t(
                 "tools.ground_yourself.touch.page_3.slide_2.instruction_2",
               )}
@@ -234,8 +246,14 @@ const Ground_Touch_Page_3 = ({
             key="3"
           >
             <Typewriter
-              textStyle={{color: Colors.darkGray, fontSize: 20, lineHeight: 30, letterSpacing: 1.5, overflow: "visible"}}
-              cursorStyle={{color: Colors.mainGray}}
+              textStyle={{
+                color: Colors.darkGray,
+                fontSize: 20,
+                lineHeight: 30,
+                letterSpacing: 1.5,
+                overflow: "visible",
+              }}
+              cursorStyle={{ color: Colors.mainGray }}
               text={t(
                 "tools.ground_yourself.touch.page_3.slide_3.instruction_1",
               )}
@@ -243,7 +261,13 @@ const Ground_Touch_Page_3 = ({
               isActive={activeInput === "color"}
             />
             <Typewriter
-              textStyle={{color: Colors.mainGray, fontSize: 12, lineHeight: 18, letterSpacing: 1.5, overflow: "visible"}}
+              textStyle={{
+                color: Colors.mainGray,
+                fontSize: 12,
+                lineHeight: 18,
+                letterSpacing: 1.5,
+                overflow: "visible",
+              }}
               text={t(
                 "tools.ground_yourself.touch.page_3.slide_3.instruction_2",
               )}
@@ -290,7 +314,7 @@ const Ground_Touch_Page_3 = ({
               style={{ marginTop: SCREEN_HEIGHT * 0.075 }}
             >
               <AntDesign
-                name="check-circle"
+                name="checkcircleo"
                 size={48}
                 color={Colors.darkGray}
               />
@@ -303,8 +327,14 @@ const Ground_Touch_Page_3 = ({
             key="4"
           >
             <Typewriter
-              textStyle={{color: Colors.darkGray, fontSize: 20, lineHeight: 30, letterSpacing: 1.5, overflow: "visible"}}
-              cursorStyle={{color: Colors.mainGray}}
+              textStyle={{
+                color: Colors.darkGray,
+                fontSize: 20,
+                lineHeight: 30,
+                letterSpacing: 1.5,
+                overflow: "visible",
+              }}
+              cursorStyle={{ color: Colors.mainGray }}
               text={t(
                 "tools.ground_yourself.touch.page_3.slide_4.instruction_1",
               )}
@@ -312,7 +342,13 @@ const Ground_Touch_Page_3 = ({
               isActive={activeInput === "feel"}
             />
             <Typewriter
-              textStyle={{color: Colors.mainGray, fontSize: 12, lineHeight: 18, letterSpacing: 1.5, overflow: "visible"}}
+              textStyle={{
+                color: Colors.mainGray,
+                fontSize: 12,
+                lineHeight: 18,
+                letterSpacing: 1.5,
+                overflow: "visible",
+              }}
               text={t(
                 "tools.ground_yourself.touch.page_3.slide_4.instruction_2",
               )}
