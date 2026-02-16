@@ -7,11 +7,7 @@ import { AvailableLanguage, selectedLanguage } from "@/hooks/i18n";
 import { numToString_addZero } from "./dates";
 import { getTranslation } from "./locales";
 
-//To have different notification body text everyday,
-//I'll have to re-schedule notification on app open
-//if the user has notifications enabled
-
-//--- time conversion helper functions ---
+// -- time conversion helper functions --
 
 export const convertTo24hFormat = (
   hour: number,
@@ -21,7 +17,7 @@ export const convertTo24hFormat = (
   if (meridiem === "PM" && hour !== 12) {
     hour += 12;
   }
-  //make exception for midnight
+  // make exception for midnight
   else if (meridiem === "AM" && hour === 12) {
     hour = 0;
   }
@@ -47,7 +43,7 @@ export const convertTo12hFormat = (hour: number, minute: number) => {
   return { hour: hour, minute: minute, meridiem: meridiem };
 };
 
-// --- local notification handlers ---
+// -- local notification handlers --
 
 export const requestNotificationPermissions = async (): Promise<boolean> => {
   try {

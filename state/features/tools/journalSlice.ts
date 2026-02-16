@@ -9,7 +9,7 @@ export type journalSliceTypes = {
 };
 
 const journalSliceInitialState: journalSliceTypes = {
-  moodValue: null, //or 4???
+  moodValue: null,
   emotions: [],
   note: "",
   save: true,

@@ -1,19 +1,19 @@
-import { Image } from 'expo-image';
-import { Href, router } from 'expo-router';
-import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { ScrollView, View } from 'react-native';
-import { useSelector } from 'react-redux';
-import { logoImages } from '@/assets/images/global/logo';
-import AdvanceButton from '@/components/global/AdvanceButton';
-import SecondaryButton from '@/components/global/SecondaryButton';
-import Text from '@/components/global/Text';
-import ToolNav from '@/components/tools/ToolNav';
-import { journal_tool } from '@/constants/models/tools';
-import { Colors } from '@/constants/styles/colorTheme';
-import { SCREEN_HEIGHT } from '@/constants/styles/values';
-import { analyticsLogFinishToolEvent } from '@/services/firebase/firebase';
-import { RootState } from '@/state/store';
+import { Image } from "expo-image";
+import { Href, router } from "expo-router";
+import React from "react";
+import { useTranslation } from "react-i18next";
+import { ScrollView, View } from "react-native";
+import { useSelector } from "react-redux";
+import { logoImages } from "@/assets/images/global/logo";
+import AdvanceButton from "@/components/global/AdvanceButton";
+import SecondaryButton from "@/components/global/SecondaryButton";
+import Text from "@/components/global/Text";
+import ToolNav from "@/components/tools/ToolNav";
+import { journal_tool } from "@/constants/models/tools";
+import { Colors } from "@/constants/styles/colorTheme";
+import { SCREEN_HEIGHT } from "@/constants/styles/values";
+import { analyticsLogFinishToolEvent } from "@/services/firebase/firebase";
+import { RootState } from "@/state/store";
 
 const CURRENT_PAGE = 6;
 const TOOL_NAME = journal_tool.name;
@@ -21,7 +21,6 @@ const TOOL_NAME = journal_tool.name;
 const Log_finish = () => {
   const { t } = useTranslation(["tools", "common"]);
 
-  //tool state
   const journalState = useSelector((state: RootState) => state.journal);
 
   return (

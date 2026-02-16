@@ -31,7 +31,6 @@ const index = () => {
   const articleBody = () => {
     return (
       <Trans
-        // i18nKey={t(`article_data.${id}.body`)}
         defaults={articleLocaleObj.body}
         ns="learn"
         components={{

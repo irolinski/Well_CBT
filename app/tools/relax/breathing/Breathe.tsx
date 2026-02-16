@@ -32,17 +32,19 @@ const Breathe = () => {
     (state: RootState) => state.breatheSettings,
   );
 
-  //AUDIO STATE
+  // -- state --
+
+  // audio state
   const [audioIsActive, setAudioIsActive] = useState(true);
 
-  //UI STATE
+  // ui state
   const outerCircleSize = SCREEN_WIDTH / 1.25;
 
-  // COUNTDOWN STATE
+  // countdown state
   const [countdownVal, setCountdownVal] = useState(3);
   const [countdownActive, setCountdownActive] = useState(false);
 
-  // MAIN TIMER STATE
+  // main timer state
   const [breatheInOut, setBreathInOut] = useState(true);
   const [showHold, setShowHold] = useState(false);
   const [counterOn, setCounterOn] = useState(false);
@@ -53,7 +55,7 @@ const Breathe = () => {
   const repsToDo = 5 * breatheSettings.numOfSets;
   const [repsDone, setRepsDone] = useState(0);
 
-  //AUDIO PLAYER FUNCTIONS
+  // -- audio player functions --
 
   //array of keys for use in loops
   const audioPlayerKeys = Object.keys(audioPlayer) as Array<
@@ -122,7 +124,7 @@ const Breathe = () => {
     }
   }
 
-  // DB
+  // -- db --
   //the below state is to prevent accidental multiple db requests
   const [hasLoggedTimeToDb, setHasLoggedTimeToDb] = useState(false);
   let ellapsedTime =
@@ -132,7 +134,7 @@ const Breathe = () => {
       breatheSettings.mode.breatheInTime +
       breatheSettings.mode.breatheOutTime);
 
-  // ANIMATIONS
+  // -- animations --
 
   // outer circle
   const innerCircleAnim = useRef(new Animated.Value(0.65)).current;
@@ -240,7 +242,7 @@ const Breathe = () => {
     }).start();
   };
 
-  // COUNTER INIT FUNCTIONS
+  // -- counter init functions --
   const resetExercise = () => {
     counterOn && setCounterOn(false);
     setRepsDone(0);
@@ -293,7 +295,9 @@ const Breathe = () => {
     }
   };
 
-  // STOP AUDIO PLAYBACK
+  // -- use effects --
+
+  // stop audio playback
   useEffect(() => {
     if (!audioIsActive) {
       mutePlayback();
@@ -302,7 +306,7 @@ const Breathe = () => {
     }
   });
 
-  // PRE-TIMER COUNTDOWN EFFECT
+  // pre-timer countdown effect
   useEffect(() => {
     if (countdownActive && countdownVal > 0) {
       const countdownInterval = setInterval(() => {
@@ -317,7 +321,7 @@ const Breathe = () => {
     }
   }, [countdownVal, countdownActive]);
 
-  // MAIN TIMER EFFECT
+  // main timer efect
   useEffect(() => {
     if (repsDone === repsToDo) {
       setCounterOn(false);
@@ -329,7 +333,7 @@ const Breathe = () => {
 
     if (counterOn && !pause) {
       const counterInterval = setInterval(() => {
-        // ANIMATION TRIGGERS
+        // -- animation triggers --
 
         // first animation
         if (
@@ -361,7 +365,6 @@ const Breathe = () => {
               // add only 0.5 to reps so only after two holds a full rep is present inside state
               setRepsDone(repsDone + 0.5);
               // stop session before last HOLD so that the user doesn't suffocate
-              //CHECK NEXT LINE AGAIN BECAUSE IT LOOKS LIKE IT SHOULD BE repsDone === repsToDo - 0.5
               if (repsDone !== repsToDo - 0.5) {
                 setCounterVal(breatheSettings.mode.holdTime);
                 playHoldSound();
@@ -381,7 +384,7 @@ const Breathe = () => {
                   setBreathInOut(true);
                   setCounterVal(breatheSettings.mode.breatheInTime);
                   playBreatheInSound();
-                  //Trigger breathe-in animation only after the the state changes are handled
+                  // Trigger breathe-in animation only after the the state changes are handled
                   animateOuterCircle(breatheSettings.mode.breatheInTime * 1000);
                 }
               }

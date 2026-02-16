@@ -1,6 +1,6 @@
 import { ArticleTypes } from "./";
 
-//article details to be found in locale/--language--/learn.json files
+// article details to be found in locale/--language--/learn.json files
 
 export const learnArticles: ArticleTypes[] = [
   {

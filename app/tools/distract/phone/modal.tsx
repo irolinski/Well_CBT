@@ -130,8 +130,8 @@ const ConversationModal = () => {
     },
     back: {
       position: "absolute",
-      //for some reason, it only stays centered if the
-      //first one is relative and the second one is absolute
+      // for some reason, it only stays centered if the
+      // first one is relative and the second one is absolute
       transform: [{ rotateY: backInterpolate }],
       backgroundColor: cardColors[cardColorNum].back,
     },

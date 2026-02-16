@@ -14,7 +14,7 @@ import { getTranslation } from "@/utils/locales";
 
 export type AchievementIdType = keyof typeof achievements;
 
-//the handlers below are handled automatically on every app load except where noted
+// the handlers below are handled automatically on every app load except where noted
 const achievements: AllAchievementsObjType = {
   1: {
     ...allAchievementsModelsObj[1],
@@ -113,7 +113,7 @@ const handlePopulateAchievementProgressTable = async () => {
         // if progress list contains a row of its relative achievement's id - do nothing
         if (idIsPresentInProgressList) {
           return;
-          //if it doesnt' - add a row  to progress list
+          // if it doesnt' - add a row  to progress list
         } else {
           await db.runAsync(
             `INSERT INTO achievementProgress(id, currentScore, requiredScore) VALUES (?, ?, ?);`,

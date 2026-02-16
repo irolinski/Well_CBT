@@ -94,7 +94,7 @@ const Onboarding_LogoAnimSlide = ({
         className="flex-row justify-center"
         style={{
           height: 85,
-          // transform: [{ translateX: 15 }], -- this make look the logo look centered over the text but it looks bad
+          // transform: [{ translateX: 15 }], -- this makes look the logo look centered over the text but it looks bad
         }}
         duration={1000}
         inputVal={0}

@@ -25,7 +25,6 @@ const MAX_SELECTED_EMOTIONS = 5;
 const Log_2 = () => {
   const { t } = useTranslation(["tools", "common"]);
 
-  // tool state
   const journalState = useSelector((state: RootState) => state.journal);
   const dispatch = useDispatch<AppDispatch>();
 
