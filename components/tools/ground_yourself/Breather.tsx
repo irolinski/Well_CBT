@@ -73,7 +73,7 @@ export const GroundYourselfBreather = ({
   }, [isActive]);
 
   return (
-    <>
+    <React.Fragment>
       <FadeInView isActive={isActive}>
         {/* Breather */}
         <View className="my-8 flex-row justify-center">
@@ -87,7 +87,7 @@ export const GroundYourselfBreather = ({
           >
             <View className="absolute h-full w-full flex-row items-center justify-center">
               <Text
-                className="z-10 text-2xl"
+                className="z-10 text-[22px]"
                 style={{
                   color: Colors.offWhite,
                   fontFamily: "KodchasanRegular",
@@ -128,7 +128,7 @@ export const GroundYourselfBreather = ({
           </View>
         </View>
       </FadeInView>
-    </>
+    </React.Fragment>
   );
 };
 

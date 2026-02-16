@@ -244,7 +244,7 @@ const BreatheModal = ({ ellapsedTime }: { ellapsedTime: number }) => {
                     >
                       {t(`tools.${TOOL_NAME}.exercise.settings.set`, {
                         count: breatheSettings.numOfSets,
-                        //fix for i18n pl pluralization bug which omits 'few'
+                        // fix for i18n pl pluralization bug which omits 'few'
                         context: isPolishFew(breatheSettings.numOfSets)
                           ? "few"
                           : "",

@@ -20,9 +20,9 @@ const CURRENT_PAGE = 4;
 const Log_4 = () => {
   const { t } = useTranslation(["tools", "common"]);
 
-  //tool state
   const dispatch = useDispatch<AppDispatch>();
   const journalState = useSelector((state: RootState) => state.journal);
+
   return (
     <React.Fragment>
       <ToolNav

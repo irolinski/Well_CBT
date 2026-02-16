@@ -30,7 +30,7 @@ const FadeInView = ({
       duration: duration,
       useNativeDriver: true,
       easing: Easing.linear,
-    }).start(onFinish && onFinish);
+    }).start(onFinish);
   };
 
   useEffect(() => {

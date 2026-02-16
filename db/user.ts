@@ -1,8 +1,8 @@
-import { Alert } from 'react-native';
-import { dbPromise } from '@/services/db';
-import { isSameDate } from '@/utils/dates';
-import { getTranslation } from '@/utils/locales';
-import { TableRowCountObj, UserType } from '../constants/models/global/models';
+import { Alert } from "react-native";
+import { dbPromise } from "@/services/db";
+import { isSameDate } from "@/utils/dates";
+import { getTranslation } from "@/utils/locales";
+import { TableRowCountObj, UserType } from "../constants/models/global/models";
 
 export const isUserType = (res: any): res is UserType => {
   return (
@@ -113,7 +113,7 @@ export const handleSetVisitStreakCount = async (): Promise<void> => {
 
         // check whether the streak continues
         if (isSameDate(lastVisit, currentTime)) {
-          //same day!
+          // same day!
         } else if (isSameDate(currentTime, dayAfterLastVisit)) {
           //streak happened - add it to db
           const newStreak = user.currentVisitStreak + 1;
@@ -127,7 +127,7 @@ export const handleSetVisitStreakCount = async (): Promise<void> => {
             ]);
           }
         } else {
-          //  streak broken!
+          // streak broken!
           await db.runAsync(`UPDATE userData SET currentVisitStreak = ?`, [1]);
         }
         // add 1 to daycount if today's a different day than it was during lastVisit

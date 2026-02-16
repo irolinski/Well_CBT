@@ -25,7 +25,7 @@ const DistortionPill = ({
 
   forceUpdateOnHighlight();
 
-  //opacity animation
+  // opacity animation
   const opacity = useRef(new Animated.Value(highlighted ? 0.5 : 1)).current;
 
   useEffect(() => {

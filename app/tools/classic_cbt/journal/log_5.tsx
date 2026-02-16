@@ -30,7 +30,6 @@ const CURRENT_PAGE = 5;
 const Log_5 = () => {
   const { t } = useTranslation(["tools", "common"]);
 
-  //tool state
   const dispatch = useDispatch<AppDispatch>();
   const journalState = useSelector((state: RootState) => state.journal);
   const [settingsData, setSettingsData] = useState<UserSettingsDataObj>();

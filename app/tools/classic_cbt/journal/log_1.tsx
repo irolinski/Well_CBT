@@ -52,7 +52,7 @@ const Log_1 = () => {
           }),
           Animated.timing(swipeUpAnimMotion, {
             toValue: -SCREEN_HEIGHT / 6 + 20, // Move to a position close to final with some overlap
-            duration: 1500, //2000 for ball
+            duration: 1500, // 2000 for ball
             useNativeDriver: true,
             easing: Easing.bounce, // Initial easing effect
           }),
@@ -61,7 +61,7 @@ const Log_1 = () => {
           Animated.delay(350),
           Animated.timing(swipeUpAnimOpacity, {
             toValue: 0,
-            duration: 1300, //2200 for ball
+            duration: 1300, // 2200 for ball
             useNativeDriver: true,
           }),
           Animated.delay(500),

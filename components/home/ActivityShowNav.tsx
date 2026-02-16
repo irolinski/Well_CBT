@@ -1,8 +1,7 @@
-import { Dimensions, Pressable, SafeAreaView, View } from "react-native";
+import { Pressable, SafeAreaView, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useDispatch } from "react-redux";
 import { Colors } from "@/constants/styles/colorTheme";
-import { SCREEN_HEIGHT } from "@/constants/styles/values";
 import { activityLogResetState } from "@/state/features/menus/activityLogSlice";
 import { AppDispatch } from "@/state/store";
 import { Ionicons } from "@expo/vector-icons";
@@ -20,16 +19,9 @@ const ActivityShowNav = ({ handlePressDelete }: ActivityShowNavTypes) => {
   return (
     <SafeAreaView
       className={`z-10 w-full border-b`}
-      // style={{
-      //   borderColor: Colors.lightGray,
-      //   backgroundColor: Colors.mainBlue,
-      //   paddingTop: SCREEN_HEIGHT * 0.065,
-      //   paddingBottom: 16,
-      // }}
       style={{
         height: TOP_FRAME_HEIGHT,
         borderColor: Colors.lightGray,
-        // paddingBottom: SCREEN_HEIGHT * 0.065,
         backgroundColor: Colors.mainBlue ?? Colors.mainBlue,
       }}
     >

@@ -46,7 +46,7 @@ const RenderItem = ({
   index: number;
   x: SharedValue<number>;
 }) => {
-  //set default orientation
+  // set default orientation
   let orientation = "text_bottom";
   if (item.orientation) {
     orientation = item.orientation;
@@ -184,14 +184,6 @@ const InfoSlideScreen = ({
   const flatListRef = useAnimatedRef<FlatList>();
   const flatListIndex = useSharedValue(0);
   const x = useSharedValue(0);
-
-  // const onViewableItemsChanged = ({
-  //   viewableItems,
-  // }: {
-  //   viewableItems: Array<ViewToken>;
-  // }) => {
-  //   flatListIndex.value = viewableItems[0].index ?? 0;
-  // };
 
   const onViewableItemsChanged = ({
     viewableItems,

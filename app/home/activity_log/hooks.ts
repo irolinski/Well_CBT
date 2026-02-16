@@ -1,13 +1,19 @@
-import { Alert } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
+import { Alert } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
 import {
-    allDataByMonthType, EntryListSection, EntryViewTableRow, getMonthYearTitle
-} from '@/constants/models/home/activity_log';
+  allDataByMonthType,
+  EntryListSection,
+  EntryViewTableRow,
+  getMonthYearTitle,
+} from "@/constants/models/home/activity_log";
 import {
-    setCurrentIndex, setDisplayedData, setEntryData, setIsLoading
-} from '@/state/features/menus/activityLogSlice';
-import { AppDispatch, RootState } from '@/state/store';
-import { getTranslation } from '@/utils/locales';
+  setCurrentIndex,
+  setDisplayedData,
+  setEntryData,
+  setIsLoading,
+} from "@/state/features/menus/activityLogSlice";
+import { AppDispatch, RootState } from "@/state/store";
+import { getTranslation } from "@/utils/locales";
 
 const useActivityLogActions = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -78,7 +84,7 @@ const useActivityLogActions = () => {
         let filteredData = activityLogState.entryData.map((entry) => {
           let filteredDataEntries = entry.data;
 
-          //filter by date
+          // filter by date
           if (activityLogState.filterPeriod.length > 0) {
             let filterPeriodOne: Date;
             let filterPeriodTwo: Date;
@@ -97,7 +103,7 @@ const useActivityLogActions = () => {
               );
             }
           }
-          //filter by categories
+          // filter by categories
           if (activityLogState.filterCategories.length > 0) {
             filteredDataEntries = filteredDataEntries.filter((el) =>
               activityLogState.filterCategories.includes(el.activityName),
@@ -131,7 +137,7 @@ const useActivityLogActions = () => {
       ) {
         // Reset displayedData to include all transformedData in case the filters have just been turned off
         dispatch(setDisplayedData(dataArr));
-        //Load more if there is less than 10 on page
+        // Load more if there is less than 10 on page
         fillPage(dataArr, 10);
         dispatch(setEntryData(dataArr));
       }
@@ -145,13 +151,13 @@ const useActivityLogActions = () => {
   };
 
   const fillPage = (dataArr: EntryListSection[], limitNum: number) => {
-    //this function instantly displays a preset number of entries once it is called
-    //the effects are visible instantly, unlike calling displayMoreData few times
-    //and thus it ensures a seamless UI experience
+    // this function instantly displays a preset number of entries once it is called
+    // the effects are visible instantly, unlike calling displayMoreData few times
+    // and thus it ensures a seamless UI experience
 
     dispatch(setIsLoading(true));
-    //!be double careful not to try to access a non-existant index!
-    //!it had once ruined the whole component!
+    // !be double careful not to try to access a non-existant index!
+    // !it had once ruined the whole component!
     try {
       if (
         dataArr.length > 1 &&

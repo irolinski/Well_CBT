@@ -1,13 +1,16 @@
-import { Alert } from 'react-native';
-import { RelaxToolNames, ToolNames } from '@/constants/models/home/activity_log';
-import { dbPromise } from '@/services/db';
-import { cdaSliceTypes } from '@/state/features/tools/cdaSlice';
-import { journalSliceTypes } from '@/state/features/tools/journalSlice';
-import { getTranslation } from '@/utils/locales';
+import { Alert } from "react-native";
+import {
+  RelaxToolNames,
+  ToolNames,
+} from "@/constants/models/home/activity_log";
+import { dbPromise } from "@/services/db";
+import { cdaSliceTypes } from "@/state/features/tools/cdaSlice";
+import { journalSliceTypes } from "@/state/features/tools/journalSlice";
+import { getTranslation } from "@/utils/locales";
 
-//--
+// --
 // tools/cda
-//--
+// --
 
 export const handleSaveCDAEntry = async (cdaState: cdaSliceTypes) => {
   if (cdaState.save) {
@@ -76,9 +79,9 @@ export const deleteCDAEntry = async (id: number) => {
   }
 };
 
-//--
+// --
 //tools/classic_cbt/journal
-//--
+// --
 
 export const handleSaveMoodJournalEntry = async (
   journalState: journalSliceTypes,
@@ -161,9 +164,9 @@ export const deleteMoodJournalEntry = async (id: number) => {
   }
 };
 
-//--
+// --
 // tools/relax
-//--
+// --
 
 export const handleLogRelaxActivity = async (
   activityName: RelaxToolNames,
@@ -209,9 +212,9 @@ export const handleLogRelaxActivity = async (
   }
 };
 
-// ---
+// --
 // tools/phone_a_friend
-// ---
+// --
 
 export const getPhoneData = async () => {
   const db = await dbPromise;
@@ -298,9 +301,9 @@ export const setContactWithPicture = async (
   }
 };
 
-// ---
+// --
 // tool tutorials
-// ---
+// --
 
 export const handleSetSeenTutorial = async (toolName: ToolNames) => {
   try {

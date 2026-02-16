@@ -32,19 +32,19 @@ const Breathe = () => {
     (state: RootState) => state.breatheSettings,
   );
 
-  //AUDIO STATE
+  // -- state --
+
+  // audio state
   const [audioIsActive, setAudioIsActive] = useState(true);
 
-
-  //UI STATE
-
+  // ui state
   const outerCircleSize = SCREEN_WIDTH / 1.25;
 
-  // COUNTDOWN STATE
+  // countdown state
   const [countdownVal, setCountdownVal] = useState(3);
   const [countdownActive, setCountdownActive] = useState(false);
 
-  // MAIN TIMER STATE
+  // main timer state
   const [breatheInOut, setBreathInOut] = useState(true);
   const [showHold, setShowHold] = useState(false);
   const [counterOn, setCounterOn] = useState(false);
@@ -55,10 +55,12 @@ const Breathe = () => {
   const repsToDo = 5 * breatheSettings.numOfSets;
   const [repsDone, setRepsDone] = useState(0);
 
-  //AUDIO PLAYER FUNCTIONS
+  // -- audio player functions --
 
   //array of keys for use in loops
-  const audioPlayerKeys = Object.keys(audioPlayer) as Array<keyof typeof audioPlayer>;
+  const audioPlayerKeys = Object.keys(audioPlayer) as Array<
+    keyof typeof audioPlayer
+  >;
 
   function playGetReadySound() {
     if (selectedLanguage === "pl") {
@@ -106,7 +108,7 @@ const Breathe = () => {
     for (const key of audioPlayerKeys) {
       audioPlayer[key].pause();
     }
-    router.back()
+    router.back();
   }
 
   function playHoldSound() {
@@ -122,8 +124,8 @@ const Breathe = () => {
     }
   }
 
-  // DB
-  //the VV below VV state is to prevent accidental multiple db requests
+  // -- db --
+  //the below state is to prevent accidental multiple db requests
   const [hasLoggedTimeToDb, setHasLoggedTimeToDb] = useState(false);
   let ellapsedTime =
     5 *
@@ -132,7 +134,7 @@ const Breathe = () => {
       breatheSettings.mode.breatheInTime +
       breatheSettings.mode.breatheOutTime);
 
-  // ANIMATIONS
+  // -- animations --
 
   // outer circle
   const innerCircleAnim = useRef(new Animated.Value(0.65)).current;
@@ -240,7 +242,7 @@ const Breathe = () => {
     }).start();
   };
 
-  // COUNTER INIT FUNCTIONS
+  // -- counter init functions --
   const resetExercise = () => {
     counterOn && setCounterOn(false);
     setRepsDone(0);
@@ -293,16 +295,18 @@ const Breathe = () => {
     }
   };
 
-    // STOP AUDIO PLAYBACK
+  // -- use effects --
+
+  // stop audio playback
   useEffect(() => {
     if (!audioIsActive) {
       mutePlayback();
     } else if (audioIsActive) {
       unmutePlayback();
     }
-  })
+  });
 
-  // PRE-TIMER COUNTDOWN EFFECT
+  // pre-timer countdown effect
   useEffect(() => {
     if (countdownActive && countdownVal > 0) {
       const countdownInterval = setInterval(() => {
@@ -317,7 +321,7 @@ const Breathe = () => {
     }
   }, [countdownVal, countdownActive]);
 
-  // MAIN TIMER EFFECT
+  // main timer efect
   useEffect(() => {
     if (repsDone === repsToDo) {
       setCounterOn(false);
@@ -329,7 +333,7 @@ const Breathe = () => {
 
     if (counterOn && !pause) {
       const counterInterval = setInterval(() => {
-        // ANIMATION TRIGGERS
+        // -- animation triggers --
 
         // first animation
         if (
@@ -361,7 +365,6 @@ const Breathe = () => {
               // add only 0.5 to reps so only after two holds a full rep is present inside state
               setRepsDone(repsDone + 0.5);
               // stop session before last HOLD so that the user doesn't suffocate
-              //CHECK NEXT LINE AGAIN BECAUSE IT LOOKS LIKE IT SHOULD BE repsDone === repsToDo - 0.5
               if (repsDone !== repsToDo - 0.5) {
                 setCounterVal(breatheSettings.mode.holdTime);
                 playHoldSound();
@@ -381,7 +384,7 @@ const Breathe = () => {
                   setBreathInOut(true);
                   setCounterVal(breatheSettings.mode.breatheInTime);
                   playBreatheInSound();
-                  //Trigger breathe-in animation only after the the state changes are handled
+                  // Trigger breathe-in animation only after the the state changes are handled
                   animateOuterCircle(breatheSettings.mode.breatheInTime * 1000);
                 }
               }
@@ -448,11 +451,15 @@ const Breathe = () => {
 
           <Pressable
             onPress={() => {
-              audioIsActive ? setAudioIsActive(false) : setAudioIsActive(true)
+              audioIsActive ? setAudioIsActive(false) : setAudioIsActive(true);
             }}
           >
             <View>
-              <Feather name={audioIsActive ? "volume-2" : "volume-x"} size={24} color={Colors.black} />
+              <Feather
+                name={audioIsActive ? "volume-2" : "volume-x"}
+                size={24}
+                color={Colors.black}
+              />
             </View>
           </Pressable>
 
@@ -476,19 +483,16 @@ const Breathe = () => {
             bottom: SCREEN_HEIGHT * 0.05,
           }}
         >
-          {/* Reps counter - for development purposes only */}
-          {/* <Text>
-            Reps done: {Math.floor(repsDone)}/{repsToDo} 
-          </Text> */}
-
           {/* Outer circle */}
           {showHold && (
-            <Text
-              className="absolute -translate-y-8 text-center text-4xl"
-              style={{ width: SCREEN_WIDTH }}
-            >
-              {counterVal}
-            </Text>
+            <View className="absolute -translate-y-8 items-center justify-center">
+              <Text
+                className="text-center text-4xl"
+                style={{ width: SCREEN_WIDTH }}
+              >
+                {counterVal}
+              </Text>
+            </View>
           )}
           <View
             className="absolute justify-center overflow-hidden border"
@@ -498,7 +502,6 @@ const Breathe = () => {
               width: outerCircleSize,
               height: outerCircleSize,
               borderRadius: outerCircleSize,
-              // transform: [{ scale: innerCircleAnim }],
               backgroundColor: Colors.lightGray,
               opacity: 0.7,
               borderColor: Colors.mainGray,

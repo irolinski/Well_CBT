@@ -89,7 +89,7 @@ const ActivityLogCalendar = () => {
     return arr;
   };
 
-  //-- locale config --
+  // -- locale config --
 
   LocaleConfig.locales["i18n"] = {
     monthNames: monthNames.map((month) => t(`dates.months.${month}.full`)),
@@ -103,7 +103,7 @@ const ActivityLogCalendar = () => {
 
   LocaleConfig.defaultLocale = "i18n";
 
-  //-- use effects --
+  // -- use effects --
 
   useEffect(() => {
     // do nothing if there is no raw data

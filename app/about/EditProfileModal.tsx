@@ -10,6 +10,7 @@ import {
   ScrollView,
   TextInput,
   TouchableOpacity,
+  TouchableWithoutFeedback,
   View,
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
@@ -49,11 +50,9 @@ const EditProfileModal = () => {
   const editProfileModalState = useSelector(
     (state: RootState) => state.editProfileModal,
   );
-  const [isLoading, setIsLoading] = useState(false);
   const [profilePic, setProfilePic] = useState<Image | undefined>();
 
   useEffect(() => {
-    setIsLoading(true);
     try {
       fetchUserData().then((res) => {
         let fetchedData = res as UserType;
@@ -63,8 +62,6 @@ const EditProfileModal = () => {
     } catch (err) {
       console.error(err);
       Alert.alert(t("alerts.error"), t("alerts.error_db_fetching"));
-    } finally {
-      setIsLoading(false);
     }
   }, []);
 
@@ -87,6 +84,11 @@ const EditProfileModal = () => {
     dispatch(setShowEditProfileModal(false));
   };
 
+  const handleUnfocusInput = () => {
+    dispatch(setNameInputIsActive(false));
+    Keyboard.dismiss();
+  };
+
   return (
     <Modal
       animationType="slide"
@@ -104,184 +106,193 @@ const EditProfileModal = () => {
         indicatorStyle="black"
         persistentScrollbar={true} // works only on android
       >
-        <View
-          style={{
-            paddingTop:
-              Platform.OS === "ios" &&
-              SCREEN_HEIGHT > REFERENCE_SMALL_DEVICE_HEIGHT
-                ? 80
-                : 48,
-            paddingBottom: 48,
-            paddingHorizontal: 16,
-            top: 0,
-            width: SCREEN_WIDTH,
-            backgroundColor: Colors.offWhite,
+        <TouchableWithoutFeedback
+          onPress={() => {
+            handleUnfocusInput();
           }}
+          accessible={false}
         >
-          <Pressable
-            onPress={() => {
-              dispatch(setShowEditProfileModal(false));
+          <View
+            style={{
+              paddingTop:
+                Platform.OS === "ios" &&
+                SCREEN_HEIGHT > REFERENCE_SMALL_DEVICE_HEIGHT
+                  ? 80
+                  : 48,
+              paddingBottom: 48,
+              paddingHorizontal: 16,
+              top: 0,
+              width: SCREEN_WIDTH,
+              backgroundColor: Colors.offWhite,
             }}
           >
-            {Platform.OS === "ios" ? (
-              <View className="items-center pb-6">
-                <View>
-                  <Feather
-                    name="chevron-down"
-                    size={24}
-                    color={Colors.blackPearl}
-                  />
-                </View>
-              </View>
-            ) : (
-              <View className="items-start px-8 pb-6">
-                <View>
-                  <MaterialCommunityIcons
-                    name="window-close"
-                    size={24}
-                    color={Colors.blackPearl}
-                  />
-                </View>
-              </View>
-            )}
-          </Pressable>
-          <View className="items-center">
-            <Text className="text-xl" style={{ color: Colors.mainGray }}>
-              {t("edit_profile.title")}
-            </Text>
-          </View>
-          <View className="mt-8">
-            <View>
-              <Text className="mb-2 text-lg" style={{ color: Colors.mainGray }}>
-                {t("edit_profile.your_profile")}
-              </Text>
-              <View className="justify-center">
-                <View className="flex-row justify-center">
-                  <Image
-                    style={{
-                      width: 0.4 * SCREEN_WIDTH,
-                      height: 0.4 * SCREEN_WIDTH,
-                    }}
-                    source={profilePic}
-                  ></Image>
-                </View>
-                <View className="mt-3 flex-row justify-center pt-4">
-                  <View className="relative h-16 flex-row items-center px-12">
-                    <TouchableOpacity
-                      className="absolute right-8 top-0 z-10 pb-8 pl-8"
-                      onPress={() => {
-                        if (!editProfileModalState.nameInputIsActive) {
-                          dispatch(setNameInputIsActive(true));
-                        } else {
-                          dispatch(setNameInputIsActive(false));
-                        }
-                      }}
-                    >
-                      <MaterialCommunityIcons
-                        name="pencil-outline"
-                        size={38}
-                        color={
-                          editProfileModalState.nameInputIsActive
-                            ? Colors.mainGray
-                            : Colors.blackPearl
-                        }
-                      />
-                    </TouchableOpacity>
-                    <TextInput
-                      className="h-full w-64 text-center text-3xl"
-                      value={editProfileModalState.name}
-                      style={{
-                        color: editProfileModalState.nameInputIsActive
-                          ? Colors.black
-                          : Colors.superDarkGray,
-                        borderColor: Colors.lightGray,
-                        backgroundColor: Colors.offWhite,
-                        textAlignVertical: "center",
-                      }}
-                      selectTextOnFocus={true}
-                      onChangeText={(value) => {
-                        if (isValidName(value)) {
-                          dispatch(setName(value));
-                        }
-                      }}
-                      editable={editProfileModalState.nameInputIsActive}
-                      multiline={false}
-                      maxLength={MAX_NAME_LENGTH}
-                      autoFocus={editProfileModalState.nameInputIsActive}
-                      returnKeyType="done"
-                      onKeyPress={(evt) => {
-                        if (evt.nativeEvent.key == "Enter") {
-                          Keyboard.dismiss();
-                        }
-                      }}
-                      clearButtonMode="never"
-                      onBlur={() => {
-                        dispatch(setNameInputIsActive(false));
-                        Keyboard.dismiss();
-                      }}
+            <Pressable
+              onPress={() => {
+                dispatch(setShowEditProfileModal(false));
+              }}
+            >
+              {Platform.OS === "ios" ? (
+                <View className="items-center pb-6">
+                  <View>
+                    <Feather
+                      name="chevron-down"
+                      size={24}
+                      color={Colors.blackPearl}
                     />
+                  </View>
+                </View>
+              ) : (
+                <View className="items-start px-8 pb-6">
+                  <View>
+                    <MaterialCommunityIcons
+                      name="window-close"
+                      size={24}
+                      color={Colors.blackPearl}
+                    />
+                  </View>
+                </View>
+              )}
+            </Pressable>
+            <View className="items-center">
+              <Text className="text-xl" style={{ color: Colors.mainGray }}>
+                {t("edit_profile.title")}
+              </Text>
+            </View>
+            <View className="mt-8">
+              <View>
+                <Text
+                  className="mb-2 text-lg"
+                  style={{ color: Colors.mainGray }}
+                >
+                  {t("edit_profile.your_profile")}
+                </Text>
+                <View className="justify-center">
+                  <View className="flex-row justify-center">
+                    <Image
+                      style={{
+                        width: 0.4 * SCREEN_WIDTH,
+                        height: 0.4 * SCREEN_WIDTH,
+                      }}
+                      source={profilePic}
+                    ></Image>
+                  </View>
+                  <View className="mt-3 flex-row justify-center pt-4">
+                    <View className="relative h-16 flex-row items-center px-12">
+                      <View className="absolute right-8 top-0 z-10 pb-8 pl-8">
+                        <MaterialCommunityIcons
+                          name="pencil-outline"
+                          size={38}
+                          color={
+                            editProfileModalState.nameInputIsActive
+                              ? Colors.mainGray
+                              : Colors.blackPearl
+                          }
+                        />
+                      </View>
+                      <TextInput
+                        className="h-full w-64 text-center text-3xl"
+                        onPress={() =>
+                          !editProfileModalState.nameInputIsActive &&
+                          dispatch(setNameInputIsActive(true))
+                        }
+                        value={editProfileModalState.name}
+                        style={{
+                          color: editProfileModalState.nameInputIsActive
+                            ? Colors.black
+                            : Colors.superDarkGray,
+                          borderColor: Colors.lightGray,
+                          backgroundColor: Colors.offWhite,
+                          textAlignVertical: "center",
+                        }}
+                        selectTextOnFocus={true}
+                        onChangeText={(value) => {
+                          if (isValidName(value)) {
+                            dispatch(setName(value));
+                          }
+                        }}
+                        multiline={false}
+                        maxLength={MAX_NAME_LENGTH}
+                        autoFocus={editProfileModalState.nameInputIsActive}
+                        returnKeyType="done"
+                        onKeyPress={(evt) => {
+                          if (evt.nativeEvent.key == "Enter") {
+                            handleUnfocusInput();
+                          }
+                        }}
+                        clearButtonMode="never"
+                        onBlur={() => {
+                          handleUnfocusInput();
+                        }}
+                      />
+                    </View>
                   </View>
                 </View>
               </View>
             </View>
-          </View>
-          <View className="mb-4">
-            <DividerLine width={SCREEN_WIDTH * 0.5} />
-          </View>
-          <View className="my-8" style={{ height: 225 }}>
-            <View>
-              <Text className="mb-4 text-lg" style={{ color: Colors.mainGray }}>
-                {t("edit_profile.select_profile_picture")}
-              </Text>
-              <ScrollView
-                contentContainerStyle={{
-                  justifyContent: "space-between",
-                  flexWrap: "wrap",
-                  flexDirection: "row",
-                  paddingTop: 16,
-                  paddingBottom: 16,
+            <View className="mb-4">
+              <DividerLine width={SCREEN_WIDTH * 0.5} />
+            </View>
+            <View className="my-8" style={{ height: 225 }}>
+              <View>
+                <Text
+                  className="mb-4 text-lg"
+                  style={{ color: Colors.mainGray }}
+                >
+                  {t("edit_profile.select_profile_picture")}
+                </Text>
+                <ScrollView
+                  contentContainerStyle={{
+                    justifyContent: "space-between",
+                    flexWrap: "wrap",
+                    flexDirection: "row",
+                    paddingTop: 16,
+                    paddingBottom: 16,
+                  }}
+                  style={{ borderColor: Colors.mainGray, borderRadius: 20 }}
+                  className="border px-4"
+                  nestedScrollEnabled={true}
+                >
+                  {allFaces.map(
+                    (
+                      faceObj: { id: number; image: Image },
+                      indexNum: number,
+                    ) => (
+                      <TouchableOpacity
+                        className="my-2 rounded-full"
+                        key={indexNum}
+                        onPress={() => {
+                          dispatch(setProfilePicId(faceObj.id));
+                        }}
+                        style={{
+                          borderColor:
+                            faceObj.id === editProfileModalState.selectedFaceId
+                              ? Colors.lightGray
+                              : "transparent",
+                          borderWidth: 6,
+                        }}
+                      >
+                        <Image
+                          style={{ width: 85, height: 85 }}
+                          source={faceObj.image}
+                        />
+                      </TouchableOpacity>
+                    ),
+                  )}
+                </ScrollView>
+              </View>
+            </View>
+            <View className="flex-row justify-center pb-8 pt-16">
+              <NavigationModalButton
+                title={t("buttons.save_changes", { ns: "common" })}
+                disabled={editProfileModalState.nameInputIsActive}
+                onPress={() => {
+                  handleSaveChanges();
                 }}
-                style={{ borderColor: Colors.mainGray, borderRadius: 20 }}
-                className="border px-4"
-                nestedScrollEnabled={true}
-              >
-                {allFaces.map(
-                  (faceObj: { id: number; image: Image }, indexNum: number) => (
-                    <TouchableOpacity
-                      className="my-2 rounded-full"
-                      key={indexNum}
-                      onPress={() => {
-                        dispatch(setProfilePicId(faceObj.id));
-                      }}
-                      style={{
-                        borderColor:
-                          faceObj.id === editProfileModalState.selectedFaceId
-                            ? Colors.lightGray
-                            : "transparent",
-                        borderWidth: 6,
-                      }}
-                    >
-                      <Image
-                        style={{ width: 85, height: 85 }}
-                        source={faceObj.image}
-                      />
-                    </TouchableOpacity>
-                  ),
-                )}
-              </ScrollView>
+                icon={<Feather name="save" size={24} color={Colors.white} />}
+              />
             </View>
           </View>
-          <View className="flex-row justify-center pb-8 pt-16">
-            <NavigationModalButton
-              title={t("buttons.save_changes", { ns: "common" })}
-              disabled={editProfileModalState.nameInputIsActive}
-              onPress={() => {
-                handleSaveChanges();
-              }}
-              icon={<Feather name="save" size={24} color={Colors.white} />}
-            />
-          </View>
-        </View>
+        </TouchableWithoutFeedback>
       </ScrollView>
     </Modal>
   );
