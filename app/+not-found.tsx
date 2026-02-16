@@ -2,12 +2,9 @@ import { Link, Stack } from "expo-router";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-// import { ThemedText } from '@/components/ThemedText';
-// import { ThemedView } from '@/components/ThemedView';
-
 const NotFoundScreen = () => {
   return (
-    <>
+    <React.Fragment>
       <Stack.Screen options={{ title: "Oops!" }} />
       <View style={styles.container}>
         <Text>This screen doesn't exist.</Text>
@@ -15,7 +12,7 @@ const NotFoundScreen = () => {
           <Text>Go to home screen!</Text>
         </Link>
       </View>
-    </>
+    </React.Fragment>
   );
 };
 

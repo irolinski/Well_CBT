@@ -51,7 +51,7 @@ const CDADistortionList = ({
   };
 
   return (
-    <>
+    <React.Fragment>
       <View style={styles.distortionWrapper}>
         <Text
           className="w-full pb-6"
@@ -135,7 +135,7 @@ const CDADistortionList = ({
           </View>
         </View>
       </Modal>
-    </>
+    </React.Fragment>
   );
 };
 
