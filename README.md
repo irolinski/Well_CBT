@@ -68,18 +68,18 @@
 ---
 
 ## Release
-<h4>This app will be released on: </h4> 
+<h4>This app is available on: </h4> 
 <ul>
- <li>App Store: Second quarter of 2025 </li>
- <li>Google Play: Date TBA</li>
+ <li><a href="https://apps.apple.com/pl/app/worryfree-pocket-cbt-aid/id6745962528">App Store</a></li>
+ <li><a href="https://play.google.com/store/apps/details?id=com.irolinski.cbtApp&hl=en">Google Play</a></li>
 </ul>
 
 
 ## Credits  
 
 ### Team  
-- **Project Lead, Development, Copywriting, Assistant UI/UX Design:** [@irolinski](https://irolinskidev.pl)  
-- **Lead UI/UX Design, Assistant Copywriting:** [@olgatuleja](https://www.instagram.com/olgatuleja/)  
+- **Project Lead, Development, Copywriting, Assistant UI/UX Design, Sound Engineer:** [@irolinski](https://irolinskidev.pl)  
+- **Lead UI/UX Design, Assistant Copywriting, VO Actress:** [@olgatuleja](https://www.instagram.com/olgatuleja/)  
 
 ### Packages  
 This software utilizes the following open-source packages:  
@@ -87,4 +87,5 @@ This software utilizes the following open-source packages:
 - [NativeWind](https://github.com/nativewind/nativewind)  
 - [React Native Calendars](https://github.com/wix/react-native-calendars)  
 - [Universal Tooltip](https://github.com/alantoa/universal-tooltip)  
-- [React Native Slider](https://github.com/miblanchard/react-native-slider)  
+- [React Native Slider](https://github.com/miblanchard/react-native-slider)
+- [typewriter4react-native](https://github.com/irolinski/typewriter4react-native)
