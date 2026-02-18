@@ -20,7 +20,7 @@ import { AppDispatch, RootState } from "@/state/store";
 import { Feather } from "@expo/vector-icons";
 import BreatheModal from "./modal";
 import { selectedLanguage } from "@/hooks/i18n";
-import breatheSounds from "@/assets/audio";
+import breatheSounds from "@/assets/audio/tools/breathe";
 import { useAudioPlayer } from "expo-audio";
 
 const TOOL_NAME = breathing_tool.name;
