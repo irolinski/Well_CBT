@@ -20,12 +20,27 @@ import { AppDispatch, RootState } from "@/state/store";
 import { Feather } from "@expo/vector-icons";
 import BreatheModal from "./modal";
 import { selectedLanguage } from "@/hooks/i18n";
-import audioPlayer from "@/utils/assets/audio/Breathe";
+import breatheSounds from "@/assets/audio";
+import { useAudioPlayer } from "expo-audio";
 
 const TOOL_NAME = breathing_tool.name;
 
 const Breathe = () => {
   const { t } = useTranslation(["tools", "common"]);
+
+  // audio player setup
+  // TODO: fetch different audio files based on the selected language
+  const audioPlayer = {
+    breatheOutPlayer: useAudioPlayer(breatheSounds.breatheOutSound),
+    holdPlayer: useAudioPlayer(breatheSounds.holdSound),
+    breatheOutPlayerPL: useAudioPlayer(breatheSounds.breatheOutSoundPL),
+    holdInPlayerPL: useAudioPlayer(breatheSounds.holdInSoundPL),
+    holdOutPlayerPL: useAudioPlayer(breatheSounds.holdOutSoundPL),
+    breatheInPlayer: useAudioPlayer(breatheSounds.breatheInSound),
+    breatheInPlayerPL: useAudioPlayer(breatheSounds.breatheInSoundPL),
+    getReadyPlayer: useAudioPlayer(breatheSounds.getReadySound),
+    getReadyPlayerPL: useAudioPlayer(breatheSounds.getReadySoundPL),
+  };
 
   const dispatch = useDispatch<AppDispatch>();
   const breatheSettings = useSelector(
@@ -304,7 +319,7 @@ const Breathe = () => {
     } else if (audioIsActive) {
       unmutePlayback();
     }
-  });
+  }, [audioIsActive]);
 
   // pre-timer countdown effect
   useEffect(() => {
