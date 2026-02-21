@@ -32,7 +32,6 @@ const Breathe = () => {
     breatheSounds[selectedLanguage as AvailableLanguage];
 
   // audio player setup
-  // TODO: fetch different audio files based on the selected language
   const audioPlayer = {
     breatheOutPlayer: useAudioPlayer(audioInCurrentLanguage.breatheOutSound),
     holdInPlayer: useAudioPlayer(audioInCurrentLanguage.holdInSound),
@@ -71,7 +70,7 @@ const Breathe = () => {
 
   // -- audio player functions --
 
-  //array of keys for use in loops
+  // array of keys for use in loops
   const audioPlayerKeys = Object.keys(audioPlayer) as Array<
     keyof typeof audioPlayer
   >;
