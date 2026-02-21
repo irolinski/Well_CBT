@@ -19,7 +19,7 @@ import { toggleModal } from "@/state/features/tools/breatheSettingsSlice";
 import { AppDispatch, RootState } from "@/state/store";
 import { Feather } from "@expo/vector-icons";
 import BreatheModal from "./modal";
-import { selectedLanguage } from "@/hooks/i18n";
+import { AvailableLanguage, selectedLanguage } from "@/hooks/i18n";
 import breatheSounds from "@/assets/audio/tools/breathe";
 import { useAudioPlayer } from "expo-audio";
 
@@ -28,18 +28,17 @@ const TOOL_NAME = breathing_tool.name;
 const Breathe = () => {
   const { t } = useTranslation(["tools", "common"]);
 
+  const audioInCurrentLanguage =
+    breatheSounds[selectedLanguage as AvailableLanguage];
+
   // audio player setup
   // TODO: fetch different audio files based on the selected language
   const audioPlayer = {
-    breatheOutPlayer: useAudioPlayer(breatheSounds.breatheOutSound),
-    holdPlayer: useAudioPlayer(breatheSounds.holdSound),
-    breatheOutPlayerPL: useAudioPlayer(breatheSounds.breatheOutSoundPL),
-    holdInPlayerPL: useAudioPlayer(breatheSounds.holdInSoundPL),
-    holdOutPlayerPL: useAudioPlayer(breatheSounds.holdOutSoundPL),
-    breatheInPlayer: useAudioPlayer(breatheSounds.breatheInSound),
-    breatheInPlayerPL: useAudioPlayer(breatheSounds.breatheInSoundPL),
-    getReadyPlayer: useAudioPlayer(breatheSounds.getReadySound),
-    getReadyPlayerPL: useAudioPlayer(breatheSounds.getReadySoundPL),
+    breatheOutPlayer: useAudioPlayer(audioInCurrentLanguage.breatheOutSound),
+    holdInPlayer: useAudioPlayer(audioInCurrentLanguage.holdInSound),
+    holdOutPlayer: useAudioPlayer(audioInCurrentLanguage.holdOutSound),
+    breatheInPlayer: useAudioPlayer(audioInCurrentLanguage.breatheInSound),
+    getReadyPlayer: useAudioPlayer(audioInCurrentLanguage.getReadySound),
   };
 
   const dispatch = useDispatch<AppDispatch>();
@@ -78,33 +77,18 @@ const Breathe = () => {
   >;
 
   function playGetReadySound() {
-    if (selectedLanguage === "pl") {
-      audioPlayer.getReadyPlayerPL.seekTo(0);
-      audioPlayer.getReadyPlayerPL.play();
-    } else {
-      audioPlayer.getReadyPlayer.seekTo(0);
-      audioPlayer.getReadyPlayer.play();
-    }
+    audioPlayer.getReadyPlayer.seekTo(0);
+    audioPlayer.getReadyPlayer.play();
   }
 
   function playBreatheOutSound() {
-    if (selectedLanguage === "pl") {
-      audioPlayer.breatheOutPlayerPL.seekTo(0);
-      audioPlayer.breatheOutPlayerPL.play();
-    } else {
-      audioPlayer.breatheOutPlayer.seekTo(0);
-      audioPlayer.breatheOutPlayer.play();
-    }
+    audioPlayer.breatheOutPlayer.seekTo(0);
+    audioPlayer.breatheOutPlayer.play();
   }
 
   function playBreatheInSound() {
-    if (selectedLanguage === "pl") {
-      audioPlayer.breatheInPlayerPL.seekTo(0);
-      audioPlayer.breatheInPlayerPL.play();
-    } else {
-      audioPlayer.breatheInPlayer.seekTo(0);
-      audioPlayer.breatheInPlayer.play();
-    }
+    audioPlayer.breatheInPlayer.seekTo(0);
+    audioPlayer.breatheInPlayer.play();
   }
 
   function mutePlayback() {
@@ -128,14 +112,11 @@ const Breathe = () => {
 
   function playHoldSound() {
     if (selectedLanguage === "pl" && breatheInOut) {
-      audioPlayer.holdInPlayerPL.seekTo(0);
-      audioPlayer.holdInPlayerPL.play();
-    } else if (selectedLanguage === "pl" && !breatheInOut) {
-      audioPlayer.holdOutPlayerPL.seekTo(0);
-      audioPlayer.holdOutPlayerPL.play();
+      audioPlayer.holdInPlayer.seekTo(0);
+      audioPlayer.holdInPlayer.play();
     } else {
-      audioPlayer.holdPlayer.seekTo(0);
-      audioPlayer.holdPlayer.play();
+      audioPlayer.holdOutPlayer.seekTo(0);
+      audioPlayer.holdOutPlayer.play();
     }
   }
 

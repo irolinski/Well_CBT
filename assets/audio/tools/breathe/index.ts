@@ -9,15 +9,20 @@ import getReadySound from "@/assets/audio/tools/breathe/en_get_ready.mp3";
 import getReadySoundPL from "@/assets/audio/tools/breathe/pl_get_ready.mp3";
 
 const breatheSounds = {
-  breatheOutSound: breatheOutSound,
-  breatheOutSoundPL: breatheOutSoundPL,
-  holdSound: holdSound,
-  holdInSoundPL: holdInSoundPL,
-  holdOutSoundPL: holdOutSoundPL,
-  breatheInSound: breatheInSound,
-  breatheInSoundPL: breatheInSoundPL,
-  getReadySound: getReadySound,
-  getReadySoundPL: getReadySoundPL,
+  pl: {
+    breatheOutSound: breatheOutSoundPL,
+    holdInSound: holdInSoundPL,
+    holdOutSound: holdOutSoundPL,
+    breatheInSound: breatheInSoundPL,
+    getReadySound: getReadySoundPL,
+  },
+  en: {
+    breatheOutSound: breatheOutSound,
+    holdInSound: holdSound,
+    holdOutSound: holdSound,
+    breatheInSound: breatheInSound,
+    getReadySound: getReadySound,
+  },
 };
 
 export default breatheSounds;
