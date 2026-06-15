@@ -31,6 +31,13 @@ const NavigateSettingsModal = () => {
       link: "about/settings" as Href,
       handleOpenModal: setShowNavigateSettingsModal,
     },
+    exportImport: {
+      name: t("export_import.title"),
+      icon: <Feather name="download-cloud" size={32} color={Colors.mainGray} />,
+      iconBright: <Feather name="download-cloud" size={32} color={Colors.white} />,
+      link: "about/exportImport" as Href,
+      handleOpenModal: setShowNavigateSettingsModal,
+    }
   };
 
   const navigateSettingsModalState = useSelector(
@@ -55,6 +62,8 @@ const NavigateSettingsModal = () => {
       handleNavigate(navigateSettingsModalState.link);
     } else if (navigateSettingsModalState.link === items.editProfile.link) {
       handleOpenEditProfileModal();
+    } else if (navigateSettingsModalState.link === items.exportImport.link) {
+      handleNavigate(navigateSettingsModalState.link);
     }
   };
 
@@ -128,6 +137,13 @@ const NavigateSettingsModal = () => {
               />
               <NavigationModalSelect
                 {...items.settings}
+                modalState={navigateSettingsModalState}
+                handleSelect={(link: Href) =>
+                  dispatch(setNavigateSettingsModalSelectedLink(link))
+                }
+              />
+              <NavigationModalSelect
+                {...items.exportImport}
                 modalState={navigateSettingsModalState}
                 handleSelect={(link: Href) =>
                   dispatch(setNavigateSettingsModalSelectedLink(link))

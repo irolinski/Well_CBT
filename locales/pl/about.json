@@ -38,6 +38,27 @@
       "mail_body": "Raport błędu\n\n\n**Opis błędu**\n\nPodaj krótki opis błędu i okoliczności, w których ten wystąpił.\n\n**Kroki do odtworzenia**\n\nOpisz kroki, które prowadzą do wystąpienia błędu.\n\n**Zrzuty ekranu/Logi (jeśli dotyczy)**\n\nJeśli masz jakiekolwiek zrzuty ekranu lub logi, które mogą pomóc, proszę dołącz je.\n\n------\n\nProszę nie edytuj danych poniżej!\n"
     }
   },
+    "export_import": {
+    "title": "Eksport i import danych",
+    "titleShort": "Eksport/Import",
+    "description": "W WorryFree przykładamy najwyższą wagę do Twojej prywatności. Dlatego to Ty masz <bold>pełną kontrolę</bold> nad Twoimi danymi. Na tym ekranie możesz <bold>wyeksportować zapisane informacje</bold> lub wgrać dane, które zostały wcześniej wyeksportowane.",    
+    "export": {
+      "header": "Eksport",
+      "body": "Po kliknięciu w przycisk <bold>Eksportuj dane</bold> otrzymasz plik, którego potem będziesz mógł użyć, żeby odzyskać zapisane postępy.",
+      "button": "Eksportuj dane"
+    },
+    "import": {
+      "header": "Import",
+      "body": "Import pozwala przywrócić zapisane postępy, korzystając z pliku danych WorryFree. Po kliknięciu w przycisk <bold>Importuj dane</bold> zostaniesz poproszony/a o podanie pliku z zapisanymi danymi aplikacji WorryFree.",
+      "button": "Importuj dane"
+    },
+    "modal": {
+      "header": "Czy chcesz kontynuować?",
+      "continue": "Kontynuuj",
+      "back": "Wróć",
+      "body": "Obecnie istniejące dane zostaną nadpisane przez import. \n \n Jeśli chcesz kontynuować, naciśnij przycisk <bold>Kontynuuj</bold>."
+    }
+  },
 
   "achievements": {
     "title": "Osiągnięcia",
