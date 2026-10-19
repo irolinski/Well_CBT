@@ -35,10 +35,6 @@
       ],
       "package": "com.irolinski.cbtApp"
     },
-    "web": {
-      "bundler": "metro",
-      "output": "static"
-    },
     "plugins": [
       "expo-router",
       [
